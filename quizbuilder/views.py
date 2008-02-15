@@ -4,13 +4,13 @@ from google.appengine.ext import db
 from google.appengine.api import users
 from utils import webapp
 from utils.webapp import util
-from utils.webapp.util import login_required
-from .utils.utils import tpl_path
+from .utils.utils import tpl_path, admin_only
 
 QUIZBUILDER_PATH = 'quizbuilder/'           
               
 class QuizBuilder(webapp.RequestHandler):
 
+    @admin_only
     def get(self):
         template_values = {}
         path = tpl_path(QUIZBUILDER_PATH + 'quizbuilder.html')
@@ -32,7 +32,7 @@ class RawItemTemplate(webapp.RequestHandler):
 
 class InductionInterface(webapp.RequestHandler):
 
-    @login_required
+    @admin_only
     def get(self):
         template_values = {}
         path = tpl_path(QUIZBUILDER_PATH + 'induction.html')

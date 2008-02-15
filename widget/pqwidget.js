@@ -182,8 +182,8 @@ $('#pqwidget #subject_1').s3Slider({ timeOut: 8300  });
 				//opacity: 0.8,
 				ghosting: false,
 				containment: 'document', 
-				cancel: $('div.study_videos', $.plopquiz.quiz_content), // Youtube causes drag lock on Firefox, and isn't enabled on Safari. 
-			 distance: 90, // this solves scrollbar problem, but its really annoying
+				cancel: 'embed', // Youtube causes drag lock on Firefox, and isn't enabled on Safari. 
+			 distance: 90, // this solves scrollbar problem, but it requires 90 pixel drag before draggable() activates.
 				cursor: 'pointer'
 				 }); 
 
