@@ -373,6 +373,10 @@ cursor:pointer;
 
 /* common */
 
+.selection_box, .gray_box, .gray_square_box, .frame_box, .note, .info_note, .warning_note{
+    overflow:hidden;
+}
+
 .hidden{
 display:none;
 }

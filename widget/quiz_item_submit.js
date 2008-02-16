@@ -5,6 +5,7 @@ $.event.trigger("submittingAnswer");
 // check the answer for special cases
 // this will handle the non-skipping timeout on instructions2,
 // the proficiencies, the score, and any other special boxes
+
 switch($.plopquiz.quizItem.item_type)
 {
 
@@ -18,8 +19,11 @@ $.plopquiz.settings.proficiencies.push(quiz_subject_choice);
 $('button.take_test').hide();
 $('div#points', $.plopquiz.quiz_inner_content).hide();
 
+// repeat the tutorial if re-opened
+$.plopquiz.settings.instructions.i1complete = false; 
+$.plopquiz.settings.instructions.skip_segment = false;
+$.plopquiz.settings.instructions.i2timedOut = false;
 
-$.plopquiz.settings.instructions.i1complete = false; // repeat the tutorial if re-opened
 //if ($.plopquiz.settings.instructions.completed) $.plopquiz.currentItem = 3; // skips tutorial already completed
 	 
 $.plopquiz.loadItem();
@@ -30,12 +34,14 @@ case "instructions":
 	
 	if(!$.plopquiz.settings.instructions.i1complete)
 			return;
-	else
+	else{
+			$('div#points', $.plopquiz.quiz_inner_content).hide();
 			$.plopquiz.loadItem();
+		}
 break;
 
 case "instructions2":
-	if(!$.plopquiz.settings.instructions.skip_segment)
+if ($.plopquiz.settings.instructions.skip_segment == false)
 	{
 			$.plopquiz.settings.instructions.i2timedOut = true;
 			$.plopquiz.timer.stop();
@@ -43,18 +49,15 @@ case "instructions2":
 			$('.hover_example', $.plopquiz.quiz_content).hide();
 			$('#example_1,#example_3', $.plopquiz.quiz_content).hide('slow');
 			$('#example_2', $.plopquiz.quiz_content).show('slow');
-			$('#skip', $.plopquiz.answer_container).show('slow');
-			
-			$('#skip', $.plopquiz.answer_container).show('slow');
-			//click binding
-			$('#answer1,#answer2', $.plopquiz.answer_container).addClass('disabled');
-			$.plopquiz.settings.instructions.skip_segment = "true";
-
+			$.plopquiz.settings.instructions.skip_segment = true;
+			$('#skip', $.plopquiz.answer_container).data('disabled', false).show('slow');
 			return;
 	}
-	else
-			$.plopquiz.loadItem();
-		   $('#answer1,#answer2', $.plopquiz.answer_container).removeClass('disabled');
+	else{
+		  if (answer != "Skip") return false; // must press Skip to continue
+		  $.plopquiz.loadItem();
+		  $.plopquiz.settings.instructions.skip_segment = false; 
+		}
 break;
 
 case "begin_quiz":
@@ -100,7 +103,9 @@ break;
 
 case "quiz_item":
 	if ($.plopquiz.answers.data('disabled') != false) return false; 
+
 	
+	$.plopquiz.answers.data('disabled', true);
 	
 	// ajax call to submit -- (answer, key, vendor)
 	$.plopquiz.timer.stop();

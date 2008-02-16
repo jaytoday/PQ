@@ -4,8 +4,6 @@
 
  {% include "profile.js" %}
 
- {% include "profile_init.js" %}
-
 {% if scroll %}
 {% include "profile_scroll.js" %}
 {% endif %}

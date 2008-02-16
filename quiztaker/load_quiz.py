@@ -41,10 +41,10 @@ class LoadQuiz():
 	return self.quiz_array 
 
   def temp_filter(self, proficiencies): # TEMPORARY
-	if proficiencies[0] not in ["Smart Grid", "Energy Efficiency", "Recovery.Gov"]:
-		logging.info('temporarily loading a different quiz instead of %s', proficiencies[0])        
+	if proficiencies[0].name not in ["Smart Grid", "Energy Efficiency", "Cars 2.0", "Recovery.Gov"]:
+		logging.info('temporarily loading a different quiz instead of %s', proficiencies[0].name)        
 		proficiencies[0] = Proficiency.get_by_key_name("Recovery.Gov")
-		return proficiencies 
+	return proficiencies 
 
   def load_item(self, item):
         random.shuffle(item.answers)

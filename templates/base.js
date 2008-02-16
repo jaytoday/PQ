@@ -24,8 +24,7 @@ http_host = "{{http_host}}";
 {% include "../static/scripts/utils/console.js" %}
 
  
-$(document).ready(function()
-{
+$(function(){
 	
 	$('div.main').removeClass('hide');
 	
@@ -138,6 +137,8 @@ buttons: {
 }
 
 } 
+
+
 
 }).show();
 

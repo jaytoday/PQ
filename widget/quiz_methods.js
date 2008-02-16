@@ -136,14 +136,8 @@ $('#quiz_answers .answer', $.pq_wrapper).hover(
 		function() { offAnswerHover(this); }  )
 .click(function(e) // submit answer
 {
-
 	// data("disabled") prevents double submissions
-	if ($(this).hasClass('disabled')){ return false; }
-	if($(this).data("disabled") != true){
-		$.plopquiz.submitAnswer($(this).find('div.answertext').text().replace(/\n/g,"")); 
-
-}
-
+	if($(this).data("disabled") == false){ 	$.plopquiz.submitAnswer($(this).find('div.answertext').text().replace(/\n/g,"")); }
 })
 
 

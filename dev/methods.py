@@ -336,6 +336,8 @@ class DataMethods():
 				    continue
 
 				import string
+				if entity['index'].lower() not in [ a.lower() for a in entity['answers'] ]: logging.error('Quiz Item Index %s not in answers %s' % ( entity['index'], str(entity['answers'])))
+				    
 				save_entity = QuizItem( content = entity['content'],
 									 theme = entity['theme'],
 									 proficiency = this_proficiency.key(),

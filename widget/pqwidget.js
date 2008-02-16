@@ -176,13 +176,12 @@ $('#pqwidget #subject_1').s3Slider({ timeOut: 8300  });
 
                         
 				//widget is draggable
-				$('#quiz_outer').draggable(
-				{ 
+				$('#quiz_outer').draggable({ 
 				zIndex: 	1000, 
 				//opacity: 0.8,
 				ghosting: false,
 				containment: 'document', 
-				cancel: 'embed', // Youtube causes drag lock on Firefox, and isn't enabled on Safari. 
+				cancel: 'embed', // Youtube still doesn't work on Safari. 
 			 distance: 90, // this solves scrollbar problem, but it requires 90 pixel drag before draggable() activates.
 				cursor: 'pointer'
 				 }); 

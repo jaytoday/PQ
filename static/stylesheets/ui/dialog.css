@@ -255,9 +255,12 @@ position:absolute;
 width:300px;
 }
 
+div.ui-dialog.about_dialog span#awards span.is_subject{
+height: 81px;
+}
 
 div.ui-dialog.about_dialog span#sponsorships span.is_sponsor{
-margin: -2px 19px;
+margin: -2px 15px;
 }
 
 div.ui-dialog.about_dialog span#awards span#tagline span.selection_box{

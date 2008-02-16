@@ -119,5 +119,6 @@ share_popup.data('last_clicked', $(this).attr('id'));
 	}); // end click
 
 	
+//	$('div#points').show();
 
 	

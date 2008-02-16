@@ -7990,5 +7990,1076 @@
                             "ctime": "Sun Jan 25 11:53:43 2009"
                         }, 
                         "content": "<div  class=\"content\">From 2001 through 2008, as worker productivity went up, 96% of the income <span style=\"opacity: 1;\" id=\"blank\"></span> in the United States went to 10% of society.  "
-                    }
+                    },
+
+
+
+
+
+
+
+
+
+
+
+
+                    {
+                        "index": "flywheel", 
+                        "modified": {
+                            "ctime": "Mon Jan 26 02:52:26 2009"
+                        }, 
+                        "answers": [
+                            "flywheel", 
+                            "transistor", 
+                            "flux capacitor"
+                        ], 
+                        "topic": {
+                           "proficiency": { "name": "Cars 2.0" }, 
+                            "date": {
+                                "ctime": "Sun Jan 25 11:53:26 2009"
+                            }, 
+                            "name": "Technologies"
+                        }, 
+                        "difficulty": 0, 
+                        "theme": "recovery", 
+                        "proficiency": { "name": "Cars 2.0" }, 
+                        "content_url": "http://wikipedia.org", 
+                        "date": {
+                            "ctime": "Sun Jan 25 11:53:43 2009"
+                        }, 
+                        "content": "<div  class=\"content\">Most electric cars use rechargeable batteries, but some use ultracapacitors or a <span style=\"opacity: 1;\" id=\"blank\"></span>. "
+                    },
+
+
+                    {
+                        "index": "lithium-ion", 
+                        "modified": {
+                            "ctime": "Mon Jan 26 02:52:26 2009"
+                        }, 
+                        "answers": [
+                            "lithium-ion", 
+                            "silver-oxide", 
+                            "zinc-carbon"
+                        ], 
+                        "topic": {
+                           "proficiency": { "name": "Cars 2.0" }, 
+                            "date": {
+                                "ctime": "Sun Jan 25 11:53:26 2009"
+                            }, 
+                            "name": "Technologies"
+                        }, 
+                        "difficulty": 0, 
+                        "theme": "recovery", 
+                        "proficiency": { "name": "Cars 2.0" }, 
+                        "content_url": "http://wikipedia.org", 
+                        "date": {
+                            "ctime": "Sun Jan 25 11:53:43 2009"
+                        }, 
+                        "content": "<div  class=\"content\">Vehicles such as the Tesla Roadster use <span style=\"opacity: 1;\" id=\"blank\"></span> batteries instead of lead acid batteries. "
+                    },
+
+
+
+                    {
+                        "index": "zero emission", 
+                        "modified": {
+                            "ctime": "Mon Jan 26 02:52:26 2009"
+                        }, 
+                        "answers": [
+                            "zero emission", 
+                            "zero carbon", 
+                            "zero noise"
+                        ], 
+                        "topic": {
+                           "proficiency": { "name": "Cars 2.0" }, 
+                            "date": {
+                                "ctime": "Sun Jan 25 11:53:26 2009"
+                            }, 
+                            "name": "Policies"
+                        }, 
+                        "difficulty": 0, 
+                        "theme": "recovery", 
+                        "proficiency": { "name": "Cars 2.0" }, 
+                        "content_url": "http://wikipedia.org", 
+                        "date": {
+                            "ctime": "Sun Jan 25 11:53:43 2009"
+                        }, 
+                        "content": "<div  class=\"content\">Owners of electrical cars are often eligible for tax credits designated to <span style=\"opacity: 1;\" id=\"blank\"></span> vehicles. "
+                    },
+
+
+                    {
+                        "index": "power", 
+                        "modified": {
+                            "ctime": "Mon Jan 26 02:52:26 2009"
+                        }, 
+                        "answers": [
+                            "power", 
+                            "fuel", 
+                            "resistance"
+                        ], 
+                        "topic": {
+                           "proficiency": { "name": "Cars 2.0" }, 
+                            "date": {
+                                "ctime": "Sun Jan 25 11:53:26 2009"
+                            }, 
+                            "name": "Technologies"
+                        }, 
+                        "difficulty": 0, 
+                        "theme": "recovery", 
+                        "proficiency": { "name": "Cars 2.0" }, 
+                        "content_url": "http://wikipedia.org", 
+                        "date": {
+                            "ctime": "Sun Jan 25 11:53:43 2009"
+                        }, 
+                        "content": "<div  class=\"content\">Electric vehicles can also utilize a direct motor-to-wheel configuration which increases the amount of available <span style=\"opacity: 1;\" id=\"blank\"></span> "
+                    },
+
+
+
+
+                    {
+                        "index": "zero emission", 
+                        "modified": {
+                            "ctime": "Mon Jan 26 02:52:26 2009"
+                        }, 
+                        "answers": [
+                            "zero emission", 
+                            "zero carbon", 
+                            "zero noise"
+                        ], 
+                        "topic": {
+                           "proficiency": { "name": "Cars 2.0" }, 
+                            "date": {
+                                "ctime": "Sun Jan 25 11:53:26 2009"
+                            }, 
+                            "name": "Policies"
+                        }, 
+                        "difficulty": 0, 
+                        "theme": "recovery", 
+                        "proficiency": { "name": "Cars 2.0" }, 
+                        "content_url": "http://wikipedia.org", 
+                        "date": {
+                            "ctime": "Sun Jan 25 11:53:43 2009"
+                        }, 
+                        "content": "<div  class=\"content\">Owners of electrical cars are often eligible for tax credits designated to <span style=\"opacity: 1;\" id=\"blank\"></span> vehicles. "
+                    },
+
+
+
+                    {
+                        "index": "zero emission", 
+                        "modified": {
+                            "ctime": "Mon Jan 26 02:52:26 2009"
+                        }, 
+                        "answers": [
+                            "zero emission", 
+                            "zero carbon", 
+                            "zero noise"
+                        ], 
+                        "topic": {
+                           "proficiency": { "name": "Cars 2.0" }, 
+                            "date": {
+                                "ctime": "Sun Jan 25 11:53:26 2009"
+                            }, 
+                            "name": "Policies"
+                        }, 
+                        "difficulty": 0, 
+                        "theme": "recovery", 
+                        "proficiency": { "name": "Cars 2.0" }, 
+                        "content_url": "http://wikipedia.org", 
+                        "date": {
+                            "ctime": "Sun Jan 25 11:53:43 2009"
+                        }, 
+                        "content": "<div  class=\"content\">Owners of electrical cars are often eligible for tax credits designated to <span style=\"opacity: 1;\" id=\"blank\"></span> vehicles. "
+                    },
+
+
+
+                    {
+                        "index": "regenerative", 
+                        "modified": {
+                            "ctime": "Mon Jan 26 02:52:26 2009"
+                        }, 
+                        "answers": [
+                            "regenerative", 
+                            "dynamic", 
+                            "resilient"
+                        ], 
+                        "topic": {
+                           "proficiency": { "name": "Cars 2.0" }, 
+                            "date": {
+                                "ctime": "Sun Jan 25 11:53:26 2009"
+                            }, 
+                            "name": "Technologies"
+                        }, 
+                        "difficulty": 0, 
+                        "theme": "recovery", 
+                        "proficiency": { "name": "Cars 2.0" }, 
+                        "content_url": "http://wikipedia.org", 
+                        "date": {
+                            "ctime": "Sun Jan 25 11:53:43 2009"
+                        }, 
+                        "content": "<div  class=\"content\">A <span style=\"opacity: 1;\" id=\"blank\"></span> braking system can recover and reuse energy expended during the braking process. "
+                    },
+
+
+
+                    {
+                        "index": "radar", 
+                        "modified": {
+                            "ctime": "Mon Jan 26 02:52:26 2009"
+                        }, 
+                        "answers": [
+                            "radar", 
+                            "wifi network", 
+                            "camera"
+                        ], 
+                        "topic": {
+                           "proficiency": { "name": "Cars 2.0" }, 
+                            "date": {
+                                "ctime": "Sun Jan 25 11:53:26 2009"
+                            }, 
+                            "name": "Smart Cars"
+                        }, 
+                        "difficulty": 0, 
+                        "theme": "recovery", 
+                        "proficiency": { "name": "Cars 2.0" }, 
+                        "content_url": "http://wikipedia.org", 
+                        "date": {
+                            "ctime": "Sun Jan 25 11:53:43 2009"
+                        }, 
+                        "content": "<div  class=\"content\">A common smart car feature is intelligent cruise control systems controller by an onboard <span style=\"opacity: 1;\" id=\"blank\"></span> "
+                    },
+
+
+                    {
+                        "index": "GPS", 
+                        "modified": {
+                            "ctime": "Mon Jan 26 02:52:26 2009"
+                        }, 
+                        "answers": [
+                            "GPS", 
+                            "VOIP", 
+                            "RFID"
+                        ], 
+                        "topic": {
+                           "proficiency": { "name": "Cars 2.0" }, 
+                            "date": {
+                                "ctime": "Sun Jan 25 11:53:26 2009"
+                            }, 
+                            "name": "Smart Cars"
+                        }, 
+                        "difficulty": 0, 
+                        "theme": "recovery", 
+                        "proficiency": { "name": "Cars 2.0" }, 
+                        "content_url": "http://wikipedia.org", 
+                        "date": {
+                            "ctime": "Sun Jan 25 11:53:43 2009"
+                        }, 
+                        "content": "<div  class=\"content\">Automatic vehicle location systems typically use <span style=\"opacity: 1;\" id=\"blank\"></span> technology to track the position of a vehicle and provide directions. "
+                    },
+
+
+                    {
+                        "index": "Intelligent", 
+                        "modified": {
+                            "ctime": "Mon Jan 26 02:52:26 2009"
+                        }, 
+                        "answers": [
+                            "Intelligent", 
+                            "Automatic", 
+                            "Active"
+                        ], 
+                        "topic": {
+                           "proficiency": { "name": "Cars 2.0" }, 
+                            "date": {
+                                "ctime": "Sun Jan 25 11:53:26 2009"
+                            }, 
+                            "name": "Smart Cars"
+                        }, 
+                        "difficulty": 0, 
+                        "theme": "recovery", 
+                        "proficiency": { "name": "Cars 2.0" }, 
+                        "content_url": "http://wikipedia.org", 
+                        "date": {
+                            "ctime": "Sun Jan 25 11:53:43 2009"
+                        }, 
+                        "content": "<div  class=\"content\">Vehicle systems that automatically adapt to local speed limits use a technology known as <span style=\"opacity: 1;\" id=\"blank\"></span> Speed Adaptation. "
+                    },
+
+
+                    {
+                        "index": "conductive", 
+                        "modified": {
+                            "ctime": "Mon Jan 26 02:52:26 2009"
+                        }, 
+                        "answers": [
+                            "conductive", 
+                            "inductive", 
+                            "reductive"
+                        ], 
+                        "topic": {
+                           "proficiency": { "name": "Cars 2.0" }, 
+                            "date": {
+                                "ctime": "Sun Jan 25 11:53:26 2009"
+                            }, 
+                            "name": "Vehicle Charging"
+                        }, 
+                        "difficulty": 0, 
+                        "theme": "recovery", 
+                        "proficiency": { "name": "Cars 2.0" }, 
+                        "content_url": "http://wikipedia.org", 
+                        "date": {
+                            "ctime": "Sun Jan 25 11:53:43 2009"
+                        }, 
+                        "content": "<div  class=\"content\"> The method of directly connecting a vehicle to the electric grid is known as <span style=\"opacity: 1;\" id=\"blank\"></span> coupling."
+                    },
+
+
+
+
+                    {
+                        "index": "peak", 
+                        "modified": {
+                            "ctime": "Mon Jan 26 02:52:26 2009"
+                        }, 
+                        "answers": [
+                            "peak", 
+                            "valley", 
+                            "range"
+                        ], 
+                        "topic": {
+                           "proficiency": { "name": "Cars 2.0" }, 
+                            "date": {
+                                "ctime": "Sun Jan 25 11:53:26 2009"
+                            }, 
+                            "name": "Vehicle Charging"
+                        }, 
+                        "difficulty": 0, 
+                        "theme": "recovery", 
+                        "proficiency": { "name": "Cars 2.0" }, 
+                        "content_url": "http://wikipedia.org", 
+                        "date": {
+                            "ctime": "Sun Jan 25 11:53:43 2009"
+                        }, 
+                        "content": "<div  class=\"content\">Vehicle-to-grid methods of selling vehicle power back to the power grid are useful for <span style=\"opacity: 1;\" id=\"blank\"></span> load leveling."
+                    },
+
+                    {
+                        "index": "outlet", 
+                        "modified": {
+                            "ctime": "Mon Jan 26 02:52:26 2009"
+                        }, 
+                        "answers": [
+                            "outlet", 
+                            "generator", 
+                            "capacitor"
+                        ], 
+                        "topic": {
+                           "proficiency": { "name": "Cars 2.0" }, 
+                            "date": {
+                                "ctime": "Sun Jan 25 11:53:26 2009"
+                            }, 
+                            "name": "Vehicle Charging"
+                        }, 
+                        "difficulty": 0, 
+                        "theme": "recovery", 
+                        "proficiency": { "name": "Cars 2.0" }, 
+                        "content_url": "http://wikipedia.org", 
+                        "date": {
+                            "ctime": "Sun Jan 25 11:53:43 2009"
+                        }, 
+                        "content": "<div  class=\"content\">Electric vehicles do not necessarily require a large change in fueling infrastructure, since most homeowners already have access to an electric <span style=\"opacity: 1;\" id=\"blank\"></span>."
+                    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    {
+                        "index": "ethanol", 
+                        "modified": {
+                            "ctime": "Mon Jan 26 02:52:26 2009"
+                        }, 
+                        "answers": [
+                            "ethanol", 
+                            "diesel", 
+                            "oil"
+                        ], 
+                        "topic": {
+                           "proficiency": { "name": "Biofuels" }, 
+                            "date": {
+                                "ctime": "Sun Jan 25 11:53:26 2009"
+                            }, 
+                            "name": "Vocabulary"
+                        }, 
+                        "difficulty": 0, 
+                        "theme": "recovery", 
+                         "proficiency": { "name": "Biofuels" },
+                        "content_url": "http://wikipedia.org", 
+                        "date": {
+                            "ctime": "Sun Jan 25 11:53:43 2009"
+                        }, 
+                        "content": "<div  class=\"content\">E10 is a common vehicle fuel blend, consisting of ten percent <span style=\"opacity: 1;\" id=\"blank\"></span>"
+                    },
+
+                    {
+                        "index": "ethyl", 
+                        "modified": {
+                            "ctime": "Mon Jan 26 02:52:26 2009"
+                        }, 
+                        "answers": [
+                            "isopropyl", 
+                            "ethyl", 
+                            "ether"
+                        ], 
+                        "topic": {
+                           "proficiency": { "name": "Biofuels" }, 
+                            "date": {
+                                "ctime": "Sun Jan 25 11:53:26 2009"
+                            }, 
+                            "name": "Vocabulary"
+                        }, 
+                        "difficulty": 0, 
+                        "theme": "recovery", 
+                        "proficiency": { "name": "Biofuels" },
+                        "content_url": "http://wikipedia.org", 
+                        "date": {
+                            "ctime": "Sun Jan 25 11:53:43 2009"
+                        }, 
+                        "content": "<div  class=\"content\">Sugar cane is often used to manufacture ethanol, also known as <span style=\"opacity: 1;\" id=\"blank\"></span> alcohol."
+                    },
+
+
+					       {
+		                        "index": "cellulosic", 
+		                        "modified": {
+		                            "ctime": "Mon Jan 26 02:52:26 2009"
+		                        }, 
+		                        "answers": [
+		                            "cellulosic", 
+		                            "sulfuric", 
+		                            "butyl"
+		                        ], 
+		                        "topic": {
+		                           "proficiency": { "name": "Biofuels" }, 
+		                            "date": {
+		                                "ctime": "Sun Jan 25 11:53:26 2009"
+		                            }, 
+		                            "name": "Vocabulary"
+		                        }, 
+		                        "difficulty": 0, 
+		                        "theme": "recovery", 
+		                        "proficiency": { "name": "Biofuels" },
+		                        "content_url": "http://wikipedia.org", 
+		                        "date": {
+		                            "ctime": "Sun Jan 25 11:53:43 2009"
+		                        }, 
+		                        "content": "<div  class=\"content\">The biofuel made from wood and non-editable plants such as switchgrass is known as <span style=\"opacity: 1;\" id=\"blank\"></span> ethanol."
+		                    },
+
+
+					       {
+		                        "index": "biomass", 
+		                        "modified": {
+		                            "ctime": "Mon Jan 26 02:52:26 2009"
+		                        }, 
+		                        "answers": [
+		                            "biomass", 
+		                            "butanol", 
+		                            "biodiesel"
+		                        ], 
+		                        "topic": {
+		                           "proficiency": { "name": "Biofuels" }, 
+		                            "date": {
+		                                "ctime": "Sun Jan 25 11:53:26 2009"
+		                            }, 
+		                            "name": "Vocabulary"
+		                        }, 
+		                        "difficulty": 0, 
+		                        "theme": "recovery", 
+		                        "proficiency": { "name": "Biofuels" },
+		                        "content_url": "http://wikipedia.org", 
+		                        "date": {
+		                            "ctime": "Sun Jan 25 11:53:43 2009"
+		                        }, 
+		                        "content": "<div  class=\"content\">Organic matter such as recently living organisms and manure are types of <span style=\"opacity: 1;\" id=\"blank\"></span> that can be used as fuel."
+		                    },
+
+
+					       {
+		                        "index": "yield", 
+		                        "modified": {
+		                            "ctime": "Mon Jan 26 02:52:26 2009"
+		                        }, 
+		                        "answers": [
+		                            "yield", 
+		                            "range", 
+		                            "cost"
+		                        ], 
+		                        "topic": {
+		                           "proficiency": { "name": "Biofuels" }, 
+		                            "date": {
+		                                "ctime": "Sun Jan 25 11:53:26 2009"
+		                            }, 
+		                            "name": "Algae Fuel"
+		                        }, 
+		                        "difficulty": 0, 
+		                        "theme": "recovery", 
+		                        "proficiency": { "name": "Biofuels" },
+		                        "content_url": "http://wikipedia.org", 
+		                        "date": {
+		                            "ctime": "Sun Jan 25 11:53:43 2009"
+		                        }, 
+		                        "content": "<div  class=\"content\">The per unit area oil <span style=\"opacity: 1;\" id=\"blank\"></span> of algae fuel is greater than that of terrestrial materials."
+		                    },
+		
+	
+					       {
+		                        "index": "butanol", 
+		                        "modified": {
+		                            "ctime": "Mon Jan 26 02:52:26 2009"
+		                        }, 
+		                        "answers": [
+		                            "ethanol", 
+		                            "butanol", 
+		                            "methanol"
+		                        ], 
+		                        "topic": {
+		                           "proficiency": { "name": "Biofuels" }, 
+		                            "date": {
+		                                "ctime": "Sun Jan 25 11:53:26 2009"
+		                            }, 
+		                           "name": "Algae Fuel"
+		                        }, 
+		                        "difficulty": 0, 
+		                        "theme": "recovery", 
+		                        "proficiency": { "name": "Biofuels" },
+		                        "content_url": "http://wikipedia.org", 
+		                        "date": {
+		                            "ctime": "Sun Jan 25 11:53:43 2009"
+		                        }, 
+		                        "content": "<div  class=\"content\">The green waste left over from algae oil extraction can be used to produce <span style=\"opacity: 1;\" id=\"blank\"></span>"
+		                    },
+		
+
+					       {
+		                        "index": "bioreactors", 
+		                        "modified": {
+		                            "ctime": "Mon Jan 26 02:52:26 2009"
+		                        }, 
+		                        "answers": [
+		                            "bioreactors", 
+		                            "distillers", 
+		                            "neutralizers"
+		                        ], 
+		                        "topic": {
+		                           "proficiency": { "name": "Biofuels" }, 
+		                            "date": {
+		                                "ctime": "Sun Jan 25 11:53:26 2009"
+		                            }, 
+		                           "name": "Algae Fuel"
+		                        }, 
+		                        "difficulty": 0, 
+		                        "theme": "recovery", 
+		                        "proficiency": { "name": "Biofuels" },
+		                        "content_url": "http://wikipedia.org", 
+		                        "date": {
+		                            "ctime": "Sun Jan 25 11:53:43 2009"
+		                        }, 
+		                        "content": "<div  class=\"content\">Algae cultivation often involves dispensing nutrient-filled water through <span style=\"opacity: 1;\" id=\"blank\"></span>"
+		                    },
+
+
+					       {
+		                        "index": "hydrometer", 
+		                        "modified": {
+		                            "ctime": "Mon Jan 26 02:52:26 2009"
+		                        }, 
+		                        "answers": [
+		                            "hydrometer", 
+		                            "hygromat", 
+		                            "hydrolyzer"
+		                        ], 
+		                        "topic": {
+		                           "proficiency": { "name": "Biofuels" }, 
+		                            "date": {
+		                                "ctime": "Sun Jan 25 11:53:26 2009"
+		                            }, 
+		                           "name": "Chemistry"
+		                        }, 
+		                        "difficulty": 0, 
+		                        "theme": "recovery", 
+		                        "proficiency": { "name": "Biofuels" },
+		                        "content_url": "http://wikipedia.org", 
+		                        "date": {
+		                            "ctime": "Sun Jan 25 11:53:43 2009"
+		                        }, 
+		                        "content": "<div  class=\"content\">A <span style=\"opacity: 1;\" id=\"blank\"></span> can be used to calculate alcohol content by measuring the difference in specific gravity after fermentation."
+		                    },		
+
+					       {
+		                        "index": "water", 
+		                        "modified": {
+		                            "ctime": "Mon Jan 26 02:52:26 2009"
+		                        }, 
+		                        "answers": [
+		                            "water", 
+		                            "sodium", 
+		                            "glycerol"
+		                        ], 
+		                        "topic": {
+		                           "proficiency": { "name": "Biofuels" }, 
+		                            "date": {
+		                                "ctime": "Sun Jan 25 11:53:26 2009"
+		                            }, 
+		                           "name": "Chemistry"
+		                        }, 
+		                        "difficulty": 0, 
+		                        "theme": "recovery", 
+		                        "proficiency": { "name": "Biofuels" },
+		                        "content_url": "http://wikipedia.org", 
+		                        "date": {
+		                            "ctime": "Sun Jan 25 11:53:43 2009"
+		                        }, 
+		                        "content": "<div  class=\"content\">Ethylene hydration or brewing produces a mix of <span style=\"opacity: 1;\" id=\"blank\"></span> and ethanol."
+		                    },
+		
+					       {
+		                        "index": "denatured", 
+		                        "modified": {
+		                            "ctime": "Mon Jan 26 02:52:26 2009"
+		                        }, 
+		                        "answers": [
+		                            "denatured", 
+		                            "deregulated", 
+		                            "desiccated"
+		                        ], 
+		                        "topic": {
+		                           "proficiency": { "name": "Biofuels" }, 
+		                            "date": {
+		                                "ctime": "Sun Jan 25 11:53:26 2009"
+		                            }, 
+		                           "name": "Policies"
+		                        }, 
+		                        "difficulty": 0, 
+		                        "theme": "recovery", 
+		                        "proficiency": { "name": "Biofuels" },
+		                        "content_url": "http://wikipedia.org", 
+		                        "date": {
+		                            "ctime": "Sun Jan 25 11:53:43 2009"
+		                        }, 
+		                        "content": "<div  class=\"content\">Alcohol beverage taxes are relieved for alcoholic products that are <span style=\"opacity: 1;\" id=\"blank\"></span> and rendered unfit to drink."
+		                    },
+		
+		
+					       {
+		                        "index": "corrosive", 
+		                        "modified": {
+		                            "ctime": "Mon Jan 26 02:52:26 2009"
+		                        }, 
+		                        "answers": [
+		                            "corrosive", 
+		                            "intoxicating", 
+		                            "pollutive"
+		                        ], 
+		                        "topic": {
+		                           "proficiency": { "name": "Biofuels" }, 
+		                            "date": {
+		                                "ctime": "Sun Jan 25 11:53:26 2009"
+		                            }, 
+		                           "name": "Policies"
+		                        }, 
+		                        "difficulty": 0, 
+		                        "theme": "recovery", 
+		                        "proficiency": { "name": "Biofuels" },
+		                        "content_url": "http://wikipedia.org", 
+		                        "date": {
+		                            "ctime": "Sun Jan 25 11:53:43 2009"
+		                        }, 
+		                        "content": "<div  class=\"content\">Because of its <span style=\"opacity: 1;\" id=\"blank\"></span> effects on some fuel systems, ethanol is often banned from ships and aircraft."
+		                    },		
+		
+					       {
+		                        "index": "mineral", 
+		                        "modified": {
+		                            "ctime": "Mon Jan 26 02:52:26 2009"
+		                        }, 
+		                        "answers": [
+		                            "mineral", 
+		                            "petroleum", 
+		                            "propanol"
+		                        ], 
+		                        "topic": {
+		                           "proficiency": { "name": "Biofuels" }, 
+		                            "date": {
+		                                "ctime": "Sun Jan 25 11:53:26 2009"
+		                            }, 
+		                           "name": "Policies"
+		                        }, 
+		                        "difficulty": 0, 
+		                        "theme": "recovery", 
+		                        "proficiency": { "name": "Biofuels" },
+		                        "content_url": "http://wikipedia.org", 
+		                        "date": {
+		                            "ctime": "Sun Jan 25 11:53:43 2009"
+		                        }, 
+		                        "content": "<div  class=\"content\">The majority of diesel engine manufacturers allow for some biodiesel to be used as fuel if it is mixed with <span style=\"opacity: 1;\" id=\"blank\"></span> based diesel."
+		                    },
+		
+		
+					       {
+		                        "index": "passive", 
+		                        "modified": {
+		                            "ctime": "Mon Jan 26 02:52:26 2009"
+		                        }, 
+		                        "answers": [
+		                            "passive", 
+		                            "active", 
+		                            "reactive"
+		                        ], 
+		                        "topic": {
+		                           "proficiency": { "name": "Energy Efficiency" },
+		                            "date": {
+		                                "ctime": "Sun Jan 25 11:53:26 2009"
+		                            }, 
+		                           "name": "Best Practices"
+		                        }, 
+		                        "difficulty": 0, 
+		                        "theme": "recovery", 
+		                        "proficiency": { "name": "Energy Efficiency" },
+		                        "content_url": "http://wikipedia.org", 
+		                        "date": {
+		                            "ctime": "Sun Jan 25 11:53:43 2009"
+		                        }, 
+		                        "content": "<div  class=\"content\"><span style=\"opacity: 1;\" id=\"blank\"></span>  solar heating involves using the natural thermal energy of the sun to provide heat for a building."
+		                    },
+
+					       {
+		                        "index": "insulation", 
+		                        "modified": {
+		                            "ctime": "Mon Jan 26 02:52:26 2009"
+		                        }, 
+		                        "answers": [
+		                            "paneling", 
+		                            "paint", 
+		                            "insulation"
+		                        ], 
+		                        "topic": {
+		                           "proficiency": { "name": "Energy Efficiency" },
+		                            "date": {
+		                                "ctime": "Sun Jan 25 11:53:26 2009"
+		                            }, 
+		                           "name": "Best Practices"
+		                        }, 
+		                        "difficulty": 0, 
+		                        "theme": "recovery", 
+		                        "proficiency": { "name": "Energy Efficiency" },
+		                        "content_url": "http://wikipedia.org", 
+		                        "date": {
+		                            "ctime": "Sun Jan 25 11:53:43 2009"
+		                        }, 
+		                        "content": "<div  class=\"content\">High-efficiency <span style=\"opacity: 1;\" id=\"blank\"></span> in a building can significantly reduce heating bills."
+		                    },
+		
+					       {
+		                        "index": "compact", 
+		                        "modified": {
+		                            "ctime": "Mon Jan 26 02:52:26 2009"
+		                        }, 
+		                        "answers": [
+		                            "compact", 
+		                            "incandescent", 
+		                            "neon"
+		                        ], 
+		                        "topic": {
+		                           "proficiency": { "name": "Energy Efficiency" },
+		                            "date": {
+		                                "ctime": "Sun Jan 25 11:53:26 2009"
+		                            }, 
+		                           "name": "Best Practices"
+		                        }, 
+		                        "difficulty": 0, 
+		                        "theme": "recovery", 
+		                        "proficiency": { "name": "Energy Efficiency" },
+		                        "content_url": "http://wikipedia.org", 
+		                        "date": {
+		                            "ctime": "Sun Jan 25 11:53:43 2009"
+		                        }, 
+		                        "content": "<div  class=\"content\"><span style=\"opacity: 1;\" id=\"blank\"></span> fluorescent lights use two-thirds less energy and may last 6 to 10 times longer than older alternatives."
+		                    },
+		
+		
+		
+					       {
+		                        "index": "L.E.E.D", 
+		                        "modified": {
+		                            "ctime": "Mon Jan 26 02:52:26 2009"
+		                        }, 
+		                        "answers": [
+		                            "L.E.E.D", 
+		                            "R.E.E.D", 
+		                            "L.E.D"
+		                        ], 
+		                        "topic": {
+		                           "proficiency": { "name": "Energy Efficiency" },
+		                            "date": {
+		                                "ctime": "Sun Jan 25 11:53:26 2009"
+		                            }, 
+		                           "name": "Certification"
+		                        }, 
+		                        "difficulty": 0, 
+		                        "theme": "recovery", 
+		                        "proficiency": { "name": "Energy Efficiency" },
+		                        "content_url": "http://wikipedia.org", 
+		                        "date": {
+		                            "ctime": "Sun Jan 25 11:53:43 2009"
+		                        }, 
+		                        "content": "<div  class=\"content\">The 7 World Trade Center building is the first in New York City to earn the gold status from the U.S. Green Building Council's <span style=\"opacity: 1;\" id=\"blank\"></span> program."
+		                    },				
+		
+					       {
+		                        "index": "Star", 
+		                        "modified": {
+		                            "ctime": "Mon Jan 26 02:52:26 2009"
+		                        }, 
+		                        "answers": [
+		                            "Star", 
+		                            "Rate", 
+		                            "Stat"
+		                        ], 
+		                        "topic": {
+		                           "proficiency": { "name": "Energy Efficiency" },
+		                            "date": {
+		                                "ctime": "Sun Jan 25 11:53:26 2009"
+		                            }, 
+		                           "name": "Certification"
+		                        }, 
+		                        "difficulty": 0, 
+		                        "theme": "recovery", 
+		                        "proficiency": { "name": "Energy Efficiency" },
+		                        "content_url": "http://wikipedia.org", 
+		                        "date": {
+		                            "ctime": "Sun Jan 25 11:53:43 2009"
+		                        }, 
+		                        "content": "<div  class=\"content\">Energy <span style=\"opacity: 1;\" id=\"blank\"></span> is an international standard for energy efficient consumer products, first created as a United States government program in 1992."
+		                    },
+		
+					       {
+		                        "index": "standby", 
+		                        "modified": {
+		                            "ctime": "Mon Jan 26 02:52:26 2009"
+		                        }, 
+		                        "answers": [
+		                            "standby", 
+		                            "startup", 
+		                            "shutdown"
+		                        ], 
+		                        "topic": {
+		                           "proficiency": { "name": "Energy Efficiency" },
+		                            "date": {
+		                                "ctime": "Sun Jan 25 11:53:26 2009"
+		                            }, 
+		                           "name": "Certification"
+		                        }, 
+		                        "difficulty": 0, 
+		                        "theme": "recovery", 
+		                        "proficiency": { "name": "Energy Efficiency" },
+		                        "content_url": "http://wikipedia.org", 
+		                        "date": {
+		                            "ctime": "Sun Jan 25 11:53:43 2009"
+		                        }, 
+		                        "content": "<div  class=\"content\">The One Watt Initiative is an energy saving proposal to reduce <span style=\"opacity: 1;\" id=\"blank\"></span> power-use in all appliances to just one watt."
+		                    },
+		
+		
+		
+		
+		
+		
+					       {
+		                        "index": "cogeneration", 
+		                        "modified": {
+		                            "ctime": "Mon Jan 26 02:52:26 2009"
+		                        }, 
+		                        "answers": [
+		                            "cogeneration", 
+		                            "deregulation", 
+		                            "generalization"
+		                        ], 
+		                        "topic": {
+		                           "proficiency": { "name": "Energy Efficiency" },
+		                            "date": {
+		                                "ctime": "Sun Jan 25 11:53:26 2009"
+		                            }, 
+		                           "name": "Industry"
+		                        }, 
+		                        "difficulty": 0, 
+		                        "theme": "recovery", 
+		                        "proficiency": { "name": "Energy Efficiency" },
+		                        "content_url": "http://wikipedia.org", 
+		                        "date": {
+		                            "ctime": "Sun Jan 25 11:53:43 2009"
+		                        }, 
+		                        "content": "<div  class=\"content\">Conventional electricity generation is about 30 percent efficient, whereas the <span style=\"opacity: 1;\" id=\"blank\"></span> technique of combining heat and power converts up to 90 percent of the fuel into usable energy."
+		                    },		
+		
+
+					       {
+		                        "index": "superconducting", 
+		                        "modified": {
+		                            "ctime": "Mon Jan 26 02:52:26 2009"
+		                        }, 
+		                        "answers": [
+		                            "superconducting", 
+		                            "oscillating", 
+		                            "radiating"
+		                        ], 
+		                        "topic": {
+		                           "proficiency": { "name": "Energy Efficiency" },
+		                            "date": {
+		                                "ctime": "Sun Jan 25 11:53:26 2009"
+		                            }, 
+		                           "name": "Industry"
+		                        }, 
+		                        "difficulty": 0, 
+		                        "theme": "recovery", 
+		                        "proficiency": { "name": "Energy Efficiency" },
+		                        "content_url": "http://wikipedia.org", 
+		                        "date": {
+		                            "ctime": "Sun Jan 25 11:53:43 2009"
+		                        }, 
+		                        "content": "<div  class=\"content\">Motor coils made of <span style=\"opacity: 1;\" id=\"blank\"></span> materials can drastically reduce energy usage in industrial settings."
+		                    },
+				
+
+					       {
+		                        "index": "optimization", 
+		                        "modified": {
+		                            "ctime": "Mon Jan 26 02:52:26 2009"
+		                        }, 
+		                        "answers": [
+		                            "optimization", 
+		                            "collaboration", 
+		                            "arbitration"
+		                        ], 
+		                        "topic": {
+		                           "proficiency": { "name": "Energy Efficiency" },
+		                            "date": {
+		                                "ctime": "Sun Jan 25 11:53:26 2009"
+		                            }, 
+		                           "name": "Industry"
+		                        }, 
+		                        "difficulty": 0, 
+		                        "theme": "recovery", 
+		                        "proficiency": { "name": "Energy Efficiency" },
+		                        "content_url": "http://wikipedia.org", 
+		                        "date": {
+		                            "ctime": "Sun Jan 25 11:53:43 2009"
+		                        }, 
+		                        "content": "<div  class=\"content\">Voltage <span style=\"opacity: 1;\" id=\"blank\"></span> technology gives the end-user the ability to correct power quality problems from the grid."
+		                    },		
+		
+					       {
+		                        "index": "rebound", 
+		                        "modified": {
+		                            "ctime": "Mon Jan 26 02:52:26 2009"
+		                        }, 
+		                        "answers": [
+		                            "rebound", 
+		                            "butterfly", 
+		                            "bradley"
+		                        ], 
+		                        "topic": {
+		                           "proficiency": { "name": "Energy Efficiency" },
+		                            "date": {
+		                                "ctime": "Sun Jan 25 11:53:26 2009"
+		                            }, 
+		                           "name": "Theory"
+		                        }, 
+		                        "difficulty": 0, 
+		                        "theme": "recovery", 
+		                        "proficiency": { "name": "Energy Efficiency" },
+		                        "content_url": "http://wikipedia.org", 
+		                        "date": {
+		                            "ctime": "Sun Jan 25 11:53:43 2009"
+		                        }, 
+		                        "content": "<div  class=\"content\">A tendency for efficient energy usage to lower energy service prices and consequently raise energy consumption is known as the <span style=\"opacity: 1;\" id=\"blank\"></span> effect."
+		                    },		
+	
+					       {
+		                        "index": "Negawatt", 
+		                        "modified": {
+		                            "ctime": "Mon Jan 26 02:52:26 2009"
+		                        }, 
+		                        "answers": [
+		                            "Negawatt", 
+		                            "Duravolt", 
+		                            "Veridian"
+		                        ], 
+		                        "topic": {
+		                           "proficiency": { "name": "Energy Efficiency" },
+		                            "date": {
+		                                "ctime": "Sun Jan 25 11:53:26 2009"
+		                            }, 
+		                           "name": "Theory"
+		                        }, 
+		                        "difficulty": 0, 
+		                        "theme": "recovery", 
+		                        "proficiency": { "name": "Energy Efficiency" },
+		                        "content_url": "http://wikipedia.org", 
+		                        "date": {
+		                            "ctime": "Sun Jan 25 11:53:43 2009"
+		                        }, 
+		                        "content": "<div  class=\"content\"><span style=\"opacity: 1;\" id=\"blank\"></span> power is a term introduced by Amory Lovins to describe investing in improved energy efficiency rather than improved energy generation."	
+		                    },
+		
+					       {
+		                        "index": "Load", 
+		                        "modified": {
+		                            "ctime": "Mon Jan 26 02:52:26 2009"
+		                        }, 
+		                        "answers": [
+		                            "Load", 
+		                            "Demand", 
+		                            "Response"
+		                        ], 
+		                        "topic": {
+		                           "proficiency": { "name": "Energy Efficiency" },
+		                            "date": {
+		                                "ctime": "Sun Jan 25 11:53:26 2009"
+		                            }, 
+		                           "name": "Theory"
+		                        }, 
+		                        "difficulty": 0, 
+		                        "theme": "recovery", 
+		                        "proficiency": { "name": "Energy Efficiency" },
+		                        "content_url": "http://wikipedia.org", 
+		                        "date": {
+		                            "ctime": "Sun Jan 25 11:53:43 2009"
+		                        }, 
+		                        "content": "<div  class=\"content\"><span style=\"opacity: 1;\" id=\"blank\"></span> management is the process of balancing the supply of electricity on the network with the electrical load by adjusting the load rather than the power station output."	
+		                    }			
+					
+
                 ]
