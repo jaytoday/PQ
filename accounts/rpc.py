@@ -50,10 +50,12 @@ class RPCMethods(webapp.RequestHandler):
 
 
   def SubmitProfileEdits(self, *args):
+  	save = []
   	session = Session()
   	user = session['user']    
   	user.has_edited = True
   	user.fullname = args[0]
+  	if user.is_sponsor: save.append( self.UpdateSponsorName(user, args[0]) )
   	if len(args[1]) > 5:  user.email = args[1]
   	user.location = args[2]
   	if len(args[3]) > 8: 
@@ -67,14 +69,16 @@ class RPCMethods(webapp.RequestHandler):
   	if len(args[6]) > 3:
   		from .model.user import ProfilePicture
   		user.photo = ProfilePicture.get(args[6])
-  	user.put()
+  	save.append(user)
+  	db.put(save)
   	session['user'] = user # update profile info cached for session
-
-		
-	# add up all scores for a given quiztaker, and then rank them.
 	return "OK"
 
-
+  def UpdateSponsorName(self, user, name):
+      from model.employer import Employer
+      this_sponsor = Employer.get_by_key_name(user.unique_identifier)
+      this_sponsor.name = name
+      return this_sponsor
 
 
   def SubmitSponsorPledge(self, *args):

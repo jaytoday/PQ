@@ -173,23 +173,12 @@ def mail_sponsor_intro(profile):
 	
 	Your new role as a PlopQuiz Community Sponsor is a chance to connect with motivated learners and show your support for issues of public interest.
 	
-	Members of your orvybreaks,
-       
-       Welcome to PlopQuiz!
-       
-       Your academic profile on PlopQuiz.com will help you demonstrate your knowledge about emerging subjects of public interest.
-       
-       Each quiz you take is a new chance for you to add awards to your academic profile and compete for sponsorships from our community organizations.
-       
-       
-               
-       ganization can use this private link to sign in to your account:
+    Use this link to create your account:
 	
 	%s
+
 	
-	
-	
-	Once signed in, you can edit your profile, view your sponsorships, and configure your sponsorship settings.
+	Once signed in, you can customize your profile, choose a subject to sponsor, and write your own custom sponsorship message.
 	
 
 	

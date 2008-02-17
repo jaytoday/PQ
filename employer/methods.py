@@ -15,18 +15,22 @@ class DataMethods():
 	
 
   def create_business_account(self, uid, email, proficiencies=False, batch=False):
-	from accounts.methods import register_account, register_user
-	import string
-	fullname = string.capwords(uid.replace("_", " "))
-	business_employer = self.register_employer(uid, fullname, email, proficiencies, save=False)
-	if not business_employer: return () # already registered
-	business_account = register_account(uid, fullname, save=False)
-	business_profile = register_user(uid, fullname, fullname, email, is_sponsor=True, save=False)
-	if business_profile.is_sponsor is False: return "ERROR"
-	if not batch: #only one account being made
-	    db.put([business_account, business_profile, business_employer])
-	    self.refresh_employer_images([business_employer])
-	return business_account, business_profile, business_employer 
+    from accounts.methods import register_account, register_user
+    import string
+    try:
+        int(uid[0]) #check to see if it starts with an integer
+        uid = "pq" + uid
+    except ValueError: pass #doesnt start with integer	
+    fullname = string.capwords(uid.replace("_", " "))
+    business_employer = self.register_employer(uid, fullname, email, proficiencies, save=False)
+    if not business_employer: return () # already registered
+    business_account = register_account(uid, fullname, save=False)
+    business_profile = register_user(uid, fullname, fullname, email, is_sponsor=True, save=False)
+    if business_profile.is_sponsor is False: return "ERROR"
+    if not batch: #only one account being made
+        db.put([business_account, business_profile, business_employer])
+        self.refresh_employer_images([business_employer])
+    return business_account, business_profile, business_employer 
 
 
   def register_employer(self, business_name, fullname, email, proficiencies=False, save=True):

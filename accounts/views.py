@@ -156,24 +156,26 @@ class Register(webapp.RequestHandler):
 		return
 
   def create_user(self):
-        # These could all be saved at once 
-        
-		save = []
-		if not self.request.get('nickname') and self.request.get('email'):
-		    self.response.out.write('nickname and email required')
-		    return 
-		logging.info('Creating New User With Nickname %s', self.request.get('nickname'))
-		self.session['nickname'] = self.request.get('nickname')
-		if not self.session['fullname']: self.session['fullname'] = self.session['nickname']
-		self.session['email'] = self.request.get('email')
-		self.session['account'] = register_account(self.session['unique_identifier'], self.session['nickname'], save=False)
-		self.session['user'] = register_user(self.session['unique_identifier'], self.session['nickname'], self.session['fullname'], self.session['email'], save=False)
-		self.session['quiz_taker'] = register_qt(self.session['unique_identifier'], self.session['nickname'], save=False)
-		save.extend( (self.session['account'], self.session['user'], self.session['quiz_taker']) ) 
-		db.put(save)
-		from accounts.mail import mail_intro_message
-		mail_intro_message(self.session['user'])
-		self.redirect('/login')
+        save = []
+        if not self.request.get('nickname') and self.request.get('email'):
+            self.response.out.write('nickname and email required')
+            return 
+        logging.info('Creating New User With Nickname %s', self.request.get('nickname'))
+        try:
+            int(self.session['unique_identifier'][0]) #check to see if it starts with an integer. key_names cant start with number.
+            self.session['unique_identifier'] = "pq" + self.session['unique_identifier']
+        except ValueError: pass #doesnt start with integer
+        self.session['nickname'] = self.request.get('nickname')
+        if not self.session['fullname']: self.session['fullname'] = self.session['nickname']
+        self.session['email'] = self.request.get('email')
+        self.session['account'] = register_account(self.session['unique_identifier'], self.session['nickname'], save=False)
+        self.session['user'] = register_user(self.session['unique_identifier'], self.session['nickname'], self.session['fullname'], self.session['email'], save=False)
+        self.session['quiz_taker'] = register_qt(self.session['unique_identifier'], self.session['nickname'], save=False)
+        save.extend( (self.session['account'], self.session['user'], self.session['quiz_taker']) ) 
+        db.put(save)
+        from accounts.mail import mail_intro_message
+        mail_intro_message(self.session['user'])
+        self.redirect('/login')
 
 	  
     

@@ -43,7 +43,9 @@
 
 <ul id="1">
 <li> <label for="fullname">Name</label> <input class="signup fullname" type="text" name="fullname" maxlength="20" value="{{ user.fullname }}" id="fullname"   /> </li>
-<li> <label for="email">Email</label> <input class="signup email" type="text" name="email" value="{{ user.email|default_if_none:"" }}" maxlength="25" id="email"   /> </li>
+<li> <label for="email">Email</label> <input class="signup email" type="text" name="email" value="{{ user.email|default_if_none:"" }}" maxlength="25" id="email"   /> 
+	<br/><div style="margin:5px 35px 0; font-size:.9em;">( not publicly displayed )</div>
+	</li>
 
 <!--
 <li style="margin: -5px 10px;"> <label for="student" style="font-size: 0.9em;">E-mail me occasional PlopQuiz news updates</label> <input type="checkbox" checked class="signup student" name="email_updates" maxlength="25" id="email_updates"/> </li>

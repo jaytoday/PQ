@@ -731,12 +731,6 @@ margin:-25px 20px;
         -webkit-border-radius: 3px;
 }
 
-.quiz_wrap div.tab.webkit
-{
-background-color: #b5b5b5 !important;
-border-right:1px solid #b5b5b5 !important;
-}
-
 
 .quiz_wrap div.tab
 {
@@ -757,6 +751,11 @@ width:130px;
 z-index:100;
 }
 
+.quiz_wrap div.tab.webkit
+{
+background-color: #b5b5b5 !important;
+border-right:1px solid #b5b5b5 !important;
+}
 
 .quiz_wrap div#quiz_category {
 font-size:0.9em;

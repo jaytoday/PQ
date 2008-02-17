@@ -6,7 +6,7 @@ from proficiency import Proficiency
 
 
 
-class Employer(db.Model):
+class Employer(db.Model): #n'est sponsor
     unique_identifier = db.StringProperty(required=True)
     email = db.EmailProperty(required=False)
     name = db.StringProperty()
