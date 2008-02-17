@@ -308,7 +308,7 @@ if(window.jQuery){
 if (load_jquery == true)
     { 
 
-          {# Dynamically insert the version?  {% include "../static/scripts/jquery/jquery-{{ jquery_version }}.min.js" %} #}
+          {# Dynamically insert the jQuery version  {% include "../static/scripts/jquery/jquery-{{ jquery_version }}.min.js" %} #}
               {% include "../static/scripts/jquery/jquery-1.3.1.min.js" %}
           
 

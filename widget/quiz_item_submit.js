@@ -5,6 +5,8 @@ $.event.trigger("submittingAnswer");
 // check the answer for special cases
 // this will handle the non-skipping timeout on instructions2,
 // the proficiencies, the score, and any other special boxes
+if ($.plopquiz.answers.data('disabled') == true) return false;
+
 
 switch($.plopquiz.quizItem.item_type)
 {
@@ -35,7 +37,7 @@ case "instructions":
 	if(!$.plopquiz.settings.instructions.i1complete)
 			return;
 	else{
-			$('div#points', $.plopquiz.quiz_inner_content).hide();
+			$('div#instructions_quiz_selection', $.plopquiz.quiz_content).hide(); //fixes safari bug
 			$.plopquiz.loadItem();
 		}
 break;
@@ -62,6 +64,8 @@ break;
 
 case "begin_quiz":
 
+	if ($.plopquiz.answers.data('disabled') != false) return false; // problems with double submits
+	$.plopquiz.answers.data('disabled',true);
 	$.plopquiz.quiz_inner_content.addClass('disabled').animate({opacity:0},100); 
 	$.plopquiz.quiz_loader.show().animate({opacity: .5 }, {duration:100});
 	$.plopquiz.timer.css('width', '100%'); 
@@ -104,8 +108,6 @@ break;
 case "quiz_item":
 	if ($.plopquiz.answers.data('disabled') != false) return false; 
 
-	
-	$.plopquiz.answers.data('disabled', true);
 	
 	// ajax call to submit -- (answer, key, vendor)
 	$.plopquiz.timer.stop();

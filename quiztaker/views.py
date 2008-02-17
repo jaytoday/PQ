@@ -61,6 +61,7 @@ class QuizItemTemplate(webapp.RequestHandler):
     quiz_item['answers'] = this_quiz_item.answers
     quiz_item['theme'] = this_quiz_item.theme
     template_values = quiz_item
+    template_values['browser'] = self.get_browser()
     if self.request.get('demo') == 'true': path = tpl_path(QUIZDEMO_PATH + 'quiz_item.html')
     else: path = tpl_path(QUIZTAKER_PATH + 'quiz_item.html')
     if self.request.get("callback"):
@@ -68,7 +69,9 @@ class QuizItemTemplate(webapp.RequestHandler):
     else:
             self.response.out.write(template.render(path, template_values))
 
-
+  def get_browser(self):
+      if "WebKit" in self.request.environ['HTTP_USER_AGENT']: return "webkit"
+      return "firefox"
 
 class TakeQuiz(webapp.RequestHandler):
   #Load Quiz Based on Path Argument

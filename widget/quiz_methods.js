@@ -124,6 +124,7 @@ $.event.trigger("answerhover");
 // these probably do the same thing
 .bind('loadingQuizItem', function()
 {
+	$.plopquiz.answers.removeClass('disabled').data("disabled", true);
 	$.plopquiz.timer.stop();
 })
 .bind('submitingAnswer', function()

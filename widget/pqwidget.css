@@ -731,15 +731,18 @@ margin:-25px 20px;
         -webkit-border-radius: 3px;
 }
 
+.quiz_wrap div.tab.webkit
+{
+background-color: #b5b5b5 !important;
+border-right:1px solid #b5b5b5 !important;
+}
+
+
 .quiz_wrap div.tab
 {
 -webkit-border-top-right-radius: 18px;
 -moz-border-radius-topright:18px;
-/*
-background-color: rgb(204, 204, 204);
-border-right:1px solid #CDCDCD;
- */
-background-color: #C2C2C2; 
+background-color: #C2C2C2;
 border-right:1px solid #C2C2C2;
 bottom:1px;
 font-variant:small-caps;

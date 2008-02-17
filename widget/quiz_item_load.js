@@ -53,7 +53,7 @@ else
 $("#skip", $.plopquiz.answer_container).hide();
 
 
-
+$.plopquiz.answers.removeClass('disabled').data("disabled", false);
 
 
 /*
