@@ -1777,7 +1777,7 @@ background:#DDDDDD none repeat scroll 0 0;
 border:2px solid #DDDDDD;
 color:#000040;
 float:left;
-height:15px;
+height:19px;
 line-height:1em;
 margin:0 0 0 8px;
 padding:0 3px 3px;
@@ -1789,7 +1789,7 @@ width:130px;
 color:#000040;
 font-weight:bold;
 position:absolute;
-margin: 2px 0 0 10px;
+margin: 4px 0 0 10px;
 font-size: .7em;
 }
 
@@ -1806,7 +1806,7 @@ color:#000040;
 float:left;
 height:15px;
 line-height:1em;
-margin:5px 0 0 8px;
+margin:3px 0 0 8px;
 padding:1px 1px 7px;
 text-transform:none;
 width:284px;
@@ -1948,7 +1948,13 @@ cursor:pointer;
 .quiz_wrap div.links_header{left: 100px; }
 .quiz_wrap div.videos_header{left: 160px; }
 
-.quiz_wrap div.study_content{position: absolute; top: 20px; left: 13px; width:280px;}
+.quiz_wrap div.study_content{
+position: absolute; 
+top: 20px; 
+height:200px;
+left:13px;
+overflow:auto; width:280px;
+}
 
 
 .quiz_wrap div.study_header.selected {color:#AAAAAA !important;}
