@@ -3,7 +3,7 @@
 		{% if user_session %}
 		
 		<div id="login"><a href="/profile/{{user_session.profile_path}}" class="profile"> {{user_session.nickname}}</a>
-		 {% if not no_quizlink %} | <a id="take_a_quiz">Take a Quiz</a>{% endif %}
+		 {% if not no_quizlink %} | <a id="take_a_quiz">Take a Quiz</a> | <a href="/subjects">Quiz Subjects</a> {% endif %}
 		 | <a href="{{ login_url }}">{{ login_text }}</a>
 		 </div>
 		 	 
