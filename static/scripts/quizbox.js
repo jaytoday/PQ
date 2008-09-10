@@ -575,8 +575,8 @@ $.fn.quizbox = function(settings) {
 		 // This will be in the HTML very, very soon - James
 		 
 		 $('<div id="quiz_intro"  class="buttons"></div>').appendTo('#quiz_title');
-		 $('<a id="take_quiz" onmouseover="" style="margin-left:25px;" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_purple_left"></td><td id="quiz_purple_main"><div class="answertext" id="take_quiz" style="width: 90px; font-size:16px;"></div></td><td id="quiz_purple_right"></td></tr></table></a>').appendTo('#quiz_intro');
-			 $('<a id="choose_quiz" class="answer" style="font-size:13px; margin-left:30px;" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main" style="width:45px;"><div class="answertext" style="margin: 3px 0pt 0pt 1px; font-size: 13px; width: 36px; line-height: 1.1em;" id="choose_quiz"></div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_intro');
+		 $('<a id="take_quiz" onmouseover="" style="margin-left:85px;" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_purple_left"></td><td id="quiz_purple_main"><div class="answertext" id="take_quiz" style="width: 90px; font-size:16px;"></div></td><td id="quiz_purple_right"></td></tr></table></a>').appendTo('#quiz_intro');
+			 // - Choose Between Quizzes $('<a id="choose_quiz" class="answer" style="font-size:13px; margin-left:30px;" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main" style="width:45px;"><div class="answertext" style="margin: 3px 0pt 0pt 1px; font-size: 13px; width: 36px; line-height: 1.1em;" id="choose_quiz"></div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_intro');
 
 
 			 /* append instruction buttons to iframe */

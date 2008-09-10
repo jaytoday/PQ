@@ -28,7 +28,7 @@ def main():
   
   application = webapp.WSGIApplication(
                                        [
-                                        ('/',
+                                        ('/demo/?',
                                          PQDemo),
                                          ('/intro/?',
                                          PQIntro),
@@ -40,7 +40,7 @@ def main():
                                          ViewAd), 
                                         ('/quiz/?',
                                          QuizItem),                                         
-                                        ('/home/?',
+                                        ('/?',
                                          PQHome),  
                                         ],
                                        debug=True)

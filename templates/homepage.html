@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Plop Quiz</title>
+<title>PlopQuiz</title>
 <link rel="stylesheet" type="text/css" charset="utf-8" href="/static/stylesheets/homepage.css" />
 <!--[if lte IE 6]>
 <link href="ie6styles.css" rel="stylesheet" type="text/css" />
@@ -43,12 +43,12 @@
     <div id="content">
         <h2>Plopquiz is currently in closed beta testing.</h2>
 
-        <form action"#" id="signup">
+        <form action"#" id="signup" >
         	
         	<div id="add_success" style="display:none;"> You've been added to our list. </div>
         	
             <input type="text" name="email" value="early@bird.com" id="email" onFocus="if (this.value == this.defaultValue) { this.value = ''; }"  />
-            <input type="button" value="sign me up for an invite!" onclick="ListAdd(email.value);" style="font-size:1em;"/> 
+            <input type="button" class="button" value="sign me up for an invite!" id="signup" onclick="ListAdd(email.value);" style="font-size:1em;"/> 
         </form>
     </div>
 </div>
