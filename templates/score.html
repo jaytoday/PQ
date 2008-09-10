@@ -32,7 +32,12 @@ $(document).ready(function() {
 				 
              });
 				 
-				 
+            function CloseWindow()
+			{
+				$(window.parent.document).find
+					("#quiz_close").click();
+
+			}
 
      /* =========== */
 /* = Ajax Requests = */
@@ -174,8 +179,8 @@ Thanks For Your Time
 
 <div class="add_confirm">You've been added to our list. </div>
 
-   <a id="continue_pink" onclick="console.log('close all open windows');" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main" style="padding:0px;">
-   <div class="skipitem" id="skiptext">Continue</div></td><td id="quiz_pink_right"></td></tr></table></a>
+   <a id="end_quiz" onclick="CloseWindow();" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main" style="padding:0px;">
+   <div class="skipitem" id="end_text">Continue</div></td><td id="quiz_pink_right"></td></tr></table></a>
          
 </div>
 

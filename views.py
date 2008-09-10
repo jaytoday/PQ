@@ -91,6 +91,7 @@ class RPCMethods(webapp.RequestHandler):
     results = q.fetch(1000)
     for result in results:
         result.delete()
+        
 
 
   def List(self, *args):
@@ -195,11 +196,12 @@ class ViewAd(webapp.RequestHandler):
 ]
 
 
+
    
 
     
     
-    quiz_item_count = 10
+    quiz_item_count = 5
 
     quiz_items = random.sample(all_quiz_items,
                               quiz_item_count)

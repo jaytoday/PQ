@@ -450,7 +450,7 @@ $.fn.quizbox = function(settings) {
 	 }else if (opts.itemArray[opts.itemNum].item_type == "score") {
 		 $('#quiz_title').show();
 		 $('#quiz_title div.buttons').hide();
-		 $('#quiz_title div#quiz_score').show(); 
+		 $('#quiz_title div#quiz_score').show();
 	 }else{
 		 $('#quiz_title').hide();
 	 }
@@ -588,7 +588,7 @@ $.fn.quizbox = function(settings) {
 			 //Arg, this has been getting animated while not visible, one ID per page!
 			 $('<div class="timer_wrapper" id="quiz_timer_instruction"><div class="timer_bar timer_inner"></div></div>').appendTo('#quiz_instructions2');
 			$('<a id="answer1" onmouseover="" class="answer"  href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_blue_left"></td><td id="quiz_blue_main" style="min-width:60px;"><div class="answertext"  id="answer1"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
-			 $('<a id="answer2" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_blue_left"></td><td id="quiz_blue_main" style="min-width:60px;"><div class="answertext"  id="answer2"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
+			 $('<a id="answer2" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_blue_left"></td><td id="quiz_blue_main" style="min-width:60px;"><div class="answertext" style="margin-left:-12px;" id="answer2"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
 			 $('<a id="skip" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main"><div class="arrow"><img src="/static/stylesheets/img/pinkarrow.png" /></div><div class="skipitem" id="skiptext">Skip</div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
 
             $('<div id="quiz_begin_quiz" class="buttons" style=" margin-top:7px"></div>').appendTo('#quiz_title');
@@ -705,7 +705,7 @@ $.fn.quizbox = function(settings) {
 		});
 
 		 var submit_answer = $.fn.quizbox.submit_answer = function(answer){
-			 console.log('clicked on link with id:', answer.id);
+			 //console.log('clicked on link with id:', answer.id);
 
 			 if (answer.id == "#skip") {
 				 var answer_text = "skip_item";
@@ -720,7 +720,7 @@ $.fn.quizbox = function(settings) {
 			 } /* add doChoose ajax call for choosing quiz */
 
 			 if (opts.itemArray[opts.itemNum].item_type == "score"){
-				 console.log('TODO: Score dialog'); return false;
+				  return false;
 			 }
 
 			 if (answer.id == "choose_quiz"){ 

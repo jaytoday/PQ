@@ -18,6 +18,7 @@ load_image_swap = function() {
 
 image_swap = function(t){
     var src = t.firstChild.src;
+    console.log(src);
     $st('bphoto').src = image_large_link(src);
 }
 

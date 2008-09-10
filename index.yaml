@@ -1,0 +1,14 @@
+indexes:
+
+- kind: Score
+  ancestor: no
+  properties:
+  - name: author
+    direction: desc
+
+- kind: Score
+  ancestor: no
+  properties:
+  - name: author
+  - name: score
+    direction: desc
