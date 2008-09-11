@@ -57,8 +57,15 @@ class RPCMethods(webapp.RequestHandler):
     logging.debug('Posting Answer')    
     score = Score()
     score.picked_answer = str(args[0])
-    score.correct_answer = str(args[1])
-    score.author = "author"
+    
+    item_slug = str(args[1])
+    #Lookup quiz item with slug, clean it, and match it. 
+    this_item = QuizItem.gql("WHERE slug = :slug",
+                                  slug=item_slug)
+                                
+   
+    logging.debug(this_item)  
+    score.correct_answer = this_item[0].index
     
     picked_clean = score.picked_answer.strip()
     picked_clean = picked_clean.lower()
@@ -71,7 +78,9 @@ class RPCMethods(webapp.RequestHandler):
     else:
         score.score = "incorrect"
         logging.debug('Incorrect answer') 
-      
+
+    score.author = "author" # TODO Use Accounts
+          
     try:
         score.put()
         logging.info('Score entered by user %s with score %s, correct: %s, picked: %s'
@@ -139,7 +148,7 @@ class PQIntro(webapp.RequestHandler):
 
 
 
-class QuizItem(webapp.RequestHandler):
+class QuizItemTemplate(webapp.RequestHandler):
   #Put something here  
 
   def get(self):
@@ -179,27 +188,14 @@ class ViewAd(webapp.RequestHandler):
        
 
     quiz_items = []
-    all_quiz_items = ['{url: "/quiz/?quiz_item=python", item_type:"quiz_item", answer1: "Attribute", answer2: "Class", answer3: "Method", index: "Class"},',
-'{url: "/quiz/?quiz_item=biochem", item_type:"quiz_item", answer1: "Organotrophs", answer2: "Autotrophs", answer3: "Heterotrophs", index: "Heterotrophs" },',
-'{url: "/quiz/?quiz_item=bayesian", item_type:"quiz_item", answer1: "Clique Tree", answer2: "Variational Method", answer3: "Gaussian Distribution", index: "Clique Tree" },',
-'{url: "/quiz/?quiz_item=performance_ads", item_type:"quiz_item", answer1: "GPS", answer2: "VoIP", answer3: "IP", index: "VoIP" },',
-'{url: "/quiz/?quiz_item=callbacks", item_type:"quiz_item", answer1: "transport", answer2: "request", answer3: "response", index: "transport" },',
-'{url: "/quiz/?quiz_item=renewable_energy", item_type:"quiz_item", answer1: "biomass", answer2: "ethanol fuel", answer3: "petrolium", index: "ethanol fuel" },',
-'{url: "/quiz/?quiz_item=pg_fundraising", item_type:"quiz_item", answer1: "marketing", answer2: "consulting", answer3: "programming", index: "consulting"},',
-'{url: "/quiz/?quiz_item=pg_patents", item_type:"quiz_item", answer1: "collective feedback", answer2: "database", answer3: "one-click", index: "one-click"},',
-'{url: "/quiz/?quiz_item=pg_vcs", item_type:"quiz_item", answer1: "valuations", answer2: "investments", answer3: "shares", index: "valuations"},',
-'{url: "/quiz/?quiz_item=pg_investment", item_type:"quiz_item", answer1: "tax", answer2: "copyright", answer3: "antitrust", index: "antitrust"},',
-'{url: "/quiz/?quiz_item=su_corporation", item_type:"quiz_item", answer1: "LLC", answer2: "Sub-S", answer3: "General", index: "antitrust"},',
-'{url: "/quiz/?quiz_item=wiki_stock", item_type:"quiz_item", answer1: "preferred", answer2: "common", answer3: "registered", index: "preferred"},',
-'{url: "/quiz/?quiz_item=wiki_pill", item_type:"quiz_item", answer1: "merger", answer2: "takeover", answer3: "regulation", index: "preferred"},',
-'{url: "/quiz/?quiz_item=wiki_income", item_type:"quiz_item", answer1: "capital gain", answer2: "dividends", answer3: "salary", index: "preferred"},',
-]
-
-
-
-   
-
-    
+    all_quiz_items = []
+    query = db.GqlQuery("SELECT * FROM QuizItem") # Query all quiz items
+    fetch_items = query.fetch(1000)
+    for item in fetch_items:
+        item_dict = {"slug" : item.slug, "index" : item.index, "answer1" : item.answers[0], "answer2" : item.answers[1], "answer3": item.answers[2]}
+        all_quiz_items.append(item_dict)
+        
+  
     
     quiz_item_count = 5
 
@@ -274,3 +270,39 @@ class ViewScore(webapp.RequestHandler):
     self.response.out.write(template.render(path, template_values))
     
     
+    
+    
+    
+    
+    
+class LoadData(webapp.RequestHandler):
+  #Put something here  
+
+  def get(self):
+
+    # Delete Old Data 
+    query = db.GqlQuery("SELECT * FROM QuizItem") # Query all quiz items
+    items = query.fetch(1000)
+    for item in items:
+        print "deleted " + str(item.slug)
+        item.delete()
+    template_values = {}
+
+    # Load External JSON fixture
+        
+    json_file = open("static/data/quiz_items.json")
+    json_str = json_file.read()
+    newdata = simplejson.loads(json_str)
+    
+    for item in newdata["quiz_items"]:
+    
+    # Store Item in Datastore
+    
+        quiz_item = QuizItem()
+        quiz_item.slug = item['slug']
+        #Add List of Answers
+        quiz_item.answers = item['answers']
+        print "added " + str(quiz_item.slug)
+        quiz_item.index = item['index']
+        quiz_item.put()           
+

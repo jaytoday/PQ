@@ -39,9 +39,11 @@ def main():
                                         ('/view_ad/?',
                                          ViewAd), 
                                         ('/quiz/?',
-                                         QuizItem),                                         
+                                         QuizItemTemplate),                                         
                                         ('/?',
                                          PQHome),  
+                                        ('/load_data/?',
+                                         LoadData),  
                                         ],
                                        debug=True)
   wsgiref.handlers.CGIHandler().run(application)

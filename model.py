@@ -22,3 +22,11 @@ class List(db.Model):
   date = db.DateTimeProperty(auto_now_add=True)
 
 
+
+class QuizItem(db.Model):
+  # Yay for Grades.
+  slug = db.StringProperty()
+  index = db.StringProperty()
+  answers = db.StringListProperty()
+  date = db.DateTimeProperty(auto_now_add=True)
+  

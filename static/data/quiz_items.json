@@ -1,0 +1,115 @@
+
+
+{"quiz_items":
+
+[
+    
+    {
+        "slug": "knol_python", 
+        "index": "class",
+        "answers": ["attribute", "class", "method"]
+  
+    },
+   
+
+    
+    {
+        "slug": "ocw_biochem", 
+        "index": "heterotrophs",
+        "answers": ["organotrophs", "autotrophs", "heterotrophs"]
+  
+    },
+   
+    
+    
+    {
+        "slug": "wiki_bayesian", 
+        "index": "class",
+        "answers": ["clique tree", "variational method", "gaussian distribution"]
+  
+    },
+   
+    
+    
+    {
+        "slug": "wiki_performance_ads", 
+        "index": "class",
+        "answers": ["GPS", "IP", "VoIP"]
+  
+    },
+   
+    
+    {
+        "slug": "knol_callbacks", 
+        "index": "transport",
+        "answers": ["transport", "request", "response"]
+  
+    },
+
+    {
+        "slug": "wiki_renewable_energy", 
+        "index": "ethanol fuel",
+        "answers": ["biomass", "ethanol fuel", "petroleum"]
+  
+    },
+    
+    {
+        "slug": "pg_fundraising", 
+        "index": "consulting",
+        "answers": ["marketing", "consulting", "programming"]
+  
+    },        
+
+    {
+        "slug": "pg_patents", 
+        "index": "one-click",
+        "answers": ["collective feedback", "database", "one-click"]
+  
+    },        
+    
+    {
+        "slug": "pg_vcs", 
+        "index": "valuations",
+        "answers": ["valuations", "investments", "shares"]
+  
+    },  
+
+    {
+        "slug": "pg_investment", 
+        "index": "antitrust",
+        "answers": ["tax", "copyright", "antitrust"]
+  
+    },  
+
+    {
+        "slug": "su_corporation", 
+        "index": "Sub-S",
+        "answers": ["LLC", "Sub-S", "General"]
+  
+    },  
+
+    {
+        "slug": "wiki_stock", 
+        "index": "preferred",
+        "answers": ["preferred", "common", "registered"]
+  
+    },  
+
+    {
+        "slug": "wiki_pill", 
+        "index": "takeover",
+        "answers": ["merger", "takeover", "regulation"]
+  
+    },  
+
+    {
+        "slug": "wiki_income", 
+        "index": "takeover",
+        "answers": ["capital gain", "dividends", "salary"]
+  
+    }            
+    ]
+    
+    
+    }
+    

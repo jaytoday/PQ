@@ -141,6 +141,8 @@ $.fn.quizbox = function(settings) {
 	 } else {
 		 $.fn.quizbox.showItem('<iframe id="quiz_frame" scrolling="no" onload="$.fn.quizbox.showIframe()" name="quiz_iframe' + Math.round(Math.random()*1000) + '" frameborder="0" hspace="0" src="' + url + '"></iframe>');
 	 }
+	 
+
  };
 
  $.fn.quizbox.showIframe = function() {
@@ -375,9 +377,19 @@ $.fn.quizbox = function(settings) {
 		 $('#quiz_answers div#answer2').html(opts.itemArray[opts.itemNum].answer2);
 		 $('#quiz_answers div#answer3').html(opts.itemArray[opts.itemNum].answer3);
 		 $('#quiz_answers div.arrow').html('<img src="/static/stylesheets/img/pinkarrow.png"/>');
-		 startTimer();
-		 				$('div#quiz_answers').find('a').click(function() {
+		startTimer();
+        var click_status = [];
+        click_status[opts.itemNum] = false;
+        console.log(click_status);
+         $('div#quiz_answers').find('a').click(function() {
+		 				console.info('submitting...', click_status[opts.itemNum]);
+                    if (click_status[opts.itemNum] == false) {    
 					$.fn.quizbox.submit_answer(this);
+					
+					console.log('click status  ', click_status[opts.itemNum]);
+					click_status[opts.itemNum] = true;
+					return click_status;
+                }
 				});
 			
 	 }else if (opts.itemArray[opts.itemNum].item_type == "intro") {
@@ -705,7 +717,7 @@ $.fn.quizbox = function(settings) {
 		});
 
 		 var submit_answer = $.fn.quizbox.submit_answer = function(answer){
-			 //console.log('clicked on link with id:', answer.id);
+			
 
 			 if (answer.id == "#skip") {
 				 var answer_text = "skip_item";
@@ -714,9 +726,9 @@ $.fn.quizbox = function(settings) {
 			 }
 
 			 if (opts.itemArray[opts.itemNum].item_type == "quiz_item"){
-				 var answer_index = opts.itemArray[opts.itemNum].index;
+				 var answer_slug = opts.itemArray[opts.itemNum].slug;
 				 /* submit using AJAX function doAdd(picked answer, correct answer) */
-				 doAdd(answer_text, answer_index)
+				 doAdd(answer_text, answer_slug)
 			 } /* add doChoose ajax call for choosing quiz */
 
 			 if (opts.itemArray[opts.itemNum].item_type == "score"){
@@ -724,7 +736,6 @@ $.fn.quizbox = function(settings) {
 			 }
 
 			 if (answer.id == "choose_quiz"){ 
-				 console.log('changing quizzes'); /* next_quiz(answer.id);  */
 				 /* TODO cycle through quiz choices */
 				 var selection = $('#quiz_selections', window.frames[0].document);
 				 selection.find('#quiz_selections').toggle();

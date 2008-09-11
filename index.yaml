@@ -4,6 +4,7 @@ indexes:
   ancestor: no
   properties:
   - name: author
+  - name: date
     direction: desc
 
 - kind: Score
@@ -11,4 +12,5 @@ indexes:
   properties:
   - name: author
   - name: score
+  - name: date
     direction: desc
