@@ -289,8 +289,8 @@ class LoadData(webapp.RequestHandler):
     template_values = {}
 
     # Load External JSON fixture
-        
-    json_file = open("static/data/quiz_items.json")
+    ROOT_PATH = os.path.dirname(__file__)    
+    json_file = open(ROOT_PATH + "/data/quiz_items.json")
     json_str = json_file.read()
     newdata = simplejson.loads(json_str)
     
