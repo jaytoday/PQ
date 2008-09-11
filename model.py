@@ -28,5 +28,6 @@ class QuizItem(db.Model):
   slug = db.StringProperty()
   index = db.StringProperty()
   answers = db.StringListProperty()
+  proficiency = db.StringProperty()
   date = db.DateTimeProperty(auto_now_add=True)
   

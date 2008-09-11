@@ -21,4 +21,4 @@ indexes:
   - name: slug
   - name: index
   - name: answers
-    
+  - name: proficiency   

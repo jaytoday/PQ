@@ -42,8 +42,8 @@ def main():
                                          QuizItemTemplate),                                         
                                         ('/?',
                                          PQHome),  
-                                        ('/load_data/?',
-                                         LoadData),  
+                                        ('/refresh_data/?',
+                                         RefreshData),  
                                         ],
                                        debug=True)
   wsgiref.handlers.CGIHandler().run(application)

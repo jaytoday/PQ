@@ -117,7 +117,7 @@ $.fn.quizbox = function(settings) {
 
 	 var url = opts.itemArray[n].url;
 
-	 console.log('loading URL', url);
+	 
 
 	 if (url.match(/#/)) {
 		 var target = window.location.href.split('#')[0];
@@ -221,7 +221,7 @@ $.fn.quizbox = function(settings) {
 			 'left':		143 + 'px', 
 			 'top':		0 + 'px', 
 			 'width':	332 + 'px', 
-			 'height':	370 + 'px'	
+			 'height':	410 + 'px'	
 		 };
 		 
 	 }else{   
@@ -250,7 +250,7 @@ $.fn.quizbox = function(settings) {
 		 $("#quiz_content").empty();
 
 		 if ($("#quiz_content").is(":animated")) {
-			 console.info('animated!');
+			 
 		 }
 
 		 if (opts.itemArray[opts.itemNum].o.zoomSpeedIn > 0) {
@@ -380,13 +380,13 @@ $.fn.quizbox = function(settings) {
 		startTimer();
         var click_status = [];
         click_status[opts.itemNum] = false;
-        console.log(click_status);
+        
          $('div#quiz_answers').find('a').click(function() {
-		 				console.info('submitting...', click_status[opts.itemNum]);
+		 				
                     if (click_status[opts.itemNum] == false) {    
 					$.fn.quizbox.submit_answer(this);
 					
-					console.log('click status  ', click_status[opts.itemNum]);
+					
 					click_status[opts.itemNum] = true;
 					return click_status;
                 }
@@ -604,7 +604,7 @@ $.fn.quizbox = function(settings) {
 			 $('<a id="skip" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main"><div class="arrow"><img src="/static/stylesheets/img/pinkarrow.png" /></div><div class="skipitem" id="skiptext">Skip</div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
 
             $('<div id="quiz_begin_quiz" class="buttons" style=" margin-top:7px"></div>').appendTo('#quiz_title');
-             $('<a id="startquiz" class="answer" href="#" style="margin-top:-33px; margin-left: 95px"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_purple_left"></td><td id="quiz_purple_main"><div class="skipitem" id="startquiz">Start Quiz</div></td><td id="quiz_purple_right"></td></tr></table></a>').appendTo('#quiz_begin_quiz');
+             $('<a id="startquiz" class="answer" href="#" style="margin-top:7px; margin-left: 95px"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_purple_left"></td><td id="quiz_purple_main"><div class="skipitem" id="startquiz">Start Quiz!</div></td><td id="quiz_purple_right"></td></tr></table></a>').appendTo('#quiz_begin_quiz');
 
 
 

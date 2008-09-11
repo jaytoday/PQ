@@ -65,6 +65,10 @@ margin:8px 0 0 5px;
 div#knol{
 margin:2px 0 0 5px;
 }
+div#django{
+margin:5px 0 0 5px;
+}
+
 div#pq{
 margin:0px 0 0 27px;
 }
@@ -261,12 +265,48 @@ width:103%;
 }
 
 div.begin_quiz{
-font-size:1.3em;
+font-size:.9em;
 line-height:1.2em;
-width:99%;
+width:96%;
 margin-top:-7px;
 }
 
+div#choose_profs{
+background-attachment:scroll;
+background-color:#EDF2F8;
+background-image:none;
+background-position:0 0;
+background-repeat:repeat;
+height:213px;
+overflow:hidden;
+}
+
+div#profs{
+float:left;
+height:230px;
+margin-left:-12px;
+margin-top:-12px;
+width:280px;
+}
+
+form#proficiency_choices{
+margin-top:20px
+}
+form#proficiency_choices input{
+float: left; 
+margin-left: 50px;
+}
+
+form#proficiency_choices span{
+float:left;
+font-size:1.1em;
+margin-left:5px;
+margin-top:-3px;
+}
+
+form span:hover {
+	color: #DDDDDD;
+}
 
 /* =========== */
 /* = Score = */

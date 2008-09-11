@@ -189,20 +189,42 @@ class ViewAd(webapp.RequestHandler):
 
     quiz_items = []
     all_quiz_items = []
-    query = db.GqlQuery("SELECT * FROM QuizItem") # Query all quiz items
-    fetch_items = query.fetch(1000)
-    for item in fetch_items:
-        item_dict = {"slug" : item.slug, "index" : item.index, "answer1" : item.answers[0], "answer2" : item.answers[1], "answer3": item.answers[2]}
-        all_quiz_items.append(item_dict)
-        
-  
+    proficiencies = {}
+    quiz_item_count = 2
     
-    quiz_item_count = 5
-
-    quiz_items = random.sample(all_quiz_items,
+    # Query all quiz items
+    query = db.GqlQuery("SELECT * FROM QuizItem") 
+    fetch_items = query.fetch(1000)
+    
+    # Load Fixture Data if Necessary
+    if len(fetch_items) == 0:
+        ROOT_PATH = os.path.dirname(__file__) 
+        json_file = open(ROOT_PATH + "/data/quiz_items.json")
+        json_str = json_file.read()
+        newdata = simplejson.loads(json_str)
+        for item in newdata["quiz_items"]:
+            quiz_item = QuizItem()
+            quiz_item.slug = item['slug']
+            quiz_item.proficiency = item['proficiency']
+            quiz_item.answers = item['answers']
+            quiz_item.index = item['index']
+            quiz_item.put()
+        newquery = db.GqlQuery("SELECT * FROM QuizItem") 
+        fetch_items = newquery.fetch(1000)
+    for item in fetch_items:
+        item_dict = {"slug" : item.slug, "index" : item.index, "answer1" : item.answers[0], "answer2" : item.answers[1], "answer3": item.answers[2],
+        "proficiency": item.proficiency}
+        if item.proficiency in proficiencies:
+            pass
+        else:
+            proficiencies[item.proficiency] = []
+        proficiencies[item.proficiency].append(item_dict)
+    for prof_type in proficiencies:
+        proficiency = random.sample(proficiencies[prof_type],
                               quiz_item_count)
-
-
+        quiz_items += proficiency
+    random.shuffle(quiz_items)
+    print quiz_items
     template_values = {"quiz_items": quiz_items }
 
       
@@ -271,11 +293,11 @@ class ViewScore(webapp.RequestHandler):
     
     
     
+
     
     
     
-    
-class LoadData(webapp.RequestHandler):
+class RefreshData(webapp.RequestHandler):
   #Put something here  
 
   def get(self):
@@ -300,9 +322,11 @@ class LoadData(webapp.RequestHandler):
     
         quiz_item = QuizItem()
         quiz_item.slug = item['slug']
+        quiz_item.proficiency = item['proficiency']
         #Add List of Answers
         quiz_item.answers = item['answers']
-        print "added " + str(quiz_item.slug)
+        print "added " + str(quiz_item.slug) + " + " + str(quiz_item.proficiency)
+        
         quiz_item.index = item['index']
         quiz_item.put()           
 

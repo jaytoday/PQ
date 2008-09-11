@@ -5,7 +5,8 @@
 [
     
     {
-        "slug": "knol_python", 
+        "slug": "knol_python",
+        "proficiency": "building_webapps", 
         "index": "class",
         "answers": ["attribute", "class", "method"]
   
@@ -15,6 +16,7 @@
     
     {
         "slug": "ocw_biochem", 
+        "proficiency": "clean_energy", 
         "index": "heterotrophs",
         "answers": ["organotrophs", "autotrophs", "heterotrophs"]
   
@@ -23,7 +25,8 @@
     
     
     {
-        "slug": "wiki_bayesian", 
+        "slug": "wiki_bayesian",
+        "proficiency": "collective_intelligence",  
         "index": "class",
         "answers": ["clique tree", "variational method", "gaussian distribution"]
   
@@ -32,7 +35,8 @@
     
     
     {
-        "slug": "wiki_performance_ads", 
+        "slug": "wiki_performance_ads",
+        "proficiency": "startup_financing", 
         "index": "class",
         "answers": ["GPS", "IP", "VoIP"]
   
@@ -42,6 +46,7 @@
     {
         "slug": "knol_callbacks", 
         "index": "transport",
+        "proficiency": "building_webapps",
         "answers": ["transport", "request", "response"]
   
     },
@@ -49,6 +54,7 @@
     {
         "slug": "wiki_renewable_energy", 
         "index": "ethanol fuel",
+        "proficiency": "clean_energy",
         "answers": ["biomass", "ethanol fuel", "petroleum"]
   
     },
@@ -56,6 +62,7 @@
     {
         "slug": "pg_fundraising", 
         "index": "consulting",
+        "proficiency": "startup_financing", 
         "answers": ["marketing", "consulting", "programming"]
   
     },        
@@ -63,6 +70,7 @@
     {
         "slug": "pg_patents", 
         "index": "one-click",
+        "proficiency": "startup_financing", 
         "answers": ["collective feedback", "database", "one-click"]
   
     },        
@@ -70,6 +78,7 @@
     {
         "slug": "pg_vcs", 
         "index": "valuations",
+        "proficiency": "startup_financing", 
         "answers": ["valuations", "investments", "shares"]
   
     },  
@@ -77,6 +86,7 @@
     {
         "slug": "pg_investment", 
         "index": "antitrust",
+        "proficiency": "startup_financing", 
         "answers": ["tax", "copyright", "antitrust"]
   
     },  
@@ -84,6 +94,7 @@
     {
         "slug": "su_corporation", 
         "index": "Sub-S",
+        "proficiency": "startup_financing", 
         "answers": ["LLC", "Sub-S", "General"]
   
     },  
@@ -91,6 +102,7 @@
     {
         "slug": "wiki_stock", 
         "index": "preferred",
+        "proficiency": "startup_financing", 
         "answers": ["preferred", "common", "registered"]
   
     },  
@@ -98,16 +110,52 @@
     {
         "slug": "wiki_pill", 
         "index": "takeover",
+        "proficiency": "startup_financing", 
         "answers": ["merger", "takeover", "regulation"]
   
     },  
 
     {
+        "slug": "wiki_rec", 
+        "index": "pearson correlation",
+        "proficiency": "collective_intelligence", 
+        "answers": ["variance", "maximum likelihood", "pearson correlation"]
+  
+    },  
+
+    {
+        "slug": "ocw_stat", 
+        "index": "correlation",
+        "proficiency": "collective_intelligence", 
+        "answers": ["range", "correlation", "average"]
+  
+    },  
+
+    {
+        "slug": "django_queryset", 
+        "index": "array-slicing",
+        "proficiency": "building_webapps", 
+        "answers": ["array-slicing", "regular expression", "data type"]
+  
+    },  
+
+    {
+        "slug": "django_auth", 
+        "index": "is_authenticated()",
+        "proficiency": "building_webapps", 
+        "answers": ["is_authenticated()", "login()", "authenticate()"]
+  
+    },  
+
+    {
         "slug": "wiki_income", 
-        "index": "takeover",
+        "index": "capital gain",
+        "proficiency": "startup_financing", 
         "answers": ["capital gain", "dividends", "salary"]
   
-    }            
+    }   
+
+         
     ]
     
     
