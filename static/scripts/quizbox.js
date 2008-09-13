@@ -341,7 +341,7 @@ $.fn.quizbox = function(settings) {
 				width:	0
 			},
 			{
-				duration:	12000,
+				duration:	16000,
 				easing:	'linear',
 				complete:	(function()
 				{					

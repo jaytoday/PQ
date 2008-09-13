@@ -13,35 +13,31 @@
     },
    
 
-    
-    {
-        "slug": "ocw_biochem", 
-        "proficiency": "clean_energy", 
-        "index": "heterotrophs",
-        "answers": ["organotrophs", "autotrophs", "heterotrophs"]
+      {
+        "slug": "django_queryset", 
+        "index": "array-slicing",
+        "proficiency": "building_webapps", 
+        "answers": ["array-slicing", "regular expression", "data type"]
   
-    },
-   
-    
-    
+    },  
+
     {
-        "slug": "wiki_bayesian",
-        "proficiency": "collective_intelligence",  
-        "index": "class",
-        "answers": ["clique tree", "variational method", "gaussian distribution"]
+        "slug": "django_auth", 
+        "index": "is_authenticated()",
+        "proficiency": "building_webapps", 
+        "answers": ["is_authenticated()", "login()", "authenticate()"]
   
-    },
-   
-    
-    
+    },  
+
     {
-        "slug": "wiki_performance_ads",
-        "proficiency": "startup_financing", 
-        "index": "class",
-        "answers": ["GPS", "IP", "VoIP"]
+        "slug": "collective_parse", 
+        "index": "beautiful soup",
+        "proficiency": "building_webapps", 
+        "answers": ["simpleJSON", "memcached", "beautiful soup"]
   
-    },
-   
+    },  
+
+
     
     {
         "slug": "knol_callbacks", 
@@ -51,6 +47,56 @@
   
     },
 
+
+
+
+
+
+
+
+    
+    {
+        "slug": "wiki_bayesian",
+        "proficiency": "collective_intelligence",  
+        "index": "class",
+        "answers": ["clique tree", "variational method", "gaussian distribution"]
+  
+    },
+
+    {
+        "slug": "wiki_rec", 
+        "index": "pearson correlation",
+        "proficiency": "collective_intelligence", 
+        "answers": ["variance", "maximum likelihood", "pearson correlation"]
+  
+    },  
+
+    {
+        "slug": "ocw_stat", 
+        "index": "correlation",
+        "proficiency": "collective_intelligence", 
+        "answers": ["range", "correlation", "average"]
+  
+    },  
+
+    {
+        "slug": "collective_clustering", 
+        "index": "K-means",
+        "proficiency": "collective_intelligence", 
+        "answers": ["K-means", "bayesian", "feedback"]
+  
+    },  
+
+
+
+  
+  
+
+
+
+
+
+
     {
         "slug": "wiki_renewable_energy", 
         "index": "ethanol fuel",
@@ -58,7 +104,71 @@
         "answers": ["biomass", "ethanol fuel", "petroleum"]
   
     },
+
+
+
+   {
+        "slug": "wikia_ewaste", 
+        "index": "EPEAT",
+        "proficiency": "clean_energy", 
+        "answers": ["IEEE", "EPEAT", "EPA"]
+  
+    },  
+
+    {
+        "slug": "wikia_solarelectric", 
+        "index": "photovoltatic",
+        "proficiency": "clean_energy", 
+        "answers": ["photovoltaic", "thermal electric", "hydroelectric"]
+  
+    }, 
+
+
+    {
+        "slug": "ocw_biochem", 
+        "proficiency": "clean_energy", 
+        "index": "heterotrophs",
+        "answers": ["organotrophs", "autotrophs", "heterotrophs"]
+  
+    },
+   
+    {
+        "slug": "hfc_treaties", 
+        "proficiency": "clean_energy", 
+        "index": "kyoto protocol",
+        "answers": ["kyoto protocol", "eu ets", "g8"]
+  
+    },
+
+    {
+        "slug": "hfc_theory", 
+        "proficiency": "clean_energy", 
+        "index": "porter",
+        "answers": ["toxic tort", "first mover", "porter"]
+  
+    },
+
+    {
+        "slug": "hfc_seer", 
+        "proficiency": "clean_energy", 
+        "index": "porter",
+        "answers": ["seer 10", "seer 12", "seer 13"]
+  
+    },
+
+
+
     
+    {
+        "slug": "wiki_performance_ads",
+        "proficiency": "startup_financing", 
+        "index": "class",
+        "answers": ["GPS", "IP", "VoIP"]
+  
+    },
+   
+
+
     {
         "slug": "pg_fundraising", 
         "index": "consulting",
@@ -115,37 +225,7 @@
   
     },  
 
-    {
-        "slug": "wiki_rec", 
-        "index": "pearson correlation",
-        "proficiency": "collective_intelligence", 
-        "answers": ["variance", "maximum likelihood", "pearson correlation"]
-  
-    },  
 
-    {
-        "slug": "ocw_stat", 
-        "index": "correlation",
-        "proficiency": "collective_intelligence", 
-        "answers": ["range", "correlation", "average"]
-  
-    },  
-
-    {
-        "slug": "django_queryset", 
-        "index": "array-slicing",
-        "proficiency": "building_webapps", 
-        "answers": ["array-slicing", "regular expression", "data type"]
-  
-    },  
-
-    {
-        "slug": "django_auth", 
-        "index": "is_authenticated()",
-        "proficiency": "building_webapps", 
-        "answers": ["is_authenticated()", "login()", "authenticate()"]
-  
-    },  
 
     {
         "slug": "wiki_income", 

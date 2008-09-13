@@ -4,15 +4,16 @@ runtime: python
 api_version: 1
 
 handlers:
+
 - url: /static/
   static_dir: static/
 
- 
- 
 
-
-  
 - url: /.*
   script: __init__.py
 
-  
+
+- url: /favicon.ico
+  static_files: static/stylesheets/img/favicon.ico
+  upload: static/stylesheets/img/favicon.ico
+ 

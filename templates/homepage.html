@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>PlopQuiz</title>
 <link rel="stylesheet" type="text/css" charset="utf-8" href="/static/stylesheets/homepage.css" />
+<link rel="icon" href="/static/stylesheets/img/favicon.ico" type="image/x-icon"> 
 <!--[if lte IE 6]>
 <link href="ie6styles.css" rel="stylesheet" type="text/css" />
 <![endif]-->
@@ -49,7 +50,9 @@
 
         <form action"#" id="signup" >
         	
-        	<div id="add_success" style="display:none;"> You've been added to our list. </div>
+        	<div id="add_success" style="display:none;"> 
+        	<img src="/static/stylesheets/img/pink_checkbox.png" class="pink_checkbox"/>
+        	You've been added to our list. </div>
         	
             <input type="text" name="email" value="early@bird.com" id="email" onFocus="if (this.value == this.defaultValue) { this.value = ''; }"  />
             <input type="button" class="button" value="sign me up for an invite!" id="signup" onclick="ListAdd(email.value);" style="font-size:1em;"/> 

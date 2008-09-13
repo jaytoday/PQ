@@ -180,14 +180,18 @@ width: 220px; height: 40px; margin-top: 10px; font-size: 1.1em;
 }
 
 div#add_success{
-border:5px solid #DDDDDD;
+/* border:5px solid #DDDDDD; */
 font-size:1.3em;
 margin-top:50px;
 padding:5px;
-width:240px;
+width:280px;
 -moz-border-radius-bottomleft:12px;
 -moz-border-radius-bottomright:12px;
 -moz-border-radius-topleft:12px;
 -moz-border-radius-topright:12px;
 -webkit-border-radius: 12px;
+}
+
+img.pink_checkbox{
+margin-bottom: -6px; margin-right: 3px;
 }

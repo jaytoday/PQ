@@ -190,7 +190,7 @@ class ViewAd(webapp.RequestHandler):
     quiz_items = []
     all_quiz_items = []
     proficiencies = {}
-    quiz_item_count = 2
+    quiz_item_count = 3
     
     # Query all quiz items
     query = db.GqlQuery("SELECT * FROM QuizItem") 

@@ -171,8 +171,9 @@ margin-top:10px
 .ovr_text {
 clear:left;
 font-size:1.4em;
-line-height:1.4em;
+line-height:1.3em;
 padding-top:5px;
+width:470px;
 }
 
 .ovr_list {
