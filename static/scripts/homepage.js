@@ -44,12 +44,9 @@ $(document).ready(function() {
   // button click behavior
   $('#signup .button:not(.disable)').click(function() {
     var email = $('#email').val();
-    server.List(email,function() {
-      $('#signup input[type=button]').hide();
-      $('#signup input[type=text]').hide();
-      $('#success').show('fast');
-
-      //$('#signup input[type=button]').addClass('disable');
+	server.List(email,function() {
+		$('form#signup input').hide();
+		$('#add_success').show('fast');
     });      
   }).focus(function(){
     // prevents crawling ants
@@ -142,8 +139,6 @@ InstallFunction(server, 'Init');
 
 function ListAdd(email) {
 	server.List(email, onAddSuccess);
-
-	
 	// There should be a callback for success
 }
 

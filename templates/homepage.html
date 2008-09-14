@@ -19,9 +19,6 @@
 <script type="text/javascript" src="/static/scripts/homepage.js"></script>
 <script type="text/javascript" src="/static/scripts/json2min.js"></script>
 
-
-
-
 </head>
 
 <body>
@@ -33,14 +30,12 @@
     	<div id="land"></div>
     </div>
     <div class="near layer">
-
-		<div id="clouds-near"></div>
+	<div id="clouds-near"></div>
     </div>
 </div>
-
-<div id="flyer">
+<div id="cutoff">
+	<div id="flyer"></div>
 </div>
-
 <div id="sitelet">
 	<div id="logo">
     	<img src="/static/stylesheets/homepage/pq_logo.png" alt="" />
@@ -49,13 +44,11 @@
         <h2>Plopquiz is currently in closed beta testing.</h2>
 
         <form action"#" id="signup" >
-        	
         	<div id="add_success" style="display:none;"> 
         	<img src="/static/stylesheets/img/pink_checkbox.png" class="pink_checkbox"/>
         	You've been added to our list. </div>
-        	
-            <input type="text" name="email" value="early@bird.com" id="email" onFocus="if (this.value == this.defaultValue) { this.value = ''; }"  />
-            <input type="button" class="button" value="sign me up for an invite!" id="signup" onclick="ListAdd(email.value);" style="font-size:1em;"/> 
+            <input type="text" name="email" id="email" value="early@bird.com" />
+            <input type="button" class="button" value="sign me up for an invite!"/> 
         </form>
     </div>
 </div>

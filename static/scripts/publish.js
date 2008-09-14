@@ -63,15 +63,17 @@ boldme = function(t){
     if (typeof t != 'object'){
         t = $st(t);
     }
-    var ts = document.getElementsByName('bolder');
-    for(var i=0; i<ts.length; i++){
-        ts[i].firstChild.style.fontWeight = 'normal';
-        ts[i].firstChild.style.textDecoration = 'underline';
-        ts[i].style.paddingLeft = '10px';
-    }
-    t.style.fontWeight = 'bold';
-    t.style.textDecoration = 'none';
-    t.parentNode.style.paddingLeft = '0px';
+	var $ts = $(t).parent('body [name=bolder]');
+	$ts.siblings().children().css({
+		fontWeight: 'normal',
+		textDecoration: 'underline',
+		paddingLeft: '0px'
+	})
+	$ts.children().css({
+		fontWeight: 'bold',
+		textDecoration: 'none',
+		paddingLeft:	'0px'
+	});
 }
 
 // Give me More! //////////////////////////////

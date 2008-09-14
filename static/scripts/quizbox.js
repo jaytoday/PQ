@@ -31,7 +31,8 @@ $.fn.quizbox = function(settings) {
 		 var o = $.metadata ? $.extend({}, opts.settings, $this.metadata()) : opts.settings;
 
 		 $this.unbind('click').click(function() {
-			 $.fn.quizbox.start(this, o); return false;
+			 $.fn.quizbox.start(this, o); 
+			 return false;
 			 });
 		 });
  };
