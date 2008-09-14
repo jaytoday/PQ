@@ -70,7 +70,7 @@ margin:5px 0 0 5px;
 }
 
 div#pq{
-margin:0px 0 0 27px;
+margin:0px 0 0 52px;
 }
 div#pg{
 margin:2px 0 0 5px;
@@ -180,8 +180,8 @@ line-height:1.5em;
 div.quiz_intro_text{
 font-family:"Georgia","Lucida Grande","Lucida Sans Unicode","Trebuchet MS",Verdana,Helvetica,sans-serif;
 line-height:1.5em;
-margin-left:-5px;
-margin-top:20px;
+margin-left:16px;
+margin-top:10px;
 overflow:hidden;
 position:absolute;
 text-align:center;
