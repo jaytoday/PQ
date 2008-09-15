@@ -129,7 +129,7 @@ width:250px;
 
 
 .focus{
-margin: 10px 0px;
+margin: 5px 0px;
 background:#FFF8E2 none repeat scroll 0 0;
 /* border-bottom:2px solid #E3D922; */
 text-align:center;
@@ -192,6 +192,14 @@ top:80px;
 p.quiz_distributor{
 font-size:.8em;
 margin-bottom:0;
+}
+
+p.quiz_header{
+/* color:#6E0BC3; */
+font-size:1em;
+font-variant:small-caps;
+line-height:0.8em;
+margin-bottom:5px;
 }
 
 li.select_quiz {

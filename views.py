@@ -2,6 +2,7 @@ import logging
 import random
 from utils import *
 from model import *
+from stubs import *
 
 
 # Log a message each time this module get loaded.
@@ -51,7 +52,7 @@ class RPCMethods(webapp.RequestHandler):
   NOTE: Do not allow remote callers access to private/protected "_*" methods.
   """
 
-  def Add(self, *args):
+  def AddScore(self, *args):
 
 
     logging.debug('Posting Answer')    
@@ -66,6 +67,7 @@ class RPCMethods(webapp.RequestHandler):
    
     logging.debug(this_item)  
     score.correct_answer = this_item[0].index
+    score.quiz_item = str(args[1]) # slug
     
     picked_clean = score.picked_answer.strip()
     picked_clean = picked_clean.lower()
@@ -74,20 +76,20 @@ class RPCMethods(webapp.RequestHandler):
 
 
     if picked_clean == correct_clean:
-        score.score = "correct"
+        score.score = 1 # TODO add Timer Data 
     else:
-        score.score = "incorrect"
+        score.score = 0
         logging.debug('Incorrect answer') 
 
-    score.author = "author" # TODO Use Accounts
+    score.quiz_taker = "quiz_taker" # TODO Use Accounts
           
     try:
         score.put()
         logging.info('Score entered by user %s with score %s, correct: %s, picked: %s'
-                     % (score.author, score.score, score.picked_answer, score.correct_answer))
+                     % (score.quiz_taker, score.score, score.picked_answer, score.correct_answer))
     except:
         raise_error('Error saving score for user %s with score %s, correct: %s, picked: %s'
-                    % (score.author, score.score, score.picked_answer, score.correct_answer))
+                    % (score.quiz_taker, score.score, score.picked_answer, score.correct_answer))
 
     return score.score
 
@@ -95,7 +97,7 @@ class RPCMethods(webapp.RequestHandler):
   def Init(self, *args):
 
 
-    logging.debug('Deleting Datastore!')   
+    logging.debug('Deleting Datastore!')  # For Demo Only 
     q = db.GqlQuery("SELECT * FROM Score")
     results = q.fetch(1000)
     for result in results:
@@ -105,24 +107,40 @@ class RPCMethods(webapp.RequestHandler):
 
   def List(self, *args):
   
-    logging.debug('Posting List Entry')    
+    logging.debug('Posting E-mail List Entry')    
     list_entry = List()    
     list_entry.email = str(args[0])
     list_entry.put()
 
 
 
+  def NewUser(self, *args):
+  
+    logging.debug('New User - Adding to E-mail List')    
+    list_entry = List()    
+    list_entry.email = str(args[0])
+    list_entry.put()
+    logging.debug('New User - Saving Score')    
+    q = db.GqlQuery("SELECT * FROM Score")
+    results = q.fetch(1000)
+    for result in results:
+        result = DemoScore()
+        result.quiz_taker = str(args[0])
+        result.put()
+        logging.debug('Moved A Score Item')
+        
+    
+    
+    
+    
+
 class PQHome(webapp.RequestHandler):
   #Load Plopquiz Homepage 
 
   def get(self):
 
-    template_values = {
+    template_values = {}
 
-
-                                                    
-      }
-     
       
     path = tpl_path('homepage.html')
     self.response.out.write(template.render(path, template_values))
@@ -180,7 +198,7 @@ class PQDemo(webapp.RequestHandler):
     
 
 
-class ViewAd(webapp.RequestHandler):
+class ViewQuiz(webapp.RequestHandler):
   #Put something here  
 
   def get(self):
@@ -197,20 +215,12 @@ class ViewAd(webapp.RequestHandler):
     fetch_items = query.fetch(1000)
     
     # Load Fixture Data if Necessary
-    if len(fetch_items) == 0:
-        ROOT_PATH = os.path.dirname(__file__) 
-        json_file = open(ROOT_PATH + "/data/quiz_items.json")
-        json_str = json_file.read()
-        newdata = simplejson.loads(json_str)
-        for item in newdata["quiz_items"]:
-            quiz_item = QuizItem()
-            quiz_item.slug = item['slug']
-            quiz_item.proficiency = item['proficiency']
-            quiz_item.answers = item['answers']
-            quiz_item.index = item['index']
-            quiz_item.put()
+    if len(fetch_items) == 0: 
+        refresh_data("quiz_items")
         newquery = db.GqlQuery("SELECT * FROM QuizItem") 
         fetch_items = newquery.fetch(1000)
+        
+        
     for item in fetch_items:
         item_dict = {"slug" : item.slug, "index" : item.index, "answer1" : item.answers[0], "answer2" : item.answers[1], "answer3": item.answers[2],
         "proficiency": item.proficiency}
@@ -246,15 +256,15 @@ class ViewScore(webapp.RequestHandler):
     if self:
     
       try:
-        latest_scores = Score.gql("WHERE author = :author ORDER BY date DESC",
-                                  author="author")   
+        latest_scores = Score.gql("WHERE quiz_taker = :quiz_taker ORDER BY date DESC",
+                                  quiz_taker="quiz_taker")   
         logging.info('Loading all score items') 
       except:
         raise_error('Error Retrieving Data From Score Model')
       
       try:
-        correct_item = Score.gql("WHERE author = :author AND score = :score ORDER BY date DESC",
-                               author="author", score="correct" )
+        correct_item = Score.gql("WHERE score > :score AND quiz_taker = :quiz_taker ORDER BY score DESC, date DESC",
+                               quiz_taker="quiz_taker", score=0 )
         logging.info('Loading correct Score items from user')
       except:
         raise_error('Error Retrieving Data From Score Model')    
@@ -282,10 +292,6 @@ class ViewScore(webapp.RequestHandler):
       template_values["passed"] = passed
       
       
-      
-
-
-
 
       
     path = tpl_path('score.html')
@@ -294,39 +300,80 @@ class ViewScore(webapp.RequestHandler):
     
     
 
+   
+
+
+
+
+
+
+
     
     
     
 class RefreshData(webapp.RequestHandler):
-  #Put something here  
+  #Refreshes Data
 
   def get(self):
+      refresh_data("quiz_items", "verbose")
 
-    # Delete Old Data 
-    query = db.GqlQuery("SELECT * FROM QuizItem") # Query all quiz items
+
+
+
+class DumpData(webapp.RequestHandler):
+  #Dumps Data
+
+  def get(self):
+      dump_data("quiz_items", "verbose")
+      
+        
+ 
+
+def dump_data(data_type, *verbose):
+    items = []
+    models = {"quiz_items" : "QuizItem"}
+    query_string = "SELECT * FROM " + models[data_type] 
+    query = db.GqlQuery(query_string) # Query all quiz items
+    items = query.fetch(1000)
+    encoder = GqlEncoder()
+    json_items = encoder.encode(items)
+    print json_items
+
+
+
+
+   
+
+def refresh_data(data_type, *verbose):
+# use "verbose" to print logging info
+
+    models = {"quiz_items" : "QuizItem"}
+    query_string = "SELECT * FROM " + models[data_type] 
+    query = db.GqlQuery(query_string) # Query all quiz items
     items = query.fetch(1000)
     for item in items:
-        print "deleted " + str(item.slug)
+        if verbose:    
+            print "deleted " + str(item.slug)
         item.delete()
     template_values = {}
 
     # Load External JSON fixture
-    ROOT_PATH = os.path.dirname(__file__)    
     json_file = open(ROOT_PATH + "/data/quiz_items.json")
     json_str = json_file.read()
-    newdata = simplejson.loads(json_str)
-    
+    newdata = simplejson.loads(json_str) # Load JSON file as object
+
     for item in newdata["quiz_items"]:
-    
+
     # Store Item in Datastore
-    
+
         quiz_item = QuizItem()
         quiz_item.slug = item['slug']
         quiz_item.proficiency = item['proficiency']
         #Add List of Answers
         quiz_item.answers = item['answers']
-        print "added " + str(quiz_item.slug) + " + " + str(quiz_item.proficiency)
+        if verbose:
+            print "added " + str(quiz_item.slug) + " + " + str(quiz_item.proficiency)
         
         quiz_item.index = item['index']
-        quiz_item.put()           
-
+        quiz_item.put()
+     

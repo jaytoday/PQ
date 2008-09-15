@@ -3,15 +3,16 @@ indexes:
 - kind: Score
   ancestor: no
   properties:
-  - name: author
+  - name: quiz_taker
   - name: date
     direction: desc
 
 - kind: Score
   ancestor: no
   properties:
-  - name: author
+  - name: quiz_taker
   - name: score
+    direction: desc
   - name: date
     direction: desc
 

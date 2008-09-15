@@ -425,7 +425,9 @@ $.fn.quizbox = function(settings) {
 		$('#quiz_title').show();
 		$('#quiz_title div.buttons').hide();
 		$('#quiz_title div#quiz_instructions2').show();  
-		$('#quiz_instructions2 div#answer1').html(opts.itemArray[opts.itemNum].answer1);     
+		$('#quiz_instructions2 div#answer1').html(opts.itemArray[opts.itemNum].answer1);
+        $('.timer_bar').css('margin-left', '-10px');
+        $('.timer_bar').css('width', '112%');     
 		$('#quiz_instructions2 div#answer2').html(opts.itemArray[opts.itemNum].answer2)
 		$('#quiz_instructions2')
 			.find('#answer1,#answer2').click(function()
@@ -433,9 +435,8 @@ $.fn.quizbox = function(settings) {
 				$('#example_1,#example_3', window.frames[0].document).hide('slow');
 				$('#example_2', window.frames[0].document).show('slow');
 				clearTimeout($.fn.quizbox._t);
-				$('.timer_bar').css('width', '112%');
-				
 				 $('.timer_bar').stop();
+				 $('.timer_bar').css('width', '112%'); 
 
 				// hook up the rest of the buttons
 				$('#quiz_title').find('#skip').click(function() { $.fn.quizbox.submit_answer(this); });
@@ -456,6 +457,7 @@ $.fn.quizbox = function(settings) {
 	     $('#quiz_title').show();
 	     $('#quiz_title div.buttons').hide();
 	     $('#quiz_title div#quiz_begin_quiz').show();
+        $('.timer_bar').css('margin-left', '0px'); 
         $('#quiz_begin_quiz').find('#startquiz').click(function() {
 					$.fn.quizbox.submit_answer(this);
 				});
@@ -729,7 +731,7 @@ $.fn.quizbox = function(settings) {
 			 if (opts.itemArray[opts.itemNum].item_type == "quiz_item"){
 				 var answer_slug = opts.itemArray[opts.itemNum].slug;
 				 /* submit using AJAX function doAdd(picked answer, correct answer) */
-				 doAdd(answer_text, answer_slug)
+				 SubmitScore(answer_text, answer_slug)
 			 } /* add doChoose ajax call for choosing quiz */
 
 			 if (opts.itemArray[opts.itemNum].item_type == "score"){

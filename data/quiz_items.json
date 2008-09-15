@@ -58,7 +58,7 @@
     {
         "slug": "wiki_bayesian",
         "proficiency": "collective_intelligence",  
-        "index": "class",
+        "index": "clique tree",
         "answers": ["clique tree", "variational method", "gaussian distribution"]
   
     },
@@ -86,11 +86,6 @@
         "answers": ["K-means", "bayesian", "feedback"]
   
     },  
-
-
-
-  
-  
 
 
 
@@ -151,7 +146,7 @@
     {
         "slug": "hfc_seer", 
         "proficiency": "clean_energy", 
-        "index": "porter",
+        "index": "seer 13",
         "answers": ["seer 10", "seer 12", "seer 13"]
   
     },
@@ -162,7 +157,7 @@
     {
         "slug": "wiki_performance_ads",
         "proficiency": "startup_financing", 
-        "index": "class",
+        "index": "VoIP",
         "answers": ["GPS", "IP", "VoIP"]
   
     },

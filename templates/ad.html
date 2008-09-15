@@ -146,12 +146,12 @@ var server = {};
 var item_count = 0;
 
 // Insert 'Add' as the name of a callable method
-InstallFunction(server, 'Add');
+InstallFunction(server, 'AddScore');
 InstallFunction(server, 'Init');
 
 
-function doAdd(ans, slug) {
-	server.Add(ans, slug, onAddSuccess);
+function SubmitScore(ans, slug) {
+	server.AddScore(ans, slug, onAddSuccess);
 }
 
 function doInit() {
