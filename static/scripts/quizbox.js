@@ -199,7 +199,7 @@ $.fn.quizbox = function(settings) {
 			 'left':		143 + 'px', 
 			 'top':		0 + 'px', 
 			 'width':	392 + 'px', 
-			 'height':	415 + 'px'	
+			 'height':	390 + 'px'	
 		 };
 	 }else if (opts.itemArray[opts.itemNum].item_type == "instructions"){
 		 /* instructions */
@@ -207,7 +207,7 @@ $.fn.quizbox = function(settings) {
 			 'left':		143 + 'px', 
 			 'top':		0 + 'px', 
 			 'width':	392 + 'px', 
-			 'height':	415 + 'px'	
+			 'height':	400 + 'px'	
 		 };
 	 }else if (opts.itemArray[opts.itemNum].item_type == "instructions2"){
 		 /* instructions2 */
@@ -433,7 +433,8 @@ $.fn.quizbox = function(settings) {
 				$('#example_1,#example_3', window.frames[0].document).hide('slow');
 				$('#example_2', window.frames[0].document).show('slow');
 				clearTimeout($.fn.quizbox._t);
-				$('.timer_bar').css('width', '100%');
+				$('.timer_bar').css('width', '112%');
+				
 				 $('.timer_bar').stop();
 
 				// hook up the rest of the buttons
@@ -587,7 +588,7 @@ $.fn.quizbox = function(settings) {
 		 // This will be in the HTML very, very soon - James
 		 
 		 $('<div id="quiz_intro"  class="buttons"></div>').appendTo('#quiz_title');
-		 $('<a id="take_quiz" onmouseover="" style="margin-left:116px;margin-top:8px;" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_purple_left"></td><td id="quiz_purple_main"><div class="answertext" id="take_quiz" style="width: 90px; font-size:16px;"></div></td><td id="quiz_purple_right"></td></tr></table></a>').appendTo('#quiz_intro');
+		 $('<a id="take_quiz" onmouseover="" style="margin-left:77px;margin-top:-9px;" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_purple_left"></td><td id="quiz_purple_main"><div class="answertext" id="take_quiz" style="width: 170px; font-size: 22px;"></div></td><td id="quiz_purple_right"></td></tr></table></a>').appendTo('#quiz_intro');
 			 // - Choose Between Quizzes $('<a id="choose_quiz" class="answer" style="font-size:13px; margin-left:30px;" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main" style="width:45px;"><div class="answertext" style="margin: 3px 0pt 0pt 1px; font-size: 13px; width: 36px; line-height: 1.1em;" id="choose_quiz"></div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_intro');
 
 
@@ -604,7 +605,7 @@ $.fn.quizbox = function(settings) {
 			 $('<a id="skip" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main"><div class="arrow"><img src="/static/stylesheets/img/pinkarrow.png" /></div><div class="skipitem" id="skiptext">Skip</div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
 
             $('<div id="quiz_begin_quiz" class="buttons" style=" margin-top:7px"></div>').appendTo('#quiz_title');
-             $('<a id="startquiz" class="answer" href="#" style="margin-top:7px; margin-left: 95px"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_purple_left"></td><td id="quiz_purple_main"><div class="skipitem" id="startquiz">Start Quiz!</div></td><td id="quiz_purple_right"></td></tr></table></a>').appendTo('#quiz_begin_quiz');
+             $('<a id="startquiz" class="answer" href="#" style="margin-top:7px; margin-left: 90px"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_purple_left"></td><td id="quiz_purple_main"><div class="skipitem" id="startquiz">Start Quiz!</div></td><td id="quiz_purple_right"></td></tr></table></a>').appendTo('#quiz_begin_quiz');
 
 
 
