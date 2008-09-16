@@ -90,6 +90,8 @@ div#quiz_title {
 	color: #DDDDDD;
 }
 
+.answer:focus{outline:0;} 
+
 div#quiz_title table {
 	font-variant: inherit;
 }
