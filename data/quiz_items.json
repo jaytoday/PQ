@@ -112,7 +112,7 @@
 
     {
         "slug": "wikia_solarelectric", 
-        "index": "photovoltatic",
+        "index": "photovoltaic",
         "proficiency": "clean_energy", 
         "answers": ["photovoltaic", "thermal electric", "hydroelectric"]
   

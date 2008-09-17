@@ -341,7 +341,7 @@ $.fn.quizbox = function(settings) {
 				width:	0
 			},
 			{
-				duration:	16000,
+				duration:	160000,
 				easing:	'linear',
 				complete:	(function()
 				{					
@@ -460,6 +460,17 @@ $.fn.quizbox = function(settings) {
         $('.timer_bar').css('margin-left', '0px'); 
         $('#quiz_begin_quiz').find('#startquiz').click(function() {
 					$.fn.quizbox.submit_answer(this);
+					var exclude_items = window.frames[0].document.proficiency_choices;
+					console.log("excluded items: ", exclude_items);
+					/*
+					 * 
+                     * for item in opts.itemArray item where proficiency == checked value in proficiency_choices form, keep it.
+                     * remove the rest.
+					  * 
+					  * (in other words, remove proficiencies matching unchecked values.) 
+					  *
+					  */ 
+					
 				});
 	     	 
 	 }else if (opts.itemArray[opts.itemNum].item_type == "score") {
