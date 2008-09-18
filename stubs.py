@@ -18,7 +18,7 @@ class CreateScoreStubs(webapp.RequestHandler):
             random.shuffle(quiz_taker) # shuffle characters
             quiz_taker = string.join(quiz_taker) # turn list into string - we have a stub user!
             for item in items:            # Generate a bunch of items for each quiz_taker
-                new_score = StubScore()
+                new_score = StubItemScore()
                 new_score.quiz_taker = quiz_taker
                 new_score.quiz_item = item.slug 
                 picked_answer = random.sample(item.answers, 1)  # Random. Try to map closer to realistic scores.
@@ -37,38 +37,72 @@ class CreateScoreStubs(webapp.RequestHandler):
 class ViewScoreStubs(webapp.RequestHandler):            
 
     def get(self):
-            query = db.GqlQuery("SELECT * FROM StubScore")
+            query = db.GqlQuery("SELECT * FROM StubItemScore")
             scores = query.fetch(500)
-            print "stored score stubs"
+            query = db.GqlQuery("SELECT * FROM QuizItem")
+            items = query.fetch(1000)
+            
+            print "ITEM RANKINGS -- the lower the rank, the more difficult the item"
+            for item in items:
+                item.difficulty = 0
+                for score in scores:
+                    if (score.quiz_item == item.slug) and (score.score == 1):#For each correct score per item
+                        item.difficulty += 1
+                            
+                            
+                print ""
+                print str(item.slug) + " is ranked " + str(item.difficulty)   #Load /view_scores/ to see printed difficulty keys
+                item.put()     # Save difficulty keys to datastore       
+                        
+
+
+class Set_Difficulties(webapp.RequestHandler):             # localhost:8080/set_difficulties/   
+
+    def get(self):
+            query = db.GqlQuery("SELECT * FROM QuizItem")
+            items = query.fetch(1000)
+            for item in items:
+                item.difficulty = 500
+                item.put() # Wow, Writing to the Datastore is so easy!
+                print "set difficulty of " + str(item.slug) + " to " + str(item.difficulty)
+                                    
+            
+            
+            
+                        
+class Set_Proficiencies(webapp.RequestHandler):         # localhost:8080/set_proficiencies/   
+
+    def get(self):
+            query = db.GqlQuery("SELECT * FROM StubItemScore")
+            scores = query.fetch(3)     # Keep This Number Low, For Testing
+            query = db.GqlQuery("SELECT * FROM Proficiency")
+            proficiencies = query.fetch(10)
+            quiz_takers = []
             for score in scores:
-                print " QUIZ TAKER: " + score.quiz_taker + " QUIZ ITEM: " + score.quiz_item + " PICKED ANSWER: " + score.picked_answer +  " CORRECT ANSWER: " +score.correct_answer
+                quiz_takers.append(score.quiz_taker)
+            quiz_takers = set(quiz_takers)       # We now have a list of every quiz taker
+            for quiz_taker in quiz_takers:
+                for proficiency in proficiencies:
+                    proficiency_level = ProficiencyLevel()
+                    proficiency_level.quiz_taker = quiz_taker
+                    proficiency_level.proficiency = proficiency.proficiency
+                    proficiency_level.proficiency_level = 0
+                    # Now We Have To Decide the Proficiency Level.
+                    user_scores = StubItemScore.gql("WHERE quiz_taker = :quiz_taker",
+                                                    quiz_taker=quiz_taker)
+                    for score in user_scores:
+                          this_item = QuizItem.gql("WHERE slug = :slug",
+                                                  slug=score.quiz_item)
+                          for item in this_item:
+                              if item.proficiency == proficiency.proficiency:
+                                  item_proficiency_level = score.score * this_item[0].difficulty  # Each Item's Proficiency Is difficulty x score.
+                                  proficiency_level.proficiency_level += item_proficiency_level   # Add Together Item Proficiency Scores
+                    proficiency_level.put()
+                    print ""
+                    print "New Proficiency Level -- User: " + str(proficiency_level.quiz_taker) + " for Proficiency: " + str(proficiency_level.proficiency) + " With Proficiency Level: " + str(proficiency_level.proficiency_level)
+                          
+                    
+                                                
+                        
+                        
 
-            """
-
-            Here is an opportunity to try out creating a graph of users and items. 
-            Examples of the SQL-like syntax for selecting data are above.
-            If you'd like to edit or view the models, they're in model.py.
-            You may also want to reference views in views.py.
-            
-            Two simple initial goals:
-            
-             1. Add an integer property to the StubScore model called "rank". 
-            The top-scoring stub user should be ranked 1, and down to the last user.
-            
-            
-            2. Assign difficulty keys to quiz items.
-            
-            There is already a difficulty integer property for QuizItem, but it is empty.
-            
-            You could either use decimals 0-1, or rank similarly to users.
-            Do whatever you think will be most useful!
-            
-            
-            
-            Important note - the stub data is created with a simple random() method, so the ranking/difficulty data won't be realistic. 
-            Let's try to improve the stub creation process to more resemble a realistic score curve.
-            
-            
-            """
-            
-            

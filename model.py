@@ -7,8 +7,8 @@ logging.info('Loading %s', __name__)
 
 
 
-class Score(db.Model):
-  # Scores for Quiz (Temporary Store for Demo)  TODO: Include Timer Data
+class TempItemScore(db.Model):
+  # Scores for Quiz Item (Temporary Store for Demo)  TODO: Include Timer Data
   quiz_taker = db.StringProperty()
   score = db.IntegerProperty()   # 0-1, after Timer data is used
   date = db.DateTimeProperty(auto_now_add=True)
@@ -17,7 +17,7 @@ class Score(db.Model):
   quiz_item = db.StringProperty() # item slug - "wiki_bayesian"
 
 
-class DemoScore(db.Model):
+class ItemScore(db.Model):
   # Saved Scores for Quiz 
   quiz_taker = db.StringProperty()
   score = db.IntegerProperty()
@@ -27,7 +27,7 @@ class DemoScore(db.Model):
   quiz_item = db.StringProperty()
   
 
-class StubScore(db.Model):
+class StubItemScore(db.Model):
   # Saved Scores for Quiz - NOT REAL
   quiz_taker = db.StringProperty()
   score = db.IntegerProperty()  
@@ -41,12 +41,6 @@ class StubScore(db.Model):
 # When user submits e-mail address, transfer each score to perm model, and change quiz_taker to e-mail address.
   
 
-class List(db.Model):
-  # Beta List
-  email = db.StringProperty()
-  date = db.DateTimeProperty(auto_now_add=True)
-
-
 
 class QuizItem(db.Model):
   # 
@@ -57,3 +51,29 @@ class QuizItem(db.Model):
   date = db.DateTimeProperty(auto_now_add=True)
   difficulty = db.IntegerProperty()  # 0-1
   
+  
+
+class Proficiency(db.Model):
+  proficiency = db.StringProperty()  # Proficiency Tag (startup_financing)
+  date = db.DateTimeProperty(auto_now_add=True)
+  
+
+class ProficiencyLevel(db.Model):
+  proficiency = db.StringProperty()  # Proficiency Tag (startup_financing)
+  quiz_taker = db.StringProperty()
+  proficiency_level = db.IntegerProperty()
+  date = db.DateTimeProperty(auto_now_add=True)
+
+  
+  
+  
+  
+  
+  
+  
+class InviteList(db.Model):
+  # Beta Invite List
+  email = db.StringProperty()
+  date = db.DateTimeProperty(auto_now_add=True)
+
+

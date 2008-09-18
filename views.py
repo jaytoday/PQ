@@ -19,6 +19,7 @@ class RPCHandler(webapp.RequestHandler):
   def __init__(self):
     webapp.RequestHandler.__init__(self)
     self.methods = RPCMethods()
+
  
   def get(self):
     func = None
@@ -45,6 +46,7 @@ class RPCHandler(webapp.RequestHandler):
         break
     result = func(*args)
     self.response.out.write(simplejson.dumps(result))
+    
 
 
 class RPCMethods(webapp.RequestHandler):
@@ -56,7 +58,7 @@ class RPCMethods(webapp.RequestHandler):
 
 
     logging.debug('Posting Answer')    
-    score = Score()
+    score = TempItemScore()
     score.picked_answer = str(args[0])
     
     item_slug = str(args[1])
@@ -98,7 +100,7 @@ class RPCMethods(webapp.RequestHandler):
 
 
     logging.debug('Deleting Datastore!')  # For Demo Only 
-    q = db.GqlQuery("SELECT * FROM Score")
+    q = db.GqlQuery("SELECT * FROM TempItemScore")
     results = q.fetch(1000)
     for result in results:
         result.delete()
@@ -108,7 +110,7 @@ class RPCMethods(webapp.RequestHandler):
   def List(self, *args):
   
     logging.debug('Posting E-mail List Entry')    
-    list_entry = List()    
+    list_entry = InviteList()    
     list_entry.email = str(args[0])
     list_entry.put()
 
@@ -121,16 +123,19 @@ class RPCMethods(webapp.RequestHandler):
     list_entry.email = str(args[0])
     list_entry.put()
     logging.debug('New User - Saving Score')    
-    q = db.GqlQuery("SELECT * FROM Score")
+    q = db.GqlQuery("SELECT * FROM TempItemScore")
     results = q.fetch(1000)
     for result in results:
-        result = DemoScore()
+        result = ItemScore()
         result.quiz_taker = str(args[0])
         result.put()
         logging.debug('Moved A Score Item')
         
     
-    
+  def RedirectHome(self, *args):
+  
+      pass#self.redirect("/")
+
     
     
 
@@ -256,14 +261,14 @@ class ViewScore(webapp.RequestHandler):
     if self:
     
       try:
-        latest_scores = Score.gql("WHERE quiz_taker = :quiz_taker ORDER BY date DESC",
+        latest_scores = TempItemScore.gql("WHERE quiz_taker = :quiz_taker ORDER BY date DESC",
                                   quiz_taker="quiz_taker")   
         logging.info('Loading all score items') 
       except:
         raise_error('Error Retrieving Data From Score Model')
       
       try:
-        correct_item = Score.gql("WHERE score > :score AND quiz_taker = :quiz_taker ORDER BY score DESC, date DESC",
+        correct_item = TempItemScore.gql("WHERE score > :score AND quiz_taker = :quiz_taker ORDER BY score DESC, date DESC",
                                quiz_taker="quiz_taker", score=0 )
         logging.info('Loading correct Score items from user')
       except:
@@ -315,7 +320,9 @@ class RefreshData(webapp.RequestHandler):
   #Refreshes Data
 
   def get(self):
-      refresh_data("quiz_items", "verbose")
+      destroy_data("quiz_items", "verbose")
+      destroy_data("proficiencies", "verbose")
+      refresh_data("verbose")
 
 
 
@@ -344,19 +351,23 @@ def dump_data(data_type, *verbose):
 
    
 
-def refresh_data(data_type, *verbose):
+def destroy_data(data_type, *verbose):
 # use "verbose" to print logging info
 
-    models = {"quiz_items" : "QuizItem"}
-    query_string = "SELECT * FROM " + models[data_type] 
+    models = {"quiz_items" : "QuizItem", "proficiencies" : "Proficiency"}
+    item_names= {"quiz_items" : "slug", "proficiencies" : "proficiency"}
+    query_string = "SELECT * FROM " + models[data_type]
     query = db.GqlQuery(query_string) # Query all quiz items
-    items = query.fetch(1000)
-    for item in items:
-        if verbose:    
-            print "deleted " + str(item.slug)
+    data_type = query.fetch(1000)
+    for item in data_type:
+        if verbose:
+            print ""   
+            print "deleted: " + str(item.__dict__) 
         item.delete()
-    template_values = {}
-
+        
+def refresh_data(*verbose):
+    # use "verbose" to print logging info
+    proficiencies = []
     # Load External JSON fixture
     json_file = open(ROOT_PATH + "/data/quiz_items.json")
     json_str = json_file.read()
@@ -372,8 +383,21 @@ def refresh_data(data_type, *verbose):
         #Add List of Answers
         quiz_item.answers = item['answers']
         if verbose:
-            print "added " + str(quiz_item.slug) + " + " + str(quiz_item.proficiency)
+            print "added quiz item: " + str(quiz_item.slug) + " + " + str(quiz_item.proficiency)
         
         quiz_item.index = item['index']
         quiz_item.put()
      
+
+    # Store Proficiencies
+
+        proficiencies.append(quiz_item.proficiency)
+        
+    proficiencies = set(proficiencies)
+    for this_proficiency in proficiencies:
+        proficiency = Proficiency()
+        proficiency.proficiency = this_proficiency
+        proficiency.put()
+        if verbose:
+            print "added proficiency: " + str(proficiency.proficiency)
+        

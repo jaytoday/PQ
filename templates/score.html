@@ -32,12 +32,7 @@ $(document).ready(function() {
 				 
              });
 				 
-            function CloseWindow()
-			{
-				$(window.parent.document).find
-					("#quiz_close").click();
 
-			}
 
      /* =========== */
 /* = Ajax Requests = */
@@ -108,19 +103,26 @@ InstallFunction(server, 'NewUser');
 
 
 
+
 function SaveScore(email) {
 	server.NewUser(email, onAddSuccess);
-
+    $('#signup').hide('slow');
+    $('div#add_success').show('slow');
 	
 	// There should be a callback for success
 }
 
 function onAddSuccess(response)
 {
-    $('#signup').hide('slow');
-    $('div#add_success').show('slow');
-    
 }
+
+function redirectHome()
+{
+window.parent.parent.location="http://www.plopquiz.com"
+}
+
+
+
 </script>
 </head>
 
@@ -178,7 +180,7 @@ Thanks For Your Time
 
 <div class="add_confirm">You've been added to our list. </div>
 
-   <a id="end_quiz" onclick="CloseWindow();" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main" style="padding:0px;">
+   <a id="end_quiz" onclick="redirectHome();" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main" style="padding:0px;">
    <div class="skipitem" id="end_text">Continue</div></td><td id="quiz_pink_right"></td></tr></table></a>
          
 </div>

@@ -50,6 +50,10 @@ def main():
                                          CreateScoreStubs),
                                         ('/view_scores/?',
                                          ViewScoreStubs),
+                                        ('/set_proficiencies/?',
+                                         Set_Proficiencies),
+                                        ('/set_difficulties/?',
+                                         Set_Difficulties),
                                         ],
                                        debug=True)
   wsgiref.handlers.CGIHandler().run(application)

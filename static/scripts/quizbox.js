@@ -371,7 +371,7 @@ $.fn.quizbox.showIframe = function() {
 				width:	0
 			},
 			{
-				duration:	160000,
+				duration:	16000,
 				easing:	'linear',
 				complete:	(function()
 				{					
@@ -472,9 +472,9 @@ $.fn.quizbox.showIframe = function() {
 			$('.timer_bar').stop();
 			$('.timer_bar').css('width', '112%'); 
 
-			// hook up the rest of the buttons
+			// bind the skip button
 			$('#quiz_title').find('#skip').click(function() { $.fn.quizbox.submit_answer(this); });
-			$(this).unbind('click');
+			$('#quiz_instructions2').find('#answer1,#answer2').unbind('click');
 		});
 
 		 
@@ -494,7 +494,6 @@ $.fn.quizbox.showIframe = function() {
 	     $('#quiz_title div#quiz_begin_quiz').show();
         $('.timer_bar').css('margin-left', '0px'); 
         $('#quiz_begin_quiz').find('#startquiz').click(function() {
-			console.log(opts.itemArray.length);
 			opts.itemArray = jQuery.grep(opts.itemArray, function(e,i)
 			{
 				return (
@@ -502,18 +501,7 @@ $.fn.quizbox.showIframe = function() {
 					(!e.proficiency)
 				);
 			});
-			console.log(opts.itemArray.length);
 					$.fn.quizbox.submit_answer(this);
-					var exclude_items = window.frames[0].document.proficiency_choices;
-					console.log("excluded items: ", exclude_items);
-					/*
-					 * 
-                     * for item in opts.itemArray item where proficiency == checked value in proficiency_choices form, keep it.
-                     * remove the rest.
-					  * 
-					  * (in other words, remove proficiencies matching unchecked values.) 
-					  *
-					  */ 
 					
 				});
 	     	 
@@ -782,8 +770,6 @@ $.fn.quizbox.showIframe = function() {
 			 }else{
 				 var answer_text = $(answer).text();
 			 }
-
-			 console.log(opts);
 
 			 if (opts.itemArray[opts.itemNum].item_type == "quiz_item"){
 				 var answer_slug = opts.itemArray[opts.itemNum].slug;

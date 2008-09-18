@@ -1,13 +1,13 @@
 indexes:
 
-- kind: Score
+- kind: ItemScore
   ancestor: no
   properties:
   - name: quiz_taker
   - name: date
     direction: desc
 
-- kind: Score
+- kind: ItemScore
   ancestor: no
   properties:
   - name: quiz_taker
