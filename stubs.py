@@ -17,7 +17,7 @@ class CreateScoreStubs(webapp.RequestHandler):
             quiz_taker = random.sample('ABCDEFGHIJKLMNOPQRSTUVWXYZ',5)  # sample characters
             random.shuffle(quiz_taker) # shuffle characters
             quiz_taker = string.join(quiz_taker) # turn list into string - we have a stub user!
-            for item in items:            # Generate a bunch of items for each quiz_taker
+            for item in items:     # TODO: Use list comprehensions         # Generate a bunch of items for each quiz_taker
                 new_score = StubItemScore()
                 new_score.quiz_taker = quiz_taker
                 new_score.quiz_item = item.slug 
@@ -43,7 +43,7 @@ class ViewScoreStubs(webapp.RequestHandler):
             items = query.fetch(1000)
             
             print "ITEM RANKINGS -- the lower the rank, the more difficult the item"
-            for item in items:
+            for item in items:             # TODO: Use list comprehensions
                 item.difficulty = 0
                 for score in scores:
                     if (score.quiz_item == item.slug) and (score.score == 1):#For each correct score per item

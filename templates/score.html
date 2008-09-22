@@ -24,10 +24,16 @@
 $(document).ready(function() {
     /* TODO this doesn't work... */
 	 $(".answer").hover(function(){
-				 $(this).css({'font-variant': 'small-caps'});
+				 $(this).css({
+				     'font-variant': 'small-caps',
+				     'letter-spacing': '.02em'
+				 });
 
 				 },function(){
-				 $(this).css({'font-variant': 'normal'});
+				 $(this).css({
+				     'font-variant': 'normal',
+				     'letter-spacing': '.04em'
+				     });
 				 });
 				 
              });
@@ -106,8 +112,15 @@ InstallFunction(server, 'NewUser');
 
 function SaveScore(email) {
 	server.NewUser(email, onAddSuccess);
-    $('#signup').hide('slow');
-    $('div#add_success').show('slow');
+    $('#signup').hide();
+   
+     $('div#whitewrapper').css({
+         'width'       : '150px',
+         'height'      : '60px',
+         'margin-left' : '80px'
+         }, 'slow');
+          $('div#add_success').show('slow');
+    
 	
 	// There should be a callback for success
 }
@@ -130,31 +143,29 @@ window.parent.parent.location="http://www.plopquiz.com"
 <body class="frame_body">
 <div class="quiz_frame_header" style="height:65px;">
 
-<div class="quiz_frame_logo" id="pq" style="margin-left:77px;">
+<div class="quiz_frame_logo" id="pq" style="margin-left:50px;">
 <img src="/static/html/img/pq_logo_h_small.png"/>
 </div>
 
 </div>
 
 
-<div class="quiz_frame_content" style="height:294px;">
 
 
 
 
-
-<div class="quiz_intro_text" style=" margin-top:10px">
-
+<div class="quiz_intro_text" style=" margin-top:7px">
+<!--
 <p class="quiz_distributor" id="score_report_title"><b>Score Report</b></p> 
+-->
 
-
-<div class="quiz_selection" style="height:245px; background: #EDF2F8 none repeat scroll 0 0; width: 340px;">
+<div class="quiz_selection" id="end_quiz_panel">
 
 
 
 <div class="score_result">
 
-
+<!--
 <div class="quiz_icon"  id="full_icon" style="margin-left: -98px; margin-right:15px">
 <img src="/static/html/img/phone_interview.png" /></div>
 
@@ -164,21 +175,20 @@ window.parent.parent.location="http://www.plopquiz.com"
 
 <div class="aceometer">
 <img  src="http://chart.apis.google.com/chart?chs=195x105&cht=gom&chd=t:{{ percentage }}&chl={{ percentage }}%%20|%20Answers">
-</div>
+</div> -->
 
 <div class="score_text">
-{% if passed  %}
-Impressive Score.
-{% else %}
-Thanks For Your Time
-{% endif %}
+
+<img src="/static/html/img/quiz_completed_checkmark.png" style="margin-left:-30px; margin-top:-40px; margin-bottom:-10px;"/>
+
 </div>
 
 <!-- TODO: Add Continue Button, with close window binding. --> 
 
+
+<div id="whitewrapper">
 <div id="add_success" style="display:none;"> 
 
-<div class="add_confirm">You've been added to our list. </div>
 
    <a id="end_quiz" onclick="redirectHome();" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main" style="padding:0px;">
    <div class="skipitem" id="end_text">Continue</div></td><td id="quiz_pink_right"></td></tr></table></a>
@@ -191,12 +201,12 @@ Thanks For Your Time
         	
         	
         	
-            <input  class="score_email" type="text" name="email" value="early@bird.com" id="email" onFocus="if (this.value == this.defaultValue) { this.value = ''; }"  />
+            <input  class="score_email" type="text" name="email" value="nobel@macarthur.com" id="email" onFocus="if (this.value == this.defaultValue) { this.value = ''; }"  />
             <a id="continue" onclick="SaveScore(signup.email.value);" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_purple_left"></td><td id="quiz_purple_main" style="padding:0px; min-width:0px;"><div class="arrow" style="margin-bottom:-3px;"></div>
             <div class="skipitem" style="font-size: 1em;" id="skiptext">Submit</div></td><td id="quiz_purple_right"></td></tr></table></a>
            
    </form>
-
+</div>
 
 </div>
 
@@ -225,12 +235,11 @@ Thanks For Your Time
 
 
 
-
-</div>
-
-
-
 <script>
+
+/*
+
+For Image Percentage
 
 empty_height = 100 - {{ percentage }} + 'px';
 
@@ -241,7 +250,7 @@ empty = document.getElementById('empty_icon');
 empty.style.height = empty_height;
 
 
-
+*/
 </script>
 
 </body></html>

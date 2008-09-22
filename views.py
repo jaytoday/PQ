@@ -119,7 +119,7 @@ class RPCMethods(webapp.RequestHandler):
   def NewUser(self, *args):
   
     logging.debug('New User - Adding to E-mail List')    
-    list_entry = List()    
+    list_entry = InviteList()    
     list_entry.email = str(args[0])
     list_entry.put()
     logging.debug('New User - Saving Score')    

@@ -7,7 +7,15 @@ indexes:
   - name: date
     direction: desc
 
-- kind: ItemScore
+
+- kind: TempItemScore
+  ancestor: no
+  properties:
+  - name: quiz_taker
+  - name: date
+    direction: desc
+
+- kind: TempItemScore
   ancestor: no
   properties:
   - name: quiz_taker

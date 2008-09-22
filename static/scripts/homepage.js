@@ -28,7 +28,7 @@ $(document).ready(function() {
   $('#viewport').css({overflow: "hidden"});
   $('#flyer').animate({left: "100%"},50000);
   
-  $('form#signup #email').preserveDefaultText('early@bird.com');
+  $('form#signup #email').preserveDefaultText('nobel@macarthur.com');
   
   // hover and focus fx        
   $('input').focus(function(){

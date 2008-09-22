@@ -180,7 +180,7 @@ $.fn.quizbox.start = function(el, o)
 
 $.fn.quizbox.showIframe = function() {
 	$("#quiz_loading").hide();
-	$("#quiz_frame").show();
+	$("#quiz_frame").show('slow');
 
 	/* preview answer in iframe */
 
@@ -188,14 +188,21 @@ $.fn.quizbox.showIframe = function() {
 	$('.answer').hover(function()
 	/* if id is skip, don't do this */
 	{
-		if (this.id != "skip")
+	        if (this.id != "skip") {
 			blankspan.html("&nbsp;" + $(this).text() + "&nbsp;");
-
+        }
+	    blankspan.fadeTo("slow", 1);
+  
+		
+			
+			
 	},
 	function()
 	{
+	    
 		blankspan.empty();
 		blankspan.html("&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;");
+        blankspan.fadeTo("fast", 0.5);
 	});
 }
 
@@ -220,8 +227,8 @@ $.fn.quizbox.showIframe = function() {
 		 var itemOpts = {
 			 'left':		143 + 'px', 
 			 'top':		0 + 'px', 
-			 'width':	425 + 'px', 
-			 'height':	415 + 'px'	
+			 'width':	380 + 'px', 
+			 'height':	370 + 'px'	
 		 };
 	 }else if (opts.itemArray[opts.itemNum].item_type == "intro"){
 		 /* intro */
@@ -426,12 +433,12 @@ $.fn.quizbox.showIframe = function() {
 		 /* hide answers and show hidden intro choices */
 		 $('#quiz_title').show();
 		 $('#quiz_title div.buttons').hide(); 
-		 $('#quiz_title div#quiz_intro').show();  
-		 $('#quiz_intro div#take_quiz').html(opts.itemArray[opts.itemNum].take_quiz);  
+		 $('#quiz_title div#quiz_intro').fadeIn('slow');  
+		
 		 $('#quiz_intro div#choose_quiz').html(opts.itemArray[opts.itemNum].choose_quiz);
 	 }else if (opts.itemArray[opts.itemNum].item_type == "instructions") {
-		$('#example_1', window.frames[0].document).show();
 		$('#example_2', window.frames[0].document).hide();
+		$('#example_1', window.frames[0].document).fadeIn('slow');
 		$('#quiz_title').show();
 		$('#quiz_title div.buttons').hide();   
 		$('#quiz_title div#quiz_instructions').show();  
@@ -466,6 +473,7 @@ $.fn.quizbox.showIframe = function() {
 		$('#quiz_instructions2')
 		.find('#answer1,#answer2').click(function()
 		{
+		    
 			$('#example_1,#example_3', window.frames[0].document).hide('slow');
 			$('#example_2', window.frames[0].document).show('slow');
 			clearTimeout($.fn.quizbox._t);
@@ -572,7 +580,7 @@ $.fn.quizbox.showIframe = function() {
 		 opts.animating = true;
 
 		 $("#quiz_outer").animate(itemOpts, opts.itemArray[opts.itemNum].o.zoomSpeedOut, function() {
-				 $("#quiz_content").hide().empty();
+				 $("#quiz_content").hide('fast').empty();
 				 $("#quiz_overlay,#quiz_bigIframe").remove();
 				 opts.animating = false;
 				 });
@@ -633,7 +641,7 @@ $.fn.quizbox.showIframe = function() {
 		 // This will be in the HTML very, very soon - James
 		 
 		 $('<div id="quiz_intro"  class="buttons"></div>').appendTo('#quiz_title');
-		 $('<a id="take_quiz" onmouseover="" style="margin-left:77px;margin-top:-9px;" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_purple_left"></td><td id="quiz_purple_main"><div class="answertext" id="take_quiz" style="width: 170px; font-size: 22px;"></div></td><td id="quiz_purple_right"></td></tr></table></a>').appendTo('#quiz_intro');
+		 $('<a id="take_quiz" onmouseover="" style="margin-left:77px;margin-top:-9px;" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_purple_left"></td><td id="quiz_purple_main"><div class="answertext" id="take_quiz" style="width: 170px; font-size: 1.5em;">T<span style="font-size:.7em;"/>ake</span> T<span style="font-size:.7em;"/>his</span> Q<span style="font-size:.7em;"/>uiz</span></div></div></td><td id="quiz_purple_right"></td></tr></table></a>').appendTo('#quiz_intro');
 			 // - Choose Between Quizzes $('<a id="choose_quiz" class="answer" style="font-size:13px; margin-left:30px;" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main" style="width:45px;"><div class="answertext" style="margin: 3px 0pt 0pt 1px; font-size: 13px; width: 36px; line-height: 1.1em;" id="choose_quiz"></div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_intro');
 
 
@@ -650,7 +658,7 @@ $.fn.quizbox.showIframe = function() {
 			 $('<a id="skip" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main"><div class="arrow"><img src="/static/stylesheets/img/pinkarrow.png" /></div><div class="skipitem" id="skiptext">Skip</div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
 
             $('<div id="quiz_begin_quiz" class="buttons" style=" margin-top:7px"></div>').appendTo('#quiz_title');
-             $('<a id="startquiz" class="answer" href="#" style="margin-top:7px; margin-left: 90px"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_purple_left"></td><td id="quiz_purple_main"><div class="skipitem" id="startquiz">Start Quiz!</div></td><td id="quiz_purple_right"></td></tr></table></a>').appendTo('#quiz_begin_quiz');
+             $('<a id="startquiz" class="answer" href="#" style="margin-top:7px; margin-left: 90px"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_purple_left"></td><td id="quiz_purple_main"><div class="skipitem" id="startquiz">S<span style="font-size:.7em;"/>tart</span> Q<span style="font-size:.7em;"/>uiz</span>!</div></td><td id="quiz_purple_right"></td></tr></table></a>').appendTo('#quiz_begin_quiz');
 
 
 
@@ -669,10 +677,16 @@ $.fn.quizbox.showIframe = function() {
 		 /* effect on answer hover */
 
 		 $(".answer").hover(function(){
-				 $(this).css({'font-variant': 'small-caps'});
+				 $(this).css({
+				     'font-variant': 'small-caps',
+				     'letter-spacing': '.02em'
+				     });
+				 
 
 				 },function(){
-				 $(this).css({'font-variant': 'normal'});
+				 $(this).css({'font-variant': 'normal',
+				 'letter-spacing': '.04em'
+				 });
 				 });
 
 
@@ -770,6 +784,7 @@ $.fn.quizbox.showIframe = function() {
 			 }else{
 				 var answer_text = $(answer).text();
 			 }
+
 
 			 if (opts.itemArray[opts.itemNum].item_type == "quiz_item"){
 				 var answer_slug = opts.itemArray[opts.itemNum].slug;

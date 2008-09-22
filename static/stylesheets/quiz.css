@@ -108,7 +108,7 @@ font-style:normal;
 font-variant:inherit;
 font-weight:bold;
 line-height:1.2em;
-margin-left:-5px;
+margin-left:5px;
 padding-bottom:2px;
 text-align:center;
 }	
@@ -149,7 +149,7 @@ margin-top:15px;
 }
 
 div#quiz_title div#startquiz {
-font-size:1.5em;
+font-size:1.7em;
 margin-top:0px;
 }
 
@@ -165,13 +165,13 @@ td#quiz_purple_main {
 	background: transparent url(img/quiz_purple_main.png) repeat-x;
 	padding-left:20px;
 	padding-right:20px;
-	background-position: 0px 1px;
+	background-position: 0px 2px;
 }
 
 td#quiz_purple_right {
 	height: 50px;
 	width: 13px;
-	background: transparent url(img/quiz_purple_right.png) repeat-x;
+	background: transparent url(img/quiz_purple_right.png) no-repeat scroll -2px 0px;
 }
 
 
@@ -188,13 +188,13 @@ td#quiz_blue_main {
 	background: transparent url(img/quiz_blue_main.png) repeat-x;
 	padding-left:20px;
 	padding-right:20px;
-	background-position: 0px 1px;
+	background-position: 0px 2px;
 }
 
 td#quiz_blue_right {
 	height: 50px;
 	width: 13px;
-	background: transparent url(img/quiz_blue_right.png) repeat-x;
+	background: transparent url(img/quiz_blue_right.png) no-repeat scroll -2px 0px;
 }
 
 td#quiz_pink_left {
@@ -209,17 +209,18 @@ td#quiz_pink_main {
 	background: transparent url(img/quiz_pink_main.png) repeat-x;
 	padding-left:7px; 
 	padding-right:5px;
-	background-position: 0px 1px;
+	background-position: 0px 2px;
 }
 
 td#quiz_pink_right {
 	height: 50px;
 	width: 13px;
-	background: transparent url(img/quiz_pink_right.png) repeat-x;
-}
+	background: transparent url(img/quiz_pink_right.png) no-repeat scroll -2px 0px;
+	}
 
 .arrow{
-margin-bottom: -10px;
+margin-bottom:-10px;
+margin-top:5px;
 }
 
 div#quiz_outer {
@@ -372,16 +373,15 @@ margin-top:-1px;
 #continue{
 float:right;
 font-variant:normal;
-margin-bottom:0;
-margin-right:45px;
-margin-top:-1px;
+margin-bottom:13px;
+margin-right:20px;
+margin-top:-4px;
 }
 #end_quiz{
 float:right;
 float:right;
 font-variant:normal;
-margin-right:35px;
-margin-top:-24px;
+margin: 5px 28px 10px 0;
 }
 
 .answer div:hover{
