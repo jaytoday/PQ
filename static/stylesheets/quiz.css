@@ -1,5 +1,8 @@
 
 
+
+
+
 .buttons{
 display:none;
 }
@@ -410,6 +413,10 @@ display: none;
 div#take_quiz{
 width: 90px; 
 font-size:20px;
+}
+
+a#take_quiz{
+margin-left:77px;margin-top:-9px;margin-top:16px;
 }
 
 div#choose_quiz{

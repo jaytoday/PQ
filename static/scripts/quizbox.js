@@ -56,7 +56,7 @@ $.fn.quizbox.start = function(el, o)
 			$("#quiz_bigIframe").css({'width': $(window).width(), 'height': $(document).height(), 'opacity': 0});
 		}
 
-		$("#quiz_overlay").click($.fn.quizbox.close);
+		//$("#quiz_overlay").click($.fn.quizbox.close);
 	}
 
 	opts.itemArray	= [];
@@ -189,6 +189,7 @@ $.fn.quizbox.showIframe = function() {
 	/* if id is skip, don't do this */
 	{
 	        if (this.id != "skip") {
+            blankspan.fadeTo(1,0.5);
 			blankspan.html("&nbsp;" + $(this).text() + "&nbsp;");
         }
 	    blankspan.fadeTo("slow", 1);
@@ -202,7 +203,7 @@ $.fn.quizbox.showIframe = function() {
 	    
 		blankspan.empty();
 		blankspan.html("&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;");
-        blankspan.fadeTo("fast", 0.5);
+        blankspan.fadeTo(100, 0.5);
 	});
 }
 
@@ -236,7 +237,7 @@ $.fn.quizbox.showIframe = function() {
 			 'left':		143 + 'px', 
 			 'top':		0 + 'px', 
 			 'width':	392 + 'px', 
-			 'height':	390 + 'px'	
+			 'height':	410 + 'px'	
 		 };
 	 }else if (opts.itemArray[opts.itemNum].item_type == "instructions"){
 		 /* instructions */
@@ -525,6 +526,7 @@ $.fn.quizbox.showIframe = function() {
 
 	 if (opts.itemArray[opts.itemNum].o.hideOnContentClick) {
 		 $("#quiz_content").click($.fn.quizbox.close);
+		
 	 } else {
 		 $("#quiz_content").unbind('click');
 	 }
@@ -641,7 +643,7 @@ $.fn.quizbox.showIframe = function() {
 		 // This will be in the HTML very, very soon - James
 		 
 		 $('<div id="quiz_intro"  class="buttons"></div>').appendTo('#quiz_title');
-		 $('<a id="take_quiz" onmouseover="" style="margin-left:77px;margin-top:-9px;" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_purple_left"></td><td id="quiz_purple_main"><div class="answertext" id="take_quiz" style="width: 170px; font-size: 1.5em;">T<span style="font-size:.7em;"/>ake</span> T<span style="font-size:.7em;"/>his</span> Q<span style="font-size:.7em;"/>uiz</span></div></div></td><td id="quiz_purple_right"></td></tr></table></a>').appendTo('#quiz_intro');
+		 $('<a id="take_quiz" onmouseover="" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_purple_left"></td><td id="quiz_purple_main"><div class="answertext" id="take_quiz" style="width: 170px; font-size: 1.5em;">T<span style="font-size:.7em;"/>ake</span> T<span style="font-size:.7em;"/>his</span> Q<span style="font-size:.7em;"/>uiz</span></div></div></td><td id="quiz_purple_right"></td></tr></table></a>').appendTo('#quiz_intro');
 			 // - Choose Between Quizzes $('<a id="choose_quiz" class="answer" style="font-size:13px; margin-left:30px;" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main" style="width:45px;"><div class="answertext" style="margin: 3px 0pt 0pt 1px; font-size: 13px; width: 36px; line-height: 1.1em;" id="choose_quiz"></div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_intro');
 
 

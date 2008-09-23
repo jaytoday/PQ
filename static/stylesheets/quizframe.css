@@ -175,6 +175,15 @@ line-height:1.5em;
 /* =========== */
 
 
+b{
+color:#400059;
+font-size:1.1em;
+}
+
+b:hover{
+color: #000;
+}
+
 
 
 
@@ -193,6 +202,8 @@ top:80px;
 p.quiz_distributor{
 font-size:.8em;
 margin-bottom:0;
+margin-left:11px;
+width:90%;
 }
 
 p.quiz_header{
