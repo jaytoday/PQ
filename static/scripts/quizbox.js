@@ -681,13 +681,13 @@ $.fn.quizbox.showIframe = function() {
 		 $(".answer").hover(function(){
 				 $(this).css({
 				     'font-variant': 'small-caps',
-				     'letter-spacing': '.02em'
+				     'letter-spacing': '.01em'
 				     });
 				 
 
 				 },function(){
 				 $(this).css({'font-variant': 'normal',
-				 'letter-spacing': '.04em'
+				 'letter-spacing': '.02em'
 				 });
 				 });
 
