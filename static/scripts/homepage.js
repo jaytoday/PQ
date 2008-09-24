@@ -70,28 +70,42 @@ $(document).ready(function()
 		$(this).removeClass('down');
 	});
 
-	MottoAnimation();
+	
+	
+	 $("div#motto").everyTime(1000,function() {
+	    
+ runAnimation = setTimeout(MottoAnimation, 1200);
+ 
+ });
 });
  
  
 function MottoAnimation()
 {
+    
 	var ml = Number($('#smart').css('marginLeft').replace(/p[xt]/,''));
-	ml = (ml == 30) ? 204 : 30;
+	ml = (ml == 30) ? 220 : 30;
 	setTimeout(function()
 	{
+
+	  /* $('#smart').fadeTo(200,0.5); */
+
 		$('#smart').animate({
-			marginLeft:	ml
+			marginLeft:	ml,
 		},
 		{
 			complete: function()
 			{
+			    
+			    $('#smart').fadeTo(200,1);
+			    
 				if(ml == 30)
 					return;
-				setTimeout(MottoAnimation,200);
+				setTimeout(MottoAnimation,1800);
 			}
 		});
-	},400);
+	},2400);
+	
 }
      
  

@@ -270,11 +270,12 @@ div#motto,#smart
 	background:	#F7F5F4;
 	font-size:1.5em;
 	position:	absolute;
-	margin-left:	86px;
+	margin-left:	100px;
 	margin-top:	60px;
 	text-align:	center;
 	width:	113px;
 	height:	29px;
+	
 }
 /* spaces the blank */
 .smart_span_holder
