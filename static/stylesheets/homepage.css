@@ -1,32 +1,32 @@
 /* Global Resets */
- 
+
 html,body,div,ul,ol,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,pre,form,p,blockquote,fieldset,input {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
 fieldset,homepage {
-  border: none;
+	border: none;
 }
 table {
-  border-collapse: collapse;
-  border-spacing: 0;
+	border-collapse: collapse;
+	border-spacing: 0;
 }
- 
+
 :focus {
-  outline: 0;
+	outline: 0;
 }
- 
+
 sub, sup {
-  font-size: 8px;
-  line-height: 0;
+	font-size: 8px;
+	line-height: 0;
 }
- 
+
 body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
+	margin: 0;
+	padding: 0;
+	height: 100%;
 }
- 
+
 /* Liquid Sitelet Box */
 .clear { clear: both; }
 .sitelet .left { float: left; }
@@ -74,185 +74,210 @@ body, html {
 
 /* Homepage */
 
- 
+
 body {
-  background: #6BBCF0 url(homepage/bg.png) bottom left repeat-x;
-  font-family: Georgia, "Times New Roman", Times, serif;
+	background: #6BBCF0 url(homepage/bg.png) bottom left repeat-x;
+	font-family: Georgia, "Times New Roman", Times, serif;
 }
 #viewport {
-  width: 100%;
-  height: 100%;
-  position: relative;
+	width: 100%;
+	height: 100%;
+	position: relative;
 }
 #clouds-near, #clouds-far {
-  position: absolute;
-  top: 15%;
-  left: 0px;
-  width: 100%;
-  height: 100%;
+	position: absolute;
+	top: 15%;
+	left: 0px;
+	width: 100%;
+	height: 100%;
 }
 #clouds-far {
-  background:url(homepage/clouds-far.png) repeat-x;
-  z-index: 10;
-  top: 12%;
+	background:url(homepage/clouds-far.png) repeat-x;
+	z-index: 10;
+	top: 12%;
 }
 #clouds-near {
-  background:url(homepage/clouds-near.png) repeat-x;
-  z-index: 20;
+	background:url(homepage/clouds-near.png) repeat-x;
+	z-index: 20;
 }
 #land {
-  position: absolute;
-  width: 100%;
-  height: 92px;
-  left:0px;
-  bottom: -14px;
-  background:url(homepage/land.png) repeat-x;
-  z-index: 15;
+	position: absolute;
+	width: 100%;
+	height: 92px;
+	left:0px;
+	bottom: -14px;
+	background:url(homepage/land.png) repeat-x;
+	z-index: 15;
 }
 #cutoff {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 5;
-  top: 0px;
-  left: 0px;
-  overflow: hidden;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 5;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
 }
 #flyer {
-  width: 60px;
-  height: 45px;
-  background: url(homepage/plane.png) no-repeat;
-  position: relative;
-  top: 20%;
-  left: 0%;
-  z-index: 5;
+	width: 60px;
+	height: 45px;
+	background: url(homepage/plane.png) no-repeat;
+	position: relative;
+	top: 20%;
+	left: 0%;
+	z-index: 5;
 }
 #sitelet-home {
-  position: absolute;
-  z-index: 100;
-  width: 650px;
-  height: 296px;
-  top: 50%;
-  left: 50%;
-  /* Half width and height offset*/
-  margin-top: -148px;
-  margin-left: -325px;
-  font-size: 14px;
-  color: #434343;
+	position: absolute;
+	z-index: 100;
+	width: 650px;
+	height: 296px;
+	top: 50%;
+	left: 50%;
+	/* Half width and height offset*/
+	margin-top: -148px;
+	margin-left: -325px;
+	font-size: 14px;
+	color: #434343;
 }
 #sitelet-home #logo {
-  width: 225px;
-  height: 233px;
-  float: left;
-  padding: 17px 0px 0px 20px;
+	width: 225px;
+	height: 233px;
+	float: left;
+	padding: 17px 0px 0px 20px;
 }
 #sitelet-home #intro {
-  float: left;
-  width: 373px;
-  height: 250px;
+	float: left;
+	width: 373px;
+	height: 250px;
 }
 #sitelet-home h2 {
-  background: transparent url(homepage/pq_mantra.png) repeat scroll 0 0;
-  font-family: Georgia;
-  height: 43px;
-  margin: 20px 0 0 16px;
-  text-indent: -9999px;
-  width: 295px;
+	background: transparent url(homepage/pq_mantra.png) repeat scroll 0 0;
+	font-family: Georgia;
+	height: 43px;
+	margin: 20px 0 0 16px;
+	text-indent: -9999px;
+	width: 295px;
 }
 #sitelet-home form {
-  margin: 24px 0px 0px 18px;
+	margin: 24px 0px 0px 18px;
 }
 #sitelet-home form input.text {
-  background:url(homepage/input.gif) no-repeat;
-  display: block;
-  width: 329px;
-  height: 41px;
-  border: none;
-  margin: 10px 0 0 -2px;
-  padding: 7px 10px 0;
-  font-size: 24px;
+	background:url(homepage/input.gif) no-repeat;
+	display: block;
+	width: 329px;
+	height: 41px;
+	border: none;
+	margin: 10px 0 0 -2px;
+	padding: 7px 10px 0;
+	font-size: 24px;
 }
 #sitelet-home form input.text.focus {
-  background-position: 0px -48px;
+	background-position: 0px -48px;
 }
 form input.button {
-  background-color: #EEE;
-  border-color:#CCC #999 #999 #CCC;
-  border-style: solid;
-  border-width: 1px;
-  font-size: 14px;
-  margin: 9px 0 0;
-  padding: 5px 8px;
-  -moz-border-radius-bottomleft:12px;
--moz-border-radius-bottomright:12px;
--moz-border-radius-topleft:12px;
--moz-border-radius-topright:12px;
--webkit-border-radius: 12px;
+	background-color: #EEE;
+	border-color:#CCC #999 #999 #CCC;
+	border-style: solid;
+	border-width: 1px;
+	font-size: 14px;
+	margin: 9px 0 0;
+	padding: 5px 8px;
+	-moz-border-radius-bottomleft:12px;
+	-moz-border-radius-bottomright:12px;
+	-moz-border-radius-topleft:12px;
+	-moz-border-radius-topright:12px;
+	-webkit-border-radius: 12px;
 }
 #sitelet-home form input.down {
-  background-color: #EEE;
-  border-color:#999 #CCC #CCC #999;
-  border-style: solid;
-  border-width: 1px;
-  font-size: 14px;
-  color: #777;
-  margin: 9px 0 0;
-  padding: 5px 8px;
+	background-color: #EEE;
+	border-color:#999 #CCC #CCC #999;
+	border-style: solid;
+	border-width: 1px;
+	font-size: 14px;
+	color: #777;
+	margin: 9px 0 0;
+	padding: 5px 8px;
 }
 #sitelet-home form input.button.disable {
-  border-color: #CCC;
-  color: #AAA;
+	border-color: #CCC;
+	color: #AAA;
 }
 #sitelet-home #success {
-  display: none;
-  padding: 5px 8px;
-  background-color: #F7F279;
-  border: 1px solid #EAD631;
-  margin-top: 10px;
-  font-size: 18px;
-  width: 328px;
+	display: none;
+	padding: 5px 8px;
+	background-color: #F7F279;
+	border: 1px solid #EAD631;
+	margin-top: 10px;
+	font-size: 18px;
+	width: 328px;
 }
 
 form#signup{
-margin-left: 24px;
+	margin-left: 24px;
 }
 
 input#email{
-padding: 1px; height: 25px; width: 270px; font-size: 1.4em;
+	padding: 1px; height: 25px; width: 270px; font-size: 1.4em;
 }
 
 input#signup{
-width: 220px; height: 40px; margin-top: 10px; font-size: 1.1em;
+	width: 220px; height: 40px; margin-top: 10px; font-size: 1.1em;
 }
 
 div#add_success{
-/* border:5px solid #DDDDDD; */
-font-size:1.3em;
-margin-top:50px;
-padding:5px;
-width:280px;
--moz-border-radius-bottomleft:12px;
--moz-border-radius-bottomright:12px;
--moz-border-radius-topleft:12px;
--moz-border-radius-topright:12px;
--webkit-border-radius: 12px;
+	/* border:5px solid #DDDDDD; */
+	font-size:1.3em;
+	margin-top:50px;
+	padding:5px;
+	width:280px;
+	-moz-border-radius-bottomleft:12px;
+	-moz-border-radius-bottomright:12px;
+	-moz-border-radius-topleft:12px;
+	-moz-border-radius-topright:12px;
+	-webkit-border-radius: 12px;
 }
 
 img.pink_checkbox{
-margin-bottom: -6px; margin-right: 3px;
+	margin-bottom: -6px; margin-right: 3px;
 }
 
 
 span.blank{
-background:#FFFFD1 none repeat scroll 0 0;
-border:1px solid #E2C922;
-font-weight:bold;
-margin:0 5px;
-padding:0px 3px;
-opacity:1;
+	background:#FFFFD1 none repeat scroll 0 0;
+	border:1px solid #E2C922;
+	font-weight:bold;
+	margin:0 5px;
+	padding:0px 3px;
+	opacity:1;
 }
-div#motto{
-font-size:1.5em;
-margin-left:20px;
-margin-top:60px;
+div#motto,#smart
+{
+	font-size:1.5em;
+	margin-left:20px;
+	margin-top:60px;
+}
+
+#smart
+{
+	font-weight:bold;
+	margin-left:30px;
+	position:	absolute;
+}
+
+#blinder
+{
+	background:	#F7F5F4;
+	font-size:1.5em;
+	position:	absolute;
+	margin-left:	86px;
+	margin-top:	60px;
+	text-align:	center;
+	width:	113px;
+	height:	29px;
+}
+/* spaces the blank */
+.smart_span_holder
+{
+	opacity:	0;
 }
