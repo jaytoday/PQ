@@ -100,9 +100,3 @@ class Set_Proficiencies(webapp.RequestHandler):         # localhost:8080/set_pro
                     proficiency_level.put()
                     print ""
                     print "New Proficiency Level -- User: " + str(proficiency_level.quiz_taker) + " for Proficiency: " + str(proficiency_level.proficiency) + " With Proficiency Level: " + str(proficiency_level.proficiency_level)
-                          
-                    
-                                                
-                        
-                        
-
