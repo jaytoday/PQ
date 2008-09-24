@@ -80,33 +80,43 @@ $(document).ready(function()
 });
  
  
+ 
+ 
+  
 function MottoAnimation()
 {
-    
 	var ml = Number($('#smart').css('marginLeft').replace(/p[xt]/,''));
-	ml = (ml == 30) ? 220 : 30;
+	ml = (ml == 30) ? 222 : 30;
+
 	setTimeout(function()
 	{
-
-	  /* $('#smart').fadeTo(200,0.5); */
-
 		$('#smart').animate({
-			marginLeft:	ml,
+			opacity: .5
 		},
 		{
 			complete: function()
 			{
-			    
-			    $('#smart').fadeTo(200,1);
-			    
-				if(ml == 30)
-					return;
-				setTimeout(MottoAnimation,1800);
+				$('#smart').animate({
+					marginLeft:	ml
+				},
+				{
+					complete: function()
+					{
+                    $('#smart').animate({
+			opacity: 1
+		});
+
+					    
+						if(ml == 30)
+							return;
+						setTimeout(MottoAnimation,1800);
+					}
+				});
 			}
 		});
 	},2400);
-	
 }
+
      
  
 /* ==================*/

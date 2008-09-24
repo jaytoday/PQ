@@ -248,33 +248,39 @@ span.blank{
 	border:1px solid #E2C922;
 	font-weight:bold;
 	margin:0 5px;
-	padding:0px 3px;
+	padding:0px 7px;
 	opacity:1;
 }
 div#motto,#smart
 {
-	font-size:1.5em;
+	font-size:1.4em;
 	margin-left:20px;
-	margin-top:60px;
+	
+}
+
+#motto{
+margin-top:60px;
 }
 
 #smart
 {
 	font-weight:bold;
+	font-size:1.6em;
 	margin-left:30px;
 	position:	absolute;
+	margin-top: 58px;
 }
 
 #blinder
 {
-	background:	#F7F5F4;
-	font-size:1.5em;
-	position:	absolute;
-	margin-left:	100px;
-	margin-top:	60px;
-	text-align:	center;
-	width:	113px;
-	height:	29px;
+background:#F7F5F4 none repeat scroll 0 0;
+font-size:1.5em;
+height:29px;
+margin-left:106px;
+margin-top:60px;
+position:absolute;
+text-align:center;
+width:105px;
 	
 }
 /* spaces the blank */
