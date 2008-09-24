@@ -78,17 +78,26 @@ function MottoAnimation()
 {
 	var ml = Number($('#smart').css('marginLeft').replace(/p[xt]/,''));
 	ml = (ml == 30) ? 204 : 30;
+
 	setTimeout(function()
 	{
 		$('#smart').animate({
-			marginLeft:	ml
+			opacity: .5
 		},
 		{
 			complete: function()
 			{
-				if(ml == 30)
-					return;
-				setTimeout(MottoAnimation,200);
+				$('#smart').animate({
+					marginLeft:	ml
+				},
+				{
+					complete: function()
+					{
+						if(ml == 30)
+							return;
+						setTimeout(MottoAnimation,200);
+					}
+				});
 			}
 		});
 	},400);
