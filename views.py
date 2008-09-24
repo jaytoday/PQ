@@ -3,6 +3,7 @@ import random
 from utils import *
 from model import *
 from stubs import *
+from soup_kitchen import * 
 
 
 # Log a message each time this module get loaded.
@@ -132,12 +133,10 @@ class RPCMethods(webapp.RequestHandler):
         logging.debug('Moved A Score Item')
         
     
-  def RedirectHome(self, *args):
-  
-      pass#self.redirect("/")
-
     
-    
+  def SubmitQuizItem(self, *args):
+      return "item receieved"
+          
 
 class PQHome(webapp.RequestHandler):
   #Load Plopquiz Homepage 

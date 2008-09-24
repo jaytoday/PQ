@@ -56,6 +56,8 @@ def main():
                                          Set_Proficiencies),
                                         ('/set_difficulties/?',
                                          Set_Difficulties),
+                                        ('/soup/?',
+                                         Soup),
                                         ],
                                        debug=True)
   wsgiref.handlers.CGIHandler().run(application)
