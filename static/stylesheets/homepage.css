@@ -28,6 +28,7 @@ body, html {
 }
  
 /* Homepage */
+
  
 body {
   background: #6BBCF0 url(homepage/bg.png) bottom left repeat-x;
@@ -194,4 +195,21 @@ width:280px;
 
 img.pink_checkbox{
 margin-bottom: -6px; margin-right: 3px;
+}
+
+
+span.blank{
+background:#FFFFD1 none repeat scroll 0 0;
+border:1px solid #E2C922;
+font-weight:bold;
+margin:0 5px;
+padding:0px 3px;
+opacity:1;
+}
+
+
+div#motto{
+font-size:1.5em;
+margin-left:20px;
+margin-top:60px;
 }

@@ -57,10 +57,27 @@ $(document).ready(function() {
     $(this).removeClass('down');
   });
   
+  
+  MottoAnimation();
+  
 });
  
  
- 
+ function MottoAnimation(){
+     
+     		
+			$('div#motto').find('span#smart_1').animate(
+			{
+				opacity:	0.1
+				
+			},
+			{
+				duration:	1000,
+				easing:	'linear'
+			});
+			
+ }
+     
  
 /* ==================*/
 /* = Ajax Requests = */
