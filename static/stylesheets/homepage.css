@@ -27,6 +27,51 @@ body, html {
   height: 100%;
 }
  
+/* Liquid Sitelet Box */
+.clear { clear: both; }
+.sitelet .left { float: left; }
+.sitelet .right { float: right; }
+.sitelet .top, .sitelet .bottom { position: relative; }
+
+.sitelet .top .liquid { background:url(homepage/sitelet-top.png) repeat-x; }
+.sitelet .bottom .liquid { background:url(homepage/sitelet-bottom.png) repeat-x; }
+.sitelet .middle .wrap1 { background: url(homepage/sitelet-left.png) repeat-y top left; }
+.sitelet .middle .wrap2 { background: url(homepage/sitelet-right.png) repeat-y top right; }
+.sitelet .corner {
+	width: 11px;
+	height: 11px;
+	background: url(homepage/sitelet-corners.png) no-repeat;
+}
+.sitelet .top {	
+	height: 11px; 
+}
+.sitelet .bottom {
+	height: 35px;
+}
+.sitelet .top .liquid{
+	margin: 0px 11px;
+	height: 11px;
+}
+.sitelet .bottom .liquid {
+	margin: 0px 11px;
+	height: 35px;
+}
+.sitelet .top .left.corner {	background-position: 0px 0px; }
+.sitelet .top .right.corner { background-position: -11px 0px; }
+.sitelet .bottom .left.corner { 
+	background-position: 0px -11px; 
+	height: 35px;
+}
+.sitelet .bottom .right.corner { 
+	background-position: -11px -11px; 
+	height: 35px;
+}
+.sitelet .middle .content {
+	background: #F7F5F4;
+	margin: 0px 11px;
+	overflow: hidden;
+}
+
 /* Homepage */
 
  
@@ -82,31 +127,31 @@ body {
   left: 0%;
   z-index: 5;
 }
-#sitelet {
+#sitelet-home {
   position: absolute;
   z-index: 100;
-  width: 633px;
-  height: 250px;
-  background: url(homepage/sitelet.png) no-repeat;
+  width: 650px;
+  height: 296px;
   top: 50%;
   left: 50%;
-  margin-top: -125px;
-  margin-left: -316px;
+  /* Half width and height offset*/
+  margin-top: -148px;
+  margin-left: -325px;
   font-size: 14px;
   color: #434343;
 }
-#sitelet #logo {
+#sitelet-home #logo {
   width: 225px;
   height: 233px;
   float: left;
   padding: 17px 0px 0px 20px;
 }
-#sitelet #content {
+#sitelet-home #intro {
   float: left;
   width: 373px;
   height: 250px;
 }
-#sitelet h2 {
+#sitelet-home h2 {
   background: transparent url(homepage/pq_mantra.png) repeat scroll 0 0;
   font-family: Georgia;
   height: 43px;
@@ -114,10 +159,10 @@ body {
   text-indent: -9999px;
   width: 295px;
 }
-#sitelet form {
+#sitelet-home form {
   margin: 24px 0px 0px 18px;
 }
-#sitelet form input.text {
+#sitelet-home form input.text {
   background:url(homepage/input.gif) no-repeat;
   display: block;
   width: 329px;
@@ -127,7 +172,7 @@ body {
   padding: 7px 10px 0;
   font-size: 24px;
 }
-#sitelet form input.text.focus {
+#sitelet-home form input.text.focus {
   background-position: 0px -48px;
 }
 form input.button {
@@ -144,7 +189,7 @@ form input.button {
 -moz-border-radius-topright:12px;
 -webkit-border-radius: 12px;
 }
-#sitelet form input.down {
+#sitelet-home form input.down {
   background-color: #EEE;
   border-color:#999 #CCC #CCC #999;
   border-style: solid;
@@ -154,11 +199,11 @@ form input.button {
   margin: 9px 0 0;
   padding: 5px 8px;
 }
-#sitelet form input.button.disable {
+#sitelet-home form input.button.disable {
   border-color: #CCC;
   color: #AAA;
 }
-#sitelet #success {
+#sitelet-home #success {
   display: none;
   padding: 5px 8px;
   background-color: #F7F279;
@@ -206,8 +251,6 @@ margin:0 5px;
 padding:0px 3px;
 opacity:1;
 }
-
-
 div#motto{
 font-size:1.5em;
 margin-left:20px;
