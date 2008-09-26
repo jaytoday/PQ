@@ -15,8 +15,7 @@ logging.info('Loading %s', __name__)
 
 
 class RPCHandler(webapp.RequestHandler):
-  #Arg1 is language. Arg2 is correct_language
-  """ Allows the functions defined in the RPCMethods class to be RPCed."""
+  # AJAX Handler
   def __init__(self):
     webapp.RequestHandler.__init__(self)
     self.methods = RPCMethods()
@@ -51,7 +50,7 @@ class RPCHandler(webapp.RequestHandler):
 
 
 class RPCMethods(webapp.RequestHandler):
-  """ Defines the methods that can be RPCed.
+  """ Defines AJAX methods.
   NOTE: Do not allow remote callers access to private/protected "_*" methods.
   """
 
@@ -62,7 +61,8 @@ class RPCMethods(webapp.RequestHandler):
     score = TempItemScore()
     score.picked_answer = str(args[0])
     
-    item_slug = str(args[1])
+    item_slug = eval(args[1])
+    print item_slug[1]
     #Lookup quiz item with slug, clean it, and match it. 
     this_item = QuizItem.gql("WHERE slug = :slug",
                                   slug=item_slug)
@@ -70,7 +70,7 @@ class RPCMethods(webapp.RequestHandler):
    
     logging.debug(this_item)  
     score.correct_answer = this_item[0].index
-    score.quiz_item = str(args[1]) # slug
+    score.quiz_item = eval(args[1]) # slug
     
     picked_clean = score.picked_answer.strip()
     picked_clean = picked_clean.lower()
@@ -135,7 +135,17 @@ class RPCMethods(webapp.RequestHandler):
     
     
   def SubmitQuizItem(self, *args):
-      return "item receieved"
+
+      new_quiz_item = QuizItem()
+      new_quiz_item.slug = [str(args[0]), str(args[1])]
+      new_quiz_item.index = str(args[2])
+      new_quiz_item.answers = args[3]
+      new_quiz_item.category = str(args[4])
+      new_quiz_item.proficiency = str(args[5])
+      new_quiz_item.content = str(args[6])
+      new_quiz_item.difficulty = 0 # Default?
+      #new_quiz_item.put() 
+
           
 
 class PQHome(webapp.RequestHandler):
@@ -176,9 +186,12 @@ class QuizItemTemplate(webapp.RequestHandler):
   def get(self):
 
     template_values = {}
-    
-    quiz_template = self.request.get('quiz_item') + ".html"
-    path = item_path(quiz_template)
+    quiz_slug = [self.request.get('slug'), self.request.get('source')]
+    this_quiz_item = QuizItem.gql("WHERE slug = :slug",
+                                  slug=quiz_slug)
+                                  
+    template_values['quiz_item'] = this_quiz_item
+    path = tpl_path('quiz_item.html') # Pass Quiz Item to Template
     self.response.out.write(template.render(path, template_values))
 
 
@@ -226,6 +239,7 @@ class ViewQuiz(webapp.RequestHandler):
         
         
     for item in fetch_items:
+        random.shuffle(item.answers)
         item_dict = {"slug" : item.slug, "index" : item.index, "answer1" : item.answers[0], "answer2" : item.answers[1], "answer3": item.answers[2],
         "proficiency": item.proficiency}
         if item.proficiency in proficiencies:
@@ -356,8 +370,10 @@ def destroy_data(data_type, *verbose):
     models = {"quiz_items" : "QuizItem", "proficiencies" : "Proficiency"}
     item_names= {"quiz_items" : "slug", "proficiencies" : "proficiency"}
     query_string = "SELECT * FROM " + models[data_type]
+    
     query = db.GqlQuery(query_string) # Query all quiz items
     data_type = query.fetch(1000)
+    print data_type
     for item in data_type:
         if verbose:
             print ""   
@@ -378,6 +394,8 @@ def refresh_data(*verbose):
 
         quiz_item = QuizItem()
         quiz_item.slug = item['slug']
+        quiz_item.category = item['content'][0] 
+        quiz_item.content = item['content'][1]
         quiz_item.proficiency = item['proficiency']
         #Add List of Answers
         quiz_item.answers = item['answers']

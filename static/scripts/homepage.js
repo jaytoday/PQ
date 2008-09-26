@@ -80,7 +80,7 @@ $(document).ready(function()
 function MottoAnimation()
 {
 	var ml = Number($('#smart').css('marginLeft').replace(/p[xt]/,''));
-	ml = (ml == 30) ? 204 : 30;
+	ml = (ml == 30) ? 222 : 30;
 
 	setTimeout(function()
 	{
@@ -105,7 +105,7 @@ function MottoAnimation()
 				});
 			}
 		});
-	},2400);
+	},1400);
 }
 
      

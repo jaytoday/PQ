@@ -93,6 +93,10 @@ div#quiz_title {
 	color: #DDDDDD;
 }
 
+.not_answer div:hover {
+	color: #DDDDDD;
+}
+
 .answer:focus{outline:0;} 
 
 div#quiz_title table {
@@ -365,7 +369,18 @@ float:left;
 margin-right:20px; 
 min-width:113px; */
 font-variant:normal;
+}
 
+.notanswer{
+
+color:#FFFFFF;
+cursor:pointer;
+float:left;
+/* margin-left:10px;
+margin-right:20px; 
+min-width:113px; */
+font-variant:normal;
+letter-spacing: .12em;
 }
 
 #skip{

@@ -9,7 +9,7 @@ from BeautifulSoup import BeautifulSoup, BeautifulStoneSoup, SoupStrainer  # HTM
 
 # class for semantic analysis - semanticproxy, class for parsing. 
 
-semanticproxy_url = "http://service.semanticproxy.com/processurl/aq9r8pmcbztd4s7s427uw7zg/microformat/"
+semanticproxy_url = "http://service.semanticproxy.com/processurl/aq9r8pmcbztd4s7s427uw7zg/microformat/" # USE RDF ENDPOINT
 tilde_base_url = "http://tilde.jamslevy.user.dev.freebaseapps.com/"
 
 class Soup(webapp.RequestHandler):

@@ -188,6 +188,7 @@
 		/* preview answer in iframe */
 
 		var blankspan = $('.blank', window.frames[0].document);
+		blankspan.html("&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;");
 		$('.answer').hover(function()
 		/* if id is skip, don't do this */
 		{
@@ -228,15 +229,15 @@
 			 {
 				 'left': 143,
 				 'top': 0,
-				 'width': 425,
-				 'height': 415
+				 'width': 381,
+				 'height': 365
 			 },
 			 "intro": 
 			 {
 				 'left': 143,
 				 'top': 0,
 				 'width': 392,
-				 'height': 390
+				 'height': 410
 			 },
 			 "instructions": 
 			 {
@@ -376,23 +377,23 @@
 					width: 0
 				},
 				{
-					duration: 16000,
+					duration: 160000,
 					easing: 'linear',
 					complete: (function()
 					{					
 						if(!cb)
-							return function()
-							{
-								$('#skip').click();  //not the same as skip - TODO format ajax call for timeout /
-								$('.timer_bar').css('width', '100%');
-								$.fn.quizbox._t = false;
-							};
-
-						return cb;
-						})();
-				});
-				}, 1000);
-			};
+						return function()
+						{
+							$('#skip').click();  //not the same as skip - TODO format ajax call for timeout /
+							$('.timer_bar').css('width', '100%');
+							$.fn.quizbox._t = false;
+						};
+					
+					return cb;
+				})()
+			});
+		 },1000);
+	};
 
 
 
@@ -534,7 +535,7 @@
 
 		if (opts.itemArray[opts.itemNum].o.hideOnContentClick)
 		{
-			$("#quiz_content").click($.fn.quizbox.close);
+			//$("#quiz_content").click($.fn.quizbox.close);
 		}
 		else
 		{
@@ -546,7 +547,7 @@
 		{
 			if (event.keyCode == 27)
 			{
-				$.fn.quizbox.close();
+				//$.fn.quizbox.close();
 			}
 			else if(event.keyCode == 37 && opts.itemNum != 0)
 			{
@@ -626,7 +627,7 @@
 		var pos = $.fn.quizbox.getViewport();
 
 		$("#quiz_loading").css({'left': ((pos[0] - 40) / 2 + pos[2]), 'top': ((pos[1] - 40) / 2 + pos[3])}).show();
-		$("#quiz_loading").bind('click', $.fn.quizbox.close);
+		
 
 		loadingTimer = setInterval($.fn.quizbox.animateLoading, 66);
 	};
@@ -665,7 +666,6 @@
 			// This is all really terrible. This should be done in HTML loaded from the server, the use jQuery to replace things like buttons and text
 			// There is WAAY to much overhead here.
 
-			// This will be in the HTML very, very soon - James
 
 			$('<div id="quiz_intro"  class="buttons"></div>').appendTo('#quiz_title');
 			$('<a id="take_quiz" onmouseover="" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_purple_left"></td><td id="quiz_purple_main"><div class="answertext" id="take_quiz" style="width: 170px; font-size: 1.5em;">T<span style="font-size:.7em;"/>ake</span> T<span style="font-size:.7em;"/>his</span> Q<span style="font-size:.7em;"/>uiz</span></div></div></td><td id="quiz_purple_right"></td></tr></table></a>').appendTo('#quiz_intro');
@@ -678,13 +678,13 @@
 
 			$('<div id="quiz_instructions2" class="buttons" style="margin-top:7px;margin-left:26px;"></div>').appendTo('#quiz_title');
 			//Arg, this has been getting animated while not visible, one ID per page!
-			$('<div class="timer_wrapper" id="quiz_timer_instruction"><div class="timer_bar timer_inner"></div></div>').appendTo('#quiz_instructions2');
-			$('<a id="answer1" onmouseover="" class="answer"  href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_blue_left"></td><td id="quiz_blue_main" style="min-width:60px;"><div class="answertext"  id="answer1"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
+			$('<div class="timer_wrapper"  id="quiz_timer_instruction"><div class="timer_bar timer_inner" style="width:345px;"></div></div>').appendTo('#quiz_instructions2');
+			$('<a id="answer1" onmouseover="" class="answer"  href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_blue_left"></td><td id="quiz_blue_main" style="min-width:60px;"><div class="answertext"  style="margin-left:-6px" id="answer1"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
 			$('<a id="answer2" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_blue_left"></td><td id="quiz_blue_main" style="min-width:60px;"><div class="answertext" style="margin-left:-12px;" id="answer2"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
 			$('<a id="skip" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main"><div class="arrow"><img src="/static/stylesheets/img/arrow.png" /></div><div class="skipitem" id="skiptext">Skip</div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
 
 			$('<div id="quiz_begin_quiz" class="buttons" style=" margin-top:7px"></div>').appendTo('#quiz_title');
-			$('<a id="startquiz" class="answer" href="#" style="margin-top:7px; margin-left: 90px"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_purple_left"></td><td id="quiz_purple_main"><div class="skipitem" id="startquiz">S<span style="font-size:.7em;"/>tart</span> Q<span style="font-size:.7em;"/>uiz</span>!</div></td><td id="quiz_purple_right"></td></tr></table></a>').appendTo('#quiz_begin_quiz');
+			$('<a id="startquiz" class="notanswer" href="#" style=" margin-top:7px; margin-left: 100px"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_purple_left"></td><td id="quiz_purple_main" style="padding:0;"><div class="skipitem" id="startquiz">S<span style="font-size:.7em;"/>tart</span> Q<span style="font-size:.7em;"/>uiz</span>!</div></td><td id="quiz_purple_right"></td></tr></table></a>').appendTo('#quiz_begin_quiz');
 
 			/* append quiz buttons to iframe */
 			$('<div id="quiz_answers" class="buttons"></div>').appendTo('#quiz_title');
@@ -712,6 +712,21 @@
 				{
 					$(this).css({ 'font-variant': 'normal','letter-spacing': '.02em' });
 				});
+				
+						$(".notanswer").hover(function()
+			{
+				$(this).css({
+					'font-variant': 'small-caps',
+					'letter-spacing': '.01em'
+				});
+
+
+				}, function()
+				{
+					$(this).css({ 'font-variant': 'normal','letter-spacing': '.12em' });
+				});
+				
+				
 
 
 			function timeleft(timetype)

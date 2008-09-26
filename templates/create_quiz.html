@@ -1,37 +1,49 @@
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!--<link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/quizframe.css"/>-->
+<link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/createquiz.css"/>
 <script type="text/javascript" src="/static/scripts/jquery-1.2.6.min.js"></script>
 <script type="text/javascript" src="/static/scripts/json2min.js"></script>
 
 
 <script type="text/javascript">
 
+function checkBoxValidate(cb) {
+for (j = 0; j < 4; j++) {
+if (eval("document.quiz_data.proficiency[" + j + "].checked") == true) {
+document.quiz_data.proficiency[j].checked = false;
+if (j == cb) {
+document.quiz_data.proficiency[j].checked = true;
+         }
+      }
+   }
+}
+
 
 $(document).ready(function() {
     
-    wrong_answers = []
-		$find('div.answer_candidate').click(function()
-			{
-			    
-		
-			    /*
-			     console.log(this.text());
-			    if (this.text() in wrong_answers){
-			        delete from wrong answers
-			        this.css("color","blue"); 
-			        }else{
-			            add to wrong answers
-			             this.css("color","pink"); 
-			         
-			    
-			 
-			    */
-			   
-			    
-			    
+   jQuery.fn.extend({
+	preserveDefaultText: function(defaultValue, replaceValue)
+	{
+		$(this).focus(function()
+		{
+			if(typeof(replaceValue) == 'undefined')
+				replaceValue = '';  
+			if($(this).val() == defaultValue)
+				$(this).val(replaceValue);
+		});
 
-			});
+		$(this).blur(function(){  
+			if(typeof(replaceValue) == 'undefined')
+				replaceValue = '';  
+			if($(this).val() == replaceValue)
+				$(this).val(defaultValue);
+		});
+		return this;
+	}
+});
 
+$('#slug').preserveDefaultText('slug_name');
+$('#source').preserveDefaultText('source');
+$('#category').preserveDefaultText('category');
 
 });
 
@@ -47,25 +59,41 @@ $(document).ready(function() {
 <div>
 {% for quiz_item in raw_quiz_items %}
 
-Quiz Item Text <br/>
-
+<i>Quiz Item Text</i> <br/>
+<div class="quiz_item_content">
 <i>{{ quiz_item.paragraphs_containing_tag.0 }}</i>
 {{ quiz_item.paragraphs_containing_tag.1 }}  <i>{{ quiz_item.paragraphs_containing_tag.2 }}</i>
+</div>
 <br/>
 
-Answer Candidates: 
-<br/>
+<div class="answers">
+<i>Answer Candidates</i> 
+<br/><br/>
+
+
 {% for topic in quiz_item.similar_topics %}
-<br/>
-<div class="answer_candidate"><b>{{ topic }}</b></div>
+<span class="answer_candidate"><b>{{ topic }}</b></span>
 {% endfor %}
 
+</div>
+
+<form id="quiz_data" name="quiz_data" >
+<br/>
+<input type="checkbox" onClick="javascript:checkBoxValidate(0)" name="proficiency" value="building_webapps" ><span>Building Web Apps</span><br/>
+<input type="checkbox" onClick="javascript:checkBoxValidate(1)" name="proficiency" value="clean_energy" ><span>Clean Energy</span><br/>
+<input type="checkbox" onClick="javascript:checkBoxValidate(2)" name="proficiency" value="collective_intelligence" ><span>Collective Intelligence</span><br/>
+<input type="checkbox" onClick="javascript:checkBoxValidate(3)" name="proficiency" value="startup_financing" ><span>Startup Financing</span><br/>
+<br/>
+<input type="text" name="source" id="source" value="source" />
+<br/>
+<input type="text" name="slug" id="slug" value="slug_name" />
+<br/>
+<input type="text" name="category" id="category" value="category" />
+<br/>
+<input type="submit" onClick="return false;this.disabled = true;" id="submit_item" value="Submit Quiz Item" />
 
 
-<a id="submit_item" >Submit Quiz Item</a>
-
-
-
+</form>
 
 
 <script type="text/javascript">
@@ -73,6 +101,58 @@ Answer Candidates:
 
 $(document).ready(function() {
     
+ 
+ 
+ 
+    wrong_answers = ["{{ quiz_item.correct_answer }}"]
+    
+		$('div.answers').find('.answer_candidate').click(function()
+			{
+
+
+answer_text = $(this).text();
+
+console.log($(this).text());
+
+
+// TODO: ranking - splice() method can order answers 
+answer_in_array = 0;
+
+for (var i = -1, loopCnt = wrong_answers.length; i < loopCnt; i++) {
+
+console.log('checking for item');
+console.log(wrong_answers.length);
+
+if (answer_text == wrong_answers[i]){
+
+answer_in_array += 1;
+
+console.log('removing text');
+wrong_answers.splice(wrong_answers.indexOf(answer_text), 1);
+
+$(this).css("color","blue"); 
+}
+
+}
+
+if (answer_in_array == 0) {
+
+if (wrong_answers.length > 1) { console.log("Only 2 Wrong Answers, Please!"); return false; }
+
+console.log('adding item');
+//wrong_answers.splice(wrong_answers.length, 0, answer_text);
+
+ $(this).css("color","pink"); 
+}
+
+
+
+			    
+
+			});
+
+ 
+ 
     
 function Request(function_name, opt_argv) {
 
@@ -137,10 +217,6 @@ var item_count = 0;
 InstallFunction(server, 'SubmitQuizItem');
 
 
-function SubmitQuizItem(right_answer, wrong_answers, quiz_item_content) {
-	server.SubmitQuizItem(right_answer, wrong_answers, quiz_item_content, onAddSuccess);
-}
-
 
 function onAddSuccess(response)
 {
@@ -179,8 +255,17 @@ function PreviewAnswer(answer) {
 PreviewAnswer("{{quiz_item.correct_answer}}");
 
 
-$('a#submit_item').click(function() {
-    SubmitQuizItem("{{quiz_item.correct_answer}}", "wrong answers", "edited quiz item content");
+$('#submit_item').click(function() {
+    
+    for (j = 0; j < 4; j++) {
+if (eval("document.quiz_data.proficiency[" + j + "].checked") == true) {
+    var proficiency = document.quiz_data.proficiency[j].value; }}
+    
+    all_answers = wrong_answers;
+    all_answers.push(answer_text);
+    
+
+    server.SubmitQuizItem(document.quiz_data.source.value, document.quiz_data.slug.value, "{{quiz_item.correct_answer}}", all_answers, document.quiz_data.category.value, proficiency, $('div.quiz_item_content').text(),  onAddSuccess);
 });
     
     

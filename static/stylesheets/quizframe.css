@@ -26,6 +26,7 @@ background-color:#CDCDCD;
 border-right:1px solid #CDCDCD;
 bottom:0;
 font-variant:small-caps;
+font-weight:bold;
 height:40px;
 line-height:2.2em;
 padding-right:23px;
@@ -60,6 +61,9 @@ position:absolute;
 
 div#ocw{
 margin:8px 0 0 5px;
+}
+div#wiki{
+margin:2px 0 0 5px;
 }
 
 div#knol{
@@ -154,6 +158,11 @@ text-align:center;
 
 top:110px;
 width:305px;
+}
+
+span#quiz_category{
+color: black;
+font-weight: bold;
 }
 
 

@@ -16,7 +16,7 @@
 <script type="text/javascript">
 
 $(document).ready(function() {
-	/* start_countdown_minute(); - Countdown TODO */
+	
 	/*  Load quiz item iframes - static/scripts/quizbox.js redundant  */
 	$("p#apply a").quizbox({
 		'zoomSpeedIn': 400,
@@ -62,7 +62,9 @@ var quizitemList = [
 
 {% for item in quiz_items %}
 
-{slug: "{{ item.slug }}", url: "/quiz/?quiz_item={{ item.slug }}", answer1: "{{ item.answer1 }}", answer2: "{{ item.answer2 }}", answer3: "{{ item.answer3 }}", proficiency: "{{ item.proficiency }}", item_type:"quiz_item" },
+
+{slug: "{{ item.slug }}", url: "/quiz/?source={{ item.slug.0 }}&slug={{ item.slug.1 }}", answer1: "{{ item.answer1 }}", answer2: "{{ item.answer2 }}", answer3: "{{ item.answer3 }}", proficiency: "{{ item.proficiency }}", item_type:"quiz_item" },
+
 
 {% endfor %} 
 

@@ -5,47 +5,86 @@
 [
     
     {
-        "slug": "knol_python",
+        "slug": ["knol", "constructors"],
         "proficiency": "building_webapps", 
         "index": "class",
-        "answers": ["attribute", "class", "method"]
+        "answers": ["attribute", "class", "method"],
+        "content": ["Constructors", "Classes begin with one or more constructors.    In Python these must be declared with the name __init(self)__  they may also take parameters. <div class='focus'>  These are the functions that build new objects of a<br/><span class='blank'></span>type.</div>"]
+
   
     },
    
+   
+       {
+        "slug": ["wiki", "runtime_execution"],
+        "proficiency": "building_webapps", 
+        "index": "eval()",
+        "answers": ["eval()", "slice()", "return()"],
+        "content": ["Javascript", "<div class='focus'>JavaScript includes a <span class='blank'></span> function</div> that can execute statements provided as strings at run-time."]
+
+  
+    },
+   
+        {
+        "slug": ["knol", "webpage_modification"],
+        "proficiency": "building_webapps", 
+        "index": "DOM",
+        "answers": ["server", "browser", "DOM"],
+        "content": ["Javascript", "You may use JavaScript to modify the <div class='focus'><span class='blank'></span> and alter the page</div> you're viewing to suit your preferences. "]
+
+  
+    },
+    
+        {
+        "slug": ["knol", "python3k"],
+        "proficiency": "building_webapps", 
+        "index": "iterator",
+        "answers": ["string", "iterator", "tuple"],
+        "content": ["Python 3.0", "In Python 3000, xrange() is replaced with a new range() function. The new range() <div class='focus'>will return a <span class='blank'></span> instead of a list.</div> "]
+
+  
+    },
+   
+   
+ 
 
       {
-        "slug": "django_queryset", 
+        "slug": ["django", "queryset"], 
         "index": "array-slicing",
         "proficiency": "building_webapps", 
-        "answers": ["array-slicing", "regular expression", "data type"]
-  
+        "answers": ["array-slicing", "regular expression", "data type"],
+        "content": ["Models", "<div class='focus'>  Use Python's <span class='blank'></span>syntax to limit your QuerySet</div>to a certain number of results. This is the equivalent of SQL's LIMIT and OFFSET clauses. "]  
     },  
 
     {
-        "slug": "django_auth", 
+        "slug": ["django", "auth"], 
         "index": "is_authenticated()",
         "proficiency": "building_webapps", 
-        "answers": ["is_authenticated()", "login()", "authenticate()"]
+        "answers": ["is_authenticated()", "login()", "authenticate()"],
+         "content": ["django.contrib", " If a user isn't currently logged in, request.user will be set to an instance of AnonymousUser.<div class='focus'>   You can tell them apart with <span class='blank'> </span></div> "]         
   
     },  
 
     {
-        "slug": "collective_parse", 
+        "slug": ["oreilly", "parse"],
         "index": "beautiful soup",
         "proficiency": "building_webapps", 
-        "answers": ["simpleJSON", "memcached", "beautiful soup"]
-  
+        "answers": ["simpleJSON", "memcached", "beautiful soup"],
+        "content": ["Scraping", " <div class='focus'>  <span class='blank'> </span>is a library for parsing a web page and building a structured representation.</div> It allows you to access any element of the page by type, ID, or any of its properties, and get a string representation of its contents. "]  
     },  
 
 
     
     {
-        "slug": "knol_callbacks", 
+        "slug": ["knol", "callbacks"], 
         "index": "transport",
         "proficiency": "building_webapps",
-        "answers": ["transport", "request", "response"]
+        "answers": ["transport", "request", "response"],
+         "content": ["Closures", "<div class='focus'>  The request is made through a hidden IFRAME or XHR object, called the<br/> <span class='blank'></span>. </div>Since it's asynchronous, you don't know when the request is going to complete, so you create a callback..."]   
   
     },
+
+
 
 
 
@@ -56,34 +95,81 @@
 
     
     {
-        "slug": "wiki_bayesian",
+        "slug": ["wiki", "bayesian"],
         "proficiency": "collective_intelligence",  
         "index": "clique tree",
-        "answers": ["clique tree", "variational method", "gaussian distribution"]
-  
+        "answers": ["clique tree", "variational method", "gaussian distribution"],
+        "content": ["Inference", "Classes begin with one or more constructors.    In Python these must be declared with the name __init(self)__  they may also take parameters. <div class='focus'>  These are the functions that build new objects of a<br/><span class='blank'></span>"] 
+
     },
 
     {
-        "slug": "wiki_rec", 
+        "slug": ["wiki", "algorithms"], 
         "index": "pearson correlation",
         "proficiency": "collective_intelligence", 
-        "answers": ["variance", "maximum likelihood", "pearson correlation"]
+        "answers": ["variance", "maximum likelihood", "pearson correlation"],
+        "content": ["Algorithms", "In a social network, a particular user's neighborhood with similar taste or interest <div class='focus'>  can be found by calculating <span class='blank'> </span></div>by collecting the preference data of top-N nearest neighbors of the particular user"] 
   
     },  
 
     {
-        "slug": "ocw_stat", 
+        "slug": ["ocw", "statistical_theory"], 
         "index": "correlation",
         "proficiency": "collective_intelligence", 
-        "answers": ["range", "correlation", "average"]
+        "answers": ["range", "correlation", "average"],
+        "content": ["Statistics", "Cronbach's alpha will generally increase<div class='focus'>  when the <span class='blank'>  </span> between </div>the items increase."] 
+  
+        
   
     },  
 
     {
-        "slug": "collective_clustering", 
+        "slug": ["oreilly", "clustering"], 
         "index": "K-means",
         "proficiency": "collective_intelligence", 
-        "answers": ["K-means", "bayesian", "feedback"]
+        "answers": ["K-means", "bayesian", "feedback"],
+        "content": ["Clustering", "<div class='focus'>  <span class='blank'> </span>clustering begins with k randomly placed centroids </div> and assigns every item to the nearest one."] 
+  
+    },  
+
+
+   {
+        "slug": ["stanford", "supervised"], 
+        "index": "regression",
+        "proficiency": "collective_intelligence", 
+        "answers": ["progression", "regression", "loop"],
+        "content": ["Prediction", "<div class='focus'> because locally weighted  <span class='blank'> </span></div>is a non-parametric algorithm every time you make a prediction you need to fit theta to your entire training set again."] 
+  
+    },  
+
+
+
+  {
+        "slug": ["stanford", "nlp"], 
+        "index": "good-turing",
+        "proficiency": "collective_intelligence", 
+        "answers": ["good-turing", "katz", "bayes"],
+        "content": ["NLP", "<div class='focus'> The <span class='blank'> </span> discounted count of the bigram</div>combined with an estimate from a unigram count, are re-normalized to get a probability distribution. "] 
+  
+    },  
+
+
+  {
+        "slug": ["stanford", "online_learning"], 
+        "index": "gradient",
+        "proficiency": "collective_intelligence", 
+        "answers": ["static", "linear", "gradient"],
+        "content": ["Machine Learning", "If you implement Bayesian logistic regression .<div class='focus'> and implement <span class='blank'> </span> descent,</div> 20 percent test error is unacceptably high."] 
+  
+    },  
+
+
+  {
+        "slug": ["stanford", "gaussian"], 
+        "index": "analysis",
+        "proficiency": "collective_intelligence", 
+        "answers": ["function", "analysis", "theory"],
+        "content": ["Gaussians", "<div class='focus'>In Gaussian’s Discriminant  <span class='blank'> </span>,</div> you usually model all of the crosses to the same covariant matrix sigma."] 
   
     },  
 
@@ -92,142 +178,154 @@
 
 
 
+
+
     {
-        "slug": "wiki_renewable_energy", 
+        "slug": ["wiki", "renewable_energy"], 
         "index": "ethanol fuel",
         "proficiency": "clean_energy",
-        "answers": ["biomass", "ethanol fuel", "petroleum"]
+        "answers": ["biomass", "ethanol fuel", "petroleum"],
+        "content": ["Energy", "Brazil has one of the largest renewable energy programs in the world,<div class='focus'> involving production of <br/> <span class='blank'></span> from sugar cane. </div>"]
   
     },
 
 
 
    {
-        "slug": "wikia_ewaste", 
+        "slug": ["wikia", "ewaste"], 
         "index": "EPEAT",
         "proficiency": "clean_energy", 
-        "answers": ["IEEE", "EPEAT", "EPA"]
-  
+        "answers": ["IEEE", "EPEAT", "EPA"],
+        "content": ["E-Waste", "<div class='focus'>  <span class='blank'> </span> helps public and private sector purchasers </div> evaluate, compare, and choose computers, notebooks, and monitors based on environmental attributes."]
     },  
 
     {
-        "slug": "wikia_solarelectric", 
+        "slug": ["wikia", "solarelectric"], 
         "index": "photovoltaic",
         "proficiency": "clean_energy", 
-        "answers": ["photovoltaic", "thermal electric", "hydroelectric"]
-  
+        "answers": ["photovoltaic", "thermal electric", "hydroelectric"],
+         "content": ["Solar Energy", "<div class='focus'>  <span class='blank'> </span></div> systems are based on solar electric cells, which convert solar radiation directly into electricity."]
     }, 
 
 
     {
-        "slug": "ocw_biochem", 
+        "slug": ["ocw", "biochem"], 
         "proficiency": "clean_energy", 
         "index": "heterotrophs",
-        "answers": ["organotrophs", "autotrophs", "heterotrophs"]
-  
+        "answers": ["organotrophs", "autotrophs", "heterotrophs"],
+        "content": ["Carbon Fuel", "<i> What two things are required by every organism for growth? </i>A source of organic carbon and a source of electrons. Energy is also required. Synthesizers get their energy input from the sun or thermal energy.<br/><div class='focus'> <span class='blank'></span> get energy from organic carbon.</div>"]
     },
    
     {
-        "slug": "hfc_treaties", 
+        "slug": ["hfc", "treaties"], 
         "proficiency": "clean_energy", 
         "index": "kyoto protocol",
-        "answers": ["kyoto protocol", "eu ets", "g8"]
+        "answers": ["kyoto protocol", "eu ets", "g8"],
+        "content": ["Treaties", "<div class='focus'>  <span class='blank'> </span></div> systems are based on solar electric cells, which convert solar radiation directly into electricity."]
   
     },
 
     {
-        "slug": "hfc_theory", 
+        "slug": ["hfc", "theory"], 
         "proficiency": "clean_energy", 
         "index": "porter",
-        "answers": ["toxic tort", "first mover", "porter"]
+        "answers": ["toxic tort", "first mover", "porter"],
+        "content": ["Regulation", "Probably the most oft-cited theory about the relationship between enviromental regulation and innovation <div class='focus'>  is the '<span class='blank'> </span> hypothesis', first expounded </div> by the Harvard Business School professor Michael Porter in 1991. "]
   
     },
 
     {
-        "slug": "hfc_seer", 
+        "slug": ["hfc", "seer"], 
         "proficiency": "clean_energy", 
         "index": "seer 13",
-        "answers": ["seer 10", "seer 12", "seer 13"]
-  
+        "answers": ["seer 10", "seer 12", "seer 13"],
+        "content": ["Standards", "In 2004, the U.S. Court of Appeals for the Second Circuit directed the U.S. Department of Energy<div class='focus'> to reinstate the<span class='blank'> </span> standard</div> for central air conditioners."]
     },
+
+
+
+
+
+
+
 
 
 
     
     {
-        "slug": "wiki_performance_ads",
+        "slug": ["wiki", "performance_ads"],
         "proficiency": "startup_financing", 
         "index": "VoIP",
-        "answers": ["GPS", "IP", "VoIP"]
-  
+        "answers": ["GPS", "IP", "VoIP"],
+        "content": ["Advertising", "A small but growing number of sites are starting to offer plans on a 'Pay per call' basis. <div class='focus'>  The user can click a button to place a <br/><span class='blank'></span></div>call, or to request a call from the advertiser. "]
     },
    
 
 
     {
-        "slug": "pg_fundraising", 
+        "slug": ["pg", "fundraising"], 
         "index": "consulting",
         "proficiency": "startup_financing", 
-        "answers": ["marketing", "consulting", "programming"]
-  
+        "answers": ["marketing", "consulting", "programming"],
+        "content": ["Fundraising", "The upshot is, you can choose your pain: either the short, sharp pain of raising money, <br/><div class='focus'> or the chronic ache of <span class='blank'></span>.</div>"]
     },        
 
     {
-        "slug": "pg_patents", 
+        "slug": ["pg", "patents"], 
         "index": "one-click",
         "proficiency": "startup_financing", 
-        "answers": ["collective feedback", "database", "one-click"]
-  
+        "answers": ["collective feedback", "database", "one-click"],
+        "content": ["Patent Law", "<div class='focus'> The problem with Amazon's notorious<span class='blank'></span> patent</div>for example, is not that it's a software patent, but that it's obvious."]
     },        
     
     {
-        "slug": "pg_vcs", 
+        "slug": ["pg", "vcs"], 
         "index": "valuations",
         "proficiency": "startup_financing", 
-        "answers": ["valuations", "investments", "shares"]
-  
+        "answers": ["valuations", "investments", "shares"],
+        "content": ["Investment", "<div class='focus'> Since <span class='blank'></span> are made up</div>founders shouldn't care too much about them. That's not the part to focus on."]
     },  
 
     {
-        "slug": "pg_investment", 
+        "slug": ["pg", "investment"], 
         "index": "antitrust",
         "proficiency": "startup_financing", 
-        "answers": ["tax", "copyright", "antitrust"]
-  
+        "answers": ["tax", "copyright", "antitrust"],
+        "content": ["Law", "<div class='focus'> Investing is not covered by <span class='blank'></span> law.</div>At least, it better not be, because investors regularly do things that would be illegal otherwise."]
     },  
 
     {
-        "slug": "su_corporation", 
+        "slug": ["su", "corporation"], 
         "index": "Sub-S",
         "proficiency": "startup_financing", 
-        "answers": ["LLC", "Sub-S", "General"]
-  
+        "answers": ["LLC", "Sub-S", "General"],
+        "content": ["Incorporating", "<div class='focus'>A <span class='blank'></span> is typically substantially more favorable on an after tax basis</div>(including use of dividends to offset wage income to shareholders) and operates with much more settled law."]
     },  
 
     {
-        "slug": "wiki_stock", 
+        "slug": ["wiki", "stock"], 
         "index": "preferred",
         "proficiency": "startup_financing", 
-        "answers": ["preferred", "common", "registered"]
-  
+        "answers": ["preferred", "common", "registered"],
+        "content": ["Options", "<div class='focus'> <span class='blank'> </span>shares in the U.S. normally carry a call provision, </div>enabling the issuing corporation to repurchase the share at its (usually limited) discretion."]
     },  
 
     {
-        "slug": "wiki_pill", 
+        "slug": ["wiki", "pill"], 
         "index": "takeover",
         "proficiency": "startup_financing", 
-        "answers": ["merger", "takeover", "regulation"]
-  
+        "answers": ["merger", "takeover", "regulation"],
+        "content": ["Investment", "'Poison pill' is sometimes used more broadly<div class='focus'>  to describe other types of<span class='blank'> </span> defenses that involve </div>the target taking some action that harms both target and bidder."]
     },  
 
 
 
     {
-        "slug": "wiki_income", 
+        "slug": ["wiki", "income"], 
         "index": "capital gain",
         "proficiency": "startup_financing", 
-        "answers": ["capital gain", "dividends", "salary"]
-  
+        "answers": ["capital gain", "dividends", "salary"],
+        "content": ["Taxation", "Ordinary income is usually characterized <div class='focus'> as income other than<span class='blank'> </span> </div>"]
     }   
 
          

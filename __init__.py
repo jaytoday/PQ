@@ -30,7 +30,7 @@ def main():
                                        [
                                         ('/demo/?',
                                          PQDemo),
-                                        ('/prescience/?',
+                                        ('/preview/ad?',
                                          PQDemo),                                         
                                          ('/intro/?',
                                          PQIntro),

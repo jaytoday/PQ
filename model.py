@@ -14,7 +14,7 @@ class TempItemScore(db.Model):
   date = db.DateTimeProperty(auto_now_add=True)
   picked_answer = db.StringProperty()
   correct_answer = db.StringProperty()
-  quiz_item = db.StringProperty() # item slug - "wiki_bayesian"
+  quiz_item = db.StringListProperty() # item slug - ["wiki", "bayesian"]
 
 
 class ItemScore(db.Model):
@@ -24,7 +24,7 @@ class ItemScore(db.Model):
   date = db.DateTimeProperty(auto_now_add=True)
   picked_answer = db.StringProperty()
   correct_answer = db.StringProperty()
-  quiz_item = db.StringProperty()
+  quiz_item = db.StringListProperty() # item slug - ["wiki", "bayesian"]
   
 
 class StubItemScore(db.Model):
@@ -34,7 +34,7 @@ class StubItemScore(db.Model):
   date = db.DateTimeProperty(auto_now_add=True)
   picked_answer = db.StringProperty()
   correct_answer = db.StringProperty()
-  quiz_item = db.StringProperty()
+  quiz_item = db.StringListProperty() # item slug - ["wiki", "bayesian"]
   
   
     
@@ -43,8 +43,10 @@ class StubItemScore(db.Model):
 
 
 class QuizItem(db.Model):
-  # 
-  slug = db.StringProperty()  #Unique name (wiki_bayesian)
+  
+  slug = db.StringListProperty()  #Unique name ["wiki", "bayesian"] - [0] is source and [1] item is url path, like /science/cs/algorithm 
+  category = db.StringProperty()
+  content = db.TextProperty()  # Content of Quiz Item
   index = db.StringProperty() # Correct Answer 
   answers = db.StringListProperty() # List of Answers
   proficiency = db.StringProperty() # Proficiency Tag (startup_financing)

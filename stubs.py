@@ -56,6 +56,40 @@ class ViewScoreStubs(webapp.RequestHandler):
                         
 
 
+
+class GetProficiencyLevelForItemScore(webapp.RequestHandler):             # localhost:8080/set_difficulties/   
+
+    def get(self):
+        
+        query = db.GqlQuery("SELECT * FROM ItemScore") # Add conditions to only get certain types of scores.
+        itemscores = query.fetch(1000)
+        for item_score in itemscores:
+            this_quiz_taker = item_score.quiz_taker
+            """
+             We don't know the proficiency from the score, so
+             we need to look up the QuizItem entry for this quiz item
+            """
+            get_quiz_item  = db.GqlQuery("SELECT * FROM QuizItem WHERE slug = :slug",
+                                          slug=item_score.quiz_item)
+            this_quiz_item = get_quiz_item.fetch(1)
+            this_proficiency = this_quiz_item.proficiency
+            """
+            We have a proficiency -- this_proficiency
+            and we have the quiz taker -- this_quiz_taker
+            
+            Now we need the ProficiencyLevel for this quiz taker, and
+            this proficiency
+
+            """            
+            get_proficiency_level = db.GqlQuery("SELECT * FROM ProficiencyLevel WHERE proficiency = :proficiency AND quiz_taker = :quiz_taker",
+                                        proficiency=this_proficiency, quiz_taker = this_quiz_taker)
+            this_proficiency_level = get_proficiency_level.fetch(1)
+            
+            proficiency_value = this_proficiency_level.proficiency_level
+                                                            
+
+                
+                
 class Set_Difficulties(webapp.RequestHandler):             # localhost:8080/set_difficulties/   
 
     def get(self):
