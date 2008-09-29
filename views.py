@@ -144,7 +144,7 @@ class RPCMethods(webapp.RequestHandler):
       new_quiz_item.proficiency = str(args[5])
       new_quiz_item.content = str(args[6])
       new_quiz_item.difficulty = 0 # Default?
-      #new_quiz_item.put() 
+      new_quiz_item.put() 
 
           
 
@@ -203,14 +203,8 @@ class PQDemo(webapp.RequestHandler):
 
   def get(self):
 
-    template_values = {
-
-
-                                                    
-      }
-     
-      
-    path = tpl_path('trixy_blog.html')
+    template_values = {}
+    path = tpl_path('example_blog.html')
     self.response.out.write(template.render(path, template_values))
     
 
@@ -220,12 +214,11 @@ class ViewQuiz(webapp.RequestHandler):
 
   def get(self):
       # Create random list of three quiz items.
-       
 
     quiz_items = []
     all_quiz_items = []
     proficiencies = {}
-    quiz_item_count = 3
+    quiz_item_count = 5
     
     # Query all quiz items
     query = db.GqlQuery("SELECT * FROM QuizItem") 

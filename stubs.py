@@ -93,12 +93,30 @@ class GetProficiencyLevelForItemScore(webapp.RequestHandler):             # loca
 class Set_Difficulties(webapp.RequestHandler):             # localhost:8080/set_difficulties/   
 
     def get(self):
+        
+        
             query = db.GqlQuery("SELECT * FROM QuizItem")
             items = query.fetch(1000)
+            query = db.GqlQuery("SELECT * FROM Scores")
+            scores = query.fetch(1000)
+            
+            
+            for score in scores:
+                
+                this_quiz_item = score.quiz_item
+                
+                items.slug = this_quiz_item
+                
+            
             for item in items:
+                slug = item.slug
+                item.dict["bar"] = "700"
+                
+
+                
                 item.difficulty = 500
                 item.put() # Wow, Writing to the Datastore is so easy!
-                print "set difficulty of " + str(item.slug) + " to " + str(item.difficulty)
+                print "set difficulty of " + str(item.slug) + " to " + str(item.foo)
                                     
             
             

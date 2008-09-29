@@ -51,7 +51,10 @@ class QuizItem(db.Model):
   answers = db.StringListProperty() # List of Answers
   proficiency = db.StringProperty() # Proficiency Tag (startup_financing)
   date = db.DateTimeProperty(auto_now_add=True)
-  difficulty = db.IntegerProperty()  # 0-1
+  difficulty = db.IntegerProperty()  # 0-10000
+  content_url = db.LinkProperty()    # Where quiz material is from - wikipedia.org/en/neuroscience/
+  
+
   
   
 
@@ -69,7 +72,9 @@ class ProficiencyLevel(db.Model):
   
   
   
-  
+class ContentUrl(db.Model):
+    content_url = db.LinkProperty()    # Where quiz material is from - wikipedia.org/en/neuroscience/
+    
   
   
   

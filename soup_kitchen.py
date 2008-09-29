@@ -37,34 +37,7 @@ class Soup(webapp.RequestHandler):
             
             
             
-        """            
-        for tag in tags:
-            
-            for paragraph in paragraphs:
-                
-                if paragraph.find(text=re.compile(tag)):
-                    print ""
-                    if (paragraph.find('p')):  #Don't Include Paragraphs with children paragraphs
-                        continue
-                    else:
-                        next_paragraph = paragraph.findNextSibling('p')
-                        previous_paragraph = paragraph.findPreviousSibling('p')
-                        print previous_paragraph
-                        print str.upper(str(paragraph))
-                        print next_paragraph
-                        
-                        # Add <b> tag to first instance of tag found in paragraph
-                        
-                    
-                    print tag
-                    print ""
-                    
-            
-            
-            
-        # Find passage containing tag, and print it.     
-        """
-          
+
                         
                         
 

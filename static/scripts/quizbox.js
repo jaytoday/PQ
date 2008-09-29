@@ -135,7 +135,7 @@
 
 		$.fn.quizbox.changeItem = function(n)
 		{
-			$.fn.quizbox.showLoading();
+			//$.fn.quizbox.showLoading();
 
 			opts.itemNum = n;
 
@@ -220,6 +220,7 @@
 		 var itemTop = viewportPos[3] + Math.round((viewportPos[1] - itemSize[1]) / 2) - 40;
 
 
+
 		 /* =========== */
 		 /* = Dimension properties = */
 		 /* =========== */
@@ -275,13 +276,13 @@
 		 
 		if (opts.active) 
 		{
-			$('#quiz_content').fadeOut("normal", function()
+			$('#quiz_content').show("normal", function()
 			{
 				$("#quiz_content").empty();
 
 				$("#quiz_outer").animate(itemOpts, "normal", function()
 				{
-					$("#quiz_content").append($(val)).fadeIn("normal");
+					$("#quiz_content").append($(val)).show();
 					$.fn.quizbox.updateDetails();
 				});
 			 });
@@ -301,7 +302,7 @@
 				opts.animating = true;
 				itemOpts.opacity = "show";
 				$("#quiz_outer").css({
-					'top': opts.itemArray[opts.itemNum].orig.pos.top - 18,
+					'top':  20, //opts.itemArray[opts.itemNum].orig.pos.top - 18,
 					'left': opts.itemArray[opts.itemNum].orig.pos.left - 18,
 					'height': opts.itemArray[opts.itemNum].orig.height,
 					'width': opts.itemArray[opts.itemNum].orig.width + 50
@@ -327,36 +328,7 @@
 	$.fn.quizbox.updateDetails = function() {
 		$("#quiz_bg,#quiz_close").show();
 
-		// still need this? --Morgan
-		if (opts.itemArray[opts.itemNum].item_type == "instructions")
-		{
-			/*
-			   var hover_count = 0;
 
-			   $("a#answer1").mouseover(function(){
-			   hover_count += 1;
-			   console.log(hover_count);
-			   if (hover_count > 1) {
-			   $('div#example_1', window.frames[0].document).hide();
-			   $('div#example_2', window.frames[0].document).show();
-			   $('.blank', window.frames[0].document).hide();
-			   }
-
-			   });
-
-
-
-			   $("a#answer2").mouseover(function(){
-			   hover_count += 1;
-			   console.log(hover_count);
-			   if (hover_count > 1) {
-			   $('div#example_1', window.frames[0].document).hide();
-			   $('div#example_2', window.frames[0].document).show();
-			   $('.blank', window.frames[0].document).hide();
-			   }
-			   });
-			   */ 
-		}
 
 		/* =========== */
 		/* = Update Button Display = */
@@ -372,19 +344,20 @@
 			// Start timer --Morgan
 			$.fn.quizbox._t = setTimeout(function()
 			{
+			    
 				$('.timer_bar').animate(
 				{
 					width: 0
 				},
 				{
-					duration: 160000,
+					duration: 14000,
 					easing: 'linear',
 					complete: (function()
 					{					
 						if(!cb)
 						return function()
 						{
-							$('#skip').click();  //not the same as skip - TODO format ajax call for timeout /
+							$('#timeout').click();  
 							$('.timer_bar').css('width', '100%');
 							$.fn.quizbox._t = false;
 						};
@@ -392,7 +365,7 @@
 					return cb;
 				})()
 			});
-		 },1000);
+		 },3000);
 	};
 
 
@@ -535,7 +508,7 @@
 
 		if (opts.itemArray[opts.itemNum].o.hideOnContentClick)
 		{
-			//$("#quiz_content").click($.fn.quizbox.close);
+			$("#quiz_content").click($.fn.quizbox.close);
 		}
 		else
 		{
@@ -668,7 +641,7 @@
 
 
 			$('<div id="quiz_intro"  class="buttons"></div>').appendTo('#quiz_title');
-			$('<a id="take_quiz" onmouseover="" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_purple_left"></td><td id="quiz_purple_main"><div class="answertext" id="take_quiz" style="width: 170px; font-size: 1.5em;">T<span style="font-size:.7em;"/>ake</span> T<span style="font-size:.7em;"/>his</span> Q<span style="font-size:.7em;"/>uiz</span></div></div></td><td id="quiz_purple_right"></td></tr></table></a>').appendTo('#quiz_intro');
+			$('<a id="take_quiz" onmouseover="" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_purple_left"></td><td id="quiz_purple_main"><div class="answertext" id="take_quiz" style="width: 170px; font-size: 1.3em;">T<span style="font-size:.7em;"/>ake</span> T<span style="font-size:.7em;"/>his</span> Q<span style="font-size:.7em;"/>uiz</span></div></div></td><td id="quiz_purple_right"></td></tr></table></a>').appendTo('#quiz_intro');
 			// - Choose Between Quizzes $('<a id="choose_quiz" class="answer" style="font-size:13px; margin-left:30px;" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main" style="width:45px;"><div class="answertext" style="margin: 3px 0pt 0pt 1px; font-size: 13px; width: 36px; line-height: 1.1em;" id="choose_quiz"></div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_intro');
 
 			/* append instruction buttons to iframe */
@@ -676,7 +649,7 @@
 			$('<a id="answer1" onmouseover="" class="answer" style="margin-left:53px;" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_blue_left"></td><td id="quiz_blue_main"><div class="answertext" id="answer1"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions');
 			$('<a id="answer2" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_blue_left"></td><td id="quiz_blue_main"><div class="answertext" style="margin-left:1px; width:101%;" id="answer2"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions');
 
-			$('<div id="quiz_instructions2" class="buttons" style="margin-top:7px;margin-left:26px;"></div>').appendTo('#quiz_title');
+			$('<div id="quiz_instructions2" class="buttons" style="margin-top:7px;margin-left:16px;"></div>').appendTo('#quiz_title');
 			//Arg, this has been getting animated while not visible, one ID per page!
 			$('<div class="timer_wrapper"  id="quiz_timer_instruction"><div class="timer_bar timer_inner" style="width:345px;"></div></div>').appendTo('#quiz_instructions2');
 			$('<a id="answer1" onmouseover="" class="answer"  href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_blue_left"></td><td id="quiz_blue_main" style="min-width:60px;"><div class="answertext"  style="margin-left:-6px" id="answer1"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
@@ -684,7 +657,7 @@
 			$('<a id="skip" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main"><div class="arrow"><img src="/static/stylesheets/img/arrow.png" /></div><div class="skipitem" id="skiptext">Skip</div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
 
 			$('<div id="quiz_begin_quiz" class="buttons" style=" margin-top:7px"></div>').appendTo('#quiz_title');
-			$('<a id="startquiz" class="notanswer" href="#" style=" margin-top:7px; margin-left: 100px"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_purple_left"></td><td id="quiz_purple_main" style="padding:0;"><div class="skipitem" id="startquiz">S<span style="font-size:.7em;"/>tart</span> Q<span style="font-size:.7em;"/>uiz</span>!</div></td><td id="quiz_purple_right"></td></tr></table></a>').appendTo('#quiz_begin_quiz');
+			$('<a id="startquiz" class="notanswer" href="#" style=" margin-top:7px; margin-left: 90px"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_purple_left"></td><td id="quiz_purple_main" style="padding:0;"><div class="skipitem" id="startquiz">S<span style="font-size:.7em;"/>tart</span> Q<span style="font-size:.7em;"/>uiz</span>!</div></td><td id="quiz_purple_right"></td></tr></table></a>').appendTo('#quiz_begin_quiz');
 
 			/* append quiz buttons to iframe */
 			$('<div id="quiz_answers" class="buttons"></div>').appendTo('#quiz_title');
@@ -694,7 +667,7 @@
 			$('<a id="answer2" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_blue_left"></td><td id="quiz_blue_main"><div class="answertext" id="answer2"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_answers');
 			$('<a id="answer3" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_blue_left"></td><td id="quiz_blue_main"><div class="answertext" id="answer3"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_answers');
 			$('<a id="skip" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main"><div class="arrow"><img src="/static/stylesheets/img/arrow.png" /></div><div class="skipitem" id="skiptext">Skip</div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_answers');
-
+            $('<a id="timeout" class="answer" href="#" style=""></a>').appendTo('#quiz_answers');
 			/* initialize automatic countdown...if it reaches zero, changeItem +1 */
 			$("#minutes-box").hide();
 
@@ -704,13 +677,13 @@
 			{
 				$(this).css({
 					'font-variant': 'small-caps',
-					'letter-spacing': '.01em'
+					'letter-spacing': '.00em'
 				});
 
 
 				}, function()
 				{
-					$(this).css({ 'font-variant': 'normal','letter-spacing': '.02em' });
+					$(this).css({ 'font-variant': 'normal','letter-spacing': '.01em' });
 				});
 				
 						$(".notanswer").hover(function()
@@ -813,9 +786,15 @@
 
 			var submit_answer = $.fn.quizbox.submit_answer = function(answer)
 			{
-				if (answer.id == "#skip")
+			     
+				if (answer.id == "skip")
 				{
 					var answer_text = "skip_item";
+				}
+				else if (answer.id == "timeout")
+				{
+				
+					var answer_text = "timeout";
 				}
 				else
 				{
@@ -826,9 +805,8 @@
 				if (opts.itemArray[opts.itemNum].item_type == "quiz_item")
 				{
 					var answer_slug = opts.itemArray[opts.itemNum].slug;
-					/* submit using AJAX function doAdd(picked answer, correct answer) */
-					SubmitScore(answer_text, answer_slug)
-				} /* add doChoose ajax call for choosing quiz */
+					SubmitScore(answer_text, answer_slug);
+				} 
 
 				if (opts.itemArray[opts.itemNum].item_type == "score")
 				{
@@ -888,16 +866,19 @@
 
 		if (self.pageYOffset)
 		{
+
 			yScroll = self.pageYOffset;
 			xScroll = self.pageXOffset;
 		}
 		else if (document.documentElement && document.documentElement.scrollTop)
 		{
+
 			yScroll = document.documentElement.scrollTop;
 			xScroll = document.documentElement.scrollLeft;
 		}
 		else if (document.body)
 		{
+
 			yScroll = document.body.scrollTop;
 			xScroll = document.body.scrollLeft;	
 		}
@@ -909,13 +890,12 @@
 	{
 		var scroll = $.fn.quizbox.getPageScroll();
 
-		return [$(window).width(), $(window).height(), scroll[0], scroll[1]];
+		return [$(window).width(), $(window).height(), scroll[0], 0]; //  scroll[1] - goes up from 0 to 30 in Safari, although hard-coding 0 doesn't solve the problem.
 	};
 
 	$.fn.quizbox.getMaxSize = function(maxWidth, maxHeight, imageWidth, imageHeight)
 	{
 		var r = Math.min(Math.min(maxWidth, imageWidth) / imageWidth, Math.min(maxHeight, imageHeight) / imageHeight);
-
 		return [Math.round(r * imageWidth), Math.round(r * imageHeight)];
 	};
 })(jQuery);

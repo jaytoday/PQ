@@ -119,14 +119,28 @@ body {
 	overflow: hidden;
 }
 #flyer {
+/* margin-top:110px; */
+	top: 20%;
+	left: 0%;
+}
+
+
+#flyer a {
 	width: 60px;
 	height: 45px;
 	background: url(homepage/plane.png) no-repeat;
 	position: relative;
-	top: 20%;
+	text-decoration:none; 
+	display: block;
+    top: 20%;
 	left: 0%;
 	z-index: 5;
 }
+#flyer a span {
+visibility:hidden;
+}
+
+
 #sitelet-home {
 	position: absolute;
 	z-index: 100;
@@ -280,7 +294,7 @@ margin-top:60px;
 	margin-top:58px;
 	position:absolute;
 	text-align:center;
-	width:109px;
+	width:106px;
 	
 }
 /* spaces the blank */

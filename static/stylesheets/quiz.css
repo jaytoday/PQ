@@ -108,20 +108,18 @@ div#quiz_title div.answertext {
 
 color:#FFFFFF;
 font-family:Arial;
-font-size:16px;
-font-size-adjust:0.5;
+font-size:0.9em;
 font-stretch:normal;
 font-style:normal;
 font-variant:inherit;
 font-weight:bold;
 line-height:1.2em;
-margin-left:5px;
 padding-bottom:2px;
 text-align:center;
 }	
 	
 .answertext{
-	width:60px;
+	width:80px;
 }
 
 .timer_wrapper{
@@ -157,7 +155,9 @@ margin-top:15px;
 
 div#quiz_title div#startquiz {
 font-size:1.7em;
-margin-top:0px;
+margin-left:10px;
+margin-top:0;
+width:160px;
 }
 
 td#quiz_purple_left {
@@ -167,7 +167,7 @@ td#quiz_purple_left {
 }
 
 td#quiz_purple_main {
-	min-width:80px;
+	width:80px;
 	height: 52px;
 	background: transparent url(img/quiz_purple_main.png) repeat-x;
 	padding-left:20px;
@@ -393,7 +393,7 @@ float:right;
 font-variant:normal;
 margin-bottom:13px;
 margin-right:20px;
-margin-top:-4px;
+margin-top:0px;
 }
 #end_quiz{
 float:right;

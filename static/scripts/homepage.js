@@ -28,7 +28,13 @@ $(document).ready(function()
 	$('#viewport .layer.far').css({width: (viewWidth * 1.04), height: (viewHeight*1.01)});
 	jQuery('#viewport').jparallax({});
 	$('#viewport').css({overflow: "hidden"});
-	$('#flyer').animate({left: "100%"},50000);
+	$('#flyer a').animate({left: "100%"},24000);
+	
+	$('#flyer').click(function()
+	{
+	console.log('clicked on the plane ');
+    });
+	
 
 	$('form#signup #email').preserveDefaultText('nobel@macarthur.com');
 

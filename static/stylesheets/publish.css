@@ -59,10 +59,12 @@ body {
 }
 
 #content {
-    background: white url(../images/sidelogo.png) no-repeat right bottom;
+    background: white url(snaptalent/sidelogo.png) no-repeat right bottom;
     height: 480px;
     font-size: 0.7em;
+    margin-top:10px;
     width: 698px;
+    background-attachment:fixed;
 }
 
 #container, .frame {
@@ -171,8 +173,8 @@ margin-top:10px
 .ovr_text {
 clear:left;
 font-size:1.4em;
-line-height:1.3em;
-padding-top:5px;
+line-height:1.2em;
+padding-top:17px;
 width:470px;
 }
 
@@ -180,7 +182,7 @@ width:470px;
 float:left;
 height:110px;
 margin-left:210px;
-margin-top:-22px;
+margin-top:-2px;
 width:120px;
 }
 
@@ -280,14 +282,14 @@ label {
 /* Sidebar ***************************************************/
 
 #sidebar {
-    background: transparent url(../images/sideshadow.png) no-repeat 0px 50px;
+    background: transparent url(snaptalent/sideshadow.png) no-repeat 0px 50px;
     float: right;
     height: 400px;
     width: 168px;
 }
 
 #sidebar ul {
-    margin: 20px 0;
+    margin: 10px 0;
 }
 
 #sidebar ul li {

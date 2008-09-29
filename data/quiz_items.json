@@ -13,7 +13,28 @@
 
   
     },
-   
+    
+    
+        {
+        "slug": ["wiki", "microformats"],
+        "proficiency": "building_webapps", 
+        "index": "rdfa",
+        "answers": ["xml", "rdfa", "sql"],
+        "content": ["Microformats", "If one wishes to use microformat-style embedding but the type of data one wishes to embed does not map to an existing microformat, <div class='focus'> one can use   <span class='blank'></span>to embed </div> arbitrary vocabularies into HTML."]
+
+    },
+
+        {
+        "slug": ["wiki", "backwards_compatibility"],
+        "proficiency": "building_webapps", 
+        "index": "quirks mode",
+        "answers": ["unicode", "doctype", "quirks mode"],
+        "content": ["HTML", "<div class='focus'><span class='blank'></span>  refers to a technique </div> used by some web browsers for the sake of maintaining backwards compatibility with web pages designed for older browsers, instead of strictly complying with W3C and IETF standards in standards mode. "]
+
+    },
+        
+
+  
    
        {
         "slug": ["wiki", "runtime_execution"],
@@ -58,9 +79,9 @@
 
     {
         "slug": ["django", "auth"], 
-        "index": "is_authenticated()",
+        "index": "is_ authenticated()",
         "proficiency": "building_webapps", 
-        "answers": ["is_authenticated()", "login()", "authenticate()"],
+        "answers": ["is_ authenticated", "login", "authenticate"],
          "content": ["django.contrib", " If a user isn't currently logged in, request.user will be set to an instance of AnonymousUser.<div class='focus'>   You can tell them apart with <span class='blank'> </span></div> "]         
   
     },  
@@ -97,11 +118,14 @@
     {
         "slug": ["wiki", "bayesian"],
         "proficiency": "collective_intelligence",  
-        "index": "clique tree",
-        "answers": ["clique tree", "variational method", "gaussian distribution"],
-        "content": ["Inference", "Classes begin with one or more constructors.    In Python these must be declared with the name __init(self)__  they may also take parameters. <div class='focus'>  These are the functions that build new objects of a<br/><span class='blank'></span>"] 
+        "index": "bayesians",
+        "answers": ["gaussians", "cartesians", "bayesians"],
+        "content": ["Probability", "Frequentists assign probabilities to random events according to their frequencies of occurrence or to subsets of populations as proportions of the whole, <div class='focus'>  while <span class='blank'></span> describe probabilities in terms of beliefs and degrees of uncertainty.</div>"] 
 
     },
+    
+    
+    
 
     {
         "slug": ["wiki", "algorithms"], 
@@ -169,10 +193,30 @@
         "index": "analysis",
         "proficiency": "collective_intelligence", 
         "answers": ["function", "analysis", "theory"],
-        "content": ["Gaussians", "<div class='focus'>In Gaussian’s Discriminant  <span class='blank'> </span>,</div> you usually model all of the crosses to the same covariant matrix sigma."] 
+        "content": ["Gaussians", "<div class='focus'>In Gaussian's Discriminant  <span class='blank'> </span>,</div> you usually model all of the crosses to the same covariant matrix sigma."] 
   
     },  
 
+    
+      {
+        "slug": ["stanford", "graph_theories"], 
+        "index": "dijkstra's",
+        "proficiency": "collective_intelligence", 
+        "answers": ["dijkstra's", "kruskal's", "prim's"],
+        "content": ["Graph Theory", " For a given source vertex in the graph, <div class='focus'> <span class='blank'> </span> algorithm finds the path with lowest cost</div> (i.e. the shortest path) between that vertex and every other vertex."] 
+  
+    },  
+
+       {
+        "slug": ["ocw", "small_world"], 
+        "index": "dijkstra's",
+        "proficiency": "collective_intelligence", 
+        "answers": ["small world", "network", "clustering"],
+        "content": ["Graph Theory", "Graphs can be classified according to two independent structural features:  <div class='focus'>the  <span class='blank'> </span> coefficient</div> and average node-to-node distance."] 
+  
+    },  
+   
+   
 
 
 
@@ -208,6 +252,18 @@
     }, 
 
 
+      {
+        "slug": ["ocw", "ambient_energy"], 
+        "index": "fossil fuels",
+        "proficiency": "clean_energy", 
+        "answers": ["static energy", "electrofuel", "fossil fuels"],
+         "content": ["Ambient Energy", "Traditionally electrical power <div class='focus'> has been generated from <span class='blank'> </span></div> in large, centralized plants. Large-scale ambient energy, such as sun, wind and tides, is widely available but trickier to harvest.  "]
+    }, 
+    
+    
+
+   
+    
     {
         "slug": ["ocw", "biochem"], 
         "proficiency": "clean_energy", 
@@ -221,8 +277,9 @@
         "proficiency": "clean_energy", 
         "index": "kyoto protocol",
         "answers": ["kyoto protocol", "eu ets", "g8"],
-        "content": ["Treaties", "<div class='focus'>  <span class='blank'> </span></div> systems are based on solar electric cells, which convert solar radiation directly into electricity."]
-  
+        "content": ["Treaties", "I am not against global climate treaties, <div class='focus'>  like the <span class='blank'></span></div> but I think their chances of having the impact that their advocates predict are slim."]
+   
+
     },
 
     {
@@ -243,10 +300,29 @@
     },
 
 
+        {
+        "slug": ["hfc", "nsf"], 
+        "proficiency": "clean_energy", 
+        "index": "genetic",
+        "answers": ["genetic", "chemical", "habitat"],
+        "content": ["Biodiversity", "A September 14, 2007 study conducted by the National Science Foundation found that<div class='focus'> biodiversity and  <span class='blank'> </span> diversity </div>  are dependent upon each other."]
+    },
+
+    
+           {
+
+        "slug": ["wiki", "global_ecology"], 
+        "proficiency": "clean_energy", 
+        "index": "gaia",
+        "answers": ["gaia", "cybernetic", "leviathan"],
+        "content": ["Ecology", "The<div class='focus'><span class='blank'> </span> hypothesis proposes that </div> the biosphere and the physical components of the Earth are coupled to form a complex interacting system."]
+    },
+    
+    
 
 
 
-
+ 
 
 
 
@@ -318,7 +394,16 @@
         "content": ["Investment", "'Poison pill' is sometimes used more broadly<div class='focus'>  to describe other types of<span class='blank'> </span> defenses that involve </div>the target taking some action that harms both target and bidder."]
     },  
 
+    {
+        "slug": ["su", "bond_market"], 
+        "index": "convertible",
+        "proficiency": "startup_financing", 
+        "answers": ["preferred", "municipal", "convertible"],
+        "content": ["Bond Market", "<div class='focus'>A <span class='blank'> </span> bond can be converted</div>into shares of stock in the issuing company, usually at some pre-announced ratio."]
+    },  
 
+     
+   
 
     {
         "slug": ["wiki", "income"], 
@@ -328,6 +413,7 @@
         "content": ["Taxation", "Ordinary income is usually characterized <div class='focus'> as income other than<span class='blank'> </span> </div>"]
     }   
 
+    
          
     ]
     

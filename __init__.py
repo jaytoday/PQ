@@ -18,6 +18,9 @@
 
 
 from views import *
+import utils
+from dev import *
+
 
 
 
@@ -30,7 +33,7 @@ def main():
                                        [
                                         ('/demo/?',
                                          PQDemo),
-                                        ('/preview/ad?',
+                                        ('/preview/ad_embed/?',
                                          PQDemo),                                         
                                          ('/intro/?',
                                          PQIntro),
@@ -58,6 +61,8 @@ def main():
                                          Set_Difficulties),
                                         ('/soup/?',
                                          Soup),
+                                         ('/dev/?(.*)/?', 
+                                         URIRouter),
                                         ],
                                        debug=True)
   wsgiref.handlers.CGIHandler().run(application)
