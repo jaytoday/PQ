@@ -188,13 +188,14 @@
 		/* preview answer in iframe */
 
 		var blankspan = $('.blank', window.frames[0].document);
-		blankspan.html("&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;");
+		blankspan.css({'padding': '0px 34px'});
 		$('.answer').hover(function()
 		/* if id is skip, don't do this */
 		{
 			if (this.id != "skip") 
 			{
 				blankspan.fadeTo(1,0.5);
+				blankspan.css({'padding': '0px'});
 				blankspan.html("&nbsp;" + $(this).text() + "&nbsp;");
 			}
 			blankspan.fadeTo("slow", 1);
@@ -202,7 +203,7 @@
 		function()
 		{
 			blankspan.empty();
-			blankspan.html("&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;");
+			blankspan.css({'padding': '0px 34px'});
 			blankspan.fadeTo(100, 0.5);
 		});
 	}
