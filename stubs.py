@@ -97,26 +97,15 @@ class Set_Difficulties(webapp.RequestHandler):             # localhost:8080/set_
         
             query = db.GqlQuery("SELECT * FROM QuizItem")
             items = query.fetch(1000)
-            query = db.GqlQuery("SELECT * FROM Scores")
-            scores = query.fetch(1000)
-            
-            
-            for score in scores:
-                
-                this_quiz_item = score.quiz_item
-                
-                items.slug = this_quiz_item
-                
-            
-            for item in items:
-                slug = item.slug
-                item.dict["bar"] = "700"
-                
 
-                
-                item.difficulty = 500
+            for item in items:
+                item.difficulty = random.randint(1,1000)  # Difficulty is random number from 1-1000
                 item.put() # Wow, Writing to the Datastore is so easy!
-                print "set difficulty of " + str(item.slug) + " to " + str(item.foo)
+                list_index = items.index(item) # Get the index of the item in the list -- [0], [1], etc.
+                this_difficulty = items[list_index].difficulty   
+                print str(this_difficulty) + " is equal to " + str(item.difficulty)  # These values should be the same
+
+
                                     
             
             

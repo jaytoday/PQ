@@ -3,7 +3,7 @@ import random
 from utils import *
 from model import *
 from stubs import *
-from soup_kitchen import * 
+from quizbuilder import * 
 
 
 # Log a message each time this module get loaded.
@@ -174,14 +174,7 @@ class PQIntro(webapp.RequestHandler):
 
 
 
-
-
-
-
-
-
 class QuizItemTemplate(webapp.RequestHandler):
-  #Put something here  
 
   def get(self):
 
@@ -189,7 +182,6 @@ class QuizItemTemplate(webapp.RequestHandler):
     quiz_slug = [self.request.get('slug'), self.request.get('source')]
     this_quiz_item = QuizItem.gql("WHERE slug = :slug",
                                   slug=quiz_slug)
-                                  
     template_values['quiz_item'] = this_quiz_item
     path = tpl_path('quiz_item.html') # Pass Quiz Item to Template
     self.response.out.write(template.render(path, template_values))
@@ -199,7 +191,7 @@ class QuizItemTemplate(webapp.RequestHandler):
 
 
 class PQDemo(webapp.RequestHandler):
-  #Put something here  
+  #Load Ad Embed Preview Page
 
   def get(self):
 
@@ -210,7 +202,7 @@ class PQDemo(webapp.RequestHandler):
 
 
 class ViewQuiz(webapp.RequestHandler):
-  #Put something here  
+  #View Quiz
 
   def get(self):
       # Create random list of three quiz items.
@@ -259,7 +251,7 @@ class ViewQuiz(webapp.RequestHandler):
 
 
 class ViewScore(webapp.RequestHandler):
-  # View Taught Or Not Grade.
+  # View Score Report.
    def get(self):
     logging.debug('Loading Score')
     template_values = {}
@@ -411,3 +403,14 @@ def refresh_data(*verbose):
         if verbose:
             print "added proficiency: " + str(proficiency.proficiency)
         
+
+
+
+
+
+
+
+class ViewNone(webapp.RequestHandler):
+
+   def get(self):
+       pass

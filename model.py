@@ -84,3 +84,9 @@ class InviteList(db.Model):
   date = db.DateTimeProperty(auto_now_add=True)
 
 
+
+class RawItem(db.Model):
+  # Pre-moderation raw quiz items.
+  correct_answer = db.StringProperty()
+  similar_topics = db.StringListProperty()
+  raw_content = db.StringListProperty()

@@ -1,5 +1,5 @@
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/createquiz.css"/>
+<link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/quizbuilder.css"/>
 <script type="text/javascript" src="/static/scripts/jquery-1.2.6.min.js"></script>
 <script type="text/javascript" src="/static/scripts/json2min.js"></script>
 
@@ -61,8 +61,8 @@ $('#category').preserveDefaultText('category');
 
 <i>Quiz Item Text</i> <br/>
 <div class="quiz_item_content">
-<i>{{ quiz_item.paragraphs_containing_tag.0 }}</i>
-{{ quiz_item.paragraphs_containing_tag.1 }}  <i>{{ quiz_item.paragraphs_containing_tag.2 }}</i>
+<i>{{ quiz_item.raw_content.0 }}</i>
+{{ quiz_item.raw_content.1 }}  <i>{{ quiz_item.raw_content.2 }}</i>
 </div>
 <br/>
 
@@ -72,7 +72,7 @@ $('#category').preserveDefaultText('category');
 
 
 {% for topic in quiz_item.similar_topics %}
-<span class="answer_candidate"><b>{{ topic }}</b></span>
+<span class="answer_candidate">{{ topic }}</span>
 {% endfor %}
 
 </div>
@@ -128,7 +128,9 @@ answer_in_array += 1;
 console.log('removing text');
 wrong_answers.splice(wrong_answers.indexOf(answer_text), 1);
 
-$(this).css("color","blue"); 
+$(this).css("color","#555555");
+$(this).css("font-weight","normal"); 
+
 }
 
 }
@@ -143,7 +145,8 @@ console.log('adding item');
 
 wrong_answers.splice(wrong_answers.length, 0, answer_text);
 
- $(this).css("color","pink"); 
+ $(this).css("color","#000000"); 
+  $(this).css("font-weight","bold"); 
 }
 
 
