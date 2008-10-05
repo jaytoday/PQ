@@ -135,7 +135,7 @@
 
 		$.fn.quizbox.changeItem = function(n)
 		{
-			//$.fn.quizbox.showLoading();
+			$.fn.quizbox.showLoading();
 
 			opts.itemNum = n;
 

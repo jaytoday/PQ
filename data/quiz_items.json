@@ -209,7 +209,7 @@
 
        {
         "slug": ["ocw", "small_world"], 
-        "index": "dijkstra's",
+        "index": "clustering",
         "proficiency": "collective_intelligence", 
         "answers": ["small world", "network", "clustering"],
         "content": ["Graph Theory", "Graphs can be classified according to two independent structural features:  <div class='focus'>the  <span class='blank'> </span> coefficient</div> and average node-to-node distance."] 

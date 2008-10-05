@@ -1,6 +1,6 @@
 import logging
 import random
-from utils import *
+from utils.utils import *
 from model import *
 
 class CreateScoreStubs(webapp.RequestHandler):
@@ -18,9 +18,9 @@ class CreateScoreStubs(webapp.RequestHandler):
             random.shuffle(quiz_taker) # shuffle characters
             quiz_taker = string.join(quiz_taker) # turn list into string - we have a stub user!
             for item in items:     # TODO: Use list comprehensions         # Generate a bunch of items for each quiz_taker
-                new_score = StubItemScore()
+                new_score = ItemScore(type="stub")
                 new_score.quiz_taker = quiz_taker
-                new_score.quiz_item = item.slug 
+                new_score.quiz_item = item.slug
                 picked_answer = random.sample(item.answers, 1)  # Random. Try to map closer to realistic scores.
                 new_score.picked_answer = picked_answer[0]
                 new_score.correct_answer = item.index
@@ -29,7 +29,7 @@ class CreateScoreStubs(webapp.RequestHandler):
                 else:
                     new_score.score = 0
                 new_score.put()
-                print " QUIZ TAKER: " + new_score.quiz_taker + " QUIZ ITEM: " + new_score.quiz_item + " PICKED ANSWER: " + new_score.picked_answer +  " CORRECT ANSWER: " +new_score.correct_answer
+                print " QUIZ TAKER: " + new_score.quiz_taker + " QUIZ ITEM: " + str(new_score.quiz_item) + " PICKED ANSWER: " + new_score.picked_answer +  " CORRECT ANSWER: " +new_score.correct_answer
 
             
             
@@ -37,7 +37,7 @@ class CreateScoreStubs(webapp.RequestHandler):
 class ViewScoreStubs(webapp.RequestHandler):            
 
     def get(self):
-            query = db.GqlQuery("SELECT * FROM StubItemScore")
+            query = db.GqlQuery("SELECT * FROM ItemScore WHERE type='stub'")
             scores = query.fetch(500)
             query = db.GqlQuery("SELECT * FROM QuizItem")
             items = query.fetch(1000)
@@ -101,6 +101,8 @@ class Set_Difficulties(webapp.RequestHandler):             # localhost:8080/set_
             for item in items:
                 item.difficulty = random.randint(1,1000)  # Difficulty is random number from 1-1000
                 item.put() # Wow, Writing to the Datastore is so easy!
+                
+                
                 list_index = items.index(item) # Get the index of the item in the list -- [0], [1], etc.
                 this_difficulty = items[list_index].difficulty   
                 print str(this_difficulty) + " is equal to " + str(item.difficulty)  # These values should be the same
@@ -114,7 +116,7 @@ class Set_Difficulties(webapp.RequestHandler):             # localhost:8080/set_
 class Set_Proficiencies(webapp.RequestHandler):         # localhost:8080/set_proficiencies/   
 
     def get(self):
-            query = db.GqlQuery("SELECT * FROM StubItemScore")
+            query = db.GqlQuery("SELECT * FROM ItemScore WHERE type='stub'")
             scores = query.fetch(3)     # Keep This Number Low, For Testing
             query = db.GqlQuery("SELECT * FROM Proficiency")
             proficiencies = query.fetch(10)
@@ -129,12 +131,10 @@ class Set_Proficiencies(webapp.RequestHandler):         # localhost:8080/set_pro
                     proficiency_level.proficiency = proficiency.proficiency
                     proficiency_level.proficiency_level = 0
                     # Now We Have To Decide the Proficiency Level.
-                    user_scores = StubItemScore.gql("WHERE quiz_taker = :quiz_taker",
-                                                    quiz_taker=quiz_taker)
+                    user_scores = quiz_taker.itemscores 
                     for score in user_scores:
-                          this_item = QuizItem.gql("WHERE slug = :slug",
-                                                  slug=score.quiz_item)
-                          for item in this_item:
+                          quiz_item = QuizItem.gql("scores = :1", score)
+                          for item in score.quiz_item:
                               if item.proficiency == proficiency.proficiency:
                                   item_proficiency_level = score.score * this_item[0].difficulty  # Each Item's Proficiency Is difficulty x score.
                                   proficiency_level.proficiency_level += item_proficiency_level   # Add Together Item Proficiency Scores

@@ -10,7 +10,7 @@ handlers:
 
 
 - url: /.*
-  script: __init__.py
+  script: main.py
 
 
 - url: /favicon.ico

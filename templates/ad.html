@@ -8,11 +8,11 @@
 <link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/quiz.css"/>
 <link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/countdown.css"/>
 
-<script type="text/javascript" src="/static/scripts/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/static/scripts/jquery/jquery-1.2.6.min.js"></script>
 <script type="text/javascript" src="/static/scripts/json2min.js"></script>
-<script type="text/javascript" src="/static/scripts/quizbox.js"></script> 
+<script type="text/javascript" src="/static/scripts/quizbox.min.js"></script> 
 <script type="text/javascript" src="/static/scripts/publish.js"></script> 
-<script type="text/javascript" src="/static/scripts/jquery.pngFix.js"></script> 
+<script type="text/javascript" src="/static/scripts/jquery/jquery.pngFix.js"></script> 
 <script type="text/javascript">
 
 $(document).ready(function() {
@@ -70,7 +70,7 @@ var quizitemList = [
 {% endfor %} 
 
 
-{url: "/viewscore/", item_type:"score" }
+{url: "/quiz_complete/", item_type:"score" }
 
 
 ];
@@ -211,7 +211,7 @@ function onAddSuccess(response)
 			at <a class="minititle">Plopquiz</a> in <span class="minititle">San Francisco, CA </span>
 		</div>
         <div class="ovr_text">
-			We'd like to add an exceptional new member to our team.<br/><br/>
+			We're seeking an exceptional person for our team.<br/><br/>
 			To maximize our time talking with qualified candidates, we want to first make sure everyone we speak with is proficient in one or more specific areas of knowledge.<br /><br />
 			These areas are diverse, but are alike in that they are all without a useful standard for comparing candidates. They evolve too quickly for traditional certifications.<br /><br />
 			Instead of manually writing an assessment, we decided to put our self-generating quiz software to the test.<br /><br />
