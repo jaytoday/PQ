@@ -1,22 +1,3 @@
-
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-
-
-""" Plopquiz Demo
-
-
-
-
-"""
-
-
-
-
-
 from views import *
 from utils import *
 from dev import *
@@ -26,7 +7,7 @@ import quizbuilder
 
     
     
-def main():
+def url_handler():
   logging.getLogger().setLevel(logging.DEBUG)
   
   application = webapp.WSGIApplication(
@@ -65,6 +46,10 @@ def main():
                                          Set_Difficulties),
                                         ('/quizbuilder/?',
                                          QuizBuilder),
+                                        ('/quizbuilder/induction/?',
+                                         InductionInterface),
+                                        ('/quizbuilder/rpc/?',
+                                         quizbuilder.rpc.RPCHandler),
                                          ('/dev/?(.*)/?', 
                                          URIRouter),
                                         ],
@@ -74,5 +59,5 @@ def main():
 
 
 if __name__ == "__main__":
-  main()
+  url_handler()
 

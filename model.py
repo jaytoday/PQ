@@ -16,9 +16,12 @@ class Proficiency(db.Model):
   
 
 class ProficiencyTopic(db.Model):  # sub-topics within proficiencies - These map to content URLs.
-    pass
-    
-    #freebase_guid
+  name = db.StringProperty(required=True)
+  proficiency = db.ReferenceProperty(Proficiency,
+                                    collection_name='topics') # Proficiency Tag (startup_financing)
+  date = db.DateTimeProperty(auto_now_add=True)    
+  #freebase_guid ?
+  # urls 
       
   
 
@@ -29,15 +32,19 @@ class ContentPage(db.Model):
                                     collection_name='urls') # Proficiency Tag (startup_financing) 
                                     
     # for more than one topic, use list of keys. 
+    # raw_items
 
 
 class RawQuizItem(db.Model):
-    url = db.ReferenceProperty(ContentPage,
+    page = db.ReferenceProperty(ContentPage,
                                     collection_name='raw_items') # Proficiency Tag (startup_financing)
-    content = db.TextProperty() 
     answer_candidates = db.StringListProperty() # List of Answers
-    index = db.StringProperty() # Correct Answer 
-    #
+    index = db.StringProperty() # Correct Answer
+    pre_content = db.TextProperty() 
+    content = db.TextProperty() 
+    post_content = db.TextProperty() 
+    moderated = db.BooleanProperty()
+
 
 
 
