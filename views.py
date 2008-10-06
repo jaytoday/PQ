@@ -1,410 +1,284 @@
 import logging
 import random
+import string
+import re
 from google.appengine.api import urlfetch
 import cgi
 import wsgiref.handlers
+import os
 import datetime, time
+from model import *
 from google.appengine.ext.webapp import template
 from google.appengine.ext import db
 from google.appengine.api import users
 from google.appengine.ext import webapp
-#RPC - add to utils
+ 
 from google.appengine.ext.webapp import util
 import simplejson
 
-from utils import utils
-from model import *
-from stubs import *
-from quizbuilder.views import *
+# Relevency Tally for Semantic Tags
+from collections import defaultdict
+import operator 
 
 
-# Log a message each time this module get loaded.
-logging.info('Loading %s', __name__)
+from .utils.utils import tpl_path
+from .lib.BeautifulSoup import BeautifulSoup, BeautifulStoneSoup, SoupStrainer  # HTML Parsing Library
+from .lib import rdfxml
 
-class RPCHandler(webapp.RequestHandler):
-  # AJAX Handler
-  def __init__(self):
-    webapp.RequestHandler.__init__(self)
-    self.methods = RPCMethods()
+from rpc import *
+
+# class for semantic analysis - semanticproxy, class for parsing. 
+SEMANTICPROXY_URL = "http://service.semanticproxy.com/processurl/aq9r8pmcbztd4s7s427uw7zg/rdf/" # USE RDF ENDPOINT
+SEMANTICPROXY_MICRO_URL = "http://service.semanticproxy.com/processurl/aq9r8pmcbztd4s7s427uw7zg/microformat/" 
+TILDE_BASE_URL = "http://tilde.jamslevy.user.dev.freebaseapps.com/"
+TILDE_TYPE_LIMIT = 7 # Maximum number of types to query per request topic.
+TILDE_TOPIC_LIMIT = 4 # Maximum number of topics per type to list in response. 
+TRUNCATE_URL = "http://pqstage.appspot.com/truncate_page/?url=" 
+
+DEFAULT_PAGES = [#"http://en.wikipedia.org/wiki/Inference", 
+                 "http://en.wikipedia.org/wiki/Renewable_energy",
+                 ]
+
+AC_LIMIT = 21 # Limit of answer choice candidates per quiz item
+AC_MIN = 8 # Minimum of answer choices required. 
+
+QUIZBUILDER_PATH = 'quizbuilder/'
+
+
+class RawItemInduction(webapp.RequestHandler):  
  
-  def get(self):
-    func = None
-   
-    action = self.request.get('action')
-    if action:
-      if action[0] == '_':
-        self.error(403) # access denied
-        return
-      else:
-        func = getattr(self.methods, action, None)
-   
-    if not func:
-      self.error(404) # file not found
-      return
-     
-    args = ()
-    while True:
-      key = 'arg%d' % len(args)
-      val = self.request.get(key)
-      if val:
-        args += (simplejson.loads(val),)
-      else:
-        break
-    result = func(*args)
-    self.response.out.write(simplejson.dumps(result))
+    def get(self, *args):  
+        topic = self.save_topic(args[0][1],args[0][2])
+        page = self.save_url(args[0][0], topic)
+        build_items = BuildItemsFromPage()
+        raw_quiz_items = build_items.get(page)
+        for item in raw_quiz_items:
+            print item['raw_content'][0].__class__
+            print item['raw_content'][1].__class__
+            print item['raw_content'][2].__class__
 
+            self.save_item(item)
+        #self.response.out.write(template.render(path, template_values))
+            
 
-class RPCMethods(webapp.RequestHandler):
-  """ Defines AJAX methods.
-  NOTE: Do not allow remote callers access to private/protected "_*" methods.
-  """
-
-  def ds(self, *args):
-    qt = QuizTaker(email = "a@a.com")
-    qt.put()
-    quiztakers = QuizTaker.all()
-    for t in quiztakers:
-        if t.filter.get():  # Check if filter exists for this quiz taker
-           try:
-               print t.filters   #fake
-           except AttributeError:
-               pass
-           f = t.filter.get()
-           f.mean = 0
-           f.put()
-           self.runOperation(t, f)
-
+    def save_url(self, page, this_topic):
+        saved_page = ContentPage.gql("WHERE url = :1", page).get()
+        if saved_page: # check value
+            return saved_page
         else:
-            f = QuizTakerFilter(quiz_taker = t)
-            f.put() # Create new filter
-            f = self.runOperation(t, f)
-        #f.put()
+            new_page = ContentPage(url = page, topic = this_topic )
+            new_page.put()
+            return new_page
+
+    def save_topic(self, topic, proficiency):
+        saved_topic = ProficiencyTopic.gql("WHERE name = :1", topic).get()
+        if saved_topic: # check value
+            return saved_topic
+        else:
+            this_proficiency = Proficiency.gql("WHERE name = :1", proficiency).get()
+            print this_proficiency
+            new_topic = ProficiencyTopic(name = topic, proficiency = this_proficiency)
+            new_topic.put()
+            return new_topic
+                             
+    def save_item(self, item):
+        try:
+            this_pre_content = db.Text(item['raw_content'][0])
+            this_content = db.Text(item['raw_content'][1])
+            this_post_content = db.Text(item['raw_content'][2])
+        except UnicodeDecodeError:
+            print "ruh roh"
+            print str(item['raw_content'][1])
+
+            return
+        new_raw_item = RawQuizItem(page = item['page'],
+                                    answer_candidates = item['similar_topics'],
+                                    index = item['correct_answer'],
+                                    pre_content = this_pre_content,
+                                    content = this_content,
+                                    post_content = this_post_content,
+                                    moderated = False)
+        print new_raw_item.__dict__
+        return
         
-    
-  def runOperation(self, t, f):
-    print t.filter.get().mean
-    print f.quiz_taker.filter.get().mean
-    print f.quiz_taker.scores
-    print f.quiz_taker.itemscores.get()
+        if saved_topic: # check value
+            return saved_topic
+        else:
+            this_proficiency = Proficiency.gql("WHERE name = :1", proficiency).get()
+            print this_proficiency
+            new_topic = ProficiencyTopic(name = topic, proficiency = this_proficiency)
+            new_topic.put()
+            return new_topic
+                                   
+                  
+class QuizBuilder(webapp.RequestHandler):
+
+    def get(self):
+
+        raw_quiz_items = self.load_raw_items()
+        template_values = {}    
+        template_values["raw_quiz_items"] = raw_quiz_items
+        path = tpl_path(QUIZBUILDER_PATH + 'quizbuilder.html')
+        #self.response.out.write(template.render(path, template_values))
+
+
+    def load_raw_items(self):
+        topic_items = []
+        all_items = RawQuizItem.all().get()
+        if self.request.get('topic'): 
+            for item in all_items:
+                if item.url.topic.name == self.request.get('topic'):
+                    topic_items.append(item)
+                else: continue
+            return topic_items
+        else: return all_items
+
 
             
-  def AddScore(self, *args):
-    logging.debug('Posting Answer')    
-    picked_answer = str(args[0])
-    item_slug = eval(args[1])
-    #Lookup quiz item with slug, clean it, and match it. 
-    this_item = QuizItem.gql("WHERE slug = :slug",
-                                  slug=item_slug)
-    logging.debug(this_item)  
-
-    picked_clean = picked_answer.strip()
-    picked_clean = picked_clean.lower()
-    correct_clean = this_item[0].index.strip()
-    correct_clean = correct_clean.lower()
-
-    if picked_clean == correct_clean:
-        this_score = 1 # TODO add Timer Data 
-    else:
-        this_score = 0
-        logging.debug('Incorrect answer') 
-    try:
-        score = ItemScore(type='temp', 
-                          slug = item_slug,
-                          quiz_item = this_item[0].key(),
-                          score = this_score,
-                          correct_answer = this_item[0].index,
-                          picked_answer = picked_answer,
-                          )
-        score.put()
-        logging.info('Score entered by user %s with score %s, correct: %s, picked: %s'
-                     % (score.quiz_taker, score.score, score.picked_answer, score.correct_answer))
-    except:
-        raise_error('Error saving score for user %s with score %s, correct: %s, picked: %s'
-                    % (score.quiz_taker, score.score, score.picked_answer, score.correct_answer))
-    return score.score
-
-  def Init(self, *args):
-    q = db.GqlQuery("SELECT * FROM ItemScore WHERE type='temp'")
-    results = q.fetch(1000)
-    d = 0
-    for result in results:
-        result.delete()
-        d += 1
-    return "{deleted: " + str(d) + "}"
-
-  def List(self, *args):
-    logging.debug('Posting E-mail List Entry')    
-    list_entry = InviteList()    
-    list_entry.email = str(args[0])
-    list_entry.put()
-
-  def NewUser(self, *args):  
-    logging.debug('New User - Adding to E-mail List')    
-    list_entry = InviteList()    
-    list_entry.email = str(args[0])
-    list_entry.put()
-    new_quiz_taker = QuizTaker(email = str(args[0]),key_name = str(args[0]))
-    new_quiz_taker.put()
-    print new_quiz_taker.key()
-    logging.debug('New User - Saving Score')    
-    q = db.GqlQuery("SELECT * FROM ItemScore WHERE type = 'temp'")
-    results = q.fetch(1000)
-    for result in results:
-        movescore = ItemScore(quiz_taker = new_quiz_taker.key(),
-                            score = result.score,
-                            quiz_item = result.quiz_item,
-                            picked_answer = result.picked_answer,
-                            correct_answer = result.correct_answer,
-                            type = 'demo')
-        movescore.put()
-        logging.debug('Moved A Score Item')
-        result.type = 'trash'
-        result.put()
-        new_quiz_taker.scores.append(movescore.key())   # These perform a duplicate reference to the quiz_taker property in ItemScore. 
-    new_quiz_taker.put()
-    
-        
-        
-  def AllScores (self, *args):        
-    q = db.GqlQuery("SELECT * FROM ItemScore")
-    results = q.fetch(1000)
-    return [result.score for result in results]
-
-
-  def SubmitQuizItem(self, *args):
-      new_quiz_item = QuizItem()
-      new_quiz_item.slug = [str(args[0]), str(args[1])]
-      new_quiz_item.index = str(args[2])
-      new_quiz_item.answers = args[3] # And args[2] 
-      new_quiz_item.category = str(args[4])       # different datastore? Not currently in model 
-      new_quiz_item.proficiency = str(args[5])  # Should be Proficiency
-      new_quiz_item.content = str(args[6])
-      new_quiz_item.difficulty = 0 # Default?
-      #new_quiz_item.put()
-      return "saved quiz item" 
-
-class PQHome(webapp.RequestHandler):
-  #Load Plopquiz Homepage 
-  def get(self):
-    template_values = {}
-    path = tpl_path('homepage.html')
-    self.response.out.write(template.render(path, template_values))
-
-class PQIntro(webapp.RequestHandler):
-  #Put something here  
-  def get(self):
-    template_values = {}
-    intro_template = self.request.get('page') + ".html"
-    path = tpl_path(intro_template)
-    self.response.out.write(template.render(path, template_values))
-
-
-class QuizItemTemplate(webapp.RequestHandler):
-  def get(self):
-    template_values = {}
-    quiz_slug = [self.request.get('slug'), self.request.get('source')]
-    this_quiz_item = QuizItem.gql("WHERE slug = :slug",
-                                  slug=quiz_slug)
-    template_values['quiz_item'] = this_quiz_item
-    path = tpl_path('quiz_item.html') # Pass Quiz Item to Template
-    self.response.out.write(template.render(path, template_values))
-
-class PQDemo(webapp.RequestHandler):
-  #Load Ad Embed Preview Page
-  def get(self):
-    template_values = {}
-    path = tpl_path('example_blog.html')
-    self.response.out.write(template.render(path, template_values))
-
-class ViewQuiz(webapp.RequestHandler):
-  #View Quiz
-  quiz_array = []
-  all_quiz_items = []
-  proficiencies = {}
-  quiz_item_count = 5
-  def get(self):
-    # Create random list of three quiz items.
-    # Query all quiz items
-    q = db.GqlQuery("SELECT * FROM QuizItem")
-    quiz_items = q.fetch(1000) 
-    
-    # Load Fixture Data if Necessary
-    if len(quiz_items) == 0: 
-        refresh_data("quiz_items")
-        q = db.GqlQuery("SELECT * FROM QuizItem")
-        quiz_items = q.fetch(1000)         
-        
-    for item in quiz_items:
-        self.load_item(item)
-
-    self.load_array()
-    template_values = {"quiz_items": self.quiz_array }
-    logging.debug(template_values)
-    path = tpl_path('ad.html')
-    self.response.out.write(template.render(path, template_values))
-    
-  def load_item(self, item):
-        random.shuffle(item.answers)
-        item_dict = {"slug" : item.slug, "answer1" : item.answers[0], "answer2" : item.answers[1], "answer3": item.answers[2],
-        "proficiency": item.proficiency.name}
-        if item.proficiency.name not in self.proficiencies: self.proficiencies[item.proficiency.name] = []
-        self.proficiencies[item.proficiency.name].append(item_dict)
-        return self.proficiencies
-
-  def load_array(self):
-        for prof_type in self.proficiencies:
-            proficiency = random.sample(self.proficiencies[prof_type],
-                                  self.quiz_item_count)
-            self.quiz_array += proficiency
-        random.shuffle(self.quiz_array)
-        return self.quiz_array
-        
-
-class QuizComplete(webapp.RequestHandler):
-  # Quiz Completed Screen
-   def get(self):
-    logging.debug('Loading Score')
-    template_values = {}
-    path = tpl_path('quiz_complete.html')
-    self.response.out.write(template.render(path, template_values))
-    
             
 
-class ViewScore(webapp.RequestHandler):
-  # View Score Report.
-   def get(self):
-    logging.debug('Loading Score')
-    template_values = {}
-    try:
-      latest_scores = TempItemScore.gql("WHERE quiz_taker = :quiz_taker ORDER BY date DESC",
-                                quiz_taker="quiz_taker")   
-      logging.info('Loading all score items') 
-    except:
-      raise_error('Error Retrieving Data From Score Model')
-  
-    try:
-      correct_item = TempItemScore.gql("WHERE score > :score AND quiz_taker = :quiz_taker ORDER BY score DESC, date DESC",
-                             quiz_taker="quiz_taker", score=0 )
-      logging.info('Loading correct Score items from user')
-    except:
-      raise_error('Error Retrieving Data From Score Model')    
-        
-    logging.info(latest_scores.count())
-    totalscore = correct_item.count()
-    totalitems = latest_scores.count()
-    logging.info("totalitems:" + str(totalitems))
-    logging.info("totalscore:" + str(totalscore))
-  
-    percentage = 0
-    if totalitems > 0:
-      percentage = float(totalscore) / float(totalitems) * 100
-      percentage = int(percentage)
+            
 
-    if percentage > 99:
-       passed = True
+
+
+class BuildItemsFromPage():
+    
+  def get(self, page):
+
+        raw_quiz_items = []
+        
+        #in case we need to meet 100k limit, truncate page.
+        
+
+        soup_url = SEMANTICPROXY_URL +  page.url    # + TRUNCATE URL + 
+        # timeout for fetch_page (and all fetch pages)
+        fetch_page = urlfetch.fetch(soup_url)              # perform semantic analysis
+        soup = BeautifulSoup(fetch_page.content) #whole page
+        tags = self.get_tags(soup.findAll('c:exact'))
+                # rank tags by relevency
+        for tag in tags: # Slice [1:...]
+        
+        # CHECK IF TAG IS A TYPED TOPIC ON FREEBASE 
+            # Make sure that get_similar_topics and get_paragraphs_containing_tag are successful.
+            similar_topics = self.get_similar_topics(tag)
+            if similar_topics: # not just if it exists, but if there's a list.
+                raw_content_groups = self.get_raw_content_groups(soup.findAll('c:document'), tag)
+                for raw_content in raw_content_groups:
+                     #If len(get_similar_topics(tag)) < 1, add synonym tags or related tags in Answer Candidate 
+                    raw_quiz_item = {"similar_topics" : similar_topics, "raw_content": raw_content, "correct_answer": tag, "page": page }
+                    raw_quiz_items.append(raw_quiz_item)
+            continue 
+
+        return raw_quiz_items
+  
+  def get_tags(self, doc_tags): 
+  # for a page, get a relevency-ranked list of topics found in the text. 
+    tags = []
+    for tag in doc_tags:
+        #print tag.contents[0]
+        tags.append(str(tag.contents[0]))
+    tags = self.rank_tags(tags)
+    return tags  
+    
+  def rank_tags(self, l):
+    # tag ranking helper function
+    # take a list of tags ['tag1', 'tag2', 'tag2', tag3'....]
+    # sort set of tags by order of frequency
+    tally = defaultdict(int)
+    for x in l:
+        tally[x] += 1
+    sorted_tags = sorted(tally.items(), key=operator.itemgetter(1))
+    tags = []
+    for tag in sorted_tags:
+        tags.append(tag[0]) 
+    tags.reverse()
+    return tags
+          
+          
+  def get_similar_topics(self, tag):
+    # Freebase request to get similar topics for a tag.
+    tag = tag.replace(' ','%20') #urlencode tag
+    tilde_request = str(TILDE_BASE_URL) + "?format=xml&topic_limit=" + str(TILDE_TOPIC_LIMIT) + "&type_limit=" + str(TILDE_TYPE_LIMIT) + "&request=" + str(tag)
+    try:
+        tilde_response = urlfetch.fetch(tilde_request)
+    except:
+        logging.debug('Unable to fetch tilde response') 
+    tilde_soup = BeautifulStoneSoup(tilde_response.content)
+    similar_topics = [topic.contents[0] for topic in tilde_soup.findAll('title')][1:AC_LIMIT]
+    if len(similar_topics) >= AC_MIN:
+        return similar_topics
     else:
-       passed = False
-    
-    template_values["scores"] = latest_scores
-    template_values["totalscore"] = totalscore
-    template_values["totalitems"] = totalitems
-    template_values["percentage"] = percentage
-    template_values["passed"] = passed
-
-
-    path = tpl_path('score.html')
-    self.response.out.write(template.render(path, template_values))
-    
-
-    
-class RefreshData(webapp.RequestHandler):
-  #Refreshes Data
-
-  def get(self):
-      destroy_data("quiz_items", "verbose")
-      destroy_data("proficiencies", "verbose")
-      refresh_data("verbose")
-
-
-
-
-class DumpData(webapp.RequestHandler):
-  #Dumps Data
-
-  def get(self):
-      dump_data("quiz_items", "verbose")
-      
+        return False 
         
- 
+  def get_raw_content_groups(self, page_text,tag):
+    # find paragraph in text containing a tag. 
 
-def dump_data(data_type, *verbose):
-    items = []
-    models = {"quiz_items" : "QuizItem"}
-    query_string = "SELECT * FROM " + models[data_type] 
-    query = db.GqlQuery(query_string) # Query all quiz items
-    items = query.fetch(1000)
-    encoder = GqlEncoder()
-    json_items = encoder.encode(items)
-    print json_items
-
-
-
-
-def destroy_data(data_type, *verbose):
-# use "verbose" to print logging info
-
-    models = {"quiz_items" : "QuizItem", "proficiencies" : "Proficiency"}
-    item_names= {"quiz_items" : "slug", "proficiencies" : "proficiency"}
-    query_string = "SELECT * FROM " + models[data_type]
+    raw_content_groups = []
+    # THIS NEEDS WORK. 
+    for p in page_text[0].contents:
+        psoup = BeautifulSoup(p)
+        for paragraph in psoup.findAll('p'):
+            if paragraph.find(text=re.compile(tag)):  # Is tag in this paragraph? 
+                the_paragraph = self.highlightAnswer(paragraph, tag)
+                
+                # GET NEXT AND PREV <P> ELEMENTS CONTAINING SIGNIFICANT CONTENT. 
+                if (paragraph.findPreviousSibling('p') == None):
+                    previous_paragraph = ""
+                else:
+                    previous_paragraph = paragraph.findPreviousSibling('p')
+                if (paragraph.findNextSibling('p') == None):
+                    next_paragraph = ""
+                else:
+                    next_paragraph = paragraph.findNextSibling('p')
+                paragraph_containing_tag = (str(previous_paragraph.contents[0]), str(the_paragraph), str(next_paragraph.contents[0]))
+                raw_content_groups.append(paragraph_containing_tag)#return paragraph_containing_tag # this only returns the first instance.
+            else:
+                continue  # tag not found in paragraph
+        return raw_content_groups
+                
+     
+                
+  def highlightAnswer(self, text, tag):
+    # apply HTML markup to answer within quiz item content
+     text = str(text)
+     str_tag = str(tag)
+     return text.replace(str_tag, '<span class="answer_span">%s</span>' % str_tag)               
+                 
+  def truncate_page(self, url):
+    # Truncate page to meet OpenCalais 100k limit.
+    fetch_page = urlfetch.fetch(soup_url)   
+    soup = BeautifulSoup(fetch_page.content) # necessary?
     
-    query = db.GqlQuery(query_string) # Query all quiz items
-    data_type = query.fetch(1000)
-    for item in data_type:
-        if verbose:
-            print ""   
-            print "deleted: " + str(item.__dict__) 
-        item.delete()
-        
-def refresh_data(*verbose):
-    # use "verbose" to print logging info
-    proficiencies = []
-    # Load External JSON fixture
-    json_file = open(ROOT_PATH + "/data/quiz_items.json")
-    json_str = json_file.read()
-    newdata = simplejson.loads(json_str) # Load JSON file as object
+    # truncate HTML document. 
     
-    # Retrieve Proficiency. If new, then save it. 
-    for item in newdata["quiz_items"]:
-        this_proficiency = Proficiency.gql("WHERE name = :proficiency",
-                                       proficiency=item['proficiency']).get()
-        if not this_proficiency:
-            this_proficiency = Proficiency(name=item['proficiency'])
-            this_proficiency.put()
-            if verbose:
-                print "added proficiency: " + str(this_proficiency.name)
-    # Store Item in Datastore
-        
-        quiz_item = QuizItem(slug = item['slug'],
-                             category = item['content'][0],
-                             content = item['content'][1],
-                             proficiency = this_proficiency.key(),
-                             answers = item['answers'],
-                             index = item['index'] )
-       
-                              #Add List of Answers
-        quiz_item.put()
-        if verbose:
-            print "added quiz item: " + str(quiz_item.slug) + " + " + str(quiz_item.proficiency.name)
+
+
+
 
         
 
 
+class InductionInterface(webapp.RequestHandler):
+
+    def get(self):
+        template_values = {}
+        path = tpl_path(QUIZBUILDER_PATH + 'induction.html')
+        self.response.out.write(template.render(path, template_values))
+        
+
+
+    
 
 
 
 
 
-class ViewNone(webapp.RequestHandler):
 
-   def get(self):
-       pass
+
+
+
+
+
+
+
+
