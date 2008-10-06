@@ -21,16 +21,11 @@ from quizbuilder.views import *
 # Log a message each time this module get loaded.
 logging.info('Loading %s', __name__)
 
-    
-
-
-
 class RPCHandler(webapp.RequestHandler):
   # AJAX Handler
   def __init__(self):
     webapp.RequestHandler.__init__(self)
     self.methods = RPCMethods()
-
  
   def get(self):
     func = None
@@ -57,7 +52,6 @@ class RPCHandler(webapp.RequestHandler):
         break
     result = func(*args)
     self.response.out.write(simplejson.dumps(result))
-    
 
 
 class RPCMethods(webapp.RequestHandler):
@@ -85,7 +79,6 @@ class RPCMethods(webapp.RequestHandler):
             f.put() # Create new filter
             f = self.runOperation(t, f)
         #f.put()
-    
         
     
   def runOperation(self, t, f):
@@ -95,9 +88,7 @@ class RPCMethods(webapp.RequestHandler):
     print f.quiz_taker.itemscores.get()
 
             
-  
   def AddScore(self, *args):
-
     logging.debug('Posting Answer')    
     picked_answer = str(args[0])
     item_slug = eval(args[1])
@@ -111,15 +102,11 @@ class RPCMethods(webapp.RequestHandler):
     correct_clean = this_item[0].index.strip()
     correct_clean = correct_clean.lower()
 
-
     if picked_clean == correct_clean:
         this_score = 1 # TODO add Timer Data 
     else:
         this_score = 0
         logging.debug('Incorrect answer') 
-
-
-          
     try:
         score = ItemScore(type='temp', 
                           slug = item_slug,
@@ -134,9 +121,7 @@ class RPCMethods(webapp.RequestHandler):
     except:
         raise_error('Error saving score for user %s with score %s, correct: %s, picked: %s'
                     % (score.quiz_taker, score.score, score.picked_answer, score.correct_answer))
-
     return score.score
-
 
   def Init(self, *args):
     q = db.GqlQuery("SELECT * FROM ItemScore WHERE type='temp'")
@@ -145,22 +130,15 @@ class RPCMethods(webapp.RequestHandler):
     for result in results:
         result.delete()
         d += 1
-    return "deleted: " + str(d) + " entries"
-
-        
-
+    return "{deleted: " + str(d) + "}"
 
   def List(self, *args):
-  
     logging.debug('Posting E-mail List Entry')    
     list_entry = InviteList()    
     list_entry.email = str(args[0])
     list_entry.put()
 
-
-
-  def NewUser(self, *args):
-  
+  def NewUser(self, *args):  
     logging.debug('New User - Adding to E-mail List')    
     list_entry = InviteList()    
     list_entry.email = str(args[0])
@@ -192,12 +170,8 @@ class RPCMethods(webapp.RequestHandler):
     results = q.fetch(1000)
     return [result.score for result in results]
 
-     
-        
-    
-    
-  def SubmitQuizItem(self, *args):
 
+  def SubmitQuizItem(self, *args):
       new_quiz_item = QuizItem()
       new_quiz_item.slug = [str(args[0]), str(args[1])]
       new_quiz_item.index = str(args[2])
@@ -209,35 +183,24 @@ class RPCMethods(webapp.RequestHandler):
       #new_quiz_item.put()
       return "saved quiz item" 
 
-          
-
 class PQHome(webapp.RequestHandler):
   #Load Plopquiz Homepage 
-
   def get(self):
-
     template_values = {}
     path = tpl_path('homepage.html')
     self.response.out.write(template.render(path, template_values))
-    
-    
+
 class PQIntro(webapp.RequestHandler):
   #Put something here  
-
   def get(self):
-
     template_values = {}
     intro_template = self.request.get('page') + ".html"
     path = tpl_path(intro_template)
     self.response.out.write(template.render(path, template_values))
 
 
-
-
 class QuizItemTemplate(webapp.RequestHandler):
-
   def get(self):
-
     template_values = {}
     quiz_slug = [self.request.get('slug'), self.request.get('source')]
     this_quiz_item = QuizItem.gql("WHERE slug = :slug",
@@ -246,32 +209,21 @@ class QuizItemTemplate(webapp.RequestHandler):
     path = tpl_path('quiz_item.html') # Pass Quiz Item to Template
     self.response.out.write(template.render(path, template_values))
 
-
-
-
-
 class PQDemo(webapp.RequestHandler):
   #Load Ad Embed Preview Page
-
   def get(self):
-
     template_values = {}
     path = tpl_path('example_blog.html')
     self.response.out.write(template.render(path, template_values))
-    
-
 
 class ViewQuiz(webapp.RequestHandler):
   #View Quiz
-
   quiz_array = []
   all_quiz_items = []
   proficiencies = {}
   quiz_item_count = 5
-    
   def get(self):
-      # Create random list of three quiz items.
-    
+    # Create random list of three quiz items.
     # Query all quiz items
     q = db.GqlQuery("SELECT * FROM QuizItem")
     quiz_items = q.fetch(1000) 
@@ -291,7 +243,6 @@ class ViewQuiz(webapp.RequestHandler):
     path = tpl_path('ad.html')
     self.response.out.write(template.render(path, template_values))
     
-
   def load_item(self, item):
         random.shuffle(item.answers)
         item_dict = {"slug" : item.slug, "answer1" : item.answers[0], "answer2" : item.answers[1], "answer3": item.answers[2],

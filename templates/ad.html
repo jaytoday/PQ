@@ -10,69 +10,44 @@
 
 <script type="text/javascript" src="/static/scripts/jquery/jquery-1.2.6.min.js"></script>
 <script type="text/javascript" src="/static/scripts/json2min.js"></script>
-<script type="text/javascript" src="/static/scripts/quizbox.min.js"></script> 
+<script type="text/javascript" src="/static/scripts/quizbox.js"></script> 
 <script type="text/javascript" src="/static/scripts/publish.js"></script> 
 <script type="text/javascript" src="/static/scripts/jquery/jquery.pngFix.js"></script> 
 <script type="text/javascript">
 
 $(document).ready(function() {
-	
-	
 	/*  Load quiz item iframes - static/scripts/quizbox.js redundant  */
-	$("p#apply a").quizbox({
+	$("#apply a, #apply_button a, #apply_button_d a, #description_apply").quizbox({
 		'zoomSpeedIn': 400,
 		'zoomSpeedOut': 400,
 		'overlayShow': true,
 		'overlayOpacity': 0.3,
 		'itemLoadCallback': getGroupItems
 	}); 
-	$("span#apply_button a").quizbox({
-		'zoomSpeedIn': 400,
-		'zoomSpeedOut': 400,
-		'overlayShow': true,
-		'overlayOpacity': 0.3,
-		'itemLoadCallback': getGroupItems
-	}); 
-	$("span#apply_button_d a").quizbox({
-		'zoomSpeedIn': 400,
-		'zoomSpeedOut': 400,
-		'overlayShow': true,
-		'overlayOpacity': 0.3,
-		'itemLoadCallback': getGroupItems
-	}); 
-	$("a#description_apply").quizbox({ 
-	    'zoomSpeedIn': 400, 
-	    'zoomSpeedOut': 400, 
-	    'overlayShow': true, 
-	    'overlayOpacity': 0.3,
-        'itemLoadCallback': getGroupItems }); 
-
 });
 
 /* =========== */
 /* = URL Array = */
 /* =========== */
 var quizitemList = [
-
-
-
-{url: "/intro/?page=intro", item_type:"intro", choose_quiz: "Take Another Quiz"},
-{url: "/intro/?page=instructions", item_type:"instructions", answer1: "dog ate", answer2: "web made"},
-{url: "/intro/?page=instructions2", item_type:"instructions2", answer1: "compilers", answer2: "interpreters"},
-{url: "/intro/?page=begin_quiz", item_type:"begin_quiz"},
+        {url: "/intro/?page=intro", item_type:"intro", choose_quiz: "Take Another Quiz"},
+        {url: "/intro/?page=instructions", item_type:"instructions", answer1: "dog ate", answer2: "web made"},
+        {url: "/intro/?page=instructions2", item_type:"instructions2", answer1: "compilers", answer2: "interpreters"},
+        {url: "/intro/?page=begin_quiz", item_type:"begin_quiz"},
 
 {% for item in quiz_items %}
-
-
-{slug: "{{ item.slug }}", url: "/quiz/?source={{ item.slug.0 }}&slug={{ item.slug.1 }}", answer1: "{{ item.answer1 }}", answer2: "{{ item.answer2 }}", answer3: "{{ item.answer3 }}", proficiency: "{{ item.proficiency }}", item_type:"quiz_item" },
-
-
+        {
+                slug: "{{ item.slug }}",
+                url: "/quiz/?source={{ item.slug.0 }}&slug={{ item.slug.1 }}",
+                answer1: "{{ item.answer1 }}",
+                answer2: "{{ item.answer2 }}",
+                answer3: "{{ item.answer3 }}",
+                proficiency: "{{ item.proficiency }}",
+                item_type:"quiz_item"
+        },
 {% endfor %} 
 
-
-{url: "/quiz_complete/", item_type:"score" }
-
-
+        {url: "/quiz_complete/", item_type:"score" }
 ];
 
 function getGroupItems(opts) {
@@ -89,7 +64,6 @@ function getGroupItems(opts) {
 /* =========== */
 
 function Request(function_name, opt_argv) {
-
 	if (!opt_argv)
 		opt_argv = new Array();
 
@@ -101,6 +75,7 @@ function Request(function_name, opt_argv) {
 		callback = opt_argv[len-1];
 		opt_argv.length--;
 	}
+        console.log(callback);
 
 	var async = (callback != null);
 
@@ -158,7 +133,15 @@ function SubmitScore(ans, slug) {
 }
 
 function doInit() {
-	server.Init();
+        server.Init(function(resp)
+        {
+                var o = eval("(" + resp + ")");
+                // this will check if the test has been restarted.
+                // we can either continue from where we left, or
+                // at least skip the instructions. --Morgan.
+                if(o.deleted > 0)
+                {}
+        });
 }
 
 function onAddSuccess(response)

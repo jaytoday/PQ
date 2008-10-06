@@ -31,10 +31,9 @@
 
 		return $(this).each(function()
 		{
-			var $this = $(this);
-			var o = $.metadata ? $.extend({}, opts.settings, $this.metadata()) : opts.settings;
+			var o = $.metadata ? $.extend({}, opts.settings, $(this).metadata()) : opts.settings;
 
-			$this.unbind('click').click(function()
+			$(this).unbind('click').click(function()
 			{
 				$.fn.quizbox.start(this, o); 
 				return false;
@@ -45,6 +44,10 @@
 	$.fn.quizbox.start = function(el, o)
 	{
 		if (opts.animating) return false;
+
+		opts.itemArray	= [];
+		opts.itemNum	= 0;
+
 
 		doInit();  /*  Should be when quiz initiates, after intro. DELETES EXISTING DATASTORE ENTRIES - JUST FOR DEMO */
 
@@ -60,9 +63,6 @@
 
 			//$("#quiz_overlay").click($.fn.quizbox.close);
 		}
-
-		opts.itemArray	= [];
-		opts.itemNum	= 0;
 
 		if (jQuery.isFunction(o.itemLoadCallback))
 		{
@@ -372,21 +372,21 @@
 		{
 			$('#quiz_title').show();
 			$('#quiz_title div.buttons').hide(); 
-			$('#quiz_title div#quiz_answers').show();           
+			$('#quiz_answers').show();           
 
 			/* TODO change to toggle */
-			$('#quiz_answers div#answer1').empty();     
-			$('#quiz_answers div#answer2').empty();
-			$('#quiz_answers div#answer3').empty();
-			$('#quiz_answers div#answer1').html(opts.itemArray[opts.itemNum].answer1);     
-			$('#quiz_answers div#answer2').html(opts.itemArray[opts.itemNum].answer2);
-			$('#quiz_answers div#answer3').html(opts.itemArray[opts.itemNum].answer3);
+			$('#answer1').empty();     
+			$('#answer2').empty();
+			$('#answer3').empty();
+			$('#answer1').html(opts.itemArray[opts.itemNum].answer1);     
+			$('#answer2').html(opts.itemArray[opts.itemNum].answer2);
+			$('#answer3').html(opts.itemArray[opts.itemNum].answer3);
 			$('#quiz_answers div.arrow').html('<img src="/static/stylesheets/img/pinkarrow.png"/>');
 			startTimer();
 			var click_status = [];
 			click_status[opts.itemNum] = false;
 
-			$('div#quiz_answers').find('a').click(function()
+			$('#quiz_answers').find('a').click(function()
 			{
 				if (click_status[opts.itemNum] == false)
 				{
@@ -402,9 +402,9 @@
 			/* hide answers and show hidden intro choices */
 			$('#quiz_title').show();
 			$('#quiz_title div.buttons').hide(); 
-			$('#quiz_title div#quiz_intro').fadeIn('slow');  
+			$('#quiz_intro').fadeIn('slow');  
 
-			$('#quiz_intro div#choose_quiz').html(opts.itemArray[opts.itemNum].choose_quiz);
+			$('#choose_quiz').html(opts.itemArray[opts.itemNum].choose_quiz);
 		}
 		else if (opts.itemArray[opts.itemNum].item_type == "instructions")
 		{
@@ -412,9 +412,9 @@
 			$('#example_1', window.frames[0].document).fadeIn('slow');
 			$('#quiz_title').show();
 			$('#quiz_title div.buttons').hide();   
-			$('#quiz_title div#quiz_instructions').show();  
-			$('#quiz_instructions div#answer1').html(opts.itemArray[opts.itemNum].answer1);     
-			$('#quiz_instructions div#answer2').html(opts.itemArray[opts.itemNum].answer2);
+			$('#quiz_instructions').show();  
+			$('#answer1').html(opts.itemArray[opts.itemNum].answer1);     
+			$('#answer2').html(opts.itemArray[opts.itemNum].answer2);
 			$('#answer1,#answer2').mouseover(function(e)
 			{
 				$(this).not('.hovered').addClass('hovered');
@@ -435,14 +435,14 @@
 
 			$('#quiz_title').show();
 			$('#quiz_title div.buttons').hide();
-			$('#quiz_title div#quiz_instructions2').show();  
+			$('#quiz_instructions2').show();  
 
-			$('#quiz_instructions2 div#answer1').html(opts.itemArray[opts.itemNum].answer1);
+			$('#answer1').html(opts.itemArray[opts.itemNum].answer1);
 
 			$('.timer_bar').css('margin-left', '-10px');
 			$('.timer_bar').css('width', '112%');
 
-			$('#quiz_instructions2 div#answer2').html(opts.itemArray[opts.itemNum].answer2)
+			$('#answer2').html(opts.itemArray[opts.itemNum].answer2)
 				$('#quiz_instructions2')
 				.find('#answer1,#answer2').click(function()
 				{
@@ -454,7 +454,7 @@
 					$('.timer_bar').css('width', '112%'); 
 
 					// bind the skip button
-					$('#quiz_title').find('#skip').click(function() { $.fn.quizbox.submit_answer(this); });
+					$('#skip').click(function() { $.fn.quizbox.submit_answer(this); });
 					$('#quiz_instructions2').find('#answer1,#answer2').unbind('click');
 				});
 
@@ -474,9 +474,9 @@
 		{
 			$('#quiz_title').show();
 			$('#quiz_title div.buttons').hide();
-			$('#quiz_title div#quiz_begin_quiz').show();
+			$('#quiz_begin_quiz').show();
 			$('.timer_bar').css('margin-left', '0px'); 
-			$('#quiz_begin_quiz').find('#startquiz').click(function()
+			$('#startquiz').click(function()
 			{
 				opts.itemArray = jQuery.grep(opts.itemArray, function(e,i)
 				{
@@ -493,14 +493,12 @@
 		{
 			$('#quiz_title').show();
 			$('#quiz_title div.buttons').hide();
-			$('#quiz_title div#quiz_score').show();
+			$('#quiz_score').show();
 		}
 		else
 		{
 			$('#quiz_title').hide();
 		}
-
-
 
 		if (opts.itemArray[opts.itemNum].o.hideOnContentClick)
 		{
@@ -510,7 +508,6 @@
 		{
 			$("#quiz_content").unbind('click');
 		}
-
 
 		$(document).keydown(function(event)
 		{
