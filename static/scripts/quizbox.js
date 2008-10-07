@@ -367,7 +367,7 @@
                 };
 
 
-	/* Fill in titles for answer keys - redundant! make this more robust before something blows up*/
+                /* Fill in titles for answer keys - redundant! make this more robust before something blows up*/
 		if (opts.itemArray[opts.itemNum].item_type == "quiz_item")
 		{
 			$('#quiz_title').show();
@@ -465,7 +465,6 @@
 				$('#example_1,#example_2', window.frames[0].document).hide();
 				$('#example_3', window.frames[0].document).show();
 				startTimer(timerCb);
-
 			};
 			startTimer(timerCb);
 
@@ -593,7 +592,6 @@
 		var pos = $.fn.quizbox.getViewport();
 
 		$("#quiz_loading").css({'left': ((pos[0] - 40) / 2 + pos[2]), 'top': ((pos[1] - 40) / 2 + pos[3])}).show();
-		
 
 		loadingTimer = setInterval($.fn.quizbox.animateLoading, 66);
 	};
@@ -768,18 +766,18 @@
 			/* =========== */
 
 			/* submit answers and proceed to next question */
-			$('#quiz_title').find('#take_quiz').click(function()
+			$('#take_quiz').click(function()
 			{
 				submit_answer(this);
 			});
 
 			var submit_answer = $.fn.quizbox.submit_answer = function(answer)
 			{     
-				if (answer.id == "skip")
+				if(answer.id == "skip")
 				{
 					var answer_text = "skip_item";
 				}
-				else if (answer.id == "timeout")
+				else if(answer.id == "timeout")
 				{
 				
 					var answer_text = "timeout";
@@ -789,18 +787,18 @@
 					var answer_text = $(answer).text();
 				}
 
-				if (opts.itemArray[opts.itemNum].item_type == "quiz_item")
+				if(opts.itemArray[opts.itemNum].item_type == "quiz_item")
 				{
 					var answer_slug = opts.itemArray[opts.itemNum].slug;
 					SubmitScore(answer_text, answer_slug);
 				} 
 
-				if (opts.itemArray[opts.itemNum].item_type == "score")
+				if(opts.itemArray[opts.itemNum].item_type == "score")
 				{
 					return false;
 				}
 
-				if (answer.id == "choose_quiz")
+				if(answer.id == "choose_quiz")
 				{ 
 					/* TODO cycle through quiz choices */
 					var selection = $('#quiz_selections', window.frames[0].document);

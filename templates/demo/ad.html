@@ -75,7 +75,6 @@ function Request(function_name, opt_argv) {
 		callback = opt_argv[len-1];
 		opt_argv.length--;
 	}
-        console.log(callback);
 
 	var async = (callback != null);
 
@@ -133,15 +132,7 @@ function SubmitScore(ans, slug) {
 }
 
 function doInit() {
-        server.Init(function(resp)
-        {
-                var o = eval("(" + resp + ")");
-                // this will check if the test has been restarted.
-                // we can either continue from where we left, or
-                // at least skip the instructions. --Morgan.
-                if(o.deleted > 0)
-                {}
-        });
+        server.Init();
 }
 
 function onAddSuccess(response)
