@@ -66,22 +66,22 @@ class RawItemInduction(webapp.RequestHandler):
             
 
     def save_url(self, page, this_topic):
-        saved_page = ContentPage.gql("WHERE url = :1 AND topic = :2", page, this_topic).get()
+        saved_page = ContentPage.get_by_key_name(str([page,this_topic]))
         if saved_page: # check value
             return saved_page
         else:
-            new_page = ContentPage(url = page, topic = this_topic )
+            new_page = ContentPage(key_name = str([page,this_topic]), url = page, topic = this_topic )
             new_page.put()
             return new_page
 
     def save_topic(self, topic, proficiency):
-        saved_topic = ProficiencyTopic.gql("WHERE name = :1", topic).get()
+        saved_topic = ProficiencyTopic.get_by_key_name(str([topic,proficiency]))
         if saved_topic: # check value
             return saved_topic
         else: 
             try:
                 this_proficiency = Proficiency.gql("WHERE name = :1", proficiency).get()
-                new_topic = ProficiencyTopic(name = topic, proficiency = this_proficiency)
+                new_topic = ProficiencyTopic(key_name = str([topic,proficiency]), name = topic, proficiency = this_proficiency)
                 new_topic.put()
                 return new_topic
             except:
@@ -97,6 +97,8 @@ class RawItemInduction(webapp.RequestHandler):
             logging.error('UnicodeDecodeError')
             return False
         try:
+            print item['similar_topics']
+            print item['similar_topics'].__class__
             new_raw_item = RawQuizItem(page = item['page'],
                                     answer_candidates = item['similar_topics'],
                                     index = item['correct_answer'],
@@ -104,9 +106,12 @@ class RawItemInduction(webapp.RequestHandler):
                                     content = this_content,
                                     post_content = this_post_content,
                                     moderated = False)
-            #new_raw_item.put()
+            new_raw_item.put()
             return new_raw_item 
-        except: return False
+        except:
+            #new_raw_item.put() 
+            print "roy!"
+            return False
         
         if saved_topic: # check value
             return saved_topic
@@ -121,19 +126,29 @@ class QuizBuilder(webapp.RequestHandler):
 
     def get(self):
 
-        raw_quiz_items = self.load_raw_items()
-        template_values = {}    
+        template_values = {}
+        raw_quiz_items = []
+        for this_raw_item in self.load_raw_items():
+            raw_item = {}
+            raw_item['pre_content'] = this_raw_item.pre_content
+            raw_item['content'] = this_raw_item.content
+            raw_item['post_content'] = this_raw_item.post_content
+            raw_item['answer_candidates'] = this_raw_item.answer_candidates
+            raw_item['index'] = str(this_raw_item.index)
+            raw_item['url'] = str(this_raw_item.page.url)
+            raw_item['topic'] = str(this_raw_item.page.topic.name)
+            raw_quiz_items.append(raw_item)
         template_values["raw_quiz_items"] = raw_quiz_items
         path = tpl_path(QUIZBUILDER_PATH + 'quizbuilder.html')
-        #self.response.out.write(template.render(path, template_values))
+        self.response.out.write(template.render(path, template_values))
 
 
     def load_raw_items(self):
         topic_items = []
-        all_items = RawQuizItem.all().get()
+        all_items = RawQuizItem.all()
         if self.request.get('topic'): 
             for item in all_items:
-                if item.url.topic.name == self.request.get('topic'):
+                if item.page.topic.name == self.request.get('topic'):
                     topic_items.append(item)
                 else: continue
             return topic_items
@@ -208,7 +223,7 @@ class BuildItemsFromPage():
     except:
         logging.debug('Unable to fetch tilde response') 
     tilde_soup = BeautifulStoneSoup(tilde_response.content)
-    similar_topics = [topic.contents[0] for topic in tilde_soup.findAll('title')][1:AC_LIMIT]
+    similar_topics = [str(topic.contents[0]) for topic in tilde_soup.findAll('title')][1:AC_LIMIT]
     if len(similar_topics) >= AC_MIN:
         return similar_topics
     else:

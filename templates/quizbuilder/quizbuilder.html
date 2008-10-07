@@ -67,12 +67,18 @@ answer_in_array = []
 
 <body>
 <div>
+{% if not raw_quiz_items %}
+no items match this topic
+{% endif  %}
+
 {% for quiz_item in raw_quiz_items %}
+
+
 
 <i>Quiz Item Text</i> <br/>
 <div class="quiz_item_content" id="quiz_item_content_{{ forloop.counter }}">
-<i>{{ quiz_item.raw_content.0 }}</i>
-{{ quiz_item.raw_content.1 }}  <i>{{ quiz_item.raw_content.2 }}</i>
+<i>{{ quiz_item.pre_content }}</i>
+{{ quiz_item.content }} <i>{{ quiz_item.post_content }}</i>
 </div>
 <br/>
 
@@ -81,9 +87,9 @@ answer_in_array = []
 <br/><br/>
 
 
-{% for answer_choice in quiz_item.answer_choices %}
+{% for answer_candidate in quiz_item.answer_candidates %}
 <span class="answer_candidate" >
-{{ answer_choice }}
+{{ answer_candidate }}
 </span>
 {% endfor %}
 
@@ -277,7 +283,7 @@ function PreviewAnswer(answer) {
 	{
 	      
         answer_span.fadeTo(1,0.5);
-        answer_span.html("&nbsp;" + $(this).text() + "&nbsp;");
+        answer_span.html($(this).text());
 	    answer_span.fadeTo("slow", 1);
   
 		
@@ -296,7 +302,7 @@ function PreviewAnswer(answer) {
 }
 
 
-PreviewAnswer("{{quiz_item.correct_answer}}");
+PreviewAnswer("{{quiz_item.index}}");
 
 
             

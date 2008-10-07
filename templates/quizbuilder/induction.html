@@ -128,8 +128,6 @@ $('#submit_url').click(function() {
 if (eval('document.content_url.proficiency[' + j + '].checked') == true) {
     var proficiency = eval('document.content_url.proficiency[' + j + '].value'); }}
 
-    console.log(proficiency);
-    
     server.SubmitContentUrl(document.content_url.url.value, document.content_url.topic.value, proficiency, onAddSuccess);
 });
     
@@ -154,9 +152,11 @@ answer_in_array = []
 <h1> Build Quiz Items From Webpage </h1>
 <form name="content_url" id="content_url" >
 <br/>
+url
 <input type="text" name="url" class="url_name" value="url" />
 <br/>
 <br/>
+topic
 <input type="text" name="topic" class="topic_name" value="topic" />
 <br/><br/>
 Choose Proficiency
