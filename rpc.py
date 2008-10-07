@@ -1,3 +1,6 @@
+import logging
+# Log a message each time this module get loaded.
+logging.info('Loading %s', __name__)
 from google.appengine.ext import webapp
 from google.appengine.ext import db
 import simplejson
