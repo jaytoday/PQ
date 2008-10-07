@@ -49,7 +49,10 @@
 		opts.itemNum	= 0;
 
 
-		doInit();  /*  Should be when quiz initiates, after intro. DELETES EXISTING DATASTORE ENTRIES - JUST FOR DEMO */
+                $.ajax({
+                        url: '/rpc?action=Init&_=' + (new Date().getTime()),
+                        async: false
+                });
 
 		if (o.overlayShow) {
 			$("#quiz_wrap").prepend('<div id="quiz_overlay"></div>');
@@ -790,6 +793,7 @@
 				if(opts.itemArray[opts.itemNum].item_type == "quiz_item")
 				{
 					var answer_slug = opts.itemArray[opts.itemNum].slug;
+
 					SubmitScore(answer_text, answer_slug);
 				} 
 
