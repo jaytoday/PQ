@@ -1,8 +1,13 @@
+import logging
+# Log a message each time this module get loaded.
+logging.info('Loading %s', __name__)
 from google.appengine.ext import webapp
 from google.appengine.ext import db
 from model import *
 import views
 import simplejson
+from .utils import jsonparser as parser
+
 
 class RPCHandler(webapp.RequestHandler):
   # AJAX Handler
@@ -79,7 +84,22 @@ class RPCMethods(webapp.RequestHandler):
         
   def SubmitContentUrl(self, *args):
       save_url = views.RawItemInduction()
-      return save_url.get(args)
+      #JSON Serialize save_url
+      raw_items = []
+      for this_raw_item in save_url.get(args):
+          raw_item = {}
+          raw_item['pre_content'] = this_raw_item.pre_content
+          raw_item['content'] = this_raw_item.content
+          raw_item['post_content'] = this_raw_item.post_content
+          raw_item['answer_candidates'] = this_raw_item.answer_candidates
+          raw_item['index'] = str(this_raw_item.index)
+          raw_item['url'] = str(this_raw_item.page.url)
+          raw_item['topic'] = str(this_raw_item.page.topic.name)
+          raw_items.append(raw_item)
+      
+      # this parser needs to do character escaping 
+      json_response = simplejson.dumps(raw_items) 
+      return json_response
 
     
   def SubmitQuizItem(self, *args):

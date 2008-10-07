@@ -226,7 +226,7 @@ function Request(function_name, opt_argv) {
 
 	// Create an XMLHttpRequest 'GET' request w/ an optional callback handler 
 	var req = new XMLHttpRequest();
-	req.open('GET', '/rpc?' + query, async);
+	req.open('GET', '/quizbuilder/rpc?' + query, async);
 
 	if (async) {
 		req.onreadystatechange = function() {
@@ -308,7 +308,6 @@ $('#submit_item_' + c).click(function() {
 if (eval('document.quiz_data_' + c + '.proficiency[' + j + '].checked') == true) {
     var proficiency = eval('document.quiz_data_' + c + '.proficiency[' + j + '].value'); }}
 
-    console.log(proficiency);
 
     server.SubmitQuizItem(document.quiz_data_{{ forloop.counter }}.source.value, document.quiz_data_{{ forloop.counter }}.slug.value, "{{quiz_item.correct_answer}}", wrong_answers[c], document.quiz_data_{{ forloop.counter }}.category.value, proficiency, $('div.quiz_item_content').text(),  onAddSuccess);
 });

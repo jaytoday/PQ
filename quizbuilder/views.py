@@ -1,4 +1,6 @@
 import logging
+# Log a message each time this module get loaded.
+logging.info('Loading %s', __name__)
 import random
 import string
 import re
@@ -52,17 +54,19 @@ class RawItemInduction(webapp.RequestHandler):
         page = self.save_url(args[0][0], topic)
         build_items = BuildItemsFromPage()
         raw_quiz_items = build_items.get(page)
+        saved_items = []
         for item in raw_quiz_items:
-            print item['raw_content'][0].__class__
-            print item['raw_content'][1].__class__
-            print item['raw_content'][2].__class__
-
-            self.save_item(item)
+            save_item = self.save_item(item)
+            if save_item:
+                saved_items.append(save_item)
+        return saved_items 
+            
+                
         #self.response.out.write(template.render(path, template_values))
             
 
     def save_url(self, page, this_topic):
-        saved_page = ContentPage.gql("WHERE url = :1", page).get()
+        saved_page = ContentPage.gql("WHERE url = :1 AND topic = :2", page, this_topic).get()
         if saved_page: # check value
             return saved_page
         else:
@@ -74,40 +78,42 @@ class RawItemInduction(webapp.RequestHandler):
         saved_topic = ProficiencyTopic.gql("WHERE name = :1", topic).get()
         if saved_topic: # check value
             return saved_topic
-        else:
-            this_proficiency = Proficiency.gql("WHERE name = :1", proficiency).get()
-            print this_proficiency
-            new_topic = ProficiencyTopic(name = topic, proficiency = this_proficiency)
-            new_topic.put()
-            return new_topic
+        else: 
+            try:
+                this_proficiency = Proficiency.gql("WHERE name = :1", proficiency).get()
+                new_topic = ProficiencyTopic(name = topic, proficiency = this_proficiency)
+                new_topic.put()
+                return new_topic
+            except:
+                return False
+            
                              
     def save_item(self, item):
-        try:
-            this_pre_content = db.Text(item['raw_content'][0])
-            this_content = db.Text(item['raw_content'][1])
-            this_post_content = db.Text(item['raw_content'][2])
+        try: # encode text
+            this_pre_content = db.Text(item['raw_content'][0], encoding='utf-8')
+            this_content = db.Text(item['raw_content'][1], encoding='utf-8')
+            this_post_content = db.Text(item['raw_content'][2], encoding='utf-8')
         except UnicodeDecodeError:
-            print "ruh roh"
-            print str(item['raw_content'][1])
-
-            return
-        new_raw_item = RawQuizItem(page = item['page'],
+            logging.error('UnicodeDecodeError')
+            return False
+        try:
+            new_raw_item = RawQuizItem(page = item['page'],
                                     answer_candidates = item['similar_topics'],
                                     index = item['correct_answer'],
                                     pre_content = this_pre_content,
                                     content = this_content,
                                     post_content = this_post_content,
                                     moderated = False)
-        print new_raw_item.__dict__
-        return
+            #new_raw_item.put()
+            return new_raw_item 
+        except: return False
         
         if saved_topic: # check value
             return saved_topic
         else:
             this_proficiency = Proficiency.gql("WHERE name = :1", proficiency).get()
-            print this_proficiency
             new_topic = ProficiencyTopic(name = topic, proficiency = this_proficiency)
-            new_topic.put()
+            #new_topic.put()
             return new_topic
                                    
                   
@@ -144,7 +150,6 @@ class QuizBuilder(webapp.RequestHandler):
 class BuildItemsFromPage():
     
   def get(self, page):
-
         raw_quiz_items = []
         
         #in case we need to meet 100k limit, truncate page.
@@ -164,7 +169,7 @@ class BuildItemsFromPage():
             if similar_topics: # not just if it exists, but if there's a list.
                 raw_content_groups = self.get_raw_content_groups(soup.findAll('c:document'), tag)
                 for raw_content in raw_content_groups:
-                     #If len(get_similar_topics(tag)) < 1, add synonym tags or related tags in Answer Candidate 
+                     #If len(get_similar_topics(tag)) < 1, add synonym tags or related tags in Answer Candidate
                     raw_quiz_item = {"similar_topics" : similar_topics, "raw_content": raw_content, "correct_answer": tag, "page": page }
                     raw_quiz_items.append(raw_quiz_item)
             continue 
@@ -175,7 +180,6 @@ class BuildItemsFromPage():
   # for a page, get a relevency-ranked list of topics found in the text. 
     tags = []
     for tag in doc_tags:
-        #print tag.contents[0]
         tags.append(str(tag.contents[0]))
     tags = self.rank_tags(tags)
     return tags  
@@ -231,6 +235,11 @@ class BuildItemsFromPage():
                 else:
                     next_paragraph = paragraph.findNextSibling('p')
                 paragraph_containing_tag = (str(previous_paragraph.contents[0]), str(the_paragraph), str(next_paragraph.contents[0]))
+                for p in paragraph_containing_tag:
+                    p.strip()
+                    # remove chars
+
+                
                 raw_content_groups.append(paragraph_containing_tag)#return paragraph_containing_tag # this only returns the first instance.
             else:
                 continue  # tag not found in paragraph
