@@ -42,9 +42,16 @@ DEFAULT_PAGES = [#"http://en.wikipedia.org/wiki/Inference",
                  ]
 
 AC_LIMIT = 21 # Limit of answer choice candidates per quiz item
-AC_MIN = 8 # Minimum of answer choices required. 
+AC_MIN = 8 # Minimum of answer choices required.
+
+RAW_ITEMS_PER_PAGE = 5 # Limit of quiz items created per page 
+
+RAW_ITEMS_PER_TAG = 2 # Limit of quiz items created per page
+
+QUIZBUILDER_LIMIT = 1
 
 QUIZBUILDER_PATH = 'quizbuilder/'
+
 
 
 class RawItemInduction(webapp.RequestHandler):  
@@ -55,7 +62,8 @@ class RawItemInduction(webapp.RequestHandler):
         build_items = BuildItemsFromPage()
         raw_quiz_items = build_items.get(page)
         saved_items = []
-        for item in raw_quiz_items:
+        print len(raw_quiz_items)
+        for item in raw_quiz_items[0:5]:
             save_item = self.save_item(item)
             if save_item:
                 saved_items.append(save_item)
@@ -97,8 +105,6 @@ class RawItemInduction(webapp.RequestHandler):
             logging.error('UnicodeDecodeError')
             return False
         try:
-            print item['similar_topics']
-            print item['similar_topics'].__class__
             new_raw_item = RawQuizItem(page = item['page'],
                                     answer_candidates = item['similar_topics'],
                                     index = item['correct_answer'],
@@ -110,7 +116,7 @@ class RawItemInduction(webapp.RequestHandler):
             return new_raw_item 
         except:
             #new_raw_item.put() 
-            print "roy!"
+            logging.error('Unable to save raw quiz item')
             return False
         
         if saved_topic: # check value
@@ -128,7 +134,7 @@ class QuizBuilder(webapp.RequestHandler):
 
         template_values = {}
         raw_quiz_items = []
-        for this_raw_item in self.load_raw_items():
+        for this_raw_item in self.load_raw_items()[0:QUIZBUILDER_LIMIT] :
             raw_item = {}
             raw_item['pre_content'] = this_raw_item.pre_content
             raw_item['content'] = this_raw_item.content
@@ -166,6 +172,7 @@ class BuildItemsFromPage():
     
   def get(self, page):
         raw_quiz_items = []
+        tag_threshold = 0
         
         #in case we need to meet 100k limit, truncate page.
         
@@ -176,18 +183,20 @@ class BuildItemsFromPage():
         soup = BeautifulSoup(fetch_page.content) #whole page
         tags = self.get_tags(soup.findAll('c:exact'))
                 # rank tags by relevency
-        for tag in tags: # Slice [1:...]
-        
-        # CHECK IF TAG IS A TYPED TOPIC ON FREEBASE 
-            # Make sure that get_similar_topics and get_paragraphs_containing_tag are successful.
-            similar_topics = self.get_similar_topics(tag)
-            if similar_topics: # not just if it exists, but if there's a list.
-                raw_content_groups = self.get_raw_content_groups(soup.findAll('c:document'), tag)
-                for raw_content in raw_content_groups:
-                     #If len(get_similar_topics(tag)) < 1, add synonym tags or related tags in Answer Candidate
-                    raw_quiz_item = {"similar_topics" : similar_topics, "raw_content": raw_content, "correct_answer": tag, "page": page }
-                    raw_quiz_items.append(raw_quiz_item)
-            continue 
+        while tag_threshold <= RAW_ITEMS_PER_PAGE:
+            for tag in tags:  # Slice [1:...]
+            # Check if tag is too short, or too common. (the "she" problem)
+            # CHECK IF TAG IS A TYPED TOPIC ON FREEBASE 
+                # Make sure that get_similar_topics and get_paragraphs_containing_tag are successful.
+                similar_topics = self.get_similar_topics(tag)
+                if similar_topics: # not just if it exists, but if there's a list.
+                   tag_threshold += 1
+                   raw_content_groups = self.get_raw_content_groups(soup.findAll('c:document'), tag)
+                   for raw_content in raw_content_groups:
+                         #If len(get_similar_topics(tag)) < 1, add synonym tags or related tags in Answer Candidate
+                        raw_quiz_item = {"similar_topics" : similar_topics, "raw_content": raw_content, "correct_answer": tag, "page": page }
+                        raw_quiz_items.append(raw_quiz_item)
+                continue 
 
         return raw_quiz_items
   
@@ -230,26 +239,28 @@ class BuildItemsFromPage():
         return False 
         
   def get_raw_content_groups(self, page_text,tag):
-    # find paragraph in text containing a tag. 
+    # find paragraph in text containing a tag.    
+    
+    # todo: Templates for mediawiki and google knol
 
     raw_content_groups = []
-    # THIS NEEDS WORK. 
     for p in page_text[0].contents:
         psoup = BeautifulSoup(p)
         for paragraph in psoup.findAll('p'):
             if paragraph.find(text=re.compile(tag)):  # Is tag in this paragraph? 
-                the_paragraph = self.highlightAnswer(paragraph, tag)
+                the_paragraph = self.highlightAnswer(paragraph, tag)                
                 
                 # GET NEXT AND PREV <P> ELEMENTS CONTAINING SIGNIFICANT CONTENT. 
                 if (paragraph.findPreviousSibling('p') == None):
                     previous_paragraph = ""
                 else:
-                    previous_paragraph = paragraph.findPreviousSibling('p')
+                    previous_paragraph = paragraph.findPreviousSibling('p').contents[0]
+                    
                 if (paragraph.findNextSibling('p') == None):
                     next_paragraph = ""
                 else:
-                    next_paragraph = paragraph.findNextSibling('p')
-                paragraph_containing_tag = (str(previous_paragraph.contents[0]), str(the_paragraph), str(next_paragraph.contents[0]))
+                    next_paragraph = paragraph.findNextSibling('p').contents[0]
+                paragraph_containing_tag = (str(previous_paragraph), str(the_paragraph), str(next_paragraph))
                 for p in paragraph_containing_tag:
                     p.strip()
                     # remove chars
@@ -258,7 +269,7 @@ class BuildItemsFromPage():
                 raw_content_groups.append(paragraph_containing_tag)#return paragraph_containing_tag # this only returns the first instance.
             else:
                 continue  # tag not found in paragraph
-        return raw_content_groups
+        return raw_content_groups[0:RAW_ITEMS_PER_TAG]  # This slice could also be a threshold, or randomized, to avoid bias to the top of the document. 
                 
      
                 
@@ -267,7 +278,12 @@ class BuildItemsFromPage():
      text = str(text)
      str_tag = str(tag)
      return text.replace(str_tag, '<span class="answer_span">%s</span>' % str_tag)               
+     #return text.replace(str_tag, '<span style="border:1px solid #E2C922; padding:0 5px; margin:0 5px;font-weight:bold;">%s</span>' % str_tag)               
                  
+                 
+
+
+
   def truncate_page(self, url):
     # Truncate page to meet OpenCalais 100k limit.
     fetch_page = urlfetch.fetch(soup_url)   

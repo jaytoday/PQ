@@ -4,6 +4,7 @@ logging.info('Loading %s', __name__)
 from google.appengine.ext import webapp
 from google.appengine.ext import db
 import simplejson
+from model import *
 
 class RPCHandler(webapp.RequestHandler):
   # AJAX Handler
@@ -45,26 +46,17 @@ class RPCMethods(webapp.RequestHandler):
   NOTE: Do not allow remote callers access to private/protected "_*" methods.
   """
 
-  def ds(self, *args):
-    qt = QuizTaker(email = "a@a.com")
-    qt.put()
-    quiztakers = QuizTaker.all()
-    for t in quiztakers:
-        if t.filter.get():  # Check if filter exists for this quiz taker
-           try:
-               print t.filters   #fake
-           except AttributeError:
-               pass
-           f = t.filter.get()
-           f.mean = 0
-           f.put()
-           self.runOperation(t, f)
-
-        else:
-            f = QuizTakerFilter(quiz_taker = t)
-            f.put() # Create new filter
-            f = self.runOperation(t, f)
-        #f.put()
+  def get_quiz(self, *args):
+    template_values = {}
+    quiz_slug = [args[0], args[1]]
+    this_quiz_item = QuizItem.gql("WHERE slug = :slug",
+                                  slug=quiz_slug).get()
+    quiz_item = {}
+    quiz_item['category'] = this_quiz_item.category
+    quiz_item['content'] = this_quiz_item.content
+    quiz_item['answers'] = this_quiz_item.answers
+    json_response = simplejson.dumps(quiz_item) 
+    return json_response
     
         
     

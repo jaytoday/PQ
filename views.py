@@ -64,14 +64,20 @@ class PQDemo(webapp.RequestHandler):
 class QuizItemTemplate(webapp.RequestHandler):
 
   def get(self):
-
     template_values = {}
     quiz_slug = [self.request.get('slug'), self.request.get('source')]
     this_quiz_item = QuizItem.gql("WHERE slug = :slug",
-                                  slug=quiz_slug)
+                                  slug=quiz_slug).get()
+    quiz_item = {}
+    quiz_item['content'] = this_quiz_item.content
+    quiz_item['category'] = this_quiz_item.category
+    quiz_item['answers'] = this_quiz_item.answers
+    json_response = simplejson.dumps(quiz_item) 
+    return json_response
+                                  
     template_values['quiz_item'] = this_quiz_item
     path = tpl_path(QUIZTAKER_PATH + 'quiz_item.html') # Pass Quiz Item to Template
-    self.response.out.write(template.render(path, template_values))
+    #self.response.out.write(template.render(path, template_values))
 
 
 class ViewQuiz(webapp.RequestHandler):

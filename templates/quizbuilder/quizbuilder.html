@@ -76,10 +76,10 @@ no items match this topic
 
 
 <i>Quiz Item Text</i> <br/>
-<div class="quiz_item_content" id="quiz_item_content_{{ forloop.counter }}">
+<input type="textarea" class="quiz_item_content" id="quiz_item_content_{{ forloop.counter }}">
 <i>{{ quiz_item.pre_content }}</i>
 {{ quiz_item.content }} <i>{{ quiz_item.post_content }}</i>
-</div>
+</input>
 <br/>
 
 <div class="answers" id="answers_{{ forloop.counter }}">
