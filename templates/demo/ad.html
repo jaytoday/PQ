@@ -37,13 +37,13 @@ var quizitemList = [
 
 {% for item in quiz_items %}
         {
-                slug: '{{ item.slug }}',
+
                 rpc_url: '/rpc?action=get_quiz&arg0="{{ item.slug.0 }}"&arg1="{{ item.slug.1 }}"',
-                url: "/quiz/?source={{ item.slug.0 }}&slug={{ item.slug.1 }}",
+                url: '/quiz/?source={{ item.slug.0 }}&slug={{ item.slug.1 }}',
                 answer1: '{{ item.answer1 }}',
                 answer2: '{{ item.answer2 }}',
                 answer3: '{{ item.answer3 }}',
-                answers: '{{ item.answers }}',
+                answers: {{ item.answers }},
                 proficiency: '{{ item.proficiency }}',
                 item_type:'quiz_item'
         },

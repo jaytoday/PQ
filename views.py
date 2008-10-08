@@ -114,7 +114,7 @@ class ViewQuiz(webapp.RequestHandler):
   def load_item(self, item):
         random.shuffle(item.answers)
         item_answers = []
-        [item_answers.append(a) for a in item.answers]
+        [item_answers.append(str(a)) for a in item.answers]
         item_dict = {"slug" : item.slug, "answers": item_answers, "answer1" : item.answers[0], "answer2" : item.answers[1], "answer3": item.answers[2],
         "proficiency": item.proficiency.name}
         if item.proficiency.name not in self.proficiencies: self.proficiencies[item.proficiency.name] = []
