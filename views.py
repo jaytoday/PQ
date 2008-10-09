@@ -79,6 +79,11 @@ class QuizItemTemplate(webapp.RequestHandler):
     path = tpl_path(QUIZTAKER_PATH + 'quiz_item.html') # Pass Quiz Item to Template
     #self.response.out.write(template.render(path, template_values))
 
+class QuizFrame(webapp.RequestHandler):
+        def get(self):
+                template_values = {}
+                path = tpl_path(QUIZTAKER_PATH + 'quizframe.html')
+                self.response.out.write(template.render(path, template_values))
 
 class ViewQuiz(webapp.RequestHandler):
   #View Quiz

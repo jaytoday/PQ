@@ -52,6 +52,8 @@ def url_handler():
                                          quizbuilder.rpc.RPCHandler),
                                          ('/dev/?(.*)/?', 
                                          URIRouter),
+                                        ('/quiz_frame/?',
+                                         QuizFrame),
                                         ],
                                        debug=True)
   wsgiref.handlers.CGIHandler().run(application)

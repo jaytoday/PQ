@@ -416,8 +416,8 @@
 			$('#quiz_title').show();
 			$('#quiz_title div.buttons').hide();   
 			$('#quiz_instructions').show();  
-			$('#answer1').html(opts.itemArray[opts.itemNum].answer1);     
-			$('#answer2').html(opts.itemArray[opts.itemNum].answer2);
+			$('#answer1 .answertext').html(opts.itemArray[opts.itemNum].answer1);     
+			$('#answer2 .answertext').html(opts.itemArray[opts.itemNum].answer2);
 			$('#answer1,#answer2').mouseover(function(e)
 			{
 				$(this).not('.hovered').addClass('hovered');
@@ -440,26 +440,26 @@
 			$('#quiz_title div.buttons').hide();
 			$('#quiz_instructions2').show();  
 
-			$('#answer1').html(opts.itemArray[opts.itemNum].answer1);
+			$('#answer1 .answertext').html(opts.itemArray[opts.itemNum].answer1);
 
 			$('.timer_bar').css('margin-left', '-10px');
 			$('.timer_bar').css('width', '112%');
 
-			$('#answer2').html(opts.itemArray[opts.itemNum].answer2)
-				$('#quiz_instructions2')
-				.find('#answer1,#answer2').click(function()
-				{
+			$('#answer2 .answertext').html(opts.itemArray[opts.itemNum].answer2)
+                        $('#quiz_instructions2')
+                        .find('#answer1,#answer2').click(function()
+                        {
 
-					$('#example_1,#example_3', window.frames[0].document).hide('slow');
-					$('#example_2', window.frames[0].document).show('slow');
-					clearTimeout($.fn.quizbox._t);
-					$('.timer_bar').stop();
-					$('.timer_bar').css('width', '112%'); 
+                                $('#example_1,#example_3', window.frames[0].document).hide('slow');
+                                $('#example_2', window.frames[0].document).show('slow');
+                                clearTimeout($.fn.quizbox._t);
+                                $('.timer_bar').stop();
+                                $('.timer_bar').css('width', '112%'); 
 
-					// bind the skip button
-					$('#skip').click(function() { $.fn.quizbox.submit_answer(this); });
-					$('#quiz_instructions2').find('#answer1,#answer2').unbind('click');
-				});
+                                // bind the skip button
+                                $('#skip').click(function() { $.fn.quizbox.submit_answer(this); });
+                                $('#quiz_instructions2').find('#answer1,#answer2').unbind('click');
+                        });
 
 
 			var timerCb = function()
@@ -596,7 +596,8 @@
 
 		$("#quiz_loading").css({'left': ((pos[0] - 40) / 2 + pos[2]), 'top': ((pos[1] - 40) / 2 + pos[3])}).show();
 
-		loadingTimer = setInterval($.fn.quizbox.animateLoading, 66);
+                // running the animation while everything else is going on is causing a lot of delays -Morgan
+		//loadingTimer = setInterval($.fn.quizbox.animateLoading, 66);
 	};
 
 	$.fn.quizbox.animateLoading = function(el, o)
@@ -619,74 +620,97 @@
 	$.fn.quizbox.init = function()
 	{
 		/* Create Answer Buttons */
-		if (!$('#quiz_wrap').length)
+		if ($('#quiz_wrap').length < 1)
                 {
-			$('<div id="quiz_wrap"><div id="quiz_loading"><div></div></div><div id="quiz_outer"><div id="quiz_inner"><div id="quiz_nav"></div><div id="quiz_close"></div><div id="quiz_content"></div><div id="quiz_title"></div></div><div id="minutes-boxNOTYET"><div id="minutes-countNOTYET"> </div><div id="minutes-outerNOTYET"> <div id="minutes-innerNOTYET"> </div> </div></div></div></div>').appendTo("body");
-			$('<div id="quiz_bg"><div class="quiz_bg quiz_bg_n"></div><div class="quiz_bg quiz_bg_ne"></div><div class="quiz_bg quiz_bg_e"></div><div class="quiz_bg quiz_bg_se"></div><div class="quiz_bg quiz_bg_s"></div><div class="quiz_bg quiz_bg_sw"></div><div class="quiz_bg quiz_bg_w"></div><div class="quiz_bg quiz_bg_nw"></div></div>').prependTo("#quiz_inner");
-			/* append timer to iframe */
+                        $.ajax({
+                                url: '/quiz_frame',
+                                complete: function(xhr,status)
+                                {
+                                        $('body').append(xhr.responseText);
 
-			/* append score buttons to iframe */
-			$('<div id="quiz_score"  class="buttons"></div>').appendTo('#quiz_title');
-			/*	 $('<a id="continue" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main"><div class="arrow" style="margin-left:12px;"><img src="/static/stylesheets/img/pinkarrow.png" /></div><div class="skipitem" id="skiptext">Continue</div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_score'); */
+                                        /* initialize automatic countdown...if it reaches zero, changeItem +1 */
+                                        $("#minutes-box").hide();
 
-			/* append intro buttons to iframe */
-			// This is all really terrible. This should be done in HTML loaded from the server, the use jQuery to replace things like buttons and text
-			// There is WAAY to much overhead here.
+                                        /* effect on answer hover */
 
+                                        $(".answer").hover(function()
+                                        {
+                                                $(this).css({
+                                                        'font-variant': 'small-caps',
+                                                        'letter-spacing': '.00em'
+                                                });
+                                        }, function()
+                                        {
+                                                $(this).css({ 'font-variant': 'normal','letter-spacing': '.01em' });
+                                        });
+                                        
+                                        $(".notanswer").hover(function()
+                                        {
+                                                $(this).css({
+                                                        'font-variant': 'small-caps',
+                                                        'letter-spacing': '.01em'
+                                                });
+                                        }, function()
+                                        {
+                                                $(this).css({ 'font-variant': 'normal','letter-spacing': '.12em' });
+                                        });
 
-			$('<div id="quiz_intro"  class="buttons"></div>').appendTo('#quiz_title');
-			$('<a id="take_quiz" onmouseover="" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_purple_left"></td><td id="quiz_purple_main"><div class="answertext" id="take_quiz" style="width: 170px; font-size: 1.3em;">T<span style="font-size:.7em;"/>ake</span> T<span style="font-size:.7em;"/>his</span> Q<span style="font-size:.7em;"/>uiz</span></div></div></td><td id="quiz_purple_right"></td></tr></table></a>').appendTo('#quiz_intro');
-			// - Choose Between Quizzes $('<a id="choose_quiz" class="answer" style="font-size:13px; margin-left:30px;" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main" style="width:45px;"><div class="answertext" style="margin: 3px 0pt 0pt 1px; font-size: 13px; width: 36px; line-height: 1.1em;" id="choose_quiz"></div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_intro');
+                                        $('#take_quiz').click(function()
+                                        {
+                                                submit_answer(this);
+                                        });
 
-			/* append instruction buttons to iframe */
-			$('<div id="quiz_instructions"  class="buttons"></div>').appendTo('#quiz_title');
-			$('<a id="answer1" onmouseover="" class="answer" style="margin-left:53px;" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_blue_left"></td><td id="quiz_blue_main"><div class="answertext" id="answer1"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions');
-			$('<a id="answer2" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_blue_left"></td><td id="quiz_blue_main"><div class="answertext" style="margin-left:1px; width:101%;" id="answer2"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions');
+                                        var submit_answer = $.fn.quizbox.submit_answer = function(answer)
+                                        {     
+                                                if(answer.id == "skip")
+                                                {
+                                                        var answer_text = "skip_item";
+                                                }
+                                                else if(answer.id == "timeout")
+                                                {
+                                                
+                                                        var answer_text = "timeout";
+                                                }
+                                                else
+                                                {
+                                                        var answer_text = $(answer).text();
+                                                }
 
-			$('<div id="quiz_instructions2" class="buttons" style="margin-top:7px;margin-left:16px;"></div>').appendTo('#quiz_title');
-			//Arg, this has been getting animated while not visible, one ID per page!
-			$('<div class="timer_wrapper"  id="quiz_timer_instruction"><div class="timer_bar timer_inner" style="width:345px;"></div></div>').appendTo('#quiz_instructions2');
-			$('<a id="answer1" onmouseover="" class="answer"  href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_blue_left"></td><td id="quiz_blue_main" style="min-width:60px;"><div class="answertext"  style="margin-left:-6px" id="answer1"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
-			$('<a id="answer2" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_blue_left"></td><td id="quiz_blue_main" style="min-width:60px;"><div class="answertext" style="margin-left:-12px;" id="answer2"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
-			$('<a id="skip" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main"><div class="arrow"><img src="/static/stylesheets/img/arrow.png" /></div><div class="skipitem" id="skiptext">Skip</div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
+                                                if(opts.itemArray[opts.itemNum].item_type == "quiz_item")
+                                                {
+                                                        var answer_slug = opts.itemArray[opts.itemNum].slug;
 
-			$('<div id="quiz_begin_quiz" class="buttons" style=" margin-top:7px"></div>').appendTo('#quiz_title');
-			$('<a id="startquiz" class="notanswer" href="#" style=" margin-top:7px; margin-left: 90px"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_purple_left"></td><td id="quiz_purple_main" style="padding:0;"><div class="skipitem" id="startquiz">S<span style="font-size:.7em;"/>tart</span> Q<span style="font-size:.7em;"/>uiz</span>!</div></td><td id="quiz_purple_right"></td></tr></table></a>').appendTo('#quiz_begin_quiz');
+                                                        SubmitScore(answer_text, answer_slug);
+                                                } 
 
-			/* append quiz buttons to iframe */
-			$('<div id="quiz_answers" class="buttons"></div>').appendTo('#quiz_title');
-			$('<div class="timer_wrapper" id="quiz_timer"><div class="timer_bar timer_inner"></div></div>').appendTo('#quiz_answers');
+                                                if(opts.itemArray[opts.itemNum].item_type == "score")
+                                                {
+                                                        return false;
+                                                }
 
-			$('<a id="answer1" onmouseover="" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_blue_left"></td><td id="quiz_blue_main"><div class="answertext" id="answer1"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_answers');
-			$('<a id="answer2" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_blue_left"></td><td id="quiz_blue_main"><div class="answertext" id="answer2"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_answers');
-			$('<a id="answer3" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_blue_left"></td><td id="quiz_blue_main"><div class="answertext" id="answer3"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_answers');
-			$('<a id="skip" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main"><div class="arrow"><img src="/static/stylesheets/img/arrow.png" /></div><div class="skipitem" id="skiptext">Skip</div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_answers');
-            $('<a id="timeout" class="answer" href="#" style=""></a>').appendTo('#quiz_answers');
-			/* initialize automatic countdown...if it reaches zero, changeItem +1 */
-			$("#minutes-box").hide();
+                                                if(answer.id == "choose_quiz")
+                                                { 
+                                                        /* TODO cycle through quiz choices */
+                                                        var selection = $('#quiz_selections', window.frames[0].document);
+                                                        selection.find('#quiz_selections').toggle();
 
-			/* effect on answer hover */
+                                                        return false;
+                                                }
+                                                /* proceed to next item */
+                                                $.fn.quizbox.changeItem(opts.itemNum + 1);
+                                                return false;
+                                        }        
 
-			$(".answer").hover(function()
-			{
-				$(this).css({
-					'font-variant': 'small-caps',
-					'letter-spacing': '.00em'
-				});
-                        }, function()
-                        {
-                                $(this).css({ 'font-variant': 'normal','letter-spacing': '.01em' });
-                        });
-                        
-                        $(".notanswer").hover(function()
-			{
-				$(this).css({
-					'font-variant': 'small-caps',
-					'letter-spacing': '.01em'
-				});
-                        }, function()
-                        {
-                                $(this).css({ 'font-variant': 'normal','letter-spacing': '.12em' });
+                                        if ($.browser.msie)
+                                        {
+                                                $("#quiz_inner").prepend('<iframe id="quiz_freeIframe" scrolling="no" frameborder="0"></iframe>');
+                                        }
+
+                                        if (jQuery.fn.pngFix)
+                                                $(document).pngFix();
+
+                                        $("#quiz_close").click($.fn.quizbox.close);
+                                }
                         });
 
 			function timeleft(timetype)
@@ -769,62 +793,8 @@
 			/* =========== */
 
 			/* submit answers and proceed to next question */
-			$('#take_quiz').click(function()
-			{
-				submit_answer(this);
-			});
-
-			var submit_answer = $.fn.quizbox.submit_answer = function(answer)
-			{     
-				if(answer.id == "skip")
-				{
-					var answer_text = "skip_item";
-				}
-				else if(answer.id == "timeout")
-				{
-				
-					var answer_text = "timeout";
-				}
-				else
-				{
-					var answer_text = $(answer).text();
-				}
-
-				if(opts.itemArray[opts.itemNum].item_type == "quiz_item")
-				{
-					var answer_slug = opts.itemArray[opts.itemNum].slug;
-
-					SubmitScore(answer_text, answer_slug);
-				} 
-
-				if(opts.itemArray[opts.itemNum].item_type == "score")
-				{
-					return false;
-				}
-
-				if(answer.id == "choose_quiz")
-				{ 
-					/* TODO cycle through quiz choices */
-					var selection = $('#quiz_selections', window.frames[0].document);
-					selection.find('#quiz_selections').toggle();
-
-					return false;
-				}
-				/* proceed to next item */
-				$.fn.quizbox.changeItem(opts.itemNum + 1);
-				return false;
-			}        
 		} 
 
-		if ($.browser.msie)
-		{
-			$("#quiz_inner").prepend('<iframe id="quiz_freeIframe" scrolling="no" frameborder="0"></iframe>');
-		}
-
-		if (jQuery.fn.pngFix)
-			$(document).pngFix();
-
-		$("#quiz_close").click($.fn.quizbox.close);
 	}; /* end init fn */
 
 	$.fn.quizbox.getPosition = function(el)
