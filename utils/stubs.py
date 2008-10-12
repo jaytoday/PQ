@@ -1,7 +1,11 @@
 import logging
 import random
-from utils.utils import *
-from model import *
+from .model.quiz import QuizItem, QuizTaker, ItemScore
+from google.appengine.ext.webapp import template
+from google.appengine.ext import db
+from google.appengine.api import users
+from google.appengine.ext import webapp
+
 
 class CreateScoreStubs(webapp.RequestHandler):
  # Creates Fake Scores. May Take A While to Run At High Volume

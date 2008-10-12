@@ -5,7 +5,8 @@ margin-left:20px;
 }
 
 div.quiz_item_content{
-width:700px;
+float:right;
+width:500px;
 }
 
 span.answer_span{
@@ -15,4 +16,8 @@ border:1px solid #E2C922;
 font-weight:bold;
 margin:0 5px;
 padding:0 5px;
+}
+
+div.answer_candidates{
+width:400px;
 }

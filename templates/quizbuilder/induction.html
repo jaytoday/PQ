@@ -1,9 +1,19 @@
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/quizbuilder.css"/>
 <script type="text/javascript" src="/static/scripts/jquery/jquery-1.2.6.min.js"></script>
 <script type="text/javascript" src="/static/scripts/json2min.js"></script>
+<script type="text/javascript" src="/static/scripts/parseJSON.js"></script>
 <script type="text/javascript" src="/static/scripts/jquery/jquery.field.min.js"></script>
+<script type="text/javascript" src="/static/scripts/jquery/jquery.field.min.js"></script>
+<!-- markItUp! -->
+<script type="text/javascript" src="/static/scripts/markitup/jquery.markitup.pack.js"></script>
+<!-- markItUp! toolbar settings -->
+<script type="text/javascript" src="/static/scripts/markitup/sets/default/set.js"></script>
+<!-- markItUp! skin -->
 
+<link rel="stylesheet" type="text/css" href="/static/scripts/markitup/skins/markitup/style.css" />
+<!--  markItUp! toolbar skin -->
+<link rel="stylesheet" type="text/css" href="/static/scripts/markitup/sets/default/style.css" />
 
 <script type="text/javascript">
 
@@ -12,6 +22,173 @@
 
 $(document).ready(function() {
 
+
+wrong_answers = [];
+answer_in_array = [];
+
+function EditQuizItem(i, item, answers) {
+  
+wrong_answers[i] = [];
+answer_in_array[i] = [];    
+
+ $.each(answers, function(n, answer){
+ 	
+ answer_in_array[i][n] = "False"; 
+ 
+});
+
+
+
+ 
+// $('.quiz_item_content').markItUp(mySettings);
+   
+   
+      
+
+$('#quiz_data_' + i + ' > input[@name="proficiency"]').click(function(){
+$('#quiz_data_' + i + ' > input[@name="proficiency"]').setValue($(this).attr("value"));
+});
+
+
+
+
+
+
+	
+    
+		$('div#answers_' + i + '').find('.answer_candidate').click(function(){
+			
+
+
+console.log(wrong_answers[i]);
+
+answer_text = $(this).text();
+
+n = $(this).attr("id");
+
+console.log(n);
+
+
+// TODO: ranking - splice() method can order answers 
+
+//answer_in_array[i][n] = False;
+
+
+console.log("true?", answer_in_array[i][n]);
+
+for (var a = -1, loopCnt = wrong_answers[i].length; a < loopCnt; a++) {
+
+
+
+if (answer_text == wrong_answers[i][a]){   // if answer text is already there
+
+
+wrong_answers[i].splice(wrong_answers[i].indexOf(answer_text), 1);
+
+answer_in_array[i][n] = "False"; // answer not in array anymore
+
+$(this).css("color","#555555");
+$(this).css("font-weight","normal"); 
+
+console.log('removed text');
+return;
+
+
+}
+
+}
+
+console.log('array', wrong_answers[i]);
+
+if (answer_in_array[i][n] == "False") {
+
+if (wrong_answers[i].length > 1) { console.log("Only 2 Wrong Answers, Please!"); return false; }  // If there are already two answers
+
+wrong_answers[i].splice(wrong_answers[i].length, 0, answer_text);
+
+answer_in_array[i][n] == "True";
+
+
+
+
+ $(this).css("color","#000000"); 
+  $(this).css("font-weight","bold"); 
+  
+  console.log('added item', answer_text, wrong_answers[i],wrong_answers[i].length);
+  return;
+  
+}
+
+
+
+			    
+
+			});
+
+ 
+ 
+  
+
+
+//var server = {};
+//var item_count = 0;
+
+
+
+
+function onItemAddSuccess(response)
+{
+    console.log(response);
+}
+
+
+    
+function PreviewAnswer(answer) {
+
+ 	var answer_span = $('#quiz_item_content_' + i + '').find('.answer_span');
+	$('#answers_' + i + '').find('.answer_candidate').hover(function()
+	
+	{
+	      
+        answer_span.fadeTo(1,0.5);
+        answer_span.html($(this).text());
+	    answer_span.fadeTo("slow", 1);
+	
+	},
+	function()
+	{
+	    
+		answer_span.empty();
+		answer_span.html(answer);
+        answer_span.fadeTo(100, 0.5);
+	});   
+    
+    
+}
+
+
+PreviewAnswer(item.index);
+
+
+            
+        
+$('#submit_item_' + i).click(function() {
+    
+
+    for (j = 0; j < 4; j++) {
+if (eval('document.quiz_data_' + i + '.proficiency[' + j + '].checked') == true) {
+    var proficiency = eval('document.quiz_data_' + i + '.proficiency[' + j + '].value'); }}
+
+
+    server.SubmitQuizItem(document.quiz_data_{{ forloop.counter }}.source.value, document.quiz_data_{{ forloop.counter }}.slug.value, "{{quiz_item.correct_answer}}", wrong_answers[i], document.quiz_data_{{ forloop.counter }}.category.value, proficiency, $('div.quiz_item_content').text(),  onItemAddSuccess);
+});
+    
+    
+
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////
 
    jQuery.fn.extend({
 	preserveDefaultText: function(defaultValue, replaceValue)
@@ -35,7 +212,7 @@ $(document).ready(function() {
 });
 
 
-$('.topic_name').preserveDefaultText('topic');
+//$('.topic_name').preserveDefaultText('topic');
 $('.url_name').preserveDefaultText('url');
 
 
@@ -106,12 +283,69 @@ var item_count = 0;
 
 InstallFunction(server, 'SubmitContentUrl');
 
+InstallFunction(server, 'SubmitQuizItem');
+
+function OnSubmitUrlSuccess(response){
+
+$('form#content_url').hide();
+var raw_quiz_items = parseJSON(response);
 
 
-function onAddSuccess(response)
-{
+ $.each(raw_quiz_items, function(i,item){
+ 	
+ 	
+$('.slug_name').preserveDefaultText('slug_name');
+$('.source_name').preserveDefaultText('source');
+$('.category_name').preserveDefaultText('category');
 
-$('div#response').html(response);
+
+ 	
+var html = '<div class="quiz_item" style="margin-top:30px;" id="' + i + '" ></div>';
+
+
+html += '<div class="index" style="font-size:3.2em;">' + item.index + '</div>';
+
+html += '<div class="pre_content" style="font-style:italic;">' + item.pre_content + '</div>';
+
+html += '<div class="quiz_item_content" id="quiz_item_content_' + i +'" style="font-size:1.2em;">' + item.content + '</div>';
+
+html += '<div class="post_content" style="font-style:italic;>' + item.post_content + '</div>';
+
+html += '<div class="answer_candidates" id="answers_' + i + '"></div>';  // Expand answer candidates
+
+
+html += '<form id="quiz_data_' + i + '" name="quiz_data_{{ forloop.counter }}" ><input type="text" name="source" class="source_name" value="source" /><br/><input type="text" name="slug" class="slug_name" value="slug_name" /><br/><input type="text" name="category" class="category_name" value="category" /><br/><input type="submit" onClick="return false;this.disabled = true;" id="submit_item_' + i + '" class="submit_item" value="Submit Quiz Item" />';
+
+
+$('div#quiz_items').append(html);
+
+console.log(item.answer_candidates);
+
+answers =  eval(item.answer_candidates); //item.answer_candidates
+
+
+console.log(answers);
+
+ $.each(answers, function(n, answer){
+ 	
+ 	
+
+answer_html = '<li id ="' + n + '" class="answer_candidate" >' + answer + '</li>';
+
+
+$('div#answers_' + i).append(answer_html);
+
+});
+
+
+EditQuizItem(i, item, answers); // Run function after the above code is evaluated.
+
+});
+
+
+
+
+
 }
 
 
@@ -128,7 +362,9 @@ $('#submit_url').click(function() {
 if (eval('document.content_url.proficiency[' + j + '].checked') == true) {
     var proficiency = eval('document.content_url.proficiency[' + j + '].value'); }}
 
-    server.SubmitContentUrl(document.content_url.url.value, document.content_url.topic.value, proficiency, onAddSuccess);
+    server.SubmitContentUrl(document.content_url.url.value, document.content_url.topic.value, proficiency, OnSubmitUrlSuccess);
+    
+    
 });
     
     
@@ -140,8 +376,7 @@ if (eval('document.content_url.proficiency[' + j + '].checked') == true) {
 
 
 
-wrong_answers = []
-answer_in_array = []
+
 </script>
 
 	
@@ -157,15 +392,15 @@ url
 <br/>
 <br/>
 topic
-<input type="text" name="topic" class="topic_name" value="topic" />
+<input type="text" name="topic" class="topic_name" value="topic" /> 
 <br/><br/>
-Choose Proficiency
+Choose Proficiency and ProficiencyTopic
 <I>(nested list -- jquery table?)</I>
 <br/>
 <input type="checkbox" id="1" name="proficiency" value="building_webapps" ><span>Building Web Apps</span><br/>
 <input type="checkbox" id="2" name="proficiency" value="clean_energy" ><span>Clean Energy</span><br/>
 <input type="checkbox" id="3" name="proficiency" value="collective_intelligence" ><span>Collective Intelligence</span><br/>
-<input type="checkbox" id="4" name="proficiency" value="startup_financing" ><span>Startup Financing</span><br/>
+<input type="checkbox" id="4" name="proficiency" value="startup_financing" checked ><span>Startup Financing</span><br/>
 <br/>
 <br/>
 
@@ -174,7 +409,14 @@ Choose Proficiency
 
 </form>
 
-<div id="response">
+
+
+
+<div id="tags">
+
+</div>
+
+<div id="quiz_items">
 
 </div>
 

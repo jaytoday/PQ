@@ -3,10 +3,14 @@ import logging
 logging.info('Loading %s', __name__)
 from google.appengine.ext import webapp
 from google.appengine.ext import db
-from model import *
+from .model.quiz import QuizItem
 import views
 import simplejson
 from .utils import jsonparser as parser
+from utils.utils import ROOT_PATH
+import sys
+sys.setdefaultencoding('utf-8')
+
 
 
 class RPCHandler(webapp.RequestHandler):
@@ -46,7 +50,8 @@ class RPCHandler(webapp.RequestHandler):
 
 class RPCMethods(webapp.RequestHandler):
   """ Defines AJAX methods.
-  NOTE: Do not allow remote callers access to private/protected "_*" methods.
+  NOTE: Do not allow reload(sys); sys.setdefaultencoding('utf-8')
+remote callers access to private/protected "_*" methods.
   """
 
   def ds(self, *args):
@@ -72,14 +77,15 @@ class RPCMethods(webapp.RequestHandler):
     
         
     
-  def runOperation(self, t, f):
-    print t.filter.get().mean
-    print f.quiz_taker.filter.get().mean
-    print f.quiz_taker.scores
-    print f.quiz_taker.itemscores.get()
+  def test(self):
+     print "WA"
+     json_file = open(ROOT_PATH + "/data/raw_items.json")
+     json_str = json_file.read()
+     newdata = simplejson.loads(json_str) # Load JSON file as object
+     print str(newdata[0]['content'])
+    
 
-            
-  
+           
   
         
   def SubmitContentUrl(self, *args):
@@ -88,17 +94,18 @@ class RPCMethods(webapp.RequestHandler):
       raw_items = []
       for this_raw_item in save_url.get(args):
           raw_item = {}
-          raw_item['pre_content'] = this_raw_item.pre_content
-          raw_item['content'] = this_raw_item.content
-          raw_item['post_content'] = this_raw_item.post_content
-          raw_item['answer_candidates'] = this_raw_item.answer_candidates
-          raw_item['index'] = str(this_raw_item.index)
-          raw_item['url'] = str(this_raw_item.page.url)
-          raw_item['topic'] = str(this_raw_item.page.topic.name)
+          raw_item['pre_content'] = unicode(this_raw_item.pre_content)
+          raw_item['content'] = unicode(this_raw_item.content)
+          raw_item['post_content'] = unicode(this_raw_item.post_content)
+          raw_item['answer_candidates'] = unicode(this_raw_item.answer_candidates)
+          raw_item['index'] = unicode(this_raw_item.index)
+          raw_item['url'] = unicode(this_raw_item.page.url)
+          raw_item['topic'] = unicode(this_raw_item.page.topic.name)
           raw_items.append(raw_item)
+          
       
       # this parser needs to do character escaping 
-      json_response = simplejson.dumps(raw_items) 
+      json_response = simplejson.dumps(raw_items, indent=4) 
       return json_response
 
     

@@ -1,8 +1,16 @@
-from views import *
-from utils import *
+import logging
+from utils import utils
+import model
+from utils import stubs as stubs
 from dev import *
+import quiztaker.views
+import quiztaker.rpc
+import quizbuilder.views
+import quizbuilder.rpc
+
+
 import quizbuilder
-#
+
 
 
 
@@ -14,47 +22,47 @@ def url_handler():
   application = webapp.WSGIApplication(
                                        [
                                         ('/demo/?',
-                                         PQDemo),
+                                         quiztaker.views.PQDemo),
                                         ('/preview/ad_embed/?',
-                                         PQDemo),                                         
+                                         quiztaker.views.PQDemo),                                         
                                          ('/intro/?',
-                                         PQIntro),
+                                         quiztaker.views.PQIntro),
                                         ('/rpc/?',
-                                         RPCHandler),                                                                                                                     
+                                         quiztaker.rpc.RPCHandler),                                                                                                                     
                                         ('/viewscore/?',
-                                         ViewScore),
+                                         quiztaker.views.ViewScore),
                                         ('/quiz_complete/?',
-                                         QuizComplete),                                         
+                                         quiztaker.views.QuizComplete),                                         
                                         ('/view_quiz/?',
-                                         ViewQuiz), 
+                                         quiztaker.views.ViewQuiz), 
                                         ('/view_quiz/close/?',
-                                         ViewNone),                                         
+                                         quiztaker.views.ViewNone),                                         
                                         ('/quiz/?',
-                                         QuizItemTemplate),                                         
+                                         quiztaker.views.QuizItemTemplate),                                         
                                         ('/?',
-                                         PQHome),  
+                                         quiztaker.views.PQHome),  
                                         ('/refresh_data/?',
-                                         RefreshData),
+                                         quiztaker.views.RefreshData),
                                         ('/dump_data/?',
-                                         DumpData),                                          
+                                         quiztaker.views.DumpData),                                          
                                         ('/create_scores/?',
-                                         CreateScoreStubs),
+                                         stubs.CreateScoreStubs),
                                         ('/view_scores/?',
-                                         ViewScoreStubs),
+                                         stubs.ViewScoreStubs),
                                         ('/set_proficiencies/?',
-                                         Set_Proficiencies),
+                                         stubs.Set_Proficiencies),
                                         ('/set_difficulties/?',
-                                         Set_Difficulties),
+                                         stubs.Set_Difficulties),
                                         ('/quizbuilder/?',
-                                         QuizBuilder),
+                                         quizbuilder.views.QuizBuilder),
                                         ('/quizbuilder/induction/?',
-                                         InductionInterface),
+                                         quizbuilder.views.InductionInterface),
                                         ('/quizbuilder/rpc/?',
                                          quizbuilder.rpc.RPCHandler),
                                          ('/dev/?(.*)/?', 
                                          URIRouter),
                                         ('/quiz_frame/?',
-                                         QuizFrame),
+                                         quiztaker.views.QuizFrame),
                                         ],
                                        debug=True)
   wsgiref.handlers.CGIHandler().run(application)

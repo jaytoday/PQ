@@ -4,7 +4,7 @@ logging.info('Loading %s', __name__)
 from google.appengine.ext import webapp
 from google.appengine.ext import db
 import simplejson
-from model import *
+from .model import quiz
 
 class RPCHandler(webapp.RequestHandler):
   # AJAX Handler
@@ -60,11 +60,11 @@ class RPCMethods(webapp.RequestHandler):
     
         
     
-  def runOperation(self, t, f):
-    print t.filter.get().mean
-    print f.quiz_taker.filter.get().mean
-    print f.quiz_taker.scores
-    print f.quiz_taker.itemscores.get()
+  def sede(self, *args):
+  	query = QuizItems.gql()
+  	quiz_items = query.fetch(5)
+  	print quiz_items
+
 
             
   

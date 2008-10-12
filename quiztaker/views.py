@@ -13,12 +13,8 @@ from google.appengine.ext import webapp
 
 from google.appengine.ext.webapp import util
 import simplejson
-from utils import utils
-from model import *
-from stubs import *
-from quizbuilder.views import *
-from rpc import * # Ajax Calls
-
+from .utils.utils import tpl_path, ROOT_PATH
+import model.quiz 
 
 # Template paths
 QUIZTAKER_PATH = 'quiztaker/'
@@ -68,16 +64,24 @@ class QuizItemTemplate(webapp.RequestHandler):
     quiz_slug = [self.request.get('slug'), self.request.get('source')]
     this_quiz_item = QuizItem.gql("WHERE slug = :slug",
                                   slug=quiz_slug).get()
+    
+    
     quiz_item = {}
     quiz_item['content'] = this_quiz_item.content
     quiz_item['category'] = this_quiz_item.category
     quiz_item['answers'] = this_quiz_item.answers
-    json_response = simplejson.dumps(quiz_item) 
-    return json_response
-                                  
+    json_response = simplejson.dumps(quiz_item)
+    print "a" 
+    print json_response
+    
+    json_loads = simplejson.loads(json_response)
+    print json_loads['content']
+    """                      
     template_values['quiz_item'] = this_quiz_item
     path = tpl_path(QUIZTAKER_PATH + 'quiz_item.html') # Pass Quiz Item to Template
-    #self.response.out.write(template.render(path, template_values))
+    self.response.out.write(template.render(path, template_values))
+    """
+
 
 class QuizFrame(webapp.RequestHandler):
         def get(self):
