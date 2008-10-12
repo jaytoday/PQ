@@ -172,15 +172,13 @@ PreviewAnswer(item.index);
 
             
         
-$('#submit_item_' + i).click(function() {
+$('#submit_item_' + i).click(function(i) {
     
 
-    for (j = 0; j < 4; j++) {
-if (eval('document.quiz_data_' + i + '.proficiency[' + j + '].checked') == true) {
-    var proficiency = eval('document.quiz_data_' + i + '.proficiency[' + j + '].value'); }}
+console.log('document.quiz_data_' + i + '.source.value');
 
 
-    server.SubmitQuizItem(document.quiz_data_{{ forloop.counter }}.source.value, document.quiz_data_{{ forloop.counter }}.slug.value, "{{quiz_item.correct_answer}}", wrong_answers[i], document.quiz_data_{{ forloop.counter }}.category.value, proficiency, $('div.quiz_item_content').text(),  onItemAddSuccess);
+   // server.SubmitQuizItem(document.quiz_data_.source.value, document.quiz_data_{{ forloop.counter }}.slug.value, item[i], wrong_answers[i], document.quiz_data_{{ forloop.counter }}.category.value, proficiency, $('div#quiz_item_content').text(),  onItemAddSuccess);
 });
     
     
@@ -300,21 +298,36 @@ $('.category_name').preserveDefaultText('category');
 
 
  	
-var html = '<div class="quiz_item" style="margin-top:30px;" id="' + i + '" ></div>';
+var html = '<div class="quiz_item"  id="' + i + '" ></div>';
 
 
-html += '<div class="index" style="font-size:3.2em;">' + item.index + '</div>';
+
+
+
+html += '<div class="quiz_item_content">'; // start quiz item content
 
 html += '<div class="pre_content" style="font-style:italic;">' + item.pre_content + '</div>';
 
-html += '<div class="quiz_item_content" id="quiz_item_content_' + i +'" style="font-size:1.2em;">' + item.content + '</div>';
+html += '<div class="content" id="quiz_item_content_' + i +'" style="font-size:1.2em;">' + item.content + '</div>';
 
-html += '<div class="post_content" style="font-style:italic;>' + item.post_content + '</div>';
+html += '<div class="post_content">' + item.post_content + '</div>';
+
+
+html += '</div>'; //end quiz item content
+
+
+
+html += '<div class="index">' + item.index + '</div>';
+
 
 html += '<div class="answer_candidates" id="answers_' + i + '"></div>';  // Expand answer candidates
 
 
-html += '<form id="quiz_data_' + i + '" name="quiz_data_{{ forloop.counter }}" ><input type="text" name="source" class="source_name" value="source" /><br/><input type="text" name="slug" class="slug_name" value="slug_name" /><br/><input type="text" name="category" class="category_name" value="category" /><br/><input type="submit" onClick="return false;this.disabled = true;" id="submit_item_' + i + '" class="submit_item" value="Submit Quiz Item" />';
+
+
+
+
+html += '<form id="quiz_data_' + i + '" name="quiz_data_' + i + '" ><input type="text" name="source" class="source_name" value="source" /><br/><input type="text" name="slug" class="slug_name" value="slug_name" /><br/><input type="text" name="category" class="category_name" value="category" /><br/><input type="submit" onClick="return false;this.disabled = true;" id="submit_item_' + i + '" class="submit_item" value="Submit Quiz Item" />';
 
 
 $('div#quiz_items').append(html);
@@ -330,7 +343,7 @@ console.log(answers);
  	
  	
 
-answer_html = '<li id ="' + n + '" class="answer_candidate" >' + answer + '</li>';
+answer_html = '<div id ="' + n + '" class="answer_candidate" >' + answer + '</div>';
 
 
 $('div#answers_' + i).append(answer_html);
@@ -416,7 +429,7 @@ Choose Proficiency and ProficiencyTopic
 
 </div>
 
-<div id="quiz_items">
+<div class="quiz_items" id="quiz_items">
 
 </div>
 

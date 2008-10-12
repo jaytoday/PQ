@@ -64,6 +64,7 @@ class RawItemInduction(webapp.RequestHandler):
         build_items = BuildItemsFromPage()
         # two part process
         raw_quiz_items = build_items.get(page)
+        if not raw_quiz_items: return []
         saved_items = []
         #len(raw_quiz_items)
         for item in raw_quiz_items[0:5]:
@@ -177,20 +178,9 @@ class BuildItemsFromPage():
   def get(self, page):
         raw_quiz_items = []
         tag_threshold = 0
-        
-        #in case we need to meet 100k limit, truncate page.
-        soup_url = SEMANTICPROXY_URL +  str(page.url)    # + TRUNCATE URL + 
-        
-        
-        
-        
-        # timeout for fetch_page (and all fetch pages)
-        fetch_page = urlfetch.fetch(soup_url)              # perform semantic analysis
-        soup = BeautifulSoup(fetch_page.content) #whole page
-        tags = self.get_tags(soup.findAll('c:exact'))
-        if len(tags) == 0:
-        	return "no tags"
-                # rank tags by relevency
+        soup = self.get_soup(page)
+        if not soup: return False
+        tags = self.get_tags(soup)
         for tag in tags[0:RAW_ITEMS_PER_PAGE]:  # Slice [1:...]
         # Check if tag is too short, or too common. (the "she" problem)
         # CHECK IF TAG IS A TYPED TOPIC ON FREEBASE 
@@ -206,14 +196,29 @@ class BuildItemsFromPage():
             continue 
 
         return raw_quiz_items
-  
-  def get_tags(self, doc_tags): 
-  # for a page, get a relevency-ranked list of topics found in the text. 
-    tags = []
-    for tag in doc_tags:
-        tags.append(str(tag.contents[0]))
-    tags = self.rank_tags(tags)
-    return tags  
+
+
+  def get_soup(self, page):
+	#in case we need to meet 100k limit, truncate page.
+	soup_url = SEMANTICPROXY_URL +  str(page.url)    # + TRUNCATE URL + 
+	# timeout for fetch_page (and all fetch pages)
+	fetch_page = urlfetch.fetch(soup_url)              # perform semantic analysis
+	soup = BeautifulSoup(fetch_page.content) #whole page
+	try: # look for error
+		exception = soup.findAll('exception')[0].contents[0]
+		print exception
+		return False
+	except: return soup 
+	
+	  
+  def get_tags(self, soup):
+	page_tags = soup.findAll('c:exact')
+	if len(page_tags) == 0: return "no tags" 
+	tags = [] # for a page, get a relevency-ranked list of topics found in the text. 
+	for tag in page_tags:
+		tags.append(str(tag.contents[0]))
+	tags = self.rank_tags(tags)
+	return tags  
     
   def rank_tags(self, l):
     # tag ranking helper function
@@ -267,9 +272,7 @@ class BuildItemsFromPage():
         
   def get_raw_content_groups(self, page_text,tag):
     # find paragraph in text containing a tag.    
-    
     # todo: Templates for mediawiki and google knol
-
     raw_content_groups = []
     w = re.compile(tag)
     #tag_word = " " + tag + " " #regexp -> 're.IGNORECASE | re.MULTILINE'

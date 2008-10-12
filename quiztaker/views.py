@@ -14,7 +14,7 @@ from google.appengine.ext import webapp
 from google.appengine.ext.webapp import util
 import simplejson
 from .utils.utils import tpl_path, ROOT_PATH
-import model.quiz 
+from model.quiz import Proficiency, ProficiencyTopic, QuizTaker, QuizItem, ItemScore
 
 # Template paths
 QUIZTAKER_PATH = 'quiztaker/'
@@ -65,13 +65,11 @@ class QuizItemTemplate(webapp.RequestHandler):
     this_quiz_item = QuizItem.gql("WHERE slug = :slug",
                                   slug=quiz_slug).get()
     
-    
     quiz_item = {}
     quiz_item['content'] = this_quiz_item.content
     quiz_item['category'] = this_quiz_item.category
     quiz_item['answers'] = this_quiz_item.answers
     json_response = simplejson.dumps(quiz_item)
-    print "a" 
     print json_response
     
     json_loads = simplejson.loads(json_response)
