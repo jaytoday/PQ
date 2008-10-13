@@ -106,17 +106,20 @@ remote callers access to private/protected "_*" methods.
       json_response = simplejson.dumps(raw_items, indent=4) 
       return json_response
 
+
+
+
     
   def SubmitQuizItem(self, *args):
-
       new_quiz_item = QuizItem()
+      new_quiz_item.index = args[0]
+      new_quiz_item.answers = args[1]
       new_quiz_item.slug = [str(args[0]), str(args[1])]
-      new_quiz_item.index = str(args[2])
-      new_quiz_item.answers = args[3] # And args[2] 
+       # And args[2] 
       new_quiz_item.category = str(args[4])       # different datastore? Not currently in model 
       new_quiz_item.proficiency = str(args[5])  # Should be Proficiency
       new_quiz_item.content = str(args[6])
       new_quiz_item.difficulty = 0 # Default?
       #new_quiz_item.put()
+      print new_quiz_item
       return "saved quiz item" 
-

@@ -47,6 +47,8 @@ AC_MIN = 8 # Minimum of answer choices required.
 
 RAW_ITEMS_PER_PAGE = 5 # Limit of quiz items created per page 
 
+MIN_TAG_CHARS = 4 # Minimum characters per tag
+
 RAW_ITEMS_PER_TAG = 2 # Limit of quiz items created per page
 
 QUIZBUILDER_LIMIT = 1
@@ -211,7 +213,8 @@ class BuildItemsFromPage():
 	if len(page_tags) == 0: return "no tags" 
 	tags = [] # for a page, get a relevency-ranked list of topics found in the text. 
 	for tag in page_tags:
-		tags.append(str(tag.contents[0]))
+		if len(tag.contents[0]) >= MIN_TAG_CHARS: tags.append(str(tag.contents[0]))
+		
 	tags = self.rank_tags(tags)
 	return tags  
     
@@ -274,8 +277,8 @@ class BuildItemsFromPage():
     for p in page_text[0].contents:
         psoup = BeautifulSoup(p)
         for paragraph in psoup.findAll('p'):
-            if paragraph.find(text=re.compile(r'\W%s\W' % tag )):  # Is tag in this paragraph? 
-                the_paragraph = self.highlightAnswer(paragraph, tag) 
+            main_paragraph = paragraph.find(text=re.compile(r'\W%s\W' % tag ))
+            if main_paragraph:  # Is tag in this paragraph? 
                 # GET NEXT AND PREV <P> ELEMENTS CONTAINING SIGNIFICANT CONTENT. 
                 if (paragraph.findPreviousSibling('p') == None):
                     previous_paragraph = ""
@@ -285,11 +288,12 @@ class BuildItemsFromPage():
                     next_paragraph = ""
                 else:
                     next_paragraph = paragraph.findNextSibling('p').contents[0]
-                paragraphs = (previous_paragraph, the_paragraph, next_paragraph)
+                paragraphs = (previous_paragraph, main_paragraph, next_paragraph)
                 clean_paragraphs = []
                 for p in paragraphs:
                 	p = p.encode('utf-8')
                 	p = p.replace('\n', '')
+                	p = self.highlightAnswer(p, tag) 
                 	clean_paragraphs.append(p) 
                 raw_content_groups.append(clean_paragraphs)#return paragraph_containing_tag # this only returns the first instance.
             else:
@@ -302,7 +306,8 @@ class BuildItemsFromPage():
     # apply HTML markup to answer within quiz item content
      text = str(text)
      str_tag = str(tag)
-     return text.replace(str_tag, '<span class="answer_span">%s</span>' % str_tag)               
+     tag_word=re.compile(r'\W%s\W' % tag, re.IGNORECASE)
+     return tag_word.sub('<span class="answer_span">%s</span>' % tag, text)               
      #return text.replace(str_tag, '<span style="border:1px solid #E2C922; padding:0 5px; margin:0 5px;font-weight:bold;">%s</span>' % str_tag)               
                  
                  

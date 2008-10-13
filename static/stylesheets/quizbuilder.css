@@ -16,24 +16,35 @@ margin-top:100px;
 
 
 div.index{
-font-size:3.2em;
+font-size:2.2em;
 float:left;
 }
 
 
 div.pre_content, div.post_content{
 font-style: italic;
+margin: 10px 0px;
+}
+
+div.content{
+margin: 10px 0px;
+font-size: 1.2em;
 }
 
 div.quiz_item_content{
 float:left;
 height:350px;
-margin:20px 0;
+margin:10px 0;
 overflow:auto;
 width:700px;
 }
 
-span.answer_span{
+div.pre_content span.answer_span, div.post_content span.answer_span{
+font-weight:bold;
+padding:0 5px;
+}
+
+div.content span.answer_span{
 color: black;
 background:#FFFFD1 none repeat scroll 0 0;
 border:1px solid #E2C922;
@@ -44,8 +55,8 @@ padding:0 5px;
 
 div.answer_candidates{
 float:right;
-height:120px;
-margin-top:30px;
+height:110px;
+margin:-100px 0 0 200px;
 overflow:auto;
 width:500px;
 }
@@ -53,4 +64,9 @@ width:500px;
 div.answer_candidate{
 float:left;
 margin:10px 5px;
+}
+
+
+div.quiz_form{
+clear:both;
 }
