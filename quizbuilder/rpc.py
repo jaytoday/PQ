@@ -8,8 +8,6 @@ import views
 import simplejson
 from .utils import jsonparser as parser
 from utils.utils import ROOT_PATH
-import sys
-sys.setdefaultencoding('utf-8')
 
 
 

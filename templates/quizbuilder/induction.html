@@ -26,6 +26,7 @@ $(document).ready(function() {
 wrong_answers = [];
 answer_in_array = [];
 
+
 function EditQuizItem(i, item, answers) {
   
 wrong_answers[i] = [];
@@ -40,7 +41,15 @@ answer_in_array[i] = [];
 
 
  
-// $('.quiz_item_content').markItUp(mySettings);
+ 
+ //// Style ////
+ 
+ //$('div#' + i + ' > div#quiz_item_content').jScrollPane();
+ 
+ 
+// $('div#answers_' + i).jScrollPane();
+ 
+// $('#quiz_item_content').markItUp(mySettings);
    
    
       
@@ -145,7 +154,7 @@ function onItemAddSuccess(response)
     
 function PreviewAnswer(answer) {
 
- 	var answer_span = $('#quiz_item_content_' + i + '').find('.answer_span');
+ 	var answer_span = $('div#quiz_item_content_' + i + ' > div.content').find('.answer_span');
 	$('#answers_' + i + '').find('.answer_candidate').hover(function()
 	
 	{
@@ -304,11 +313,11 @@ var html = '<div class="quiz_item"  id="' + i + '" ></div>';
 
 
 
-html += '<div class="quiz_item_content">'; // start quiz item content
+html += '<div class="quiz_item_content" id="quiz_item_content_' + i + '">'; // start quiz item content
 
 html += '<div class="pre_content" style="font-style:italic;">' + item.pre_content + '</div>';
 
-html += '<div class="content" id="quiz_item_content_' + i +'" style="font-size:1.2em;">' + item.content + '</div>';
+html += '<div class="content" style="font-size:1.2em;">' + item.content + '</div>';
 
 html += '<div class="post_content">' + item.post_content + '</div>';
 

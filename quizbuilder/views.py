@@ -26,8 +26,7 @@ import operator
 from .utils.utils import tpl_path
 from .lib.BeautifulSoup import BeautifulSoup, BeautifulStoneSoup, SoupStrainer  # HTML Parsing Library
 from .lib import rdfxml
-import sys
-sys.setdefaultencoding('utf-8')
+
 
 
 # class for semantic analysis - semanticproxy, class for parsing. 
@@ -68,11 +67,13 @@ class RawItemInduction(webapp.RequestHandler):
         saved_items = []
         #len(raw_quiz_items)
         for item in raw_quiz_items[0:5]:
-            try:
-                save_item = self.save_item(item)
-                saved_items.append(save_item)
-            except:
-            	pass
+			save_item = self.save_item(item)
+			if save_item:
+				saved_items.append(save_item)
+			else: 
+				print "unable to save item: " + str(item)
+				continue
+
         return saved_items 
             
                 
@@ -108,8 +109,10 @@ class RawItemInduction(webapp.RequestHandler):
             this_pre_content = db.Text(item['raw_content'][0], encoding='utf-8')
             this_content = db.Text(item['raw_content'][1], encoding='utf-8')
             this_post_content = db.Text(item['raw_content'][2], encoding='utf-8')
-        except UnicodeDecodeError:
-            logging.error('UnicodeDecodeError')
+        except:
+            this_pre_content = db.Text(item['raw_content'][1])
+            print "Unable to decode item content"
+            logging.error('Unable to decode item content')
             return False
         try:
             new_raw_item = RawQuizItem(page = item['page'],
@@ -119,21 +122,13 @@ class RawItemInduction(webapp.RequestHandler):
                                     content = this_content,
                                     post_content = this_post_content,
                                     moderated = False)
-            new_raw_item.put()
+            #new_raw_item.put()
             return new_raw_item 
         except:
-            #new_raw_item.put() 
+            print 'Unable to save raw quiz item' 
             logging.error('Unable to save raw quiz item')
             return False
-        
-        if saved_topic: # check value
-            return saved_topic
-        else:
-            this_proficiency = Proficiency.gql("WHERE name = :1", proficiency).get()
-            new_topic = ProficiencyTopic(name = topic, proficiency = this_proficiency)
-            #new_topic.put()
-            return new_topic
-                                   
+           
                   
 class QuizBuilder(webapp.RequestHandler):
 
@@ -280,22 +275,23 @@ class BuildItemsFromPage():
         psoup = BeautifulSoup(p)
         for paragraph in psoup.findAll('p'):
             if paragraph.find(text=re.compile(r'\W%s\W' % tag )):  # Is tag in this paragraph? 
-                the_paragraph = self.highlightAnswer(paragraph, tag)                
-                
+                the_paragraph = self.highlightAnswer(paragraph, tag) 
                 # GET NEXT AND PREV <P> ELEMENTS CONTAINING SIGNIFICANT CONTENT. 
                 if (paragraph.findPreviousSibling('p') == None):
                     previous_paragraph = ""
                 else:
                     previous_paragraph = paragraph.findPreviousSibling('p').contents[0]
-                    
                 if (paragraph.findNextSibling('p') == None):
                     next_paragraph = ""
                 else:
                     next_paragraph = paragraph.findNextSibling('p').contents[0]
-                paragraph_containing_tag = (str(previous_paragraph).replace('\n', ''), str(the_paragraph).replace('\n', ''), str(next_paragraph).replace('\n', ''))
-
-                
-                raw_content_groups.append(paragraph_containing_tag)#return paragraph_containing_tag # this only returns the first instance.
+                paragraphs = (previous_paragraph, the_paragraph, next_paragraph)
+                clean_paragraphs = []
+                for p in paragraphs:
+                	p = p.encode('utf-8')
+                	p = p.replace('\n', '')
+                	clean_paragraphs.append(p) 
+                raw_content_groups.append(clean_paragraphs)#return paragraph_containing_tag # this only returns the first instance.
             else:
                 continue  # tag not found in paragraph
         return raw_content_groups[0:RAW_ITEMS_PER_TAG]  # This slice could also be a threshold, or randomized, to avoid bias to the top of the document. 
