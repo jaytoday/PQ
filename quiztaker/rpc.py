@@ -5,6 +5,7 @@ from google.appengine.ext import webapp
 from google.appengine.ext import db
 import simplejson
 from .model.quiz import Proficiency, ProficiencyTopic, QuizTaker, QuizItem, ItemScore
+from .model.user import InviteList
 
 class RPCHandler(webapp.RequestHandler):
   # AJAX Handler

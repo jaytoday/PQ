@@ -6,7 +6,7 @@ Import development files
 
 """
 
-from algorithm import *
+from classes import *
 
 
 
@@ -30,8 +30,8 @@ class controller (object):
 class URIRouter(webapp.RequestHandler):
     uri=None
     seg=[]
-    controller='test'   #default controller name
-    method='index'   #default method
+    controller='run'   #default controller name
+    method='hund'   #default method
     def post(self,uri):
         self.uri=uri
         self.dispatch()
@@ -41,7 +41,7 @@ class URIRouter(webapp.RequestHandler):
         self.dispatch()
         
     def parseURI(self):
-        self.seg=self.uri.split('/')
+        self.seg=self.uri.split('///')
         if self.seg[0]!='' :
             #set the first segment of uri as the class name of controller
             self.controller=self.seg[0]

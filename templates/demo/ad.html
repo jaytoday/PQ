@@ -34,12 +34,14 @@ var quizitemList = [
         {url: '/intro/?page=instructions', item_type:'instructions', answer1: 'dog ate', answer2: 'web made'},
         {url: '/intro/?page=instructions2', item_type:'instructions2', answer1: 'compilers', answer2: 'interpreters'},
         {url: '/intro/?page=begin_quiz', item_type:'begin_quiz'},
-
+ 
+ 
 {% for item in quiz_items %}
         {
-
+     
                 rpc_url: '/rpc?action=get_quiz&arg0="{{ item.slug.0 }}"&arg1="{{ item.slug.1 }}"',
                 url: '/quiz/?source={{ item.slug.0 }}&slug={{ item.slug.1 }}',
+                slug: "{{ item.slug }}", 
                 answer1: "{{ item.answer1 }}",
                 answer2: "{{ item.answer2 }}",
                 answer3: "{{ item.answer3 }}",

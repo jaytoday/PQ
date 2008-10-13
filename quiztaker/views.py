@@ -57,28 +57,21 @@ class PQDemo(webapp.RequestHandler):
     
 
 
+
 class QuizItemTemplate(webapp.RequestHandler):
 
   def get(self):
+
     template_values = {}
     quiz_slug = [self.request.get('slug'), self.request.get('source')]
     this_quiz_item = QuizItem.gql("WHERE slug = :slug",
-                                  slug=quiz_slug).get()
-    
-    quiz_item = {}
-    quiz_item['content'] = this_quiz_item.content
-    quiz_item['category'] = this_quiz_item.category
-    quiz_item['answers'] = this_quiz_item.answers
-    json_response = simplejson.dumps(quiz_item)
-    print json_response
-    
-    json_loads = simplejson.loads(json_response)
-    print json_loads['content']
-    """                      
+                                  slug=quiz_slug)
     template_values['quiz_item'] = this_quiz_item
     path = tpl_path(QUIZTAKER_PATH + 'quiz_item.html') # Pass Quiz Item to Template
     self.response.out.write(template.render(path, template_values))
-    """
+
+
+
 
 
 class QuizFrame(webapp.RequestHandler):
@@ -96,6 +89,7 @@ class ViewQuiz(webapp.RequestHandler):
   quiz_item_count = 5
     
   def get(self):
+    self.proficiencies = {}
       # Create random list of three quiz items.
     
     # Query all quiz items
@@ -106,11 +100,9 @@ class ViewQuiz(webapp.RequestHandler):
     if len(quiz_items) == 0: 
         refresh_data("quiz_items")
         q = db.GqlQuery("SELECT * FROM QuizItem")
-        quiz_items = q.fetch(1000)         
-        
+        quiz_items = q.fetch(1000)
     for item in quiz_items:
         self.load_item(item)
-
     self.load_array()
     template_values = {"quiz_items": self.quiz_array }
     logging.debug(template_values)
@@ -129,6 +121,7 @@ class ViewQuiz(webapp.RequestHandler):
         return self.proficiencies
 
   def load_array(self):
+        self.quiz_array = []
         for prof_type in self.proficiencies:
             proficiency = random.sample(self.proficiencies[prof_type],
                                   self.quiz_item_count)

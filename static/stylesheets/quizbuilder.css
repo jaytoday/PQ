@@ -33,7 +33,7 @@ font-size: 1.2em;
 
 div.quiz_item_content{
 float:left;
-height:350px;
+max-height:350px;
 margin:10px 0;
 overflow:auto;
 width:700px;
