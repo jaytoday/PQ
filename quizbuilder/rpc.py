@@ -145,7 +145,12 @@ remote callers access to private/protected "_*" methods.
 		#page = 'http://' + str(args[0].replace('http%3A//',''))
 		webpage = urlfetch.fetch(args[0])
 		soup = BeautifulSoup(webpage.content)
-		print(string.join(soup.findAll(text=True))[0:99999])
+		the_text = soup.findAll(text=True)[0:1000]
+		all_text = []
+		print ""
+		for t in the_text:
+			all_text.append(t.encode('utf-8'))
+		print(string.join(all_text)[0:99999])
 		#print soup.contents[1].findAll(text=True)
 		#print str(page.contents)	
 
