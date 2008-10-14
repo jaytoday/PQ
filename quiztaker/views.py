@@ -13,7 +13,7 @@ from google.appengine.ext import webapp
 
 from google.appengine.ext.webapp import util
 import simplejson
-from .utils.utils import tpl_path, ROOT_PATH
+from .utils.utils import tpl_path, ROOT_PATH, raise_error
 from model.quiz import Proficiency, ProficiencyTopic, QuizTaker, QuizItem, ItemScore
 
 # Template paths

@@ -29,11 +29,12 @@ margin: 10px 0px;
 div.content{
 margin: 10px 0px;
 font-size: 1.2em;
+line-height:1.6em;
 }
 
 div.quiz_item_content{
 float:left;
-max-height:350px;
+height:350px;
 margin:10px 0;
 overflow:auto;
 width:700px;

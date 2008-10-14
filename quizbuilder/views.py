@@ -186,6 +186,7 @@ class BuildItemsFromPage():
             if similar_topics: # not just if it exists, but if there's a list.
                tag_threshold += 1
                raw_content_groups = self.get_raw_content_groups(soup.findAll('c:document'), tag)
+               if not raw_content_groups: continue
                for raw_content in raw_content_groups:
                      #If len(get_similar_topics(tag)) < 1, add synonym tags or related tags in Answer Candidate
                     raw_quiz_item = {"similar_topics" : similar_topics, "raw_content": raw_content, "correct_answer": tag, "page": page }
@@ -274,6 +275,7 @@ class BuildItemsFromPage():
     raw_content_groups = []
     w = re.compile(tag)
     #tag_word = " " + tag + " " #regexp -> 're.IGNORECASE | re.MULTILINE'
+    if not page_text: return False
     for p in page_text[0].contents:
         psoup = BeautifulSoup(p)
         for paragraph in psoup.findAll('p'):
