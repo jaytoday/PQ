@@ -3,15 +3,19 @@ import logging
 logging.info('Loading %s', __name__)
 from google.appengine.ext import webapp
 from google.appengine.ext import db
-from .model.quiz import QuizItem, RawQuizItem, ProficiencyTopic, ContentPage, Proficiency
-import views
 import simplejson
-from .utils import jsonparser as parser
-from utils.utils import ROOT_PATH
+
 from google.appengine.api import urlfetch
 import string
 import urllib
 from .lib.BeautifulSoup import BeautifulSoup
+
+#from .utils import jsonparser as parser
+from utils.utils import ROOT_PATH
+
+from .model.quiz import QuizItem, RawQuizItem, ProficiencyTopic, ContentPage, Proficiency
+import views
+import induction
 
 class RPCHandler(webapp.RequestHandler):
   # AJAX Handler
@@ -19,7 +23,6 @@ class RPCHandler(webapp.RequestHandler):
     webapp.RequestHandler.__init__(self)
     self.methods = RPCMethods()
 
- 
   def get(self):
     func = None
    
@@ -54,6 +57,10 @@ class RPCMethods(webapp.RequestHandler):
 remote callers access to private/protected "_*" methods.
   """
 
+
+######## MODEL METHODS ##########  
+
+
   def add_proficiency(self, *args):
 	save_p = Proficiency(name = args[0])
 	save_p.put()
@@ -87,16 +94,104 @@ remote callers access to private/protected "_*" methods.
     
     
   def refresh_data(self):
-  	self.delete_data(RawQuizItem.all())
-  	self.delete_data(ContentPage.all())
-  	self.delete_data(ProficiencyTopic.all())
-  	self.delete_data(Proficiency.all())
-  	self.load_data('proficiencies')
-  	self.load_data('proficiency_topics')
-  	self.load_data('content_pages')
-  	self.load_data('raw_items')
+  	data = DataMethods()
+  	data.delete_data(RawQuizItem.all())
+  	data.delete_data(ContentPage.all())
+  	data.delete_data(ProficiencyTopic.all())
+  	data.delete_data(Proficiency.all())
+  	data.load_data('proficiencies')
+  	data.load_data('proficiency_topics')
+  	data.load_data('content_pages')
+  	data.load_data('raw_items')
   	
   	
+
+
+######## INDUCTION METHODS ##########  
+        
+  def SubmitContentUrl(self, *args):
+      induce_url = induction.RawItemInduction()
+      #JSON Serialize save_url
+      data = DataMethods()
+      # Save page,and topic, if necessary.
+      # Induction:
+      # 1. Perform semantic analysis
+      # 2. Retrieve answer candidates
+      # 3. Attempt to create raw quiz items.
+      json_response = data.dump_raw_items(induce_url.get(args))
+      return json_response
+
+
+
+######## QUIZBUILDER METHODS ##########  
+
+  def RetrieveTopics(self, *args):   # todo: should be nested list of proficiencies and topics.
+      return_topics = []
+      topics = ProficiencyTopic.all()
+      for this_topic in topics.fetch(1000):
+      	topic = {}
+      	topic['name'] = this_topic.name
+      	topic['proficiency'] = this_topic.proficiency.name
+      	return_topics.append(topic)
+      json_response = simplejson.dumps(return_topics, indent=4)
+      return json_response
+
+
+  def GetRawItemsForTopic(self, *args):  
+      data = DataMethods()
+      raw_quiz_items = []
+      this_topic = ProficiencyTopic.gql("WHERE name = :1", args[0])
+      #these_items = RawQuizItem().gql("WHERE topic = :1", this_topic.get())
+      # get 10 at a time...todo: lazy rpc-loader.
+      try: return data.dump_raw_items(this_topic.get().pages.get().raw_items.fetch(10))
+      except: return simplejson.dumps([])
+
+
+          
+
+  def SubmitQuizItem(self, *args):
+      new_quiz_item = QuizItem()
+      new_quiz_item.index = args[0]
+      new_quiz_item.answers = args[1]
+      new_quiz_item.slug = args[2]
+       # And args[2] 
+      new_quiz_item.category = str(args[4])       # different datastore? Not currently in model 
+      new_quiz_item.proficiency = str(args[5])  # Should be Proficiency
+      new_quiz_item.content = str(args[6])
+      new_quiz_item.difficulty = 0 # Default?
+      #new_quiz_item.put()
+      print new_quiz_item
+      return "saved quiz item" 
+
+
+
+
+
+
+
+
+######## OPENCALAIS HELPER METHOD ##########
+
+  def hund(self, *args):  # Workaround for 100,000 character limit for SemanticProxy.
+		#page = 'http://' + str(args[0].replace('http%3A//',''))
+		webpage = urlfetch.fetch(args[0])
+		soup = BeautifulSoup(webpage.content)
+		the_text = soup.findAll(text=True)[0:1000]
+		all_text = []
+		print ""
+		for t in the_text:
+			all_text.append(t.encode('utf-8'))
+		print(string.join(all_text)[0:99999])
+		#print soup.contents[1].findAll(text=True)
+		#print str(page.contents)	
+
+        
+       
+
+
+
+class DataMethods(webapp.RequestHandler):
+
   def delete_data(self, query):
      print ""
      entities = query.fetch(1000)
@@ -104,9 +199,6 @@ remote callers access to private/protected "_*" methods.
      	print "DELETED"
      	print entity.__dict__
      	entity.delete()
-
-
-     	     
 
     
   def load_data(self, data_type):
@@ -146,6 +238,8 @@ remote callers access to private/protected "_*" methods.
 
 
 
+
+
   def dump_raw_items(self, list_of_items, *response):
       raw_items = []
       for this_raw_item in list_of_items:
@@ -164,47 +258,3 @@ remote callers access to private/protected "_*" methods.
           print json_response 
       else:
       	return json_response  	
-
-  
-        
-  def SubmitContentUrl(self, *args):
-      save_url = views.RawItemInduction()
-      #JSON Serialize save_url
-      json_response = self.dump_raw_items(save_url.get(args))
-
-      return json_response
-
-
-
-
-    
-
-  def SubmitQuizItem(self, *args):
-      new_quiz_item = QuizItem()
-      new_quiz_item.index = args[0]
-      new_quiz_item.answers = args[1]
-      new_quiz_item.slug = args[2]
-       # And args[2] 
-      new_quiz_item.category = str(args[4])       # different datastore? Not currently in model 
-      new_quiz_item.proficiency = str(args[5])  # Should be Proficiency
-      new_quiz_item.content = str(args[6])
-      new_quiz_item.difficulty = 0 # Default?
-      #new_quiz_item.put()
-      print new_quiz_item
-      return "saved quiz item" 
-
-  def hund(self, *args):  # Workaround for 100,000 character limit for SemanticProxy.
-		#page = 'http://' + str(args[0].replace('http%3A//',''))
-		webpage = urlfetch.fetch(args[0])
-		soup = BeautifulSoup(webpage.content)
-		the_text = soup.findAll(text=True)[0:1000]
-		all_text = []
-		print ""
-		for t in the_text:
-			all_text.append(t.encode('utf-8'))
-		print(string.join(all_text)[0:99999])
-		#print soup.contents[1].findAll(text=True)
-		#print str(page.contents)	
-
-        
-       

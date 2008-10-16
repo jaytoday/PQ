@@ -1,7 +1,6 @@
 
 function EditQuizItem(i, item, answers) {
   
-  //Disambiguate(i);
   
 wrong_answers[i] = [];
 answer_in_array[i] = [];    
@@ -13,14 +12,9 @@ answer_in_array[i] = [];
 });
 
 
-
- 
- 
- //// Style ////
  
  //$('div#' + i + ' > div#quiz_item_content').jScrollPane();
- 
- 
+
 // $('div#answers_' + i).jScrollPane();
  
 // $('#quiz_item_content').markItUp(mySettings);
@@ -33,29 +27,16 @@ $('#quiz_data_' + i + ' > input[@name="proficiency"]').setValue($(this).attr("va
 });
 
 
-
-
-
-
-	
     
-		$('div#answers_' + i + '').find('.answer_candidate').click(function(){
+$('div#answers_' + i + '').find('.ac_container').click(function(){
 			
-
+//    If answer is selected, remove it if it's already in array. 
+//    If not, add it to the array, if the limit hasn't been reached. 
 
 answer_text = $(this).text();
 
 n = $(this).attr("id");
 
-console.log(n);
-
-
-// TODO: ranking - splice() method can order answers 
-
-//answer_in_array[i][n] = False;
-
-
-console.log("true?", answer_in_array[i][n]);
 
 for (var a = -1, loopCnt = wrong_answers[i].length; a < loopCnt; a++) {
 
@@ -86,7 +67,7 @@ if (answer_in_array[i][n] == "False") {
 
 if (wrong_answers[i].length > 1) { console.log("Only 2 Wrong Answers, Please!"); return false; }  // If there are already two answers
 
-wrong_answers[i].splice(wrong_answers[i].length, 0, answer_text);
+wrong_answers[i].splice(wrong_answers[i].length, 0, answer_text);   // add answer to array
 
 answer_in_array[i][n] == "True";
 
@@ -109,22 +90,16 @@ answer_in_array[i][n] == "True";
 			});
 
  
-
-function onItemAddSuccess(response)
-{
-    console.log(response);
-}
-
-
     
 function PreviewAnswer(answer) {
+	
+	// On a hover over an answer, preview its text in the item content.
 
- 	var answer_span = $('div#quiz_item_content_' + i + ' > div.content').find('.answer_span');
+ 	var answer_span = $('div#quiz_item_content_' + i + ' > div.item_inner').find('.answer_span');
 	$('#answers_' + i + '').find('.ac_container').hover(function()
 	
 	{
-	      
-        answer_span.fadeTo(1,0.5);
+        //answer_span.fadeTo(1,0.5);
         answer_span.html($(this).text());
 	    answer_span.fadeTo("slow", 1);
 	
@@ -134,10 +109,10 @@ function PreviewAnswer(answer) {
 	    
 		answer_span.empty();
 		answer_span.html(answer);
-        answer_span.fadeTo(100, 0.5);
+        //answer_span.fadeTo(100, 0.5);
 	});   
     
-    
+  
 }
 
 
@@ -147,6 +122,8 @@ PreviewAnswer(item.index);
             
         
 $('#submit_item_' + i).click(function() {
+	
+	// Edited quiz item is submitted. 
     
 
 console.log(eval('document.quiz_data_' + i + '.slug.value'));
@@ -161,53 +138,19 @@ console.log($('div#quiz_item_content_' + i).html())
 
  server.SubmitQuizItem(item.index, wrong_answers[i].concat(item.index), eval('document.quiz_data_' + i + '.slug.value'),   eval('document.quiz_data_' + i + '.category.value'), $('div#quiz_item_content_' + i).html(),  onItemAddSuccess);
 });
-    
+ 
+ 
+ 
+ 
+
+function onItemAddSuccess(response)
+{
+    console.log(response);
+}
+
+
+   
     
 
 }
 
-
-
- function Disambiguate(i){
-	
-$('.answer_span').one("click", function(){
-
-	var this_word = $(this).text()
-	
-	console.log(this_word);
-			 
-		$(this).html('<input type="text" id="example"/>');
-		
-		
-//$(this).find('#example').val(this_word);
-console.log('what');
-console.log(this_word);
-
-   $(this).find('#example')
-      
-      .freebaseSuggest( {ac_param:{type:'/people/person'}, suggest_new: 'Create New Topic', } )
-      .bind("fb-select", function(e, data) { 
-         $('#miniTopic').show().freebaseMiniTopic(data.id);
-    })
-   .val('')
-   .val(this_word)
-    .focus()
-    .blur()
-    ;
-    
-
-
-});
-
-
-$('div#test').one("click", function(){
-	console.log('ra');
-$('div#' + i).find("#example").keydown()
-.keypress()
-.keyup();
-});
-
-
-
-
-}

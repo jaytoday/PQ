@@ -25,7 +25,9 @@ class ProficiencyTopic(db.Model):  # sub-topics within proficiencies - These map
                                     collection_name='topics') # Proficiency Tag (startup_financing)
   date = db.DateTimeProperty(auto_now_add=True)    
   #freebase_guid ?
-  # urls 
+
+  
+  ## pages  
       
   
   
@@ -40,7 +42,7 @@ class ContentPage(db.Model):
     url = db.LinkProperty()    # Where quiz material is from - wikipedia.org/en/neuroscience/
     date = db.DateTimeProperty(auto_now_add=True)
     topic = db.ReferenceProperty(ProficiencyTopic,
-                                    collection_name='urls') # Proficiency Tag (startup_financing) 
+                                    collection_name='pages') # Proficiency Tag (startup_financing) 
                                     
     # for more than one topic, use list of keys. 
     # raw_items

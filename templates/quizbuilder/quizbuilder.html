@@ -1,8 +1,22 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+
 <link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/quizbuilder.css"/>
 <script type="text/javascript" src="/static/scripts/jquery/jquery-1.2.6.min.js"></script>
 <script type="text/javascript" src="/static/scripts/json2min.js"></script>
+<script type="text/javascript" src="/static/scripts/parseJSON.js"></script>
 <script type="text/javascript" src="/static/scripts/jquery/jquery.field.min.js"></script>
+<script type="text/javascript" src="/static/scripts/utils/preserve_default_text.js"></script>
+<script type="text/javascript" src="/static/scripts/utils/rpc.js"></script>
+<!-- scroll -->
+<script src="/static/scripts/scroll/jquery.scrollTo-1.3.3.js" type="text/javascript"></script>
+<script src="/static/scripts/scroll/jquery.localscroll-1.2.5.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/scripts/scroll/jquery.serialScroll-1.2.1.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/scripts/scroll/quizbuilder-slider.js" type="text/javascript" charset="utf-8"></script>
+
+<link rel="stylesheet" type="text/css" media="screen" href="/static/scripts/scroll/quizbuilder-slider.css"/>
+
 <!-- markItUp! -->
 <script type="text/javascript" src="/static/scripts/markitup/jquery.markitup.pack.js"></script>
 <!-- markItUp! toolbar settings -->
@@ -14,322 +28,61 @@
 <link rel="stylesheet" type="text/css" href="/static/scripts/markitup/sets/default/style.css" />
 
 
+<script type="text/javascript" src="/static/scripts/drilldown/js/jquery.bdc.ddmenu.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/static/scripts/drilldown/css/ddmenu.css" />
+
+<!--<script type="text/javascript" src="/static/scripts/freebase-suggest/dist/freebase.suggest.js"></script> 
+ <link type="text/css" rel="stylesheet" href="/static/scripts/freebase-suggest/dist/css/freebase-controls.css" /> -->
+ 
+
+
+<script type="text/javascript" src="/static/scripts/quizbuilder/edit_quiz.js"></script>
+<script type="text/javascript" src="/static/scripts/quizbuilder/quizbuilder.js"></script>
+
 <script type="text/javascript">
 
 
 
-
-$(document).ready(function() {
-    
-    
-    
-
-
-
-
-
-   jQuery.fn.extend({
-	preserveDefaultText: function(defaultValue, replaceValue)
-	{
-		$(this).focus(function()
-		{
-			if(typeof(replaceValue) == 'undefined')
-				replaceValue = '';  
-			if($(this).val() == defaultValue)
-				$(this).val(replaceValue);
-		});
-
-		$(this).blur(function(){  
-			if(typeof(replaceValue) == 'undefined')
-				replaceValue = '';  
-			if($(this).val() == replaceValue)
-				$(this).val(defaultValue);
-		});
-		return this;
-	}
-});
-
-
-$('.slug_name').preserveDefaultText('slug_name');
-$('.source_name').preserveDefaultText('source');
-$('.category_name').preserveDefaultText('category');
-
-});
-
-wrong_answers = []
-answer_in_array = []
 </script>
-
 
 	
 
-<title>Plopquiz - Create Quiz </title></head>
+<title>Plopquiz - Quizbuilder</title></head>
 
 <body>
-<div>
-{% if not raw_quiz_items %}
-no items match this topic
-{% endif  %}
-
-{% for quiz_item in raw_quiz_items %}
-
-
-
-<i>Quiz Item Text</i> <br/>
-<input type="textarea" class="quiz_item_content" id="quiz_item_content_{{ forloop.counter }}">
-<i>{{ quiz_item.pre_content }}</i>
-{{ quiz_item.content }} <i>{{ quiz_item.post_content }}</i>
-</input>
+<h1> QuizBuilder </h1>
+<form name="select_topic" id="select_topic" >
 <br/>
 
-<div class="answers" id="answers_{{ forloop.counter }}">
-<i>Answer Candidates</i> 
+Choose a topic
+<br/>
+<div id="topics"></div>
+
 <br/><br/>
 
+<input type="submit" onClick="return false;this.disabled = true;" id="submit_topic" class="submit_topic" value="Submit Topic" />
 
-{% for answer_candidate in quiz_item.answer_candidates %}
-<span class="answer_candidate" >
-{{ answer_candidate }}
-</span>
-{% endfor %}
-
-</div>
-
-<form id="quiz_data_{{ forloop.counter }}" name="quiz_data_{{ forloop.counter }}" >
-<br/>
-<input type="checkbox" id="1" name="proficiency" value="building_webapps" ><span>Building Web Apps</span><br/>
-<input type="checkbox" id="2" name="proficiency" value="clean_energy" ><span>Clean Energy</span><br/>
-<input type="checkbox" id="3" name="proficiency" value="collective_intelligence" ><span>Collective Intelligence</span><br/>
-<input type="checkbox" id="4" name="proficiency" value="startup_financing" ><span>Startup Financing</span><br/>
-<br/>
-<input type="text" name="source" class="source_name" value="source" />
-<br/>
-<input type="text" name="slug" class="slug_name" value="slug_name" />
-<br/>
-<input type="text" name="category" class="category_name" value="category" />
-<br/>
-<input type="submit" onClick="return false;this.disabled = true;" id="submit_item_{{ forloop.counter }}" class="submit_item" value="Submit Quiz Item" />
 
 </form>
 
-
-<script type="text/javascript">
-
-
-function stripContent(){
- $('.quiz_item_content a').each(function() {
-  $(this).before('<span>' + $(this).text() + '</span>').remove();
-});
-}
-
-$(document).ready(function() {
-    
- 
- //Setup
- 
- // stripContent();  This sometimes interferes with answer highlighting. 
- 
- $('.quiz_item_content').markItUp(mySettings);
-   
-    
-    
-    var c = {{ forloop.counter }};
-  
-    wrong_answers[c] = []
-
-$('#quiz_data_' + c + ' > input[@name="proficiency"]').click(function(){
-$('#quiz_data_' + c + ' > input[@name="proficiency"]').setValue($(this).attr("value"));
-});
-
-
-	
-
-
-
-
-    
-		$('div#answers_' + c + '').find('.answer_candidate').click(function()
-			{
-
-
-    
-console.log(wrong_answers[c]);
-
-answer_text = $(this).text();
-
-
-// TODO: ranking - splice() method can order answers 
-answer_in_array[c] = 0;
-
-for (var i = -1, loopCnt = wrong_answers[c].length; i < loopCnt; i++) {
-
-console.log('wrong answers', wrong_answers[c]);
-
-if (answer_text == wrong_answers[c][i]){
-
-answer_in_array[c] += 1;
-
-console.log('removing text');
-wrong_answers[c].splice(wrong_answers[c].indexOf(answer_text), 1);
-
-$(this).css("color","#555555");
-$(this).css("font-weight","normal"); 
-
-}
-
-}
-
-console.log('array', answer_in_array[c]);
-
-if (answer_in_array[c] == 0) {
-
-if (wrong_answers[c].length > 1) { console.log("Only 2 Wrong Answers, Please!"); return false; }
-
-
-wrong_answers[c].splice(wrong_answers[c].length, 0, answer_text);
-
-console.log('adding item', answer_text, wrong_answers[c],wrong_answers[c].length);
-
- $(this).css("color","#000000"); 
-  $(this).css("font-weight","bold"); 
-}
-
-
-
-			    
-
-			});
-
- 
- 
-    
-function Request(function_name, opt_argv) {
-
-	if (!opt_argv)
-		opt_argv = new Array();
-
-	// Find if the last arg is a callback function; save it
-	var callback = null;
-	var len = opt_argv.length;
-
-	if (len > 0 && typeof opt_argv[len-1] == 'function') {
-		callback = opt_argv[len-1];
-		opt_argv.length--;
-	}
-
-	var async = (callback != null);
-
-	// Encode the arguments in to a URI
-	var query = 'action=' + encodeURIComponent(function_name);
-
-	for (var i = 0; i < opt_argv.length; i++) {
-		var key = 'arg' + i;
-		var val = JSON.stringify(opt_argv[i]);
-		query += '&' + key + '=' + encodeURIComponent(val);
-	}
-	query += '&time=' + new Date().getTime(); // IE cache workaround
-
-	// Create an XMLHttpRequest 'GET' request w/ an optional callback handler 
-	var req = new XMLHttpRequest();
-	req.open('GET', '/quizbuilder/rpc?' + query, async);
-
-	if (async) {
-		req.onreadystatechange = function() {
-			if(req.readyState == 4 && req.status == 200) {
-				var response = null;
-				try {
-					response = JSON.parse(req.responseText);
-				} catch (e) {
-					response = req.responseText;
-				}
-				callback(response);
-			}
-		}
-	}
-
-	// Make the actual request
-	req.send(null);
-}
-
-// Adds a stub function that will pass the arguments to the AJAX call 
-function InstallFunction(obj, functionName) {
-	obj[functionName] = function() { 
-		Request(functionName, arguments);
-	}
-}
-
-
-// Server object that will contain the callable methods
-var server = {};
-var item_count = 0;
-
-InstallFunction(server, 'SubmitQuizItem');
-
-
-
-function onAddSuccess(response)
-{
-    console.log(response);
-}
-
-
-    
-function PreviewAnswer(answer) {
-
- 	var answer_span = $('#quiz_item_content_' + c + '').find('.answer_span');
-	$('#answers_' + c + '').find('.answer_candidate').hover(function()
-	
-	{
-	      
-        answer_span.fadeTo(1,0.5);
-        answer_span.html($(this).text());
-	    answer_span.fadeTo("slow", 1);
-  
-		
-			
-			
-	},
-	function()
-	{
-	    
-		answer_span.empty();
-		answer_span.html(answer);
-        answer_span.fadeTo(100, 0.5);
-	});   
-    
-    
-}
-
-
-PreviewAnswer("{{quiz_item.index}}");
-
-
-            
-        
-$('#submit_item_' + c).click(function() {
-    
-
-    for (j = 0; j < 4; j++) {
-if (eval('document.quiz_data_' + c + '.proficiency[' + j + '].checked') == true) {
-    var proficiency = eval('document.quiz_data_' + c + '.proficiency[' + j + '].value'); }}
-
-
-    server.SubmitQuizItem(document.quiz_data_{{ forloop.counter }}.source.value, document.quiz_data_{{ forloop.counter }}.slug.value, "{{quiz_item.correct_answer}}", wrong_answers[c], document.quiz_data_{{ forloop.counter }}.category.value, proficiency, $('div.quiz_item_content').text(),  onAddSuccess);
-});
-    
-    
-
-});
-
-
-
-</script>
-
-
-{% endfor %}
-
+ <div id="wrapper">
+<div id="loading_items" style="display:none;"><img src="/static/stylesheets/img/ajax-loader.gif"/></div>
+<br/>
+
+<div class="quizbuilder_wrapper">
+     <ul class="item_navigation"> </ul>  <!--navigation headers-->
+     
+<div class="scroller"><div class="quiz_items" id="quiz_items" style="display:none;"><!--quiz items--></div></div>
 
 </div>
+</div>
+
+
+
+
+
+
 
 
 </body></html>
