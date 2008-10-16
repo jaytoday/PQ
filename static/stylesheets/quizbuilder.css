@@ -11,13 +11,14 @@ width:700px;
 
 div.quiz_item{
 height:auto;
-margin-top:100px;
+margin-bottom:100px;
 }
 
 
 div.index{
 font-size:2.2em;
 float:left;
+display:none;
 }
 
 
@@ -33,8 +34,9 @@ line-height:1.6em;
 }
 
 div.quiz_item_content{
+background-color:#AE7F8A;
 float:left;
-height:350px;
+height:250px;
 margin:10px 0;
 overflow:auto;
 width:700px;
@@ -54,20 +56,38 @@ margin:0 5px;
 padding:0 5px;
 }
 
-div.answer_candidates{
-float:right;
-height:110px;
-margin:-100px 0 0 200px;
+div.answers_container{
+width:auto;
 overflow:auto;
-width:500px;
+height:110px;
+clear:both;
+background:#FFFFDB none repeat scroll 0 0;
 }
 
-div.answer_candidate{
+
+div.answer_candidates{
+
+margin: 0 0 0;
+width:auto;
+height:110px;
+}
+
+
+div.ac_container{
+border:1px solid black;
 float:left;
-margin:10px 5px;
+height:108px;
+width:135px;
+}
+
+
+div.answer_candidate{
+margin:30px 5px;
+text-align:center;
 }
 
 
 div.quiz_form{
 clear:both;
+display:none;
 }

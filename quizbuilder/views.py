@@ -34,7 +34,7 @@ SEMANTICPROXY_URL = "http://service.semanticproxy.com/processurl/aq9r8pmcbztd4s7
 SEMANTICPROXY_MICRO_URL = "http://service.semanticproxy.com/processurl/aq9r8pmcbztd4s7s427uw7zg/microformat/" 
 TILDE_BASE_URL = "http://tilde.jamslevy.user.dev.freebaseapps.com/"
 TILDE_TYPE_LIMIT = 10 # Maximum number of types to query per request topic.
-TILDE_TOPIC_LIMIT = 4 # Maximum number of topics per type to list in response. 
+TILDE_TOPIC_LIMIT = 40 # Maximum number of topics per type to list in response. 
 TILDE_EXCLUDE = 'music,film' # should be array
 TRUNCATE_URL = "http://pqstage.appspot.com/truncate_page/?url=" 
 
@@ -42,14 +42,16 @@ DEFAULT_PAGES = [#"http://en.wikipedia.org/wiki/Inference",
                  "http://en.wikipedia.org/wiki/Renewable_energy",
                  ]
 
-AC_LIMIT = 31 # Limit of answer choice candidates per quiz item
+AC_LIMIT = 100 # Limit of answer choice candidates per quiz item
 AC_MIN = 8 # Minimum of answer choices required.
 
-RAW_ITEMS_PER_PAGE = 5 # Limit of quiz items created per page 
+RAW_ITEMS_PER_PAGE = 3 # Limit of quiz items created per page 
 
 MIN_TAG_CHARS = 4 # Minimum characters per tag
 
-RAW_ITEMS_PER_TAG = 2 # Limit of quiz items created per page
+RAW_ITEMS_PER_TAG = 5 # Limit of quiz items created per tag.
+
+TOTAL_RAW_QUIZ_ITEMS =  15
 
 QUIZBUILDER_LIMIT = 1
 
@@ -60,6 +62,8 @@ QUIZBUILDER_PATH = 'quizbuilder/'
 class RawItemInduction(webapp.RequestHandler):  
  
     def get(self, *args):
+        loaded_items = RawQuizItem().all()
+        return loaded_items.fetch(TOTAL_RAW_QUIZ_ITEMS)   
         topic = self.save_topic(args[0][1],args[0][2])
         page = self.save_url(args[0][0], topic)  
         build_items = BuildItemsFromPage()
@@ -67,17 +71,21 @@ class RawItemInduction(webapp.RequestHandler):
         raw_quiz_items = build_items.get(page)
         if not raw_quiz_items: return []
         saved_items = []
-        #len(raw_quiz_items)
-        for item in raw_quiz_items[0:5]:
+        for item in raw_quiz_items:
 			save_item = self.save_item(item)
 			if save_item:
 				saved_items.append(save_item)
 			else: 
-				print "unable to save item: " + str(item)
-				continue
-
+				logging.error("unable to save item: ") 
+				logging.error(str(item))
+			continue
+        loaded_items = RawQuizItem().all()
+        return loaded_items.fetch(TOTAL_RAW_QUIZ_ITEMS)
+		    
+		     
         return saved_items 
-            
+        
+       
                 
         #self.response.out.write(template.render(path, template_values))
             
@@ -127,43 +135,13 @@ class RawItemInduction(webapp.RequestHandler):
             #new_raw_item.put()
             return new_raw_item 
         except:
+             
+            #new_raw_item.put()
             print 'Unable to save raw quiz item' 
+            logging.error(item)
             logging.error('Unable to save raw quiz item')
             return False
            
-                  
-class QuizBuilder(webapp.RequestHandler):
-
-    def get(self):
-
-        template_values = {}
-        raw_quiz_items = self.load_saved_items()
-        template_values["raw_quiz_items"] = raw_quiz_items
-        path = tpl_path(QUIZBUILDER_PATH + 'quizbuilder.html')
-        self.response.out.write(template.render(path, template_values))
-
-
-    def load_saved_items(self):
-    	raw_quiz_items = []
-        these_items = []
-        all_items = RawQuizItem.all()
-        if self.request.get('topic'): 
-            for item in all_items:
-                if item.page.topic.name == self.request.get('topic'): 
-                    these_items.append(item)
-                else: continue
-        else: these_items = all_items
-        for this_raw_item in these_items[0:QUIZBUILDER_LIMIT]:
-			raw_item = {}
-			raw_item['pre_content'] = this_raw_item.pre_content
-			raw_item['content'] = this_raw_item.content
-			raw_item['post_content'] = this_raw_item.post_content
-			raw_item['answer_candidates'] = this_raw_item.answer_candidates
-			raw_item['index'] = str(this_raw_item.index)
-			raw_item['url'] = str(this_raw_item.page.url)
-			raw_item['topic'] = str(this_raw_item.page.topic.name)
-			raw_quiz_items.append(raw_item) 
-        return raw_quiz_items
 
 
             
@@ -176,22 +154,23 @@ class BuildItemsFromPage():
         raw_quiz_items = []
         tag_threshold = 0
         soup = self.get_soup(page)
-        if not soup: return False
+        if not soup.findAll('c:document'): return False
         tags = self.get_tags(soup)
-        for tag in tags[0:RAW_ITEMS_PER_PAGE]:  # Slice [1:...]
+        for tag in tags:  # Slice [1:...]
         # Check if tag is too short, or too common. (the "she" problem)
         # CHECK IF TAG IS A TYPED TOPIC ON FREEBASE 
             # Make sure that get_similar_topics and get_paragraphs_containing_tag are successful.
+            if tag_threshold >= RAW_ITEMS_PER_PAGE: continue
+            
             similar_topics = self.get_similar_topics(tag)
             if similar_topics: # not just if it exists, but if there's a list.
                tag_threshold += 1
                raw_content_groups = self.get_raw_content_groups(soup.findAll('c:document'), tag)
-               if not raw_content_groups: continue
                for raw_content in raw_content_groups:
                      #If len(get_similar_topics(tag)) < 1, add synonym tags or related tags in Answer Candidate
                     raw_quiz_item = {"similar_topics" : similar_topics, "raw_content": raw_content, "correct_answer": tag, "page": page }
                     raw_quiz_items.append(raw_quiz_item)
-            continue 
+                    continue 
 
         return raw_quiz_items
 
@@ -214,6 +193,7 @@ class BuildItemsFromPage():
 	if len(page_tags) == 0: return "no tags" 
 	tags = [] # for a page, get a relevency-ranked list of topics found in the text. 
 	for tag in page_tags:
+		# escape "" or ' ' 
 		if len(tag.contents[0]) >= MIN_TAG_CHARS: tags.append(str(tag.contents[0]))
 		
 	tags = self.rank_tags(tags)
@@ -263,7 +243,14 @@ class BuildItemsFromPage():
     except:
         logging.debug('Unable to fetch tilde response') 
     tilde_soup = BeautifulStoneSoup(tilde_response.content)
-    similar_topics = [str(topic.contents[0]) for topic in tilde_soup.findAll('title')]
+    similar_topics = []
+    for topic in tilde_soup.findAll('title'):
+    	encoded_topic = unicode(topic.contents[0]).encode('utf-8')
+    	#if r'/x' in encoded_topic:                  # Todo - unicode issues with similar_topics
+    	try: encoded_topic.decode('ascii')
+    	except: continue
+        if len(encoded_topic) < len(tag) + 10: similar_topics.append(encoded_topic)
+    #similar_topics = self.rank_tags(similar_topics)
     if len(similar_topics) >= AC_MIN:
         return similar_topics[1:AC_LIMIT]
     else:
@@ -274,10 +261,11 @@ class BuildItemsFromPage():
     # todo: Templates for mediawiki and google knol
     raw_content_groups = []
     w = re.compile(tag)
-    #tag_word = " " + tag + " " #regexp -> 're.IGNORECASE | re.MULTILINE'
     if not page_text: return False
     for p in page_text[0].contents:
         psoup = BeautifulSoup(p)
+        logging.debug('number of paragraphs') 
+        logging.debug(len(psoup.findAll('p')))
         for paragraph in psoup.findAll('p'):
             main_paragraph = paragraph.find(text=re.compile(r'\W%s\W' % tag ))
             if main_paragraph:  # Is tag in this paragraph? 
@@ -293,8 +281,8 @@ class BuildItemsFromPage():
                 paragraphs = (previous_paragraph, main_paragraph, next_paragraph)
                 clean_paragraphs = []
                 for p in paragraphs:
-                	p = p.encode('utf-8')
-                	p = p.replace('\n', '')
+                	p = unicode(p).encode('utf-8')
+                	p = p.replace('\n', ' ')
                 	p = self.highlightAnswer(p, tag) 
                 	clean_paragraphs.append(p) 
                 raw_content_groups.append(clean_paragraphs)#return paragraph_containing_tag # this only returns the first instance.
@@ -342,6 +330,40 @@ class InductionInterface(webapp.RequestHandler):
     
 
 
+           
+              
+class QuizBuilder(webapp.RequestHandler):
+
+    def get(self):
+
+        template_values = {}
+        raw_quiz_items = self.load_saved_items()
+        template_values["raw_quiz_items"] = raw_quiz_items
+        path = tpl_path(QUIZBUILDER_PATH + 'quizbuilder.html')
+        self.response.out.write(template.render(path, template_values))
+
+
+    def load_saved_items(self):
+    	raw_quiz_items = []
+        these_items = []
+        all_items = RawQuizItem.all()
+        if self.request.get('topic'): 
+            for item in all_items:
+                if item.page.topic.name == self.request.get('topic'): 
+                    these_items.append(item)
+                else: continue
+        else: these_items = all_items
+        for this_raw_item in these_items[0:QUIZBUILDER_LIMIT]:
+			raw_item = {}
+			raw_item['pre_content'] = this_raw_item.pre_content
+			raw_item['content'] = this_raw_item.content
+			raw_item['post_content'] = this_raw_item.post_content
+			raw_item['answer_candidates'] = this_raw_item.answer_candidates
+			raw_item['index'] = str(this_raw_item.index)
+			raw_item['url'] = str(this_raw_item.page.url)
+			raw_item['topic'] = str(this_raw_item.page.topic.name)
+			raw_quiz_items.append(raw_item) 
+        return raw_quiz_items
 
 
 
@@ -353,4 +375,12 @@ class InductionInterface(webapp.RequestHandler):
 
 
 
+           
+class Drilldown(webapp.RequestHandler):
 
+    def get(self):
+        template_values = {}
+        path = tpl_path('drilldown.html')
+        self.response.out.write(template.render(path, template_values))
+        
+            

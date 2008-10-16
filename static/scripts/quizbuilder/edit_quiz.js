@@ -1,6 +1,8 @@
 
 function EditQuizItem(i, item, answers) {
   
+  //Disambiguate(i);
+  
 wrong_answers[i] = [];
 answer_in_array[i] = [];    
 
@@ -40,7 +42,6 @@ $('#quiz_data_' + i + ' > input[@name="proficiency"]').setValue($(this).attr("va
 		$('div#answers_' + i + '').find('.answer_candidate').click(function(){
 			
 
-console.log(wrong_answers[i]);
 
 answer_text = $(this).text();
 
@@ -108,15 +109,6 @@ answer_in_array[i][n] == "True";
 			});
 
  
- 
-  
-
-
-//var server = {};
-//var item_count = 0;
-
-
-
 
 function onItemAddSuccess(response)
 {
@@ -128,7 +120,7 @@ function onItemAddSuccess(response)
 function PreviewAnswer(answer) {
 
  	var answer_span = $('div#quiz_item_content_' + i + ' > div.content').find('.answer_span');
-	$('#answers_' + i + '').find('.answer_candidate').hover(function()
+	$('#answers_' + i + '').find('.ac_container').hover(function()
 	
 	{
 	      
@@ -171,5 +163,51 @@ console.log($('div#quiz_item_content_' + i).html())
 });
     
     
+
+}
+
+
+
+ function Disambiguate(i){
+	
+$('.answer_span').one("click", function(){
+
+	var this_word = $(this).text()
+	
+	console.log(this_word);
+			 
+		$(this).html('<input type="text" id="example"/>');
+		
+		
+//$(this).find('#example').val(this_word);
+console.log('what');
+console.log(this_word);
+
+   $(this).find('#example')
+      
+      .freebaseSuggest( {ac_param:{type:'/people/person'}, suggest_new: 'Create New Topic', } )
+      .bind("fb-select", function(e, data) { 
+         $('#miniTopic').show().freebaseMiniTopic(data.id);
+    })
+   .val('')
+   .val(this_word)
+    .focus()
+    .blur()
+    ;
+    
+
+
+});
+
+
+$('div#test').one("click", function(){
+	console.log('ra');
+$('div#' + i).find("#example").keydown()
+.keypress()
+.keyup();
+});
+
+
+
 
 }

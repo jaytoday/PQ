@@ -4,7 +4,6 @@
 <script type="text/javascript" src="/static/scripts/json2min.js"></script>
 <script type="text/javascript" src="/static/scripts/parseJSON.js"></script>
 <script type="text/javascript" src="/static/scripts/jquery/jquery.field.min.js"></script>
-<script type="text/javascript" src="/static/scripts/jquery/jquery.field.min.js"></script>
 <!-- markItUp! -->
 <script type="text/javascript" src="/static/scripts/markitup/jquery.markitup.pack.js"></script>
 <!-- markItUp! toolbar settings -->
@@ -17,9 +16,12 @@
 
 <script type="text/javascript" src="/static/scripts/quizbuilder/edit_quiz.js"></script>
 
-<!-- freebase -->
-<script type="text/javascript" src="/static/scripts/freebase-suggest/dist/freebase.suggest.js"></script> 
- <link type="text/css" rel="stylesheet" href="/static/scripts/freebase-suggest/dist/css/freebase-controls.css" />
+<script type="text/javascript" src="/static/scripts/drilldown/js/jquery.bdc.ddmenu.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/static/scripts/drilldown/css/ddmenu.css" />
+
+<!--<script type="text/javascript" src="/static/scripts/freebase-suggest/dist/freebase.suggest.js"></script> 
+ <link type="text/css" rel="stylesheet" href="/static/scripts/freebase-suggest/dist/css/freebase-controls.css" /> -->
  
 
 <script type="text/javascript">
@@ -128,28 +130,27 @@ function InstallFunction(obj, functionName) {
 var server = {};
 var item_count = 0;
 
+InstallFunction(server, 'RetrieveTopics');
+
 InstallFunction(server, 'SubmitContentUrl');
 
 InstallFunction(server, 'SubmitQuizItem');
 
+
+
 function OnSubmitUrlSuccess(response){
 
-$('form#content_url').hide();
 var raw_quiz_items = parseJSON(response);
 
+item_indexes = []
 
  $.each(raw_quiz_items, function(i,item){
  	
+	
+item_indexes.push(item.index);
  	
-$('.slug_name').preserveDefaultText('slug_name');
-$('.category_name').preserveDefaultText('category');
-
-
  	
 var html = '<div class="quiz_item"  id="' + i + '" ></div>';
-
-
-
 
 
 html += '<div class="quiz_item_content" id="quiz_item_content_' + i + '">'; // start quiz item content
@@ -171,7 +172,7 @@ html += '<div class="index">' + item.index + '</div>';
 html += '<div class="quiz_form"><form id="quiz_data_' + i + '" name="quiz_data_' + i + '"><input type="text" name="slug" class="slug_name" value="slug_name" /><br/><input type="text" name="category" class="category_name" value="category" /><br/><input type="submit" onClick="return false;this.disabled = true;" id="submit_item_' + i + '" class="submit_item" value="Submit Quiz Item" /></form></div>';
 
 
-html += '<div class="answer_candidates" id="answers_' + i + '"></div>';  // Expand answer candidates
+html += '<div class="answers_container"><div class="answer_candidates" id="answers_' + i + '"></div></div>';  // Expand answer candidates
 
 
 
@@ -181,18 +182,15 @@ html += '<div class="answer_candidates" id="answers_' + i + '"></div>';  // Expa
 
 $('div#quiz_items').append(html);
 
-console.log(item.answer_candidates);
 
 answers =  eval(item.answer_candidates); //item.answer_candidates
 
 
-console.log(answers);
 
  $.each(answers, function(n, answer){
  	
  	
-
-answer_html = '<div id ="' + n + '" class="answer_candidate" >' + answer + '</div>';
+answer_html = '<div class="ac_container"><div id ="' + n + '" class="answer_candidate" >' + answer + '</div></div>';
 
 
 $('div#answers_' + i).append(answer_html);
@@ -200,11 +198,24 @@ $('div#answers_' + i).append(answer_html);
 });
 
 
+$('.slug_name').preserveDefaultText('slug_name');
+$('.category_name').preserveDefaultText('category');
+
+
 EditQuizItem(i, item, answers); // Run function after the above code is evaluated.
 
 });
 
 
+console.log('create headers from item indexes');
+
+
+ $.each(item_indexes, function(j, item){
+console.log(item);
+console.log(j);
+
+
+});
 
 
 
@@ -218,8 +229,8 @@ $('#content_url > input[@name="proficiency"]').setValue($(this).attr("value"));
 
             
         
-$('#submit_url').click(function() {
-    
+$('#submit_url').click(function () {
+
         for (j = 0; j < 4; j++) {
 if (eval('document.content_url.proficiency[' + j + '].checked') == true) {
     var proficiency = eval('document.content_url.proficiency[' + j + '].value'); }}
@@ -227,9 +238,14 @@ if (eval('document.content_url.proficiency[' + j + '].checked') == true) {
     server.SubmitContentUrl(document.content_url.url.value, document.content_url.topic.value, proficiency, OnSubmitUrlSuccess);
     
     
+$('form#content_url').html('loading!');
+
+    
 });
     
-    
+  
+  
+ 
 
 });
 
@@ -273,78 +289,14 @@ Choose Proficiency and ProficiencyTopic
 
 
 
+				
+				
+				
+				
+				
+				
 
-<div id="tags">
-
-</div>
-
-<div id="taglist">Tags: </div>
-Tag this post: <!--<input type="text" id="suggestTag" /> -->
-
-<div id="tagger">Aligator</div>
-<script type="text/javascript">
-jQuery(function($) {
-	
-	$('div#tagger').click(function(){
-		console.log('click');
-		$(this).attr('id', 'hulu');
-		 var this_word = $(this).text()
-		$(this).html('<input type="text" id="suggestTag"/>');
-		$('#suggestTag').val(this_word);
-		   $("#suggestTag").freebaseSuggest().bind(
-		   "fb-select", function(e, data) { 
-         $('#suggestTag').val(''); // clear the input
-         $('#taglist').append('<a href="http://freebase.com/view'+ data.id +'">'+ data.name +'</a>');
-         
-         
-    });
-		
-		
-	}); 
-	
-	
-    $('div#tagger').toggle(
-      function () {
-		console.log('click');
-		 var this_word = $(this).text()
-		$(this).html('<input type="text" id="suggestTag"/>');
-		$('#suggestTag').val(this_word);
-		   $("#suggestTag").freebaseSuggest().bind(
-		   "fb-select", function(e, data) { 
-         $('#suggestTag').val(''); // clear the input
-         $('#taglist').append('<a href="http://freebase.com/view'+ data.id +'">'+ data.name +'</a>');
-         
-         
-    });
-
-	},
-      function () {
-        console.log('noo!');
-      }
-    );
-
-	
-	/* create input element with word as value, and then perform freebase suggest. */
-
- /* $('div#tagger').hover(function(){
-   $(this)
-      .freebaseSuggest()
-      .bind("fb-select", function(e, data) { 
-         //$('#suggestTag').val(''); // clear the input
-         $('#taglist').append('<a href="http://freebase.com/view'+ data.id +'">'+ data.name +'</a>');
-    }); 
-
-}, function(){
-console.log('no!');
-}); */
-    
-    
-    
-
-});
-
-</script>
-
+<br/>
 
 <div class="quiz_items" id="quiz_items">
 

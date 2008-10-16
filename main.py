@@ -63,6 +63,8 @@ def url_handler():
                                          URIRouter),
                                         ('/quiz_frame/?',
                                          quiztaker.views.QuizFrame),
+                                        ('/drilldown/?',
+                                         quizbuilder.views.Drilldown),
                                         ],
                                        debug=True)
   wsgiref.handlers.CGIHandler().run(application)
