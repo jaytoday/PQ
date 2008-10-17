@@ -23,7 +23,7 @@ $(document).ready(function()
 {
 	var viewWidth = $('#viewport').width();
 	var viewHeight = $('#viewport').height();
-	$('#viewport .layer.near').css({width: (viewWidth * 2.2), height: (viewHeight*1.3)});
+	$('#viewport .layer.near').css({width: (viewWidth * 1.4), height: (viewHeight*1.3)});
 	$('#viewport .layer.mid').css({width: (viewWidth * 1.15), height: (viewHeight*1.05)});
 	$('#viewport .layer.far').css({width: (viewWidth * 1.04), height: (viewHeight*1.01)});
 	jQuery('#viewport').jparallax({});

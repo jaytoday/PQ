@@ -2,10 +2,9 @@
 
 // when the DOM is ready...
 function sliderInit() {
-    console.log('initializing scroller...');
     
     var $panels = $('.quizbuilder_wrapper .quiz_items > div');
-    //var $panels = $('#slider .scrollContainer > div');
+
     var $container = $('.quizbuilder_wrapper .quiz_items');
 
     // if false, we'll float all the panels left and fix the width 

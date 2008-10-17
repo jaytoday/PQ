@@ -60,13 +60,14 @@ QUIZBUILDER_LIMIT = 1
 
 class RawItemInduction(webapp.RequestHandler):  
  
-    def get(self, *args):  
+    def get(self, *args):
+    	try: urlfetch.fetch(soup_url) #check for valid url
+    	except: return ["error", "invalid url"]    
         topic = self.save_topic(args[0][1])
         page = self.save_url(args[0][0], topic)  
         build_items = BuildItemsFromPage()
-        # two part process
         raw_quiz_items = build_items.get(page)
-        if not raw_quiz_items: return []
+        if not raw_quiz_items: return ["error", "unable to make quiz items"]
         saved_items = []
         for item in raw_quiz_items:
 			save_item = self.save_item(item)

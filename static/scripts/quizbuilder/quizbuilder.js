@@ -74,6 +74,7 @@ function AfterGetRawItemsForTopic(response){
 var raw_quiz_items = parseJSON(response);
 
 if (raw_quiz_items.length == 0) { $('div#loading_items').html('no quiz items returned -- <a href="">try again?</a>'); }  // no items returned
+if (raw_quiz_items[0] == "error") { $('div#loading_items').html('error: ' + raw_quiz_items[1]); }  // error
 
  $.each(raw_quiz_items, function(i,item){
 
@@ -142,7 +143,7 @@ EditQuizItem(i, item, answers); // Run function after the above code is evaluate
 
 
 
-//sliderInit();  
+sliderInit();  
 
 
 }

@@ -73,6 +73,5 @@ class DataMethods():
   		return "unable to encode objects"
   			
   	
-  	
-  	
-  	
+
+	

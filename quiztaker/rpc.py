@@ -62,6 +62,7 @@ class RPCMethods(webapp.RequestHandler):
     
         
   def refresh_data(self, *args):
+  	if len(args) == 0: return "specify data type"
   	if args[0] == "quiz_items":
   	    return refresh_data(QuizItem.all(), "loud")
             

@@ -34,27 +34,26 @@ function AfterRetrieveTopics(response){  // Create list of proficiency topics
 
 var topics = parseJSON(response);
 
-$('input[@name="proficiency"]').setValue(topics[0].name);  //default
+
 
 
  $.each(topics, function(t, topic){
 $('div#topics').append('<input type="checkbox" id="' + t + '" name="proficiency" value="' + topic.name + '" unchecked ><span>' + topic.name + '</span><br/>')
 
 .find('input[@name="proficiency"]').click(function(){
-	
-$('input[@name="proficiency"]').setValue($(this).attr("value"));   
+$('input[@name="proficiency"]').setValue($(this).attr("value"));    });
 
-
- });
-
+topic_sum = t + 1;
+return topic_sum;
 });
 
 
+$('input[@name="proficiency"]').setValue(topics[0].name);  //default
 
 
 $('#submit_url').click(function () {
 
-        for (j = 0; j < 4; j++) {
+        for (j = 0; j < topic_sum; j++) {
 if (eval('document.content_url.proficiency[' + j + '].checked') == true) {
     var topic = eval('document.content_url.proficiency[' + j + '].value')
     }}
@@ -76,6 +75,10 @@ $('div#loading_items').show();
 function AfterSubmitUrl(response){
 
 var raw_quiz_items = parseJSON(response);
+
+if (raw_quiz_items.length == 0) { $('div#loading_items').html('no quiz items returned -- <a href="">try again?</a>'); return; }  // no items returned
+if (raw_quiz_items[0] == "error") { $('div#loading_items').html('error: ' + raw_quiz_items[1]); return; }  // error
+
 
  $.each(raw_quiz_items, function(i,item){
 

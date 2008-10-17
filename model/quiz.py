@@ -49,6 +49,7 @@ class RawQuizItem(db.Model):
     content = db.TextProperty() 
     post_content = db.TextProperty() 
     moderated = db.BooleanProperty()
+    
 
 
 
@@ -68,14 +69,34 @@ class QuizItem(db.Model):
   date = db.DateTimeProperty(auto_now_add=True)
   difficulty = db.IntegerProperty(default=0)  # 0-10000
   content_url = db.LinkProperty(required=False)    # Where quiz material is from - wikipedia.org/en/neuroscience/
+  theme = db.StringProperty(required=False, default="default")
   
+
+
+  def put(self): 
+    try: 
+        self.content_url.url
+        self.theme = self.get_theme(self.content_url)
+    except: pass
+    
+
+
+  def get_theme(url):
+		#todo: fill this up 
+		# eventually, store this in external json. 
+		themes= [("wikipedia.org" "wiki"), ("knol.google.com", "knol")]
+		for theme in themes:
+			if theme[0] in url: return theme[1]
+
+  """      
   @property
   def get_takers(self):   # Get all QuizTakers who have taken items
         this_items_scores = ItemScore.gql("WHERE quiz_item = :1", self.slug).get() 
         this_items_takers = [score.quiz_taker for score in this_items_scores]
         return this_items_takers
 
-  """
+
+
   def put(self): 
   self.proficiency_name = self.proficiency.name #Call put() on the super class. return db.SearchableModel.put(self)
   

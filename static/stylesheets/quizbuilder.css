@@ -71,7 +71,7 @@ margin-left:20px;
 }
 
 div.answers_container{
-width:auto;
+ width:  700px; /*auto; */
 overflow:auto;
 height:110px;
 clear:both;
@@ -88,7 +88,6 @@ height:110px;
 
 
 div.ac_container{
-background:#FFFFDB none repeat scroll 0 0;
 border:1px solid black;
 float:left;
 height:108px;

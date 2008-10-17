@@ -181,7 +181,8 @@
 				if( !isNaN(elem) ) return elem;//number
 				var $items = getItems(), i;
 				while(( i = $items.index(elem)) == -1 && elem != pane )//see if it matches or one of its ancestors
-					elem = elem.parentNode;
+					 elem = elem.parentNode;
+					
 				return i;
 			};
 		});
