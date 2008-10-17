@@ -160,8 +160,8 @@ class JSONEncoder(object):
         self.check_circular = check_circular
         self.allow_nan = allow_nan
         self.sort_keys = sort_keys
-        self.indent = indent
-        self.current_indent_level = 0
+        self.indent = 4
+        self.current_indent_level = 4
         if separators is not None:
             self.item_separator, self.key_separator = separators
         if default is not None:

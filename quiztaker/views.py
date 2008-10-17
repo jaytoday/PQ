@@ -15,7 +15,7 @@ from google.appengine.ext.webapp import util
 import simplejson
 from .utils.utils import tpl_path, ROOT_PATH, raise_error
 from model.quiz import Proficiency, ProficiencyTopic, QuizTaker, QuizItem, ItemScore
-
+from methods import refresh_data
 # Template paths
 QUIZTAKER_PATH = 'quiztaker/'
 DEMO_PATH = 'demo/'
@@ -99,7 +99,7 @@ class ViewQuiz(webapp.RequestHandler):
     
     # Load Fixture Data if Necessary
     if len(quiz_items) == 0: 
-        RefreshData.refresh_data("quiz_items") 
+        refresh_data("quiz_items", "quiet") 
         q = db.GqlQuery("SELECT * FROM QuizItem")
         quiz_items = q.fetch(1000)
     for item in quiz_items:
@@ -187,79 +187,7 @@ class ViewScore(webapp.RequestHandler):
     self.response.out.write(template.render(path, template_values))
     
 
-    
-class RefreshData(webapp.RequestHandler):
-  #Refreshes Data
-
-  def get(self):
-      self.delete_data(QuizItem.all(), "verbose")
-      self.refresh_data("verbose")
-
-
-
-  def delete_data(self, query, *verbose):
-	# use "verbose" to print logging info
-		data_type = query.fetch(1000)
-		for item in data_type:
-			if verbose:
-				print ""   
-				print "deleted: " + str(item.__dict__) 
-			item.delete()
-			
-			
-  def refresh_data(self, *verbose):
-		# use "verbose" to print logging info
-		proficiencies = []
-		# Load External JSON fixture
-		json_file = open(ROOT_PATH + "/data/quiz_items.json")
-		json_str = json_file.read()
-		newdata = simplejson.loads(json_str) # Load JSON file as object
-		
-		# Retrieve Proficiency. If new, then save it. 
-		for item in newdata["quiz_items"]:
-			this_proficiency = Proficiency.gql("WHERE name = :proficiency",
-										   proficiency=item['proficiency']).get()
-			if not this_proficiency:
-				this_proficiency = Proficiency(name=item['proficiency'])
-				this_proficiency.put()
-				if verbose:
-					print "added proficiency: " + str(this_proficiency.name)
-		# Store Item in Datastore
-			
-			quiz_item = QuizItem(slug = item['slug'],
-								 category = item['content'][0],
-								 content = item['content'][1],
-								 proficiency = this_proficiency.key(),
-								 answers = item['answers'],
-								 index = item['index'] )
-		   
-								  #Add List of Answers
-			quiz_item.put()
-			if verbose:
-				print "added quiz item: " + str(quiz_item.slug) + " + " + str(quiz_item.proficiency.name)
-
-			
-
-
-
-
-
-class DumpData(webapp.RequestHandler):
-  #Dumps Data
-
-  def get(self):
-      self.dump_data("quiz_items", "verbose")
-	 
-  def dump_data(data_type, *verbose):
-	items = []
-	models = {"quiz_items" : "QuizItem"}
-	query_string = "SELECT * FROM " + models[data_type] 
-	query = db.GqlQuery(query_string) # Query all quiz items
-	items = query.fetch(1000)
-	encoder = GqlEncoder()
-	json_items = encoder.encode(items)
-	print json_items
-
+ 
 
 
 
@@ -267,16 +195,3 @@ class ViewNone(webapp.RequestHandler):
 
    def get(self):
        pass
-
-
-
-
-
-
-
-
-
-
-
-
-          

@@ -123,7 +123,7 @@ answers =  eval(item.answer_candidates); //item.answer_candidates
  $.each(answers, function(n, answer){
  	
  	
-answer_html = '<div class="ac_container"><div id ="' + n + '" class="answer_candidate" >' + answer + '</div></div>';
+answer_html = '<div id ="' + n + '" class="ac_container"><div id ="' + n + '" class="answer_candidate" >' + answer + '</div></div>';
 
 
 $('div#answers_' + i).append(answer_html);
@@ -142,7 +142,7 @@ EditQuizItem(i, item, answers); // Run function after the above code is evaluate
 
 
 
-sliderInit();  
+//sliderInit();  
 
 
 }

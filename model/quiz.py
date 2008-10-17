@@ -25,16 +25,8 @@ class ProficiencyTopic(db.Model):  # sub-topics within proficiencies - These map
                                     collection_name='topics') # Proficiency Tag (startup_financing)
   date = db.DateTimeProperty(auto_now_add=True)    
   #freebase_guid ?
-
-  
   ## pages  
-      
-  
-  
 
-
-  
- 
  
 
 
@@ -75,7 +67,7 @@ class QuizItem(db.Model):
                                     collection_name='quizitems') # Proficiency Tag (startup_financing)
   date = db.DateTimeProperty(auto_now_add=True)
   difficulty = db.IntegerProperty(default=0)  # 0-10000
-  content_url = db.LinkProperty()    # Where quiz material is from - wikipedia.org/en/neuroscience/
+  content_url = db.LinkProperty(required=False)    # Where quiz material is from - wikipedia.org/en/neuroscience/
   
   @property
   def get_takers(self):   # Get all QuizTakers who have taken items

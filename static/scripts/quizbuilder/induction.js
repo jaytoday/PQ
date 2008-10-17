@@ -12,6 +12,7 @@ InstallFunction(server, 'RetrieveTopics');
 
 InstallFunction(server, 'SubmitContentUrl');
 
+
 InstallFunction(server, 'SubmitQuizItem');
 
 
@@ -33,26 +34,32 @@ function AfterRetrieveTopics(response){  // Create list of proficiency topics
 
 var topics = parseJSON(response);
 
+$('input[@name="proficiency"]').setValue(topics[0].name);  //default
+
+
  $.each(topics, function(t, topic){
- 	
 $('div#topics').append('<input type="checkbox" id="' + t + '" name="proficiency" value="' + topic.name + '" unchecked ><span>' + topic.name + '</span><br/>')
 
 .find('input[@name="proficiency"]').click(function(){
-$('input[@name="proficiency"]').setValue($(this).attr("value"));    });
+	
+$('input[@name="proficiency"]').setValue($(this).attr("value"));   
 
+
+ });
 
 });
 
-$('input[@name="proficiency"]').setValue(topics[0].name);
+
 
 
 $('#submit_url').click(function () {
 
         for (j = 0; j < 4; j++) {
 if (eval('document.content_url.proficiency[' + j + '].checked') == true) {
-    var proficiency = eval('document.content_url.proficiency[' + j + '].value'); }}
+    var topic = eval('document.content_url.proficiency[' + j + '].value')
+    }}
 
-    server.SubmitContentUrl(document.content_url.url.value, document.content_url.topic.value, proficiency, AfterSubmitUrl);
+    server.SubmitContentUrl(document.content_url.url.value, topic, AfterSubmitUrl);
     
     
 $('form#content_url').hide();

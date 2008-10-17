@@ -1,3 +1,5 @@
+
+
 // when the DOM is ready...
 function sliderInit() {
     console.log('initializing scroller...');

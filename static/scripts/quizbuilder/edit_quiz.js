@@ -49,7 +49,8 @@ wrong_answers[i].splice(wrong_answers[i].indexOf(answer_text), 1);
 
 answer_in_array[i][n] = "False"; // answer not in array anymore
 
-$(this).css("color","#555555");
+
+$(this).css("background","#FFFFDB none repeat scroll 0 0"); 
 $(this).css("font-weight","normal"); 
 $(this).css("font-size","1em"); 
 
@@ -65,16 +66,14 @@ console.log('array', wrong_answers[i]);
 
 if (answer_in_array[i][n] == "False") {
 
-if (wrong_answers[i].length > 1) { console.log("Only 2 Wrong Answers, Please!"); return false; }  // If there are already two answers
+if (wrong_answers[i].length > 1) { console.log("Only 2 Wrong Answers, Please!"); $("div.answers_container").fadeTo(50, 0.5).fadeTo(50, 1); return false; }  // If there are already two answers
 
 wrong_answers[i].splice(wrong_answers[i].length, 0, answer_text);   // add answer to array
 
 answer_in_array[i][n] == "True";
 
 
-
-
- $(this).css("color","#000000"); 
+  $(this).css("background","#FFFFA1 none repeat scroll 0 0"); 
   $(this).css("font-weight","bold"); 
   $(this).css("font-size",".9em"); 
   

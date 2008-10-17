@@ -6,6 +6,7 @@ from google.appengine.ext import db
 import simplejson
 from .model.quiz import Proficiency, ProficiencyTopic, QuizTaker, QuizItem, ItemScore
 from .model.user import InviteList
+from methods import refresh_data, dump_data
 
 class RPCHandler(webapp.RequestHandler):
   # AJAX Handler
@@ -60,14 +61,16 @@ class RPCMethods(webapp.RequestHandler):
     return json_response
     
         
-    
-  def sede(self, *args):
-  	query = QuizItems.gql()
-  	quiz_items = query.fetch(5)
-  	print quiz_items
-
-
+  def refresh_data(self, *args):
+  	if args[0] == "quiz_items":
+  	    return refresh_data(QuizItem.all(), "loud")
             
+
+  def dump_data(self, *args):
+  	if args[0] == "quiz_items":
+  	    print dump_data(QuizItem.all())
+  	    print ""
+  	    print "---do not copy this line or below---"
   
   def AddScore(self, *args):
 
@@ -111,6 +114,8 @@ class RPCMethods(webapp.RequestHandler):
     return score.score
 
 
+## QUIZTAKER SESSION ##
+
   def Init(self, *args):
     q = db.GqlQuery("SELECT * FROM ItemScore WHERE type='temp'")
     results = q.fetch(1000)
@@ -121,15 +126,6 @@ class RPCMethods(webapp.RequestHandler):
     return "deleted: " + str(d) + " entries"
 
         
-
-
-  def List(self, *args):
-  
-    logging.debug('Posting E-mail List Entry')    
-    list_entry = InviteList()    
-    list_entry.email = str(args[0])
-    list_entry.put()
-
 
 
   def NewUser(self, *args):
@@ -166,4 +162,12 @@ class RPCMethods(webapp.RequestHandler):
     return [result.score for result in results]
 
 
+
+
+  def List(self, *args):
+  
+    logging.debug('Posting E-mail List Entry')    
+    list_entry = InviteList()    
+    list_entry.email = str(args[0])
+    list_entry.put()
 

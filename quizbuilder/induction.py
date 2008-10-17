@@ -61,7 +61,7 @@ QUIZBUILDER_LIMIT = 1
 class RawItemInduction(webapp.RequestHandler):  
  
     def get(self, *args):  
-        topic = self.save_topic(args[0][1],args[0][2])
+        topic = self.save_topic(args[0][1])
         page = self.save_url(args[0][0], topic)  
         build_items = BuildItemsFromPage()
         # two part process
@@ -84,17 +84,16 @@ class RawItemInduction(webapp.RequestHandler):
             
 
     def save_url(self, page, this_topic):
-        saved_page = ContentPage.get_or_update("WHERE url = :1 AND topic = :2", page)
+        saved_page = ContentPage.gql("WHERE url = :1", page)
         if saved_page.get(): # check value
-            saved_page.delete()
-            return saved_page
+            return saved_page.get()
         else:
             new_page = ContentPage(url = page, topic = this_topic ) # make sure page is urlencoded.
             new_page.put()
             return new_page
 
-    def save_topic(self, topic, proficiency):
-        saved_topic = ProficiencyTopic.get_by_key_name(str([topic,proficiency]))
+    def save_topic(self, topic):
+        saved_topic = ProficiencyTopic.gql("WHERE name = :1", topic).get()
         if saved_topic: # check value
             return saved_topic
         else: 
@@ -125,7 +124,7 @@ class RawItemInduction(webapp.RequestHandler):
                                     content = this_content,
                                     post_content = this_post_content,
                                     moderated = False)
-            #new_raw_item.put()
+            new_raw_item.put()
             return new_raw_item 
         except:
              
@@ -238,8 +237,8 @@ class BuildItemsFromPage():
     tilde_soup = BeautifulStoneSoup(tilde_response.content)
     similar_topics = []
     for topic in tilde_soup.findAll('title'):
-    	encoded_topic = unicode(topic.contents[0]).encode('utf-8')
-    	#if r'/x' in encoded_topic:                  # Todo - unicode issues with similar_topics
+    	try: encoded_topic = unicode(topic.contents[0]).encode('utf-8')
+    	except: continue
     	try: encoded_topic.decode('ascii')
     	except: continue
         if len(encoded_topic) < len(tag) + 10: similar_topics.append(encoded_topic)
