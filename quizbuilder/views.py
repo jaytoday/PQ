@@ -15,7 +15,8 @@ from google.appengine.ext import webapp
 from google.appengine.ext.webapp import util
 import simplejson
 
-from .model.quiz import ContentPage, Proficiency, ProficiencyTopic, RawQuizItem, QuizItem
+from .model.quiz import ContentPage, RawQuizItem, QuizItem
+from .model.proficiency import  Proficiency, ProficiencyTopic
 from .utils.utils import tpl_path
 
 QUIZBUILDER_PATH = 'quizbuilder/'           

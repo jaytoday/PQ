@@ -70,6 +70,7 @@ body, html {
 	background: #F7F5F4;
 	margin: 0px 11px;
 	overflow: hidden;
+	height: 420px;
 }
 
 /* Homepage */
@@ -142,17 +143,16 @@ visibility:hidden;
 
 
 #sitelet-home {
-	position: absolute;
-	z-index: 100;
-	width: 650px;
-	height: 296px;
-	top: 50%;
-	left: 50%;
 	/* Half width and height offset*/
-	margin-top: -148px;
-	margin-left: -325px;
-	font-size: 14px;
-	color: #434343;
+color:#434343;
+font-size:14px;
+left:50%;
+margin-left:-477px;
+margin-top:-248px;
+position:absolute;
+top:50%;
+width:950px;
+z-index:100;
 }
 #sitelet-home #logo {
 	width: 225px;
@@ -268,7 +268,7 @@ span.blank{
 div#motto,#smart
 {
 	font-size:1.4em;
-	margin-left:21px;
+	margin-left:20px;
 	
 }
 
@@ -280,7 +280,7 @@ margin-top:60px;
 {
 	font-weight:bold;
 	font-size:1.6em;
-	margin-left:29px;
+	margin-left:30px;
 	position:	absolute;
 	margin-top: 58px;
 }

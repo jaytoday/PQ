@@ -1,6 +1,5 @@
 import logging
 from utils import utils
-import model
 from utils import stubs as stubs
 from dev import *
 import quiztaker.views

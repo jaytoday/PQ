@@ -1,4 +1,6 @@
-from model.quiz import Proficiency, ProficiencyTopic, QuizTaker, QuizItem, ItemScore 
+from model.quiz import QuizItem, ItemScore
+from model.user import QuizTaker
+from .model.proficiency import Proficiency, ProficiencyTopic 
 from .utils.utils import tpl_path, ROOT_PATH, raise_error
 import simplejson
 from utils.gql_encoder import GqlEncoder, encode

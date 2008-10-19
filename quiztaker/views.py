@@ -14,7 +14,9 @@ from google.appengine.ext import webapp
 from google.appengine.ext.webapp import util
 import simplejson
 from .utils.utils import tpl_path, ROOT_PATH, raise_error
-from model.quiz import Proficiency, ProficiencyTopic, QuizTaker, QuizItem, ItemScore
+from .model.quiz import QuizItem, ItemScore
+from .model.user import QuizTaker
+from .model.proficiency import Proficiency, ProficiencyTopic 
 from methods import refresh_data
 # Template paths
 QUIZTAKER_PATH = 'quiztaker/'
@@ -50,7 +52,6 @@ class PQDemo(webapp.RequestHandler):
   #Load Ad Embed Preview Page
 
   def get(self):
-
     template_values = {}
     path = tpl_path(DEMO_PATH +'example_blog.html')
     self.response.out.write(template.render(path, template_values))
@@ -61,7 +62,6 @@ class PQDemo(webapp.RequestHandler):
 class QuizItemTemplate(webapp.RequestHandler):
 
   def get(self):
-
     template_values = {}
     quiz_slug = [self.request.get('slug'), self.request.get('source')]
     this_quiz_item = QuizItem.gql("WHERE slug = :slug",

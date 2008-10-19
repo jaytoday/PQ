@@ -18,8 +18,7 @@ function sliderInit() {
             'position' : 'relative' // IE fix to ensure overflow is hidden
         });
 
-        // calculate a new width for the container (so it holds all panels)
-        $container.css('width', $panels[0].offsetWidth * $panels.length);
+
     }
 
     // collect the scroll object, at the same time apply the hidden overflow
@@ -59,10 +58,11 @@ function sliderInit() {
     // offset is used to move to *exactly* the right place, since I'm using
     // padding on my example, I need to subtract the amount of padding to
     // the offset.  Try removing this to get a good idea of the effect
-    /* var offset = parseInt((horizontal ? 
+    var offset = parseInt((horizontal ? 
         $container.css('paddingTop') : 
         $container.css('paddingLeft')) 
-        || 0) * -1;             */
+        || 0) * -1;
+                     
 
 
     var scrollOptions = {
@@ -75,21 +75,21 @@ function sliderInit() {
 
         // selectors are NOT relative to document, i.e. make sure they're unique
         prev: 'img.left', 
-        next: 'img.right',
+        next: 'input[@name="submit_item"]',
 
         // allow the scroll effect to run both directions
-        axis: 'xy',
+        axis: 'x y',
 
         onAfter: trigger, // our final callback
 
-        //offset: offset,
+        offset: 0,
 
         // duration of the sliding effect
         duration: 500,
 
         // easing - can be used with the easing plugin: 
         // http://gsgd.co.uk/sandbox/jquery/easing/
-        easing: 'swing'
+        //easing: 'swing'
     };
 
     // apply serialScroll to the slider - we chose this plugin because it 
@@ -108,4 +108,5 @@ function sliderInit() {
     scrollOptions.duration = 1;
     $.localScroll.hash(scrollOptions);
 
+ 
 }

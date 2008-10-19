@@ -9,7 +9,8 @@ import cgi
 import wsgiref.handlers
 import os
 import datetime, time
-from .model.quiz import ContentPage, Proficiency, ProficiencyTopic, RawQuizItem
+from .model.quiz import ContentPage,  RawQuizItem
+from .model.proficiency import Proficiency, ProficiencyTopic
 from google.appengine.ext.webapp import template
 from google.appengine.ext import db
 from google.appengine.api import users
@@ -61,7 +62,7 @@ QUIZBUILDER_LIMIT = 1
 class RawItemInduction(webapp.RequestHandler):  
  
     def get(self, *args):
-    	try: urlfetch.fetch(soup_url) #check for valid url
+    	try: urlfetch.fetch(args[0][0]) #check for valid url
     	except: return ["error", "invalid url"]    
         topic = self.save_topic(args[0][1])
         page = self.save_url(args[0][0], topic)  

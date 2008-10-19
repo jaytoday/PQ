@@ -1,33 +1,14 @@
 from google.appengine.ext import db
 from google.appengine.api import users
 import logging
-#from proficiency import *
+from proficiency import *
+from user import *
 
 
 # Log a message each time this module get loaded.
 logging.info('Loading %s', __name__)
 
 
-
-
-class Proficiency(db.Model):
-  name = db.StringProperty(required=True)  # Proficiency Tag (startup_financing)
-  date = db.DateTimeProperty(auto_now_add=True)
-  #quizitems -- QuizItem reference
-  
-
-
-
-
-class ProficiencyTopic(db.Model):  # sub-topics within proficiencies - These map to content URLs.
-  name = db.StringProperty(required=True)
-  proficiency = db.ReferenceProperty(Proficiency,
-                                    collection_name='topics') # Proficiency Tag (startup_financing)
-  date = db.DateTimeProperty(auto_now_add=True)    
-  #freebase_guid ?
-  ## pages  
-
- 
 
 
 class ContentPage(db.Model):
@@ -38,6 +19,7 @@ class ContentPage(db.Model):
                                     
     # for more than one topic, use list of keys. 
     # raw_items
+
 
 
 class RawQuizItem(db.Model):
@@ -54,10 +36,8 @@ class RawQuizItem(db.Model):
 
 
 
-
-
-
 class QuizItem(db.Model):
+  
   
   slug = db.StringListProperty()  #Unique name ["wiki", "bayesian"] - [0] is source and [1] item is url path, like /science/cs/algorithm 
   category = db.StringProperty()
@@ -72,8 +52,7 @@ class QuizItem(db.Model):
   theme = db.StringProperty(required=False, default="default")
   
 
-
-  def put(self): 
+  def put(self):
     try: 
         self.content_url.url
         self.theme = self.get_theme(self.content_url)
@@ -103,40 +82,6 @@ class QuizItem(db.Model):
   """ 
 
 
-class QuizTaker(db.Model):
-    email = db.EmailProperty(required=True)
-    name = db.StringProperty()
-    scores = db.ListProperty(db.Key) # ItemScore keys
-    levels = db.ListProperty(db.Key) # ProficiencyLevel keys
-    date = db.DateTimeProperty(auto_now_add=True)
-    #itemscores  -- ItemScore reference
-    #proficiency_levels -- ProficiencyLevel reference
-    """
-    
-    Foreign Key Usages
-    
-    james = QuizTaker.gql("WHERE email = James")
-    for score_key in james.scores:
-       ItemScore.get(score_key)
-    
-    newscore = Score()
-    james = QuizTaker()
-    james.scores.append(newscore.key())
-    
-    totalscore += score.score for score in james.itemscores
-    
-    for score in scores:
-        if score.key() not in quiz_taker.scores 
-    takers_score = Score.gql("
-    
-    """ 
-    
-    @property
-    def get_level_for_proficiency(self, proficiency):   # Get proficiency_levels for user 
-        return ProficiencyLevel.gql("WHERE quiz_taker = :1 AND proficiency = :2", self.key(), proficiency).get()
-    
-
-
 
     
 class ItemScore(db.Model):
@@ -154,34 +99,7 @@ class ItemScore(db.Model):
   type = db.StringProperty() # demo, stub, etc.
  
 
-
-    
- 
-
-
-
-    
-# When user submits e-mail address, transfer each score to perm model, and change quiz_taker to e-mail address.
   
-
-
-
-        
-  
-
-
-class ProficiencyLevel(db.Model):
-  proficiency = db.ReferenceProperty(Proficiency,
-                                    required=True,
-                                    collection_name='level') # Proficiency Tag (startup_financing)
-  quiz_taker = db.ReferenceProperty(QuizTaker,
-                                    required=True,
-                                    collection_name='proficiency_levels')
-  proficiency_level = db.IntegerProperty()
-  date = db.DateTimeProperty(auto_now_add=True)
-
-  
-
 
 
 

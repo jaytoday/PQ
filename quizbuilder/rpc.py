@@ -13,7 +13,8 @@ from .lib.BeautifulSoup import BeautifulSoup
 from .utils import jsonparser as parser
 from utils.utils import ROOT_PATH
 from utils.gql_encoder import GqlEncoder, encode
-from .model.quiz import QuizItem, RawQuizItem, ProficiencyTopic, ContentPage, Proficiency
+from .model.quiz import QuizItem, RawQuizItem,  ContentPage
+from .model.proficiency import ProficiencyTopic, Proficiency
 import views
 import induction
 from methods import DataMethods

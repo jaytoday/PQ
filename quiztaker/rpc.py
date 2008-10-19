@@ -4,8 +4,8 @@ logging.info('Loading %s', __name__)
 from google.appengine.ext import webapp
 from google.appengine.ext import db
 import simplejson
-from .model.quiz import Proficiency, ProficiencyTopic, QuizTaker, QuizItem, ItemScore
-from .model.user import InviteList
+from .model.quiz import QuizItem, ItemScore
+from .model.user import QuizTaker, InviteList
 from methods import refresh_data, dump_data
 
 class RPCHandler(webapp.RequestHandler):
