@@ -1,7 +1,10 @@
 ANSWER_LIMIT = 2; 
 
+
+
 function BuildQuizEditor(response){
-	
+
+
 	
 	
 var raw_quiz_items = parseJSON(response);
@@ -23,7 +26,6 @@ $('ul.item_navigation').append('<li><a href="#' + i + '">' + item.index + '</a><
  	
 var html = '<div class="quiz_item"  id="' + i + '" >';
 
-
 html += '<div class="quiz_item_content" id="quiz_item_content_' + i + '"><div class="item_inner">'; // start quiz item content
 
 html += '<div class="pre_content">' + item.pre_content + '</div>';
@@ -38,11 +40,9 @@ html += '<div class="quiz_form"><form id="quiz_data_' + i + '" name="quiz_data_'
 
 html += '<div class="answers_container" id="' + i + '" ><div class="answer_candidates" id="answers_' + i + '"></div></div>';  // Expand answer candidates
 
-
 html += '<div id="answer_choice_previews_' + i + '" class="answer_choice_previews">';
 
 html += '<div class="answer_preview" ><div class="correct">Correct Answer</div><span class="selection">' + item.index + '</span></div>';
-
 
 
 for (w = 0; w < ANSWER_LIMIT; w++){
@@ -51,13 +51,9 @@ html += '<div class="answer_preview"><div class="wrong">Wrong Answer #' + (w + 1
 
 }
 
-
 html += '<div class="new_answer" id="' + i + '"><div class="submit_new_answer">you can also</div><input type="text" name="new_answer" class="new_answer" value="  write a custom answer" /> </div>';  // User submitted answer
 
-
 html += '<input type="submit" name="submit_item" class="submit_item" value="submit item" />';  // User submitted answer
-
-
 
 html += '</div>';
 
@@ -77,6 +73,8 @@ $('div#quiz_items').show('slow');
 
 
 
+
+
 $('.new_answer').preserveDefaultText('  write a custom answer');
 // when something is written in this field, a submit button should appear below
 
@@ -90,7 +88,7 @@ answers =  eval(item.answer_candidates); //item.answer_candidates
  $.each(answers, function(n, answer){
  	
  	
-answer_html = '<div id ="' + n + '" class="ac_container"><div id ="' + n + '" class="answer_candidate" >' + answer + '</div></div>';
+answer_html = '<div id ="' + n + '" class="ac_unselected"><div id ="' + n + '" class="answer_candidate" >' + answer + '</div></div>';
 
 
 $('div#answers_' + i).append(answer_html);
@@ -152,7 +150,7 @@ $('#quiz_data_' + i + ' > input[@name="proficiency"]').setValue($(this).attr("va
 
 
     
-$('div#answers_' + i + '').find('.ac_container').click(function(){
+$('div#answers_' + i + ' > div').click(function(){
 			
 //    If answer is selected, remove it if it's already in array. 
 //    If not, add it to the array, if the limit hasn't been reached. 
@@ -162,22 +160,20 @@ answer_text = $(this).text();
 n = $(this).attr("id");
 
 
-for (var a = -1, loopCnt = wrong_answers[i].length; a < loopCnt; a++) {
+for (var a = 0, loopCnt = wrong_answers[i].length; a < loopCnt; a++) {
 
 
+if (answer_text == wrong_answers[i][a][0]){   // if answer text is already there
 
-if (answer_text == wrong_answers[i][a]){   // if answer text is already there
 
-
-wrong_answers[i].splice(wrong_answers[i].indexOf(answer_text), 1);
+wrong_answers[i].splice(a, 1);
 UpdatePreviews(wrong_answers, ANSWER_LIMIT);
 
 answer_in_array[i][n] = "False"; // answer not in array anymore
 
+$(this).removeClass("ac_selected");
+$(this).addClass("ac_unselected");
 
-$(this).css("background","#FFFFDB none repeat scroll 0 0"); 
-$(this).css("font-weight","normal"); 
-$(this).css("font-size","1em"); 
 
 console.log('removed text');
 return;
@@ -193,17 +189,16 @@ if (answer_in_array[i][n] == "False") {
 
 if (wrong_answers[i].length > (ANSWER_LIMIT - 1)) { console.log("Only 2 Wrong Answers, Please!"); $("div.answers_container").fadeTo(50, 0.5).fadeTo(50, 1); return false; }  // If there are already two answers
 
-wrong_answers[i].splice(wrong_answers[i].length, 0, answer_text);   // add answer to array
+var answer_pair = [answer_text, n];
+wrong_answers[i].splice(wrong_answers[i].length, 0, answer_pair);   // add answer to array
 UpdatePreviews(wrong_answers, ANSWER_LIMIT);
 
-answer_in_array[i][n] == "True";
+answer_in_array[i][n] == "True"; // this isn't needed.
 
+$(this).removeClass("ac_unselected");
+$(this).addClass("ac_selected");
 
-  $(this).css("background","#FFFFA1 none repeat scroll 0 0"); 
-  $(this).css("font-weight","bold"); 
-  $(this).css("font-size",".9em"); 
-  
-  console.log('added item', answer_text, wrong_answers[i],wrong_answers[i].length);
+  console.log('added item', answer_pair, wrong_answers[i],wrong_answers[i].length);
   return;
   
 }
@@ -216,8 +211,10 @@ answer_in_array[i][n] == "True";
 function UpdatePreviews(wrong_answers, ANSWER_LIMIT) {
 	console.log($('div#answer_choice_previews_' + i));
 for (w=0; w < ANSWER_LIMIT; w++){
-
-if (wrong_answers[i][w]){  $('div#answer_choice_previews_' + i).find('span#selection_' + w).html(wrong_answers[i][w]); }
+if (wrong_answers[i][w]){
+	  $('div#answer_choice_previews_' + i).find('span#selection_' + w).html(wrong_answers[i][w][0]); 
+	  
+}
 else{  $('div#answer_choice_previews_' + i).find('span#selection_' + w).html('No Selection'); }
 
 }
@@ -228,15 +225,19 @@ else{  $('div#answer_choice_previews_' + i).find('span#selection_' + w).html('No
 
 for (w=0; w < ANSWER_LIMIT; w++){
 
-	console.log($('#answer_choice_previews_' + i).find('span#selection_' + w));
 	
-	//console.log($('div#'+i).find('div#answer_choice_previews_' + i).find('span#selection_' + w));
 $('#answer_choice_previews_' + i).find('span#selection_' + w).click(function(){
-	console.log($(this).text());
+
+for (a=0; a < wrong_answers[i].length; a++){ if ($(this).text() == wrong_answers[i][a][0]){ 
+	  
+	  ac_index = parseInt(wrong_answers[i][a][1]) + 1; 
+	  $('div#answers_' + i + ' > div:nth-child(' + ac_index  + ')').removeClass("ac_selected").addClass("ac_unselected");  //remove highlight from answer choice
+	 wrong_answers[i].splice(a, 1); // remove answer in array that matches $(this).text()
+	 } 
+	  }
 	
-	// remove answer in array that matches $(this).text()
-	//console.log(wrong_answers[i][w]);
-	 //UpdatePreviews(wrong_answers, ANSWER_LIMIT);
+	
+	 UpdatePreviews(wrong_answers, ANSWER_LIMIT);
     }); }
     
     
@@ -264,7 +265,7 @@ console.log($('div#quiz_item_content_' + i).html())
 
 
 
- server.SubmitQuizItem(item.index, wrong_answers[i].concat(item.index), eval('document.quiz_data_' + i + '.slug.value'),   eval('document.quiz_data_' + i + '.category.value'), $('div#quiz_item_content_' + i).html(),  onItemAddSuccess);
+ //server.SubmitQuizItem(item.index, wrong_answers[i].concat(item.index), eval('document.quiz_data_' + i + '.slug.value'),   eval('document.quiz_data_' + i + '.category.value'), $('div#quiz_item_content_' + i).html(),  onItemAddSuccess);
 });
  
  
@@ -323,7 +324,7 @@ function PreviewAnswer(i) {
 
  	var answer_span = $('div#quiz_item_content_' + i + ' > div.item_inner').find('.answer_span');
  	var answer_text = answer_span.text();
-	$('#answers_' + i + '').find('.ac_container').hover(function()
+	$('div#answers_' + i + ' > div').hover(function()
 	
 	{
         //answer_span.fadeTo(1,0.5);

@@ -29,6 +29,15 @@ class QuizBuilder(webapp.RequestHandler):
         self.response.out.write(template.render(path, template_values))
 
 
+class RawItemTemplate(webapp.RequestHandler):
+
+    def get(self):
+        template_values = {}
+        self.request.get
+        path = tpl_path(QUIZBUILDER_PATH + 'raw_item_template.html')
+        self.response.out.write(template.render(path, template_values))
+
+
 
 
 

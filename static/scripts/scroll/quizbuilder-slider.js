@@ -44,6 +44,9 @@ function sliderInit() {
     $('.quizbuilder_wrapper > .item_navigation').find('a').click(selectNav);
 
     // go find the navigation link that has this target and select the nav
+    
+    // use: $(container).trigger( 'next' );
+    
     function trigger(data) {
         var el = $('.item_navigation').find('a[href$="' + data.id + '"]').get(0);
         selectNav.call(el);
@@ -64,7 +67,6 @@ function sliderInit() {
         || 0) * -1;
                      
 
-
     var scrollOptions = {
         target: $scroll, // the element that has the overflow
 
@@ -72,6 +74,9 @@ function sliderInit() {
         items: $panels,
 
         navigation: '.item_navigation a',
+        
+        cycle: 'false',
+        lazy: 'true', // for dynamic content
 
         // selectors are NOT relative to document, i.e. make sure they're unique
         prev: 'img.left', 

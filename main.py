@@ -54,6 +54,8 @@ def url_handler():
                                          quizbuilder.views.InductionInterface),
                                         ('/quizbuilder/rpc/?',
                                          quizbuilder.rpc.RPCHandler),
+                                        ('/quizbuilder/item/?',
+                                         quizbuilder.views.RawItemTemplate),                                         
                                          ('/dev/?(.*)/?', 
                                          URIRouter),
                                         ('/quiz_frame/?',

@@ -30,10 +30,6 @@ $(document).ready(function()
 	$('#viewport').css({overflow: "hidden"});
 	$('#flyer a').animate({left: "100%"},24000);
 	
-	$('#flyer').click(function()
-	{
-	console.log('clicked on the plane ');
-    });
 	
 
 	$('form#signup #email').preserveDefaultText('nobel@macarthur.com');
