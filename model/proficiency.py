@@ -14,6 +14,7 @@ class Proficiency(db.Model):
   name = db.StringProperty(required=True)  # Proficiency Tag (startup_financing)
   date = db.DateTimeProperty(auto_now_add=True)
   #quizitems -- QuizItem reference
+  ## pages  
   
 
 
@@ -25,5 +26,5 @@ class ProficiencyTopic(db.Model):  # sub-topics within proficiencies - These map
                                     collection_name='topics') # Proficiency Tag (startup_financing)
   date = db.DateTimeProperty(auto_now_add=True)    
   #freebase_guid ?
-  ## pages  
+  
   

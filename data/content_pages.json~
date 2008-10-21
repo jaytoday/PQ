@@ -2,292 +2,47 @@
                     {
                         "url": "http://news.bbc.co.uk/2/hi/science/nature/7662565.stm", 
                         "date": {
-                            "ctime": "Fri Oct 17 00:05:16 2008", 
-                            "hour": 0, 
-                            "isoweekday": 5, 
-                            "month": 10, 
-                            "second": 16, 
-                            "microsecond": 882580, 
-                            "isocalendar": [
-                                2008, 
-                                42, 
-                                5
-                            ], 
-                            "timetuple": [
-                                2008, 
-                                10, 
-                                17, 
-                                0, 
-                                5, 
-                                16, 
-                                4, 
-                                291, 
-                                -1
-                            ], 
-                            "year": 2008, 
-                            "epoch": 1224201916.0, 
-                            "isoformat": "2008-10-17T00:05:16.882580", 
-                            "day": 17, 
-                            "minute": 5
+                            "ctime": "Tue Oct 21 03:39:31 2008"
                         }, 
-                        "topic": {
-                            "proficiency": {
-                                "date": {
-                                    "ctime": "Fri Oct 17 00:05:16 2008", 
-                                    "hour": 0, 
-                                    "isoweekday": 5, 
-                                    "month": 10, 
-                                    "second": 16, 
-                                    "microsecond": 755553, 
-                                    "isocalendar": [
-                                        2008, 
-                                        42, 
-                                        5
-                                    ], 
-                                    "timetuple": [
-                                        2008, 
-                                        10, 
-                                        17, 
-                                        0, 
-                                        5, 
-                                        16, 
-                                        4, 
-                                        291, 
-                                        -1
-                                    ], 
-                                    "year": 2008, 
-                                    "epoch": 1224201916.0, 
-                                    "isoformat": "2008-10-17T00:05:16.755553", 
-                                    "day": 17, 
-                                    "minute": 5
-                                }, 
-                                "name": "energy finance"
-                            }, 
+                        "proficiency": {
                             "date": {
-                                "ctime": "Fri Oct 17 00:05:16 2008", 
-                                "hour": 0, 
-                                "isoweekday": 5, 
-                                "month": 10, 
-                                "second": 16, 
-                                "microsecond": 778670, 
-                                "isocalendar": [
-                                    2008, 
-                                    42, 
-                                    5
-                                ], 
-                                "timetuple": [
-                                    2008, 
-                                    10, 
-                                    17, 
-                                    0, 
-                                    5, 
-                                    16, 
-                                    4, 
-                                    291, 
-                                    -1
-                                ], 
-                                "year": 2008, 
-                                "epoch": 1224201916.0, 
-                                "isoformat": "2008-10-17T00:05:16.778670", 
-                                "day": 17, 
-                                "minute": 5
+                                "ctime": "Tue Oct 21 03:39:31 2008"
                             }, 
-                            "name": "carbon cap and trade"
-                        }
+                            "name": "Energy Finance"
                     }, 
                     {
-                        "url": "http://www.huffingtonpost.com/kate-sheppard/what-the-candidates-said_b_135147.html
-", 
+                        "url": "http://www.huffingtonpost.com/kate-sheppard/what-the-candidates-said_b_135147.html", 
                         "date": {
-                            "ctime": "Fri Oct 17 00:05:16 2008", 
-                            "hour": 0, 
-                            "isoweekday": 5, 
-                            "month": 10, 
-                            "second": 16, 
-                            "microsecond": 904017, 
-                            "isocalendar": [
-                                2008, 
-                                42, 
-                                5
-                            ], 
-                            "timetuple": [
-                                2008, 
-                                10, 
-                                17, 
-                                0, 
-                                5, 
-                                16, 
-                                4, 
-                                291, 
-                                -1
-                            ], 
-                            "year": 2008, 
-                            "epoch": 1224201916.0, 
-                            "isoformat": "2008-10-17T00:05:16.904017", 
-                            "day": 17, 
-                            "minute": 5
+                            "ctime": "Tue Oct 21 03:39:31 2008"
                         }, 
-                        "topic": {
-                            "proficiency": {
-                                "date": {
-                                    "ctime": "Fri Oct 17 00:05:16 2008", 
-                                    "hour": 0, 
-                                    "isoweekday": 5, 
-                                    "month": 10, 
-                                    "second": 16, 
-                                    "microsecond": 751653, 
-                                    "isocalendar": [
-                                        2008, 
-                                        42, 
-                                        5
-                                    ], 
-                                    "timetuple": [
-                                        2008, 
-                                        10, 
-                                        17, 
-                                        0, 
-                                        5, 
-                                        16, 
-                                        4, 
-                                        291, 
-                                        -1
-                                    ], 
-                                    "year": 2008, 
-                                    "epoch": 1224201916.0, 
-                                    "isoformat": "2008-10-17T00:05:16.751653", 
-                                    "day": 17, 
-                                    "minute": 5
-                                }, 
-                                "name": "oil"
-                            }, 
+                        "proficiency": {
                             "date": {
-                                "ctime": "Fri Oct 17 00:05:16 2008", 
-                                "hour": 0, 
-                                "isoweekday": 5, 
-                                "month": 10, 
-                                "second": 16, 
-                                "microsecond": 838237, 
-                                "isocalendar": [
-                                    2008, 
-                                    42, 
-                                    5
-                                ], 
-                                "timetuple": [
-                                    2008, 
-                                    10, 
-                                    17, 
-                                    0, 
-                                    5, 
-                                    16, 
-                                    4, 
-                                    291, 
-                                    -1
-                                ], 
-                                "year": 2008, 
-                                "epoch": 1224201916.0, 
-                                "isoformat": "2008-10-17T00:05:16.838237", 
-                                "day": 17, 
-                                "minute": 5
+                                "ctime": "Tue Oct 21 03:39:31 2008"
                             }, 
-                            "name": "renewable energy"
-                        }
-                    },
+                            "name":  "Oil"
+                    }, 
                     {
                         "url": "http://en.wikipedia.org/wiki/Renewable_energy", 
                         "date": {
-                            "ctime": "Fri Oct 17 00:05:16 2008", 
-                            "hour": 0, 
-                            "isoweekday": 5, 
-                            "month": 10, 
-                            "second": 16, 
-                            "microsecond": 904017, 
-                            "isocalendar": [
-                                2008, 
-                                42, 
-                                5
-                            ], 
-                            "timetuple": [
-                                2008, 
-                                10, 
-                                17, 
-                                0, 
-                                5, 
-                                16, 
-                                4, 
-                                291, 
-                                -1
-                            ], 
-                            "year": 2008, 
-                            "epoch": 1224201916.0, 
-                            "isoformat": "2008-10-17T00:05:16.904017", 
-                            "day": 17, 
-                            "minute": 5
+                            "ctime": "Tue Oct 21 03:39:31 2008"
                         }, 
-                        "topic": {
-                            "proficiency": {
-                                "date": {
-                                    "ctime": "Fri Oct 17 00:05:16 2008", 
-                                    "hour": 0, 
-                                    "isoweekday": 5, 
-                                    "month": 10, 
-                                    "second": 16, 
-                                    "microsecond": 751653, 
-                                    "isocalendar": [
-                                        2008, 
-                                        42, 
-                                        5
-                                    ], 
-                                    "timetuple": [
-                                        2008, 
-                                        10, 
-                                        17, 
-                                        0, 
-                                        5, 
-                                        16, 
-                                        4, 
-                                        291, 
-                                        -1
-                                    ], 
-                                    "year": 2008, 
-                                    "epoch": 1224201916.0, 
-                                    "isoformat": "2008-10-17T00:05:16.751653", 
-                                    "day": 17, 
-                                    "minute": 5
-                                }, 
-                                "name": "oil"
-                            }, 
+                        "proficiency": {
                             "date": {
-                                "ctime": "Fri Oct 17 00:05:16 2008", 
-                                "hour": 0, 
-                                "isoweekday": 5, 
-                                "month": 10, 
-                                "second": 16, 
-                                "microsecond": 838237, 
-                                "isocalendar": [
-                                    2008, 
-                                    42, 
-                                    5
-                                ], 
-                                "timetuple": [
-                                    2008, 
-                                    10, 
-                                    17, 
-                                    0, 
-                                    5, 
-                                    16, 
-                                    4, 
-                                    291, 
-                                    -1
-                                ], 
-                                "year": 2008, 
-                                "epoch": 1224201916.0, 
-                                "isoformat": "2008-10-17T00:05:16.838237", 
-                                "day": 17, 
-                                "minute": 5
+                                "ctime": "Tue Oct 21 03:39:31 2008"
                             }, 
-                            "name": "renewable energy"
+                            "name":  "Biofuels"
+                    }, 
+                    {
+                        "url": "http://greenlight.greentechmedia.com/2008/10/16/peak-power-getting-a-second-hump-because-of-computers-662/", 
+                        "date": {
+                            "ctime": "Tue Oct 21 03:48:19 2008"
+                        }, 
+                        "proficiency": {
+                            "date": {
+                                "ctime": "Tue Oct 21 03:39:31 2008"
+                            }, 
+                            "name": "Energy Finance"
                         }
                     }
                 ]
-
 

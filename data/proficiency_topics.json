@@ -1,14 +1,14 @@
 [ 
 
-{ "name": "carbon cap and trade", "proficiency": "energy finance"},
+{ "name": "Carbon Cap and Trade", "proficiency": "Energy Finance"},
 
-{ "name": "top energy wasters",  "proficiency": "conservation"},
+{ "name": "Top Energy Wasters",  "proficiency": "Conservation"},
 
-{ "name": "the oil market", "proficiency": "oil" },
+{ "name": "The Oil Market", "proficiency": "Oil" },
 
-{ "name": "renewable energy", "proficiency": "oil"},
+{ "name": "Renewable Energy", "proficiency": "Oil"},
 
-{ "name": "geothermal power", "proficiency": "solar energy"}
+{ "name": "Geothermal Power", "proficiency": "Solar Energy"}
 
 ]
 

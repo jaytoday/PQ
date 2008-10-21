@@ -10,7 +10,7 @@ from google.appengine.ext.webapp import template
 from google.appengine.ext import db
 from google.appengine.api import users
 from google.appengine.ext import webapp
-
+from utils.gql_encoder import GqlEncoder, encode
 from google.appengine.ext.webapp import util
 import simplejson
 from .utils.utils import tpl_path, ROOT_PATH, raise_error
@@ -63,10 +63,14 @@ class QuizItemTemplate(webapp.RequestHandler):
 
   def get(self):
     template_values = {}
-    quiz_slug = [self.request.get('slug'), self.request.get('source')]
-    this_quiz_item = QuizItem.gql("WHERE slug = :slug",
-                                  slug=quiz_slug)
-    template_values['quiz_item'] = this_quiz_item
+    #quiz_slug = [self.request.get('slug'), self.request.get('source')] -- deprecated
+    this_quiz_item = QuizItem.get(self.request.get('item_key'))
+    quiz_item = {}
+    quiz_item['topic_name'] = this_quiz_item.topic.name
+    quiz_item['content'] = this_quiz_item.content
+    quiz_item['answers'] = this_quiz_item.answers
+    quiz_item['theme'] = this_quiz_item.theme
+    template_values = quiz_item
     path = tpl_path(QUIZTAKER_PATH + 'quiz_item.html') # Pass Quiz Item to Template
     self.response.out.write(template.render(path, template_values))
 
@@ -81,7 +85,7 @@ class QuizFrame(webapp.RequestHandler):
                 self.response.out.write(template.render(path, template_values))
 
 
-class ViewQuiz(webapp.RequestHandler):
+class ViewQuiz(webapp.RequestHandler): # most work should go into its own file?
   #View Quiz
 
   quiz_array = []
@@ -92,13 +96,17 @@ class ViewQuiz(webapp.RequestHandler):
   def get(self):
     self.proficiencies = {}
       # Create random list of three quiz items.
-    
+    if self.request.get('proficiencies'):
+        quiz_items = []
+        for p in eval(self.request.get('proficiencies')):  # TODO make these keys for easy lookup   -- these are proficiencies, not topics.
+			this_p = Proficiency.gql("WHERE name = :1", p)
+			q = QuizItem.gql("WHERE proficiency = :1", this_p.get())   # use topic for key
+			quiz_items.extend(q.fetch(1000))
     # Query all quiz items
-    q = db.GqlQuery("SELECT * FROM QuizItem")
-    quiz_items = q.fetch(1000) 
-    
+    else:
+        q = db.GqlQuery("SELECT * FROM QuizItem")
+        quiz_items = q.fetch(1000) 
     # Load Fixture Data if Necessary
-    if len(quiz_items) == 0: 
         refresh_data("quiz_items", "quiet") 
         q = db.GqlQuery("SELECT * FROM QuizItem")
         quiz_items = q.fetch(1000)
@@ -115,8 +123,8 @@ class ViewQuiz(webapp.RequestHandler):
         random.shuffle(item.answers)
         item_answers = []
         [item_answers.append(str(a)) for a in item.answers]
-        item_dict = {"slug" : item.slug, "answers": item_answers, "answer1" : item.answers[0], "answer2" : item.answers[1], "answer3": item.answers[2],
-        "proficiency": item.proficiency.name}
+        item_dict = {"answers": item_answers, "answer1" : item.answers[0], "answer2" : item.answers[1], "answer3": item.answers[2],  #answer1,2,3 is deprecated
+        "proficiency": item.proficiency.name, "topic": item.topic.name, "key": item.key()}
         if item.proficiency.name not in self.proficiencies: self.proficiencies[item.proficiency.name] = []
         self.proficiencies[item.proficiency.name].append(item_dict)
         return self.proficiencies

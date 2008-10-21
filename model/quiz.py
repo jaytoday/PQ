@@ -14,7 +14,7 @@ logging.info('Loading %s', __name__)
 class ContentPage(db.Model):
     url = db.LinkProperty()    # Where quiz material is from - wikipedia.org/en/neuroscience/
     date = db.DateTimeProperty(auto_now_add=True)
-    topic = db.ReferenceProperty(ProficiencyTopic,
+    proficiency = db.ReferenceProperty(Proficiency,
                                     collection_name='pages') # Proficiency Tag (startup_financing) 
                                     
     # for more than one topic, use list of keys. 
@@ -39,28 +39,23 @@ class RawQuizItem(db.Model):
 class QuizItem(db.Model):
   
   
-  slug = db.StringListProperty()  #Unique name ["wiki", "bayesian"] - [0] is source and [1] item is url path, like /science/cs/algorithm 
-  category = db.StringProperty()
+  #slug = db.StringListProperty()  #Unique name ["wiki", "bayesian"] - [0] is source and [1] item is url path, like /science/cs/algorithm 
+  #category = db.StringProperty()
   content = db.TextProperty()  # Content of Quiz Item
   index = db.StringProperty() # Correct Answer 
   answers = db.StringListProperty() # List of Answers
   proficiency = db.ReferenceProperty(Proficiency,
                                     collection_name='quizitems') # Proficiency Tag (startup_financing)
-  date = db.DateTimeProperty(auto_now_add=True)
+  topic = db.ReferenceProperty(ProficiencyTopic,
+                                    required=False, collection_name='quizitems') # Proficiency Tag (startup_financing)                                  
   difficulty = db.IntegerProperty(default=0)  # 0-10000
   content_url = db.LinkProperty(required=False)    # Where quiz material is from - wikipedia.org/en/neuroscience/
   theme = db.StringProperty(required=False, default="default")
-  
-
-  def put(self):
-    try: 
-        self.content_url.url
-        self.theme = self.get_theme(self.content_url)
-    except: pass
-    
+  date = db.DateTimeProperty(auto_now_add=True)
 
 
-  def get_theme(url):
+
+  def get_theme(self, url):
 		#todo: fill this up 
 		# eventually, store this in external json. 
 		themes= [("wikipedia.org" "wiki"), ("knol.google.com", "knol")]

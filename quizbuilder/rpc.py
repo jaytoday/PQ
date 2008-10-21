@@ -4,7 +4,7 @@ logging.info('Loading %s', __name__)
 from google.appengine.ext import webapp
 from google.appengine.ext import db
 import simplejson
-
+import string
 from google.appengine.api import urlfetch
 import string
 import urllib
@@ -69,7 +69,7 @@ remote callers access to private/protected "_*" methods.
   	return self.dump_data(["proficiencies"]) 
 
 
-  def add_proficiency_topic(self, *args):
+  def add_topic(self, *args):
   	this_proficiency = Proficiency.get(args[1])
 	save_topic = ProficiencyTopic(name = args[0], proficiency = this_proficiency)
 	save_topic.put()
@@ -124,16 +124,27 @@ remote callers access to private/protected "_*" methods.
   def RetrieveTopics(self, *args):   # todo: should be nested list of proficiencies and topics.
       return_topics = []
       topics = ProficiencyTopic.all()
-      return encode(topics.fetch(1000))
+      return encode(topics.fetch(9))
 
+  def RetrieveProficiencies(self, *args):   # todo: should be nested list of proficiencies and topics.
+      return_proficiencies = []
+      proficiencies = Proficiency.all()
+      return encode(proficiencies.fetch(9, offset=4)) # temporary offset
 
 
   def GetRawItemsForTopic(self, *args):  
       data = DataMethods()
       raw_quiz_items = []
-      this_topic = ProficiencyTopic.gql("WHERE name = :1 ORDER BY date", args[0])
+      this_topic = ProficiencyTopic.gql("WHERE name = :1 ORDER BY date DESC", args[0])
       #these_items = RawQuizItem().gql("WHERE topic = :1", this_topic.get())
       try: return data.dump_raw_items(this_topic.get().pages.get().raw_items.fetch(10))  # get 10 at a time...todo: lazy rpc-loader.
+      except: return simplejson.dumps([])
+
+  def GetRawItemsForProficiency(self, *args):  
+      data = DataMethods()
+      this_proficiency = Proficiency.gql("WHERE name = :1 ORDER BY date DESC", args[0])
+      #these_items = RawQuizItem().gql("WHERE proficiency = :1", this_proficiency.get())
+      try: return data.dump_raw_items(this_proficiency.get().pages.get().raw_items.fetch(10))  # get 10 at a time...todo: lazy rpc-loader.
       except: return simplejson.dumps([])
 
 
@@ -142,16 +153,23 @@ remote callers access to private/protected "_*" methods.
   def SubmitQuizItem(self, *args):
       new_quiz_item = QuizItem()
       new_quiz_item.index = args[0]
-      new_quiz_item.answers = args[1]
-      new_quiz_item.slug = args[2]
+      lc_answers = [string.lower(answer) for answer in args[1]]
+      new_quiz_item.answers = lc_answers
+      this_proficiency = Proficiency.gql("WHERE name = :1", args[5])
+      this_topic = ProficiencyTopic.get_or_insert(args[2], name=args[2], proficiency=this_proficiency.get())
+      this_topic.put()
+      new_quiz_item.topic = this_topic.key()
+      new_quiz_item.proficiency = this_topic.proficiency.key()
        # And args[2] 
-      new_quiz_item.category = str(args[4])       # different datastore? Not currently in model 
-      new_quiz_item.proficiency = str(args[5])  # Should be Proficiency
-      new_quiz_item.content = str(args[6])
+     # new_quiz_item.proficiency = str(args[5])  # Should be Proficiency   - needs to be calculated. should be proficiency key. 
+      new_quiz_item.content =  args[3].replace('title="Click to edit..."', '')
+      new_quiz_item.content =  new_quiz_item.content.replace('style="opacity: 1;"', '')
       new_quiz_item.difficulty = 0 # Default?
-      #new_quiz_item.put()
-      print new_quiz_item
-      return "saved quiz item" 
+      new_quiz_item.content_url = args[4]
+      new_quiz_item.theme = new_quiz_item.get_theme(args[0])
+      new_quiz_item.put()
+      print ""
+      return encode(new_quiz_item)
 
 
 

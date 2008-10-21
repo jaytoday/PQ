@@ -4,8 +4,6 @@ ANSWER_LIMIT = 2;
 
 function BuildQuizEditor(response){
 
-
-	
 	
 var raw_quiz_items = parseJSON(response);
 
@@ -24,7 +22,7 @@ $('ul.item_navigation').append('<li><a href="#' + i + '">' + item.index + '</a><
  	
 // raw item template 	-- use jsrepeater template
  	
-var html = '<div class="quiz_item"  id="' + i + '" >';
+var html = '<div class="quiz_item"  id="' + i + '" ><form id="quiz_data_' + i + '" name="quiz_data_' + i + '">';
 
 html += '<div class="quiz_item_content" id="quiz_item_content_' + i + '"><div class="item_inner">'; // start quiz item content
 
@@ -36,14 +34,13 @@ html += '<div class="post_content">' + item.post_content + '</div>';
 
 html += '</div></div>'; //end quiz item content
 
-html += '<div class="quiz_form"><form id="quiz_data_' + i + '" name="quiz_data_' + i + '"><input type="text" name="slug" class="slug_name" value="slug_name" /><br/><input type="text" name="category" class="category_name" value="category" /><br/><input type="submit" onClick="return false;this.disabled = true;" id="submit_item_' + i + '" class="submit_item" value="Submit Quiz Item" /></form></div>';
-
 html += '<div class="answers_container" id="' + i + '" ><div class="answer_candidates" id="answers_' + i + '"></div></div>';  // Expand answer candidates
 
 html += '<div id="answer_choice_previews_' + i + '" class="answer_choice_previews">';
 
 html += '<div class="answer_preview" ><div class="correct">Correct Answer</div><span class="selection">' + item.index + '</span></div>';
 
+// item.page.url is webpage
 
 for (w = 0; w < ANSWER_LIMIT; w++){
  	 
@@ -51,11 +48,14 @@ html += '<div class="answer_preview"><div class="wrong">Wrong Answer #' + (w + 1
 
 }
 
-html += '<div class="new_answer" id="' + i + '"><div class="submit_new_answer">you can also</div><input type="text" name="new_answer" class="new_answer" value="  write a custom answer" /> </div>';  // User submitted answer
 
-html += '<input type="submit" name="submit_item" class="submit_item" value="submit item" />';  // User submitted answer
+html += '<div class="new_answer" id="' + i + '" ><div class="submit_new_answer">you can also</div><input type="text" name="new_answer" class="new_answer" value="  write a custom answer" /><input type="submit" name="submit_new_answer" class="submit_new_answer" onClick="return false;" value="ok" /> </div>';  // User submitted answer
 
-html += '</div>';
+
+html += '<input type="text" name="item_topic" class="item_topic" value="        topic" />';
+html += '<input type="submit" name="submit_item" class="submit_item" onClick="return false;" value="submit item" />';  // Submit Item
+
+html += '</form></div>';
 
 
 
@@ -76,6 +76,8 @@ $('div#quiz_items').show('slow');
 
 
 $('.new_answer').preserveDefaultText('  write a custom answer');
+//$('.item_topic').preserveDefaultText('        category');
+$('.item_topic').preserveDefaultText('        topic');
 // when something is written in this field, a submit button should appear below
 
 
@@ -111,7 +113,7 @@ EditQuizItem(i, item, answers); // Run function after the above code is evaluate
 
 sliderInit();   
 
-}
+} // end of  BuildQuizEditor()
 
 
 
@@ -119,9 +121,11 @@ sliderInit();
 
 
 function EditQuizItem(i, item, answers) {
-    
- 
-  
+
+// setup for ajax call     
+var server = {};
+InstallFunction(server, 'SubmitQuizItem');
+// setup arrays
 wrong_answers[i] = [];
 answer_in_array[i] = [];    
 
@@ -167,7 +171,7 @@ if (answer_text == wrong_answers[i][a][0]){   // if answer text is already there
 
 
 wrong_answers[i].splice(a, 1);
-UpdatePreviews(wrong_answers, ANSWER_LIMIT);
+UpdatePreviews(wrong_answers, ANSWER_LIMIT, i);
 
 answer_in_array[i][n] = "False"; // answer not in array anymore
 
@@ -191,7 +195,7 @@ if (wrong_answers[i].length > (ANSWER_LIMIT - 1)) { console.log("Only 2 Wrong An
 
 var answer_pair = [answer_text, n];
 wrong_answers[i].splice(wrong_answers[i].length, 0, answer_pair);   // add answer to array
-UpdatePreviews(wrong_answers, ANSWER_LIMIT);
+UpdatePreviews(wrong_answers, ANSWER_LIMIT, i);
 
 answer_in_array[i][n] == "True"; // this isn't needed.
 
@@ -203,30 +207,27 @@ $(this).addClass("ac_selected");
   
 }
 
-    
-
 			});
 			
 			
-function UpdatePreviews(wrong_answers, ANSWER_LIMIT) {
-	console.log($('div#answer_choice_previews_' + i));
-for (w=0; w < ANSWER_LIMIT; w++){
-if (wrong_answers[i][w]){
-	  $('div#answer_choice_previews_' + i).find('span#selection_' + w).html(wrong_answers[i][w][0]); 
-	  
-}
-else{  $('div#answer_choice_previews_' + i).find('span#selection_' + w).html('No Selection'); }
+		//submit_new_answer
+		$('form#quiz_data_' + i).find('input[@name="new_answer"]').keydown(function(event){	
+	$('form#quiz_data_' + i).find('input[@name="submit_new_answer"]').show(); });
+	//move answer to array
+			$('form#quiz_data_' + i).find('input[@name="submit_new_answer"]').click(function(){
+				if (wrong_answers[i].length > (ANSWER_LIMIT - 1)) { console.log("Only 2 Wrong Answers, Please!"); return false; }  // If there are already two answers
+var answer_pair = [$('form#quiz_data_' + i).find('input[@name="new_answer"]').attr('value'), 0];
+wrong_answers[i].splice(wrong_answers[i].length, 0, answer_pair);   // add answer to array
+UpdatePreviews(wrong_answers, ANSWER_LIMIT, i);
+$('form#quiz_data_' + i).find('input[@name="submit_new_answer"]').hide();
+$('form#quiz_data_' + i).find('input[@name="new_answer"]').attr('value', '  write a custom answer');
 
-}
-	
-}			
+			});
+			
 
-	
+	// Clicking answer span preview
 
-for (w=0; w < ANSWER_LIMIT; w++){
-
-	
-$('#answer_choice_previews_' + i).find('span#selection_' + w).click(function(){
+for (w=0; w < ANSWER_LIMIT; w++){ $('#answer_choice_previews_' + i).find('span#selection_' + w).click(function(){
 
 for (a=0; a < wrong_answers[i].length; a++){ if ($(this).text() == wrong_answers[i][a][0]){ 
 	  
@@ -235,11 +236,9 @@ for (a=0; a < wrong_answers[i].length; a++){ if ($(this).text() == wrong_answers
 	 wrong_answers[i].splice(a, 1); // remove answer in array that matches $(this).text()
 	 } 
 	  }
-	
-	
-	 UpdatePreviews(wrong_answers, ANSWER_LIMIT);
+
+	 UpdatePreviews(wrong_answers, ANSWER_LIMIT, i);
     }); }
-    
     
 
 
@@ -249,23 +248,29 @@ PreviewAnswer(i);
 EditItemContent(i);
 
             
-        
-$('#submit_item_' + i).click(function() {
+   console.log($('form#quiz_data_' + i).find('input[@name="submit_item"]'));     
+$('form#quiz_data_' + i).find('input[@name="submit_item"]').click(function() {
 	
 	// Edited quiz item is submitted. 
-    
 
-console.log(eval('document.quiz_data_' + i + '.slug.value'));
+// console.log(eval('document.quiz_data_' + i + '.slug.value'));
 
-console.log(eval('document.quiz_data_' + i + '.category.value'));
+// console.log(eval('document.quiz_data_' + i + '.category.value'));
 
-console.log(wrong_answers[i]);
+console.log(eval('document.quiz_data_' + i + '.item_topic.value'));
 
-console.log($('div#quiz_item_content_' + i).html())
+//console.log($('div#quiz_item_content_' + i).html())
+var submit_wrong_answers = [];
+for (w=0; w < wrong_answers[i].length; w++){
+submit_wrong_answers.splice(wrong_answers[i].length, 0, wrong_answers[i][w][0]); 
+}
 
 
+// if not category, dont' proceed.
+// put slider trigger here, on addsuccess.
 
- //server.SubmitQuizItem(item.index, wrong_answers[i].concat(item.index), eval('document.quiz_data_' + i + '.slug.value'),   eval('document.quiz_data_' + i + '.category.value'), $('div#quiz_item_content_' + i).html(),  onItemAddSuccess);
+  //                     correct          all answers                                topic value                                     HTML                                                              url         proficiency
+ server.SubmitQuizItem(item.index, submit_wrong_answers.concat(item.index),  eval('document.quiz_data_' + i + '.item_topic.value'), $('div#quiz_item_content_' + i + ' > div.item_inner').html(), item.page.url, item.page.proficiency.name, onItemAddSuccess);
 });
  
  
@@ -281,15 +286,30 @@ function onItemAddSuccess(response)
    
     
 
+} // end of EditQuizItem()
+
+
+
+
+			
+function UpdatePreviews(wrong_answers, ANSWER_LIMIT, i) {
+for (w=0; w < ANSWER_LIMIT; w++){
+if (wrong_answers[i][w]){
+	  $('div#answer_choice_previews_' + i).find('span#selection_' + w).html(wrong_answers[i][w][0]); 
+	  
+}
+else{  $('div#answer_choice_previews_' + i).find('span#selection_' + w).html('No Selection'); }
+
+}
+	
 }
 
 
 
-
-
-
 function UpdateContent(value,i,el){ 
-	if (value.length > 0){ el.html(value); }
+	stripped_value = value.split(' ').join('');
+	stripped_value = stripped_value.split('\n').join('');
+	if (stripped_value.length > 0){ el.html(value); }
 	else { el.remove(); }
 
    PreviewAnswer(i);
@@ -298,16 +318,14 @@ return(value); }
 
 function EditItemContent(i) { 
 	
-	//console.log($('#quiz_item_content_' + i));
-	
 	$('#quiz_item_content_' + i + ' > div.item_inner > div').editable(function(value, id){UpdateContent(value,i, $(this));}, {
       type      : "autogrow",
       autogrow : {
                   lineHeight : 22
                  },
-      submit    : "OK",
+     // submit    : "OK",
       onblur    : "submit",
-      cancel    : "Cancel",
+     // cancel    : "Cancel",
       tooltip   : "Click to edit...",
       cssclass : "editable"
 		}); // this can be rpc call 
@@ -323,7 +341,8 @@ function PreviewAnswer(i) {
 	// On a hover over an answer, preview its text in the item content.
 
  	var answer_span = $('div#quiz_item_content_' + i + ' > div.item_inner').find('.answer_span');
- 	var answer_text = answer_span.text();
+ 	var answer_text = answer_span.html();
+ 	
 	$('div#answers_' + i + ' > div').hover(function()
 	
 	{

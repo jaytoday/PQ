@@ -64,8 +64,8 @@ class RawItemInduction(webapp.RequestHandler):
     def get(self, *args):
     	try: urlfetch.fetch(args[0][0]) #check for valid url
     	except: return ["error", "invalid url"]    
-        topic = self.save_topic(args[0][1])
-        page = self.save_url(args[0][0], topic)  
+        proficiency = self.save_proficiency(args[0][1])
+        page = self.save_url(args[0][0], proficiency)  
         build_items = BuildItemsFromPage()
         raw_quiz_items = build_items.get(page)
         if not raw_quiz_items: return ["error", "unable to make quiz items"]
@@ -85,27 +85,20 @@ class RawItemInduction(webapp.RequestHandler):
         #self.response.out.write(template.render(path, template_values))
             
 
-    def save_url(self, page, this_topic):
+    def save_url(self, page, this_proficiency):
         saved_page = ContentPage.gql("WHERE url = :1", page)
         if saved_page.get(): # check value
             return saved_page.get()
         else:
-            new_page = ContentPage(url = page, topic = this_topic ) # make sure page is urlencoded.
+            new_page = ContentPage(url = page, proficiency = this_proficiency.key() ) # make sure page is urlencoded.
             new_page.put()
             return new_page
 
-    def save_topic(self, topic):
-        saved_topic = ProficiencyTopic.gql("WHERE name = :1", topic).get()
-        if saved_topic: # check value
-            return saved_topic
-        else: 
-            try:
-                this_proficiency = Proficiency.gql("WHERE name = :1", proficiency).get()
-                new_topic = ProficiencyTopic(key_name = str([topic,proficiency]), name = topic, proficiency = this_proficiency)
-                new_topic.put()
-                return new_topic
-            except:
-                return False
+    def save_proficiency(self, proficiency):
+        this_proficiency = Proficiency.get_or_insert(proficiency, name=proficiency)
+        if not this_proficiency.is_saved: this_proficiency.put()
+        return this_proficiency
+
             
                              
     def save_item(self, item):

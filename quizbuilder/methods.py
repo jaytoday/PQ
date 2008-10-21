@@ -25,17 +25,17 @@ class DataMethods():
      newdata = simplejson.loads(json_str) # Load JSON file as object
      for entity in newdata:
         if data_type == 'proficiencies':
-	        save_entity = Proficiency(name = entity['name']) 
+	        save_entity = Proficiency.get_or_insert(entity['name'], name = entity['name']) 
         if data_type == 'proficiency_topics':
 			this_proficiency = Proficiency.gql("WHERE name = :1", entity['proficiency'])
 			print entity['proficiency']
-			save_entity = ProficiencyTopic(name = entity['name'], 
+			save_entity = ProficiencyTopic.get_or_insert(entity['name'], name = entity['name'], 
 			                               proficiency = this_proficiency.get())
         if data_type == 'content_pages':
-			 this_topic = ProficiencyTopic.gql("WHERE name = :1", entity['topic']['name'])
+			 this_proficiency = Proficiency.gql("WHERE name = :1", entity['proficiency']['name'])
 			 print entity['url']
 			 
-			 save_entity = ContentPage(url = entity['url'], topic = this_topic.get()) 
+			 save_entity = ContentPage(url = entity['url'], proficiency = this_proficiency.get()) 
      	if data_type == 'raw_items':
             print entity['page']['url']
             this_url = ContentPage.gql("WHERE url = :1", entity['page']['url'])

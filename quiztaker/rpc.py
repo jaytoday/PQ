@@ -7,6 +7,8 @@ import simplejson
 from .model.quiz import QuizItem, ItemScore
 from .model.user import QuizTaker, InviteList
 from methods import refresh_data, dump_data
+from .utils.utils import tpl_path, ROOT_PATH, raise_error
+
 
 class RPCHandler(webapp.RequestHandler):
   # AJAX Handler
@@ -50,22 +52,25 @@ class RPCMethods(webapp.RequestHandler):
 
   def get_quiz(self, *args):
     template_values = {}
-    quiz_slug = [args[0], args[1]]
-    this_quiz_item = QuizItem.gql("WHERE slug = :slug",
-                                  slug=quiz_slug).get()
+    item_key = args[0]
+    this_quiz_item = db.get(item_key)
     quiz_item = {}
-    quiz_item['category'] = this_quiz_item.category
+    quiz_item['topic_name'] = this_quiz_item.topic.name
     quiz_item['content'] = this_quiz_item.content
     quiz_item['answers'] = this_quiz_item.answers
+    quiz_item['theme'] = this_quiz_item.theme
     json_response = simplejson.dumps(quiz_item) 
     return json_response
     
         
   def refresh_data(self, *args):
   	if len(args) == 0: return "specify data type"
-  	if args[0] == "quiz_items":
-  	    return refresh_data(QuizItem.all(), "loud")
-            
+  	return refresh_data(args[0], "loud")
+
+  def load_data(self, *args):
+  	if len(args) == 0: return "specify data type"
+  	return load_data(args[0], "loud")
+  	            
 
   def dump_data(self, *args):
   	if args[0] == "quiz_items":
@@ -77,15 +82,13 @@ class RPCMethods(webapp.RequestHandler):
 
     logging.debug('Posting Answer')    
     picked_answer = str(args[0])
-    item_slug = eval(args[1])
     #Lookup quiz item with slug, clean it, and match it. 
-    this_item = QuizItem.gql("WHERE slug = :slug",
-                                  slug=item_slug)
+    this_item = QuizItem.get(args[1])
     logging.debug(this_item)  
 
     picked_clean = picked_answer.strip()
     picked_clean = picked_clean.lower()
-    correct_clean = this_item[0].index.strip()
+    correct_clean = this_item.index.strip()
     correct_clean = correct_clean.lower()
 
 
@@ -99,10 +102,9 @@ class RPCMethods(webapp.RequestHandler):
           
     try:
         score = ItemScore(type='temp', 
-                          slug = item_slug,
-                          quiz_item = this_item[0].key(),
+                          quiz_item = this_item.key(),
                           score = this_score,
-                          correct_answer = this_item[0].index,
+                          correct_answer = this_item.index,
                           picked_answer = picked_answer,
                           )
         score.put()

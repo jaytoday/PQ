@@ -11,13 +11,12 @@
 
 <body class="frame_body">
 
-{% for item in quiz_item %}
-
+{{ index }}
 <div class="quiz_frame_header">
 
 {% block quiz_frame_logo %}
-<div class="quiz_frame_logo" id="{{ item.slug.0 }}">
-<img src="/static/quiz_item/{{ item.slug.0 }}.png"/>
+<div class="quiz_frame_logo" id="{{ theme }}">
+<img src="/static/quiz_item/{{ theme }}.png"/>
 </div>
 {% endblock %}
 
@@ -25,7 +24,7 @@
 <div class="quiz_frame_title" >
 
 <div class="tab" >
-<div id="quiz_category">{% block quiz_frame_title %} {{ item.category }}{% endblock quiz_frame_title %}
+<div id="quiz_category">{% block quiz_frame_title %} {{ topic_name }}{% endblock quiz_frame_title %}
 </div>
 
 <img class="tab_left" alt="" src="/static/html/img/tab.png"/>
@@ -48,7 +47,7 @@
 
 <div class="quiz_frame_text">
 
-{% block quiz_frame_text %}{{ item.content }} {% endblock quiz_frame_text %}
+{% block quiz_frame_text %}{{ content }} {% endblock quiz_frame_text %}
 
 
 </div>
@@ -57,5 +56,4 @@
 </div>
 
 
-{% endfor %}
 </body></html>

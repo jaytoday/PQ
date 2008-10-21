@@ -678,9 +678,8 @@
 
                                                 if(opts.itemArray[opts.itemNum].item_type == "quiz_item")
                                                 {
-                                                        var answer_slug = opts.itemArray[opts.itemNum].slug;
 
-                                                        SubmitScore(answer_text, answer_slug);
+                                                        SubmitScore(answer_text, opts.itemArray[opts.itemNum].key);
                                                 } 
 
                                                 if(opts.itemArray[opts.itemNum].item_type == "score")

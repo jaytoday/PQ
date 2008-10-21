@@ -8,10 +8,9 @@ jQuery(function($) {
 var server = {};
 var item_count = 0;
 
-InstallFunction(server, 'RetrieveTopics');
+InstallFunction(server, 'RetrieveProficiencies');
 
 InstallFunction(server, 'SubmitContentUrl');
-
 
 InstallFunction(server, 'SubmitQuizItem');
 
@@ -23,42 +22,42 @@ answer_in_array = [];
 
 
 
-$('.topic_name').preserveDefaultText('topic');
+$('.proficiency_name').preserveDefaultText('proficiency');
 $('.url_name').preserveDefaultText('url');
 
 
-server.RetrieveTopics("all", AfterRetrieveTopics);
+server.RetrieveProficiencies("all", AfterRetrieveProficiencies);  // Create list of proficiencies 
 
 
-function AfterRetrieveTopics(response){  // Create list of proficiency topics 
+function AfterRetrieveProficiencies(response){ 
 
-var topics = parseJSON(response);
-
-
+var proficiencies = parseJSON(response);
 
 
- $.each(topics, function(t, topic){
-$('div#topics').append('<input type="checkbox" id="' + t + '" name="proficiency" value="' + topic.name + '" unchecked ><span>' + topic.name + '</span><br/>')
+
+
+ $.each(proficiencies, function(t, proficiency){
+$('div#proficiencies').append('<input type="checkbox" id="' + t + '" name="proficiency" value="' + proficiency.name + '" unchecked ><span>' + proficiency.name + '</span><br/>')
 
 .find('input[@name="proficiency"]').click(function(){
 $('input[@name="proficiency"]').setValue($(this).attr("value"));    });
 
-topic_sum = t + 1;
-return topic_sum;
+proficiency_sum = t + 1;
+return proficiency_sum;
 });
 
 
-$('input[@name="proficiency"]').setValue(topics[0].name);  //default
+$('input[@name="proficiency"]').setValue(proficiencies[0].name);  //default
 
 
 $('#submit_url').click(function () {
 
-        for (j = 0; j < topic_sum; j++) {
+        for (j = 0; j < proficiency_sum; j++) {
 if (eval('document.content_url.proficiency[' + j + '].checked') == true) {
-    var topic = eval('document.content_url.proficiency[' + j + '].value')
+    var proficiency = eval('document.content_url.proficiency[' + j + '].value')
     }}
 
-    server.SubmitContentUrl(document.content_url.url.value, topic, AfterSubmitUrl);
+    server.SubmitContentUrl(document.content_url.url.value, proficiency, AfterSubmitUrl);
     
     
 $('form#content_url').hide();

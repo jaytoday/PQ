@@ -1,7 +1,7 @@
 
 
 // when the DOM is ready...
-function sliderInit() {
+function sliderInit(wrong_answers) {
     
     var $panels = $('.quizbuilder_wrapper .quiz_items > div');
 
@@ -48,8 +48,16 @@ function sliderInit() {
     // use: $(container).trigger( 'next' );
     
     function trigger(data) {
+    
+        	
         var el = $('.item_navigation').find('a[href$="' + data.id + '"]').get(0);
         selectNav.call(el);
+        	
+    	this_id = data.id - 1;
+
+         if (data.id == 0){ console.log('no more items'); } // -- only if submitting after all items have been edited. 
+
+  
     }
 
     if (window.location.hash) {
@@ -83,11 +91,11 @@ function sliderInit() {
         next: 'input[@name="submit_item"]',
 
         // allow the scroll effect to run both directions
-        axis: 'x y',
+        axis: 'x',
 
         onAfter: trigger, // our final callback
 
-        offset: 0,
+        offset: offset,
 
         // duration of the sliding effect
         duration: 500,

@@ -8,11 +8,11 @@ jQuery(function($) {
 var server = {};
 var item_count = 0;
 
-InstallFunction(server, 'RetrieveTopics');
+InstallFunction(server, 'RetrieveProficiencies');
 
-InstallFunction(server, 'GetRawItemsForTopic');
+InstallFunction(server, 'GetRawItemsForProficiency');
 
-InstallFunction(server, 'SubmitQuizItem');
+
 
 
 
@@ -22,43 +22,43 @@ answer_in_array = [];
 
 
 
-$('.topic_name').preserveDefaultText('topic');
+$('.proficiency_name').preserveDefaultText('proficiency');
 $('.url_name').preserveDefaultText('url');
 
 
-server.RetrieveTopics("all", AfterRetrieveTopics);  // Create list of proficiency topics 
+server.RetrieveProficiencies("all", AfterRetrieveProficiencies);  // Create list of proficiencies 
 
 
-function AfterRetrieveTopics(response){  
+function AfterRetrieveProficiencies(response){  
 
-var topics = parseJSON(response);
+var proficiencies = parseJSON(response);
 
- $.each(topics, function(t, topic){
+ $.each(proficiencies, function(p, proficiency){
  
- // Add topic to list -- todo: nested list organized by proficiencies
+ // Add proficiency to list -- todo: nested list organized by proficiencies
  	
-$('div#topics').append('<input type="checkbox" id="' + t + '" name="proficiency" value="' + topic.name + '" unchecked ><span>' + topic.name + '</span><br/>')
+$('div#proficiencies').append('<input type="checkbox" id="' + p + '" name="proficiency" value="' + proficiency.name + '" unchecked ><span>' + proficiency.name + '</span><br/>')
 
 .find('input[@name="proficiency"]').click(function(){
 $('input[@name="proficiency"]').setValue($(this).attr("value"));    });
 
-topic_sum = t + 1;
-return topic_sum;
+proficiency_sum = p + 1;
+return proficiency_sum;
 });
 
-$('input[@name="proficiency"]').setValue(topics[0].name);  // select first option as default
+$('input[@name="proficiency"]').setValue(proficiencies[0].name);  // select first option as default
 
 
-$('#submit_topic').click(function () {
+$('#submit_proficiency').click(function () {
 
-        for (j = 0; j < topic_sum; j++) {
-if (eval('document.select_topic.proficiency[' + j + '].checked') == true) {
-    var proficiency = eval('document.select_topic.proficiency[' + j + '].value'); }}
+        for (j = 0; j < proficiency_sum; j++) {
+if (eval('document.select_proficiency.proficiency[' + j + '].checked') == true) {
+    var proficiency = eval('document.select_proficiency.proficiency[' + j + '].value'); }}
 
-    server.GetRawItemsForTopic(proficiency, AfterGetRawItemsForTopic);
+    server.GetRawItemsForProficiency(proficiency, AfterGetRawItemsForProficiency);
     
     
-$('form#select_topic').hide();
+$('form#select_proficiency').hide();
 $('div#loading_items').show();
     
 });
@@ -68,7 +68,7 @@ $('div#loading_items').show();
 
 
 
-function AfterGetRawItemsForTopic(response){ BuildQuizEditor(response); }
+function AfterGetRawItemsForProficiency(response){ BuildQuizEditor(response); }
 
 
  
