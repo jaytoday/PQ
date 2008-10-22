@@ -50,13 +50,14 @@ html += '<div class="answer_preview"><div class="wrong">Wrong Answer #' + (w + 1
 }
 
 
-html += '<div class="new_answer" id="' + i + '" ><div class="submit_new_answer">you can also</div><input type="text" name="new_answer" class="new_answer" value="  write a custom answer" /><input type="submit" name="submit_new_answer" class="submit_new_answer" onClick="return false;" value="ok" /> </div>';  // User submitted answer
+html += '<div class="new_answer" id="' + i + '" ><input type="text" name="new_answer" class="new_answer" value="  write a custom answer" /><input type="submit" name="submit_new_answer" class="submit_new_answer" onClick="return false;" value="ok" /> </div>';  // User submitted answer
 
 
-//html += '<input type="text" name="item_topic" class="item_topic" value="        topic" />';
-html += '<div class="select_topic" id="select_topic_' + i + '"><select name="item_topic" class="item_topic"><option>Pick a Topic</option></select></div>';
+html += '<div class="select_topic" id="select_topic_' + i + '"><select name="item_topic" class="item_topic"><option>Pick a Topic</option></select><input type="text" name="new_item_topic" maxlength="11" class="new_item_topic" style="display:none;"  value="" /></div>';
 
 html += '<input type="submit" name="submit_item" class="submit_item" onClick="return false;" value="submit item" />';  // Submit Item
+html += '<input type="submit" name="skip_item" class="skip_item" onClick="return false;" value="skip item" />';  // skip Item
+
 
 html += '</form></div>';
 
@@ -76,8 +77,7 @@ $('div#quiz_items').append(html);
 
 
 $('.new_answer').preserveDefaultText('  write a custom answer');
-//$('.item_topic').preserveDefaultText('        category');
-$('.item_topic').preserveDefaultText('        topic');
+//$('.item_topic').preserveDefaultText('        topic');
 // when something is written in this field, a submit button should appear below
 
 
@@ -99,8 +99,14 @@ topic_option = '<option>' + topic.name + '</option>';
 
 $('div#select_topic_' + i).find('select.item_topic').append(topic_option);
 
-
 });
+
+$('div#select_topic_' + i).find('select.item_topic').append('<option>New Topic</option>');
+
+$("select").change(function() {
+	console.log('changing', $('div#select_topic_' + i).find("select option:selected"));
+          if ($('div#select_topic_' + i).find("select option:selected").text() == "New Topic") { $(this).hide(); $(this).parent().find('input.new_item_topic').show().preserveDefaultText('        write a new topic'); } 
+        })
 
 
 
@@ -121,8 +127,8 @@ item_sliderInit();
 
 
 $('div#loading_items').hide();
-$('ul.item_navigation').show('slow');
-$('div#quiz_items').show('slow');
+$('ul.item_navigation').show();
+$('div#quiz_items').show();
 
 
 
@@ -162,7 +168,6 @@ answer_in_array[i] = [];
    
    
  
- $('input[@name="submit_item"]').click(function(){ console.log($(this).parent().parent()); });
  	     
 
 $('#quiz_data_' + i + ' > input[@name="proficiency"]').click(function(){
@@ -263,30 +268,30 @@ PreviewAnswer(i);
 
 EditItemContent(i);
 
-            
-   console.log($('form#quiz_data_' + i).find('input[@name="submit_item"]'));     
-$('form#quiz_data_' + i).find('input[@name="submit_item"]').click(function() {
+$('form#quiz_data_' + i).find('input[@name="skip_item"]').click(function() { $('.quizbuilder_wrapper .scroller').trigger('next'); }); // skip item   moderated=ignore
+	            
+$('form#quiz_data_' + i).find('input[@name="submit_item"]').click(function() {         //moderated=true
 	
-	// Edited quiz item is submitted. 
+	
+	if (eval('document.quiz_data_' + i + '.item_topic.value') == 'Pick a Topic'){ return false; }
+	if (eval('document.quiz_data_' + i + '.item_topic.value') == 'New Topic'){ topic_value = eval('document.quiz_data_' + i + '.new_item_topic.value') }else{topic_value = eval('document.quiz_data_' + i + '.new_item_topic.value');}
+	console.log(topic_value);// Edited quiz item is submitted. 
 
-// console.log(eval('document.quiz_data_' + i + '.slug.value'));
-
-// console.log(eval('document.quiz_data_' + i + '.category.value'));
-
-console.log(eval('document.quiz_data_' + i + '.item_topic.value'));
-
-//console.log($('div#quiz_item_content_' + i).html())
 var submit_wrong_answers = [];
 for (w=0; w < wrong_answers[i].length; w++){
 submit_wrong_answers.splice(wrong_answers[i].length, 0, wrong_answers[i][w][0]); 
 }
 
+if (submit_wrong_answers.length < 2){ return false; console.info('not enough answers'); }
 
-// if not category, dont' proceed.
-// put slider trigger here, on addsuccess.
 
-  //                     correct          all answers                                topic value                                     HTML                                                              url         proficiency
- server.SubmitQuizItem(item.index, submit_wrong_answers.concat(item.index),  eval('document.quiz_data_' + i + '.item_topic.value'), $('div#quiz_item_content_' + i + ' > div.item_inner').html(), item.page.url, item.page.proficiency.name, onItemAddSuccess);
+
+  //                     correct          all answers                            topic value                                     HTML                                                              url         proficiency
+ server.SubmitQuizItem(item.index, submit_wrong_answers.concat(item.index),  topic_value , $('div#quiz_item_content_' + i + ' > div.item_inner').html(), item.page.url, item.page.proficiency.name, onItemAddSuccess);
+
+// proceed to next quiz item
+$('.quizbuilder_wrapper .scroller').trigger('next');
+
 });
  
  
@@ -314,7 +319,10 @@ answers_sliderInit(i);
 function UpdatePreviews(wrong_answers, ANSWER_LIMIT, i) {
 for (w=0; w < ANSWER_LIMIT; w++){
 if (wrong_answers[i][w]){
-	  $('div#answer_choice_previews_' + i).find('span#selection_' + w).html(wrong_answers[i][w][0]); 
+	// replace preview html with answer
+	  $('div#answer_choice_previews_' + i).find('span#selection_' + w)
+	  .html(wrong_answers[i][w][0]).append('<img class="remove_answer" src="/static/stylesheets/img/quiz_closebox_small.png">'); 
+	  // add x close icon
 	  
 }
 else{  $('div#answer_choice_previews_' + i).find('span#selection_' + w).html('No Selection'); }

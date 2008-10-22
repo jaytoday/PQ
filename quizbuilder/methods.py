@@ -8,7 +8,7 @@ import induction
 
 
 
-def dump_data(self, gql_query):
+def dump_data(gql_query):
 	try:
 		objects = gql_query.fetch(1000)
 		return encode(objects)

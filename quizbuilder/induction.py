@@ -283,9 +283,10 @@ class BuildItemsFromPage():
     # apply HTML markup to answer within quiz item content
      text = str(text)
      str_tag = str(tag)
-     tag_word=re.compile(r'\W%s\W' % tag, re.IGNORECASE)
+     tag_word = re.compile(r'\W%s\W' % tag, re.IGNORECASE)
+     footnote = re.compile( '\[(\d)*\]' )
+     text = footnote.sub('', text)
      return tag_word.sub('<span class="answer_span">%s</span>' % tag, text)               
-     #return text.replace(str_tag, '<span style="border:1px solid #E2C922; padding:0 5px; margin:0 5px;font-weight:bold;">%s</span>' % str_tag)               
                  
                  
 

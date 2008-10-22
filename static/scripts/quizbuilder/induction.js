@@ -12,8 +12,7 @@ InstallFunction(server, 'RetrieveProficiencies', 'quizbuilder');
 
 InstallFunction(server, 'SubmitContentUrl', 'quizbuilder');
 
-InstallFunction(server, 'SubmitQuizItem', 'quizbuilder');
-
+InstallFunction(server, 'GetTopicsForProficiency', 'quizbuilder');
 
 
 wrong_answers = [];
@@ -37,7 +36,7 @@ var proficiencies = parseJSON(response);
 
 
  $.each(proficiencies, function(t, proficiency){
-$('div#proficiencies').append('<input type="checkbox" id="' + t + '" name="proficiency" value="' + proficiency.name + '" unchecked ><span>' + proficiency.name + '</span><br/>')
+$('div#url_proficiencies').append('<div class="input_float"><input type="checkbox" id="' + t + '" name="proficiency" value="' + proficiency.name + '" unchecked ><span>' + proficiency.name + '</span><br/></div>')
 
 .find('input[@name="proficiency"]').click(function(){
 $('input[@name="proficiency"]').setValue($(this).attr("value"));    });
@@ -57,7 +56,14 @@ if (eval('document.content_url.proficiency[' + j + '].checked') == true) {
     var proficiency = eval('document.content_url.proficiency[' + j + '].value')
     }}
 
-    server.SubmitContentUrl(document.content_url.url.value, proficiency, AfterSubmitUrl);
+    server.GetTopicsForProficiency(proficiency, function(response){ 
+    	var topics = response;
+     server.SubmitContentUrl(document.content_url.url.value, proficiency, function(response){  
+    		BuildQuizEditor(response, topics); });
+		});
+    
+    
+   
     
     
 $('form#content_url').hide();
@@ -69,9 +75,6 @@ $('div#loading_items').show();
 }
 
 
-
-
-function AfterSubmitUrl(response){  BuildQuizEditor(response); }
 
 
  

@@ -40,11 +40,11 @@ div#quiz_close {
 background:transparent url(img/quiz_closebox.png) repeat scroll -1px 50%;
 cursor:pointer;
 display:none;
-height:29px;
+height:27px;
 position:absolute;
 right:-15px;
 top:-15px;
-width:29px;
+width:27px;
 z-index:100;
 }
 
@@ -362,7 +362,6 @@ div.quiz_bg_nw {
 }
 
 .answer{
-
 color:#FFFFFF;
 cursor:pointer;
 float:left;
@@ -371,6 +370,14 @@ margin-right:20px;
 min-width:113px; */
 font-variant:normal;
 }
+
+.answer:hover{
+border: 1px solid #F9FFCF;
+background-color: #F9FFCF;
+-moz-border-radius: 15px;
+-webkit-border-radius: 15px;
+}
+
 
 .notanswer{
 

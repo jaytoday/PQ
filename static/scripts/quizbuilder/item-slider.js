@@ -93,8 +93,8 @@ function item_sliderInit(wrong_answers) {
         lazy: 'true', // for dynamic content
 
         // selectors are NOT relative to document, i.e. make sure they're unique
-        prev: 'img.left', 
-        next: 'input[@name="submit_item"]',
+     //   prev: 'img.left', 
+     //   next: 'input[@name="submit_item"]',
 
         // allow the scroll effect to run both directions
         axis: 'x',

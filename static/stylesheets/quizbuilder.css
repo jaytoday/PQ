@@ -1,7 +1,7 @@
 
 /* SELECT PROFICIENCIES */
 
-form#select_proficiency{
+form#select_proficiency, form#content_url{
 margin:80px 0 0 280px;
 padding-left:80px;
 width:250px;
@@ -15,14 +15,18 @@ font-size:1.2em;
 line-height:1.1em;
 }
 
-div#proficiencies{
+div#proficiencies, div#url_proficiencies{
 height:110px;
 margin-left:-60px;
 margin-top:30px;
 width:300px;
 }
 
-input.submit_proficiency{
+input.url_name{
+margin: 10px;
+}
+
+input.submit_proficiency, input.submit_url{
 font-size:1.4em;
 margin:-50px 0 30px 10px;
 padding:8px;
@@ -50,7 +54,11 @@ width:950px;
 
 
 div#loading_items{
-margin: 40px 0px 0px 80px;
+margin: 180px 0 0 280px;
+}
+
+div#loading_items img{
+margin-right: 10px;
 }
 
 div.quiz_items{
@@ -119,7 +127,7 @@ padding:0 5px;
 
 .editable textarea{
 font-size:0.8em;
-line-height:1.5em;
+line-height:1.3em;
 width:10px;
 padding:20px;
 margin-left:-25px;
@@ -146,7 +154,7 @@ div.answers_scroll{
 width:   700px;  /* 565px; /* */
 overflow:auto;
 height:60px;
- 
+ cursor:pointer;
 }
 
 div.new_answer{
@@ -158,9 +166,24 @@ width:150px;
 
 input.submit_item{
 font-size:1.3em;
-height:60px;
+height:55px;
 margin:15px 0 0 30px;
 width:120px;
+cursor:pointer;
+}
+
+input.skip_item{
+font-size:.8em;
+height:20px;
+margin:15px 0 0 30px;
+width:120px;
+cursor:pointer;
+}
+
+input.new_item_topic{
+font-size:1.6em;
+margin:25px 0 0 30px;
+width:115px;
 }
 
 select.item_topic{
@@ -221,7 +244,7 @@ float:left;
 height:53px;
 overflow:hidden;
 width:134px;
-background: #523871 none repeat scroll 0 0;
+background: #3EABF0 none repeat scroll 0 0;
 font-weight: bold;
 font-size: .9em;
 color:#EAF2F8;
@@ -246,7 +269,7 @@ display:none;
 div.answer_choice_previews{
 float:left;
 font-size:0.8em;
-margin:-350px -40px 0 720px;
+margin:-360px -40px 0 720px;
 overflow:hidden;
 width:210px;
 }
@@ -256,12 +279,20 @@ height:60px;
 width:200px;
 }
 
+
+
 span.selection{
 font-variant:small-caps;
 margin:10px;
 padding:10px;
 font-size:1.3em;
+cursor:pointer;
 }
+
+img.remove_answer{
+margin:0 0 -2px 4px;
+}
+
 div.answer_preview .correct{
 padding:10px;
 }

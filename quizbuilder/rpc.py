@@ -86,13 +86,13 @@ remote callers access to private/protected "_*" methods.
     
 
 
+
   def dump_data(self, *args):  # dump data for fixtures
-  	data = DataMethods()
   	if len(args) == 0: return "specify data type"
-  	if args[0] == "raw_items" : print data.dump_data(RawQuizItem.all())
-  	if args[0] == "content_pages" : print data.dump_data(ContentPage.all())
-  	if args[0] == "proficiency_topics": print data.dump_data(ProficiencyTopic.all())
-  	if args[0] == "proficiencies" : print data.dump_data(Proficiency.all())
+  	if args[0] == "raw_items" : print dump_data(RawQuizItem.all())
+  	if args[0] == "content_pages" : print dump_data(ContentPage.all())
+  	if args[0] == "proficiency_topics": print dump_data(ProficiencyTopic.all())
+  	if args[0] == "proficiencies" : print dump_data(Proficiency.all())
   	print ""
   	print "---do not copy this line or below---"
 
