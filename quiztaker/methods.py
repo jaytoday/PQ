@@ -38,6 +38,7 @@ def new_topic(topic_name, proficiency_name):
      
      
 class DataMethods():
+	
   def delete_data(self, data_type, *verbose):
 		query = ""
 		if data_type == "quiz_items": query = db.GqlQuery("SELECT * FROM QuizItem")

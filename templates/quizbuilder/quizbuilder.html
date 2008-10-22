@@ -1,20 +1,22 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+{% extends "../base.html" %}
+
+
+{% block head %}
+
 
 <link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/quizbuilder.css"/>
-<script type="text/javascript" src="/static/scripts/jquery/jquery-1.2.6.min.js"></script>
-<script type="text/javascript" src="/static/scripts/json2min.js"></script>
+
 <script type="text/javascript" src="/static/scripts/parseJSON.js"></script>
 <script type="text/javascript" src="/static/scripts/jquery/jquery.field.min.js"></script>
 <script type="text/javascript" src="/static/scripts/utils/preserve_default_text.js"></script>
-<script type="text/javascript" src="/static/scripts/utils/rpc.js"></script>
+
 
 <!-- scroll -->
 <script src="/static/scripts/scroll/jquery.scrollTo-min.js" type="text/javascript"></script>
 <script src="/static/scripts/scroll/jquery.localscroll-1.2.5.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/scripts/scroll/jquery.serialScroll-1.2.1.js" type="text/javascript" charset="utf-8"></script>
-<script src="/static/scripts/scroll/quizbuilder-slider.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/scripts/quizbuilder/item-slider.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/scripts/quizbuilder/answers-slider.js" type="text/javascript" charset="utf-8"></script>
 
 <!-- edit content -->
 <script src="/static/scripts/jeditable/jquery.jeditable.min.js" type="text/javascript"></script>
@@ -26,7 +28,6 @@
 
 
 
-<link rel="stylesheet" type="text/css" media="screen" href="/static/scripts/scroll/quizbuilder-slider.css"/>
 
 <!-- markItUp! -->
 <script type="text/javascript" src="/static/scripts/markitup/jquery.markitup.pack.js"></script>
@@ -51,28 +52,25 @@
 <script type="text/javascript" src="/static/scripts/quizbuilder/edit_quiz.js"></script>
 <script type="text/javascript" src="/static/scripts/quizbuilder/quizbuilder.js"></script>
 
-<script type="text/javascript">
+
+<title>Plopquiz - Quizbuilder</title>
 
 
+{% endblock %}
 
-</script>
 
-	
-
-<title>Plopquiz - Quizbuilder</title></head>
-
-<body>
-<h1> QuizBuilder </h1>
-<form name="select_proficiency" id="select_proficiency" >
+{% block main %}
+<h3 style="float: right;"> QuizBuilder </h3>
+<form name="select_proficiency" id="select_proficiency" class="purple_box" >
 <br/>
 
-Choose a proficiency
+<span class="checkbox" id="choose_proficiencies">Choose a proficiency</span>
 <br/>
 <div id="proficiencies"></div>
 
-<br/><br/>
+<br/>
 
-<input type="submit" onClick="return false;this.disabled = true;" id="submit_proficiency" class="submit_proficiency" value="Submit proficiency" />
+<input type="submit" onClick="return false;this.disabled = true;" id="submit_proficiency" class="submit_proficiency" value="Continue" />
 
 
 </form>
@@ -82,18 +80,15 @@ Choose a proficiency
 <br/>
 
 <div class="quizbuilder_wrapper">
-     <ul class="item_navigation"> </ul>  <!--navigation headers-->
+   <div class="nav_wrap"><ul class="item_navigation"> </ul></div>  <!--navigation headers-->
      
 <div class="scroller"><div class="quiz_items" id="quiz_items" style="display:none;"><!--quiz items--></div></div>
 
 </div>
 </div>
 
+{% endblock %}
 
 
 
 
-
-
-
-</body></html>

@@ -74,9 +74,9 @@ class RPCMethods(webapp.RequestHandler):
 
   def dump_data(self, *args):
   	if args[0] == "quiz_items":
-  	    print dump_data(QuizItem.all())
+  	    print dump_data(QuizItem.all())  
   	    print ""
-  	    print "---do not copy this line or below---"
+  	    print "---do not copy this line or below---"  #TODO: Don't print HTTP headers
   
   def AddScore(self, *args):
 
@@ -120,13 +120,13 @@ class RPCMethods(webapp.RequestHandler):
 ## QUIZTAKER SESSION ##
 
   def Init(self, *args):
-    q = db.GqlQuery("SELECT * FROM ItemScore WHERE type='temp'")
-    results = q.fetch(1000)
-    d = 0
-    for result in results:
-        result.delete()
-        d += 1
-    return "deleted: " + str(d) + " entries"
+	q = db.GqlQuery("SELECT * FROM ItemScore WHERE type='temp'")
+	results = q.fetch(1000)
+	d = 0
+	for result in results:
+		result.delete()
+		d += 1
+	return "deleted: " + str(d) + " entries"
 
         
 

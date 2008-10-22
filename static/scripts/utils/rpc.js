@@ -1,5 +1,5 @@
     
-function Request(function_name, opt_argv) {
+function Request(function_name, opt_argv, app_name) {
 
 	if (!opt_argv)
 		opt_argv = new Array();
@@ -27,7 +27,7 @@ function Request(function_name, opt_argv) {
 
 	// Create an XMLHttpRequest 'GET' request w/ an optional callback handler 
 	var req = new XMLHttpRequest();
-	req.open('GET', '/quizbuilder/rpc?' + query, async);
+	req.open('GET', '/' + app_name + '/rpc?' + query, async);
 
 	if (async) {
 		req.onreadystatechange = function() {
@@ -48,9 +48,9 @@ function Request(function_name, opt_argv) {
 }
 
 // Adds a stub function that will pass the arguments to the AJAX call 
-function InstallFunction(obj, functionName) {
+function InstallFunction(obj, functionName, app_name) {
 	obj[functionName] = function() { 
-		Request(functionName, arguments);
+		Request(functionName, arguments, app_name);
 	}
 }
 

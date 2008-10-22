@@ -1,4 +1,6 @@
 import logging
+from google.appengine.ext import webapp
+import wsgiref.handlers
 from utils import utils
 from utils import stubs as stubs
 from dev import *
@@ -6,7 +8,7 @@ import quiztaker.views
 import quiztaker.rpc
 import quizbuilder.views
 import quizbuilder.rpc
-
+import dev.views
 
 import quizbuilder
 
@@ -26,7 +28,7 @@ def url_handler():
                                          quiztaker.views.PQDemo),                                         
                                          ('/intro/?',
                                          quiztaker.views.PQIntro),
-                                        ('/rpc/?',
+                                        ('/quiztaker/rpc/?',
                                          quiztaker.rpc.RPCHandler),                                                                                                                     
                                         ('/viewscore/?',
                                          quiztaker.views.ViewScore),
@@ -56,8 +58,8 @@ def url_handler():
                                          quizbuilder.rpc.RPCHandler),
                                         ('/quizbuilder/item/?',
                                          quizbuilder.views.RawItemTemplate),                                         
-                                         ('/dev/?(.*)/?', 
-                                         URIRouter),
+                                         ('/dev/admin/?', 
+                                         dev.views.Admin),
                                         ('/quiz_frame/?',
                                          quiztaker.views.QuizFrame),
                                         ('/drilldown/?',

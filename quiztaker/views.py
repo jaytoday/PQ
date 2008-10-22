@@ -66,7 +66,8 @@ class QuizItemTemplate(webapp.RequestHandler):
     #quiz_slug = [self.request.get('slug'), self.request.get('source')] -- deprecated
     this_quiz_item = QuizItem.get(self.request.get('item_key'))
     quiz_item = {}
-    quiz_item['topic_name'] = this_quiz_item.topic.name
+    try: quiz_item['topic_name'] = this_quiz_item.topic.name
+    except: print this_quiz_item
     quiz_item['content'] = this_quiz_item.content
     quiz_item['answers'] = this_quiz_item.answers
     quiz_item['theme'] = this_quiz_item.theme

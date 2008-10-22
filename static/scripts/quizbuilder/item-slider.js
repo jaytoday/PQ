@@ -1,7 +1,7 @@
 
 
 // when the DOM is ready...
-function sliderInit(wrong_answers) {
+function item_sliderInit(wrong_answers) {
     
     var $panels = $('.quizbuilder_wrapper .quiz_items > div');
 
@@ -26,10 +26,12 @@ function sliderInit(wrong_answers) {
     var $scroll = $('.quizbuilder_wrapper .scroller').css('overflow', 'hidden');
 
     // apply our left + right buttons
-    $scroll
-        .before('<img class="scrollButtons left" src="/static/stylesheets/img/scroll_left.png" />')
-        .after('<img class="scrollButtons right" src="/static/stylesheets/img/scroll_right.png" />');
+    //$scroll
+      //  .before('<img class="scrollButtons left" src="/static/stylesheets/img/scroll_left.png" />')
+      //  .after('<img class="scrollButtons right" src="/static/stylesheets/img/scroll_right.png" />');
 
+
+    
     // handle nav selection
     function selectNav() {
         $(this)
@@ -38,7 +40,11 @@ function sliderInit(wrong_answers) {
                     .removeClass('selected')
                 .end()
             .end()
-            .addClass('selected');
+            .removeClass('queue')
+            .addClass('selected')
+            //.nextAll().slice(0,2).addClass('queue');  add queue class to the next few in the queue
+            
+
     }
 
     $('.quizbuilder_wrapper > .item_navigation').find('a').click(selectNav);
@@ -49,12 +55,12 @@ function sliderInit(wrong_answers) {
     
     function trigger(data) {
     
+        $('.item_navigation').animate({marginLeft:"-=.6em"}); //-- don't need this with display:none; 
         	
-        var el = $('.item_navigation').find('a[href$="' + data.id + '"]').get(0);
+        var el = $('.item_navigation').find('a[href$="' + data.id + '"]');
         selectNav.call(el);
-        	
-    	this_id = data.id - 1;
-
+        
+  
          if (data.id == 0){ console.log('no more items'); } // -- only if submitting after all items have been edited. 
 
   
@@ -63,7 +69,7 @@ function sliderInit(wrong_answers) {
     if (window.location.hash) {
         trigger({ id : window.location.hash.substr(1) });
     } else {
-        $('.item_navigation a:first').click();
+      //  $('.item_navigation a:first').click();
     }
 
     // offset is used to move to *exactly* the right place, since I'm using
@@ -94,8 +100,12 @@ function sliderInit(wrong_answers) {
         axis: 'x',
 
         onAfter: trigger, // our final callback
+        
+        force: true,
+        
 
-        offset: offset,
+
+        offset: -50,//offset,
 
         // duration of the sliding effect
         duration: 500,
@@ -120,6 +130,7 @@ function sliderInit(wrong_answers) {
     // the positioning is absolutely spot on when the pages loads.
     scrollOptions.duration = 1;
     $.localScroll.hash(scrollOptions);
+
 
  
 }

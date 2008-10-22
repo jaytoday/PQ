@@ -17,7 +17,7 @@ from .model.quiz import QuizItem, RawQuizItem,  ContentPage
 from .model.proficiency import ProficiencyTopic, Proficiency
 import views
 import induction
-from methods import DataMethods
+from methods import DataMethods, refresh_data, dump_data, load_data
 
 class RPCHandler(webapp.RequestHandler):
   # AJAX Handler
@@ -75,19 +75,15 @@ remote callers access to private/protected "_*" methods.
 	save_topic.put()
   	return self.dump_data(["proficiency_topics"])  
   	
+  	
+  def refresh_data(self, *args):
+  	if len(args) == 0: return "specify data type"
+  	return refresh_data(args[0], "loud")
 
+  def load_data(self, *args):
+  	if len(args) == 0: return "specify data type"
+  	return load_data(args[0], "loud")
     
-    
-  def refresh_data(self):
-  	data = DataMethods()
-  	data.delete_data(RawQuizItem.all())
-  	data.delete_data(ContentPage.all())
-  	data.delete_data(ProficiencyTopic.all())
-  	data.delete_data(Proficiency.all())
-  	data.load_data('proficiencies')
-  	data.load_data('proficiency_topics')
-  	data.load_data('content_pages')
-  	data.load_data('raw_items')
 
 
   def dump_data(self, *args):  # dump data for fixtures
@@ -142,11 +138,19 @@ remote callers access to private/protected "_*" methods.
 
   def GetRawItemsForProficiency(self, *args):  
       data = DataMethods()
-      this_proficiency = Proficiency.gql("WHERE name = :1 ORDER BY date DESC", args[0])
+      this_proficiency = Proficiency.gql("WHERE name = :1 ORDER BY date DESC", args[0]) # try get_or_insert if Proficiency is key
       #these_items = RawQuizItem().gql("WHERE proficiency = :1", this_proficiency.get())
       try: return data.dump_raw_items(this_proficiency.get().pages.get().raw_items.fetch(10))  # get 10 at a time...todo: lazy rpc-loader.
       except: return simplejson.dumps([])
 
+  def GetTopicsForProficiency(self, *args):  
+      data = DataMethods()
+      topics = []
+      this_proficiency = Proficiency.gql("WHERE name = :1 ORDER BY date DESC", args[0]) # try get_or_insert if Proficiency is key
+      topics = ProficiencyTopic.gql("WHERE proficiency = :1 ORDER BY date DESC", this_proficiency.get().key())
+      try: return data.dump_raw_items(topics.fetch(10))  # get 10 at a time...todo: lazy rpc-loader.
+      except: return simplejson.dumps([])
+      
 
 
 

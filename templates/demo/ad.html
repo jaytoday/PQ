@@ -64,21 +64,13 @@ function getGroupItems(opts) {
 
 
 
-// Adds a stub function that will pass the arguments to the AJAX call 
-function InstallFunction(obj, functionName) {
-	obj[functionName] = function() { 
-		Request(functionName, arguments);
-	}
-}
-
-
 // Server object that will contain the callable methods
 var server = {};
 var item_count = 0;
 
 // Insert 'Add' as the name of a callable method
-InstallFunction(server, 'AddScore');
-InstallFunction(server, 'Init');
+InstallFunction(server, 'AddScore', 'quiztaker');
+InstallFunction(server, 'Init', 'quiztaker');
 
 
 function SubmitScore(ans, key) {

@@ -31,3 +31,16 @@ indexes:
   - name: index
   - name: answers
   - name: proficiency   
+
+
+- kind: Proficiency
+  properties:
+  - name: name
+  - name: date
+    direction: desc
+
+- kind: ProficiencyTopic
+  properties:
+  - name: proficiency
+  - name: date
+    direction: desc

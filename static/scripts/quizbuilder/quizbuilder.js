@@ -8,11 +8,11 @@ jQuery(function($) {
 var server = {};
 var item_count = 0;
 
-InstallFunction(server, 'RetrieveProficiencies');
+InstallFunction(server, 'RetrieveProficiencies', 'quizbuilder');
 
-InstallFunction(server, 'GetRawItemsForProficiency');
+InstallFunction(server, 'GetRawItemsForProficiency', 'quizbuilder');
 
-
+InstallFunction(server, 'GetTopicsForProficiency', 'quizbuilder');
 
 
 
@@ -37,7 +37,7 @@ var proficiencies = parseJSON(response);
  
  // Add proficiency to list -- todo: nested list organized by proficiencies
  	
-$('div#proficiencies').append('<input type="checkbox" id="' + p + '" name="proficiency" value="' + proficiency.name + '" unchecked ><span>' + proficiency.name + '</span><br/>')
+$('div#proficiencies').append('<div class="input_float"><input type="checkbox" id="' + p + '" name="proficiency" value="' + proficiency.name + '" unchecked ><span class="checkbox">' + proficiency.name + '</span><br/></div>')
 
 .find('input[@name="proficiency"]').click(function(){
 $('input[@name="proficiency"]').setValue($(this).attr("value"));    });
@@ -55,7 +55,13 @@ $('#submit_proficiency').click(function () {
 if (eval('document.select_proficiency.proficiency[' + j + '].checked') == true) {
     var proficiency = eval('document.select_proficiency.proficiency[' + j + '].value'); }}
 
-    server.GetRawItemsForProficiency(proficiency, AfterGetRawItemsForProficiency);
+    server.GetTopicsForProficiency(proficiency, function(response){ 
+    	var topics = response;
+    	server.GetRawItemsForProficiency(proficiency, function(response){  
+    		
+    		BuildQuizEditor(response, topics); });
+		});
+    
     
     
 $('form#select_proficiency').hide();
@@ -68,7 +74,7 @@ $('div#loading_items').show();
 
 
 
-function AfterGetRawItemsForProficiency(response){ BuildQuizEditor(response); }
+function AfterGetRawItemsForProficiency(response){ BuildQuizEditor(response, topics); }
 
 
  

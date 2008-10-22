@@ -57,6 +57,7 @@ class GqlEncoder(simplejson.JSONEncoder):
         output[field] = getattr(obj, field)
       return output
 
+
     elif isinstance(obj, datetime.datetime):
       output = {}
       fields = []#['day',   'month', 'year']

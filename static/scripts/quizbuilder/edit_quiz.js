@@ -2,9 +2,8 @@ ANSWER_LIMIT = 2;
 
 
 
-function BuildQuizEditor(response){
+function BuildQuizEditor(response, topics){
 
-	
 var raw_quiz_items = parseJSON(response);
 
 if (raw_quiz_items.length == 0) { $('div#loading_items').html('no quiz items returned -- <a href="">try again?</a>'); }  // no items returned
@@ -14,10 +13,12 @@ if (raw_quiz_items[0] == "error") { $('div#loading_items').html('error: ' + raw_
 var scroll_width = 950 * raw_quiz_items.length;
 $('div#quiz_items').css('width', scroll_width);
 
+//$('div#quiz_items').append('<div class="quiz_item"></div>');
+
  $.each(raw_quiz_items, function(i,item){
 
 
-$('ul.item_navigation').append('<li><a href="#' + i + '">' + item.index + '</a></li>');
+$('ul.item_navigation').append('<li class="index"><a href="#' + i + '">' + item.index + '</a></li>');
 	
  	
 // raw item template 	-- use jsrepeater template
@@ -34,7 +35,7 @@ html += '<div class="post_content">' + item.post_content + '</div>';
 
 html += '</div></div>'; //end quiz item content
 
-html += '<div class="answers_container" id="' + i + '" ><div class="answer_candidates" id="answers_' + i + '"></div></div>';  // Expand answer candidates
+html += '<div class="answers_container" id="answers_container_' + i + '" ><div class="answers_scroll"><div class="answer_candidates" id="answers_' + i + '"></div></div></div>';  // Expand answer candidates
 
 html += '<div id="answer_choice_previews_' + i + '" class="answer_choice_previews">';
 
@@ -52,7 +53,9 @@ html += '<div class="answer_preview"><div class="wrong">Wrong Answer #' + (w + 1
 html += '<div class="new_answer" id="' + i + '" ><div class="submit_new_answer">you can also</div><input type="text" name="new_answer" class="new_answer" value="  write a custom answer" /><input type="submit" name="submit_new_answer" class="submit_new_answer" onClick="return false;" value="ok" /> </div>';  // User submitted answer
 
 
-html += '<input type="text" name="item_topic" class="item_topic" value="        topic" />';
+//html += '<input type="text" name="item_topic" class="item_topic" value="        topic" />';
+html += '<div class="select_topic" id="select_topic_' + i + '"><select name="item_topic" class="item_topic"><option>Pick a Topic</option></select></div>';
+
 html += '<input type="submit" name="submit_item" class="submit_item" onClick="return false;" value="submit item" />';  // Submit Item
 
 html += '</form></div>';
@@ -66,10 +69,7 @@ html +=  '<table id="dpop" class="popup" style="display:none;"></table>'; // pop
 
 // load items
 $('div#quiz_items').append(html);
-$('div#quiz_items').find('.popup').load('/static/html/quizbuilder/popup.html');
-$('div#loading_items').hide();
-$('ul.item_navigation').show('slow');
-$('div#quiz_items').show('slow');
+//$('div#quiz_items').find('.popup').load('/static/html/quizbuilder/popup.html');
 
 
 
@@ -85,17 +85,23 @@ $('.item_topic').preserveDefaultText('        topic');
 
 answers =  eval(item.answer_candidates); //item.answer_candidates
 
-
-
  $.each(answers, function(n, answer){
  	
- 	
 answer_html = '<div id ="' + n + '" class="ac_unselected"><div id ="' + n + '" class="answer_candidate" >' + answer + '</div></div>';
-
 
 $('div#answers_' + i).append(answer_html);
 
 });
+
+$.each(eval(topics), function(t, topic){
+
+topic_option = '<option>' + topic.name + '</option>';	
+
+$('div#select_topic_' + i).find('select.item_topic').append(topic_option);
+
+
+});
+
 
 
 
@@ -111,7 +117,14 @@ EditQuizItem(i, item, answers); // Run function after the above code is evaluate
 // PopUpBubble(); should be done once and apply to all 
 
 
-sliderInit();   
+item_sliderInit();   
+
+
+$('div#loading_items').hide();
+$('ul.item_navigation').show('slow');
+$('div#quiz_items').show('slow');
+
+
 
 } // end of  BuildQuizEditor()
 
@@ -124,10 +137,14 @@ function EditQuizItem(i, item, answers) {
 
 // setup for ajax call     
 var server = {};
-InstallFunction(server, 'SubmitQuizItem');
+InstallFunction(server, 'SubmitQuizItem', 'quizbuilder');
 // setup arrays
 wrong_answers[i] = [];
-answer_in_array[i] = [];    
+answer_in_array[i] = [];   
+
+
+
+ 
 
  $.each(answers, function(n, answer){
  	
@@ -162,7 +179,6 @@ $('div#answers_' + i + ' > div').click(function(){
 answer_text = $(this).text();
 
 n = $(this).attr("id");
-
 
 for (var a = 0, loopCnt = wrong_answers[i].length; a < loopCnt; a++) {
 
@@ -283,8 +299,11 @@ function onItemAddSuccess(response)
 }
 
 
-   
-    
+
+var scroll_width = 140 * answers.length;
+$('#answers_container_' + i).find('.answer_candidates').css('width', scroll_width);   
+answers_sliderInit(i);     
+
 
 } // end of EditQuizItem()
 
@@ -318,6 +337,7 @@ return(value); }
 
 function EditItemContent(i) { 
 	
+	
 	$('#quiz_item_content_' + i + ' > div.item_inner > div').editable(function(value, id){UpdateContent(value,i, $(this));}, {
       type      : "autogrow",
       autogrow : {
@@ -326,7 +346,8 @@ function EditItemContent(i) {
      // submit    : "OK",
       onblur    : "submit",
      // cancel    : "Cancel",
-      tooltip   : "Click to edit...",
+     // tooltip   : "Click to edit...",
+      width     : '600px',
       cssclass : "editable"
 		}); // this can be rpc call 
 

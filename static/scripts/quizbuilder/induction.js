@@ -8,11 +8,11 @@ jQuery(function($) {
 var server = {};
 var item_count = 0;
 
-InstallFunction(server, 'RetrieveProficiencies');
+InstallFunction(server, 'RetrieveProficiencies', 'quizbuilder');
 
-InstallFunction(server, 'SubmitContentUrl');
+InstallFunction(server, 'SubmitContentUrl', 'quizbuilder');
 
-InstallFunction(server, 'SubmitQuizItem');
+InstallFunction(server, 'SubmitQuizItem', 'quizbuilder');
 
 
 

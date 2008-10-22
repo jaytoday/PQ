@@ -1,5 +1,19 @@
 [ 
 
+{ "name": "Algae", "proficiency": "Biofuels"},
+
+{ "name": "Ethanol", "proficiency": "Biofuels"},
+
+{ "name": "Biodiesel", "proficiency": "Biofuels"},
+
+{ "name": "Biobutanol", "proficiency": "Biofuels"},
+
+{ "name": "Vegetable Oil", "proficiency": "Biofuels"},
+
+{ "name": "Syngas", "proficiency": "Biofuels"},
+
+{ "name": "Algae Power", "proficiency": "Biofuels"},
+
 { "name": "Carbon Cap and Trade", "proficiency": "Energy Finance"},
 
 { "name": "Top Energy Wasters",  "proficiency": "Conservation"},
