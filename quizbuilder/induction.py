@@ -286,7 +286,7 @@ class BuildItemsFromPage():
      tag_word = re.compile(r'\W%s\W' % tag, re.IGNORECASE)
      footnote = re.compile( '\[(\d)*\]' )
      text = footnote.sub('', text)
-     return tag_word.sub('<span class="answer_span">%s</span>' % tag, text)               
+     return tag_word.sub('<span class="blank">%s</span>' % tag, text)               
                  
                  
 

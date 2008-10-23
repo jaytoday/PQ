@@ -23,7 +23,8 @@ width:300px;
 }
 
 input.url_name{
-margin: 10px;
+margin:10px 0 10px -45px;
+width:250px;
 }
 
 input.submit_proficiency, input.submit_url{
@@ -58,7 +59,11 @@ margin: 180px 0 0 280px;
 }
 
 div#loading_items img{
-margin-right: 10px;
+margin:-5px 40px;
+}
+
+span.loading{
+font-size: 2em;
 }
 
 div.quiz_items{
@@ -111,12 +116,12 @@ width:700px;
 margin-bottom:5px;
 }
 
-div.pre_content span.answer_span, div.post_content span.answer_span{
+div.pre_content span.blank, div.post_content span.blank{
 font-weight:bold;
 padding:0 5px;
 }
 
-div.content span.answer_span{
+div.content span.blank{
 color: black;
 background:#FFFFD1 none repeat scroll 0 0;
 border:1px solid #E2C922;
@@ -233,7 +238,7 @@ width:134px;
 
 div.ac_unselected:hover{
 color:#777;
-background: #f5e8f8;
+background: #B9EDF3;
 }
 
 div.ac_selected{

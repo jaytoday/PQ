@@ -3,11 +3,10 @@ ANSWER_LIMIT = 2;
 
 
 function BuildQuizEditor(response, topics){
-
 var raw_quiz_items = parseJSON(response);
 
-if (raw_quiz_items.length == 0) { $('div#loading_items').html('no quiz items returned -- <a href="">try again?</a>'); }  // no items returned
-if (raw_quiz_items[0] == "error") { $('div#loading_items').html('error: ' + raw_quiz_items[1]); }  // error
+if (raw_quiz_items.length == 0) { $('div#loading_items').html('no quiz items returned -- <a href="">try again?</a>'); return false;}  // no items returned
+if (raw_quiz_items[0] == "error") { $('div#loading_items').html('error: ' + raw_quiz_items[1]); return false; }  // error
 
 
 var scroll_width = 950 * raw_quiz_items.length;
@@ -18,7 +17,7 @@ $('div#quiz_items').css('width', scroll_width);
  $.each(raw_quiz_items, function(i,item){
 
 
-$('ul.item_navigation').append('<li class="index"><a href="#' + i + '">' + item.index + '</a></li>');
+$('ul.item_navigation').append('<li class="index"><a href="#' + i + '" onClick="return false;">' + item.index + '</a></li>');   // href="#' + i + '" -- for navigation. 
 	
  	
 // raw item template 	-- use jsrepeater template
@@ -143,7 +142,9 @@ function EditQuizItem(i, item, answers) {
 
 // setup for ajax call     
 var server = {};
-InstallFunction(server, 'SubmitQuizItem', 'quizbuilder');
+InstallPostFunction(server, 'SubmitQuizItem', 'quizbuilder');  // POST Request
+InstallFunction(server, 'SetItemModStatus', 'quizbuilder');
+
 // setup arrays
 wrong_answers[i] = [];
 answer_in_array[i] = [];   
@@ -164,11 +165,6 @@ answer_in_array[i] = [];
 
 // $('div#answers_' + i).jScrollPane();
  
-// $('#quiz_item_content').markItUp(mySettings);
-   
-   
- 
- 	     
 
 $('#quiz_data_' + i + ' > input[@name="proficiency"]').click(function(){
 $('#quiz_data_' + i + ' > input[@name="proficiency"]').setValue($(this).attr("value"));
@@ -265,32 +261,32 @@ for (a=0; a < wrong_answers[i].length; a++){ if ($(this).text() == wrong_answers
 
 PreviewAnswer(i);
 
-
 EditItemContent(i);
 
 $('form#quiz_data_' + i).find('input[@name="skip_item"]').click(function() { $('.quizbuilder_wrapper .scroller').trigger('next'); }); // skip item   moderated=ignore
 	            
 $('form#quiz_data_' + i).find('input[@name="submit_item"]').click(function() {         //moderated=true
-	
-	
-	if (eval('document.quiz_data_' + i + '.item_topic.value') == 'Pick a Topic'){ return false; }
-	if (eval('document.quiz_data_' + i + '.item_topic.value') == 'New Topic'){ topic_value = eval('document.quiz_data_' + i + '.new_item_topic.value') }else{topic_value = eval('document.quiz_data_' + i + '.new_item_topic.value');}
-	console.log(topic_value);// Edited quiz item is submitted. 
+	var topic_value = eval('document.quiz_data_' + i + '.item_topic.value');
+	if (topic_value == 'Pick a Topic'){ console.info('Pick a Topic!'); return false; }
+	if (topic_value == 'New Topic'){ topic_value = eval('document.quiz_data_' + i + '.new_item_topic.value'); }
 
 var submit_wrong_answers = [];
 for (w=0; w < wrong_answers[i].length; w++){
 submit_wrong_answers.splice(wrong_answers[i].length, 0, wrong_answers[i][w][0]); 
 }
 
-if (submit_wrong_answers.length < 2){ return false; console.info('not enough answers'); }
+if (submit_wrong_answers.length < 2){ console.info('not enough answers!'); return false;  }
 
-
-
-  //                     correct          all answers                            topic value                                     HTML                                                              url         proficiency
- server.SubmitQuizItem(item.index, submit_wrong_answers.concat(item.index),  topic_value , $('div#quiz_item_content_' + i + ' > div.item_inner').html(), item.page.url, item.page.proficiency.name, onItemAddSuccess);
+console.log($('div#quiz_item_content_' + i + ' > div.item_inner').html().length);
+if ($('div#quiz_item_content_' + i + ' > div.item_inner').html().length > 500){ console.info('quiz item is too long!'); return false; }
 
 // proceed to next quiz item
 $('.quizbuilder_wrapper .scroller').trigger('next');
+
+
+
+  //                                                           correct          all answers                            topic value                                     HTML                                                              url         proficiency
+ server.SetItemModStatus(item.key, "true", function(response){ server.SubmitQuizItem(item.index, submit_wrong_answers.concat(item.index),  topic_value , $('div#quiz_item_content_' + i + ' > div.item_inner').html(), item.page.url, item.page.proficiency.name, onItemAddSuccess); });
 
 });
  
@@ -300,7 +296,7 @@ $('.quizbuilder_wrapper .scroller').trigger('next');
 
 function onItemAddSuccess(response)
 {
-    console.log(response);
+
 }
 
 
@@ -369,7 +365,7 @@ function PreviewAnswer(i) {
 	
 	// On a hover over an answer, preview its text in the item content.
 
- 	var answer_span = $('div#quiz_item_content_' + i + ' > div.item_inner').find('.answer_span');
+ 	var answer_span = $('div#quiz_item_content_' + i + ' > div.item_inner').find('.blank');
  	var answer_text = answer_span.html();
  	
 	$('div#answers_' + i + ' > div').hover(function()

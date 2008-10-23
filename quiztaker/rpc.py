@@ -6,7 +6,7 @@ from google.appengine.ext import db
 import simplejson
 from .model.quiz import QuizItem, ItemScore
 from .model.user import QuizTaker, InviteList
-from methods import refresh_data, dump_data
+from methods import refresh_data, dump_data, load_data
 from .utils.utils import tpl_path, ROOT_PATH, raise_error
 
 

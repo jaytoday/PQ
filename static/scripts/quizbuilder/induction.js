@@ -20,7 +20,6 @@ answer_in_array = [];
 
 
 
-
 $('.proficiency_name').preserveDefaultText('proficiency');
 $('.url_name').preserveDefaultText('url');
 

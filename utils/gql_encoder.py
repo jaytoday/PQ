@@ -43,7 +43,7 @@ class GqlEncoder(simplejson.JSONEncoder):
   def default(self, obj):
     
     """Tests the input object, obj, to encode as JSON."""
-
+    
     if hasattr(obj, '__json__'):
       return getattr(obj, '__json__')()
 
@@ -54,6 +54,7 @@ class GqlEncoder(simplejson.JSONEncoder):
       properties = obj.properties().items()
       output = {}
       for field, value in properties:
+      	output['key'] = str(obj.key())
         output[field] = getattr(obj, field)
       return output
 

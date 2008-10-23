@@ -19,39 +19,8 @@ import views
 import induction
 from methods import DataMethods, refresh_data, dump_data, load_data
 
-class RPCHandler(webapp.RequestHandler):
-  # AJAX Handler
-  def __init__(self):
-    webapp.RequestHandler.__init__(self)
-    self.methods = RPCMethods()
 
-  def get(self):
-    func = None
    
-    action = self.request.get('action')
-    if action:
-      if action[0] == '_':
-        self.error(403) # access denied
-        return
-      else:
-        func = getattr(self.methods, action, None)
-   
-    if not func:
-      self.error(404) # file not found
-      return
-     
-    args = ()
-    while True:
-      key = 'arg%d' % len(args)
-      val = self.request.get(key)
-      if val:
-        args += (simplejson.loads(val),)
-      else:
-        break
-    result = func(*args)
-    self.response.out.write(simplejson.dumps(result))
-    
-
 
 class RPCMethods(webapp.RequestHandler):
   """ Defines AJAX methods.
@@ -139,8 +108,8 @@ remote callers access to private/protected "_*" methods.
   def GetRawItemsForProficiency(self, *args):  
       data = DataMethods()
       this_proficiency = Proficiency.gql("WHERE name = :1 ORDER BY date DESC", args[0]) # try get_or_insert if Proficiency is key
-      #these_items = RawQuizItem().gql("WHERE proficiency = :1", this_proficiency.get())
-      try: return data.dump_raw_items(this_proficiency.get().pages.get().raw_items.fetch(10))  # get 10 at a time...todo: lazy rpc-loader.
+      raw_items = RawQuizItem.gql("WHERE page = :1 AND moderated = False", this_proficiency.get().pages.get()) # only get unmoderated items
+      try: return data.dump_raw_items(raw_items.fetch(10))  # get 10 at a time...todo: lazy rpc-loader.
       except: return simplejson.dumps([])
 
   def GetTopicsForProficiency(self, *args):  
@@ -152,6 +121,12 @@ remote callers access to private/protected "_*" methods.
       except: return simplejson.dumps([])
       
 
+  def SetItemModStatus(self, *args):   # set moderation status for raw item
+      this_item = db.get(args[0])
+      if args[1] == "false": this_item.moderated = False
+      if args[1] == "true": this_item.moderated = True
+      this_item.put()
+      return encode(this_item)
 
 
   def SubmitQuizItem(self, *args):
@@ -168,11 +143,16 @@ remote callers access to private/protected "_*" methods.
      # new_quiz_item.proficiency = str(args[5])  # Should be Proficiency   - needs to be calculated. should be proficiency key. 
       new_quiz_item.content =  args[3].replace('title="Click to edit..."', '')
       new_quiz_item.content =  new_quiz_item.content.replace('style="opacity: 1;"', '')
+      new_quiz_item.content =  new_quiz_item.content.replace('</div><div class="content">', '')
+      new_quiz_item.content =  new_quiz_item.content.replace('</div><div class="content">', '')
+      new_quiz_item.content =  new_quiz_item.content.replace('</div><div class="post_content">', '')
+      new_quiz_item.content =  new_quiz_item.content.replace('<div class="pre_content">', '')
+      new_quiz_item.content =  new_quiz_item.content.rstrip('</div>')
+      
       new_quiz_item.difficulty = 0 # Default?
       new_quiz_item.content_url = args[4]
-      new_quiz_item.theme = new_quiz_item.get_theme(args[0])
+      new_quiz_item.theme = new_quiz_item.get_theme(args[4])
       new_quiz_item.put()
-      print ""
       return encode(new_quiz_item)
 
 
@@ -205,3 +185,62 @@ remote callers access to private/protected "_*" methods.
 
 
       	
+class RPCHandler(webapp.RequestHandler):
+  # AJAX Handler
+  def __init__(self):
+    webapp.RequestHandler.__init__(self)
+    self.methods = RPCMethods()
+
+  def get(self):
+    func = None
+   
+    action = self.request.get('action')
+    if action:
+      if action[0] == '_':
+        self.error(403) # access denied
+        return
+      else:
+        func = getattr(self.methods, action, None)
+   
+    if not func:
+      self.error(404) # file not found
+      return
+     
+    args = ()
+    while True:
+      key = 'arg%d' % len(args)
+      val = self.request.get(key)
+      if val:
+        args += (simplejson.loads(val),)
+      else:
+        break
+    result = func(*args)
+    self.response.out.write(simplejson.dumps(result))
+    
+    
+    
+    
+
+
+class RPCPostHandler(webapp.RequestHandler):
+  """ Allows the functions defined in the RPCMethods class to be RPCed."""
+  def __init__(self):
+    webapp.RequestHandler.__init__(self)
+    self.methods = RPCMethods()
+ 
+  def post(self):
+    args = simplejson.loads(self.request.body)
+    func, args = args[0], args[1:]
+   
+    if func[0] == '_':
+      self.error(403) # access denied
+      return
+     
+    func = getattr(self.methods, func, None)
+    if not func:
+      self.error(404) # file not found
+      return
+
+    result = func(*args)
+    self.response.out.write(simplejson.dumps(result))
+        
