@@ -10,13 +10,14 @@
 
 <script type="text/javascript" src="/static/scripts/jquery-1.2.6.js"></script>
 <script type="text/javascript" src="/static/scripts/json2min.js"></script>
-<script type="text/javascript" src="/static/scripts/quizbox.min.js"></script> 
+<script type="text/javascript" src="/static/scripts/quizbox.js"></script> 
 <script type="text/javascript" src="/static/scripts/publish.js"></script> 
 <script type="text/javascript" src="/static/scripts/jquery/jquery.pngFix.js"></script> 
 <script type="text/javascript" src="/static/scripts/utils/rpc.js"></script>
 <script type="text/javascript">
 
 $(document).ready(function() {
+return;
 	/*  Load quiz item iframes - static/scripts/quizbox.js redundant  */
 	$("#apply a, #apply_button a, #apply_button_d a, #description_apply").quizbox({
 		'zoomSpeedIn': 400,
@@ -30,12 +31,11 @@ $(document).ready(function() {
 /* =========== */
 /* = URL Array = */
 /* =========== */
-var quizitemList = [
-        {url: '/intro/?page=intro', item_type:'intro', choose_quiz: 'Take Another Quiz'},
-        {url: '/intro/?page=instructions', item_type:'instructions', answer1: 'dog ate', answer2: 'web made'},
-        {url: '/intro/?page=instructions2', item_type:'instructions2', answer1: 'compilers', answer2: 'interpreters'},
-        {url: '/intro/?page=begin_quiz', item_type:'begin_quiz'},
- 
+$.plopquiz.quizitemList = [
+        {url: '/intro/?page=intro', item_type:'intro', answers: ['Take Another Quiz'], noSkip: true},
+        {url: '/intro/?page=instructions', item_type:'instructions', answers: [ 'dog ate', 'web made' ], noSkip: true},
+        {url: '/intro/?page=instructions2', item_type:'instructions2', answers: [ 'compilers', 'interpreters' ], timed: "instructions2", timeout: 'reset'},
+        {url: '/intro/?page=begin_quiz', item_type:'begin_quiz', answers: [ 'Begin Quiz' ], noSkip: true},
  
 {% for item in quiz_items %}
         {
@@ -48,7 +48,9 @@ var quizitemList = [
                 answer3: "{{ item.answer3 }}",
                 answers: {{ item.answers }},
                 proficiency: '{{ item.proficiency }}',
-                item_type:'quiz_item'
+                item_type:'quiz_item',
+                timed: "timeout",
+                timeout: 'skip'
         },
 {% endfor %} 
 
@@ -140,7 +142,6 @@ function onAddSuccess(response)
         <div class="ovr_list">
         	<h3>Photos</h3>
             <a href="#view_images" onclick="boldme('tab_images')">
-            	<img src="http://farm2.static.flickr.com/3216/2816429545_c6ec878e03_s.jpg" class="photo" id="photo" alt="" />
        		</a>
 		</div>
         <div class="ovr_list" id="bookmark"> 
@@ -181,19 +182,7 @@ function onAddSuccess(response)
 	<div class="padded"><div class="bphoto"><img id="bphoto" class="clickable" alt="" />
 </div>
 <div class="rphoto">
-	<a onmouseover="image_swap(this)" name="image_link"><img src="http://farm2.static.flickr.com/3138/2816412463_5c4e709b24_s.jpg" class="photo" id="photo" alt="" /></a>
-    <a onmouseover="image_swap(this)" name="image_link"><img src="http://farm2.static.flickr.com/3184/2816412435_0d5afe948f_s.jpg" class="photo" id="photo" alt="" /></a>
-    <a onmouseover="image_swap(this)" name="image_link"><img src="http://farm1.static.flickr.com/124/345712907_4f6291da5f_s.jpg" class="photo" id="photo" alt="" /></a>	
-    <a onmouseover="image_swap(this)" name="image_link"><img src="http://farm4.static.flickr.com/3216/2816429545_c6ec878e03_s.jpg" class="photo" id="photo" alt="" /></a>
-    <a onmouseover="image_swap(this)" name="image_link"><img src="http://farm1.static.flickr.com/140/399863961_283d861ea5_s.jpg" class="photo" id="photo" alt="" /></a>
-    <a onmouseover="image_swap(this)" name="image_link"><img src="http://farm2.static.flickr.com/1405/737977421_9d7df52d11_s.jpg" class="photo" id="photo" alt="" /></a>
-    <a onmouseover="image_swap(this)" name="image_link"><img src="http://farm4.static.flickr.com/3259/2816429499_bd8a6794e8_s.jpg" class="photo" id="photo" alt="" /></a>
     <a onmouseover="image_swap(this)" name="image_link"><img src="" class="photo" id="photo" alt="" /></a>
-    <a onmouseover="image_swap(this)" name="image_link"><img src="http://farm3.static.flickr.com/2105/2205481110_99aaf1e19d_s.jpg" class="photo" id="photo" alt="" /></a>
-    <a onmouseover="image_swap(this)" name="image_link"><img src="http://farm4.static.flickr.com/3224/2816429581_8da06ce5a5_s.jpg" class="photo" id="photo" alt="" /></a>
-    <a onmouseover="image_swap(this)" name="image_link"><img src="http://farm4.static.flickr.com/3221/2849670904_c434143bd1_s.jpg" class="photo" id="photo" alt="" /></a>
-    <a onmouseover="image_swap(this)" name="image_link"><img src="http://farm4.static.flickr.com/3204/2817262594_a083a1d58c_s.jpg" class="photo" id="photo" alt="" /></a>
-    <a onmouseover="image_swap(this)" name="image_link"><img src="http://farm3.static.flickr.com/2333/2101999317_bbc34fcdba_s.jpg" class="photo" id="photo" alt="" /></a>
 </div>
 
 
