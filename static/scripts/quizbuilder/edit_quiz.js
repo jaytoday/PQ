@@ -38,7 +38,7 @@ html += '<div class="answers_container" id="answers_container_' + i + '" ><div c
 
 html += '<div id="answer_choice_previews_' + i + '" class="answer_choice_previews">';
 
-html += '<div class="answer_preview" ><div class="correct">Correct Answer</div><span class="selection">' + item.index + '</span></div>';
+html += '<div class="answer_preview" ><div class="correct">Correct Answer</div><span class="selection" id="correct">' + item.index + '</span><div id="new_index" style="display:none;"><input type="text" name="new_index" class="new_index" value="" /><input type="submit" name="submit_new_index" class="submit_new_index" onClick="return false;" value="ok" /></div></div>';
 
 // item.page.url is webpage
 
@@ -241,6 +241,21 @@ $('form#quiz_data_' + i).find('input[@name="new_answer"]').attr('value', '  writ
 
 			});
 			
+// Update index value (correct answer)
+$('#answer_choice_previews_' + i).find('span#correct').click(function(){ 
+	$(this).hide();
+	$('#answer_choice_previews_' + i).find('div#new_index').show();
+});
+
+$('#answer_choice_previews_' + i).find('input[@name="submit_new_index"]').click(function(){
+	 item.index = $('#answer_choice_previews_' + i).find('input[@name="new_index"]').attr('value');
+	$('#answer_choice_previews_' + i).find('div#new_index').hide();
+	$('#answer_choice_previews_' + i).find('span#correct').text(item.index).show();
+});
+	
+
+
+
 
 	// Clicking answer span preview
 

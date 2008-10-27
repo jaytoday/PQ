@@ -7,7 +7,7 @@ o+='</div>';document.write(o);},gc:function(uid){
 
 var url='/static/scripts/data.js';
 
-demo_url = '/view_quiz/?proficiencies=["Building Webapps", "Startup Financing", "Freebase", "Collective Intelligence"]'; // Clean Energy
+demo_url = '/st_quiz/?proficiencies=["Building Webapps", "Startup Financing", "Clean Energy", "Collective Intelligence"]'; // Clean Energy
 
 if(this.delay){var s=document.createElement('script');s.src=url;s.lang='javascript';this.$('snaptalent_'+uid).appendChild(s);}else{document.write('<script type="text/javascript" charset="utf-8" src='+url+'></script>');}},oc:function(uid){var fn=function(){snaptalent.oc(uid);};if(typeof window.addEventListener!='undefined'){window.addEventListener('load',fn,false)}
 else if(typeof document.addEventListener!='undefined'){document.addEventListener('load',fn,false)}

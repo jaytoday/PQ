@@ -4,9 +4,8 @@ logging.info('Loading %s', __name__)
 from google.appengine.ext import webapp
 from google.appengine.ext import db
 import simplejson
-import string
+import string, re
 from google.appengine.api import urlfetch
-import string
 import urllib
 from .lib.BeautifulSoup import BeautifulSoup
 
@@ -18,7 +17,6 @@ from .model.proficiency import ProficiencyTopic, Proficiency
 import views
 import induction
 from methods import DataMethods, refresh_data, dump_data, load_data
-
 
    
 
@@ -74,7 +72,6 @@ remote callers access to private/protected "_*" methods.
       induce_url = induction.RawItemInduction()
       #JSON Serialize save_url
       data = DataMethods()
-      # Save page,and topic, if necessary.
       # Induction:
       # 1. Perform semantic analysis
       # 2. Retrieve answer candidates
@@ -131,34 +128,34 @@ remote callers access to private/protected "_*" methods.
 
 
   def SubmitQuizItem(self, *args):
-      new_quiz_item = QuizItem()
-      new_quiz_item.index = args[0].lower
-      lc_answers = [string.lower(answer) for answer in args[1]]
-      new_quiz_item.answers = lc_answers
-      this_proficiency = Proficiency.gql("WHERE name = :1", args[5])
-      this_topic = ProficiencyTopic.get_or_insert(args[2], name=args[2], proficiency=this_proficiency.get())
-      this_topic.put()
-      new_quiz_item.topic = this_topic.key()
-      new_quiz_item.proficiency = this_topic.proficiency.key()
-       # And args[2] 
-     # new_quiz_item.proficiency = str(args[5])  # Should be Proficiency   - needs to be calculated. should be proficiency key. 
-      new_quiz_item.content =  args[3].replace('title="Click to edit..."', '')
-      new_quiz_item.content =  new_quiz_item.content.replace('^f"', '<div class="focus">')    # add focus div. 
-      new_quiz_item.content =  new_quiz_item.content.replace('f$"', '</div>')
- ######## blank_span = re.compile ('<span style="opacity: 1;" class="blank"' (*.) '</span>')  #delete whatever is in span.blank!
-      new_quiz_item.content =  new_quiz_item.content.replace('style="opacity: 1;"', '')
-      new_quiz_item.content =  new_quiz_item.content.replace('</div><div class="content">', '')
-      new_quiz_item.content =  new_quiz_item.content.replace('</div><div class="content">', '')
-      new_quiz_item.content =  new_quiz_item.content.replace('</div><div class="post_content">', '')
-      new_quiz_item.content =  new_quiz_item.content.replace('<div class="pre_content">', '')
-      new_quiz_item.content =  new_quiz_item.content.rstrip('</div>')
-      
-      new_quiz_item.difficulty = 0 # Default?
-      new_quiz_item.content_url = args[4]
-      new_quiz_item.theme = new_quiz_item.get_theme(args[4])
-      new_quiz_item.put()
-      print encode(new_quiz_item)
-      return encode(new_quiz_item)
+		new_quiz_item = QuizItem()
+		new_quiz_item.index = string.lower(args[0])
+		lc_answers = [string.lower(answer) for answer in args[1]]
+		new_quiz_item.answers = lc_answers
+		this_proficiency = Proficiency.gql("WHERE name = :1", args[5])
+		this_topic = ProficiencyTopic.get_or_insert(args[2], name=args[2], proficiency=this_proficiency.get())
+		this_topic.put()
+		new_quiz_item.topic = this_topic.key()
+		new_quiz_item.proficiency = this_topic.proficiency.key()
+		# And args[2] 
+		# new_quiz_item.proficiency = str(args[5])  # Should be Proficiency   - needs to be calculated. should be proficiency key. 
+		new_quiz_item.content =  args[3].replace('title="Click to edit..."', '')
+		new_quiz_item.content =  new_quiz_item.content.replace('^f"', '<div class="focus">')    # add focus div. 
+		new_quiz_item.content =  new_quiz_item.content.replace('f$"', '</div>')
+		new_quiz_item.content =  new_quiz_item.content.replace(' style="opacity: 1;"', '')
+		blank_span = re.compile('<span class="blank">.*</span>')  #delete whatever is in span.blank!
+		new_quiz_item.content =  blank_span.sub('<span style="opacity: 1;" class="blank"></span>', new_quiz_item.content)
+		new_quiz_item.content =  new_quiz_item.content.replace('</div><div class="content">', '')
+		new_quiz_item.content =  new_quiz_item.content.replace('</div><div class="post_content">', '')
+		new_quiz_item.content =  new_quiz_item.content.replace('<div class="pre_content">', '')
+		new_quiz_item.content =  new_quiz_item.content.rstrip('</div>')
+
+		new_quiz_item.difficulty = 0 # Default?
+		new_quiz_item.content_url = args[4]
+		new_quiz_item.theme = new_quiz_item.get_theme(args[4])
+		new_quiz_item.put()
+		print encode(new_quiz_item)
+		return encode(new_quiz_item)
       
       
 

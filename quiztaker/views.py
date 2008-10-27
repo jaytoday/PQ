@@ -88,7 +88,6 @@ class QuizFrame(webapp.RequestHandler):
 
 class ViewQuiz(webapp.RequestHandler): # most work should go into its own file?
   #View Quiz
-
   quiz_array = []
   all_quiz_items = []
   proficiencies = {}
@@ -199,6 +198,61 @@ class ViewScore(webapp.RequestHandler):
 
  
 
+
+class ViewSnaptalentQuiz(webapp.RequestHandler): # most work should go into its own file?
+  #View Quiz
+  quiz_array = []
+  all_quiz_items = []
+  proficiencies = {}
+  QUIZ_ITEM_PER_PROFICIENCY = 5
+    
+  def get(self):
+    self.proficiencies = {}
+      # Create random list of three quiz items.
+    if self.request.get('proficiencies'):
+        quiz_items = []
+        for p in eval(self.request.get('proficiencies')):  # TODO make these keys for easy lookup   -- these are proficiencies, not topics.
+			this_p = Proficiency.gql("WHERE name = :1", p)
+			q = QuizItem.gql("WHERE proficiency = :1", this_p.get())   # use topic for key
+			quiz_items.extend(q.fetch(1000))
+    # Query all quiz items
+    else:
+        q = db.GqlQuery("SELECT * FROM QuizItem")
+        quiz_items = q.fetch(1000) 
+    # Load Fixture Data if Necessary
+        refresh_data("quiz_items", "quiet") 
+        q = db.GqlQuery("SELECT * FROM QuizItem")
+        quiz_items = q.fetch(1000)
+    for item in quiz_items:
+        self.load_item(item)
+    self.load_array()
+    template_values = {"quiz_items": self.quiz_array }
+    logging.debug(template_values)
+    path = tpl_path(DEMO_PATH + 'ad.html')
+    self.response.out.write(template.render(path, template_values))
+    
+
+  def load_item(self, item):
+        random.shuffle(item.answers)
+        item_answers = []
+        [item_answers.append(str(a)) for a in item.answers]
+        item_dict = {"answers": item_answers, "answer1" : item.answers[0], "answer2" : item.answers[1], "answer3": item.answers[2],  #answer1,2,3 is deprecated
+        "proficiency": item.proficiency.name, "topic": item.topic.name, "key": item.key()}
+        if item.proficiency.name not in self.proficiencies: self.proficiencies[item.proficiency.name] = []
+        self.proficiencies[item.proficiency.name].append(item_dict)
+        return self.proficiencies
+
+  def load_array(self):
+        self.quiz_array = []
+        for prof_type in self.proficiencies:
+            try: proficiency = random.sample(self.proficiencies[prof_type],
+                                  self.QUIZ_ITEM_PER_PROFICIENCY)
+            except ValueError: continue     #sample size larger than population
+            self.quiz_array += proficiency
+        random.shuffle(self.quiz_array)
+        return self.quiz_array
+        
+        
 
 
 class ViewNone(webapp.RequestHandler):

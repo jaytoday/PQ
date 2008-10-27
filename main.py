@@ -36,6 +36,8 @@ def url_handler():
                                          quiztaker.views.ViewScore),
                                         ('/quiz_complete/?',
                                          quiztaker.views.QuizComplete),                                         
+                                        ('/st_quiz/?',
+                                         quiztaker.views.ViewSnaptalentQuiz), 
                                         ('/view_quiz/?',
                                          quiztaker.views.ViewQuiz), 
                                         ('/view_quiz/close/?',

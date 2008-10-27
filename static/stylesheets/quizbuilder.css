@@ -206,10 +206,20 @@ margin-bottom:-21px;
 margin-right:-15px;
 }
 
+input.submit_new_index{
+font-size:0.8em;
+}
+
 input.new_answer{
 font-size:1em;
 margin:10px 0 0 10px;
 width:150px;
+}
+
+input.new_index{
+font-size:0.8em;
+margin:0 0 0 10px;
+width:110px;
 }
 
 div.submit_new_answer{
