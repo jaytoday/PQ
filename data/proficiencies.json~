@@ -1,13 +1,15 @@
 [
 
-{"name": "conservation" },
+{"name": "Energy Efficiency" },
 
-{"name": "oil" },
+{"name": "Oil" },
 
-{"name": "energy finance" },
+{"name": "Solar Energy" },
 
-{"name": "biofuels" },
+{"name": "Energy Finance" },
 
- {"name": "electricity" }
+{"name": "Biofuels" },
+
+ {"name": "Electricity" }
 
 ]

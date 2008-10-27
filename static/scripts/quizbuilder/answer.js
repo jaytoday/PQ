@@ -1,7 +1,7 @@
 
 
 // when the DOM is ready...
-function item_sliderInit(wrong_answers) {
+function sliderInit(wrong_answers) {
     
     var $panels = $('.quizbuilder_wrapper .quiz_items > div');
 
@@ -57,7 +57,7 @@ function item_sliderInit(wrong_answers) {
     
         $('.item_navigation').animate({marginLeft:"-=.6em"}); //-- don't need this with display:none; 
         	
-        var el = $('.item_navigation').find('a[href="#' + data.id + '"]');
+        var el = $('.item_navigation').find('a[href$="' + data.id + '"]');
         selectNav.call(el);
         
   
@@ -93,8 +93,8 @@ function item_sliderInit(wrong_answers) {
         lazy: 'true', // for dynamic content
 
         // selectors are NOT relative to document, i.e. make sure they're unique
-     //   prev: 'img.left', 
-     //   next: 'input[@name="submit_item"]',
+        prev: 'img.left', 
+        next: 'input[@name="submit_item"]',
 
         // allow the scroll effect to run both directions
         axis: 'x',
@@ -102,10 +102,8 @@ function item_sliderInit(wrong_answers) {
         onAfter: trigger, // our final callback
         
         force: true,
-        
 
-
-        offset: -50,//offset,
+        //offset: offset,
 
         // duration of the sliding effect
         duration: 500,
@@ -130,7 +128,6 @@ function item_sliderInit(wrong_answers) {
     // the positioning is absolutely spot on when the pages loads.
     scrollOptions.duration = 1;
     $.localScroll.hash(scrollOptions);
-
 
  
 }

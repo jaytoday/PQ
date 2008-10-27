@@ -2,47 +2,283 @@
                     {
                         "url": "http://news.bbc.co.uk/2/hi/science/nature/7662565.stm", 
                         "date": {
-                            "ctime": "Tue Oct 21 03:39:31 2008"
+                            "ctime": "Mon Oct 27 01:00:32 2008"
                         }, 
-                        "proficiency": {
-                            "date": {
-                                "ctime": "Tue Oct 21 03:39:31 2008"
-                            }, 
-                            "name": "Energy Finance" }
+                        "proficiency": null, 
+                        "key": "aghwbG9wcXVpenISCxILQ29udGVudFBhZ2UY5QIM"
                     }, 
                     {
                         "url": "http://www.huffingtonpost.com/kate-sheppard/what-the-candidates-said_b_135147.html", 
                         "date": {
-                            "ctime": "Tue Oct 21 03:39:31 2008"
+                            "ctime": "Mon Oct 27 01:00:32 2008"
                         }, 
                         "proficiency": {
                             "date": {
-                                "ctime": "Tue Oct 21 03:39:31 2008"
+                                "ctime": "Mon Oct 27 01:00:25 2008"
                             }, 
-                            "name":  "Oil" }
+                            "name": "Oil", 
+                            "key": "aghwbG9wcXVpenIUCxILUHJvZmljaWVuY3kiA09pbAw"
+                        }, 
+                        "key": "aghwbG9wcXVpenISCxILQ29udGVudFBhZ2UY5gIM"
                     }, 
                     {
                         "url": "http://en.wikipedia.org/wiki/Renewable_energy", 
                         "date": {
-                            "ctime": "Tue Oct 21 03:39:31 2008"
+                            "ctime": "Mon Oct 27 01:00:32 2008"
                         }, 
                         "proficiency": {
                             "date": {
-                                "ctime": "Tue Oct 21 03:39:31 2008"
+                                "ctime": "Mon Oct 27 01:00:25 2008"
                             }, 
-                            "name":  "Biofuels"  }
+                            "name": "Biofuels", 
+                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEJpb2Z1ZWxzDA"
+                        }, 
+                        "key": "aghwbG9wcXVpenISCxILQ29udGVudFBhZ2UY5wIM"
+                    }, 
+                    {
+                        "url": "http://en.wikipedia.org/wiki/Smart_grid", 
+                        "date": {
+                            "ctime": "Mon Oct 27 01:00:32 2008"
+                        }, 
+                        "proficiency": {
+                            "date": {
+                                "ctime": "Mon Oct 27 01:00:25 2008"
+                            }, 
+                            "name": "Electricity", 
+                            "key": "aghwbG9wcXVpenIcCxILUHJvZmljaWVuY3kiC0VsZWN0cmljaXR5DA"
+                        }, 
+                        "key": "aghwbG9wcXVpenISCxILQ29udGVudFBhZ2UY6AIM"
                     }, 
                     {
                         "url": "http://greenlight.greentechmedia.com/2008/10/16/peak-power-getting-a-second-hump-because-of-computers-662/", 
                         "date": {
-                            "ctime": "Tue Oct 21 03:48:19 2008"
+                            "ctime": "Mon Oct 27 01:00:33 2008"
+                        }, 
+                        "proficiency": null, 
+                        "key": "aghwbG9wcXVpenISCxILQ29udGVudFBhZ2UY6QIM"
+                    }, 
+                    {
+                        "url": "http://www.freebase.com/view/guid/9202a8c04000641f8000000007df32af", 
+                        "date": {
+                            "ctime": "Mon Oct 27 01:03:20 2008"
                         }, 
                         "proficiency": {
                             "date": {
-                                "ctime": "Tue Oct 21 03:39:31 2008"
+                                "ctime": "Mon Oct 27 01:00:25 2008"
                             }, 
-                            "name": "Energy Finance"
-                        }
+                            "name": "Freebase", 
+                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
+                        }, 
+                        "key": "aghwbG9wcXVpenISCxILQ29udGVudFBhZ2UYuwQM"
+                    }, 
+                    {
+                        "url": "http://www.freebase.com/view/guid/9202a8c04000641f80000000045637f3", 
+                        "date": {
+                            "ctime": "Mon Oct 27 01:09:43 2008"
+                        }, 
+                        "proficiency": {
+                            "date": {
+                                "ctime": "Mon Oct 27 01:00:25 2008"
+                            }, 
+                            "name": "Freebase", 
+                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
+                        }, 
+                        "key": "aghwbG9wcXVpenISCxILQ29udGVudFBhZ2UY5wQM"
+                    }, 
+                    {
+                        "url": "http://www.freebase.com/view/guid/9202a8c04000641f8000000008c0c409", 
+                        "date": {
+                            "ctime": "Mon Oct 27 01:26:08 2008"
+                        }, 
+                        "proficiency": {
+                            "date": {
+                                "ctime": "Mon Oct 27 01:00:25 2008"
+                            }, 
+                            "name": "Freebase", 
+                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
+                        }, 
+                        "key": "aghwbG9wcXVpenISCxILQ29udGVudFBhZ2UY-gQM"
+                    }, 
+                    {
+                        "url": "http://www.freebase.com/view/guid/9202a8c04000641f8000000008c12edd", 
+                        "date": {
+                            "ctime": "Mon Oct 27 01:38:46 2008"
+                        }, 
+                        "proficiency": {
+                            "date": {
+                                "ctime": "Mon Oct 27 01:00:25 2008"
+                            }, 
+                            "name": "Freebase", 
+                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
+                        }, 
+                        "key": "aghwbG9wcXVpenISCxILQ29udGVudFBhZ2UYgwUM"
+                    }, 
+                    {
+                        "url": "http://www.freebase.com/view/guid/9202a8c04000641f800000000502a761", 
+                        "date": {
+                            "ctime": "Mon Oct 27 01:46:36 2008"
+                        }, 
+                        "proficiency": {
+                            "date": {
+                                "ctime": "Mon Oct 27 01:00:25 2008"
+                            }, 
+                            "name": "Freebase", 
+                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
+                        }, 
+                        "key": "aghwbG9wcXVpenISCxILQ29udGVudFBhZ2UYiAUM"
+                    }, 
+                    {
+                        "url": "http://www.freebase.com/view/guid/9202a8c04000641f80000000092923ae", 
+                        "date": {
+                            "ctime": "Mon Oct 27 02:01:17 2008"
+                        }, 
+                        "proficiency": {
+                            "date": {
+                                "ctime": "Mon Oct 27 01:00:25 2008"
+                            }, 
+                            "name": "Freebase", 
+                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
+                        }, 
+                        "key": "aghwbG9wcXVpenISCxILQ29udGVudFBhZ2UYjwUM"
+                    }, 
+                    {
+                        "url": "http://www.freebase.com/view/guid/9202a8c04000641f80000000081c2a7e", 
+                        "date": {
+                            "ctime": "Mon Oct 27 02:08:14 2008"
+                        }, 
+                        "proficiency": {
+                            "date": {
+                                "ctime": "Mon Oct 27 01:00:25 2008"
+                            }, 
+                            "name": "Freebase", 
+                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
+                        }, 
+                        "key": "aghwbG9wcXVpenISCxILQ29udGVudFBhZ2UYkwUM"
+                    }, 
+                    {
+                        "url": "http://www.freebase.com/view/guid/9202a8c04000641f800000000544e143", 
+                        "date": {
+                            "ctime": "Mon Oct 27 02:27:11 2008"
+                        }, 
+                        "proficiency": {
+                            "date": {
+                                "ctime": "Mon Oct 27 01:00:25 2008"
+                            }, 
+                            "name": "Freebase", 
+                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
+                        }, 
+                        "key": "aghwbG9wcXVpenISCxILQ29udGVudFBhZ2UYlAUM"
+                    }, 
+                    {
+                        "url": "http://www.freebase.com/view/guid/9202a8c04000641f80000000076223d6", 
+                        "date": {
+                            "ctime": "Mon Oct 27 02:46:14 2008"
+                        }, 
+                        "proficiency": {
+                            "date": {
+                                "ctime": "Mon Oct 27 01:00:25 2008"
+                            }, 
+                            "name": "Freebase", 
+                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
+                        }, 
+                        "key": "aghwbG9wcXVpenISCxILQ29udGVudFBhZ2UYuAUM"
+                    }, 
+                    {
+                        "url": "http://www.freebase.com/view/freebase/contribution_guidelines", 
+                        "date": {
+                            "ctime": "Mon Oct 27 02:51:44 2008"
+                        }, 
+                        "proficiency": {
+                            "date": {
+                                "ctime": "Mon Oct 27 01:00:25 2008"
+                            }, 
+                            "name": "Freebase", 
+                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
+                        }, 
+                        "key": "aghwbG9wcXVpenISCxILQ29udGVudFBhZ2UYygUM"
+                    }, 
+                    {
+                        "url": "http://www.freebase.com/view/guid/9202a8c04000641f8000000003c1b1e8", 
+                        "date": {
+                            "ctime": "Mon Oct 27 02:53:44 2008"
+                        }, 
+                        "proficiency": {
+                            "date": {
+                                "ctime": "Mon Oct 27 01:00:25 2008"
+                            }, 
+                            "name": "Freebase", 
+                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
+                        }, 
+                        "key": "aghwbG9wcXVpenISCxILQ29udGVudFBhZ2UY0QUM"
+                    }, 
+                    {
+                        "url": "http://www.freebase.com/view/guid/9202a8c04000641f8000000007de4b65", 
+                        "date": {
+                            "ctime": "Mon Oct 27 02:54:12 2008"
+                        }, 
+                        "proficiency": {
+                            "date": {
+                                "ctime": "Mon Oct 27 01:00:25 2008"
+                            }, 
+                            "name": "Freebase", 
+                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
+                        }, 
+                        "key": "aghwbG9wcXVpenISCxILQ29udGVudFBhZ2UY0gUM"
+                    }, 
+                    {
+                        "url": "http://www.freebase.com/view/guid/9202a8c04000641f80000000041e92b0", 
+                        "date": {
+                            "ctime": "Mon Oct 27 02:54:35 2008"
+                        }, 
+                        "proficiency": {
+                            "date": {
+                                "ctime": "Mon Oct 27 01:00:25 2008"
+                            }, 
+                            "name": "Freebase", 
+                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
+                        }, 
+                        "key": "aghwbG9wcXVpenISCxILQ29udGVudFBhZ2UY0wUM"
+                    }, 
+                    {
+                        "url": "http://mjtemplate.org/", 
+                        "date": {
+                            "ctime": "Mon Oct 27 03:04:49 2008"
+                        }, 
+                        "proficiency": {
+                            "date": {
+                                "ctime": "Mon Oct 27 01:00:25 2008"
+                            }, 
+                            "name": "Freebase", 
+                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
+                        }, 
+                        "key": "aghwbG9wcXVpenISCxILQ29udGVudFBhZ2UY1wUM"
+                    }, 
+                    {
+                        "url": "http://dev.freebaseapps.com/wiki/app_editor", 
+                        "date": {
+                            "ctime": "Mon Oct 27 03:23:24 2008"
+                        }, 
+                        "proficiency": {
+                            "date": {
+                                "ctime": "Mon Oct 27 01:00:25 2008"
+                            }, 
+                            "name": "Freebase", 
+                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
+                        }, 
+                        "key": "aghwbG9wcXVpenISCxILQ29udGVudFBhZ2UY7gUM"
+                    }, 
+                    {
+                        "url": "http://dev.freebaseapps.com/wiki/acre_api", 
+                        "date": {
+                            "ctime": "Mon Oct 27 03:27:18 2008"
+                        }, 
+                        "proficiency": {
+                            "date": {
+                                "ctime": "Mon Oct 27 01:00:25 2008"
+                            }, 
+                            "name": "Freebase", 
+                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
+                        }, 
+                        "key": "aghwbG9wcXVpenISCxILQ29udGVudFBhZ2UY9QUM"
                     }
                 ]
-

@@ -1,15 +1,20 @@
 [
 
-{"name": "Conservation" },
+{"name": "Energy Efficiency" },
 
 {"name": "Oil" },
 
 {"name": "Solar Energy" },
 
-{"name": "Energy Finance" },
+{"name": "Energy Economics" },
 
 {"name": "Biofuels" },
 
- {"name": "Electricity" }
+ {"name": "Electricity" },
+ 
+ 
+ 
+ 
+ {"name": "Freebase" }
 
 ]

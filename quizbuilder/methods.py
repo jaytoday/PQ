@@ -51,14 +51,14 @@ class DataMethods():
 			if data_type == 'proficiencies':
 				save_entity = Proficiency.get_or_insert(entity['name'], name = entity['name']) 
 			if data_type == 'proficiency_topics':
-				this_proficiency = Proficiency.gql("WHERE name = :1", entity['proficiency'])
+				this_proficiency = Proficiency.gql("WHERE name = :1", entity['proficiency']['name'])
 				print entity['proficiency']
 				save_entity = ProficiencyTopic.get_or_insert(entity['name'], name = entity['name'], 
 											   proficiency = this_proficiency.get())
 			if data_type == 'content_pages':
-				 this_proficiency = Proficiency.gql("WHERE name = :1", entity['proficiency']['name'])
+				 try: this_proficiency = Proficiency.gql("WHERE name = :1", entity['proficiency']['name'])
+				 except TypeError: continue # some old content pages dont have proficiencies
 				 print entity['url']
-				 
 				 save_entity = ContentPage(url = entity['url'], proficiency = this_proficiency.get()) 
 			if data_type == 'raw_items':
 				print entity['page']['url']
