@@ -94,7 +94,7 @@ remote callers access to private/protected "_*" methods.
   def RetrieveProficiencies(self, *args):   # todo: should be nested list of proficiencies and topics.
       return_proficiencies = []
       #proficiencies = Proficiency.all()
-      proficiencies = Proficiency.gql("WHERE name in :1", ["Oil", "Solar Energy","Energy Finance","Biofuels","Electricity", "Energy Efficiency", "Freebase"])  # remove after refactoring quiztaker
+      proficiencies = Proficiency.gql("WHERE name in :1", ["Oil", "Solar Energy","Energy Finance","Biofuels","Electricity", "Energy Efficiency"])  # remove after refactoring quiztaker
       return encode(proficiencies.fetch(1000, offset=0)) # temporary offset
 
 
@@ -132,7 +132,7 @@ remote callers access to private/protected "_*" methods.
 
   def SubmitQuizItem(self, *args):
       new_quiz_item = QuizItem()
-      new_quiz_item.index = args[0].lower
+      new_quiz_item.index = args[0]
       lc_answers = [string.lower(answer) for answer in args[1]]
       new_quiz_item.answers = lc_answers
       this_proficiency = Proficiency.gql("WHERE name = :1", args[5])
@@ -145,7 +145,6 @@ remote callers access to private/protected "_*" methods.
       new_quiz_item.content =  args[3].replace('title="Click to edit..."', '')
       new_quiz_item.content =  new_quiz_item.content.replace('^f"', '<div class="focus">')    # add focus div. 
       new_quiz_item.content =  new_quiz_item.content.replace('f$"', '</div>')
- ######## blank_span = re.compile ('<span style="opacity: 1;" class="blank"' (*.) '</span>')  #delete whatever is in span.blank!
       new_quiz_item.content =  new_quiz_item.content.replace('style="opacity: 1;"', '')
       new_quiz_item.content =  new_quiz_item.content.replace('</div><div class="content">', '')
       new_quiz_item.content =  new_quiz_item.content.replace('</div><div class="content">', '')
@@ -157,10 +156,7 @@ remote callers access to private/protected "_*" methods.
       new_quiz_item.content_url = args[4]
       new_quiz_item.theme = new_quiz_item.get_theme(args[4])
       new_quiz_item.put()
-      print encode(new_quiz_item)
       return encode(new_quiz_item)
-      
-      
 
 
 

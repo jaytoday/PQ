@@ -343,16 +343,18 @@ function EditItemContent(i) {
 	
 	
 	$('#quiz_item_content_' + i + ' > div.item_inner > div').editable(function(value, id){UpdateContent(value,i, $(this));}, {
-      type      : "autogrow",
-      autogrow : {
-                  lineHeight : 22
-                 },
-     // submit    : "OK",
-      onblur    : "submit",
-     // cancel    : "Cancel",
-     // tooltip   : "Click to edit...",
-      width     : '600px',
-      cssclass : "editable"
+		//loadurl : "/quizbuilder/rpc?action=Jeditable&arg0=" + $(this),
+		type      : "autogrow",
+		autogrow : {
+		  lineHeight : 22
+		 },
+		// submit    : "OK",
+		indicator : "<img src='/static/stylesheets/img/ajax-loader.gif'>",
+		onblur    : "submit",
+		// cancel    : "Cancel",
+		// tooltip   : "Click to edit...",
+		width     : '600px',
+		cssclass : "editable"
 		}); // this can be rpc call 
 
 }

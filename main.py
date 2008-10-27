@@ -9,7 +9,7 @@ import quiztaker.rpc
 import quizbuilder.views
 import quizbuilder.rpc
 import dev.views
-
+import homepage.views
 import quizbuilder
 
 
@@ -26,6 +26,8 @@ def url_handler():
                                          quiztaker.views.PQDemo),
                                         ('/preview/ad_embed/?',
                                          quiztaker.views.PQDemo),                                         
+                                        ('/preview/homepage/?',
+                                         homepage.views.ViewHomepage),  
                                          ('/intro/?',
                                          quiztaker.views.PQIntro),
                                         ('/quiztaker/rpc/?',

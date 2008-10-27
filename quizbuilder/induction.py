@@ -45,7 +45,7 @@ DEFAULT_PAGES = [#"http://en.wikipedia.org/wiki/Inference",
 AC_LIMIT = 100 # Limit of answer choice candidates per quiz item
 AC_MIN = 8 # Minimum of answer choices required.
 
-RAW_ITEMS_PER_PAGE = 3 # Limit of quiz items created per page 
+RAW_ITEMS_PER_PAGE = 10 # Limit of quiz items created per page 
 
 MIN_TAG_CHARS = 4 # Minimum characters per tag
 
@@ -286,7 +286,8 @@ class BuildItemsFromPage():
      tag_word = re.compile(r'\W%s\W' % tag, re.IGNORECASE)
      footnote = re.compile( '\[(\d)*\]' )
      text = footnote.sub('', text)
-     return tag_word.sub('<span class="blank">%s</span>' % tag, text)               
+     return tag_word.sub('<span class="blank">%s</span>' % tag, text)
+     #return tag_word.sub('^b%sb$' % tag, text)                
                  
                  
 

@@ -1,9 +1,8 @@
 // when the DOM is ready...
-function answers_sliderInit(i) {
+function proficiency_sliderInit() {
     // need i 
-    var $panels = $('#answers_container_' + i + ' .answer_candidates > div');
-    var $container = $('#answers_container_' + i + ' .answer_candidates');
-
+    var $panels = $('.proficiency_container .proficiencies > div');
+    var $container = $('.proficiency_container .proficiencies');
     // if false, we'll float all the panels left and fix the width 
     // of the container
     var horizontal = true;
@@ -19,16 +18,13 @@ function answers_sliderInit(i) {
 
     // collect the scroll object, at the same time apply the hidden overflow
     // to remove the default scrollbars that will appear
-    var $scroll = $('#answers_container_' + i + ' .answers_scroll').css('overflow', 'hidden');
+    var $scroll = $('.proficiency_container .proficiencies_scroll').css('overflow', 'hidden');
 
     // apply our left + right buttons
     $scroll
-        .before('<img class="scrollButtons answer_prev" src="/static/stylesheets/img/scroll_left.png" />')
-        .after('<img class="scrollButtons answer_next" src="/static/stylesheets/img/scroll_right.png" />');
+        .before('<img class="scrollButtons proficiency_prev" src="/static/stylesheets/img/scroll_left.png" />')
+        .after('<img class="scrollButtons proficiency_next" src="/static/stylesheets/img/scroll_right.png" />');
 
-
-
-   // $('#slider .navigation').find('a').click(selectNav);
 
     // go find the navigation link that has this target and select the nav
     function trigger(data) {
@@ -44,22 +40,22 @@ function answers_sliderInit(i) {
         items: $panels,
 
         // selectors are NOT relative to document, i.e. make sure they're unique
-        prev: 'img.answer_prev', 
-        next: 'img.answer_next',
+        prev: 'img.proficiency_prev', 
+        next: 'img.proficiency_next',
 
         // allow the scroll effect to run both directions
         axis: 'x',
         
         step: 5,
-        
-        exclude: 4,
 
         onAfter: trigger, // our final callback
 
         // offset: 0,
+        
+        exclude: 4,
 
         // duration of the sliding effect
-        duration: 500,
+        duration: 1000,
 
         // easing - can be used with the easing plugin: 
         // http://gsgd.co.uk/sandbox/jquery/easing/
@@ -69,7 +65,7 @@ function answers_sliderInit(i) {
     // apply serialScroll to the slider - we chose this plugin because it 
     // supports// the indexed next and previous scroll along with hooking 
     // in to our navigation.
-    $('#answers_container_' + i).serialScroll(scrollOptions);
+    $('.proficiency_container').serialScroll(scrollOptions);
 
     // now apply localScroll to hook any other arbitrary links to trigger 
     // the effect

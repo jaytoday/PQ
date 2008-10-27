@@ -92,7 +92,7 @@ class ViewQuiz(webapp.RequestHandler): # most work should go into its own file?
   quiz_array = []
   all_quiz_items = []
   proficiencies = {}
-  quiz_item_count = 1
+  QUIZ_ITEM_PER_PROFICIENCY = 5
     
   def get(self):
     self.proficiencies = {}
@@ -134,7 +134,7 @@ class ViewQuiz(webapp.RequestHandler): # most work should go into its own file?
         self.quiz_array = []
         for prof_type in self.proficiencies:
             try: proficiency = random.sample(self.proficiencies[prof_type],
-                                  self.quiz_item_count)
+                                  self.QUIZ_ITEM_PER_PROFICIENCY)
             except ValueError: continue     #sample size larger than population
             self.quiz_array += proficiency
         random.shuffle(self.quiz_array)

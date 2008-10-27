@@ -96,7 +96,10 @@ div#hfc
 {
         margin:2px 0 0 5px;
 }
-
+div#freebase
+{
+margin: 2px 5px;
+}
 
 div.quiz_frame_source
 {
