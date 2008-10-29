@@ -7,7 +7,6 @@ div.quiz_frame_header
         border-color:#E0E0E0;
         border-style:solid;
         border-width:3px 1px;
-        height:50px;
         margin-top:5px;
         overflow:hidden;
         -moz-border-radius: 3px;
@@ -53,8 +52,6 @@ body.frame_body
 
 div.quiz_frame_logo
 {
-        float:left;
-        position:absolute;
 }
 
 div#ocw
@@ -126,15 +123,15 @@ div.quiz_frame_content
 
 div.quiz_frame_title
 {
-        font-family:"Georgia","Lucida Grande","Lucida Sans Unicode","Trebuchet MS",Verdana,Helvetica,sans-serif;
-        font-size:1.1em;
-        height:40px;
-        margin-left:240px;
-        overflow:hidden;
-        position:absolute;
-        text-align:center;
-        top:21px;
-        width:250px;
+        font-family:    "Georgia","Lucida Grande","Lucida Sans Unicode","Trebuchet MS",Verdana,Helvetica,sans-serif;
+        font-size:      1.1em;
+        height: 40px;
+        margin-left:    240px;
+        overflow:       hidden;
+        position:       relative;
+        text-align:     center;
+        top:    10px;
+        width:  250px;
 }
 
 
@@ -153,7 +150,7 @@ div.quiz_frame_title
         text-align:center;
 }
 
-span.blank
+#blank
 {
         background:#FFFFD1 none repeat scroll 0 0;
         border:1px solid #E2C922;
@@ -224,7 +221,6 @@ div.quiz_intro_text
         margin-left:25px;
         margin-top:10px;
         /* overflow:hidden; */
-        position:absolute;
         text-align:center;
         width:300px;
         top:80px;
@@ -294,28 +290,18 @@ div.quiz_description
         -webkit-border-radius: 5px;
 }
 
-div#quiz_intro
+div.hover_example
 {
-        background: url(/static/html/img/background_150.png) repeat-x scroll center top;
-        height:100px;
-        width:180px;
-        margin-left:110px;
-        margin-top: -2px;
- }
-
-
- div.hover_example
-{
-         margin-right:-2px;
-         overflow:hidden;
-         padding:5px;
-         text-align:center;
-         width:140px;
-         margin-top:15px;
-         margin-left:0px;
-         height:120px; 
-         width:140px;
-         float:right;
+        margin-right:-2px;
+        overflow:hidden;
+        padding:5px;
+        text-align:center;
+        width:140px;
+        margin-top:15px;
+        margin-left:0px;
+        height:120px; 
+        width:140px;
+        float:right;
 }
 
 
@@ -378,14 +364,11 @@ div#choose_profs
         margin:3px 0px 0px -30px;
 }
 
-div#profs
+#profs
 {
         background: url(/static/html/img/background_250.png) repeat-x scroll center top;
-        float:left;
-        height:230px;
         margin-left:-12px;
         margin-top:-12px;
-        width:310px;
 }
 
 form#proficiency_choices

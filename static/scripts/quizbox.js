@@ -3,20 +3,18 @@
 
 */
 
-(function($)
+
+
+function quizInit(quizitemList)
 {
         var opts = {}, 
         imgPreloader = new Image, imgTypes = ['png', 'jpg', 'jpeg', 'gif'], 
 	loadingTimer, loadingFrame = 1;
 
-        $(function()
-        {
-                $.plopquiz.init();
-        });
 
         $.plopquiz =
         {
-                quizitemList: Array(),
+                quizitemList: quizitemList,
                 currentItem: 0,
                 settings:
                 {
@@ -41,6 +39,8 @@
                         }
                 }
         };
+        
+
 
         // this function setups event handlers and ensure everything is setup properly,
         // then call $.plopquiz.start, which actually deals with CSS and loading the quiz
@@ -147,6 +147,14 @@
                 $('#tab_apply').click($.plopquiz.start);
                 $('#description_apply').click($.plopquiz.start);
         }; // $.plopquiz.init
+        
+                
+        $(function()
+        {
+                $.plopquiz.init();
+        });
+        
+      
 
         $.plopquiz.start = function()
         {
@@ -156,8 +164,10 @@
 
         $.plopquiz.loadItem = function(itemNum)
         {
-                var quizItem = $.plopquiz.quizitemList[itemNum];
                 
+                
+                var quizItem = $.plopquiz.quizitemList[itemNum];
+
                 $.event.trigger('loadingQuizItem');
                 $.ajax({
                         url: quizItem.url,
@@ -267,10 +277,12 @@
          *  /
          * /
          */
-
+        
+        
+        
 	$.fn.quizbox = function(settings)
 	{
-                return;
+
 		opts.settings = $.extend({}, $.fn.quizbox.defaults, settings);
 
 		$(this).data('opts', opts);
@@ -301,6 +313,7 @@
 		});
 	};
 
+	
 	$.fn.quizbox.start = function(el, o)
 	{
 		if (opts.animating) return false;
@@ -994,4 +1007,4 @@ l
 		var r = Math.min(Math.min(maxWidth, imageWidth) / imageWidth, Math.min(maxHeight, imageHeight) / imageHeight);
 		return [Math.round(r * imageWidth), Math.round(r * imageHeight)];
 	};
-})(jQuery);
+}
