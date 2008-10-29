@@ -73,6 +73,7 @@
                                 $('#quiz_timer')
                                         .bind('quizItemLoaded', function(event, quizItem)
                                         {
+                                                console.log('quizItemLoaded: reseting timer');
                                                 var self = this;
                                                 if(quizItem && (!quizItem.timed || $.plopquiz.settings.noTimer))
                                                         return;
@@ -80,6 +81,8 @@
                                                 // reset and start timer.
                                                 var reset = function()
                                                 {
+                                                        $('.timer_inner', self).stop();
+
                                                         $('.timer_inner', self)
                                                                 .css('width', '100%')
                                                                 .animate(
@@ -108,12 +111,16 @@
                                                 }
                                                 reset();
                                         })
-                                        .bind('submitingAnswer, loadingQuizItem', function()
+                                        .bind('loadingQuizItem', function()
+                                        {
+                                                $(this).stop();
+                                        })
+                                        .bind('submitingAnswer', function()
                                         {
                                                 $(this).stop();
                                         });
 
-                                var textHolder = $('#blank').html();
+                                var textHolder = $('#blank').text();
 
                                 $('#quiz_answers .answer').hover(function()
                                 {
@@ -190,6 +197,7 @@
                                         var i1mouseOverCount = 0;
                                         var i1mouseOver = function()
                                         {
+                                                // unbind is to prevent incrementing on the same button
                                                 $(this).unbind('mouseover',i1mouseOver);
                                                 if(++i1mouseOverCount >= 2)
                                                 {
