@@ -17,7 +17,7 @@
         $.plopquiz =
         {
                 quizitemList: Array(),
-                currentItem: 2,
+                currentItem: 0,
                 settings:
                 {
                         autoStart: true, // debugging only
@@ -29,6 +29,15 @@
                         {
                                 i1complete: false,
                                 i2timedOut: false
+                        }
+                },
+                specialTimers:
+                {
+                        "instructions2": function()
+                        {
+                                $("#example_1, #example_2, #example_3").toggle();
+                                $.plopquiz.settings.instructions.i2timedOut = true;
+                                $.plopquiz.specialTimers["instructions2"] = function() {};
                         }
                 }
         };
@@ -64,47 +73,50 @@
                                 $('#quiz_timer')
                                         .bind('quizItemLoaded', function(event, quizItem)
                                         {
-                                                if(!quizItem.timed || $.plopquiz.settings.noTimer)
+                                                var self = this;
+                                                if(quizItem && (!quizItem.timed || $.plopquiz.settings.noTimer))
                                                         return;
+
                                                 // reset and start timer.
-                                                $('.timer_inner', this)
-                                                        .css('width', '100%')
-                                                        .animate(
-                                                        {
-                                                                width: 0
-                                                        },
-                                                        {
-                                                                complete: function()
+                                                var reset = function()
+                                                {
+                                                        $('.timer_inner', self)
+                                                                .css('width', '100%')
+                                                                .animate(
                                                                 {
-                                                                        $.plopquiz.submitAnswer(quizItem.timed, quizItem);
+                                                                        width: 0
                                                                 },
-                                                                duration: $.plopquiz.settings.timeoutDuration,
-                                                                easing: 'linear'
-                                                        })
-                                                        .show();
+                                                                {
+                                                                        complete: function()
+                                                                        {
+                                                                                if(quizItem.timeout == "reset")
+                                                                                {
+                                                                                        if(quizItem.timed)
+                                                                                                $.plopquiz.specialTimers[quizItem.timed]();
+
+                                                                                        $(self).stop();
+
+                                                                                        return reset();
+                                                                                }
+
+                                                                                $.plopquiz.submitAnswer(quizItem.timed, quizItem);
+                                                                        },
+                                                                        duration: $.plopquiz.settings.timeoutDuration,
+                                                                        easing: 'linear'
+                                                                })
+                                                                .show();
+                                                }
+                                                reset();
                                         })
-                                        .bind('submitingAnswer', function()
+                                        .bind('submitingAnswer, loadingQuizItem', function()
                                         {
                                                 $(this).stop();
                                         });
 
-                                var textHolder;
-
-                                var i1mouseOverCount = 0;
-                                var i1mouseOver = function()
-                                {
-                                        $(this).unbind('mouseover',i1mouseOver);
-                                        if(++i1mouseOverCount >= 2)
-                                        {
-                                                $('#example_1,#example_2').toggle();
-                                                $.plopquiz.settings.instructions.i1complete = true;
-                                        }
-                                };
+                                var textHolder = $('#blank').html();
 
                                 $('#quiz_answers .answer').hover(function()
                                 {
-                                        textHolder = $('#blank').text();
-
                                         $('#blank').text($(this).text());
                                 },
                                 function()
@@ -113,8 +125,12 @@
                                 })
                                 .click(function(e)
                                 {
-                                        $.plopquiz.submitAnswer($(this).text());
-                                }).mouseover(i1mouseOver);
+                                        $.plopquiz.submitAnswer($(this).text().replace(/\ +(\w+)\ +/, "$1"));
+                                })
+                                .each(function()
+                                {
+                                        $(this).attr('href', "#" + $(this).attr('id'));
+                                });
 
                                 if($.plopquiz.settings.autoStart)
                                         $.plopquiz.start();
@@ -142,27 +158,16 @@
                         {
                                 $('#quiz_content').html(xhr.responseText);
 
-                                var blanks = '';
-
                                 $('#quiz_answers .answer')
                                         .hide()
 
                                 for ( var i in quizItem.answers )
                                 {
-                                        if(quizItem.answers[i].length > blanks.length)
-                                        {
-                                                blanks = '';
-                                                for( var j = 0; j < quizItem.answers[i].length * 2; j++ )
-                                                        blanks += "&nbsp;";
-                                        }
-
                                         $('#quiz_answers .answer:eq(' + i + ')')
                                                 .show()
                                                 .find('.answertext')
                                                 .text(quizItem.answers[i]);
                                 }
-
-                                $('#blank').html(blanks);
 
                                 if(quizItem.timed)
                                         $('#quiz_timer').show();
@@ -173,6 +178,30 @@
                                         $('#skip').show();
                                 else
                                         $('#skip').hide();
+
+                                /*
+                                 * Setup special cases for instructions here
+                                 * does not work well right after ajax load
+                                 * and does not allow skipping instruction 1 o 2
+                                 */
+
+                                if(quizItem.item_type == "instructions")
+                                {
+                                        var i1mouseOverCount = 0;
+                                        var i1mouseOver = function()
+                                        {
+                                                $(this).unbind('mouseover',i1mouseOver);
+                                                if(++i1mouseOverCount >= 2)
+                                                {
+                                                        $('#example_1,#example_2').toggle();
+                                                        $.plopquiz.settings.instructions.i1complete = true;
+                                                        i1mouseOverCount = null;
+                                                }
+                                        };
+
+                                        $("#quiz_answers .answer").mouseover(i1mouseOver);
+                                }
+
 
                                 // short delay to ensure everything is loaded
                                 setTimeout(function()
@@ -202,10 +231,10 @@
                         break;
 
                         case "instructions2":
-                                $.plopquiz.settings.instructions.i2timedOut = true;
-                                $("#example_1,#example_2").hide();
-                                $("#example_3").show();
-                                $.event.trigger("quizItemLoaded", [ quizItem ]);
+                                if(!$.plopquiz.settings.instructions.i2timedOut)
+                                        return;
+                                else
+                                        $.plopquiz.loadItem($.plopquiz.currentItem++);
                         break;
 
                         default:
