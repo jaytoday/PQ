@@ -33,14 +33,14 @@ body, html {
 .sitelet .right { float: right; }
 .sitelet .top, .sitelet .bottom { position: relative; }
 
-.sitelet .top .liquid { background:url(../homepage/sitelet-top.png) repeat-x; }
-.sitelet .bottom .liquid { background:url(../homepage/sitelet-bottom.png) repeat-x; }
-.sitelet .middle .wrap1 { background: url(../homepage/sitelet-left.png) repeat-y top left; }
-.sitelet .middle .wrap2 { background: url(../homepage/sitelet-right.png) repeat-y top right; }
+.sitelet .top .liquid { background:url(../img/base/sitelet-top.png) repeat-x; }
+.sitelet .bottom .liquid { background:url(../img/base/sitelet-bottom.png) repeat-x; }
+.sitelet .middle .wrap1 { background: url(../img/base/sitelet-left.png) repeat-y top left; }
+.sitelet .middle .wrap2 { background: url(../img/base/sitelet-right.png) repeat-y top right; }
 .sitelet .corner {
 	width: 11px;
 	height: 11px;
-	background: url(../homepage/sitelet-corners.png) no-repeat;
+	background: url(../img/base/sitelet-corners.png) no-repeat;
 }
 .sitelet .top {	
 	height: 11px; 
@@ -76,7 +76,7 @@ body, html {
 
 
 body {
-	background: #6BBCF0 url(../homepage/bg.png) bottom left repeat-x;
+	background: #6BBCF0 url(../img/base/bg.png) bottom left repeat-x;
 	font-family: Georgia, "Times New Roman", Times, serif;
 }
 #viewport {
@@ -92,12 +92,12 @@ body {
 	height: 100%;
 }
 #clouds-far {
-	background:url(../homepage/clouds-far.png) repeat-x;
+	background:url(../img/base/clouds-far.png) repeat-x;
 	z-index: 10;
 	top: 12%;
 }
 #clouds-near {
-	background:url(../homepage/clouds-near.png) repeat-x;
+	background:url(../img/base/clouds-near.png) repeat-x;
 	z-index: 20;
 }
 #land {
@@ -106,7 +106,7 @@ body {
 	height: 92px;
 	left:0px;
 	bottom: -14px;
-	background:url(../homepage/land.png) repeat-x;
+	background:url(../img/base/land.png) repeat-x;
 	z-index: 15;
 }
 #cutoff {
@@ -128,7 +128,7 @@ body {
 #flyer a {
 	width: 60px;
 	height: 45px;
-	background: url(../homepage/plane.png) no-repeat;
+	background: url(../img/base/plane.png) no-repeat;
 	position: relative;
 	text-decoration:none; 
 	display: block;
@@ -166,7 +166,7 @@ visibility:hidden;
 	height: 250px;
 }
 #sitelet-home h2 {
-	background: transparent url(../homepage/pq_mantra.png) repeat scroll 0 0;
+	background: transparent url(../img/base/pq_mantra.png) repeat scroll 0 0;
 	font-family: Georgia;
 	height: 43px;
 	margin: 20px 0 0 16px;
@@ -177,7 +177,7 @@ visibility:hidden;
 	margin: 24px 0px 0px 18px;
 }
 #sitelet-home form input.text {
-	background:url(../homepage/input.gif) no-repeat;
+	background:url(../img/base/input.gif) no-repeat;
 	display: block;
 	width: 329px;
 	height: 41px;

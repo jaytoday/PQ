@@ -1,10 +1,4 @@
- 
-
-
-jQuery(function($) {
-
- 
-   jQuery.fn.extend({
+jQuery.fn.extend({
 	preserveDefaultText: function(defaultValue, replaceValue)
 	{
 		$(this).focus(function()
@@ -23,6 +17,4 @@ jQuery(function($) {
 		});
 		return this;
 	}
-});
-
 });

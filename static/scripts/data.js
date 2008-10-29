@@ -5,7 +5,3 @@ if (typeof snaptalent != 'undefined'){
     
     snaptalent.c('35399f3c1ab9acc09412d55b3a45cdcc647bcb9e','4922764');snaptalent.adsServed=true; }
     
-    function disableFlash(){
-    console.log('disable!');
-    alert('yo');
-}

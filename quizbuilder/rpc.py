@@ -16,9 +16,8 @@ from .model.quiz import QuizItem, RawQuizItem,  ContentPage
 from .model.proficiency import ProficiencyTopic, Proficiency
 import views
 import induction
-from methods import DataMethods, refresh_data, dump_data, load_data
+from methods import DataMethods, refresh_data, dump_data, load_data, restore_backup
 
-   
 
 class RPCMethods(webapp.RequestHandler):
   """ Defines AJAX methods.
@@ -50,9 +49,7 @@ remote callers access to private/protected "_*" methods.
   def load_data(self, *args):
   	if len(args) == 0: return "specify data type"
   	return load_data(args[0], "loud")
-    
-
-
+   
 
   def dump_data(self, *args):  # dump data for fixtures
   	if len(args) == 0: return "specify data type"
@@ -63,7 +60,8 @@ remote callers access to private/protected "_*" methods.
   	print ""
   	print "---do not copy this line or below---"
 
-  	
+  def restore_backup(self, *args):
+  	return restore_backup()  	
 
 
 ######## INDUCTION METHODS ##########  

@@ -36,7 +36,7 @@ padding:8px;
 /* QUIZ ITEM LAYOUT */
 
 .quizbuilder_wrapper{
-margin:-10px -120px;
+margin:10px -120px;
 position:relative;
 width:950px;
 }
@@ -46,7 +46,7 @@ width:950px;
 clear:left;
 float:left;
 height:430px;
-margin:-20px 0 0 90px;
+margin:-27px 0 0 90px;
 overflow-x:hidden;
 overflow-y:auto;
 position:relative;
@@ -156,7 +156,7 @@ clear:both;
 }
 
 div.answers_scroll{
-width:   700px;  /* 565px; /* */
+width:   693px;  /* 565px; /* */
 overflow:auto;
 height:60px;
  cursor:pointer;
@@ -180,7 +180,7 @@ cursor:pointer;
 input.skip_item{
 font-size:.8em;
 height:20px;
-margin:15px 0 0 30px;
+margin:10px 0 0 30px;
 width:120px;
 cursor:pointer;
 }
@@ -194,7 +194,7 @@ width:115px;
 select.item_topic{
 font-size:1.3em;
 height:30px;
-margin-top:25px;
+margin-top:15px;
 width:150px;
 }
 
@@ -212,7 +212,7 @@ font-size:0.8em;
 
 input.new_answer{
 font-size:1em;
-margin:10px 0 0 10px;
+margin:0px 0 0 10px;
 width:150px;
 }
 
@@ -284,7 +284,7 @@ display:none;
 div.answer_choice_previews{
 float:left;
 font-size:0.8em;
-margin:-360px -40px 0 720px;
+margin:-350px -40px 0 720px;
 overflow:hidden;
 width:210px;
 }
@@ -320,7 +320,7 @@ padding:10px;
 
 div.nav_wrap{
 float:left;
-margin:0 0 0 120px;
+margin:0 0 19px 120px;
 overflow:hidden;
 width:500px;
 }
@@ -360,9 +360,11 @@ li.index a.selected{
 -moz-border-radius-bottomright:10px;
 -moz-border-radius-topleft:10px;
 -moz-border-radius-topright:10px;
-background-color:#523871;
-border:5px solid #DDDDDD;
-color:#EAF2F8;
+background-color:#EDF2F8;
+border-color:#DDDDDD #DDDDDD #EDF2F8;
+border-style:solid;
+border-width:5px;
+color:#000000;
 display:inline;
 }
 

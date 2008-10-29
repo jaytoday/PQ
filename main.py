@@ -11,7 +11,7 @@ import quizbuilder.rpc
 import dev.views
 import homepage.views
 import quizbuilder
-
+import profile.views
 
 
 
@@ -28,7 +28,11 @@ def url_handler():
                                          quiztaker.views.PQDemo),                                         
                                         ('/preview/homepage/?',
                                          homepage.views.ViewHomepage),  
-                                         ('/intro/?',
+                                        ('/preview/proficiency/?',
+                                         homepage.views.ChooseProficiency), 
+                                        ('/preview/profile/?',
+                                         profile.views.ViewProfile),
+                                        ('/intro/?',
                                          quiztaker.views.PQIntro),
                                         ('/quiztaker/rpc/?',
                                          quiztaker.rpc.RPCHandler),                                                                                                                     
@@ -43,6 +47,8 @@ def url_handler():
                                         ('/view_quiz/close/?',
                                          quiztaker.views.ViewNone),                                         
                                         ('/quiz/?',
+                                         quiztaker.views.TakeQuiz), 
+                                        ('/quiz_item/?',
                                          quiztaker.views.QuizItemTemplate),                                         
                                         ('/?',
                                          quiztaker.views.PQHome),                                        

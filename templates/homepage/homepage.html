@@ -2,137 +2,63 @@
 {% block head %}
 
 <link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/homepage.css"/>
-<script type="text/javascript" src="/static/scripts/jquery/jquery.animatedcollapse.js"></script>
-
-<!-- scroll -->
-<script src="/static/scripts/scroll/jquery.scrollTo-min.js" type="text/javascript"></script>
-<script src="/static/scripts/scroll/jquery.localscroll-1.2.5.js" type="text/javascript" charset="utf-8"></script>
-<script src="/static/scripts/scroll/jquery.serialScroll-1.2.1.js" type="text/javascript" charset="utf-8"></script>
-<script src="/static/scripts/homepage/homepage-slider.js" type="text/javascript" charset="utf-8"></script>
-
 <script type="text/javascript" src="/static/scripts/homepage/homepage.js"></script>
+
+<!-- freebase -->
+<script type="text/javascript" src="/static/scripts/freebase-suggest/freebase.suggest.js"></script>
+<link type="text/css" rel="stylesheet" href="/static/scripts/freebase-suggest/dist/css/freebase-controls.css" />
+  <style type="text/css"> 
+  .fbs-li-types { display:none; }   /* if you want to hide the type info in the suggest popup */
+ </style>
 
 {% endblock %}
 
 
 {% block main %}
+										<a style="float:right; display:block;" onclick="window.open('http://www.co2stats.com/certpro.php?s=1217&ref=http://www.plopquiz.com','popup','width=550,height=515,scrollbars=yes,resizable=yes,toolbar=no,directories=no,location=no,menubar=no,status=no,left=0,top=0');return false;" href="http://www.co2stats.com/certpro.php?s=1217&ref=http://www.plopquiz.com/">
+<img border="0" src="/static/stylesheets/img/homepage/green_site.png"/>
+</a>
+					
 
 
-<div class="logo"><img src="/static/stylesheets/img/homepage/pink_cloud.png" /><h1 class="proficiency">Select a Proficiency</h1></div>
-
-<div class="proficiency_container"><div class="proficiencies_scroll"><div class="proficiencies">
-
-
-
-<div class="proficiency" id="energy_economics">
-<img src="/static/stylesheets/img/proficiencies/energy_finance.png" />
-</div>
-<div class="proficiency" id="biofuels">
-<img src="/static/stylesheets/img/proficiencies/biofuels.png" />
-</div>
-<div class="proficiency" id="solar_energy">
-<img src="/static/stylesheets/img/proficiencies/solar_energy.png" />
-</div>
-<div class="proficiency" id="energy_efficiency">
-<img src="/static/stylesheets/img/proficiencies/energy_efficiency.png" />
-</div>
-<div class="proficiency" id="oil">
-<img src="/static/stylesheets/img/proficiencies/oil.png" />
-</div>
-
-
-<div class="proficiency" id="electricity">
-<img src="/static/stylesheets/img/proficiencies/electricity.png" />
-</div>
-
-<div class="proficiency" id="energy_economics">
-<img src="/static/stylesheets/img/proficiencies/energy_finance.png" />
-</div>
-<div class="proficiency" id="biofuels">
-<img src="/static/stylesheets/img/proficiencies/biofuels.png" />
-</div>
-<div class="proficiency" id="solar_energy">
-<img src="/static/stylesheets/img/proficiencies/solar_energy.png" />
-</div>
-<div class="proficiency" id="energy_efficiency">
-<img src="/static/stylesheets/img/proficiencies/energy_efficiency.png" />
-</div>
+		<div class="left">		
+						<div id="logo">
+							<img src="/static/stylesheets/img/homepage/horizontal_logo.png" alt="" />
+						</div>
+						<div id="intro">
+							<div id="smart">smart</div>
+						
+							<div id="blinder"> quizzes  &nbsp; for</div>
+							<div id="motto">
+								<span class="blank"><span class="smart_span_holder" id="smart1">smart</span></span> quizzes for 
+								<span class="blank" id="two"><span class="smart_span_holder">smart</span></span> people
+							</div>
+			
+						</div>
+		</div>	
 
 
 
-</div></div></div>
+<div class="right">	
+<div class="right_inner">	
+
+<div class="upgrade">Upgrade your resume in <span class="mag">five minutes</span>. It's <span class="mag">free</span>. </div>
+
+<h1>Take an <span id="et">Energy Tech</span> <span id="q">Quiz</span></h1>
+
+<!--<div id="energy_pic"><img src="/static/stylesheets/img/homepage/energy_small.png"/></div> -->
+<div class="p_links"><a>biofuels</a> - <a>finance</a> - <a>solar power</a> - <a>law &amp; policy</a> -  <a>smart grid tech</a> - <a> and more!</a></div>
 
 
-<div id="descriptions">
 
-<div id="d_energy_economics" class="description frame_box">
-<div class="proficiency_pic selection_box" style="margin:0 45px;" ><img src="/static/stylesheets/img/proficiencies/energy_economics_pic.png"/></div>  
-  <div class="proficiency_title" >Energy Economics</div>
-<div class="description_text">
-Between the $100 billion dollars invested in Clean Tech and new energy-conscious tax codes, there is a pressing need for those familiar with the new economic landscape.  
+<div class="employers frame_box">
+<h3>are you an employer?</h3>
+<div id="claim">claim your profile and discover new talent.</div>
+<input type="text" id="employer_name" value="business name" />
 </div>
 
 </div>
-
-
-
-<div id="d_biofuels" class="description frame_box">
-<div class="proficiency_pic selection_box" style="margin:0 20px;"><img src="/static/stylesheets/img/proficiencies/biofuels_pic.png"/></div>   
- <div class="proficiency_title" style="margin:5px 40px;" >Biofuels</div>
-<div class="description_text">
-Exciting advances in the conversion of biomass into fuel have made this environmentally-friendly production method into a Clean Tech poster child. 
 </div>
-
-</div>
-
-
-
-
-<div id="d_solar_energy" class="description frame_box">
-<div class="proficiency_pic selection_box" style="margin:0 30px;"><img src="/static/stylesheets/img/proficiencies/solar_energy_pic.png"/></div> 
-   <div class="proficiency_title" style="margin:5px 22px;" >Solar Energy</div>
-
-<div class="description_text">
-The oldest and most pervasive form of renewable energy draws from the same ambient source that sustains life on Earth.
-</div>
-</div>
-
-
-
-
-<div id="d_energy_efficiency" class="description frame_box">
-<div class="proficiency_pic selection_box" style="margin:0 40px;"><img src="/static/stylesheets/img/proficiencies/energy_efficiency_pic.png"/></div> 
-   <div class="proficiency_title" >Energy Efficiency</div>
-<div class="description_text">
-The cheapest and most available source of new energy is the energy we waste. To save money and lower greenhouse gas levels, organizations are increasingly seeking ways to reduce their energy consumption.
-</div>
-</div>
-
-
-
-<div id="d_oil" class="description frame_box">
-<div class="proficiency_pic selection_box" style="margin:0 22px;"><img src="/static/stylesheets/img/proficiencies/oil_pic.png"/></div> 
-   <div class="proficiency_title" style="margin:5px 70px;" >Oil</div>
-<div class="description_text">
-Petroleum makes up 40% of energy consumption, and has a worldwide impact on politics, economics, and the environment.
-</div>
-</div>
-
-
-
-
-<div id="d_electricity" class="description frame_box">
-<div class="proficiency_pic selection_box" style="margin:0 30px;"><img src="/static/stylesheets/img/proficiencies/electricity_pic.png"/></div>  
-  <div class="proficiency_title" style="margin:5px 36px;">Electricity</div>
-<div class="description_text">
-Intelligent, distributed, and highly adaptive electrical systems aim to reduce power consumption and prevent peak hour failures. 
-</div>
-</div>
-
-
-
-</div>
-
 
 
 

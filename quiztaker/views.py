@@ -78,6 +78,16 @@ class QuizItemTemplate(webapp.RequestHandler):
 
 
 
+class TakeQuiz(webapp.RequestHandler):
+  #Load Plopquiz Homepage 
+
+  def get(self):
+
+    template_values = {}
+    path = tpl_path(QUIZTAKER_PATH + 'takequiz.html')
+    self.response.out.write(template.render(path, template_values))
+
+
 
 class QuizFrame(webapp.RequestHandler):
         def get(self):

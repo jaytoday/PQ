@@ -64,8 +64,8 @@ if (eval('document.select_proficiency.proficiency[' + j + '].checked') == true) 
     
     
     
-$('form#select_proficiency').hide();
-$('div#loading_items').show();
+$('form#select_proficiency').fadeOut('slow', function(){  $('div#loading_items').fadeIn('slow'); });
+
     
 });
 

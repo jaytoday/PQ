@@ -1,0 +1,94 @@
+{% extends "../base.html" %}
+{% block head %}
+<script type="text/javascript" src="/static/scripts/quizbox.min.js"></script> 
+
+
+<script>
+
+$(document).ready(function()
+{
+	$('div#login').hide();
+	
+	
+		$("#begin_quiz a").quizbox({
+		'zoomSpeedIn': 400,
+		'zoomSpeedOut': 400,
+		'overlayShow': true,
+		'overlayOpacity': 0.3,
+		'itemLoadCallback': getGroupItems
+	}); 
+	
+	$("#begin_quiz a").click();
+	
+	
+});
+
+
+
+var quizitemList = [
+        {url: '/intro/?page=intro', item_type:'intro', choose_quiz: 'Take Another Quiz'},
+        {url: '/intro/?page=instructions', item_type:'instructions', answer1: 'dog ate', answer2: 'web made'},
+        {url: '/intro/?page=instructions2', item_type:'instructions2', answer1: 'compilers', answer2: 'interpreters'},
+        {url: '/intro/?page=begin_quiz', item_type:'begin_quiz'},
+ 
+ 
+{% for item in quiz_items %}
+        {
+     
+                rpc_url: '/quiztaker/rpc?action=get_quiz&arg0="{{ item.key }}"',
+                url: '/quiz_item/?item_key={{ item.key }}',
+                key: "{{ item.key }}", 
+                answer1: "{{ item.answer1 }}",
+                answer2: "{{ item.answer2 }}",
+                answer3: "{{ item.answer3 }}",
+                answers: {{ item.answers }},
+                proficiency: '{{ item.proficiency }}',
+                item_type:'quiz_item'
+        },
+{% endfor %} 
+
+        {url: "/quiz_complete/", item_type:"score" }
+];
+
+function getGroupItems(opts) {
+	jQuery.each(quizitemList, function(i, val) {
+		opts.itemArray.push(val);
+	});
+}
+
+
+
+
+// Server object that will contain the callable methods
+var server = {};
+var item_count = 0;
+
+// Insert 'Add' as the name of a callable method
+InstallFunction(server, 'AddScore', 'quiztaker');
+InstallFunction(server, 'Init', 'quiztaker');
+
+
+function SubmitScore(ans, key) {
+	server.AddScore(ans, key, onAddSuccess);
+}
+
+function doInit() {
+        server.Init();
+}
+
+function onAddSuccess(response)
+{
+}
+
+
+</script>
+
+{% endblock %}
+
+
+{% block main %}
+
+<div id="begin_quiz"><a href="javascript:;">Begin Quiz</a></div>
+
+
+{% endblock %}

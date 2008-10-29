@@ -4,7 +4,7 @@ from .utils.utils import tpl_path, ROOT_PATH, raise_error
 import simplejson
 #import views
 import induction
-
+from .quiztaker.methods import DataMethods as quiztaker_methods
 
 
 
@@ -19,16 +19,21 @@ def dump_data(gql_query):
 
 def load_data(data_type, verbose):
     data = DataMethods()
-    return data.load_data(data_type)
+    return data.load_data(data_type, "")
 
 
 def refresh_data(data_type, verbose):
     data = DataMethods()
     query = {"proficiencies": Proficiency.all(), 'proficiency_topics': ProficiencyTopic.all(), 'content_pages': ContentPage.all(), 'raw_items' : RawQuizItem.all()}
     data.delete_data(query[data_type])
-    return data.load_data(data_type)
+    return data.load_data(data_type, "")
 
-
+def restore_backup():
+    data = DataMethods()
+    data_types =  ["proficiencies", 'proficiency_topics', 'content_pages', 'raw_items', 'raw_items', 'quiz_items']
+    for data_type in data_types:
+    	data.load_data(data_type, "/backup/")
+    
 
 class DataMethods():
 
@@ -41,10 +46,10 @@ class DataMethods():
      	entity.delete()
 
     
-  def load_data(self, data_type):
+  def load_data(self, data_type, path):
 		print data_type
 		print ""
-		json_file = open(ROOT_PATH + "/data/" + str(data_type) + ".json")
+		json_file = open(ROOT_PATH + "/data/" + path + str(data_type) + ".json")
 		json_str = json_file.read()
 		newdata = simplejson.loads(json_str) # Load JSON file as object
 		for entity in newdata:
@@ -71,7 +76,11 @@ class DataMethods():
 										  post_content = entity['post_content'],
 										  page = this_url.get(),
 										  moderated = False)
+										 
 
+			if data_type == 'quiz_items': 
+			    qtm = quiztaker_methods()
+			    return qtm.refresh_quiz_items("loud")
 			try: save_entity.put()	
 			except:
 				logging.error('Unable to save new entity')

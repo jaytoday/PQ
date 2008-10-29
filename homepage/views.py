@@ -21,6 +21,14 @@ from .utils.utils import tpl_path
 
 HOMEPAGE_PATH = 'homepage/'           
               
+class ChooseProficiency(webapp.RequestHandler):
+
+    def get(self):
+        template_values = {}
+        path = tpl_path(HOMEPAGE_PATH + 'proficiency.html')
+        self.response.out.write(template.render(path, template_values))
+
+
 class ViewHomepage(webapp.RequestHandler):
 
     def get(self):

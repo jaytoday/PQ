@@ -1,0 +1,91 @@
+
+div.logo{
+height:100px;
+margin:40px 0 -30px 150px;
+
+}
+
+
+div#descriptions{
+height: 170px;
+width:900px;
+margin:20px 0;
+}
+
+
+div.description{
+margin:10px;
+background: #FFFFFF; 
+display:none;
+height:120px;
+}
+
+div.description_text{
+float:left;
+font-size:1.5em;
+line-height:1.2em;
+margin:-125px 200px;
+width:650px;
+}
+
+div.proficiency_container{
+position: relative;
+margin:0 55px;
+}
+
+div.proficiencies_scroll{
+height: 140px;
+width:820px;
+overflow:auto;
+}
+
+div.proficiency_pic{
+height:70px;
+overflow:hidden;
+width:120px;
+}
+
+div.proficiency{
+/* margin:10px 0;
+width:170px; */
+margin:10px 35px 0 2px;
+width:130px;
+ cursor:pointer;
+}
+
+div.proficiency_title{
+font-size:2em;
+margin:5px;
+}
+
+div.proficiency:hover{
+border: 1px solid #F3E5FF;
+background-color: #F3E5FF;
+-moz-border-radius: 15px;
+-webkit-border-radius: 15px;
+cursor:pointer;
+}
+
+h1.proficiency{
+margin:-55px 80px;
+}
+
+
+
+
+
+.scrollButtons {
+  cursor: pointer;
+  z-index:99;
+  float:left;
+}
+
+.scrollButtons.proficiency_prev {
+ margin:61px -35px;
+}
+
+.scrollButtons.proficiency_next {
+  margin:-73px 830px;
+   
+}
+
