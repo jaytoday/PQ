@@ -41,10 +41,12 @@
 <br/>This quiz assesses proficiency in the following areas:</div>
 
 <form id="proficiency_choices">
-<input type="checkbox" name="proficiency1" value="Building Webapps" checked><span>Building Web Apps</span><br/>
-<input type="checkbox" name="proficiency2" value="Clean Energy" checked><span>Clean Energy</span><br/>
-<input type="checkbox" name="proficiency3" value="Collective Intelligence" checked><span>Collective Intelligence</span><br/>
-<input type="checkbox" name="proficiency4" value="Startup Financing" checked><span>Startup Financing</span><br/>
+
+{% for proficiency in proficiencies %}
+
+<input type="checkbox" name="proficiency{{ forloop.counter }}" value="{{ proficiency }}" checked><span>{{ proficiency }}</span><br/>
+
+{% endfor %}
 </form>
 
 <div class="begin_quiz" style="margin-top:10px"> 

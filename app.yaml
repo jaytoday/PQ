@@ -16,4 +16,8 @@ handlers:
 - url: /favicon.ico
   static_files: static/stylesheets/img/favicon.ico
   upload: static/stylesheets/img/favicon.ico
- 
+
+
+- url: /admin/.*
+  script: ../ext/admin
+  login: admin

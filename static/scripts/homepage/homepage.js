@@ -2,23 +2,30 @@
 
 $(document).ready(function()
 {
-	$('div.right_inner > h1').click(function(){ $('.main').fadeOut('slow', function(){ 
+	$('div.right_inner > h1').click(function(){ 
 		
 	$.getScript("/static/scripts/scroll/jquery.scrollTo-min.js");
 	$.getScript("/static/scripts/scroll/jquery.localscroll-1.2.5.js");
 	$.getScript("/static/scripts/scroll/jquery.serialScroll-1.2.1.js");
 	$.getScript("/static/scripts/jquery/jquery.animatedcollapse.js");
+	
+	$('.main').fadeOut('slow', function(){ 
 	choose_proficiency(); 
 		
 	});  });
     $('div.p_links').click(function(){ choose_proficiency(); });
-	$('input#employer_name').preserveDefaultText('type the name of your business');
+	$('input#employer_name').preserveDefaultText("what's the name of your business?");
 	
 		
 	 $('input#employer_name').freebaseSuggest( {ac_param:{type:'/business/company'}})
-				.bind("fb-select", function(e, data) {
-					set_employer(data);
-				})
+				.bind("fb-select", function(e, data) { 
+					
+						$.getScript("/static/scripts/jquery/jquery.ui.js");
+	$.getScript("/static/scripts/profile/tagcloud.js");
+					$('.main').fadeOut('slow', function(){ 
+	set_employer(data); 
+		
+	});  })
 
 
 	
@@ -76,8 +83,19 @@ function MottoAnimation()
 
 
 function set_employer(data){
+	
+	window.load
+	return;
+	
 	console.log(data);
+	
+$('.main_wrapper').load("/preview/employer/profile .main_wrapper", function(){
+	
+		$.getScript("/static/scripts/profile/profile.js");		
+			});
 
+	$('.main').fadeIn(2000);
+	
 	
 
 }

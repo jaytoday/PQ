@@ -22,7 +22,7 @@ height:120px;
 
 div.description_text{
 float:left;
-font-size:1.5em;
+font-size:1.3em;
 line-height:1.2em;
 margin:-125px 200px;
 width:650px;
@@ -89,3 +89,38 @@ margin:-55px 80px;
    
 }
 
+
+
+div.pfstat{
+-moz-border-radius-bottomleft:12px;
+-moz-border-radius-bottomright:12px;
+-moz-border-radius-topleft:12px;
+-moz-border-radius-topright:12px;
+background:#DDDDDD none repeat scroll 0 0;
+border:2px solid #DDDDDD;
+color:#000040;
+float:left;
+height:28px;
+line-height:1em;
+padding:3px;
+text-transform:none;
+width:170px;
+}
+
+div.pfstat#popularity{
+margin:-42px 470px;
+}
+
+div.pfstat#difficulty{
+margin:-42px 660px;
+}
+
+
+div.pfstatometer{
+float:right;
+margin:-24px 0 0;
+}
+
+div.pfstat h3{
+margin: 7px 0px 0px 20px;  
+}

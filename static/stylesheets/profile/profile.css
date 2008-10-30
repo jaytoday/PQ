@@ -73,6 +73,12 @@ height:0;
 margin:-60px 30px;
 }
 
+div#profile_photo{
+float:left;
+height:0;
+margin:-30px 20px;
+}
+
 div#basics{
 float:left;
 font-size:1.3em;
@@ -125,7 +131,7 @@ width:500px;
 }
 
 
-.highlight { background-color: yellow }
+.highlight { } /* for when tag cloud items are clicked */
 
 
 .dynacloud{
@@ -162,6 +168,16 @@ width:100px;
 
 }
 
+div.employer_summary{
+margin: 10px 0 25px 40px;
+}
+
+div.employer_summary a{
+color:#000040;
+font-size:0.6em;
+font-weight:bold;
+margin:0 0 0 120px;
+}
 
 div.quote_content{
 font-size:0.7em;
@@ -172,11 +188,32 @@ width:120px;
 div.info_content{
 font-size:0.6em;
 font-weight:bold;
-margin:-20px -25px;
+margin:-20px -23px;
 width:120px;
 }
 div.info_content div{
 font-weight:normal;
-margin: 5px;
+margin:5px 2px;
 line-height: 1.1em;
+font-size:0.9em;
+}
+
+div#embed_code{
+-moz-border-radius-bottomleft:12px;
+-moz-border-radius-bottomright:12px;
+-moz-border-radius-topleft:12px;
+-moz-border-radius-topright:12px;
+background:#DDDDDD none repeat scroll 0 0;
+border:2px solid #DDDDDD;
+color:#000040;
+font-size:0.8em;
+margin:-16px 0 0 240px;
+padding:2px 0 0 20px;
+text-transform:none;
+}
+
+div#embed_code input{
+font-size:0.8em;
+margin:0 15px;
+width:200px;
 }

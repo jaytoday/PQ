@@ -15,7 +15,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	border: 0;
 	outline: 0;
 	font-size: 100%;
-	vertical-align: baseline;
+/*	vertical-align: baseline; */
 	background: transparent;
 }
 body {
@@ -129,7 +129,7 @@ background: #F7F5F4;
 
 
 body {
-background: #96ff7d url(img/base/bg_green.png) bottom left repeat-x;
+background: #b4ffa2 url(img/base/bg_green.png) bottom left repeat-x;
  font-family: Georgia, "Times New Roman", Times, serif; 
 /* font-family:"HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;   --mstcorefonts not required */
 font-size:100%;
@@ -186,7 +186,7 @@ margin-top:-248px;
 position:absolute;
 top:50%;
 width:950px;
-z-index:100;
+z-index:90;
 }
 
 
@@ -282,4 +282,14 @@ margin:0 8px;
 
 div#login a{
 text-decoration: none;
+}
+
+div#login a.profile{
+margin:5px 20px;
+}
+
+div#login a img{
+float:left;
+margin:-18px 216px;
+border:1px solid #DDDDDD;
 }
