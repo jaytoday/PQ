@@ -142,7 +142,7 @@ remote callers access to private/protected "_*" methods.
 		new_quiz_item.content =  new_quiz_item.content.replace('f$"', '</div>')
 		new_quiz_item.content =  new_quiz_item.content.replace(' style="opacity: 1;"', '')
 		blank_span = re.compile('<span class="blank">.*</span>')  #delete whatever is in span.blank!
-		new_quiz_item.content =  blank_span.sub('<span style="opacity: 1;" class="blank"></span>', new_quiz_item.content)
+		new_quiz_item.content =  blank_span.sub('<span style="opacity: 1;" id="blank"></span>', new_quiz_item.content)
 		new_quiz_item.content =  new_quiz_item.content.replace('</div><div class="content">', '')
 		new_quiz_item.content =  new_quiz_item.content.replace('</div><div class="post_content">', '')
 		new_quiz_item.content =  new_quiz_item.content.replace('<div class="pre_content">', '')

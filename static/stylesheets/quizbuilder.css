@@ -116,12 +116,12 @@ width:700px;
 margin-bottom:5px;
 }
 
-div.pre_content span.blank, div.post_content span.blank{
+div.pre_content span#blank, div.post_content span#blank{
 font-weight:bold;
 padding:0 5px;
 }
 
-div.content span.blank{
+div.content span#blank{
 color: black;
 background:#FFFFD1 none repeat scroll 0 0;
 border:1px solid #E2C922;

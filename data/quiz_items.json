@@ -34,7 +34,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:27 2008"
                         }, 
-                        "content": "Classes begin with one or more constructors.    In Python these must be declared with the name __init(self)__  they may also take parameters. <div class='focus'>  These are the functions that build new objects of a<br/><span class='blank'></span>type.</div>"
+                        "content": "Classes begin with one or more constructors.    In Python these must be declared with the name __init(self)__  they may also take parameters. <div class='focus'>  These are the functions that build new objects of a<br/><span id='blank'></span>type.</div>"
                     }, 
                     {
                         "index": "rdfa", 
@@ -71,7 +71,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:27 2008"
                         }, 
-                        "content": "If one wishes to use microformat-style embedding but the type of data one wishes to embed does not map to an existing microformat, <div class='focus'> one can use   <span class='blank'></span>to embed </div> arbitrary vocabularies into HTML."
+                        "content": "If one wishes to use microformat-style embedding but the type of data one wishes to embed does not map to an existing microformat, <div class='focus'> one can use   <span id='blank'></span>to embed </div> arbitrary vocabularies into HTML."
                     }, 
                     {
                         "index": "quirks mode", 
@@ -108,7 +108,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:28 2008"
                         }, 
-                        "content": "<div class='focus'><span class='blank'></span>  refers to a technique </div> used by some web browsers for the sake of maintaining backwards compatibility with web pages designed for older browsers, instead of strictly complying with W3C and IETF standards in standards mode. "
+                        "content": "<div class='focus'><span id='blank'></span>  refers to a technique </div> used by some web browsers for the sake of maintaining backwards compatibility with web pages designed for older browsers, instead of strictly complying with W3C and IETF standards in standards mode. "
                     }, 
                     {
                         "index": "eval()", 
@@ -145,7 +145,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:28 2008"
                         }, 
-                        "content": "<div class='focus'>JavaScript includes a <span class='blank'></span> function</div> that can execute statements provided as strings at run-time."
+                        "content": "<div class='focus'>JavaScript includes a <span id='blank'></span> function</div> that can execute statements provided as strings at run-time."
                     }, 
                     {
                         "index": "DOM", 
@@ -182,7 +182,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:28 2008"
                         }, 
-                        "content": "You may use JavaScript to modify the <div class='focus'><span class='blank'></span> and alter the page</div> you're viewing to suit your preferences. "
+                        "content": "You may use JavaScript to modify the <div class='focus'><span id='blank'></span> and alter the page</div> you're viewing to suit your preferences. "
                     }, 
                     {
                         "index": "iterator", 
@@ -219,7 +219,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:28 2008"
                         }, 
-                        "content": "In Python 3000, xrange() is replaced with a new range() function. The new range() <div class='focus'>will return a <span class='blank'></span> instead of a list.</div> "
+                        "content": "In Python 3000, xrange() is replaced with a new range() function. The new range() <div class='focus'>will return a <span id='blank'></span> instead of a list.</div> "
                     }, 
                     {
                         "index": "array-slicing", 
@@ -256,7 +256,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:28 2008"
                         }, 
-                        "content": "<div class='focus'>  Use Python's <span class='blank'></span>syntax to limit your QuerySet</div>to a certain number of results. This is the equivalent of SQL's LIMIT and OFFSET clauses. "
+                        "content": "<div class='focus'>  Use Python's <span id='blank'></span>syntax to limit your QuerySet</div>to a certain number of results. This is the equivalent of SQL's LIMIT and OFFSET clauses. "
                     }, 
                     {
                         "index": "is_ authenticated()", 
@@ -293,7 +293,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:28 2008"
                         }, 
-                        "content": " If a user isn't currently logged in, request.user will be set to an instance of AnonymousUser.<div class='focus'>   You can tell them apart with <span class='blank'> </span></div> "
+                        "content": " If a user isn't currently logged in, request.user will be set to an instance of AnonymousUser.<div class='focus'>   You can tell them apart with <span id='blank'> </span></div> "
                     }, 
                     {
                         "index": "beautiful soup", 
@@ -330,7 +330,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:28 2008"
                         }, 
-                        "content": " <div class='focus'>  <span class='blank'> </span>is a library for parsing a web page and building a structured representation.</div> It allows you to access any element of the page by type, ID, or any of its properties, and get a string representation of its contents. "
+                        "content": " <div class='focus'>  <span id='blank'> </span>is a library for parsing a web page and building a structured representation.</div> It allows you to access any element of the page by type, ID, or any of its properties, and get a string representation of its contents. "
                     }, 
                     {
                         "index": "transport", 
@@ -367,7 +367,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:28 2008"
                         }, 
-                        "content": "<div class='focus'>  The request is made through a hidden IFRAME or XHR object, called the<br/> <span class='blank'></span>. </div>Since it's asynchronous, you don't know when the request is going to complete, so you create a callback..."
+                        "content": "<div class='focus'>  The request is made through a hidden IFRAME or XHR object, called the<br/> <span id='blank'></span>. </div>Since it's asynchronous, you don't know when the request is going to complete, so you create a callback..."
                     }, 
                     {
                         "index": "bayesians", 
@@ -404,7 +404,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:28 2008"
                         }, 
-                        "content": "Frequentists assign probabilities to random events according to their frequencies of occurrence or to subsets of populations as proportions of the whole, <div class='focus'>  while <span class='blank'></span> describe probabilities in terms of beliefs and degrees of uncertainty.</div>"
+                        "content": "Frequentists assign probabilities to random events according to their frequencies of occurrence or to subsets of populations as proportions of the whole, <div class='focus'>  while <span id='blank'></span> describe probabilities in terms of beliefs and degrees of uncertainty.</div>"
                     }, 
                     {
                         "index": "pearson correlation", 
@@ -441,7 +441,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:28 2008"
                         }, 
-                        "content": "In a social network, a particular user's neighborhood with similar taste or interest <div class='focus'>  can be found by calculating <span class='blank'> </span></div>by collecting the preference data of top-N nearest neighbors of the particular user"
+                        "content": "In a social network, a particular user's neighborhood with similar taste or interest <div class='focus'>  can be found by calculating <span id='blank'> </span></div>by collecting the preference data of top-N nearest neighbors of the particular user"
                     }, 
                     {
                         "index": "correlation", 
@@ -478,7 +478,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:28 2008"
                         }, 
-                        "content": "Cronbach's alpha will generally increase<div class='focus'>  when the <span class='blank'>  </span> between </div>the items increase."
+                        "content": "Cronbach's alpha will generally increase<div class='focus'>  when the <span id='blank'>  </span> between </div>the items increase."
                     }, 
                     {
                         "index": "K-means", 
@@ -515,7 +515,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:28 2008"
                         }, 
-                        "content": "<div class='focus'>  <span class='blank'> </span>clustering begins with k randomly placed centroids </div> and assigns every item to the nearest one."
+                        "content": "<div class='focus'>  <span id='blank'> </span>clustering begins with k randomly placed centroids </div> and assigns every item to the nearest one."
                     }, 
                     {
                         "index": "regression", 
@@ -552,7 +552,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:28 2008"
                         }, 
-                        "content": "<div class='focus'> because locally weighted  <span class='blank'> </span></div>is a non-parametric algorithm every time you make a prediction you need to fit theta to your entire training set again."
+                        "content": "<div class='focus'> because locally weighted  <span id='blank'> </span></div>is a non-parametric algorithm every time you make a prediction you need to fit theta to your entire training set again."
                     }, 
                     {
                         "index": "good-turing", 
@@ -589,7 +589,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:28 2008"
                         }, 
-                        "content": "<div class='focus'> The <span class='blank'> </span> discounted count of the bigram</div>combined with an estimate from a unigram count, are re-normalized to get a probability distribution. "
+                        "content": "<div class='focus'> The <span id='blank'> </span> discounted count of the bigram</div>combined with an estimate from a unigram count, are re-normalized to get a probability distribution. "
                     }, 
                     {
                         "index": "gradient", 
@@ -626,7 +626,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:28 2008"
                         }, 
-                        "content": "If you implement Bayesian logistic regression .<div class='focus'> and implement <span class='blank'> </span> descent,</div> 20 percent test error is unacceptably high."
+                        "content": "If you implement Bayesian logistic regression .<div class='focus'> and implement <span id='blank'> </span> descent,</div> 20 percent test error is unacceptably high."
                     }, 
                     {
                         "index": "analysis", 
@@ -663,7 +663,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:29 2008"
                         }, 
-                        "content": "<div class='focus'>In Gaussian's Discriminant  <span class='blank'> </span>,</div> you usually model all of the crosses to the same covariant matrix sigma."
+                        "content": "<div class='focus'>In Gaussian's Discriminant  <span id='blank'> </span>,</div> you usually model all of the crosses to the same covariant matrix sigma."
                     }, 
                     {
                         "index": "dijkstra's", 
@@ -700,7 +700,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:29 2008"
                         }, 
-                        "content": " For a given source vertex in the graph, <div class='focus'> <span class='blank'> </span> algorithm finds the path with lowest cost</div> (i.e. the shortest path) between that vertex and every other vertex."
+                        "content": " For a given source vertex in the graph, <div class='focus'> <span id='blank'> </span> algorithm finds the path with lowest cost</div> (i.e. the shortest path) between that vertex and every other vertex."
                     }, 
                     {
                         "index": "clustering", 
@@ -737,7 +737,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:29 2008"
                         }, 
-                        "content": "Graphs can be classified according to two independent structural features:  <div class='focus'>the  <span class='blank'> </span> coefficient</div> and average node-to-node distance."
+                        "content": "Graphs can be classified according to two independent structural features:  <div class='focus'>the  <span id='blank'> </span> coefficient</div> and average node-to-node distance."
                     }, 
                     {
                         "index": "ethanol fuel", 
@@ -774,7 +774,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:29 2008"
                         }, 
-                        "content": "Brazil has one of the largest renewable energy programs in the world,<div class='focus'> involving production of <br/> <span class='blank'></span> from sugar cane. </div>"
+                        "content": "Brazil has one of the largest renewable energy programs in the world,<div class='focus'> involving production of <br/> <span id='blank'></span> from sugar cane. </div>"
                     }, 
                     {
                         "index": "EPEAT", 
@@ -811,7 +811,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:29 2008"
                         }, 
-                        "content": "<div class='focus'>  <span class='blank'> </span> helps public and private sector purchasers </div> evaluate, compare, and choose computers, notebooks, and monitors based on environmental attributes."
+                        "content": "<div class='focus'>  <span id='blank'> </span> helps public and private sector purchasers </div> evaluate, compare, and choose computers, notebooks, and monitors based on environmental attributes."
                     }, 
                     {
                         "index": "photovoltaic", 
@@ -848,7 +848,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:29 2008"
                         }, 
-                        "content": "<div class='focus'>  <span class='blank'> </span></div> systems are based on solar electric cells, which convert solar radiation directly into electricity."
+                        "content": "<div class='focus'>  <span id='blank'> </span></div> systems are based on solar electric cells, which convert solar radiation directly into electricity."
                     }, 
                     {
                         "index": "fossil fuels", 
@@ -885,7 +885,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:29 2008"
                         }, 
-                        "content": "Traditionally electrical power <div class='focus'> has been generated from <span class='blank'> </span></div> in large, centralized plants. Large-scale ambient energy, such as sun, wind and tides, is widely available but trickier to harvest.  "
+                        "content": "Traditionally electrical power <div class='focus'> has been generated from <span id='blank'> </span></div> in large, centralized plants. Large-scale ambient energy, such as sun, wind and tides, is widely available but trickier to harvest.  "
                     }, 
                     {
                         "index": "heterotrophs", 
@@ -922,7 +922,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:29 2008"
                         }, 
-                        "content": "<i> What two things are required by every organism for growth? </i>A source of organic carbon and a source of electrons. Energy is also required. Synthesizers get their energy input from the sun or thermal energy.<br/><div class='focus'> <span class='blank'></span> get energy from organic carbon.</div>"
+                        "content": "<i> What two things are required by every organism for growth? </i>A source of organic carbon and a source of electrons. Energy is also required. Synthesizers get their energy input from the sun or thermal energy.<br/><div class='focus'> <span id='blank'></span> get energy from organic carbon.</div>"
                     }, 
                     {
                         "index": "kyoto protocol", 
@@ -959,7 +959,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:29 2008"
                         }, 
-                        "content": "I am not against global climate treaties, <div class='focus'>  like the <span class='blank'></span></div> but I think their chances of having the impact that their advocates predict are slim."
+                        "content": "I am not against global climate treaties, <div class='focus'>  like the <span id='blank'></span></div> but I think their chances of having the impact that their advocates predict are slim."
                     }, 
                     {
                         "index": "porter", 
@@ -996,7 +996,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:29 2008"
                         }, 
-                        "content": "Probably the most oft-cited theory about the relationship between enviromental regulation and innovation <div class='focus'>  is the '<span class='blank'> </span> hypothesis', first expounded </div> by the Harvard Business School professor Michael Porter in 1991. "
+                        "content": "Probably the most oft-cited theory about the relationship between enviromental regulation and innovation <div class='focus'>  is the '<span id='blank'> </span> hypothesis', first expounded </div> by the Harvard Business School professor Michael Porter in 1991. "
                     }, 
                     {
                         "index": "seer 13", 
@@ -1033,7 +1033,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:29 2008"
                         }, 
-                        "content": "In 2004, the U.S. Court of Appeals for the Second Circuit directed the U.S. Department of Energy<div class='focus'> to reinstate the<span class='blank'> </span> standard</div> for central air conditioners."
+                        "content": "In 2004, the U.S. Court of Appeals for the Second Circuit directed the U.S. Department of Energy<div class='focus'> to reinstate the<span id='blank'> </span> standard</div> for central air conditioners."
                     }, 
                     {
                         "index": "genetic", 
@@ -1070,7 +1070,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:29 2008"
                         }, 
-                        "content": "A September 14, 2007 study conducted by the National Science Foundation found that<div class='focus'> biodiversity and  <span class='blank'> </span> diversity </div>  are dependent upon each other."
+                        "content": "A September 14, 2007 study conducted by the National Science Foundation found that<div class='focus'> biodiversity and  <span id='blank'> </span> diversity </div>  are dependent upon each other."
                     }, 
                     {
                         "index": "gaia", 
@@ -1107,7 +1107,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:29 2008"
                         }, 
-                        "content": "The<div class='focus'><span class='blank'> </span> hypothesis proposes that </div> the biosphere and the physical components of the Earth are coupled to form a complex interacting system."
+                        "content": "The<div class='focus'><span id='blank'> </span> hypothesis proposes that </div> the biosphere and the physical components of the Earth are coupled to form a complex interacting system."
                     }, 
                     {
                         "index": "VoIP", 
@@ -1144,7 +1144,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:29 2008"
                         }, 
-                        "content": "A small but growing number of sites are starting to offer plans on a 'Pay per call' basis. <div class='focus'>  The user can click a button to place a <br/><span class='blank'></span></div>call, or to request a call from the advertiser. "
+                        "content": "A small but growing number of sites are starting to offer plans on a 'Pay per call' basis. <div class='focus'>  The user can click a button to place a <br/><span id='blank'></span></div>call, or to request a call from the advertiser. "
                     }, 
                     {
                         "index": "consulting", 
@@ -1181,7 +1181,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:29 2008"
                         }, 
-                        "content": "The upshot is, you can choose your pain: either the short, sharp pain of raising money, <br/><div class='focus'> or the chronic ache of <span class='blank'></span>.</div>"
+                        "content": "The upshot is, you can choose your pain: either the short, sharp pain of raising money, <br/><div class='focus'> or the chronic ache of <span id='blank'></span>.</div>"
                     }, 
                     {
                         "index": "one-click", 
@@ -1218,7 +1218,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:30 2008"
                         }, 
-                        "content": "<div class='focus'> The problem with Amazon's notorious<span class='blank'></span> patent</div>for example, is not that it's a software patent, but that it's obvious."
+                        "content": "<div class='focus'> The problem with Amazon's notorious<span id='blank'></span> patent</div>for example, is not that it's a software patent, but that it's obvious."
                     }, 
                     {
                         "index": "valuations", 
@@ -1255,7 +1255,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:30 2008"
                         }, 
-                        "content": "<div class='focus'> Since <span class='blank'></span> are made up</div>founders shouldn't care too much about them. That's not the part to focus on."
+                        "content": "<div class='focus'> Since <span id='blank'></span> are made up</div>founders shouldn't care too much about them. That's not the part to focus on."
                     }, 
                     {
                         "index": "antitrust", 
@@ -1292,7 +1292,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:30 2008"
                         }, 
-                        "content": "<div class='focus'> Investing is not covered by <span class='blank'></span> law.</div>At least, it better not be, because investors regularly do things that would be illegal otherwise."
+                        "content": "<div class='focus'> Investing is not covered by <span id='blank'></span> law.</div>At least, it better not be, because investors regularly do things that would be illegal otherwise."
                     }, 
                     {
                         "index": "Sub-S", 
@@ -1329,7 +1329,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:30 2008"
                         }, 
-                        "content": "<div class='focus'>A <span class='blank'></span> is typically substantially more favorable on an after tax basis</div>(including use of dividends to offset wage income to shareholders) and operates with much more settled law."
+                        "content": "<div class='focus'>A <span id='blank'></span> is typically substantially more favorable on an after tax basis</div>(including use of dividends to offset wage income to shareholders) and operates with much more settled law."
                     }, 
                     {
                         "index": "preferred", 
@@ -1366,7 +1366,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:30 2008"
                         }, 
-                        "content": "<div class='focus'> <span class='blank'> </span>shares in the U.S. normally carry a call provision, </div>enabling the issuing corporation to repurchase the share at its (usually limited) discretion."
+                        "content": "<div class='focus'> <span id='blank'> </span>shares in the U.S. normally carry a call provision, </div>enabling the issuing corporation to repurchase the share at its (usually limited) discretion."
                     }, 
                     {
                         "index": "takeover", 
@@ -1403,7 +1403,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:30 2008"
                         }, 
-                        "content": "'Poison pill' is sometimes used more broadly<div class='focus'>  to describe other types of<span class='blank'> </span> defenses that involve </div>the target taking some action that harms both target and bidder."
+                        "content": "'Poison pill' is sometimes used more broadly<div class='focus'>  to describe other types of<span id='blank'> </span> defenses that involve </div>the target taking some action that harms both target and bidder."
                     }, 
                     {
                         "index": "convertible", 
@@ -1440,7 +1440,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:30 2008"
                         }, 
-                        "content": "<div class='focus'>A <span class='blank'> </span> bond can be converted</div>into shares of stock in the issuing company, usually at some pre-announced ratio."
+                        "content": "<div class='focus'>A <span id='blank'> </span> bond can be converted</div>into shares of stock in the issuing company, usually at some pre-announced ratio."
                     }, 
                     {
                         "index": "capital gain", 
@@ -1477,7 +1477,7 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:08:30 2008"
                         }, 
-                        "content": "Ordinary income is usually characterized <div class='focus'> as income other than<span class='blank'> </span> </div>"
+                        "content": "Ordinary income is usually characterized <div class='focus'> as income other than<span id='blank'> </span> </div>"
                     }, 
                     
                     

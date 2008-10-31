@@ -125,11 +125,10 @@ EditQuizItem(i, item, answers); // Run function after the above code is evaluate
 item_sliderInit();   
 
 
-$('div#loading_items').hide();
 $('ul.item_navigation').show();
 $('div#quiz_items').show();
 
-
+$('div#loading_items').remove();
 
 } // end of  BuildQuizEditor()
 
@@ -382,7 +381,7 @@ function PreviewAnswer(i) {
 	
 	// On a hover over an answer, preview its text in the item content.
 
- 	var answer_span = $('div#quiz_item_content_' + i + ' > div.item_inner').find('.blank');
+ 	var answer_span = $('div#quiz_item_content_' + i + ' > div.item_inner').find('span');
  	var answer_text = answer_span.html();
  	
 	$('div#answers_' + i + ' > div').hover(function()
