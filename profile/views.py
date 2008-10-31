@@ -24,3 +24,13 @@ class ViewProfile(webapp.RequestHandler):
     path = tpl_path(PROFILE_PATH +'prototype.html')
     self.response.out.write(template.render(path, template_values))
     
+
+class ViewEmployerProfile(webapp.RequestHandler):
+  #Load admin page
+
+  def get(self):
+
+    template_values = {}
+    path = tpl_path(PROFILE_PATH +'employer_prototype.html')
+    self.response.out.write(template.render(path, template_values))
+    

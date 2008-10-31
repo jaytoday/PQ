@@ -65,8 +65,7 @@ text-decoration:none;
 	color: #111111;
 }
 .ui-tabs-selected {
-border-bottom-color:#F3F3F3;
-
+border-bottom:2px solid #F3F3F3;
 }
 .ui-tabs-selected a, .ui-tabs-selected a:hover {
 		background: #f3f3f3 url(images/f3f3f3_40x100_textures_01_flat_0.png) 0 0 repeat-x;

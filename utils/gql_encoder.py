@@ -54,7 +54,7 @@ class GqlEncoder(simplejson.JSONEncoder):
       properties = obj.properties().items()
       output = {}
       for field, value in properties:
-      	output['key'] = str(obj.key())
+      	#output['key'] = str(obj.key())
         output[field] = getattr(obj, field)
       return output
 
@@ -62,7 +62,7 @@ class GqlEncoder(simplejson.JSONEncoder):
     elif isinstance(obj, datetime.datetime):
       output = {}
       fields = []#['day',   'month', 'year']
-      methods = ['ctime']
+      methods = [] #'ctime'
       for field in fields:
         output[field] = getattr(obj, field)
       for method in methods:

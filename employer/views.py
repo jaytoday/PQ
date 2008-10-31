@@ -17,7 +17,6 @@ import simplejson
 from .utils.utils import tpl_path, ROOT_PATH, raise_error
 from .model.quiz import QuizItem, ItemScore
 from .model.user import QuizTaker
-from .model.employer import Employer 
 from .model.proficiency import Proficiency, ProficiencyTopic 
 from methods import refresh_data
 from load_quiz import LoadQuiz
@@ -85,11 +84,9 @@ class QuizItemTemplate(webapp.RequestHandler):
 
 class TakeQuiz(webapp.RequestHandler):
   #Load Plopquiz Homepage 
+
   def get(self):
     proficiencies = self.get_proficiencies()
-    if proficiencies == None:
-        all_proficiencies = Proficiency.all()
-        proficiencies = [proficiency.name for proficiency in all_proficiencies.fetch(4)] 
     logging.debug('loading quiz...')    
     load_quiz = LoadQuiz()
     template_values = {"quiz_items": load_quiz.get(proficiencies), "proficiencies": proficiencies }
@@ -98,22 +95,16 @@ class TakeQuiz(webapp.RequestHandler):
     self.response.out.write(template.render(path, template_values))
 
   def get_proficiencies(self):
-    all_proficiencies = Proficiency.all()
-    if len(self.request.path.split('/quiz/')[1]) > 0:
-		employer = Employer.gql('WHERE name = :1', self.request.path.split('/quiz/')[1].lower())
-		try: these_proficiencies = employer.get().proficiencies
-		except: return None
-		proficiencies = []
-		for p in these_proficiencies:
-		   this_p = Proficiency.get_by_key_name(p)
-		   proficiencies.append(this_p.name)
-		return proficiencies        
-		#except: return [proficiency.name for proficiency in all_proficiencies.fetch(4)]
-    if self.request.get('proficiencies'):
+    if len(self.request.path.split('/quiz/')) > 3: 
+        pass
+        # employer = Employer.gql('WHERE name = :1', self.request.path.split('/quiz/')[1])
+        # proficiencies = employer.get().proficiencies
+    elif self.request.get('proficiencies'):
         proficiencies = self.request.get('proficiencies')
-        return proficiencies   
-	return None
-         
+    else: 
+        all_proficiencies = Proficiency.all()
+        proficiencies = [proficiency.name for proficiency in all_proficiencies.fetch(4)]
+    return proficiencies        
 
 
 class QuizFrame(webapp.RequestHandler):

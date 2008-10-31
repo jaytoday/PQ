@@ -12,7 +12,8 @@ import dev.views
 import homepage.views
 import quizbuilder
 import profile.views
-
+from google.appengine.ext import admin
+import employer.rpc
 
 
     
@@ -32,6 +33,8 @@ def url_handler():
                                          homepage.views.ChooseProficiency), 
                                         ('/preview/profile/?',
                                          profile.views.ViewProfile),
+                                        ('/preview/employer/profile/?',
+                                         profile.views.ViewEmployerProfile),                                         
                                         ('/intro/?',
                                          quiztaker.views.PQIntro),
                                         ('/quiztaker/rpc/?',
@@ -42,11 +45,11 @@ def url_handler():
                                          quiztaker.views.QuizComplete),                                         
                                         ('/st_quiz/?',
                                          quiztaker.views.ViewSnaptalentQuiz), 
-                                        ('/view_quiz/?',
-                                         quiztaker.views.ViewQuiz), 
-                                        ('/view_quiz/close/?',
-                                         quiztaker.views.ViewNone),                                         
-                                        ('/quiz/?',
+                                        ('/st_quiz/close/?',
+                                         quiztaker.views.ViewNone),     
+                                         
+                                                                             
+                                        ('/quiz/.*?',
                                          quiztaker.views.TakeQuiz), 
                                         ('/quiz_item/?',
                                          quiztaker.views.QuizItemTemplate),                                         
@@ -72,10 +75,15 @@ def url_handler():
                                          quizbuilder.views.RawItemTemplate),                                         
                                          ('/dev/admin/?', 
                                          dev.views.Admin),
+                                         ('/admin/?', 
+                                         admin),                                         
                                         ('/quiz_frame/?',
                                          quiztaker.views.QuizFrame),
                                         ('/drilldown/?',
                                          quizbuilder.views.Drilldown),
+                                        ('/employer/rpc/?',
+                                         employer.rpc.RPCHandler),                                        
+                                         
                                         ],
                                        debug=True)
   wsgiref.handlers.CGIHandler().run(application)

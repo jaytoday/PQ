@@ -10,12 +10,12 @@ from utils.gql_encoder import GqlEncoder, encode
 def refresh_data(data_type, verbose):
   data = DataMethods()
   data.delete_data(data_type, verbose) 
-  data.refresh_data(data_type, verbose) 
+  data.lead_data(data_type, verbose) 
      
 
 def load_data(data_type, verbose):
   data = DataMethods()
-  data.refresh_data(data_type, verbose) 
+  data.lead_data(data_type, verbose) 
        
  
 def dump_data(gql_query):
@@ -52,7 +52,7 @@ class DataMethods():
 		return True
 			
 			
-  def refresh_data(self, data_type, *verbose):
+  def lead_data(self, data_type, *verbose):
 		# Load External JSON fixture
 		if data_type == "quiz_items": return self.refresh_quiz_items(verbose)
 		

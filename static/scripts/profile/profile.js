@@ -4,7 +4,7 @@
 			$('#profile ul').tabs();
 		
 
-		$("div.dynaclous").dynaCloud();
+		$("div.dynacloud").dynaCloud();
 
 // $.merge($.dynacloud.stopwords, [ "der", "die", "das" ]); -- add filters
 
