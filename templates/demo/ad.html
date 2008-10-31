@@ -10,13 +10,14 @@
 
 <script type="text/javascript" src="/static/scripts/jquery-1.2.6.js"></script>
 <script type="text/javascript" src="/static/scripts/json2min.js"></script>
-<script type="text/javascript" src="/static/scripts/quizbox.min.js"></script> 
+<script type="text/javascript" src="/static/scripts/quizbox.js"></script> 
 <script type="text/javascript" src="/static/scripts/publish.js"></script> 
 <script type="text/javascript" src="/static/scripts/jquery/jquery.pngFix.js"></script> 
 <script type="text/javascript" src="/static/scripts/utils/rpc.js"></script>
 <script type="text/javascript">
 
 $(document).ready(function() {
+return;
 	/*  Load quiz item iframes - static/scripts/quizbox.js redundant  */
 	$("#apply a, #apply_button a, #apply_button_d a, #description_apply").quizbox({
 		'zoomSpeedIn': 400,
@@ -30,12 +31,11 @@ $(document).ready(function() {
 /* =========== */
 /* = URL Array = */
 /* =========== */
-var quizitemList = [
-        {url: '/intro/?page=intro', item_type:'intro', choose_quiz: 'Take Another Quiz'},
-        {url: '/intro/?page=instructions', item_type:'instructions', answer1: 'dog ate', answer2: 'web made'},
-        {url: '/intro/?page=instructions2', item_type:'instructions2', answer1: 'compilers', answer2: 'interpreters'},
-        {url: '/intro/?page=begin_quiz', item_type:'begin_quiz'},
- 
+$.plopquiz.quizitemList = [
+        {url: '/intro/?page=intro', item_type:'intro', answers: ['Take Another Quiz'], noSkip: true},
+        {url: '/intro/?page=instructions', item_type:'instructions', answers: [ 'dog ate', 'web made' ], noSkip: true},
+        {url: '/intro/?page=instructions2', item_type:'instructions2', answers: [ 'compilers', 'interpreters' ], timed: "instructions2", timeout: 'reset'},
+        {url: '/intro/?page=begin_quiz', item_type:'begin_quiz', answers: [ 'Begin Quiz' ], noSkip: true},
  
 {% for item in quiz_items %}
         {
@@ -48,11 +48,13 @@ var quizitemList = [
                 answer3: "{{ item.answer3 }}",
                 answers: {{ item.answers }},
                 proficiency: '{{ item.proficiency }}',
-                item_type:'quiz_item'
+                item_type:'quiz_item',
+                timed: "timeout",
+                timeout: "skip"
         },
 {% endfor %} 
 
-        {url: "/quiz_complete/", item_type:"score" }
+        {url: "/quiz_complete/", item_type:"score", noSkip: true, answers: [ "Submit" ] }
 ];
 
 function getGroupItems(opts) {

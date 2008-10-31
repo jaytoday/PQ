@@ -17,7 +17,7 @@
         $.plopquiz =
         {
                 quizitemList: Array(),
-                currentItem: 0,
+                currentItem: 3,
                 settings:
                 {
                         autoStart: true, // debugging only
@@ -73,10 +73,10 @@
                                 $('#quiz_timer')
                                         .bind('quizItemLoaded', function(event, quizItem)
                                         {
-                                                console.log('quizItemLoaded: reseting timer');
                                                 var self = this;
                                                 if(quizItem && (!quizItem.timed || $.plopquiz.settings.noTimer))
                                                         return;
+                                                console.log('quizItemLoaded: reseting timer');
 
                                                 // reset and start timer.
                                                 var reset = function()
@@ -228,7 +228,7 @@
         {
                 // check the answer for special cases
                 // this will handle the non-skiping timeout on instructions2,
-                // the profiecencies, the score, and any other special boxes
+                // the proficiencies, the score, and any other special boxes
                 switch($.plopquiz.quizitemList[$.plopquiz.currentItem - 1].item_type)
                 {
                         case "instructions":
@@ -243,6 +243,23 @@
                                         return;
                                 else
                                         $.plopquiz.loadItem($.plopquiz.currentItem++);
+                        break;
+
+                        case "begin_quiz":
+                                var proficiencies = Array();
+                                $('#proficiency_choices input:checked').each(function() { proficiencies.push($(this).val()); });
+                                $.plopquiz.quizitemList = $.grep($.plopquiz.quizitemList, function(n, i)
+                                {
+                                        console.log(n);
+                                        if(n.item_type != "quiz_item")
+                                                return true;
+
+                                        for(var i in proficiencies)
+                                                if(n.proficiency == proficiencies[i])
+                                                        return true;
+                                        return false;
+                                });
+                                $.plopquiz.loadItem($.plopquiz.currentItem++);
                         break;
 
                         default:
