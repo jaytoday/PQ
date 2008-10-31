@@ -2,7 +2,17 @@
 
 $(document).ready(function()
 {
-	$('div.right_inner > h1').click(function(){ 
+	
+	$('div#take_quiz').hover(function(){ 
+		
+		$(this).css({"background-color":"#CCCCCC","border-color":"#CCCCCC"});
+		$(this).find('h1').css({"color":"#000080"});
+	},function(){
+	$(this).css({"background-color":"#DDDDDD","border-color":"#DDDDDD"});
+	$(this).find('h1').css({"color":"#000040"});
+	});
+	
+	$('div#take_quiz').click(function(){ 
 		
 	$.getScript("/static/scripts/scroll/jquery.scrollTo-min.js");
 	$.getScript("/static/scripts/scroll/jquery.localscroll-1.2.5.js");
@@ -20,9 +30,11 @@ $(document).ready(function()
 	 $('input#employer_name').freebaseSuggest( {ac_param:{type:'/business/company'}})
 				.bind("fb-select", function(e, data) { 
 					
+					window.location = "/preview/employer/profile/";
+					return;
 						$.getScript("/static/scripts/jquery/jquery.ui.js");
 	$.getScript("/static/scripts/profile/tagcloud.js");
-					$('.main').fadeOut('slow', function(){ 
+					$('.main').fadeOut(1000, function(){ 
 	set_employer(data); 
 		
 	});  })
@@ -84,8 +96,7 @@ function MottoAnimation()
 
 function set_employer(data){
 	
-	window.load
-	return;
+
 	
 	console.log(data);
 	

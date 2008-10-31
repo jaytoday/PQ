@@ -34,7 +34,10 @@ def url_handler():
                                         ('/preview/profile/?',
                                          profile.views.ViewProfile),
                                         ('/preview/employer/profile/?',
-                                         profile.views.ViewEmployerProfile),                                         
+                                         profile.views.ViewEmployerProfile),  
+                                        ('/preview/employer/profile/browse/?',
+                                         profile.views.BrowseProfiles),                                           
+                                                                                
                                         ('/intro/?',
                                          quiztaker.views.PQIntro),
                                         ('/quiztaker/rpc/?',

@@ -1,6 +1,7 @@
 {% extends "../base.html" %}
 {% block head %}
-<script type="text/javascript" src="/static/scripts/quiztaker/quizbox.min.js"></script> 
+<!--<script type="text/javascript" src="/static/scripts/quiztaker/quizbox.min.js"></script>-->
+<script type="text/javascript" src="/static/scripts/quiztaker/quizbox.js"></script> 
 <link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/quiz/quiz_page.css"/>
 
 <link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/quiz/quiz.css"/>
@@ -10,9 +11,8 @@
 
 $(document).ready(function()
 {
+return;
 	$('div#login').hide();
-	
-	
 		$("#begin_quiz a").quizbox({
 		'zoomSpeedIn': 400,
 		'zoomSpeedOut': 400,
@@ -28,12 +28,12 @@ $(document).ready(function()
 
 
 
-var quizitemList = [
-        {url: '/intro/?page=intro', item_type:'intro', choose_quiz: 'Take Another Quiz'},
-        {url: '/intro/?page=instructions', item_type:'instructions', answer1: 'dog ate', answer2: 'web made'},
-        {url: '/intro/?page=instructions2', item_type:'instructions2', answer1: 'compilers', answer2: 'interpreters'},
-        {url: "/intro/?page=begin_quiz&proficiencies={{ proficiencies }}", item_type:'begin_quiz'},
  
+$.plopquiz.quizitemList = [
+        {url: '/intro/?page=intro', item_type:'intro', answers: ['Take Another Quiz'], noSkip: true},
+        {url: '/intro/?page=instructions', item_type:'instructions', answers: [ 'dog ate', 'web made' ], noSkip: true},
+        {url: '/intro/?page=instructions2', item_type:'instructions2', answers: [ 'compilers', 'interpreters' ], timed: "instructions2", timeout: 'reset'},
+        {url: '/intro/?page=begin_quiz', item_type:'begin_quiz', answers: [ 'Begin Quiz' ], noSkip: true},
  
 {% for item in quiz_items %}
         {
@@ -46,7 +46,9 @@ var quizitemList = [
                 answer3: "{{ item.answer3 }}",
                 answers: {{ item.answers }},
                 proficiency: '{{ item.proficiency }}',
-                item_type:'quiz_item'
+                item_type:'quiz_item',
+                timed: "timeout",
+                timeout: "skip"
         },
 {% endfor %} 
 

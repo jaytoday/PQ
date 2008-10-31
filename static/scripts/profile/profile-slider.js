@@ -1,5 +1,5 @@
 // when the DOM is ready...
-function proficiency_sliderInit() {
+function profile_sliderInit() {
     // need i 
     var $panels = $('.proficiency_container .proficiencies > div');
     var $container = $('.proficiency_container .proficiencies');
@@ -44,7 +44,7 @@ function proficiency_sliderInit() {
         next: 'img.proficiency_next',
 
         // allow the scroll effect to run both directions
-        axis: 'x',
+        axis: 'y',
         
         step: 5,
 

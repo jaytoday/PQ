@@ -167,11 +167,27 @@ div.right{
 div.right_inner{
 font-size:0.9em;
 letter-spacing:0.02em;
-margin:140px 10px;
+margin:76px 0 0 -10px;
 }
 
 div.upgrade{
 font-size:1.7em;
+}
+
+div#take_quiz{
+-moz-border-radius-bottomleft:2px;
+-moz-border-radius-bottomright:92px;
+-moz-border-radius-topleft:92px;
+-moz-border-radius-topright:2px;
+background:#DDDDDD none repeat scroll 0 0;
+border:8px solid #DDDDDD;
+color:#000040;
+line-height:1.8em;
+margin:20px 0;
+padding:3px;
+text-transform:none;
+-webkit-border-radius: 12px;
+cursor: pointer;
 }
 
 div.upgrade span.mag{
@@ -183,9 +199,10 @@ padding:2px;
 
 div.right h1{
 color:#000040;
-font-size:2.2em;
+font-size:2.1em;
 letter-spacing:0.01em;
 line-height:1.6em;
+margin:0 0 0 20px;
 }
 
 div.right h1:hover{
@@ -233,3 +250,4 @@ div.p_links a:hover{
 color:#000080;
 cursor:pointer;
 }
+

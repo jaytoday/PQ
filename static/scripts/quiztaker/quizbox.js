@@ -17,7 +17,7 @@
         $.plopquiz =
         {
                 quizitemList: Array(),
-                currentItem: 3,
+                currentItem: 0,
                 settings:
                 {
                         autoStart: true, // debugging only
