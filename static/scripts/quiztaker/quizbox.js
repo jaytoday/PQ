@@ -17,7 +17,7 @@
         $.plopquiz =
         {
                 quizitemList: Array(),
-                currentItem: 0,
+                currentItem: 3,
                 settings:
                 {
                         autoStart: true, // debugging only
@@ -74,9 +74,9 @@
                                         .bind('quizItemLoaded', function(event, quizItem)
                                         {
                                                 var self = this;
-                                                if(quizItem && (!quizItem.timed || $.plopquiz.settings.noTimer))
+                                                console.log(quizItem);
+                                                if(!quizItem || !quizItem.timed || $.plopquiz.settings.noTimer)
                                                         return;
-                                                console.log('quizItemLoaded: reseting timer');
 
                                                 // reset and start timer.
                                                 var reset = function()
@@ -210,12 +210,25 @@
                                         $("#quiz_answers .answer").mouseover(i1mouseOver);
                                 }
 
+                                if(quizItem.item_type == "begin_quiz")
+                                {
+                                        var p = {};
+                                        for(var i in $.plopquiz.quizitemList)
+                                                if(!p[$.plopquiz.quizitemList[i].proficiency] && $.plopquiz.quizitemList[i].proficiency)
+                                                        p[$.plopquiz.quizitemList[i].proficiency] = 0;
+                                                else if($.plopquiz.quizitemList[i].proficiency)
+                                                        p[$.plopquiz.quizitemList[i].proficiency]++;
+
+                                        for(i in p)
+                                                $("#proficiency_choices").append('<input type="checkbox" value="' + i + '" checked /><span class="proficiency">' + i + '</span><br />');
+                                }
+
 
                                 // short delay to ensure everything is loaded
                                 setTimeout(function()
                                 {
                                         $.event.trigger('quizItemLoaded', [ quizItem ]);
-                                },300);
+                                },600);
                         },
                         error: function(xhr,s)
                         {
@@ -226,6 +239,7 @@
 
         $.plopquiz.submitAnswer = function(answer, quizItem)
         {
+                $.event.trigger("submitingAnswer");
                 // check the answer for special cases
                 // this will handle the non-skiping timeout on instructions2,
                 // the proficiencies, the score, and any other special boxes
@@ -250,7 +264,6 @@
                                 $('#proficiency_choices input:checked').each(function() { proficiencies.push($(this).val()); });
                                 $.plopquiz.quizitemList = $.grep($.plopquiz.quizitemList, function(n, i)
                                 {
-                                        console.log(n);
                                         if(n.item_type != "quiz_item")
                                                 return true;
 
@@ -479,7 +492,6 @@ l
                         if(val.substring(0,1) == "/")
                                 $('#quiz_content').load(val, function()
                                 {
-                                console.log('here');
                                         $.fn.quizbox.updateDetails();
 
                                         $("#quiz_outer").css(itemOpts).show();

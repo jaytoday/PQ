@@ -43,7 +43,7 @@ class PQIntro(webapp.RequestHandler):
 
     template_values = {}
     intro_template = QUIZTAKER_PATH + self.request.get('page') + ".html"
-    if  self.request.get('page') == "begin_quiz": template_values['proficiencies'] = eval(self.request.get('proficiencies'))
+#    if  self.request.get('page') == "begin_quiz": template_values['proficiencies'] = eval(self.request.get('proficiencies'))
 
     path = tpl_path(intro_template)
     self.response.out.write(template.render(path, template_values))

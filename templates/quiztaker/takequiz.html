@@ -5,6 +5,7 @@
 <link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/quiz/quiz_page.css"/>
 
 <link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/quiz/quiz.css"/>
+<link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/quiz/quizframe.css"/>
 <link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/countdown.css"/>
 
 <script>
@@ -52,7 +53,7 @@ $.plopquiz.quizitemList = [
         },
 {% endfor %} 
 
-        {url: "/quiz_complete/", item_type:"score" }
+        {url: "/quiz_complete/", item_type:"score", noSkip: true, answers: [ "Submit" ] }
 ];
 
 function getGroupItems(opts) {
