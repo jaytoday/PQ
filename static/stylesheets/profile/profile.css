@@ -198,7 +198,7 @@ line-height: 1.1em;
 font-size:0.9em;
 }
 
-div#embed_code{
+div.embed_code{
 -moz-border-radius-bottomleft:12px;
 -moz-border-radius-bottomright:12px;
 -moz-border-radius-topleft:12px;

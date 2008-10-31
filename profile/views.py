@@ -50,9 +50,9 @@ class LoadUserProfile(webapp.RequestHandler):
   #Load admin page
 
   def get(self):
-    user = self.request.get('user')
+    if not self.request.get('user'): return False
     template_values = {}
-    path = tpl_path(PROFILE_PATH + user + '.html')
+    path = tpl_path(PROFILE_PATH + self.request.get('user') + '.html')
     self.response.out.write(template.render(path, template_values))
     
 

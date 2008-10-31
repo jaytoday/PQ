@@ -11,6 +11,7 @@ $('.pb_container').find('.profiles').css('width', scroll_width);
 	    $('input:checkbox').checkbox();
 
 
+        $('div.embed_code').hide(); // get rid of embed codes
 
 			
 		});

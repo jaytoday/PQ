@@ -22,14 +22,40 @@ function profile_sliderInit() {
 
     // apply our left + right buttons
     $scroll
-        .before('<img class="scrollButtons pb_prev" src="/static/stylesheets/img/scroll_left.png" />')
-        .after('<img class="scrollButtons pb_next" src="/static/stylesheets/img/scroll_right.png" />');
+        .before('<img class="scrollButtons pb_prev" src="/static/stylesheets/img/utils/purple_prev.png" />')
+        .after('<img class="scrollButtons pb_next" src="/static/stylesheets/img/utils/purple_next.png" />');
 
 
     // go find the navigation link that has this target and select the nav
     function trigger(data) {
+    	
 
-    }
+
+var user = $($panels[data.data]).attr('id');
+
+
+
+if (!user){ return false; }
+
+  $('.profile_outer').fadeTo(500, 0.1, function(){
+  	
+  	$('.profile_outer').load("/preview/employer/load_profile?user=" + user, function(){
+	
+	$('.profile_outer').fadeTo(500, 1);
+	
+	$.getScript("/static/scripts/profile/profile.js");
+	
+			});
+			
+  	
+  	});
+
+
+
+}
+
+
+   
 
 
 
@@ -47,9 +73,15 @@ function profile_sliderInit() {
         axis: 'x',
         
 
-        onAfter: trigger, // our final callback
+        onBefore: trigger, // our final callback
 
          offset: 0,
+         
+         start: 0,
+         
+         lazy: true,
+         
+         force: true,
         
 
         // duration of the sliding effect

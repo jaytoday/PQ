@@ -2,6 +2,8 @@
 
 			//tabs
 			$('.profile ul').tabs();
+			
+			 $('.dynacloud').dynaCloud();
 
 		//$("div.dynacloud").dynaCloud();
 

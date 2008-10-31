@@ -24,19 +24,18 @@ margin:0 92px 0 0;
 
 img.pb_prev{
 float:left;
-margin:-340px 0 0 100px;
-
+margin:-365px 0 0 70px;
 }
 
 
 
 img.pb_next{
 float:left;
-margin:-60px 0 0 120px;
+margin:-100px 0 0 65px;
 }
 
 div.user div.ranked{
-margin: 10px 0px;
+margin:5px 0;
 font-size: .9em;
 }
 
@@ -46,11 +45,11 @@ margin:0 0 0 10px;
 }
 
 div.user div.score{
-margin: 10px 0px;
+margin:5px 0 15px;
 font-size: .9em;
 }
 
 div.user div.score span{
 font-size:2em;
-margin:0 0 0 10px;
+margin: 0 0 0 10px;
 }

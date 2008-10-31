@@ -61,16 +61,13 @@ Version for IE using TextRanges .
  ;
 
  jQuery.dynaCloud.stopwords = new RegExp("\\s((" + jQuery.dynaCloud.stopwords.join("|") + ")\\s)+", "gi");
- if (jQuery.dynaCloud.auto) {
-  jQuery('.dynacloud').dynaCloud();
- }
+
 });
 
 jQuery.dynaCloud = {
 
  max: 13,
  sort: false,
- auto: true,
  single: true,
  wordStats: true,
  scale: 2.5,
@@ -123,7 +120,7 @@ jQuery.fn.dynaCloud = function(outElement) {
    jQuery.wordStats.clear();
   }
   else {
-   var elems = jQuery(this).text().replace(/[^A-Z\xC4\xD6\xDCa-z\xE4\xF6\xFC\xDF0-9_]/g, ' ').replace(jQuery.dynaCloud.stopwords, ' ').split(' ');
+   var elems = jQuery(this).text().replace(/[^A-Z\xC4\xD6\xDCa-z\xE4\xF6\xFC\xDF0-9_]/g, ' ').replace(jQuery.dynaCloud.stopwords, ' ').split('  ');
    var word = /^[a-z\xE4\xF6\xFC]*[A-Z\xC4\xD6\xDC]([A-Z\xC4\xD6\xDC\xDF]+|[a-z\xE4\xF6\xFC\xDF]{3,})/;
 
    jQuery.each(elems, function(i, n) {

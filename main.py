@@ -37,7 +37,8 @@ def url_handler():
                                          profile.views.ViewEmployerProfile),  
                                         ('/preview/employer/profile/browse/?',
                                          profile.views.BrowseProfiles),                                           
-                                                                                
+                                        ('/preview/employer/load_profile/?',
+                                         profile.views.LoadUserProfile),                                           
                                         ('/intro/?',
                                          quiztaker.views.PQIntro),
                                         ('/quiztaker/rpc/?',
