@@ -1,8 +1,8 @@
 // when the DOM is ready...
 function profile_sliderInit() {
     // need i 
-    var $panels = $('.proficiency_container .proficiencies > div');
-    var $container = $('.proficiency_container .proficiencies');
+    var $panels = $('.pb_container .profiles > div');
+    var $container = $('.pb_container .profiles');
     // if false, we'll float all the panels left and fix the width 
     // of the container
     var horizontal = true;
@@ -18,12 +18,12 @@ function profile_sliderInit() {
 
     // collect the scroll object, at the same time apply the hidden overflow
     // to remove the default scrollbars that will appear
-    var $scroll = $('.proficiency_container .proficiencies_scroll').css('overflow', 'hidden');
+    var $scroll = $('.pb_container .pb_scroll').css('overflow', 'hidden');
 
     // apply our left + right buttons
     $scroll
-        .before('<img class="scrollButtons proficiency_prev" src="/static/stylesheets/img/scroll_left.png" />')
-        .after('<img class="scrollButtons proficiency_next" src="/static/stylesheets/img/scroll_right.png" />');
+        .before('<img class="scrollButtons pb_prev" src="/static/stylesheets/img/scroll_left.png" />')
+        .after('<img class="scrollButtons pb_next" src="/static/stylesheets/img/scroll_right.png" />');
 
 
     // go find the navigation link that has this target and select the nav
@@ -40,19 +40,17 @@ function profile_sliderInit() {
         items: $panels,
 
         // selectors are NOT relative to document, i.e. make sure they're unique
-        prev: 'img.proficiency_prev', 
-        next: 'img.proficiency_next',
+        prev: 'img.pb_prev', 
+        next: 'img.pb_next',
 
         // allow the scroll effect to run both directions
-        axis: 'y',
+        axis: 'x',
         
-        step: 5,
 
         onAfter: trigger, // our final callback
 
-        // offset: 0,
+         offset: 0,
         
-        exclude: 4,
 
         // duration of the sliding effect
         duration: 1000,
@@ -65,7 +63,7 @@ function profile_sliderInit() {
     // apply serialScroll to the slider - we chose this plugin because it 
     // supports// the indexed next and previous scroll along with hooking 
     // in to our navigation.
-    $('.proficiency_container').serialScroll(scrollOptions);
+    $('.pb_container').serialScroll(scrollOptions);
 
     // now apply localScroll to hook any other arbitrary links to trigger 
     // the effect

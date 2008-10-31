@@ -6,13 +6,22 @@
 		<link rel="stylesheet" href="/static/stylesheets/ui/app_screen.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="/static/stylesheets/profile/tabs.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="/static/stylesheets/profile/profile.css" type="text/css" media="screen">
+
+		<script type="text/javascript" src="/static/scripts/checkbox/jquery.checkbox.js"></script>
+		<link rel="stylesheet" href="/static/scripts/checkbox/jquery.checkbox.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="/static/stylesheets/profile/browse_profiles.css" type="text/css" media="screen">
+		
 		
 		<script src="/static/scripts/profile/profile.js"></script>
 		<script src="/static/scripts/profile/tagcloud.js"></script>
 		
-		<script type="text/javascript">	
+		<script src="/static/scripts/scroll/jquery.scrollTo-min.js" type="text/javascript"></script>
+<script src="/static/scripts/scroll/jquery.localscroll-1.2.5.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/scripts/scroll/jquery.serialScroll-1.2.1.js" type="text/javascript" charset="utf-8"></script>
 
-	</script>
+		<script src="/static/scripts/profile/profile-slider.js"></script>
+		<script src="/static/scripts/profile/browse_profiles.js"></script>
+
 	
 	
 
@@ -32,12 +41,8 @@
 	
 	
 	
-		<div id="profile">
-		
+		<div class="profile">
 	
-		
-		
-		
 		<div id="photo"><img src='/static/stylesheets/img/profile/2401963.jpg'/></div>
 		<div id="basics">
 		<div id="name">James Levy </div>
@@ -74,8 +79,6 @@
             
             <div id="portfolio" class="profile-panel" >
         
-
-    
                 
                 <div class="panel_content" id="tp">
                 
@@ -103,7 +106,10 @@
                  share your top scores 
                  <input type="text" value='<script type="text/javascript"><a href="http://www.plopquiz.com/"</script>' onClick="$(this).select();" name="score_embed"/>
                  </div>
-            </div>
+                 
+               
+            </div><!-- portfolio -->
+
 
     <ul id="personal_nav">
 		    <li class="ui-tabs-nav-item"><a href="#quote">Quote</a></li>
@@ -132,11 +138,30 @@
 		 
 		</div>
 		
-        </div> <!-- portfolio -->
+        </div> <!-- personal_nav -->
 
+
+</div>  <!-- profile -->
 	
 	
+	<div class="pb_container"><div class="pb_scroll"><div class="profiles">
 	
+	<div class="user"><img src='/static/stylesheets/img/profile/2401963.jpg'/><div class="ranked">Rank <span>#1</span></div><div class="score">Score <span>92.5</span></div><div class="checkbox"><input name="checkbox" type="checkbox" checked> </div></div>
+	
+	<div class="user"><img src='/static/stylesheets/img/profile/2401963.jpg'/> </div>
+	
+	<div class="user"><img src='/static/stylesheets/img/profile/2401963.jpg'/> </div>
+	
+	<div class="user"><img src='/static/stylesheets/img/profile/2401963.jpg'/> </div>
+	
+	<div class="user"><img src='/static/stylesheets/img/profile/2401963.jpg'/> </div>
+	
+	<div class="user"><img src='/static/stylesheets/img/profile/2401963.jpg'/> </div>
+	
+	<div class="user"><img src='/static/stylesheets/img/profile/2401963.jpg'/> </div>
+	
+	
+	</div></div></div>
 
 
 {% endblock %}

@@ -1,0 +1,56 @@
+
+
+div.pb_container{
+border-bottom:1px solid #CCCCCC;
+border-top:1px solid #CCCCCC;
+height:234px;
+margin:-410px 0 0 710px;
+position:relative;
+width:300px;
+}
+
+
+div.pb_scroll{
+height:300px;
+overflow:auto;
+margin:0 0 0 60px;
+padding:20px;
+}
+
+
+div.user{
+margin:0 92px 0 0;
+}
+
+img.pb_prev{
+float:left;
+margin:-340px 0 0 100px;
+
+}
+
+
+
+img.pb_next{
+float:left;
+margin:-60px 0 0 120px;
+}
+
+div.user div.ranked{
+margin: 10px 0px;
+font-size: .9em;
+}
+
+div.user div.ranked span{
+font-size:2em;
+margin:0 0 0 10px;
+}
+
+div.user div.score{
+margin: 10px 0px;
+font-size: .9em;
+}
+
+div.user div.score span{
+font-size:2em;
+margin:0 0 0 10px;
+}

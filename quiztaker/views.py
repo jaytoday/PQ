@@ -90,6 +90,7 @@ class TakeQuiz(webapp.RequestHandler):
     if proficiencies == None:
         all_proficiencies = Proficiency.all()
         proficiencies = [proficiency.name for proficiency in all_proficiencies.fetch(4)] 
+    logging.debug(proficiencies)
     logging.debug('loading quiz...')    
     load_quiz = LoadQuiz()
     template_values = {"quiz_items": load_quiz.get(proficiencies), "proficiencies": proficiencies }

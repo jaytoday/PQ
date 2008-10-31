@@ -44,3 +44,16 @@ class BrowseProfiles(webapp.RequestHandler):
     path = tpl_path(PROFILE_PATH +'browse_profiles.html')
     self.response.out.write(template.render(path, template_values))
     
+
+
+class LoadUserProfile(webapp.RequestHandler):
+  #Load admin page
+
+  def get(self):
+    user = self.request.get('user')
+    template_values = {}
+    path = tpl_path(PROFILE_PATH + user + '.html')
+    self.response.out.write(template.render(path, template_values))
+    
+
+

@@ -31,7 +31,7 @@ return;
 
  
 $.plopquiz.quizitemList = [
-        {url: '/intro/?page=intro', item_type:'intro', answers: ['Take Another Quiz'], noSkip: true},
+        {url: '/intro/?page=intro', item_type:'intro', answers: ['Take This Quiz'], noSkip: true},
         {url: '/intro/?page=instructions', item_type:'instructions', answers: [ 'dog ate', 'web made' ], noSkip: true},
         {url: '/intro/?page=instructions2', item_type:'instructions2', answers: [ 'compilers', 'interpreters' ], timed: "instructions2", timeout: 'reset'},
         {url: '/intro/?page=begin_quiz', item_type:'begin_quiz', answers: [ 'Begin Quiz' ], noSkip: true},
@@ -53,7 +53,7 @@ $.plopquiz.quizitemList = [
         },
 {% endfor %} 
 
-        {url: "/quiz_complete/", item_type:"score", noSkip: true, answers: [ "Submit" ] }
+        {url: "/quiz_complete/", item_type:"quiz_complete", noSkip: true, answers: [ "Submit" ] }
 ];
 
 function getGroupItems(opts) {

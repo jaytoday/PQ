@@ -124,11 +124,13 @@
 
                                 $('#quiz_answers .answer').hover(function()
                                 {
-                                        $('#blank').text($(this).text());
+                                	if ($(this).attr('id') == 'skip'){ return; }
+                                        $('#blank').text($(this).text()).css({'padding': '0px 2px'});
+                                        
                                 },
                                 function()
                                 {
-                                        $('#blank').text(textHolder);
+                                        $('#blank').text(textHolder).css({'padding': '0px 34px'});
                                 })
                                 .click(function(e)
                                 {
@@ -170,10 +172,23 @@
 
                                 for ( var i in quizItem.answers )
                                 {
-                                        $('#quiz_answers .answer:eq(' + i + ')')
+                                      /* some settings... */
+                                      
+                                      if (quizItem.item_type == 'intro' || quizItem.item_type == 'begin_quiz' || quizItem.item_type == 'quiz_complete'){  
+                                      var this_answer = $('#quiz_answers #confirm');
+                                      }else{ 
+                                      var this_answer = $('#quiz_answers .answer:eq(' + i + ')'); 
+                                      }
+
+                                        
+                                        this_answer
                                                 .show()
                                                 .find('.answertext')
                                                 .text(quizItem.answers[i]);
+                                                
+											
+
+                                                
                                 }
 
                                 if(quizItem.timed)
@@ -192,8 +207,14 @@
                                  * and does not allow skipping instruction 1 o 2
                                  */
 
+                               if(quizItem.item_type == "intro")
+                                { $('#quiz_content').css({'height':'360px'}); }
+
+                                	
                                 if(quizItem.item_type == "instructions")
                                 {
+                                	{ $('#quiz_content').css({'height':'340px'}); $('#quiz_answers').css({'margin-left':'35px'}); }
+                                	
                                         var i1mouseOverCount = 0;
                                         var i1mouseOver = function()
                                         {
@@ -212,6 +233,8 @@
 
                                 if(quizItem.item_type == "begin_quiz")
                                 {
+                                	$('#quiz_content').css({'height':'355px'});$('#quiz_answers').css({'margin-left':'0px'});
+                                	
                                         var p = {};
                                         for(var i in $.plopquiz.quizitemList)
                                                 if(!p[$.plopquiz.quizitemList[i].proficiency] && $.plopquiz.quizitemList[i].proficiency)
@@ -219,9 +242,15 @@
                                                 else if($.plopquiz.quizitemList[i].proficiency)
                                                         p[$.plopquiz.quizitemList[i].proficiency]++;
 
+                                        console.log(p);
                                         for(i in p)
                                                 $("#proficiency_choices").append('<input type="checkbox" value="' + i + '" checked /><span class="proficiency">' + i + '</span><br />');
                                 }
+                                
+                                
+                                if(quizItem.item_type == "quiz_item"){ $('#quiz_content').css({'height':'335px'}); }
+                                
+                                if(quizItem.item_type == "quiz_complete"){ $('#quiz_inner').css({'width':'365px'}); }
 
 
                                 // short delay to ensure everything is loaded
@@ -402,7 +431,7 @@ l
 
 		/* preview answer in iframe */
 
-		var blankspan = $('.blank', window.frames[0].document);
+		var blankspan = $('#blank', window.frames[0].document);
 		blankspan.css({'padding': '0px 34px'});
 		$('.answer').hover(function()
 		/* if id is skip, don't do this */
@@ -449,10 +478,10 @@ l
 			 },
 			 "intro": 
 			 {
-			//	 'height': 410,
+				 'height': 410,
 				 'left': 143,
-				 'top': 0
-			//	 'width': 392
+				 'top': 0,
+				 'width': 392
 			 },
 			 "instructions": 
 			 {
@@ -544,7 +573,7 @@ l
                                 });
                          },3000);
                 };
-
+console.log(quizItem.item_type);
 
                 /* Fill in titles for answer keys - redundant! make this more robust before something blows up*/
 		if (opts.itemArray[opts.itemNum].item_type == "quiz_item")
@@ -575,11 +604,14 @@ l
 				}
 			});
 		}
+		
+		
 		else if (opts.itemArray[opts.itemNum].item_type == "intro")
 		{
 			/* hide answers and show hidden intro choices */
 			$('#quiz_title').show();
 			$('#quiz_intro').fadeIn('slow');  
+		
 
 			$('#choose_quiz').html(opts.itemArray[opts.itemNum].choose_quiz);
 		}
@@ -788,7 +820,7 @@ l
 
 	$.fn.quizbox.init = function()
 	{
-                return;
+     
 		/* Create Answer Buttons */
 		if ($('#quiz_wrap').length < 1)
                 {

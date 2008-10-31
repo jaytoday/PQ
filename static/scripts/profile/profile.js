@@ -1,8 +1,7 @@
 		$(function(){
 
 			//tabs
-			$('#profile ul').tabs();
-		console.log($('#profile ul'));
+			$('.profile ul').tabs();
 
 		//$("div.dynacloud").dynaCloud();
 
