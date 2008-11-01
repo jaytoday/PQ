@@ -174,6 +174,16 @@
                                 {
                                       /* some settings... */
                                       
+                                      
+                                $('#quiz_content').attr('class', quizItem.item_type + '_content');
+                                
+                                $('#quiz_answers').attr('class', quizItem.item_type + '_answers');
+                                
+                                $('#quiz_inner').attr('class', quizItem.item_type + '_quiz_inner');
+                                
+                                $('.quiz_selection').attr('id', quizItem.item_type + '_quiz_selection');
+                                
+                                
                                       if (quizItem.item_type == 'intro' || quizItem.item_type == 'begin_quiz' || quizItem.item_type == 'quiz_complete'){  
                                       var this_answer = $('#quiz_answers #confirm');
                                       }else{ 
@@ -207,13 +217,11 @@
                                  * and does not allow skipping instruction 1 o 2
                                  */
 
-                               if(quizItem.item_type == "intro")
-                                { $('#quiz_content').css({'height':'360px'}); }
+
 
                                 	
                                 if(quizItem.item_type == "instructions")
                                 {
-                                	{ $('#quiz_content').css({'height':'340px'}); $('#quiz_answers').css({'margin-left':'35px'}); }
                                 	
                                         var i1mouseOverCount = 0;
                                         var i1mouseOver = function()
@@ -230,10 +238,15 @@
 
                                         $("#quiz_answers .answer").mouseover(i1mouseOver);
                                 }
+                                
+                                   if(quizItem.item_type == "instructions2")
+                                {
+                                        
+                                }
+                                
 
                                 if(quizItem.item_type == "begin_quiz")
                                 {
-                                	$('#quiz_content').css({'height':'355px'});$('#quiz_answers').css({'margin-left':'0px'});
                                 	
                                         var p = {};
                                         for(var i in $.plopquiz.quizitemList)
@@ -248,9 +261,6 @@
                                 }
                                 
                                 
-                                if(quizItem.item_type == "quiz_item"){ $('#quiz_content').css({'height':'335px'}); }
-                                
-                                if(quizItem.item_type == "quiz_complete"){ $('#quiz_inner').css({'width':'365px'}); }
 
 
                                 // short delay to ensure everything is loaded
@@ -282,8 +292,15 @@
                         break;
 
                         case "instructions2":
-                                if(!$.plopquiz.settings.instructions.i2timedOut)
-                                        return;
+
+                                if(!$.plopquiz.settings.instructions.i2timedOut){
+                                $('.timer_bar').stop();
+                                $('.timer_bar').css('width', '100%'); 
+                                $('#example_1,#example_3').hide('slow');
+                                $('#example_2').show('slow');
+                                $('#quiz_content').find('#answer1,#answer2').unbind('click');
+                                $.plopquiz.settings.instructions.i2timedOut = "true";
+                                        return; }
                                 else
                                         $.plopquiz.loadItem($.plopquiz.currentItem++);
                         break;

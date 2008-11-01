@@ -193,6 +193,9 @@ div.quiz_frame_text
         line-height:1.5em;
 }
 
+#instructions_frame{
+height:220px;
+}
 
 /* =========== */
 /* = Intro = */
@@ -230,7 +233,7 @@ p.quiz_distributor
 {
         font-size:.8em;
         margin-bottom:0;
-        margin-left:11px;
+        margin:-12px 0px 12px 11px;
         width:90%;
 }
 
@@ -251,9 +254,11 @@ li.select_quiz
 div.quiz_selection
 {
         float:left;
+        /*
         height:110px;
-        margin:2px 0 20px -20px;
+        margin:2px 0 20px -25px;
         width:305px;
+        */
         -moz-border-bottom-colors:  #777 #888 #999 #aaa #bbb #ccc;
         -moz-border-top-colors:     #777 #888 #999 #aaa #bbb #ccc;
         -moz-border-left-colors:    #777 #888 #999 #aaa #bbb #ccc;
@@ -265,6 +270,33 @@ div.quiz_selection
         -webkit-border-radius: 5px;
 }
 
+div#intro_quiz_selection {
+margin:2px 0 20px -30px;
+height:110px;
+}
+
+div#instructions_quiz_selection {
+margin:2px 0 20px -30px;
+height:110px;
+}
+
+div#instructions2_quiz_selection {
+margin:2px 0 20px -25px;
+height:110px;
+}
+
+div#begin_quiz_quiz_selection{
+overflow:hidden;
+height:210px;
+margin:-20px 0 0 -30px;
+}
+
+div#quiz_complete_quiz_selection{
+height:235px;
+margin:2px 0 20px -20px;
+padding:5px;
+width:325px;
+}
 
 
 div.quiz_image

@@ -41,12 +41,51 @@ z-index:100;
 }
 
 div#quiz_content {
-	width: 100%;
-        height:100%;
-        padding: 0; 
-        margin:0px;
-        z-index: 96;
         background:#EDF2F8 none repeat scroll 0 0;
+}
+
+
+/* Quiz Content Styles */
+
+.intro_content{
+height: 360px;
+}
+
+.instructions_content{
+height: 340px;
+}
+
+.instructions2_content{
+height: 340px;
+}
+
+.begin_quiz_content{
+height: 355px;
+}
+
+.quiz_item_content{
+height: 335px;
+}
+
+.quiz_complete_quiz_inner{
+width: 365px;
+}
+
+
+.instructions_answers{
+margin: 0 0 0 35px;
+}
+
+.intro_answers{
+margin-left: -10px;
+}
+
+.begin_quiz_answers{
+margin: -10px 0 0 -10px;
+}
+
+.quiz_complete_answers{
+height:350px;
 }
 
 #quiz_frame {
@@ -108,8 +147,7 @@ div#quiz_content table {
 
 
 div#quiz_answers{
-background:#EDF2F8 none repeat scroll 0 0;
-margin:-5px 0 5px;
+/* background:#EDF2F8 none repeat scroll 0 0; */
 }
 
 
@@ -263,8 +301,6 @@ div#quiz_outer {
 
 div#quiz_inner {
         position: relative;
-        width:100%;
-        height:100%;
         border:8px solid #DDDDDD;
          background:#EDF2F8 none repeat scroll 0 0;
         -moz-border-radius: 10px;
