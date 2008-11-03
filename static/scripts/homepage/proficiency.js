@@ -2,7 +2,8 @@
  
 $(document).ready(function()
 {
-	
+	$('div#right_corner').show();
+	$('div#right_corner').find('span').text('Take a Quiz');
 
 	 
 	 

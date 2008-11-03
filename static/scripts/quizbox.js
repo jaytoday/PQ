@@ -3,291 +3,14 @@
 
 */
 
-(function($)
+(function()
 {
         var opts = {}, 
         imgPreloader = new Image, imgTypes = ['png', 'jpg', 'jpeg', 'gif'], 
 	loadingTimer, loadingFrame = 1;
 
-        $(function()
-        {
-                $.plopquiz.init();
-        });
-
-        $.plopquiz =
-        {
-                quizitemList: Array(),
-                currentItem: 3,
-                settings:
-                {
-                        autoStart: true, // debugging only
-                        //noTimer: true, // debugging only
-                        initDone: false,
-                        startTime: (new Date()),
-                        timeoutDuration: 8000,
-                        instructions:
-                        {
-                                i1complete: false,
-                                i2timedOut: false
-                        }
-                },
-                specialTimers:
-                {
-                        "instructions2": function()
-                        {
-                                $("#example_1, #example_2, #example_3").toggle();
-                                $.plopquiz.settings.instructions.i2timedOut = true;
-                                $.plopquiz.specialTimers["instructions2"] = function() {};
-                        }
-                }
-        };
-
-        // this function setups event handlers and ensure everything is setup properly,
-        // then call $.plopquiz.start, which actually deals with CSS and loading the quiz
-        $.plopquiz.init = function()
-        {
-                $.ajax({
-                        url: '/quiz_frame',
-                        complete: function(xhr,status)
-                        {
-                                $('body').append(xhr.responseText);
-
-                                $('#quiz_wrap')
-                                        .bind('quizstarting', function()
-                                        {
-                                                $(this).show();
-                                        })
-                                        .bind('quizclosing', function()
-                                        {
-                                                $(this).hide();
-
-                                                // reset to start of quiz, later this should handle skiping instructions;
-                                                $.plopquiz.currentItem = 0;
-                                        });
-
-                                $('#quiz_close').click(function()
-                                {
-                                        $.event.trigger('quizclosing');
-                                });
-
-                                $('#quiz_timer')
-                                        .bind('quizItemLoaded', function(event, quizItem)
-                                        {
-                                                var self = this;
-                                                if(quizItem && (!quizItem.timed || $.plopquiz.settings.noTimer))
-                                                        return;
-                                                console.log('quizItemLoaded: reseting timer');
-
-                                                // reset and start timer.
-                                                var reset = function()
-                                                {
-                                                        $('.timer_inner', self).stop();
-
-                                                        $('.timer_inner', self)
-                                                                .css('width', '100%')
-                                                                .animate(
-                                                                {
-                                                                        width: 0
-                                                                },
-                                                                {
-                                                                        complete: function()
-                                                                        {
-                                                                                if(quizItem.timeout == "reset")
-                                                                                {
-                                                                                        if(quizItem.timed)
-                                                                                                $.plopquiz.specialTimers[quizItem.timed]();
-
-                                                                                        $(self).stop();
-
-                                                                                        return reset();
-                                                                                }
-
-                                                                                $.plopquiz.submitAnswer(quizItem.timed, quizItem);
-                                                                        },
-                                                                        duration: $.plopquiz.settings.timeoutDuration,
-                                                                        easing: 'linear'
-                                                                })
-                                                                .show();
-                                                }
-                                                reset();
-                                        })
-                                        .bind('loadingQuizItem', function()
-                                        {
-                                                $(this).stop();
-                                        })
-                                        .bind('submitingAnswer', function()
-                                        {
-                                                $(this).stop();
-                                        });
-
-                                var textHolder = $('#blank').text();
-
-                                $('#quiz_answers .answer').hover(function()
-                                {
-                                        $('#blank').text($(this).text());
-                                },
-                                function()
-                                {
-                                        $('#blank').text(textHolder);
-                                })
-                                .click(function(e)
-                                {
-                                        $.plopquiz.submitAnswer($(this).text().replace(/\ +(\w+)\ +/, "$1"));
-                                })
-                                .each(function()
-                                {
-                                        $(this).attr('href', "#" + $(this).attr('id'));
-                                });
-
-                                if($.plopquiz.settings.autoStart)
-                                        $.plopquiz.start();
-                        }
-                });
-
-                $('#tab_apply').click($.plopquiz.start);
-                $('#description_apply').click($.plopquiz.start);
-        }; // $.plopquiz.init
-
-        $.plopquiz.start = function()
-        {
-                $.event.trigger('quizstarting');
-                $.plopquiz.loadItem($.plopquiz.currentItem++);
-        }; // $.plopquiz.start
-
-        $.plopquiz.loadItem = function(itemNum)
-        {
-                var quizItem = $.plopquiz.quizitemList[itemNum];
-                
-                $.event.trigger('loadingQuizItem');
-                $.ajax({
-                        url: quizItem.url,
-                        complete: function(xhr, s)
-                        {
-                                $('#quiz_content').html(xhr.responseText);
-
-                                $('#quiz_answers .answer')
-                                        .hide()
-
-                                for ( var i in quizItem.answers )
-                                {
-                                        $('#quiz_answers .answer:eq(' + i + ')')
-                                                .show()
-                                                .find('.answertext')
-                                                .text(quizItem.answers[i]);
-                                }
-
-                                if(quizItem.timed)
-                                        $('#quiz_timer').show();
-                                else
-                                        $('#quiz_timer').hide();
-                               
-                                if(!quizItem.noSkip)
-                                        $('#skip').show();
-                                else
-                                        $('#skip').hide();
-
-                                /*
-                                 * Setup special cases for instructions here
-                                 * does not work well right after ajax load
-                                 * and does not allow skipping instruction 1 o 2
-                                 */
-
-                                if(quizItem.item_type == "instructions")
-                                {
-                                        var i1mouseOverCount = 0;
-                                        var i1mouseOver = function()
-                                        {
-                                                // unbind is to prevent incrementing on the same button
-                                                $(this).unbind('mouseover',i1mouseOver);
-                                                if(++i1mouseOverCount >= 2)
-                                                {
-                                                        $('#example_1,#example_2').toggle();
-                                                        $.plopquiz.settings.instructions.i1complete = true;
-                                                        i1mouseOverCount = null;
-                                                }
-                                        };
-
-                                        $("#quiz_answers .answer").mouseover(i1mouseOver);
-                                }
-
-
-                                // short delay to ensure everything is loaded
-                                setTimeout(function()
-                                {
-                                        $.event.trigger('quizItemLoaded', [ quizItem ]);
-                                },300);
-                        },
-                        error: function(xhr,s)
-                        {
-                                console.log("Ajax error: ", xhr,s);
-                        }
-                });
-        };
-
-        $.plopquiz.submitAnswer = function(answer, quizItem)
-        {
-                // check the answer for special cases
-                // this will handle the non-skiping timeout on instructions2,
-                // the proficiencies, the score, and any other special boxes
-                switch($.plopquiz.quizitemList[$.plopquiz.currentItem - 1].item_type)
-                {
-                        case "instructions":
-                                if(!$.plopquiz.settings.instructions.i1complete)
-                                        return;
-                                else
-                                        $.plopquiz.loadItem($.plopquiz.currentItem++, quizItem);
-                        break;
-
-                        case "instructions2":
-                                if(!$.plopquiz.settings.instructions.i2timedOut)
-                                        return;
-                                else
-                                        $.plopquiz.loadItem($.plopquiz.currentItem++);
-                        break;
-
-                        case "begin_quiz":
-                                var proficiencies = Array();
-                                $('#proficiency_choices input:checked').each(function() { proficiencies.push($(this).val()); });
-                                $.plopquiz.quizitemList = $.grep($.plopquiz.quizitemList, function(n, i)
-                                {
-                                        console.log(n);
-                                        if(n.item_type != "quiz_item")
-                                                return true;
-
-                                        for(var i in proficiencies)
-                                                if(n.proficiency == proficiencies[i])
-                                                        return true;
-                                        return false;
-                                });
-                                $.plopquiz.loadItem($.plopquiz.currentItem++);
-                        break;
-
-                        default:
-                                // ajax call to submit
-                                $.plopquiz.loadItem($.plopquiz.currentItem++);
-                        break;
-                };
-        };
-
-
-
-
-
-        /*
-         *
-         *
-         *
-         *
-         *
-         * 
-         *   /
-         *  /
-         * /
-         */
-
 	$.fn.quizbox = function(settings)
 	{
-                return;
 		opts.settings = $.extend({}, $.fn.quizbox.defaults, settings);
 
 		$(this).data('opts', opts);
@@ -312,7 +35,7 @@
 
 			$(this).unbind('click').click(function()
 			{
-                        //        $.plopquiz.start();
+				$.fn.quizbox.start(this, o); 
 				return false;
 			});
 		});
@@ -331,22 +54,101 @@
                         async: false
                 });
 
-		if (o.overlayShow)
-                        $('#quiz_overlay').show();
+		if (o.overlayShow) {
+			$("#quiz_wrap").prepend('<div id="quiz_overlay"></div>');
+			$("#quiz_overlay").css({'width': $(window).width(), 'height': $(document).height(), 'opacity': o.overlayOpacity});
 
-        }; // $.fn.quizbox.start
+			if ($.browser.msie)
+			{
+				$("#quiz_wrap").prepend('<iframe id="quiz_bigIframe" scrolling="no" frameborder="0"></iframe>');
+				$("#quiz_bigIframe").css({'width': $(window).width(), 'height': $(document).height(), 'opacity': 0});
+			}
+
+			//$("#quiz_overlay").click($.fn.quizbox.close);
+		}
+
+		if (jQuery.isFunction(o.itemLoadCallback))
+		{
+			o.itemLoadCallback.apply(this, [opts]);
+
+			var c	= $(el).children("img:first").length ? $(el).children("img:first") : $(el);
+			var tmp	= {'width': c.width(), 'height': c.height(), 'pos': $.fn.quizbox.getPosition(c)}
+
+			for (var i = 0; i < opts.itemArray.length; i++)
+			{
+				opts.itemArray[i].o = $.extend({}, o, opts.itemArray[i].o);
+
+				if (o.zoomSpeedIn > 0 || o.zoomSpeedOut > 0)
+					opts.itemArray[i].orig = tmp;
+			}
+		}
+		else
+		{
+			if (!el.rel || el.rel == '')
+			{
+				var item = {url: el.href, title: el.title, o: o};
+
+				if (o.zoomSpeedIn > 0 || o.zoomSpeedOut > 0)
+				{
+					var c = $(el).children("img:first").length ? $(el).children("img:first") : $(el);
+					item.orig =
+					{
+						'width': c.width(),
+						'height': c.height(),
+						'pos': $.fn.quizbox.getPosition(c)
+					}
+				}
+
+			opts.itemArray.push(item);
+
+			}
+			else
+			{
+				var arr = $("a[@rel=" + el.rel + "]").get();
+
+				for (var i = 0; i < arr.length; i++)
+				{
+					var tmp = $.metadata ? $.extend({}, o, $(arr[i]).metadata()) : o;
+					var item =
+					{
+						url: arr[i].href,
+						title: arr[i].title,
+						o: tmp
+					};
+
+					if (o.zoomSpeedIn > 0 || o.zoomSpeedOut > 0)
+					{
+						var c = $(arr[i]).children("img:first").length ? $(arr[i]).children("img:first") : $(el);
+						item.orig =
+						{
+							'width': c.width(),
+							'height': c.height(),
+							'pos': $.fn.quizbox.getPosition(c)
+						};
+					}
+
+					if (arr[i].href == el.href) opts.itemNum = i;
+						opts.itemArray.push(item);
+				}
+			}
+		}
+
+		$.fn.quizbox.changeItem(opts.itemNum);
+        };
 
         $.fn.quizbox.changeItem = function(n)
         {
                 $.fn.quizbox.showLoading();
 
                 opts.itemNum = n;
-l
+
                 $("#quiz_nav").empty();
                 $("#quiz_outer").stop();
+                $("#quiz_title").hide();
                 $(document).unbind("keydown");
 
-                var imgRegExp = new RegExp('\.' + imgTypes.join("|") + '$', 'i');
+                imgRegExp = imgTypes.join('|');
+                imgRegExp = new RegExp('\.' + imgRegExp + '$', 'i');
 
                 var url = opts.itemArray[n].url;
 
@@ -377,8 +179,7 @@ l
                 }
                 else
                 {
-                        $.fn.quizbox.showItem(url);
-                        //$.fn.quizbox.showItem('<iframe id="quiz_frame" scrolling="no" onload="$.fn.quizbox.showIframe()" name="quiz_iframe' + Math.round(Math.random()*1000) + '" frameborder="0" hspace="0" src="' + url + '"></iframe>');
+                        $.fn.quizbox.showItem('<iframe id="quiz_frame" scrolling="no" onload="$.fn.quizbox.showIframe()" name="quiz_iframe' + Math.round(Math.random()*1000) + '" frameborder="0" hspace="0" src="' + url + '"></iframe>');
                 }
         };
 
@@ -436,10 +237,10 @@ l
 			 },
 			 "intro": 
 			 {
-			//	 'height': 410,
 				 'left': 143,
-				 'top': 0
-			//	 'width': 392
+				 'top': 0,
+				 'width': 392,
+				 'height': 410
 			 },
 			 "instructions": 
 			 {
@@ -474,21 +275,56 @@ l
 		 var itemOpts = (opts.itemArray[opts.itemNum].item_type != "quiz_item") ?
 			itemSizes[opts.itemArray[opts.itemNum].item_type] :
 			itemSizes["*"];
-                 itemOpts['opacity'] = 1;
+		 
+		if (opts.active) 
+		{
+			$('#quiz_content').show("normal", function()
+			{
+				$("#quiz_content").empty();
 
-                        if(val.substring(0,1) == "/")
-                                $('#quiz_content').load(val, function()
-                                {
-                                console.log('here');
-                                        $.fn.quizbox.updateDetails();
+				$("#quiz_outer").animate(itemOpts, "normal", function()
+				{
+					$("#quiz_content").append($(val)).show();
+					$.fn.quizbox.updateDetails();
+				});
+			 });
+		}
+		else
+		{
+			opts.active = true;
 
-                                        $("#quiz_outer").css(itemOpts).show();
-                                }).show();
-                 else
-                 {
-                         $('#quiz_content').html(val).show();
-                         $.fn.quizbox.updateDetails();
-                 }
+			$("#quiz_content").empty();
+
+			if ($("#quiz_content").is(":animated"))
+			{	 
+			}
+
+			if (opts.itemArray[opts.itemNum].o.zoomSpeedIn > 0)
+			{
+				opts.animating = true;
+				itemOpts.opacity = "show";
+				$("#quiz_outer").css({
+					'top':  20, //opts.itemArray[opts.itemNum].orig.pos.top - 18,
+					'left': opts.itemArray[opts.itemNum].orig.pos.left - 18,
+					'height': opts.itemArray[opts.itemNum].orig.height,
+					'width': opts.itemArray[opts.itemNum].orig.width + 50
+				});
+
+				$("#quiz_content").append($(val)).show();
+
+				$("#quiz_outer").animate(itemOpts, opts.itemArray[opts.itemNum].o.zoomSpeedIn, function()
+				{
+					opts.animating = false;
+					$.fn.quizbox.updateDetails();
+				});
+			}
+			else
+			{
+				$("#quiz_content").append($(val)).show();
+				$("#quiz_outer").css(itemOpts).show();
+				$.fn.quizbox.updateDetails();
+			}
+		}
 	};
 
 	$.fn.quizbox.updateDetails = function()
@@ -538,6 +374,7 @@ l
 		if (opts.itemArray[opts.itemNum].item_type == "quiz_item")
 		{
 			$('#quiz_title').show();
+			$('#quiz_title div.buttons').hide(); 
 			$('#quiz_answers').show();           
 
 			/* TODO change to toggle */
@@ -567,6 +404,7 @@ l
 		{
 			/* hide answers and show hidden intro choices */
 			$('#quiz_title').show();
+			$('#quiz_title div.buttons').hide(); 
 			$('#quiz_intro').fadeIn('slow');  
 
 			$('#choose_quiz').html(opts.itemArray[opts.itemNum].choose_quiz);
@@ -576,6 +414,7 @@ l
 			$('#example_2', window.frames[0].document).hide();
 			$('#example_1', window.frames[0].document).fadeIn('slow');
 			$('#quiz_title').show();
+			$('#quiz_title div.buttons').hide();   
 			$('#quiz_instructions').show();  
 			$('#answer1 .answertext').html(opts.itemArray[opts.itemNum].answer1);     
 			$('#answer2 .answertext').html(opts.itemArray[opts.itemNum].answer2);
@@ -598,6 +437,7 @@ l
 			$('#example_2', window.frames[0].document).hide();
 
 			$('#quiz_title').show();
+			$('#quiz_title div.buttons').hide();
 			$('#quiz_instructions2').show();  
 
 			$('#answer1 .answertext').html(opts.itemArray[opts.itemNum].answer1);
@@ -635,6 +475,7 @@ l
 		else if (opts.itemArray[opts.itemNum].item_type == "begin_quiz")
 		{
 			$('#quiz_title').show();
+			$('#quiz_title div.buttons').hide();
 			$('#quiz_begin_quiz').show();
 			$('.timer_bar').css('margin-left', '0px'); 
 			$('#startquiz').click(function()
@@ -653,10 +494,12 @@ l
 		else if (opts.itemArray[opts.itemNum].item_type == "score")
 		{
 			$('#quiz_title').show();
+			$('#quiz_title div.buttons').hide();
 			$('#quiz_score').show();
 		}
 		else
 		{
+			$('#quiz_title').hide();
 		}
 
 		if (opts.itemArray[opts.itemNum].o.hideOnContentClick)
@@ -776,7 +619,6 @@ l
 
 	$.fn.quizbox.init = function()
 	{
-                return;
 		/* Create Answer Buttons */
 		if ($('#quiz_wrap').length < 1)
                 {

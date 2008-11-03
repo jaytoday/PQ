@@ -5,19 +5,19 @@
 <meta http-equiv="Content-type" content="text/html; charset=utf-8">
 <title>Snaptalent Job - Get a Phone Interview With Plopquiz.</title>
 <link rel="stylesheet" href="/static/stylesheets/publish.css" type="text/css" media="screen" charset="utf-8">
-<link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/quiz.css"/>
+<link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/demo/quiz.css"/>
+
 <link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/countdown.css"/>
 
 <script type="text/javascript" src="/static/scripts/jquery-1.2.6.js"></script>
 <script type="text/javascript" src="/static/scripts/json2min.js"></script>
-<script type="text/javascript" src="/static/scripts/quizbox.js"></script> 
+<script type="text/javascript" src="/static/scripts/quizbox.min.js"></script> 
 <script type="text/javascript" src="/static/scripts/publish.js"></script> 
 <script type="text/javascript" src="/static/scripts/jquery/jquery.pngFix.js"></script> 
 <script type="text/javascript" src="/static/scripts/utils/rpc.js"></script>
 <script type="text/javascript">
 
 $(document).ready(function() {
-return;
 	/*  Load quiz item iframes - static/scripts/quizbox.js redundant  */
 	$("#apply a, #apply_button a, #apply_button_d a, #description_apply").quizbox({
 		'zoomSpeedIn': 400,
@@ -31,11 +31,12 @@ return;
 /* =========== */
 /* = URL Array = */
 /* =========== */
-$.plopquiz.quizitemList = [
-        {url: '/intro/?page=intro', item_type:'intro', answers: ['Take Another Quiz'], noSkip: true},
-        {url: '/intro/?page=instructions', item_type:'instructions', answers: [ 'dog ate', 'web made' ], noSkip: true},
-        {url: '/intro/?page=instructions2', item_type:'instructions2', answers: [ 'compilers', 'interpreters' ], timed: "instructions2", timeout: 'reset'},
-        {url: '/intro/?page=begin_quiz', item_type:'begin_quiz', answers: [ 'Begin Quiz' ], noSkip: true},
+var quizitemList = [
+        {url: '/intro/?demo=true&page=intro', item_type:'intro', choose_quiz: 'Take Another Quiz'},
+        {url: '/intro/?demo=true&page=instructions', item_type:'instructions', answer1: 'dog ate', answer2: 'web made'},
+        {url: '/intro/?demo=true&page=instructions2', item_type:'instructions2', answer1: 'compilers', answer2: 'interpreters'},
+        {url: '/intro/?demo=true&page=begin_quiz', item_type:'begin_quiz'},
+ 
  
 {% for item in quiz_items %}
         {
@@ -48,13 +49,11 @@ $.plopquiz.quizitemList = [
                 answer3: "{{ item.answer3 }}",
                 answers: {{ item.answers }},
                 proficiency: '{{ item.proficiency }}',
-                item_type:'quiz_item',
-                timed: "timeout",
-                timeout: "skip"
+                item_type:'quiz_item'
         },
 {% endfor %} 
 
-        {url: "/quiz_complete/", item_type:"score", noSkip: true, answers: [ "Submit" ] }
+        {url: "/quiz_complete/", item_type:"score" }
 ];
 
 function getGroupItems(opts) {

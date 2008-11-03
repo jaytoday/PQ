@@ -49,10 +49,10 @@ html += '<div class="answer_preview"><div class="wrong">Wrong Answer #' + (w + 1
 }
 
 
-html += '<div class="new_answer" id="' + i + '" ><input type="text" name="new_answer" class="new_answer" value="  write a custom answer" /><input type="submit" name="submit_new_answer" class="submit_new_answer" onClick="return false;" value="ok" /> </div>';  // User submitted answer
+html += '<div class="new_answer" id="' + i + '" ><input type="text" name="new_answer" class="new_answer" value="write a custom answer" /><input type="submit" name="submit_new_answer" class="submit_new_answer" onClick="return false;" value="ok" /> </div>';  // User submitted answer
 
 
-html += '<div class="select_topic" id="select_topic_' + i + '"><select name="item_topic" class="item_topic"><option>Pick a Topic</option></select><input type="text" name="new_item_topic" maxlength="11" class="new_item_topic" style="display:none;"  value="" /></div>';
+html += '<div class="select_topic" id="select_topic_' + i + '"><select name="item_topic" class="item_topic"><option>Pick a Topic</option></select><input type="text" name="new_item_topic" maxlength="11" class="new_item_topic" style="display:none;"  value="write a new topic" /></div>';
 
 html += '<input type="submit" name="submit_item" class="submit_item" onClick="return false;" value="submit item" />';  // Submit Item
 html += '<input type="submit" name="skip_item" class="skip_item" onClick="return false;" value="skip item" />';  // skip Item
@@ -75,7 +75,7 @@ $('div#quiz_items').append(html);
 
 
 
-$('.new_answer').preserveDefaultText('  write a custom answer');
+$('.new_answer').preserveDefaultText('write a custom answer');
 //$('.item_topic').preserveDefaultText('        topic');
 // when something is written in this field, a submit button should appear below
 
@@ -104,7 +104,7 @@ $('div#select_topic_' + i).find('select.item_topic').append('<option>New Topic</
 
 $("select").change(function() {
 	console.log('changing', $('div#select_topic_' + i).find("select option:selected"));
-          if ($('div#select_topic_' + i).find("select option:selected").text() == "New Topic") { $(this).hide(); $(this).parent().find('input.new_item_topic').show().preserveDefaultText('        write a new topic'); } 
+          if ($('div#select_topic_' + i).find("select option:selected").text() == "New Topic") { $(this).hide(); $(this).parent().find('input.new_item_topic').show().preserveDefaultText('write a new topic'); } 
         })
 
 
@@ -236,7 +236,7 @@ var answer_pair = [$('form#quiz_data_' + i).find('input[@name="new_answer"]').at
 wrong_answers[i].splice(wrong_answers[i].length, 0, answer_pair);   // add answer to array
 UpdatePreviews(wrong_answers, ANSWER_LIMIT, i);
 $('form#quiz_data_' + i).find('input[@name="submit_new_answer"]').hide();
-$('form#quiz_data_' + i).find('input[@name="new_answer"]').attr('value', '  write a custom answer');
+$('form#quiz_data_' + i).find('input[@name="new_answer"]').attr('value', 'write a custom answer');
 
 			});
 			
@@ -283,6 +283,7 @@ $('form#quiz_data_' + i).find('input[@name="submit_item"]').click(function() {  
 	var topic_value = eval('document.quiz_data_' + i + '.item_topic.value');
 	if (topic_value == 'Pick a Topic'){ console.info('Pick a Topic!'); return false; }
 	if (topic_value == 'New Topic'){ topic_value = eval('document.quiz_data_' + i + '.new_item_topic.value'); }
+
 
 var submit_wrong_answers = [];
 for (w=0; w < wrong_answers[i].length; w++){

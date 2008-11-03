@@ -2,7 +2,8 @@
 
 
 jQuery(function($) {
-	
+
+$('div#right_corner').find('span').text('Quizbuilder');	
 	
 // Setup RPC methods
 var server = {};

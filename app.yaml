@@ -9,6 +9,12 @@ handlers:
   static_dir: static/
 
 
+
+- url: /load
+  script: /dev/loader.py
+
+  
+  
 - url: /.*
   script: main.py
 
@@ -21,3 +27,9 @@ handlers:
 - url: /admin/.*
   script: ../ext/admin
   login: admin
+
+
+
+
+
+

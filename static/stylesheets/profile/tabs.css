@@ -47,6 +47,7 @@ outline-style:none;
 outline-width:0;
 padding:0;
 text-decoration:none;
+border-bottom:2px solid #F3F3F3;
 
 }
 .ui-tabs-nav-item a {
@@ -58,15 +59,15 @@ text-decoration:none;
 	padding: .5em 1.7em;
 	color: #444444;
 	background: #999999 url(images/5acaf6_40x100_textures_02_glass_50.png) 0 50% repeat-x;
-
+	
 }
+
 .ui-tabs-nav-item a:hover {
 	background: #d8d8d8 url(images/d8d8d8_40x100_textures_02_glass_90.png) 0 50% repeat-x;
 	color: #111111;
+	
 }
-.ui-tabs-selected {
-border-bottom:2px solid #F3F3F3;
-}
+
 .ui-tabs-selected a, .ui-tabs-selected a:hover {
 		background: #f3f3f3 url(images/f3f3f3_40x100_textures_01_flat_0.png) 0 0 repeat-x;
 	color: #000000;

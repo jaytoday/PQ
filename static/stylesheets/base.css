@@ -277,7 +277,7 @@ font-size:0.9em;
 font-weight:bold;
 height:0;
 line-height:1.1em;
-margin:0 8px;
+margin:-1px 7px 0;
 }
 
 div#login a{
@@ -285,11 +285,30 @@ text-decoration: none;
 }
 
 div#login a.profile{
-margin:5px 20px;
+margin:0 12px 0 0;
 }
 
 div#login a img{
 float:left;
-margin:-18px 216px;
+margin:-5px -102px 0 86px;
 border:1px solid #DDDDDD;
+}
+
+div#right_corner{
+height: 0px; float: right; 
+}
+div#right_corner img{
+cursor: pointer;
+}
+
+div#right_corner span{
+float:left;
+font-size:1.1em;
+font-weight:bold;
+margin:4px 3px;
+}
+
+
+img.scrollButtons{
+cursor:pointer;
 }

@@ -89,7 +89,7 @@ remote callers access to private/protected "_*" methods.
   def RetrieveProficiencies(self, *args):   # todo: should be nested list of proficiencies and topics.
       return_proficiencies = []
       #proficiencies = Proficiency.all()
-      proficiencies = Proficiency.gql("WHERE name in :1", ["Oil", "Solar Energy","Energy Finance","Biofuels","Electricity", "Energy Efficiency", "Freebase"])  # remove after refactoring quiztaker
+      proficiencies = Proficiency.gql("WHERE name in :1", ["Oil", "Solar Energy","Energy Finance","Biofuels","Electricity", "Energy Efficiency", "Ruby", "Rails"])  # remove after refactoring quiztaker
       return encode(proficiencies.fetch(1000, offset=0)) # temporary offset
 
 
@@ -141,7 +141,7 @@ remote callers access to private/protected "_*" methods.
 		new_quiz_item.content =  new_quiz_item.content.replace('^f"', '<div class="focus">')    # add focus div. 
 		new_quiz_item.content =  new_quiz_item.content.replace('f$"', '</div>')
 		new_quiz_item.content =  new_quiz_item.content.replace(' style="opacity: 1;"', '')
-		blank_span = re.compile('<span class="blank">.*</span>')  #delete whatever is in span.blank!
+		blank_span = re.compile('<span id="blank">.*</span>')  #delete whatever is in span.blank!
 		new_quiz_item.content =  blank_span.sub('<span style="opacity: 1;" id="blank"></span>', new_quiz_item.content)
 		new_quiz_item.content =  new_quiz_item.content.replace('</div><div class="content">', '')
 		new_quiz_item.content =  new_quiz_item.content.replace('</div><div class="post_content">', '')

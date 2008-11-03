@@ -3,6 +3,8 @@
 $(document).ready(function()
 {
 	
+	$('div#right_corner').hide();
+	
 	$('div#take_quiz').hover(function(){ 
 		
 		$(this).css({"background-color":"#CCCCCC","border-color":"#CCCCCC"});

@@ -23,6 +23,7 @@ from methods import refresh_data
 from load_quiz import LoadQuiz
 # Template paths
 QUIZTAKER_PATH = 'quiztaker/'
+QUIZDEMO_PATH = 'quiztaker/demo/'
 DEMO_PATH = 'demo/'
 
 
@@ -43,6 +44,7 @@ class PQIntro(webapp.RequestHandler):
 
     template_values = {}
     intro_template = QUIZTAKER_PATH + self.request.get('page') + ".html"
+    if self.request.get('demo') == "true": intro_template = QUIZDEMO_PATH + self.request.get('page') + ".html"
 #    if  self.request.get('page') == "begin_quiz": template_values['proficiencies'] = eval(self.request.get('proficiencies'))
 
     path = tpl_path(intro_template)
@@ -63,10 +65,11 @@ class PQDemo(webapp.RequestHandler):
     
 
 
-
+# this is only used for the demo. 
 class QuizItemTemplate(webapp.RequestHandler):
 
   def get(self):
+    logging.debug('quiz_item')
     template_values = {}
     #quiz_slug = [self.request.get('slug'), self.request.get('source')] -- deprecated
     this_quiz_item = QuizItem.get(self.request.get('item_key'))
@@ -77,7 +80,7 @@ class QuizItemTemplate(webapp.RequestHandler):
     quiz_item['answers'] = this_quiz_item.answers
     quiz_item['theme'] = this_quiz_item.theme
     template_values = quiz_item
-    path = tpl_path(QUIZTAKER_PATH + 'quiz_item.html') # Pass Quiz Item to Template
+    path = tpl_path(QUIZDEMO_PATH + 'quiz_item.html') # Pass Quiz Item to Template
     self.response.out.write(template.render(path, template_values))
 
 
@@ -133,7 +136,7 @@ class QuizComplete(webapp.RequestHandler):
    def get(self):
     logging.debug('Loading Score')
     template_values = {}
-    path = tpl_path(QUIZTAKER_PATH + 'quiz_complete.html')
+    path = tpl_path(QUIZDEMO_PATH + 'quiz_complete.html')
     self.response.out.write(template.render(path, template_values))
     
             
@@ -186,7 +189,7 @@ class ViewScore(webapp.RequestHandler):
 
  
 
-
+# this is only used for the demo. 
 class ViewSnaptalentQuiz(webapp.RequestHandler): # most work should go into its own file?
   #View Quiz
   quiz_array = []

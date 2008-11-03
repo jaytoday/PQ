@@ -48,11 +48,11 @@
                 <li class="ui-tabs-nav-item" id="profile_nav">
                 
                 <a href="#summary">Summary</a></li>
-                <li class="ui-tabs-nav-item"><a href="#portfolio">Top Scores</a></li>
+                <li class="ui-tabs-nav-item"><a href="#full_profile">Full Profile</a></li>
             </ul>
             <div id="summary" class="profile-panel">
 
-                <div class="panel_content" id="tp">
+                <div class="panel_content summary">
              <div class="employer_summary frame_box">
              GreenFuel Technologies Corporation (GFT) is a startup that has developed a process of growing algae using emissions from fossil fuel combustion and solar panels, mainly to produce biofuel from algae.
 
@@ -75,42 +75,34 @@ It is based in Cambridge, Massachusetts.      <a>Read More...</a>
             </div><!-- end summary -->
             
             
-            <div id="portfolio" class="profile-panel" >
+            <div id="full_profile" class="profile-panel" >
         
 
-    
+                <div class="panel_content" >
                 
-                <div class="panel_content" id="tp">
+             <h2>Skill Cloud</h2>
                 
-                <div class="proficiency_name"><h3>Energy Finance </h3></div>
-                  <h4 class="percentile">96th percentile</h4>
-                <div class="scoreometer"><img src="http://chart.apis.google.com/chart?chs=170x85&cht=gom&chd=t:96&chco=F7F5F4,00ea00&chf=bg,s,F7F5F4"/></div>
+              <div class="dynacloud" id="dynacloud">  Intelligence  Diversification  Diversification  Diversification  Hydroelectric  Hydroelectric  Nuclear  Nuclear  Off-Grid  Nuclear  Photovoltaic   Photovoltaic  Photovoltaic  Photovoltaic  Pigovian  Peak Oil  Peak Oil  Peak Oil  Peak Oil  Geothermal 
+                 Geothermal  Geothermal  Tidal  Tidal  Tidal  Credit  Grid  Grid   Grid  Grid  Grid  Grid  Credit  Credit  Credit  Credit  Server  Server  Cloud  Cloud  Cloud  Cloud  Bioenergy  Bioenergy  Bioenergy  Bioenergy</div>
                 </div>
                 
-                <div class="panel_content" id="tp">
+                 <div class="panel_content" id="stats">
                 
-                <div class="proficiency_name"><h3> Solar Energy </h3></div>
-                  <h4 class="percentile">74th percentile</h4>
-                <div class="scoreometer"><img src="http://chart.apis.google.com/chart?chs=170x85&cht=gom&chd=t:74&chco=F7F5F4,00ea00&chf=bg,s,F7F5F4"/></div>
-                </div>
-      
-                
-                
-                 <div class="panel_content" id="tp">
-                
-                  <div class="proficiency_name"><h3> Law &amp; Policy </h3></div>
-                  <h4 class="percentile">50th percentile</h4>
-                <div class="scoreometer"><img src="http://chart.apis.google.com/chart?chs=170x85&cht=gom&chd=t:50&chco=F7F5F4,00ea00&chf=bg,s,F7F5F4"/></div>
-                </div>
-    <div id="embed_code">
-                 share your top scores 
-                 <input type="text" value='<script type="text/javascript"><a href="http://www.plopquiz.com/"</script>' onClick="$(this).select();" name="score_embed"/>
-                 </div>
+              <div class="stat">   <h2>Range: </h2> <div class="statometer"><img src="http://chart.apis.google.com/chart?chs=100x55&cht=gom&chd=t:82&chco=DDDDDD,00ea00&chf=bg,s,DDDDDD"/></div> </div>
+                 
+              <div class="stat">      <h2>Depth: </h2>  <div class="statometer"><img src="http://chart.apis.google.com/chart?chs=100x55&cht=gom&chd=t:66&chco=DDDDDD,00ea00&chf=bg,s,DDDDDD"/> </div>  </div>
+                 
             </div>
+            
+
+            </div>
+
+
 
     <ul id="personal_nav">
 		    <li class="ui-tabs-nav-item"><a href="#quote">Quote</a></li>
                 <li class="ui-tabs-nav-item"><a href="#info">Info</a></li>
+                <li class="ui-tabs-nav-item"><a href="#network">Network</a></li>
                 
             </ul>
             <div id="personal">
@@ -119,8 +111,9 @@ It is based in Cambridge, Massachusetts.      <a>Read More...</a>
 		
 		Location: <div>Cambridge, MA</div> <br/>
 		
-		Webpage: <div><a>http://greenfuelonline.com</a></div> <br/>
+		Investors: <div>Draper Fisher Jurvetson</div> <br/>
 		
+		Webpage: <div><a>http://greenfuelonline.com</a></div> <br/>
 		 </div> </div> 
 		
 		
@@ -134,9 +127,29 @@ It is based in Cambridge, Massachusetts.      <a>Read More...</a>
 		 
 		</div>
 		
-        </div> <!-- portfolio -->
+				<div class="personal_content" id="network">
+		<div class="network_content">
+		<div class="info_content following">  
+		Following: 
+		
+		<div>
+		<li>Greenfuel Technologies</li>
+		<li>Brightsource</li>
+		<li>Sopogy</li>
+		</div>
 
-	
+		 </div>
+		 
+		
+		
+		 </div> 
+		 
+		 
+		</div>
+		
+        </div> <!-- personal_nav -->
+
+
 
 
 {% endblock %}

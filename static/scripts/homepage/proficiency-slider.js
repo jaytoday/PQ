@@ -22,8 +22,8 @@ function proficiency_sliderInit() {
 
     // apply our left + right buttons
     $scroll
-        .before('<img class="scrollButtons proficiency_prev" src="/static/stylesheets/img/scroll_left.png" />')
-        .after('<img class="scrollButtons proficiency_next" src="/static/stylesheets/img/scroll_right.png" />');
+        .before('<img class="scrollButtons proficiency_prev" src="/static/stylesheets/img/utils/purple_prev.png" />')
+        .after('<img class="scrollButtons proficiency_next" src="/static/stylesheets/img/utils/purple_next.png" />');
 
 
     // go find the navigation link that has this target and select the nav
@@ -50,7 +50,11 @@ function proficiency_sliderInit() {
         // allow the scroll effect to run both directions
         axis: 'x',
         
-        step: 5,
+        step: 1,
+        
+        start: 0,
+        
+        force: true,
 
         onAfter: trigger, // our final callback
 
@@ -59,7 +63,7 @@ function proficiency_sliderInit() {
         exclude: 4,
 
         // duration of the sliding effect
-        duration: 1000,
+        duration: 500,
 
         // easing - can be used with the easing plugin: 
         // http://gsgd.co.uk/sandbox/jquery/easing/

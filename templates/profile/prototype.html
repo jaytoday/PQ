@@ -19,23 +19,12 @@
 
 {% block main %}
 
-
-
-
-
-
-	
-	
 	<!-- TABS -->
 	
-	
+	<div class="profile_outer">
 	
 		<div class="profile">
-		
 	
-		
-		
-		
 		<div id="photo"><img src='/static/stylesheets/img/profile/2401963.jpg'/></div>
 		<div id="basics">
 		<div id="name">James Levy </div>
@@ -50,11 +39,11 @@
             </ul>
             <div id="summary" class="profile-panel">
 
-                <div class="panel_content" id="tp">
+                <div class="panel_content" >
                 
              <h2>Skill Cloud</h2>
                 
-               <div class="dynacloud" id="dynacloud">  Intelligence  Diversification  Diversification  Diversification  Hydroelectric  Hydroelectric  Nuclear  Nuclear  Off-Grid  Nuclear  Photovoltaic   Photovoltaic  Photovoltaic  Photovoltaic  Pigovian  Peak Oil  Peak Oil  Peak Oil  Peak Oil  Geothermal 
+              <div class="dynacloud" id="dynacloud">  Intelligence  Diversification  Diversification  Diversification  Hydroelectric  Hydroelectric  Nuclear  Nuclear  Off-Grid  Nuclear  Photovoltaic   Photovoltaic  Photovoltaic  Photovoltaic  Pigovian  Peak Oil  Peak Oil  Peak Oil  Peak Oil  Geothermal 
                  Geothermal  Geothermal  Tidal  Tidal  Tidal  Credit  Grid  Grid   Grid  Grid  Grid  Grid  Credit  Credit  Credit  Credit  Server  Server  Cloud  Cloud  Cloud  Cloud  Bioenergy  Bioenergy  Bioenergy  Bioenergy</div>
                 </div>
                 
@@ -73,40 +62,42 @@
             
             <div id="portfolio" class="profile-panel" >
         
-
-    
                 
-                <div class="panel_content" id="tp">
+                <div class="panel_content" >
                 
                 <div class="proficiency_name"><h3>Energy Finance </h3></div>
-                  <h4 class="percentile">96th percentile</h4>
-                <div class="scoreometer"><img src="http://chart.apis.google.com/chart?chs=170x85&cht=gom&chd=t:96&chco=F7F5F4,00ea00&chf=bg,s,F7F5F4"/></div>
+                  <h4 class="percentile"><span>96</span>th percentile</h4>
+                <div class="scoreometer"><img src="http://chart.apis.google.com/chart?chs=150x85&cht=gom&chd=t:96&chco=F7F5F4,00ea00&chf=bg,s,F7F5F4"/></div>
                 </div>
                 
-                <div class="panel_content" id="tp">
+                <div class="panel_content" >
                 
                 <div class="proficiency_name"><h3> Solar Energy </h3></div>
-                  <h4 class="percentile">74th percentile</h4>
-                <div class="scoreometer"><img src="http://chart.apis.google.com/chart?chs=170x85&cht=gom&chd=t:74&chco=F7F5F4,00ea00&chf=bg,s,F7F5F4"/></div>
+                  <h4 class="percentile"><span>74</span>th percentile</h4>
+                <div class="scoreometer"><img src="http://chart.apis.google.com/chart?chs=150x85&cht=gom&chd=t:74&chco=F7F5F4,00ea00&chf=bg,s,F7F5F4"/></div>
                 </div>
       
                 
                 
-                 <div class="panel_content" id="tp">
+                 <div class="panel_content" >
                 
                   <div class="proficiency_name"><h3> Law &amp; Policy </h3></div>
-                  <h4 class="percentile">50th percentile</h4>
-                <div class="scoreometer"><img src="http://chart.apis.google.com/chart?chs=170x85&cht=gom&chd=t:50&chco=F7F5F4,00ea00&chf=bg,s,F7F5F4"/></div>
+                  <h4 class="percentile"><span>50</span>th percentile</h4>
+                <div class="scoreometer"><img src="http://chart.apis.google.com/chart?chs=150x85&cht=gom&chd=t:50&chco=F7F5F4,00ea00&chf=bg,s,F7F5F4"/></div>
                 </div>
     <div class="embed_code">
                  share your top scores 
                  <input type="text" value='<script type="text/javascript"><a href="http://www.plopquiz.com/"</script>' onClick="$(this).select();" name="score_embed"/>
                  </div>
-            </div>
+                 
+               
+            </div><!-- portfolio -->
+
 
     <ul id="personal_nav">
 		    <li class="ui-tabs-nav-item"><a href="#quote">Quote</a></li>
                 <li class="ui-tabs-nav-item"><a href="#info">Info</a></li>
+                <li class="ui-tabs-nav-item"><a href="#network">Network</a></li>
                 
             </ul>
             <div id="personal">
@@ -131,11 +122,30 @@
 		 
 		</div>
 		
-        </div> <!-- portfolio -->
+				<div class="personal_content" id="network">
+		<div class="network_content">
+		<div class="info_content following">  
+		Following: 
+		
+		<div>
+		<li>Greenfuel Technologies</li>
+		<li>Brightsource</li>
+		<li>Sopogy</li>
+		</div>
 
-	
-	
-	
+		 </div>
+		 
+		
+		
+		 </div> 
+		 
+		 
+		</div>
+		
+        </div> <!-- personal_nav -->
+
+
+</div>  <!-- profile -->  </div> 
 
 
 {% endblock %}

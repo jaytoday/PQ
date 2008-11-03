@@ -87,7 +87,10 @@ def url_handler():
                                          quizbuilder.views.Drilldown),
                                         ('/employer/rpc/?',
                                          employer.rpc.RPCHandler),                                        
-                                         
+
+                                        ('/dev/load_topics/?',
+                                         dev.views.LoadTopics),  
+                                                                                  
                                         ],
                                        debug=True)
   wsgiref.handlers.CGIHandler().run(application)

@@ -1,5 +1,5 @@
 		$(function(){
-
+$('div#right_corner').find('span').text('');
 			//tabs
 			$('.profile ul').tabs();
 			

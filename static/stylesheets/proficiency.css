@@ -35,7 +35,7 @@ margin:0 55px;
 
 div.proficiencies_scroll{
 height: 140px;
-width:820px;
+width:720px;
 overflow:auto;
 }
 
@@ -48,7 +48,7 @@ width:120px;
 div.proficiency{
 /* margin:10px 0;
 width:170px; */
-margin:10px 35px 0 2px;
+margin:10px 15px 0 2px;
 width:130px;
  cursor:pointer;
 }
@@ -81,11 +81,11 @@ margin:-55px 80px;
 }
 
 .scrollButtons.proficiency_prev {
- margin:61px -35px;
+margin:51px 20px 0 -55px;
 }
 
 .scrollButtons.proficiency_next {
-  margin:-73px 830px;
+margin:-90px 750px;
    
 }
 
