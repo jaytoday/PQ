@@ -24,7 +24,7 @@
                         //noTimer: true, // debugging only
                         initDone: false,
                         startTime: (new Date()),
-                        timeoutDuration: 8000,
+                        timeoutDuration: 80000,
                         instructions:
                         {
                                 i1complete: false,

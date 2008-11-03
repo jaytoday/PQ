@@ -80,7 +80,8 @@ class QuizItemTemplate(webapp.RequestHandler):
     quiz_item['answers'] = this_quiz_item.answers
     quiz_item['theme'] = this_quiz_item.theme
     template_values = quiz_item
-    path = tpl_path(QUIZDEMO_PATH + 'quiz_item.html') # Pass Quiz Item to Template
+    if self.request.get('demo') == 'true': path = tpl_path(QUIZDEMO_PATH_PATH + 'quiz_item.html')
+    else: path = tpl_path(QUIZTAKER_PATH + 'quiz_item.html')
     self.response.out.write(template.render(path, template_values))
 
 

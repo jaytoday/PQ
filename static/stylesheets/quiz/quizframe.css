@@ -56,6 +56,13 @@ div.quiz_frame_logo
 {
 }
 
+/* custom adjustments for logos */
+
+div#default{
+
+margin: 11px 4px;
+
+}
 div#ocw
 {
         margin:8px 0 0 5px;
