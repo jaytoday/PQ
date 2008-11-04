@@ -355,8 +355,7 @@ function UpdateContent(value,i,el){
 return(value); }
 
 function EditItemContent(i) { 
-	
-	
+	$('#quiz_item_content_' + i + ' > div.item_inner > div').click(function(){  $(this).html().replace('style="opacity: 1;"', ''); });
 	$('#quiz_item_content_' + i + ' > div.item_inner > div').editable(function(value, id){UpdateContent(value,i, $(this));}, {
 		//loadurl : "/quizbuilder/rpc?action=Jeditable&arg0=" + $(this),
 		type      : "autogrow",
@@ -367,7 +366,7 @@ function EditItemContent(i) {
 		indicator : "<img src='/static/stylesheets/img/ajax-loader.gif'>",
 		onblur    : "submit",
 		// cancel    : "Cancel",
-		// tooltip   : "Click to edit...",
+		tooltip   : "Click to edit...",
 		width     : '600px',
 		cssclass : "editable"
 		}); // this can be rpc call 

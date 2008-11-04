@@ -20,7 +20,7 @@
                             "key": "aghwbG9wcXVpenIhCxILUHJvZmljaWVuY3kiEEJ1aWxkaW5nIFdlYmFwcHMM"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YsSYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y1CsM", 
                         "date": {}, 
                         "content": "Classes begin with one or more constructors.    In Python these must be declared with the name __init(self)__  they may also take parameters. <div class='focus'>  These are the functions that build new objects of a<br/><span id='blank'></span>type.</div>"
                     }, 
@@ -45,7 +45,7 @@
                             "key": "aghwbG9wcXVpenIhCxILUHJvZmljaWVuY3kiEEJ1aWxkaW5nIFdlYmFwcHMM"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YsiYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y1SsM", 
                         "date": {}, 
                         "content": "If one wishes to use microformat-style embedding but the type of data one wishes to embed does not map to an existing microformat, <div class='focus'> one can use   <span id='blank'></span>to embed </div> arbitrary vocabularies into HTML."
                     }, 
@@ -70,7 +70,7 @@
                             "key": "aghwbG9wcXVpenIhCxILUHJvZmljaWVuY3kiEEJ1aWxkaW5nIFdlYmFwcHMM"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YsyYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y1isM", 
                         "date": {}, 
                         "content": "<div class='focus'><span id='blank'></span>  refers to a technique </div> used by some web browsers for the sake of maintaining backwards compatibility with web pages designed for older browsers, instead of strictly complying with W3C and IETF standards in standards mode. "
                     }, 
@@ -95,7 +95,7 @@
                             "key": "aghwbG9wcXVpenIhCxILUHJvZmljaWVuY3kiEEJ1aWxkaW5nIFdlYmFwcHMM"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YtCYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y1ysM", 
                         "date": {}, 
                         "content": "<div class='focus'>JavaScript includes a <span id='blank'></span> function</div> that can execute statements provided as strings at run-time."
                     }, 
@@ -120,7 +120,7 @@
                             "key": "aghwbG9wcXVpenIhCxILUHJvZmljaWVuY3kiEEJ1aWxkaW5nIFdlYmFwcHMM"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YtSYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y2CsM", 
                         "date": {}, 
                         "content": "You may use JavaScript to modify the <div class='focus'><span id='blank'></span> and alter the page</div> you're viewing to suit your preferences. "
                     }, 
@@ -145,7 +145,7 @@
                             "key": "aghwbG9wcXVpenIhCxILUHJvZmljaWVuY3kiEEJ1aWxkaW5nIFdlYmFwcHMM"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YtiYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y2SsM", 
                         "date": {}, 
                         "content": "In Python 3000, xrange() is replaced with a new range() function. The new range() <div class='focus'>will return a <span id='blank'></span> instead of a list.</div> "
                     }, 
@@ -170,7 +170,7 @@
                             "key": "aghwbG9wcXVpenIhCxILUHJvZmljaWVuY3kiEEJ1aWxkaW5nIFdlYmFwcHMM"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YtyYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y2isM", 
                         "date": {}, 
                         "content": "<div class='focus'>  Use Python's <span id='blank'></span>syntax to limit your QuerySet</div>to a certain number of results. This is the equivalent of SQL's LIMIT and OFFSET clauses. "
                     }, 
@@ -195,7 +195,7 @@
                             "key": "aghwbG9wcXVpenIhCxILUHJvZmljaWVuY3kiEEJ1aWxkaW5nIFdlYmFwcHMM"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YuCYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y2ysM", 
                         "date": {}, 
                         "content": " If a user isn't currently logged in, request.user will be set to an instance of AnonymousUser.<div class='focus'>   You can tell them apart with <span id='blank'> </span></div> "
                     }, 
@@ -220,7 +220,7 @@
                             "key": "aghwbG9wcXVpenIhCxILUHJvZmljaWVuY3kiEEJ1aWxkaW5nIFdlYmFwcHMM"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YuSYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y3CsM", 
                         "date": {}, 
                         "content": " <div class='focus'>  <span id='blank'> </span>is a library for parsing a web page and building a structured representation.</div> It allows you to access any element of the page by type, ID, or any of its properties, and get a string representation of its contents. "
                     }, 
@@ -245,7 +245,7 @@
                             "key": "aghwbG9wcXVpenIhCxILUHJvZmljaWVuY3kiEEJ1aWxkaW5nIFdlYmFwcHMM"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YuiYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y3SsM", 
                         "date": {}, 
                         "content": "<div class='focus'>  The request is made through a hidden IFRAME or XHR object, called the<br/> <span id='blank'></span>. </div>Since it's asynchronous, you don't know when the request is going to complete, so you create a callback..."
                     }, 
@@ -270,7 +270,7 @@
                             "key": "aghwbG9wcXVpenIoCxILUHJvZmljaWVuY3kiF0NvbGxlY3RpdmUgSW50ZWxsaWdlbmNlDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YuyYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y3isM", 
                         "date": {}, 
                         "content": "Frequentists assign probabilities to random events according to their frequencies of occurrence or to subsets of populations as proportions of the whole, <div class='focus'>  while <span id='blank'></span> describe probabilities in terms of beliefs and degrees of uncertainty.</div>"
                     }, 
@@ -295,7 +295,7 @@
                             "key": "aghwbG9wcXVpenIoCxILUHJvZmljaWVuY3kiF0NvbGxlY3RpdmUgSW50ZWxsaWdlbmNlDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YvCYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y3ysM", 
                         "date": {}, 
                         "content": "In a social network, a particular user's neighborhood with similar taste or interest <div class='focus'>  can be found by calculating <span id='blank'> </span></div>by collecting the preference data of top-N nearest neighbors of the particular user"
                     }, 
@@ -320,7 +320,7 @@
                             "key": "aghwbG9wcXVpenIoCxILUHJvZmljaWVuY3kiF0NvbGxlY3RpdmUgSW50ZWxsaWdlbmNlDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YvSYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y4CsM", 
                         "date": {}, 
                         "content": "Cronbach's alpha will generally increase<div class='focus'>  when the <span id='blank'>  </span> between </div>the items increase."
                     }, 
@@ -345,7 +345,7 @@
                             "key": "aghwbG9wcXVpenIoCxILUHJvZmljaWVuY3kiF0NvbGxlY3RpdmUgSW50ZWxsaWdlbmNlDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YviYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y4SsM", 
                         "date": {}, 
                         "content": "<div class='focus'>  <span id='blank'> </span>clustering begins with k randomly placed centroids </div> and assigns every item to the nearest one."
                     }, 
@@ -370,7 +370,7 @@
                             "key": "aghwbG9wcXVpenIoCxILUHJvZmljaWVuY3kiF0NvbGxlY3RpdmUgSW50ZWxsaWdlbmNlDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YvyYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y4isM", 
                         "date": {}, 
                         "content": "<div class='focus'> because locally weighted  <span id='blank'> </span></div>is a non-parametric algorithm every time you make a prediction you need to fit theta to your entire training set again."
                     }, 
@@ -395,7 +395,7 @@
                             "key": "aghwbG9wcXVpenIoCxILUHJvZmljaWVuY3kiF0NvbGxlY3RpdmUgSW50ZWxsaWdlbmNlDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YwCYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y4ysM", 
                         "date": {}, 
                         "content": "<div class='focus'> The <span id='blank'> </span> discounted count of the bigram</div>combined with an estimate from a unigram count, are re-normalized to get a probability distribution. "
                     }, 
@@ -420,7 +420,7 @@
                             "key": "aghwbG9wcXVpenIoCxILUHJvZmljaWVuY3kiF0NvbGxlY3RpdmUgSW50ZWxsaWdlbmNlDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YwSYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y5CsM", 
                         "date": {}, 
                         "content": "If you implement Bayesian logistic regression .<div class='focus'> and implement <span id='blank'> </span> descent,</div> 20 percent test error is unacceptably high."
                     }, 
@@ -445,7 +445,7 @@
                             "key": "aghwbG9wcXVpenIoCxILUHJvZmljaWVuY3kiF0NvbGxlY3RpdmUgSW50ZWxsaWdlbmNlDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YwiYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y5SsM", 
                         "date": {}, 
                         "content": "<div class='focus'>In Gaussian's Discriminant  <span id='blank'> </span>,</div> you usually model all of the crosses to the same covariant matrix sigma."
                     }, 
@@ -470,7 +470,7 @@
                             "key": "aghwbG9wcXVpenIoCxILUHJvZmljaWVuY3kiF0NvbGxlY3RpdmUgSW50ZWxsaWdlbmNlDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YwyYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y5isM", 
                         "date": {}, 
                         "content": " For a given source vertex in the graph, <div class='focus'> <span id='blank'> </span> algorithm finds the path with lowest cost</div> (i.e. the shortest path) between that vertex and every other vertex."
                     }, 
@@ -495,7 +495,7 @@
                             "key": "aghwbG9wcXVpenIoCxILUHJvZmljaWVuY3kiF0NvbGxlY3RpdmUgSW50ZWxsaWdlbmNlDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YxCYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y5ysM", 
                         "date": {}, 
                         "content": "Graphs can be classified according to two independent structural features:  <div class='focus'>the  <span id='blank'> </span> coefficient</div> and average node-to-node distance."
                     }, 
@@ -520,7 +520,7 @@
                             "key": "aghwbG9wcXVpenIdCxILUHJvZmljaWVuY3kiDENsZWFuIEVuZXJneQw"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YxSYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y6CsM", 
                         "date": {}, 
                         "content": "Brazil has one of the largest renewable energy programs in the world,<div class='focus'> involving production of <br/> <span id='blank'></span> from sugar cane. </div>"
                     }, 
@@ -545,7 +545,7 @@
                             "key": "aghwbG9wcXVpenIdCxILUHJvZmljaWVuY3kiDENsZWFuIEVuZXJneQw"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YxiYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y6SsM", 
                         "date": {}, 
                         "content": "<div class='focus'>  <span id='blank'> </span> helps public and private sector purchasers </div> evaluate, compare, and choose computers, notebooks, and monitors based on environmental attributes."
                     }, 
@@ -570,7 +570,7 @@
                             "key": "aghwbG9wcXVpenIdCxILUHJvZmljaWVuY3kiDENsZWFuIEVuZXJneQw"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YxyYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y6isM", 
                         "date": {}, 
                         "content": "<div class='focus'>  <span id='blank'> </span></div> systems are based on solar electric cells, which convert solar radiation directly into electricity."
                     }, 
@@ -595,7 +595,7 @@
                             "key": "aghwbG9wcXVpenIdCxILUHJvZmljaWVuY3kiDENsZWFuIEVuZXJneQw"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YyCYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y6ysM", 
                         "date": {}, 
                         "content": "Traditionally electrical power <div class='focus'> has been generated from <span id='blank'> </span></div> in large, centralized plants. Large-scale ambient energy, such as sun, wind and tides, is widely available but trickier to harvest.  "
                     }, 
@@ -620,7 +620,7 @@
                             "key": "aghwbG9wcXVpenIdCxILUHJvZmljaWVuY3kiDENsZWFuIEVuZXJneQw"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YySYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y7CsM", 
                         "date": {}, 
                         "content": "<i> What two things are required by every organism for growth? </i>A source of organic carbon and a source of electrons. Energy is also required. Synthesizers get their energy input from the sun or thermal energy.<br/><div class='focus'> <span id='blank'></span> get energy from organic carbon.</div>"
                     }, 
@@ -645,7 +645,7 @@
                             "key": "aghwbG9wcXVpenIdCxILUHJvZmljaWVuY3kiDENsZWFuIEVuZXJneQw"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YyiYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y7SsM", 
                         "date": {}, 
                         "content": "I am not against global climate treaties, <div class='focus'>  like the <span id='blank'></span></div> but I think their chances of having the impact that their advocates predict are slim."
                     }, 
@@ -670,7 +670,7 @@
                             "key": "aghwbG9wcXVpenIdCxILUHJvZmljaWVuY3kiDENsZWFuIEVuZXJneQw"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YyyYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y7isM", 
                         "date": {}, 
                         "content": "Probably the most oft-cited theory about the relationship between enviromental regulation and innovation <div class='focus'>  is the '<span id='blank'> </span> hypothesis', first expounded </div> by the Harvard Business School professor Michael Porter in 1991. "
                     }, 
@@ -695,7 +695,7 @@
                             "key": "aghwbG9wcXVpenIdCxILUHJvZmljaWVuY3kiDENsZWFuIEVuZXJneQw"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YzCYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y7ysM", 
                         "date": {}, 
                         "content": "In 2004, the U.S. Court of Appeals for the Second Circuit directed the U.S. Department of Energy<div class='focus'> to reinstate the<span id='blank'> </span> standard</div> for central air conditioners."
                     }, 
@@ -720,7 +720,7 @@
                             "key": "aghwbG9wcXVpenIdCxILUHJvZmljaWVuY3kiDENsZWFuIEVuZXJneQw"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YzSYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y8CsM", 
                         "date": {}, 
                         "content": "A September 14, 2007 study conducted by the National Science Foundation found that<div class='focus'> biodiversity and  <span id='blank'> </span> diversity </div>  are dependent upon each other."
                     }, 
@@ -745,7 +745,7 @@
                             "key": "aghwbG9wcXVpenIdCxILUHJvZmljaWVuY3kiDENsZWFuIEVuZXJneQw"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YziYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y8SsM", 
                         "date": {}, 
                         "content": "The<div class='focus'><span id='blank'> </span> hypothesis proposes that </div> the biosphere and the physical components of the Earth are coupled to form a complex interacting system."
                     }, 
@@ -770,7 +770,7 @@
                             "key": "aghwbG9wcXVpenIiCxILUHJvZmljaWVuY3kiEVN0YXJ0dXAgRmluYW5jaW5nDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YzyYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y8isM", 
                         "date": {}, 
                         "content": "A small but growing number of sites are starting to offer plans on a 'Pay per call' basis. <div class='focus'>  The user can click a button to place a <br/><span id='blank'></span></div>call, or to request a call from the advertiser. "
                     }, 
@@ -795,7 +795,7 @@
                             "key": "aghwbG9wcXVpenIiCxILUHJvZmljaWVuY3kiEVN0YXJ0dXAgRmluYW5jaW5nDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y0CYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y8ysM", 
                         "date": {}, 
                         "content": "The upshot is, you can choose your pain: either the short, sharp pain of raising money, <br/><div class='focus'> or the chronic ache of <span id='blank'></span>.</div>"
                     }, 
@@ -820,7 +820,7 @@
                             "key": "aghwbG9wcXVpenIiCxILUHJvZmljaWVuY3kiEVN0YXJ0dXAgRmluYW5jaW5nDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y0SYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y9CsM", 
                         "date": {}, 
                         "content": "<div class='focus'> The problem with Amazon's notorious<span id='blank'></span> patent</div>for example, is not that it's a software patent, but that it's obvious."
                     }, 
@@ -845,7 +845,7 @@
                             "key": "aghwbG9wcXVpenIiCxILUHJvZmljaWVuY3kiEVN0YXJ0dXAgRmluYW5jaW5nDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y0iYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y9SsM", 
                         "date": {}, 
                         "content": "<div class='focus'> Since <span id='blank'></span> are made up</div>founders shouldn't care too much about them. That's not the part to focus on."
                     }, 
@@ -870,7 +870,7 @@
                             "key": "aghwbG9wcXVpenIiCxILUHJvZmljaWVuY3kiEVN0YXJ0dXAgRmluYW5jaW5nDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y0yYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y9isM", 
                         "date": {}, 
                         "content": "<div class='focus'> Investing is not covered by <span id='blank'></span> law.</div>At least, it better not be, because investors regularly do things that would be illegal otherwise."
                     }, 
@@ -895,7 +895,7 @@
                             "key": "aghwbG9wcXVpenIiCxILUHJvZmljaWVuY3kiEVN0YXJ0dXAgRmluYW5jaW5nDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y1CYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y9ysM", 
                         "date": {}, 
                         "content": "<div class='focus'>A <span id='blank'></span> is typically substantially more favorable on an after tax basis</div>(including use of dividends to offset wage income to shareholders) and operates with much more settled law."
                     }, 
@@ -920,7 +920,7 @@
                             "key": "aghwbG9wcXVpenIiCxILUHJvZmljaWVuY3kiEVN0YXJ0dXAgRmluYW5jaW5nDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y1SYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y-CsM", 
                         "date": {}, 
                         "content": "<div class='focus'> <span id='blank'> </span>shares in the U.S. normally carry a call provision, </div>enabling the issuing corporation to repurchase the share at its (usually limited) discretion."
                     }, 
@@ -945,7 +945,7 @@
                             "key": "aghwbG9wcXVpenIiCxILUHJvZmljaWVuY3kiEVN0YXJ0dXAgRmluYW5jaW5nDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y1iYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y-SsM", 
                         "date": {}, 
                         "content": "'Poison pill' is sometimes used more broadly<div class='focus'>  to describe other types of<span id='blank'> </span> defenses that involve </div>the target taking some action that harms both target and bidder."
                     }, 
@@ -970,7 +970,7 @@
                             "key": "aghwbG9wcXVpenIiCxILUHJvZmljaWVuY3kiEVN0YXJ0dXAgRmluYW5jaW5nDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y1yYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y-isM", 
                         "date": {}, 
                         "content": "<div class='focus'>A <span id='blank'> </span> bond can be converted</div>into shares of stock in the issuing company, usually at some pre-announced ratio."
                     }, 
@@ -995,7 +995,7 @@
                             "key": "aghwbG9wcXVpenIiCxILUHJvZmljaWVuY3kiEVN0YXJ0dXAgRmluYW5jaW5nDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y2CYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y-ysM", 
                         "date": {}, 
                         "content": "Ordinary income is usually characterized <div class='focus'> as income other than<span id='blank'> </span> </div>"
                     }, 
@@ -1024,9 +1024,9 @@
                             "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y2SYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y_CsM", 
                         "date": {}, 
-                        "content": "<div class=\"content\"><span  class=\"blank\">Data modeling</span>shares a lineage with other methods for describing things, like the taxonomy of animal species, but can be applied to everything from birds and insects to cars and comedians. "
+                        "content": "<div class=\"content\"><span  id=\"blank\">Data modeling</span>shares a lineage with other methods for describing things, like the taxonomy of animal species, but can be applied to everything from birds and insects to cars and comedians. "
                     }, 
                     {
                         "index": "type", 
@@ -1053,9 +1053,9 @@
                             "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y2iYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y_SsM", 
                         "date": {}, 
-                        "content": "<div class=\"content\">  Very often, property names only make sense when the <span  class=\"blank\">type</span> is known.  For instance, in the Film type, it is enough to for a property to say \"Budget\" since it is understood it is the budget of a Film."
+                        "content": "<div class=\"content\">  Very often, property names only make sense when the <span  id=\"blank\">type</span> is known.  For instance, in the Film type, it is enough to for a property to say \"Budget\" since it is understood it is the budget of a Film."
                     }, 
                     {
                         "index": "properties", 
@@ -1082,9 +1082,9 @@
                             "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y2yYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y_isM", 
                         "date": {}, 
-                        "content": "<div class=\"content\">  Cross-typing also provides similar capability to object inheritance.  Although Metaweb does not support inheritance directly, types can declare other types they depend on that include <span class=\"blank\">properties</span> that normally would be expected."
+                        "content": "<div class=\"content\">  Cross-typing also provides similar capability to object inheritance.  Although Metaweb does not support inheritance directly, types can declare other types they depend on that include <span id=\"blank\">properties</span> that normally would be expected."
                     }, 
                     {
                         "index": "full objects", 
@@ -1111,9 +1111,9 @@
                             "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y3CYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y_ysM", 
                         "date": {}, 
-                        "content": "<div class=\"content\"> In a relational system, it might be more convenient to assign string literals as property values.  In Metaweb however, it's just as easy to make them <span  class=\"blank\">full objects</span> with significant benefits. "
+                        "content": "<div class=\"content\"> In a relational system, it might be more convenient to assign string literals as property values.  In Metaweb however, it's just as easy to make them <span  id=\"blank\">full objects</span> with significant benefits. "
                     }, 
                     {
                         "index": "domain", 
@@ -1140,9 +1140,9 @@
                             "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y3SYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YgCwM", 
                         "date": {}, 
-                        "content": "<div class=\"content\">    The most interesting aspect of Arnold's topic is that it includes a user-created type, Impersonated Celebrity, from the user-created <span  class=\"blank\"></span> of American Comedy. "
+                        "content": "<div class=\"content\">    The most interesting aspect of Arnold's topic is that it includes a user-created type, Impersonated Celebrity, from the user-created <span  id=\"blank\"></span> of American Comedy. "
                     }, 
                     {
                         "index": "topic", 
@@ -1169,9 +1169,9 @@
                             "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y3iYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YgSwM", 
                         "date": {}, 
-                        "content": "<div class=\"content\">The most important concept behind types is that new or existing types can be added to a <span class=\"blank\"></span> in order to provide additional information about it and to add it to another domain. "
+                        "content": "<div class=\"content\">The most important concept behind types is that new or existing types can be added to a <span id=\"blank\"></span> in order to provide additional information about it and to add it to another domain. "
                     }, 
                     {
                         "index": "query", 
@@ -1198,9 +1198,9 @@
                             "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y3yYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YgiwM", 
                         "date": {}, 
-                        "content": "<div class=\"content\">The <span  class=\"blank\"></span> Editor provides an easy way to go through the process of creating the set of properties, also known as the schema, that constitute the essential information about a type.  "
+                        "content": "<div class=\"content\">The <span  id=\"blank\"></span> Editor provides an easy way to go through the process of creating the set of properties, also known as the schema, that constitute the essential information about a type.  "
                     }, 
                     {
                         "index": "write", 
@@ -1227,9 +1227,9 @@
                             "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y4CYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YgywM", 
                         "date": {}, 
-                        "content": " You can use the Query Editor to perform <span  class=\"blank\"></span> operations that insert new information into the Freebase database. "
+                        "content": " You can use the Query Editor to perform <span  id=\"blank\"></span> operations that insert new information into the Freebase database. "
                     }, 
                     {
                         "index": "ASCII", 
@@ -1256,9 +1256,9 @@
                             "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y4SYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YhCwM", 
                         "date": {}, 
-                        "content": "<div class=\"content\">The value property of a key must be a string of <span  class=\"blank\">ASCII</span> characters, and may include letters, numbers, underscores, hyphens and dollar signs."
+                        "content": "<div class=\"content\">The value property of a key must be a string of <span  id=\"blank\">ASCII</span> characters, and may include letters, numbers, underscores, hyphens and dollar signs."
                     }, 
                     {
                         "index": "group", 
@@ -1285,9 +1285,9 @@
                             "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y4iYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YhSwM", 
                         "date": {}, 
-                        "content": "<div class=\"content\"> The /type/object type exists simply as a convenient placeholder. It serves to <span  class=\"blank\"></span> the /type/ property objects that represent the common object properties.\n\n  "
+                        "content": "<div class=\"content\"> The /type/object type exists simply as a convenient placeholder. It serves to <span  id=\"blank\"></span> the /type/ property objects that represent the common object properties.\n\n  "
                     }, 
                     {
                         "index": "humans", 
@@ -1314,9 +1314,9 @@
                             "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y4yYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YhiwM", 
                         "date": {}, 
-                        "content": "<div class=\"content\">In order to make the data structure more understandable to <span  class=\"blank\"></span> , Metaweb allows us to view the graph through an object-oriented lens. "
+                        "content": "<div class=\"content\">In order to make the data structure more understandable to <span  id=\"blank\"></span> , Metaweb allows us to view the graph through an object-oriented lens. "
                     }, 
                     {
                         "index": "usergroups", 
@@ -1343,9 +1343,9 @@
                             "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y5CYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YhywM", 
                         "date": {}, 
-                        "content": "<div class=\"content\"> Every object has a permission property that refers to a /type/permission object. The permission object specifies a set of <span  class=\"blank\"></span> whose members have permission to modify the object.\n\n"
+                        "content": "<div class=\"content\"> Every object has a permission property that refers to a /type/permission object. The permission object specifies a set of <span  id=\"blank\"></span> whose members have permission to modify the object.\n\n"
                     }, 
                     {
                         "index": "namespaces", 
@@ -1372,9 +1372,9 @@
                             "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y5SYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YiCwM", 
                         "date": {}, 
-                        "content": "<div class=\"content\">A number of important <span  class=\"blank\"></span> are populated with pre-defined objects using names defined by international standards. The languages in /lang use language codes defined by ISO 639. The media types in /media_type are defined by IANA. "
+                        "content": "<div class=\"content\">A number of important <span  id=\"blank\"></span> are populated with pre-defined objects using names defined by international standards. The languages in /lang use language codes defined by ISO 639. The media types in /media_type are defined by IANA. "
                     }, 
                     {
                         "index": "containedby", 
@@ -1401,9 +1401,9 @@
                             "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y5iYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YiSwM", 
                         "date": {}, 
-                        "content": "  When creating /location/ location topics the idea is to provide (at least) two levels of hierarchical containment in the <span  class=\"blank\">containedby</span> property.  For example, in the US, cities should specify what county they are in as well as what state they are contained in.    "
+                        "content": "  When creating /location/ location topics the idea is to provide (at least) two levels of hierarchical containment in the <span  id=\"blank\">containedby</span> property.  For example, in the US, cities should specify what county they are in as well as what state they are contained in.    "
                     }, 
                     {
                         "index": "schema", 
@@ -1430,9 +1430,9 @@
                             "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y5yYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YiiwM", 
                         "date": {}, 
-                        "content": "If you have a large amount of data that you want to load into Freebase you should first have a <span  class=\"blank\">schema</span>  designed for it.   You should also take a look at the topics listed under  Content Guidelines and Policies  to make sure your data is appropriate for Freebase. "
+                        "content": "If you have a large amount of data that you want to load into Freebase you should first have a <span  id=\"blank\">schema</span>  designed for it.   You should also take a look at the topics listed under  Content Guidelines and Policies  to make sure your data is appropriate for Freebase. "
                     }, 
                     {
                         "index": "javascript", 
@@ -1459,9 +1459,9 @@
                             "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y6CYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YiywM", 
                         "date": {}, 
-                        "content": " Mjt  is a <span  class=\"blank\">Javascript</span> application framework that runs entirely in a web browser, based on a templating engine. "
+                        "content": " Mjt  is a <span  id=\"blank\">Javascript</span> application framework that runs entirely in a web browser, based on a templating engine. "
                     }, 
                     {
                         "index": "jsonp", 
@@ -1488,9 +1488,9 @@
                             "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y6SYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YjCwM", 
                         "date": {}, 
-                        "content": "<div class=\"content\">Mjt is particularly useful with <span  class=\"blank\">JSONP</span>   services that return  JSON  values and accept a   callback=   parameter, such as the  Freebase  service and the  Yahoo JSON API .  With these services you can use mjt to build \"mash-ups\" that incorporate data from services on multiple hosts."
+                        "content": "<div class=\"content\">Mjt is particularly useful with <span  id=\"blank\">JSONP</span>   services that return  JSON  values and accept a   callback=   parameter, such as the  Freebase  service and the  Yahoo JSON API .  With these services you can use mjt to build \"mash-ups\" that incorporate data from services on multiple hosts."
                     }, 
                     {
                         "index": "hosts", 
@@ -1517,9 +1517,9 @@
                             "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y6iYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YjSwM", 
                         "date": {}, 
-                        "content": "<div class=\"content\">The primary mechanism for fetching data is the dynamic  &lt;script  src=\"\"&gt; tag.  This has the advantage that it can be used to fetch data from services on other <span  class=\"blank\">hosts</span>. "
+                        "content": "<div class=\"content\">The primary mechanism for fetching data is the dynamic  &lt;script  src=\"\"&gt; tag.  This has the advantage that it can be used to fetch data from services on other <span  id=\"blank\">hosts</span>. "
                     }, 
                     {
                         "index": "clone", 
@@ -1546,9 +1546,9 @@
                             "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y6yYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YjiwM", 
                         "date": {}, 
-                        "content": "A major feature of the application editor is the ability to <span class=\"blank\">clone</span> or import files from applications created by you or other users. If you're a novice developer this is an easy way to bring working code into your own applications. "
+                        "content": "A major feature of the application editor is the ability to <span id=\"blank\">clone</span> or import files from applications created by you or other users. If you're a novice developer this is an easy way to bring working code into your own applications. "
                     }, 
                     {
                         "index": "error", 
@@ -1575,9 +1575,9 @@
                             "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
                         }, 
                         "content_url": null, 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y7CYM", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YjywM", 
                         "date": {}, 
-                        "content": "<div class=\"content\">If an Acre script exits before calling acre.start_response(), a <span  class=\"blank\">error</span>  response is generated.  "
+                        "content": "<div class=\"content\">If an Acre script exits before calling acre.start_response(), a <span  id=\"blank\">error</span>  response is generated.  "
                     }, 
                     {
                         "index": "scaffolding", 
@@ -1603,8 +1603,8 @@
                             "name": "Rails", 
                             "key": "aghwbG9wcXVpenIWCxILUHJvZmljaWVuY3kiBVJhaWxzDA"
                         }, 
-                        "content_url": "http://en.wikipedia.org/wiki/Ruby_on_Rails", 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YjCcM", 
+                        "content_url": null, 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YkCwM", 
                         "date": {}, 
                         "content": "Rails provides <span id=\"blank\"></span> which can automatically construct some of the models and views needed for a basic website."
                     }, 
@@ -1632,8 +1632,8 @@
                             "name": "Rails", 
                             "key": "aghwbG9wcXVpenIWCxILUHJvZmljaWVuY3kiBVJhaWxzDA"
                         }, 
-                        "content_url": "http://en.wikipedia.org/wiki/Ruby_on_Rails", 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YjScM", 
+                        "content_url": null, 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YkSwM", 
                         "date": {}, 
                         "content": "\"Convention over <span id=\"blank\"></span>\" means a developer only needs to specify unconventional aspects of the application."
                     }, 
@@ -1661,8 +1661,8 @@
                             "name": "Rails", 
                             "key": "aghwbG9wcXVpenIWCxILUHJvZmljaWVuY3kiBVJhaWxzDA"
                         }, 
-                        "content_url": "http://en.wikipedia.org/wiki/Ruby_on_Rails", 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YjicM", 
+                        "content_url": null, 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YkiwM", 
                         "date": {}, 
                         "content": "<div class=\"content\">After version 2.0,on Rails by default offers both  HTML  and  <span id=\"blank\"></span>  as output format. The latter is the facility for RESTful web services."
                     }, 
@@ -1690,8 +1690,8 @@
                             "name": "Freebase", 
                             "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
                         }, 
-                        "content_url": "http://www-128.ibm.com/developerworks/linux/library/l-rubyrails/", 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YpScM", 
+                        "content_url": null, 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YkywM", 
                         "date": {}, 
                         "content": "<div class=\"content\"> Rails views are where we leave Ruby code. Rails contains a very nice template language for .rhtml files that combines pure<span id=\"blank\"></span>with embedded Ruby code. "
                     }, 
@@ -1719,8 +1719,8 @@
                             "name": "Rails", 
                             "key": "aghwbG9wcXVpenIWCxILUHJvZmljaWVuY3kiBVJhaWxzDA"
                         }, 
-                        "content_url": "http://www-128.ibm.com/developerworks/linux/library/l-rubyrails/", 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YpicM", 
+                        "content_url": null, 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YlCwM", 
                         "date": {}, 
                         "content": "<div class=\"content\">  RHTML  is a true template format -- not simply a way of embedding code in<span id=\"blank\"></span>-- and this is a much more powerful approach.  "
                     }, 
@@ -1748,8 +1748,8 @@
                             "name": "Freebase", 
                             "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
                         }, 
-                        "content_url": "http://www-128.ibm.com/developerworks/linux/library/l-rubyrails/", 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YpycM", 
+                        "content_url": null, 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YlSwM", 
                         "date": {}, 
                         "content": "<div class=\"content\">A template engine adds a custom set of tags to<span id=\"blank\">HTML</span>that allows you to express conditions, loops, and other logic as part of the enhanced markup. "
                     }, 
@@ -1777,8 +1777,8 @@
                             "name": "Rails", 
                             "key": "aghwbG9wcXVpenIWCxILUHJvZmljaWVuY3kiBVJhaWxzDA"
                         }, 
-                        "content_url": "http://www-128.ibm.com/developerworks/linux/library/l-rubyrails/", 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YqCcM", 
+                        "content_url": null, 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YliwM", 
                         "date": {}, 
                         "content": "<div class=\"content\"> <span id=\"blank\"></span> carry out your application logic in its abstract form. That is, the Ruby scripts in an application's app/controllers/ directory will load model data into variables, save it back, and massage and manipulate it.  "
                     }, 
@@ -1806,8 +1806,8 @@
                             "name": "Rails", 
                             "key": "aghwbG9wcXVpenIWCxILUHJvZmljaWVuY3kiBVJhaWxzDA"
                         }, 
-                        "content_url": "http://www-128.ibm.com/developerworks/linux/library/l-rubyrails/", 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YqScM", 
+                        "content_url": null, 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YlywM", 
                         "date": {}, 
                         "content": "<div class=\"content\"> The <span id=\"blank\"></span> part of a Rails application is primarily the underlying database it uses.  In fact, in many ways a Rails application is just a way to perform manipulations on the data in a relational database management system."
                     }, 
@@ -1835,8 +1835,8 @@
                             "name": "Rails", 
                             "key": "aghwbG9wcXVpenIWCxILUHJvZmljaWVuY3kiBVJhaWxzDA"
                         }, 
-                        "content_url": "http://www-128.ibm.com/developerworks/linux/library/l-rubyrails/", 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YqicM", 
+                        "content_url": null, 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YmCwM", 
                         "date": {}, 
                         "content": "<div class=\"content\"> A central component of Rails is the class  <span id=\"blank\"></span> , which maps relational tables to Ruby objects and thereby to the data manipulated by controllers and shown in views.  "
                     }, 
@@ -1864,8 +1864,8 @@
                             "name": "Rails", 
                             "key": "aghwbG9wcXVpenIWCxILUHJvZmljaWVuY3kiBVJhaWxzDA"
                         }, 
-                        "content_url": "http://www.slash7.com/articles/2005/01/24/really-getting-started-in-rails", 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y2icM", 
+                        "content_url": null, 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YmSwM", 
                         "date": {}, 
                         "content": "<div class=\"content\">When you create a table, Rails wants it to be plural. Not  story , but  stories . And it wants the  <span id=\"blank\"></span> primary key  column to always be called  id, case sensitive. "
                     }, 
@@ -1893,8 +1893,8 @@
                             "name": "Rails", 
                             "key": "aghwbG9wcXVpenIWCxILUHJvZmljaWVuY3kiBVJhaWxzDA"
                         }, 
-                        "content_url": "http://www.rubysyntax.com/ror.html", 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y7ScM", 
+                        "content_url": null, 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YmiwM", 
                         "date": {}, 
                         "content": "<div class=\"content\">All the programmer needs to do is to subclass the ActiveRecord::Base <span id=\"blank\"></span>, and the program will automatically figure out which RDBMS table to use and what columns the table has."
                     }, 
@@ -1922,8 +1922,8 @@
                             "name": "Freebase", 
                             "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
                         }, 
-                        "content_url": "http://www.rubysyntax.com/ror.html", 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y7icM", 
+                        "content_url": null, 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YmywM", 
                         "date": {}, 
                         "content": "<div class=\"content\">The underlying view code is part of the <span id=\"blank\">Action Pack</span>. "
                     }, 
@@ -1951,8 +1951,8 @@
                             "name": "Ruby", 
                             "key": "aghwbG9wcXVpenIVCxILUHJvZmljaWVuY3kiBFJ1YnkM"
                         }, 
-                        "content_url": "http://www.rubysyntax.com/ror.html", 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y7ycM", 
+                        "content_url": null, 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YnCwM", 
                         "date": {}, 
                         "content": "<div class=\"content\">The data <span id=\"blank\">validation</span> handlers and any update-related handlers (e.g. after_destroy :remove_file, before_update :update_related_details) are also specified and implemented in the model class."
                     }, 
@@ -1980,8 +1980,8 @@
                             "name": "Ruby", 
                             "key": "aghwbG9wcXVpenIVCxILUHJvZmljaWVuY3kiBFJ1YnkM"
                         }, 
-                        "content_url": "http://www.rubysyntax.com/ror.html", 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y8CcM", 
+                        "content_url": null, 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YnSwM", 
                         "date": {}, 
                         "content": "<div class=\"content\">The database access is entirely abstracted from the programmer's point of view, and Rails handles access to all databases automatically; though the use of direct <span id=\"blank\"></span> queries is possible, if necessary. "
                     }, 
@@ -2009,8 +2009,8 @@
                             "name": "Ruby", 
                             "key": "aghwbG9wcXVpenIVCxILUHJvZmljaWVuY3kiBFJ1YnkM"
                         }, 
-                        "content_url": "http://docs.huihoo.com/ruby/ruby-man-1.4/syntax.html", 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y-CcM", 
+                        "content_url": null, 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YniwM", 
                         "date": {}, 
                         "content": " The character set used in the Ruby source files for the current implementation is based on <span id=\"blank\"></span>.  "
                     }, 
@@ -2038,8 +2038,8 @@
                             "name": "Ruby", 
                             "key": "aghwbG9wcXVpenIVCxILUHJvZmljaWVuY3kiBFJ1YnkM"
                         }, 
-                        "content_url": "http://docs.huihoo.com/ruby/ruby-man-1.4/syntax.html", 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y-ScM", 
+                        "content_url": null, 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YnywM", 
                         "date": {}, 
                         "content": "<div class=\"content\">Ruby comments start with \" <span id=\"blank\">#</span> \" outside of a string or character literal  and all following text until the end of the line. "
                     }, 
@@ -2067,8 +2067,8 @@
                             "name": "Ruby", 
                             "key": "aghwbG9wcXVpenIVCxILUHJvZmljaWVuY3kiBFJ1YnkM"
                         }, 
-                        "content_url": "http://docs.huihoo.com/ruby/ruby-man-1.4/syntax.html", 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y-icM", 
+                        "content_url": null, 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YoCwM", 
                         "date": {}, 
                         "content": "<div class=\"content\"> If the Ruby interpreter encounters a line beginning with  =begin , it skips that line and all remaining lines through and including a line that begins with  <span id=\"blank\">=end</span> . "
                     }, 
@@ -2096,10 +2096,125 @@
                             "name": "Ruby", 
                             "key": "aghwbG9wcXVpenIVCxILUHJvZmljaWVuY3kiBFJ1YnkM"
                         }, 
-                        "content_url": "http://docs.huihoo.com/ruby/ruby-man-1.4/syntax.html", 
-                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y-ycM", 
+                        "content_url": null, 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YoSwM", 
                         "date": {}, 
                         "content": "<div class=\"content\">Ruby programs are sequence of expressions.  <span id=\"blank\">Backslashes</span> at the end of line does not terminate expression. "
+                    }, 
+                    {
+                        "index": "ruby", 
+                        "answers": [
+                            "base", 
+                            "yarv", 
+                            "ruby"
+                        ], 
+                        "topic": {
+                            "proficiency": {
+                                "date": {}, 
+                                "name": "Ruby", 
+                                "key": "aghwbG9wcXVpenIVCxILUHJvZmljaWVuY3kiBFJ1YnkM"
+                            }, 
+                            "date": {}, 
+                            "name": "Syntax", 
+                            "key": "aghwbG9wcXVpenIcCxIQUHJvZmljaWVuY3lUb3BpYyIGU3ludGF4DA"
+                        }, 
+                        "difficulty": 0, 
+                        "theme": "wiki", 
+                        "proficiency": {
+                            "date": {}, 
+                            "name": "Ruby", 
+                            "key": "aghwbG9wcXVpenIVCxILUHJvZmljaWVuY3kiBFJ1YnkM"
+                        }, 
+                        "content_url": "http://en.wikipedia.org/wiki/Ruby_MRI", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YwCwM", 
+                        "date": {}, 
+                        "content": " As there is currently no specification of the Ruby language, the <span style=\"opacity: 1;\" id=\"blank\"></span> implementation is considered the  de facto  reference."
+                    }, 
+                    {
+                        "index": "yarv", 
+                        "answers": [
+                            "merb", 
+                            "rails", 
+                            "yarv"
+                        ], 
+                        "topic": {
+                            "proficiency": {
+                                "date": {}, 
+                                "name": "Ruby", 
+                                "key": "aghwbG9wcXVpenIVCxILUHJvZmljaWVuY3kiBFJ1YnkM"
+                            }, 
+                            "date": {}, 
+                            "name": "Performance", 
+                            "key": "aghwbG9wcXVpenIhCxIQUHJvZmljaWVuY3lUb3BpYyILUGVyZm9ybWFuY2UM"
+                        }, 
+                        "difficulty": 0, 
+                        "theme": "wiki", 
+                        "proficiency": {
+                            "date": {}, 
+                            "name": "Ruby", 
+                            "key": "aghwbG9wcXVpenIVCxILUHJvZmljaWVuY3kiBFJ1YnkM"
+                        }, 
+                        "content_url": "http://en.wikipedia.org/wiki/Ruby_MRI", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YwSwM", 
+                        "date": {}, 
+                        "content": "<div class=\"content\"> The main developers have thrown their weight behind the virtual machine provided by the  <span style=\"opacity: 1;\" id=\"blank\"></span>  project, which was  merged  into the Ruby  source  tree on  31 December  2006 , and  released  as part of Ruby 1.9."
+                    }, 
+                    {
+                        "index": "fcgi", 
+                        "answers": [
+                            "wsgi", 
+                            "http", 
+                            "fcgi"
+                        ], 
+                        "topic": {
+                            "proficiency": {
+                                "date": {}, 
+                                "name": "Rails", 
+                                "key": "aghwbG9wcXVpenIWCxILUHJvZmljaWVuY3kiBVJhaWxzDA"
+                            }, 
+                            "date": {}, 
+                            "name": "Deployment", 
+                            "key": "aghwbG9wcXVpenIgCxIQUHJvZmljaWVuY3lUb3BpYyIKRGVwbG95bWVudAw"
+                        }, 
+                        "difficulty": 0, 
+                        "theme": "default", 
+                        "proficiency": {
+                            "date": {}, 
+                            "name": "Rails", 
+                            "key": "aghwbG9wcXVpenIWCxILUHJvZmljaWVuY3kiBVJhaWxzDA"
+                        }, 
+                        "content_url": "http://api.rubyonrails.org/files/README.html", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y7CwM", 
+                        "date": {}, 
+                        "content": "<div class=\"content\">  It's possible to run  Rails  on any platform that supports <span style=\"opacity: 1;\" id=\"blank\"></span>. Apache, LiteSpeed, IIS are just a few."
+                    }, 
+                    {
+                        "index": "mongrel", 
+                        "answers": [
+                            "mvc", 
+                            "yarv", 
+                            "mongrel"
+                        ], 
+                        "topic": {
+                            "proficiency": {
+                                "date": {}, 
+                                "name": "Rails", 
+                                "key": "aghwbG9wcXVpenIWCxILUHJvZmljaWVuY3kiBVJhaWxzDA"
+                            }, 
+                            "date": {}, 
+                            "name": "Deployment", 
+                            "key": "aghwbG9wcXVpenIgCxIQUHJvZmljaWVuY3lUb3BpYyIKRGVwbG95bWVudAw"
+                        }, 
+                        "difficulty": 0, 
+                        "theme": "default", 
+                        "proficiency": {
+                            "date": {}, 
+                            "name": "Rails", 
+                            "key": "aghwbG9wcXVpenIWCxILUHJvZmljaWVuY3kiBVJhaWxzDA"
+                        }, 
+                        "content_url": "http://api.rubyonrails.org/files/README.html", 
+                        "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y7SwM", 
+                        "date": {}, 
+                        "content": "<div class=\"content\"> <span style=\"opacity: 1;\" id=\"blank\"></span> is a Ruby based webserver with a C component (which requires compilation) that is suitable for development and deployment of  Rails  applications. "
                     }
                 ]
-

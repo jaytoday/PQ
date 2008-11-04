@@ -68,3 +68,20 @@ class RPCMethods(webapp.RequestHandler):
   	    print ""
   	    print "---do not copy this line or below---"  #TODO: Don't print HTTP headers
   
+
+
+
+
+  def get_scores(self, *args):
+	employer = Employer.get(args[0])
+	scores = employer.scores.fetch(1000)
+	for score in scores:
+		print score.type
+		print score.score
+		
+	# add up all scores for a given quiztaker, and then rank them.
+	return 
+
+
+  	
+  	

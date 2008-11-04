@@ -17,9 +17,10 @@ class QuizTaker(db.Model):
     scores = db.ListProperty(db.Key) # ItemScore keys
     levels = db.ListProperty(db.Key) # ProficiencyLevel keys
     date = db.DateTimeProperty(auto_now_add=True)
+    occupation = db.StringProperty(required=False)
     work_status = db.StringProperty(required=False)
     location = db.StringProperty(required=False)
-    webpage = db.StringProperty(required=False)
+    webpage = db.LinkProperty(required=False)
     about = db.StringProperty(required=False)
     quote = db.TextProperty(required=False)
     # storing personal image? 

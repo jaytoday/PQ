@@ -295,7 +295,7 @@ border:1px solid #DDDDDD;
 }
 
 div#right_corner{
-height: 0px; float: right; 
+height: 0px; float: right; margin:0 5px;
 }
 div#right_corner img{
 cursor: pointer;

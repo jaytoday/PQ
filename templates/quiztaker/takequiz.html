@@ -1,40 +1,18 @@
 {% extends "../base.html" %}
 {% block head %}
-<!--<script type="text/javascript" src="/static/scripts/quiztaker/quizbox.min.js"></script>-->
-
 <script type="text/javascript" src="/static/scripts/quiztaker/quizbox.js"></script> 
+<script type="text/javascript" src="/static/scripts/quiztaker/take_quiz.js"></script> 
 <link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/quiz/quiz_page.css"/>
 <link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/quiz/quiz.css"/>
 <link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/quiz/quizframe.css"/>
 
+<script type="text/javascript" >
 
-<script>
-
-$(document).ready(function()
-{
-return;
-	$('div#login').hide();
-		$("#begin_quiz a").quizbox({
-		'zoomSpeedIn': 400,
-		'zoomSpeedOut': 400,
-		'overlayShow': true,
-		'overlayOpacity': 0.9,
-		'itemLoadCallback': getGroupItems
-	}); 
-	
-	$("#begin_quiz a").click();
-	
-	
-});
-
-
-
- 
 $.plopquiz.quizitemList = [
-        {url: '/intro/?page=intro', item_type:'intro', answers: ['Take This Quiz'], noSkip: true},
+      {url: '/intro/?page=intro', item_type:'intro', answers: ['Take This Quiz'], noSkip: true, vendor: "{{ vendor_name }}"},
         {url: '/intro/?page=instructions', item_type:'instructions', answers: [ 'dog ate', 'web made' ], noSkip: true},
         {url: '/intro/?page=instructions2', item_type:'instructions2', answers: [ 'compilers', 'interpreters' ], timed: "instructions2", timeout: 'reset'},
-        {url: '/intro/?page=begin_quiz', item_type:'begin_quiz', answers: [ 'Begin Quiz' ], noSkip: true},
+    {url: '/intro/?page=begin_quiz', item_type:'begin_quiz', answers: [ 'Begin Quiz' ], noSkip: true},
  
 {% for item in quiz_items %}
         {
@@ -47,54 +25,22 @@ $.plopquiz.quizitemList = [
                 answer3: "{{ item.answer3 }}",
                 answers: {{ item.answers }},
                 proficiency: '{{ item.proficiency }}',
+                vendor: '{{ vendor }}',
                 item_type:'quiz_item',
                 timed: "timeout",
                 timeout: "skip"
         },
 {% endfor %} 
 
-        {url: "/quiz_complete/", item_type:"quiz_complete", noSkip: true, answers: [ "Submit" ] }
+    
+        {url: "/intro/?page=quiz_complete", item_type:"quiz_complete", noSkip: true, answers: [ "Submit" ] }
 ];
 
-function getGroupItems(opts) {
-	jQuery.each(quizitemList, function(i, val) {
-		opts.itemArray.push(val);
-	});
-}
-
-
-
-
-// Server object that will contain the callable methods
-var server = {};
-var item_count = 0;
-
-// Insert 'Add' as the name of a callable method
-InstallFunction(server, 'AddScore', 'quiztaker');
-InstallFunction(server, 'Init', 'quiztaker');
-
-
-function SubmitScore(ans, key) {
-	server.AddScore(ans, key, onAddSuccess);
-}
-
-function doInit() {
-        server.Init();
-}
-
-function onAddSuccess(response)
-{
-}
-
-
-</script>
+</script> 
 
 {% endblock %}
 
-
+ {% block login %} {% endblock login %}
 {% block main %}
-
-<div id="begin_quiz"><a href="javascript:;">Begin Quiz</a></div>
-
-
+<div id="begin_quiz"><a href="javascript:;"></a></div>
 {% endblock %}

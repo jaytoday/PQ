@@ -36,3 +36,11 @@ class ViewHomepage(webapp.RequestHandler):
         path = tpl_path(HOMEPAGE_PATH + 'homepage.html')
         self.response.out.write(template.render(path, template_values))
 
+
+class ExitPage(webapp.RequestHandler):
+
+    def get(self):
+        template_values = {}
+        path = tpl_path(HOMEPAGE_PATH + 'exit.html')
+        self.response.out.write(template.render(path, template_values))
+

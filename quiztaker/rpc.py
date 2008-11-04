@@ -6,6 +6,7 @@ from google.appengine.ext import db
 import simplejson
 from .model.quiz import QuizItem, ItemScore
 from .model.user import QuizTaker, InviteList
+from .model.employer import Employer 
 from methods import refresh_data, dump_data, load_data
 from .utils.utils import tpl_path, ROOT_PATH, raise_error
 
@@ -78,43 +79,48 @@ class RPCMethods(webapp.RequestHandler):
   	    print ""
   	    print "---do not copy this line or below---"  #TODO: Don't print HTTP headers
   
+  
+  
+  
   def AddScore(self, *args):
+	logging.debug('Posting Answer')    
+	picked_answer = str(args[0])
+	#Lookup quiz item with slug, clean it, and match it. 
+	this_item = QuizItem.get(args[1])
+	logging.debug(this_item)  
 
-    logging.debug('Posting Answer')    
-    picked_answer = str(args[0])
-    #Lookup quiz item with slug, clean it, and match it. 
-    this_item = QuizItem.get(args[1])
-    logging.debug(this_item)  
+	picked_clean = picked_answer.strip()
+	picked_clean = picked_clean.lower()
+	correct_clean = this_item.index.strip()
+	correct_clean = correct_clean.lower()
 
-    picked_clean = picked_answer.strip()
-    picked_clean = picked_clean.lower()
-    correct_clean = this_item.index.strip()
-    correct_clean = correct_clean.lower()
+	if picked_clean == correct_clean:
+		this_score = 1 # TODO add Timer Data 
+	else:
+		this_score = 0
+		logging.debug('Incorrect answer')
+		
+	# need to factor in timer
+	# Need Better Temp Storing 
 
+	score = ItemScore(type='temp',    
+					  quiz_item = this_item.key(),
+					  score = this_score,
+					  correct_answer = this_item.index,
+					  picked_answer = picked_answer,
+					  )
 
-    if picked_clean == correct_clean:
-        this_score = 1 # TODO add Timer Data 
-    else:
-        this_score = 0
-        logging.debug('Incorrect answer') 
+	if len(args[2]) > 0: score.vendor = Employer.get(args[2])
+										
+	try:
+		score.put()
+		logging.info('Score entered by user %s with score %s, correct: %s, picked: %s'
+					 % (score.quiz_taker, score.score, score.picked_answer, score.correct_answer))
+	except:
+		raise_error('Error saving score for user %s with score %s, correct: %s, picked: %s'
+					% (score.quiz_taker, score.score, score.picked_answer, score.correct_answer))
 
-
-          
-    try:
-        score = ItemScore(type='temp', 
-                          quiz_item = this_item.key(),
-                          score = this_score,
-                          correct_answer = this_item.index,
-                          picked_answer = picked_answer,
-                          )
-        score.put()
-        logging.info('Score entered by user %s with score %s, correct: %s, picked: %s'
-                     % (score.quiz_taker, score.score, score.picked_answer, score.correct_answer))
-    except:
-        raise_error('Error saving score for user %s with score %s, correct: %s, picked: %s'
-                    % (score.quiz_taker, score.score, score.picked_answer, score.correct_answer))
-
-    return score.score
+	return score.score
 
 
 ## QUIZTAKER SESSION ##
@@ -131,8 +137,48 @@ class RPCMethods(webapp.RequestHandler):
         
 
 
-  def NewUser(self, *args):
-  
+  def Register(self, *args):
+	logging.debug('Registering New User')
+	try:     
+		new_quiz_taker = QuizTaker(name = args[0],
+								   email = str(args[1]),
+								   key_name = str(args[1]),
+								   occupation = args[2],
+								   work_status = args[3],
+								   webpage = args[4],
+								   location = args[5]
+								   )
+		new_quiz_taker.put()
+	except: return "invalid webpage or e-mail address"
+	print new_quiz_taker.key()
+	logging.debug('New User - Saving Score')    
+	q = db.GqlQuery("SELECT * FROM ItemScore WHERE type = 'temp'")
+	results = q.fetch(1000)
+	for result in results:
+		movescore = ItemScore(quiz_taker = new_quiz_taker.key(),
+							score = result.score,
+							quiz_item = result.quiz_item,
+							picked_answer = result.picked_answer,
+							correct_answer = result.correct_answer,
+							vendor = result.vendor,
+							type = new_quiz_taker.email
+							)
+		movescore.put()
+		logging.debug('Moved A Score Item')
+		result.type = 'trash'
+		result.put()
+		new_quiz_taker.scores.append(movescore.key())   # These perform a duplicate reference to the quiz_taker property in ItemScore. 
+	new_quiz_taker.put()
+	list_entry = InviteList()    
+	list_entry.email = str(args[1])
+	list_entry.put()
+
+
+
+
+
+  def DemoNewUser(self, *args):  #deprecated
+    # f.name.value, f.email.value, f.occupation.value, f.work_status.value, f.webpage.value, f.location.value
     logging.debug('New User - Adding to E-mail List')    
     list_entry = InviteList()    
     list_entry.email = str(args[0])
@@ -149,7 +195,7 @@ class RPCMethods(webapp.RequestHandler):
                             quiz_item = result.quiz_item,
                             picked_answer = result.picked_answer,
                             correct_answer = result.correct_answer,
-                            type = 'demo')
+                            vendor = result.vendor)
         movescore.put()
         logging.debug('Moved A Score Item')
         result.type = 'trash'
@@ -157,6 +203,7 @@ class RPCMethods(webapp.RequestHandler):
         new_quiz_taker.scores.append(movescore.key())   # These perform a duplicate reference to the quiz_taker property in ItemScore. 
     new_quiz_taker.put()
     
+
         
         
   def AllScores (self, *args):        

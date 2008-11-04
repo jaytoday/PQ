@@ -104,14 +104,11 @@ function InstallFunction(obj, functionName) {
 var server = {};
 var item_count = 0;
 
-InstallFunction(server, 'NewUser');
-
-
-
+InstallFunction(server, 'DemoNewUser');
 
 
 function SaveScore(email) {
-	server.NewUser(email, onAddSuccess);
+	server.DemoNewUser(email, onAddSuccess);
     $('#signup').hide();
    
      $('div#whitewrapper').css({

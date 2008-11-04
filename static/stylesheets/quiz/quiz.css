@@ -2,7 +2,7 @@ div#quiz_overlay {
 	background-color: #333;
         height: 100%;
 	left: 0;
-        opacity: .3;
+    opacity: .8;
 	position:absolute;
 	top: 0;
 	width: 100%;
@@ -48,7 +48,7 @@ div#quiz_content {
 /* Quiz Content Styles */
 
 .intro_content{
-height: 360px;
+
 }
 
 .instructions_content{
@@ -60,7 +60,7 @@ height: 340px;
 }
 
 .begin_quiz_content{
-height: 355px;
+height:365px;
 }
 
 .quiz_item_content{
@@ -68,7 +68,7 @@ height: 335px;
 }
 
 .quiz_complete_quiz_inner{
-width: 365px;
+width: 395px;
 }
 
 
@@ -77,7 +77,8 @@ margin: 0 0 0 35px;
 }
 
 .intro_answers{
-margin-left: -10px;
+height:0;
+margin:20px -10px 50px;
 }
 
 .begin_quiz_answers{
@@ -85,7 +86,7 @@ margin: -10px 0 0 -10px;
 }
 
 .quiz_complete_answers{
-height:350px;
+height:302px;
 }
 
 #quiz_frame {
@@ -155,7 +156,7 @@ div#quiz_answers{
 
 
 a#confirm{
-margin: 0 0 0 65px;
+margin: -10px 0 0 65px;
 }
 
 a#confirm div.answertext {
@@ -183,7 +184,6 @@ width:80px;
 
 .timer_wrapper{
         background:#EEEAF8 none repeat scroll 0 0;
-        border:3x solid #DDDDDD;
         display:        none;
         height:10px;
         margin:-10px 0 10px;
@@ -289,8 +289,8 @@ td#quiz_pink_right {
 
 div#quiz_outer {
         position: absolute;
-        top: 0;
-        left: 0;
+        top: 50px;
+        left: 150px;
         z-index: 90;
         padding: 18px 18px 58px 18px;
         margin-left:    25%;
@@ -503,3 +503,43 @@ td#choose_quiz{
 }
 
 
+
+
+/* Signup */
+
+form.signup input, form.signup textarea {
+    border: solid 1px #85b1de;
+    background: #fff url('../img/base/forms/formbg.gif') repeat-x;
+    background-position: top;
+    width:130px;
+}
+form.signup input:focus, form.signup textarea:focus {
+    background-image: none;
+    background-color: #ffffff;
+    border: solid 1px #bbbbbb;
+}
+
+
+form.signup li{
+float:left;
+margin:5px 10px;
+}
+
+
+form.signup fieldset{
+border:3px solid #DDDDDD;
+height:105px;
+margin:10px;
+overflow:hidden;
+}
+
+form.signup legend {
+padding:2px 10px;
+}
+
+div.form_proceed{
+background:#FFFFFF url(../img/utils/purple_next.png) no-repeat scroll 0 0;
+cursor:pointer;
+float:right;
+margin:-25px 20px;
+ }

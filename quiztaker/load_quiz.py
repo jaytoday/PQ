@@ -63,6 +63,7 @@ class LoadQuiz():
 
   def load_array(self):
         self.quiz_array = []
+        if len(self.proficiencies) == 1: self.QUIZ_ITEM_PER_PROFICIENCY = 10  # in case there is only one proficiency
         for prof_type in self.proficiencies:
             try: proficiency = random.sample(self.proficiencies[prof_type],
                                   self.QUIZ_ITEM_PER_PROFICIENCY)

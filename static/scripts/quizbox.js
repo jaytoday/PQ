@@ -198,8 +198,8 @@
 			if (this.id != "skip") 
 			{
 				blankspan.fadeTo(1,0.5);
-				blankspan.css({'padding': '0px 2px'});
-				blankspan.html("&nbsp;" + $(this).text() + "&nbsp;");
+				blankspan.css({'padding': '0px 3px'});
+				blankspan.html($(this).text());
 			}
 			blankspan.fadeTo("slow", 1);
 		},

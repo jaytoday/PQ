@@ -15,6 +15,15 @@
 
                     {
                         "proficiencies": [
+                            "Freebase" 
+                        ], 
+                        "email": "freebase@plopquiz.com", 
+                        "name": "freebase"
+                    },
+                    
+                    
+                    {
+                        "proficiencies": [
                             "Rails", 
                             "Building Webapps",
                             "Ruby"

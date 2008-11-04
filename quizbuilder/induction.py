@@ -62,15 +62,15 @@ QUIZBUILDER_LIMIT = 1
 class RawItemInduction(webapp.RequestHandler):  
  
     def get(self, *args):
-    	try: urlfetch.fetch(args[0][0]) #check for valid url
-    	except: return ["error", "invalid url"]    
-        proficiency = self.save_proficiency(args[0][1])
-        page = self.save_url(args[0][0], proficiency)  
-        build_items = BuildItemsFromPage()
-        raw_quiz_items = build_items.get(page)
-        if not raw_quiz_items: return ["error", "unable to make quiz items"]
-        saved_items = []
-        for item in raw_quiz_items:
+		try: urlfetch.fetch(args[0][0]) #check for valid url
+		except: return ["error", "invalid url"]    
+		proficiency = self.save_proficiency(args[0][1])
+		page = self.save_url(args[0][0], proficiency)  
+		build_items = BuildItemsFromPage()
+		raw_quiz_items = build_items.get(page)
+		if raw_quiz_items[0] == "error": return ["error", raw_quiz_items[1]]
+		saved_items = []
+		for item in raw_quiz_items:
 			save_item = self.save_item(item)
 			if save_item:
 				saved_items.append(save_item)
@@ -78,8 +78,8 @@ class RawItemInduction(webapp.RequestHandler):
 				logging.error("unable to save item: ") 
 				logging.error(str(item))
 			continue     
-        return saved_items 
-        
+		return saved_items 
+
        
                 
         #self.response.out.write(template.render(path, template_values))
@@ -141,13 +141,15 @@ class BuildItemsFromPage():
         raw_quiz_items = []
         tag_threshold = 0
         soup = self.get_soup(page)
-        if not soup.findAll('c:document'): return False
+        if not soup.findAll('c:document'): return ["error", "unable to read the soup"]
         tags = self.get_tags(soup)
+        if not tags: return ["error", "SemanticProxy unable to find tags"]
         for tag in tags:  # Slice [1:...]
         # Check if tag is too short, or too common. (the "she" problem)
         # CHECK IF TAG IS A TYPED TOPIC ON FREEBASE 
             # Make sure that get_similar_topics and get_paragraphs_containing_tag are successful.
             if tag_threshold >= RAW_ITEMS_PER_PAGE: continue
+
             
             similar_topics = self.get_similar_topics(tag)
             if similar_topics: # not just if it exists, but if there's a list.
@@ -159,6 +161,7 @@ class BuildItemsFromPage():
                     raw_quiz_items.append(raw_quiz_item)
                     continue 
 
+        if len(raw_quiz_items) == 0: return ["error", str({"tag_threshold": tag_threshold, "tags": tags})]
         return raw_quiz_items
 
 
@@ -177,10 +180,11 @@ class BuildItemsFromPage():
 	  
   def get_tags(self, soup):
 	page_tags = soup.findAll('c:exact')
-	if len(page_tags) == 0: return "no tags" 
+	if len(page_tags) == 0: return False 
 	tags = [] # for a page, get a relevency-ranked list of topics found in the text. 
 	for tag in page_tags:
 		# escape "" or ' ' 
+		if 'http://' in tag: continue
 		if len(tag.contents[0]) >= MIN_TAG_CHARS: tags.append(str(tag.contents[0]))
 		
 	tags = self.rank_tags(tags)
