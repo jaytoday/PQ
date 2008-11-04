@@ -37,9 +37,11 @@
                 {
                         "instructions2": function()
                         {
-                                $("#example_1, #example_2, #example_3").toggle();
-                                $.plopquiz.settings.instructions.i2timedOut = true;
-                                $.plopquiz.specialTimers["instructions2"] = function() {};
+                        	$("#example_1").hide();
+                        	$("#example_2").hide();
+                        	$("#example_3").show();
+                                
+                               // $.plopquiz.specialTimers["instructions2"] = function() {};
                         }
                 }
         };
@@ -63,7 +65,7 @@
                                         {
                                                 $(this).hide();
 
-                                                // reset to start of quiz, later this should handle skiping instructions;
+                                                // reset to start of quiz, later this should handle skipping instructions;
                                                 $.plopquiz.currentItem = 0;
                                         });
 
@@ -84,8 +86,8 @@
                                                 // reset and start timer.
                                                 var reset = function()
                                                 {
-                                                        $('.timer_inner', self).stop();
-
+                                                      //  $('.timer_inner', self).stop();
+                                                        
                                                         $('.timer_inner', self)
                                                                 .css('width', '100%')
                                                                 .animate(
@@ -99,8 +101,6 @@
                                                                                 {
                                                                                         if(quizItem.timed)
                                                                                                 $.plopquiz.specialTimers[quizItem.timed]();
-
-                                                                                        $(self).stop();
 
                                                                                         return reset();
                                                                                 }
@@ -249,7 +249,7 @@
                                 
                                    if(quizItem.item_type == "instructions2")
                                 {
-                                        
+                                       $('a#skip').hide(); 
                                 }
 
 
@@ -319,13 +319,17 @@
 
                         case "instructions2":
 
-                                if(!$.plopquiz.settings.instructions.i2timedOut){
-                                $('.timer_bar').stop();
+                                if(!$.plopquiz.settings.instructions.skip_segment){
+                               $.plopquiz.settings.instructions.i2timedOut = true;
+                               $('.timer_bar').stop();
                                 $('.timer_bar').css('width', '100%'); 
                                 $('#example_1,#example_3').hide('slow');
                                 $('#example_2').show('slow');
-                                $('#quiz_content').find('#answer1,#answer2').unbind('click');
-                                $.plopquiz.settings.instructions.i2timedOut = "true";
+                                $('a#skip').show();
+                                //click binding
+                                console.log($('#quiz_content').find('#answer1,#answer2'));
+                                $('#quiz_answers').find('#answer1,#answer2').unbind('click');
+                                $.plopquiz.settings.instructions.skip_segment = "true";
                                         return; }
                                 else
                                         $.plopquiz.loadItem($.plopquiz.currentItem++);
