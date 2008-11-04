@@ -86,7 +86,7 @@
                                                 // reset and start timer.
                                                 var reset = function()
                                                 {
-                                                      //  $('.timer_inner', self).stop();
+                                                      $('.timer_inner', self).stop();
                                                         
                                                         $('.timer_inner', self)
                                                                 .css('width', '100%')
@@ -95,12 +95,15 @@
                                                                         width: 0
                                                                 },
                                                                 {
-                                                                        complete: function()
+                                                                	
+                                                                      complete: function()
                                                                         {
                                                                                 if(quizItem.timeout == "reset")
                                                                                 {
                                                                                         if(quizItem.timed)
                                                                                                 $.plopquiz.specialTimers[quizItem.timed]();
+
+                                                                                        $(self).stop();
 
                                                                                         return reset();
                                                                                 }
@@ -137,6 +140,8 @@
                                 })
                                 .click(function(e)
                                 {
+                                	if ($(this).hasClass('disabled')){ return false; }
+                              
                                        $.plopquiz.submitAnswer($(this).find('div.answertext').text().replace(/\n/g,"")); 
                                 })
                                 .each(function()
@@ -276,7 +281,6 @@
 										
 										var current_id  = $(this).attr('id');
 										var next_id  = parseInt(current_id) + 1;
-										console.log(current_id, next_id);
 										
 										if ($('form.signup').find('ul#' + next_id).length == 0){ Register(document.signup);   return;}
 										$('form.signup').find('ul#' + current_id).fadeOut(200, function(){ $('form.signup').find('ul#' + next_id).fadeIn(200); });
@@ -327,12 +331,12 @@
                                 $('#example_2').show('slow');
                                 $('a#skip').show();
                                 //click binding
-                                console.log($('#quiz_content').find('#answer1,#answer2'));
-                                $('#quiz_answers').find('#answer1,#answer2').unbind('click');
+                              $('#quiz_answers').find('#answer1,#answer2').addClass('disabled');
                                 $.plopquiz.settings.instructions.skip_segment = "true";
                                         return; }
                                 else
                                         $.plopquiz.loadItem($.plopquiz.currentItem++);
+                                       $('#quiz_answers').find('#answer1,#answer2').removeClass('disabled');
                         break;
 
                         case "begin_quiz":
@@ -348,22 +352,20 @@
                                                         return true;
                                         return false;
                                 });
+                                $('.timer_bar').css('width', '100%'); 
                                 $.plopquiz.loadItem($.plopquiz.currentItem++);
                         break;
 
                         case "quiz_item":
+                        $('.timer_bar').css('width', '100%');
                          // ajax call to submit -- (answer, key, vendor)
                          var this_item = $.plopquiz.quizitemList[$.plopquiz.currentItem - 1]; 
-                         console.log(answer, this_item.key, this_item.vendor);
                          SubmitScore(answer, this_item.key, this_item.vendor);
 
                                 $.plopquiz.loadItem($.plopquiz.currentItem++);
                         break;
                         
                         case "quiz_complete":
-                        
-                        
-                        console.log('complete!');
                         break;
                         
                         default:
