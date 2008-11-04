@@ -146,7 +146,7 @@
                                 })
                                 .each(function()
                                 {
-                                        $(this).attr('href', "#" + $(this).attr('id'));
+                                        //$(this).attr('href', "#" + $(this).attr('id'));
                                 });
 
                                 if($.plopquiz.settings.autoStart)

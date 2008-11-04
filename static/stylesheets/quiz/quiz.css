@@ -74,7 +74,7 @@ width: 395px;
 
 
 .instructions_answers{
-margin: 0 0 0 35px;
+margin:0 0 0 25px;
 }
 
 .intro_answers{
@@ -156,11 +156,11 @@ div#quiz_answers{
 
 
 
-a#confirm{
+div#confirm{
 margin: -10px 0 0 65px;
 }
 
-a#confirm div.answertext {
+#confirm div.answertext {
 font-size:1.3em;
 width:170px;
 }
@@ -309,7 +309,7 @@ div#quiz_inner {
 
 }
 
-a#quiz_left, a#quiz_right {
+#quiz_left, #quiz_right {
         position: absolute; 
         bottom: 10px; 
         height: 100%; 
@@ -319,19 +319,19 @@ a#quiz_left, a#quiz_right {
         z-index: 100; 
 }
 
-a#quiz_left {
+#quiz_left {
         left: 0px; 
 }
 
-a#quiz_right {
+#quiz_right {
         right: 0px; 
 }
 
-a#quiz_left:hover {
+#quiz_left:hover {
         background: transparent url(../img/quiz_left.gif) no-repeat 0% 100%;
 }
 
-a#quiz_right:hover {
+#quiz_right:hover {
         background: transparent url(../img/quiz_right.gif) no-repeat 100% 100%;
 }
 
@@ -486,7 +486,7 @@ div#take_quiz{
         font-size:20px;
 }
 
-a#take_quiz{
+#take_quiz{
         margin-left:77px;margin-top:-9px;margin-top:16px;
 }
 
@@ -495,7 +495,7 @@ div#choose_quiz{
         width:30px;
 }
 
-a#choose_quiz{
+#choose_quiz{
         font-size:13px;
 }
 
