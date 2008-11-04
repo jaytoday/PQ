@@ -148,30 +148,35 @@ class RPCMethods(webapp.RequestHandler):
 								   webpage = args[4],
 								   location = args[5]
 								   )
+		if len(args[4]) > 7: new_quiz_taker.webpage = args[4]  
 		new_quiz_taker.put()
 	except: return "invalid webpage or e-mail address"
-	print new_quiz_taker.key()
 	logging.debug('New User - Saving Score')    
 	q = db.GqlQuery("SELECT * FROM ItemScore WHERE type = 'temp'")
 	results = q.fetch(1000)
 	for result in results:
-		movescore = ItemScore(quiz_taker = new_quiz_taker.key(),
-							score = result.score,
-							quiz_item = result.quiz_item,
-							picked_answer = result.picked_answer,
-							correct_answer = result.correct_answer,
-							vendor = result.vendor,
-							type = new_quiz_taker.email
-							)
-		movescore.put()
-		logging.debug('Moved A Score Item')
-		result.type = 'trash'
-		result.put()
-		new_quiz_taker.scores.append(movescore.key())   # These perform a duplicate reference to the quiz_taker property in ItemScore. 
+		try:
+			movescore = ItemScore(quiz_taker = new_quiz_taker.key(),
+								score = result.score,
+								quiz_item = result.quiz_item,
+								picked_answer = result.picked_answer,
+								correct_answer = result.correct_answer,
+								vendor = result.vendor,
+								type = new_quiz_taker.email
+								)
+			movescore.put()
+			logging.debug('Moved A Score Item')
+			result.type = 'trash'
+			result.put()
+			new_quiz_taker.scores.append(movescore.key())   # These perform a duplicate reference to the quiz_taker property in ItemScore. 
+		except:                # if not all parts of the item score are accessible
+		    result.type = 'incomplete'
+		    result.put()	
 	new_quiz_taker.put()
 	list_entry = InviteList()    
 	list_entry.email = str(args[1])
 	list_entry.put()
+	return new_quiz_taker.scores
 
 
 

@@ -19,8 +19,8 @@ function doInit() {
 function onAddSuccess(response)
 {
 
-$.event.trigger('quizclosing');
-
+//$.event.trigger('quizclosing');
+//window.location = "/preview/";
 
 
 return;
