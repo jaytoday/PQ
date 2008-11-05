@@ -126,6 +126,7 @@
                                                 $(this).stop();
                                         });
 
+                               
                                 var textHolder = $('#blank').text();
 
                                 $('#quiz_answers .answer').hover(function()
@@ -272,7 +273,10 @@
                                                 $("#proficiency_choices").append('<input type="checkbox" value="' + i + '" checked /><span class="proficiency">' + i + '</span><br />');
                                 }
                                 
-                                                  
+                                      if(quizItem.item_type == "quiz_item")
+                                {
+                                              $('#blank').empty();
+										  }   
                				if(quizItem.item_type == "quiz_complete")
                                 {
                                 	$('div#confirm').hide();

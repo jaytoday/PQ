@@ -43,18 +43,13 @@ DEFAULT_PAGES = [#"http://en.wikipedia.org/wiki/Inference",
                  ]
 
 AC_LIMIT = 100 # Limit of answer choice candidates per quiz item
-AC_MIN = 8 # Minimum of answer choices required.
+AC_MIN = 5 # Minimum of answer choices required.
 
-RAW_ITEMS_PER_PAGE = 10 # Limit of quiz items created per page 
+RAW_ITEMS_PER_PAGE = 15 # Limit of quiz items created per page 
 
 MIN_TAG_CHARS = 4 # Minimum characters per tag
 
 RAW_ITEMS_PER_TAG = 5 # Limit of quiz items created per tag.
-
-TOTAL_RAW_QUIZ_ITEMS =  15
-
-QUIZBUILDER_LIMIT = 1
-
 
 
 

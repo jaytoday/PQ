@@ -104,8 +104,14 @@ remote callers access to private/protected "_*" methods.
   def GetRawItemsForProficiency(self, *args):  
       data = DataMethods()
       this_proficiency = Proficiency.gql("WHERE name = :1 ORDER BY date DESC", args[0]) # try get_or_insert if Proficiency is key
-      raw_items = RawQuizItem.gql("WHERE page = :1 AND moderated = False", this_proficiency.get().pages.get()) # only get unmoderated items
-      try: return data.dump_raw_items(raw_items.fetch(10))  # get 10 at a time...todo: lazy rpc-loader.
+      prof_pages = this_proficiency.get().pages.fetch(10)
+      raw_items = []
+      for p in prof_pages:
+          these_items = RawQuizItem.gql("WHERE page = :1 AND moderated = False", p ) # only get unmoderated items
+          items = these_items.fetch(1000)
+          for i in items:
+          	raw_items.append(i)
+      try: return data.dump_raw_items(raw_items)  # get 10 at a time...todo: lazy rpc-loader.
       except: return simplejson.dumps([])
 
   def GetTopicsForProficiency(self, *args):  
