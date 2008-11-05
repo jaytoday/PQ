@@ -1,13 +1,12 @@
-		$(function(){
-$('div#right_corner').find('span').text('');
-			//tabs
-			$('.profile ul').tabs();
-			
-			 $('.dynacloud').dynaCloud();
+$(function()
+{
+        $('div#right_corner').find('span').text('');
+        //tabs
+        $('.profile ul').tabs();
 
-		//$("div.dynacloud").dynaCloud();
+        $('.dynacloud').dynaCloud();
 
-// $.merge($.dynacloud.stopwords, [ "der", "die", "das" ]); -- add filters
+        //$("div.dynacloud").dynaCloud();
 
-			
-		});
+        // $.merge($.dynacloud.stopwords, [ "der", "die", "das" ]); -- add filters
+});
