@@ -1026,7 +1026,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y_CsM", 
                         "date": {}, 
-                        "content": "<div class=\"content\"><span  id=\"blank\">Data modeling</span>shares a lineage with other methods for describing things, like the taxonomy of animal species, but can be applied to everything from birds and insects to cars and comedians. "
+                        "content": "<div class='focus'><span  id=\"blank\"></span>shares a lineage</div> with other methods for describing things, like the taxonomy of animal species, but can be applied to everything from birds and insects to cars and comedians. "
                     }, 
                     {
                         "index": "type", 
@@ -1055,7 +1055,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y_SsM", 
                         "date": {}, 
-                        "content": "<div class=\"content\">  Very often, property names only make sense when the <span  id=\"blank\">type</span> is known.  For instance, in the Film type, it is enough to for a property to say \"Budget\" since it is understood it is the budget of a Film."
+                        "content": "  Very often, property names only make sense <div class='focus'>when the <span  id=\"blank\"></span> is known.</div>  For instance, in the Film type, it is enough to for a property to say \"Budget\" since it is understood it is the budget of a Film."
                     }, 
                     {
                         "index": "properties", 
@@ -1084,7 +1084,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y_isM", 
                         "date": {}, 
-                        "content": "<div class=\"content\">  Cross-typing also provides similar capability to object inheritance.  Although Metaweb does not support inheritance directly, types can declare other types they depend on that include <span id=\"blank\">properties</span> that normally would be expected."
+                        "content": "  Cross-typing also provides similar capability to object inheritance.  Although Metaweb does not support inheritance directly, types can declare other types they depend on <div class='focus'>that include <span id=\"blank\"></span></div> that normally would be expected."
                     }, 
                     {
                         "index": "full objects", 
@@ -1113,7 +1113,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y_ysM", 
                         "date": {}, 
-                        "content": "<div class=\"content\"> In a relational system, it might be more convenient to assign string literals as property values.  In Metaweb however, it's just as easy to make them <span  id=\"blank\">full objects</span> with significant benefits. "
+                        "content": " In a relational system, it might be more convenient to assign string literals as property values.  In Metaweb however, it's just as easy to make them <div class='focus'><span  id=\"blank\"></span> with significant benefits.</div> "
                     }, 
                     {
                         "index": "domain", 
@@ -1142,7 +1142,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YgCwM", 
                         "date": {}, 
-                        "content": "<div class=\"content\">    The most interesting aspect of Arnold's topic is that it includes a user-created type, Impersonated Celebrity, from the user-created <span  id=\"blank\"></span> of American Comedy. "
+                        "content": "    The most interesting aspect of Arnold's topic is that it includes a user-created type, Impersonated Celebrity, from <div class='focus'> the user-created <span  id=\"blank\"></span> of American Comedy.</div> "
                     }, 
                     {
                         "index": "topic", 
@@ -1171,7 +1171,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YgSwM", 
                         "date": {}, 
-                        "content": "<div class=\"content\">The most important concept behind types is that new or existing types can be added to a <span id=\"blank\"></span> in order to provide additional information about it and to add it to another domain. "
+                        "content": "The most important concept behind types is that new or existing types can be <div class='focus'> added to a <span id=\"blank\"></span></div> in order to provide additional information about it and to add it to another domain. "
                     }, 
                     {
                         "index": "query", 
@@ -1200,7 +1200,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YgiwM", 
                         "date": {}, 
-                        "content": "<div class=\"content\">The <span  id=\"blank\"></span> Editor provides an easy way to go through the process of creating the set of properties, also known as the schema, that constitute the essential information about a type.  "
+                        "content": "<div class='focus'> The <span  id=\"blank\"></span> Editor provides an easy way</div> to go through the process of creating the set of properties, also known as the schema, that constitute the essential information about a type.  "
                     }, 
                     {
                         "index": "write", 
@@ -1229,7 +1229,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YgywM", 
                         "date": {}, 
-                        "content": " You can use the Query Editor to perform <span  id=\"blank\"></span> operations that insert new information into the Freebase database. "
+                        "content": " You can use the Query Editor to <div class='focus'> perform <span  id=\"blank\"></span> operations</div> that insert new information into the Freebase database. "
                     }, 
                     {
                         "index": "ASCII", 
@@ -1258,7 +1258,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YhCwM", 
                         "date": {}, 
-                        "content": "<div class=\"content\">The value property of a key must be a string of <span  id=\"blank\">ASCII</span> characters, and may include letters, numbers, underscores, hyphens and dollar signs."
+                        "content": "The value property of a key must be <div class='focus'> a string of <span  id=\"blank\"></span> characters,</div> and may include letters, numbers, underscores, hyphens and dollar signs."
                     }, 
                     {
                         "index": "group", 
@@ -1287,7 +1287,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YhSwM", 
                         "date": {}, 
-                        "content": "<div class=\"content\"> The /type/object type exists simply as a convenient placeholder. It serves to <span  id=\"blank\"></span> the /type/ property objects that represent the common object properties.\n\n  "
+                        "content": " The /type/object type exists simply as a convenient placeholder. It serves to <div class='focus'> <span  id=\"blank\"></span> the /type/ property objects</div> that represent the common object properties.\n\n  "
                     }, 
                     {
                         "index": "humans", 
@@ -1316,7 +1316,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YhiwM", 
                         "date": {}, 
-                        "content": "<div class=\"content\">In order to make the data structure more understandable to <span  id=\"blank\"></span> , Metaweb allows us to view the graph through an object-oriented lens. "
+                        "content": "In order to make the data structure <div class='focus'> more understandable to <span  id=\"blank\"></span></div> , Metaweb allows us to view the graph through an object-oriented lens. "
                     }, 
                     {
                         "index": "usergroups", 
@@ -1345,7 +1345,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YhywM", 
                         "date": {}, 
-                        "content": "<div class=\"content\"> Every object has a permission property that refers to a /type/permission object. The permission object specifies a set of <span  id=\"blank\"></span> whose members have permission to modify the object.\n\n"
+                        "content": " Every object has a permission property that refers to a /type/permission object. The permission object <div class='focus'> specifies a set of <span  id=\"blank\"></span></div> whose members have permission to modify the object.\n\n"
                     }, 
                     {
                         "index": "namespaces", 
@@ -1374,7 +1374,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YiCwM", 
                         "date": {}, 
-                        "content": "<div class=\"content\">A number of important <span  id=\"blank\"></span> are populated with pre-defined objects using names defined by international standards. The languages in /lang use language codes defined by ISO 639. The media types in /media_type are defined by IANA. "
+                        "content": "A number of <div class='focus'> important <span  id=\"blank\"></span> are populated</div> with pre-defined objects using names defined by international standards. The languages in /lang use language codes defined by ISO 639. The media types in /media_type are defined by IANA. "
                     }, 
                     {
                         "index": "containedby", 
@@ -1403,7 +1403,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YiSwM", 
                         "date": {}, 
-                        "content": "  When creating /location/ location topics the idea is to provide (at least) two levels of hierarchical containment in the <span  id=\"blank\">containedby</span> property.  For example, in the US, cities should specify what county they are in as well as what state they are contained in.    "
+                        "content": "  When creating /location/ location topics the idea is to provide (at least) two levels of hierarchical <div class='focus'> containment in the <span  id=\"blank\"></span> property</div>.  For example, in the US, cities should specify what county they are in as well as what state they are contained in.    "
                     }, 
                     {
                         "index": "schema", 
@@ -1432,7 +1432,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YiiwM", 
                         "date": {}, 
-                        "content": "If you have a large amount of data that you want to load into Freebase you should first have a <span  id=\"blank\">schema</span>  designed for it.   You should also take a look at the topics listed under  Content Guidelines and Policies  to make sure your data is appropriate for Freebase. "
+                        "content": "If you have a large amount of data that you want to load into Freebase you should <div class='focus'> first have a <span  id=\"blank\"></span>  designed</div> for it.   You should also take a look at the topics listed under  Content Guidelines and Policies  to make sure your data is appropriate for Freebase. "
                     }, 
                     {
                         "index": "javascript", 
@@ -1461,7 +1461,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YiywM", 
                         "date": {}, 
-                        "content": " Mjt  is a <span  id=\"blank\">Javascript</span> application framework that runs entirely in a web browser, based on a templating engine. "
+                        "content": " <div class='focus'> Mjt  is a <span  id=\"blank\"></span> application framework</div> that runs entirely in a web browser, based on a templating engine. "
                     }, 
                     {
                         "index": "jsonp", 
@@ -1490,7 +1490,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YjCwM", 
                         "date": {}, 
-                        "content": "<div class=\"content\">Mjt is particularly useful with <span  id=\"blank\">JSONP</span>   services that return  JSON  values and accept a   callback=   parameter, such as the  Freebase  service and the  Yahoo JSON API .  With these services you can use mjt to build \"mash-ups\" that incorporate data from services on multiple hosts."
+                        "content": "Mjt is particularly useful with<div class='focus'>  <span  id=\"blank\"></span>   services that return  JSON  values</div> and accept a   callback=   parameter, such as the  Freebase  service and the  Yahoo JSON API .  With these services you can use mjt to build \"mash-ups\" that incorporate data from services on multiple hosts."
                     }, 
                     {
                         "index": "hosts", 
@@ -1519,7 +1519,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YjSwM", 
                         "date": {}, 
-                        "content": "<div class=\"content\">The primary mechanism for fetching data is the dynamic  &lt;script  src=\"\"&gt; tag.  This has the advantage that it can be used to fetch data from services on other <span  id=\"blank\">hosts</span>. "
+                        "content": "The primary mechanism for fetching data is  the dynamic  &lt;script  src=\"\"&gt; tag. This has the advantage that it can be used to fetch data from <div class='focus'>services on other <span  id=\"blank\"></span>.</div> "
                     }, 
                     {
                         "index": "clone", 
@@ -1548,7 +1548,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YjiwM", 
                         "date": {}, 
-                        "content": "A major feature of the application editor is the ability to <span id=\"blank\">clone</span> or import files from applications created by you or other users. If you're a novice developer this is an easy way to bring working code into your own applications. "
+                        "content": "A major feature of the application editor is <div class='focus'> the ability to <span id=\"blank\"></span> or import files</div> from applications created by you or other users. If you're a novice developer this is an easy way to bring working code into your own applications. "
                     }, 
                     {
                         "index": "error", 
@@ -1577,7 +1577,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YjywM", 
                         "date": {}, 
-                        "content": "<div class=\"content\">If an Acre script exits before calling acre.start_response(), a <span  id=\"blank\">error</span>  response is generated.  "
+                        "content": "If an Acre script exits before calling acre.start_response(), a <div class='focus'> <span  id=\"blank\"></span>  response is generated. </div> "
                     }, 
                     {
                         "index": "scaffolding", 
@@ -1606,7 +1606,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YkCwM", 
                         "date": {}, 
-                        "content": "Rails provides <span id=\"blank\"></span> which can automatically construct some of the models and views needed for a basic website."
+                        "content": "<div class='focus'> Rails provides <span id=\"blank\"></span></div> which can automatically construct some of the models and views needed for a basic website."
                     }, 
                     {
                         "index": "configuration", 
@@ -1635,7 +1635,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YkSwM", 
                         "date": {}, 
-                        "content": "\"Convention over <span id=\"blank\"></span>\" means a developer only needs to specify unconventional aspects of the application."
+                        "content": "<div class='focus'>   \"Convention over <span id=\"blank\"></span>\" </div>means a developer only needs to specify unconventional aspects of the application."
                     }, 
                     {
                         "index": "ruby", 
@@ -1664,7 +1664,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YkiwM", 
                         "date": {}, 
-                        "content": "<div class=\"content\">After version 2.0,on Rails by default offers both  HTML  and  <span id=\"blank\"></span>  as output format. The latter is the facility for RESTful web services."
+                        "content": "After version 2.0,on Rails by default <div class='focus'> offers both  HTML  and  <span id=\"blank\"></span>  as output format.</div> The latter is the facility for RESTful web services."
                     }, 
                     {
                         "index": "html", 
@@ -1693,7 +1693,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YkywM", 
                         "date": {}, 
-                        "content": "<div class=\"content\"> Rails views are where we leave Ruby code. Rails contains a very nice template language for .rhtml files that combines pure<span id=\"blank\"></span>with embedded Ruby code. "
+                        "content": " Rails views are where we leave Ruby code. Rails contains a very nice template language for .rhtml files that <div class='focus'> combines pure<span id=\"blank\"></span>with embedded Ruby code.</div> "
                     }, 
                     {
                         "index": "html", 
@@ -1722,7 +1722,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YlCwM", 
                         "date": {}, 
-                        "content": "<div class=\"content\">  RHTML  is a true template format -- not simply a way of embedding code in<span id=\"blank\"></span>-- and this is a much more powerful approach.  "
+                        "content": "  RHTML  is a true template format -- <div class='focus'> not simply a way of embedding code in<span id=\"blank\"></span>--</div> and this is a much more powerful approach.  "
                     }, 
                     {
                         "index": "html", 
@@ -1751,7 +1751,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YlSwM", 
                         "date": {}, 
-                        "content": "<div class=\"content\">A template engine adds a custom set of tags to<span id=\"blank\">HTML</span>that allows you to express conditions, loops, and other logic as part of the enhanced markup. "
+                        "content": "A template engine <div class='focus'> adds a custom set of tags to<span id=\"blank\">HTML</span></div>that allows you to express conditions, loops, and other logic as part of the enhanced markup. "
                     }, 
                     {
                         "index": "controllers", 
@@ -1780,7 +1780,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YliwM", 
                         "date": {}, 
-                        "content": "<div class=\"content\"> <span id=\"blank\"></span> carry out your application logic in its abstract form. That is, the Ruby scripts in an application's app/controllers/ directory will load model data into variables, save it back, and massage and manipulate it.  "
+                        "content": " <div class='focus'> <span id=\"blank\"></span> carry out your application logic in its abstract form.</div> That is, the Ruby scripts in an application's app/controllers/ directory will load model data into variables, save it back, and massage and manipulate it.  "
                     }, 
                     {
                         "index": "model", 
@@ -1809,7 +1809,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YlywM", 
                         "date": {}, 
-                        "content": "<div class=\"content\"> The <span id=\"blank\"></span> part of a Rails application is primarily the underlying database it uses.  In fact, in many ways a Rails application is just a way to perform manipulations on the data in a relational database management system."
+                        "content": "<div class='focus'>  The <span id=\"blank\"></span> part of a Rails application</div> is primarily the underlying database it uses.  In fact, in many ways a Rails application is just a way to perform manipulations on the data in a relational database management system."
                     }, 
                     {
                         "index": "activerecord", 
@@ -1838,7 +1838,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YmCwM", 
                         "date": {}, 
-                        "content": "<div class=\"content\"> A central component of Rails is the class  <span id=\"blank\"></span> , which maps relational tables to Ruby objects and thereby to the data manipulated by controllers and shown in views.  "
+                        "content": " <div class='focus'> A central component of Rails is the class  <span id=\"blank\"></span>,</div> which maps relational tables to Ruby objects and thereby to the data manipulated by controllers and shown in views.  "
                     }, 
                     {
                         "index": "auto_increment", 
@@ -1867,7 +1867,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YmSwM", 
                         "date": {}, 
-                        "content": "<div class=\"content\">When you create a table, Rails wants it to be plural. Not  story , but  stories . And it wants the  <span id=\"blank\"></span> primary key  column to always be called  id, case sensitive. "
+                        "content": "When you create a table, Rails wants it to be plural. Not  story , but  stories . <div class='focus'> And it wants the  <span id=\"blank\"></span> primary key  column</div> to always be called  id, case sensitive. "
                     }, 
                     {
                         "index": "class", 
@@ -1896,7 +1896,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YmiwM", 
                         "date": {}, 
-                        "content": "<div class=\"content\">All the programmer needs to do is to subclass the ActiveRecord::Base <span id=\"blank\"></span>, and the program will automatically figure out which RDBMS table to use and what columns the table has."
+                        "content": "All the programmer needs to do is to <div class='focus'> subclass the ActiveRecord::Base <span id=\"blank\"></span>,</div> and the program will automatically figure out which RDBMS table to use and what columns the table has."
                     }, 
                     {
                         "index": "action pack", 
@@ -1908,24 +1908,24 @@
                         "topic": {
                             "proficiency": {
                                 "date": {}, 
-                                "name": "Freebase", 
-                                "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
+                                "name": "Ruby", 
+                                "key": "aghwbG9wcXVpenIVCxILUHJvZmljaWVuY3kiBFJ1YnkM"
                             }, 
                             "date": {}, 
                             "name": "Views", 
-                            "key": "aghwbG9wcXVpenIbCxIQUHJvZmljaWVuY3lUb3BpYyIFVmlld3MM"
+                            "key": "aghwbG9wcXVpenIeCxIQUHJvZmljaWVuY3lUb3BpYyIISGFuZGxlcnMM"
                         }, 
                         "difficulty": 0, 
                         "theme": "default", 
                         "proficiency": {
                             "date": {}, 
-                            "name": "Freebase", 
-                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
+                            "name": "Ruby", 
+                            "key": "aghwbG9wcXVpenIVCxILUHJvZmljaWVuY3kiBFJ1YnkM"
                         }, 
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YmywM", 
                         "date": {}, 
-                        "content": "<div class=\"content\">The underlying view code is part of the <span id=\"blank\">Action Pack</span>. "
+                        "content": "The underlying view code is <div class='focus'> part of the <span id=\"blank\">Action Pack</span></div>. "
                     }, 
                     {
                         "index": "validation", 
@@ -1954,7 +1954,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YnCwM", 
                         "date": {}, 
-                        "content": "<div class=\"content\">The data <span id=\"blank\">validation</span> handlers and any update-related handlers (e.g. after_destroy :remove_file, before_update :update_related_details) are also specified and implemented in the model class."
+                        "content": "<div class=\"focus\">The data <span id=\"blank\">validation</span> handlers and any update-related handlers</div> (e.g. after_destroy :remove_file, before_update :update_related_details) are also specified and implemented in the model class."
                     }, 
                     {
                         "index": "sql", 
@@ -1983,7 +1983,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YnSwM", 
                         "date": {}, 
-                        "content": "<div class=\"content\">The database access is entirely abstracted from the programmer's point of view, and Rails handles access to all databases automatically; though the use of direct <span id=\"blank\"></span> queries is possible, if necessary. "
+                        "content": "The database access is entirely abstracted from the programmer's point of view, and Rails handles access to all databases automatically; though <div class=\"focus\">the use of direct <span id=\"blank\"></span> queries is possible, if necessary.</div> "
                     }, 
                     {
                         "index": "ascii", 
@@ -2012,7 +2012,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YniwM", 
                         "date": {}, 
-                        "content": " The character set used in the Ruby source files for the current implementation is based on <span id=\"blank\"></span>.  "
+                        "content": " The character set used in the Ruby source files for the current implementation <div class='focus'> is based on <span id=\"blank\"></span></div>.  "
                     }, 
                     {
                         "index": "#", 
@@ -2041,7 +2041,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YnywM", 
                         "date": {}, 
-                        "content": "<div class=\"content\">Ruby comments start with \" <span id=\"blank\">#</span> \" outside of a string or character literal  and all following text until the end of the line. "
+                        "content": "<div class='focus'> Ruby comments start with \" <span id=\"blank\">#</span> \" </div>outside of a string or character literal  and all following text until the end of the line. "
                     }, 
                     {
                         "index": "ruby", 
@@ -2070,7 +2070,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YoCwM", 
                         "date": {}, 
-                        "content": "<div class=\"content\"> If the Ruby interpreter encounters a line beginning with  =begin , it skips that line and all remaining lines through and including a line that begins with  <span id=\"blank\">=end</span> . "
+                        "content": " If the Ruby interpreter encounters a line beginning with  =begin , it skips that line and all remaining lines through and including a line <div class='focus'> that begins with  <span id=\"blank\">=end</span>.</div> "
                     }, 
                     {
                         "index": "backslashes", 
@@ -2099,7 +2099,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YoSwM", 
                         "date": {}, 
-                        "content": "<div class=\"content\">Ruby programs are sequence of expressions.  <span id=\"blank\">Backslashes</span> at the end of line does not terminate expression. "
+                        "content": "Ruby programs are sequence of expressions. <div class='focus'>  <span id=\"blank\">Backslashes</span> at the end of line</div> does not terminate expression. "
                     }, 
                     {
                         "index": "ruby", 
@@ -2128,7 +2128,7 @@
                         "content_url": "http://en.wikipedia.org/wiki/Ruby_MRI", 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YwCwM", 
                         "date": {}, 
-                        "content": " As there is currently no specification of the Ruby language, the <span style=\"opacity: 1;\" id=\"blank\"></span> implementation is considered the  de facto  reference."
+                        "content": " As there is currently no specification of the Ruby language, <div class='focus'> the <span style=\"opacity: 1;\" id=\"blank\"></span> implementation </div> is considered the  de facto  reference."
                     }, 
                     {
                         "index": "yarv", 
@@ -2157,7 +2157,7 @@
                         "content_url": "http://en.wikipedia.org/wiki/Ruby_MRI", 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YwSwM", 
                         "date": {}, 
-                        "content": "<div class=\"content\"> The main developers have thrown their weight behind the virtual machine provided by the  <span style=\"opacity: 1;\" id=\"blank\"></span>  project, which was  merged  into the Ruby  source  tree on  31 December  2006 , and  released  as part of Ruby 1.9."
+                        "content": " The main developers have thrown their weight behind the virtual machine <div class='focus'> provided by the  <span style=\"opacity: 1;\" id=\"blank\"></span>  project,</div> which was  merged  into the Ruby  source  tree on  31 December  2006 , and  released  as part of Ruby 1.9."
                     }, 
                     {
                         "index": "fcgi", 
@@ -2186,7 +2186,7 @@
                         "content_url": "http://api.rubyonrails.org/files/README.html", 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y7CwM", 
                         "date": {}, 
-                        "content": "<div class=\"content\">  It's possible to run  Rails  on any platform that supports <span style=\"opacity: 1;\" id=\"blank\"></span>. Apache, LiteSpeed, IIS are just a few."
+                        "content": "  It's possible to run  Rails  on <div class='focus'> any platform that supports <span style=\"opacity: 1;\" id=\"blank\"></span></div>. Apache, LiteSpeed, IIS are just a few."
                     }, 
                     {
                         "index": "mongrel", 
@@ -2215,6 +2215,6 @@
                         "content_url": "http://api.rubyonrails.org/files/README.html", 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y7SwM", 
                         "date": {}, 
-                        "content": "<div class=\"content\"> <span style=\"opacity: 1;\" id=\"blank\"></span> is a Ruby based webserver with a C component (which requires compilation) that is suitable for development and deployment of  Rails  applications. "
+                        "content": "<div class='focus'>  <span style=\"opacity: 1;\" id=\"blank\"></span> is a Ruby based webserver</div> with a C component (which requires compilation) that is suitable for development and deployment of  Rails  applications. "
                     }
                 ]

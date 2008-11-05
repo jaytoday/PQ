@@ -275,7 +275,7 @@
                                                   
                				if(quizItem.item_type == "quiz_complete")
                                 {
-                                	$('a#confirm').hide();
+                                	$('div#confirm').hide();
 									// signup binding
 									$('div.form_proceed').click(function(){
 										
