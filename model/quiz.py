@@ -3,6 +3,7 @@ from google.appengine.api import users
 import logging
 from proficiency import *
 from user import *
+from employer import *
 
 
 # Log a message each time this module get loaded.
@@ -92,7 +93,10 @@ class ItemScore(db.Model):
                                     required=True,
                                     collection_name='scores') # item slug - ["wiki", "bayesian"]
                                     
-  type = db.StringProperty() # demo, stub, etc.
+  vendor = db.ReferenceProperty(Employer,
+                                required=False,
+                                collection_name='scores') # item slug - ["wiki", "bayesian"]
+  type = db.StringProperty(required=False) # demo, stub, etc.
  
 
   

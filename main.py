@@ -12,8 +12,10 @@ import dev.views
 import homepage.views
 import quizbuilder
 import profile.views
+import employer.views
 from google.appengine.ext import admin
 import employer.rpc
+
 
 
     
@@ -26,7 +28,9 @@ def url_handler():
                                         ('/demo/?',
                                          quiztaker.views.PQDemo),
                                         ('/preview/ad_embed/?',
-                                         quiztaker.views.PQDemo),                                         
+                                         quiztaker.views.PQDemo),  
+                                        ('/preview/?',
+                                         homepage.views.ExitPage),                                                                                  
                                         ('/preview/homepage/?',
                                          homepage.views.ViewHomepage),  
                                         ('/preview/proficiency/?',
@@ -36,7 +40,9 @@ def url_handler():
                                         ('/preview/employer/profile/?',
                                          profile.views.ViewEmployerProfile),  
                                         ('/preview/employer/profile/browse/?',
-                                         profile.views.BrowseProfiles),                                           
+                                         profile.views.BrowseProfiles), 
+                                        ('/preview/employer/profile/browse/stats/?',
+                                         employer.views.Stats),                                                                                    
                                         ('/preview/employer/load_profile/?',
                                          profile.views.LoadUserProfile),                                           
                                         ('/intro/?',

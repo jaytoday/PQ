@@ -5,6 +5,9 @@
 
 (function($)
 {
+	
+
+
         var opts = {}, 
         imgPreloader = new Image, imgTypes = ['png', 'jpg', 'jpeg', 'gif'], 
 	loadingTimer, loadingFrame = 1;
@@ -21,10 +24,9 @@
                 settings:
                 {
                         autoStart: true, // debugging only
-                        //noTimer: true, // debugging only
                         initDone: false,
                         startTime: (new Date()),
-                        timeoutDuration: 80000,
+                        timeoutDuration: 18000,
                         instructions:
                         {
                                 i1complete: false,
@@ -35,9 +37,11 @@
                 {
                         "instructions2": function()
                         {
-                                $("#example_1, #example_2, #example_3").toggle();
-                                $.plopquiz.settings.instructions.i2timedOut = true;
-                                $.plopquiz.specialTimers["instructions2"] = function() {};
+                        	$("#example_1").hide();
+                        	$("#example_2").hide();
+                        	$("#example_3").show();
+                                
+                               // $.plopquiz.specialTimers["instructions2"] = function() {};
                         }
                 }
         };
@@ -61,28 +65,29 @@
                                         {
                                                 $(this).hide();
 
-                                                // reset to start of quiz, later this should handle skiping instructions;
+                                                // reset to start of quiz, later this should handle skipping instructions;
                                                 $.plopquiz.currentItem = 0;
                                         });
 
                                 $('#quiz_close').click(function()
                                 {
                                         $.event.trigger('quizclosing');
+                                        
+                                        window.location = "/preview/";
                                 });
 
                                 $('#quiz_timer')
                                         .bind('quizItemLoaded', function(event, quizItem)
                                         {
                                                 var self = this;
-                                                console.log(quizItem);
                                                 if(!quizItem || !quizItem.timed || $.plopquiz.settings.noTimer)
                                                         return;
 
                                                 // reset and start timer.
                                                 var reset = function()
                                                 {
-                                                        $('.timer_inner', self).stop();
-
+                                                      $('.timer_inner', self).stop();
+                                                        
                                                         $('.timer_inner', self)
                                                                 .css('width', '100%')
                                                                 .animate(
@@ -90,7 +95,8 @@
                                                                         width: 0
                                                                 },
                                                                 {
-                                                                        complete: function()
+                                                                	
+                                                                      complete: function()
                                                                         {
                                                                                 if(quizItem.timeout == "reset")
                                                                                 {
@@ -125,7 +131,7 @@
                                 $('#quiz_answers .answer').hover(function()
                                 {
                                 	if ($(this).attr('id') == 'skip'){ return; }
-                                        $('#blank').text($(this).text()).css({'padding': '0px 2px'});
+                                        $('#blank').text($(this).text()).css({'padding': '0px 4px'});
                                         
                                 },
                                 function()
@@ -134,11 +140,13 @@
                                 })
                                 .click(function(e)
                                 {
-                                        $.plopquiz.submitAnswer($(this).text().replace(/\ +(\w+)\ +/, "$1"));
+                                	if ($(this).hasClass('disabled')){ return false; }
+                              
+                                       $.plopquiz.submitAnswer($(this).find('div.answertext').text().replace(/\n/g,"")); 
                                 })
                                 .each(function()
                                 {
-                                        $(this).attr('href', "#" + $(this).attr('id'));
+                                        //$(this).attr('href', "#" + $(this).attr('id'));
                                 });
 
                                 if($.plopquiz.settings.autoStart)
@@ -217,7 +225,12 @@
                                  * and does not allow skipping instruction 1 o 2
                                  */
 
-
+								if(quizItem.item_type == "intro")
+                                {
+          
+                                	if (quizItem.vendor.length > 1){ $('p#employer').find('b').text(quizItem.vendor); }
+                                	
+								}
 
                                 	
                                 if(quizItem.item_type == "instructions")
@@ -241,9 +254,9 @@
                                 
                                    if(quizItem.item_type == "instructions2")
                                 {
-                                        
+                                       $('a#skip').hide(); 
                                 }
-                                
+
 
                                 if(quizItem.item_type == "begin_quiz")
                                 {
@@ -255,19 +268,36 @@
                                                 else if($.plopquiz.quizitemList[i].proficiency)
                                                         p[$.plopquiz.quizitemList[i].proficiency]++;
 
-                                        console.log(p);
                                         for(i in p)
                                                 $("#proficiency_choices").append('<input type="checkbox" value="' + i + '" checked /><span class="proficiency">' + i + '</span><br />');
                                 }
                                 
-                                
+                                                  
+               				if(quizItem.item_type == "quiz_complete")
+                                {
+                                	$('div#confirm').hide();
+									// signup binding
+									$('div.form_proceed').click(function(){
+										
+										var current_id  = $(this).attr('id');
+										var next_id  = parseInt(current_id) + 1;
+										
+										if ($('form.signup').find('ul#' + next_id).length == 0){ Register(document.signup);   return;}
+										$('form.signup').find('ul#' + current_id).fadeOut(200, function(){ $('form.signup').find('ul#' + next_id).fadeIn(200); });
+										
+										
+										$(this).attr('id', next_id);
+									});      
+                                       
+                                        
+                                }                
 
 
                                 // short delay to ensure everything is loaded
                                 setTimeout(function()
                                 {
                                         $.event.trigger('quizItemLoaded', [ quizItem ]);
-                                },600);
+                                },1600);
                         },
                         error: function(xhr,s)
                         {
@@ -293,16 +323,20 @@
 
                         case "instructions2":
 
-                                if(!$.plopquiz.settings.instructions.i2timedOut){
-                                $('.timer_bar').stop();
+                                if(!$.plopquiz.settings.instructions.skip_segment){
+                               $.plopquiz.settings.instructions.i2timedOut = true;
+                               $('.timer_bar').stop();
                                 $('.timer_bar').css('width', '100%'); 
                                 $('#example_1,#example_3').hide('slow');
                                 $('#example_2').show('slow');
-                                $('#quiz_content').find('#answer1,#answer2').unbind('click');
-                                $.plopquiz.settings.instructions.i2timedOut = "true";
+                                $('a#skip').show();
+                                //click binding
+                              $('#quiz_answers').find('#answer1,#answer2').addClass('disabled');
+                                $.plopquiz.settings.instructions.skip_segment = "true";
                                         return; }
                                 else
                                         $.plopquiz.loadItem($.plopquiz.currentItem++);
+                                       $('#quiz_answers').find('#answer1,#answer2').removeClass('disabled');
                         break;
 
                         case "begin_quiz":
@@ -318,11 +352,23 @@
                                                         return true;
                                         return false;
                                 });
+                                $('.timer_bar').css('width', '100%'); 
                                 $.plopquiz.loadItem($.plopquiz.currentItem++);
                         break;
 
+                        case "quiz_item":
+                        $('.timer_bar').css('width', '100%');
+                         // ajax call to submit -- (answer, key, vendor)
+                         var this_item = $.plopquiz.quizitemList[$.plopquiz.currentItem - 1]; 
+                         SubmitScore(answer, this_item.key, this_item.vendor);
+
+                                $.plopquiz.loadItem($.plopquiz.currentItem++);
+                        break;
+                        
+                        case "quiz_complete":
+                        break;
+                        
                         default:
-                                // ajax call to submit
                                 $.plopquiz.loadItem($.plopquiz.currentItem++);
                         break;
                 };
@@ -331,3 +377,7 @@
 
 
 })(jQuery);
+
+
+
+

@@ -80,7 +80,7 @@ class QuizItemTemplate(webapp.RequestHandler):
     quiz_item['answers'] = this_quiz_item.answers
     quiz_item['theme'] = this_quiz_item.theme
     template_values = quiz_item
-    if self.request.get('demo') == 'true': path = tpl_path(QUIZDEMO_PATH_PATH + 'quiz_item.html')
+    if self.request.get('demo') == 'true': path = tpl_path(QUIZDEMO_PATH + 'quiz_item.html')
     else: path = tpl_path(QUIZTAKER_PATH + 'quiz_item.html')
     self.response.out.write(template.render(path, template_values))
 
@@ -90,14 +90,19 @@ class QuizItemTemplate(webapp.RequestHandler):
 class TakeQuiz(webapp.RequestHandler):
   #Load Plopquiz Homepage 
   def get(self):
-    proficiencies = self.get_proficiencies()
+    load_proficiencies = self.get_proficiencies()
+    try: proficiencies = load_proficiencies[0]
+    except: 
+        print "unable to load proficiencies"  #should redirect to 404...
+        return
+    vendor = load_proficiencies[1]
     if proficiencies == None:
         all_proficiencies = Proficiency.all()
         proficiencies = [proficiency.name for proficiency in all_proficiencies.fetch(4)] 
     logging.debug(proficiencies)
     logging.debug('loading quiz...')    
     load_quiz = LoadQuiz()
-    template_values = {"quiz_items": load_quiz.get(proficiencies), "proficiencies": proficiencies }
+    template_values = {"quiz_items": load_quiz.get(proficiencies), "proficiencies": proficiencies, "vendor_name": vendor.name.capitalize(), "vendor": vendor.key() }
     logging.debug('loaded quiz...')    
     path = tpl_path(QUIZTAKER_PATH + 'takequiz.html')
     self.response.out.write(template.render(path, template_values))
@@ -112,11 +117,11 @@ class TakeQuiz(webapp.RequestHandler):
 		for p in these_proficiencies:
 		   this_p = Proficiency.get_by_key_name(p)
 		   proficiencies.append(this_p.name)
-		return proficiencies        
+		return [proficiencies, employer.get()]        
 		#except: return [proficiency.name for proficiency in all_proficiencies.fetch(4)]
     if self.request.get('proficiencies'):
         proficiencies = self.request.get('proficiencies')
-        return proficiencies   
+        return [proficiencies, ""]  
 	return None
          
 
