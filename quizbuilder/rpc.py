@@ -109,8 +109,7 @@ remote callers access to private/protected "_*" methods.
       for p in prof_pages:
           these_items = RawQuizItem.gql("WHERE page = :1 AND moderated = False", p ) # only get unmoderated items
           items = these_items.fetch(1000)
-          for i in items:
-          	raw_items.append(i)
+          raw_items += items
       try: return data.dump_raw_items(raw_items)  # get 10 at a time...todo: lazy rpc-loader.
       except: return simplejson.dumps([])
 

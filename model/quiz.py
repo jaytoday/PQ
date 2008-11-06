@@ -84,6 +84,7 @@ class QuizItem(db.Model):
 class ItemScore(db.Model):
   # Saved Scores for Quiz 
   quiz_taker = db.ReferenceProperty(QuizTaker,
+                                     required=False,
                                     collection_name='itemscores')
   picked_answer = db.StringProperty() 
   correct_answer = db.StringProperty()                                 

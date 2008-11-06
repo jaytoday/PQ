@@ -285,13 +285,15 @@ text-decoration: none;
 }
 
 div#login a.profile{
-margin:0 12px 0 0;
+/* margin:0 12px 0 0;  with thumb */
+margin: 0px;
 }
 
 div#login a img{
 float:left;
 margin:-5px -102px 0 86px;
 border:1px solid #DDDDDD;
+display:none; /* temporary? */
 }
 
 div#right_corner{

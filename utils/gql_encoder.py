@@ -55,7 +55,7 @@ class GqlEncoder(simplejson.JSONEncoder):
       output = {}
       for field, value in properties:
       	try: output['key'] = str(obj.key())
-      	except: logging.debug('unable to decode object key');
+      	except: pass
         output[field] = getattr(obj, field)
       return output
 
@@ -63,7 +63,7 @@ class GqlEncoder(simplejson.JSONEncoder):
     elif isinstance(obj, datetime.datetime):
       output = {}
       fields = []#['day',   'month', 'year']
-      methods = [] #'ctime'
+      methods = ['ctime'] 
       for field in fields:
         output[field] = getattr(obj, field)
       for method in methods:

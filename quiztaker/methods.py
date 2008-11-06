@@ -1,6 +1,8 @@
+import logging
 from model.quiz import QuizItem, ItemScore
 from model.user import QuizTaker
-from .model.proficiency import Proficiency, ProficiencyTopic 
+from .model.proficiency import Proficiency, ProficiencyTopic
+from .model.employer import Employer 
 from .utils.utils import tpl_path, ROOT_PATH, raise_error
 import simplejson
 from google.appengine.ext import db
@@ -10,22 +12,21 @@ from utils.gql_encoder import GqlEncoder, encode
 def refresh_data(data_type, verbose):
   data = DataMethods()
   data.delete_data(data_type, verbose) 
-  data.lead_data(data_type, verbose) 
+  data.load_data(data_type, verbose) 
      
 
 def load_data(data_type, verbose):
   data = DataMethods()
-  data.lead_data(data_type, verbose) 
+  data.load_data(data_type, verbose) 
        
  
 def dump_data(gql_query):
-  try:
 	objects = gql_query.fetch(1000)
-	for object in objects:
-		if object.kind() != "QuizItem": continue
-	return encode(objects)
-  except:
-	return "unable to encode objects"     
+	response = []
+	try: return encode(objects)
+	except: logging.debug('unable to encode objects')
+	#return encode(object)
+ 
 
 def new_topic(topic_name, proficiency_name): 
 	this_proficiency = Proficiency.gql("WHERE name = :1", proficiency_name)
@@ -42,6 +43,7 @@ class DataMethods():
   def delete_data(self, data_type, *verbose):
 		query = ""
 		if data_type == "quiz_items": query = db.GqlQuery("SELECT * FROM QuizItem")
+		if data_type == "item_scores": query = db.GqlQuery("SELECT * FROM ItemScore")
 		if not query: return False	
 		objects = query.fetch(1000)
 		for object in objects:
@@ -51,12 +53,7 @@ class DataMethods():
 			object.delete()
 		return True
 			
-			
-  def lead_data(self, data_type, *verbose):
-		# Load External JSON fixture
-		if data_type == "quiz_items": return self.refresh_quiz_items(verbose)
-		
-		# refresh all?
+
 				
 		
   def refresh_quiz_items(self, verbose):
@@ -85,9 +82,7 @@ class DataMethods():
 			if verbose[0] == "loud":
 				print ""
 				print "added topic: " + str(this_topic.name)
-								
 	# Store Item in Datastore
-		
 		quiz_item = QuizItem(
 							 content = item['content'],
 							 theme = item['theme'],
@@ -95,7 +90,6 @@ class DataMethods():
 							 answers = item['answers'],
 							 index = item['index'],
 							 topic = this_topic.key())
-	   
 							  #Add List of Answers
 		print quiz_item.__dict__
 		quiz_item.put()
@@ -105,5 +99,41 @@ class DataMethods():
 
 
 
-  						
+  def refresh_scores(self, verbose):
+		proficiencies = []		
+		json_file = open(ROOT_PATH + "/data/item_scores.json")
+		json_str = json_file.read()
+		newdata = simplejson.loads(json_str) # Load JSON file as object
+		# Retrieve Proficiency. If new, then save it.
+		for item in newdata:
+			# Store Item in Datastore
+			if item['type'] == 'trash': continue
+			if item['type'] == 'temp': continue
+			this_taker = QuizTaker.get(item['quiz_taker']['key'])
+			this_vendor = Employer.get(item['vendor']['key'])
+			this_item = QuizItem.get(item['quiz_item']['key'])
+			score = ItemScore(
+								 quiz_taker = this_taker,
+								 picked_answer = item['picked_answer'],
+								 correct_answer = item['correct_answer'],
+								 score = item['score'],
+								 quiz_item = this_item,
+								 vendor = this_vendor,
+								 type = item['type'])
+								  #Add List of Answers
+			score.put()
+			if verbose[0] == "loud":
+			  print encode(score) 
+							
 
+
+
+
+  
+			
+  def load_data(self, data_type, *verbose):
+		# Load External JSON fixture
+		if data_type == "quiz_items": return self.refresh_quiz_items(verbose)
+		if data_type == "item_scores": return self.refresh_scores(verbose)
+		
+		# refresh all?

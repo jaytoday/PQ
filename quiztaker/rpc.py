@@ -9,6 +9,7 @@ from .model.user import QuizTaker, InviteList
 from .model.employer import Employer 
 from methods import refresh_data, dump_data, load_data
 from .utils.utils import tpl_path, ROOT_PATH, raise_error
+from utils.gql_encoder import GqlEncoder, encode
 
 
 class RPCHandler(webapp.RequestHandler):
@@ -75,9 +76,11 @@ class RPCMethods(webapp.RequestHandler):
 
   def dump_data(self, *args):
   	if args[0] == "quiz_items":
-  	    print dump_data(QuizItem.all())  
-  	    print ""
-  	    print "---do not copy this line or below---"  #TODO: Don't print HTTP headers
+  	    print dump_data(QuizItem.all()) 
+  	if args[0] == "item_scores":
+  	    print dump_data(ItemScore.all()) 
+  	print ""
+  	print "---do not copy this line or below---"  #TODO: Don't print HTTP headers
   
   
   
@@ -154,8 +157,10 @@ class RPCMethods(webapp.RequestHandler):
 	logging.debug('New User - Saving Score')    
 	q = db.GqlQuery("SELECT * FROM ItemScore WHERE type = 'temp'")
 	results = q.fetch(1000)
+	print results
 	for result in results:
 		try:
+			print result.type
 			movescore = ItemScore(quiz_taker = new_quiz_taker.key(),
 								score = result.score,
 								quiz_item = result.quiz_item,
@@ -168,6 +173,8 @@ class RPCMethods(webapp.RequestHandler):
 			logging.debug('Moved A Score Item')
 			result.type = 'trash'
 			result.put()
+			print "a"
+			print movescore.key()
 			new_quiz_taker.scores.append(movescore.key())   # These perform a duplicate reference to the quiz_taker property in ItemScore. 
 		except:                # if not all parts of the item score are accessible
 		    result.type = 'incomplete'
@@ -176,7 +183,11 @@ class RPCMethods(webapp.RequestHandler):
 	list_entry = InviteList()    
 	list_entry.email = str(args[1])
 	list_entry.put()
-	return new_quiz_taker.scores
+	print new_quiz_taker.scores
+	print new_quiz_taker.__dict__
+	for s in new_quiz_taker.scores:
+		try: print s
+		except: print "unable to print scores"
 
 
 
