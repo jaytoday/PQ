@@ -8,8 +8,8 @@ InstallFunction(server, 'AddScore', 'quiztaker');
 InstallFunction(server, 'Init', 'quiztaker');
 InstallFunction(server, 'Register', 'quiztaker');
 
-function SubmitScore(ans, key, vendor) {
-	server.AddScore(ans, key, vendor);
+function SubmitScore(ans, timer_status, key, vendor) {
+	server.AddScore(ans, timer_status, key, vendor);
 }
 
 function doInit() {

@@ -6,6 +6,7 @@
 (function($)
 {
 	
+	
 
 
         var opts = {}, 
@@ -89,8 +90,9 @@
                                                       $('.timer_inner', self).stop();
                                                         
                                                         $('.timer_inner', self)
-                                                                .css('width', '100%')  
-                                                                
+                                                                .css('width', '100%');
+                                                                timer_width = $('.timer_bar').width();  
+                                                                $('.timer_inner', self)
                                                                 .animate({opacity: 1.0}, 3000)
                                                                 .animate(
                                                                 {
@@ -277,6 +279,9 @@
                                 
                                       if(quizItem.item_type == "quiz_item")
                                 {
+                                	      console.log($('.timer_bar').width());
+      
+      
                                               $('#blank').empty();
 										  }   
                				if(quizItem.item_type == "quiz_complete")
@@ -363,10 +368,10 @@
                         break;
 
                         case "quiz_item":
-                       //$('.timer_bar').css('width', '100%');
                          // ajax call to submit -- (answer, key, vendor)
-                         var this_item = $.plopquiz.quizitemList[$.plopquiz.currentItem - 1]; 
-                         SubmitScore(answer, this_item.key, this_item.vendor);
+                         var this_item = $.plopquiz.quizitemList[$.plopquiz.currentItem - 1];
+                         var timer_status = $('.timer_bar').width()/timer_width;
+                         SubmitScore(answer, timer_status, this_item.key, this_item.vendor);
 
                                 $.plopquiz.loadItem($.plopquiz.currentItem++);
                         break;

@@ -89,7 +89,8 @@ class RPCMethods(webapp.RequestHandler):
 	logging.debug('Posting Answer')    
 	picked_answer = str(args[0])
 	#Lookup quiz item with slug, clean it, and match it. 
-	this_item = QuizItem.get(args[1])
+	
+	this_item = QuizItem.get(args[2])
 	logging.debug(this_item)  
 
 	picked_clean = picked_answer.strip()
@@ -98,7 +99,8 @@ class RPCMethods(webapp.RequestHandler):
 	correct_clean = correct_clean.lower()
 
 	if picked_clean == correct_clean:
-		this_score = 1 # TODO add Timer Data 
+		timer_status = float(args[1])
+		this_score = int(round(timer_status * 100))
 	else:
 		this_score = 0
 		logging.debug('Incorrect answer')
@@ -113,7 +115,7 @@ class RPCMethods(webapp.RequestHandler):
 					  picked_answer = picked_answer,
 					  )
 
-	if len(args[2]) > 0: score.vendor = Employer.get(args[2])
+	if len(args[3]) > 0: score.vendor = Employer.get(args[3])
 										
 	try:
 		score.put()
