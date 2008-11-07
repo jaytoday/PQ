@@ -4,11 +4,16 @@ div.pb_container{
 border-bottom:1px solid #CCCCCC;
 border-top:1px solid #CCCCCC;
 height:234px;
-margin:-410px 0 0 710px;
+margin:105px 0 0 710px;
 position:relative;
 width:300px;
 }
 
+div.profile_outer{
+height: 430px;
+position:absolute;
+margin:-105px 0;
+}
 
 div.pb_scroll{
 height:300px;
@@ -24,7 +29,8 @@ margin:0 92px 0 0;
 
 img.pb_prev{
 float:left;
-margin:-365px 0 0 70px;
+margin:-56px 0 0 70px;
+position:absolute;
 }
 
 
@@ -32,6 +38,7 @@ margin:-365px 0 0 70px;
 img.pb_next{
 float:left;
 margin:-100px 0 0 65px;
+position:absolute;
 }
 
 div.user div.ranked{

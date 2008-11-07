@@ -29,12 +29,16 @@ function profile_sliderInit()
         {
                 var user = $($panels[data.data]).attr('id');
                 if (!user){ return false; }
-                $('.profile_outer').fadeTo(500, 0.1, function()
+                $('.profile_outer').hide("slow", function()
                 {
                         $('.profile_outer').load("/preview/employer/load_profile?user=" + user, function()
                         {
-                                $('.profile_outer').show(); //fadeTo(500, 1);
+                                //$('.profile_outer').fadeTo(1500, 0, function()
+                                //{
+                                $('.profile_outer').show("slow");
                                 $.getScript("/static/scripts/profile/profile.js");
+                                //});  //.show(); //
+                                
                         });
                 });
         }
