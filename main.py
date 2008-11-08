@@ -15,7 +15,7 @@ import profile.views
 import employer.views
 from google.appengine.ext import admin
 import employer.rpc
-
+import ranking.views
 
 
     
@@ -96,7 +96,10 @@ def url_handler():
 
                                         ('/dev/load_topics/?',
                                          dev.views.LoadTopics),  
-                                                                                  
+
+                                        ('/ranking/graph/?',
+                                         ranking.views.Graph),  
+                                                                                                                           
                                         ],
                                        debug=True)
   wsgiref.handlers.CGIHandler().run(application)

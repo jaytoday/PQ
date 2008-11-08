@@ -17,6 +17,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	font-size: 100%;
 /*	vertical-align: baseline; */
 	background: transparent;
+	text-decoration:none;
 }
 body {
 	line-height: 1;
@@ -49,7 +50,10 @@ table {
 
 
 
-
+a{
+cursor:pointer;
+color:#000040;
+}
 
 
 fieldset,homepage {
@@ -213,6 +217,11 @@ padding: 5px 8px;
 h1{
 font-size:3em;
 letter-spacing:0.12em;
+}
+
+div.headline{
+font-size:2em;
+letter-spacing:0.06em;
 }
 
 

@@ -11,9 +11,26 @@
 		<script src="/static/scripts/profile/tagcloud.js"></script>
 		
 		<script type="text/javascript">	
-
+$(document).ready(function()
+{
+        	$('a[@href="#results"]').click();
+		});
 	</script>
 	
+	
+   
+   <!--Load the AJAX API-->
+  
+
+    <script type="text/javascript" src="/static/scripts/utils/jsapi.js"></script>
+    <script src="/static/scripts/profile/line_chart.js"></script>
+    <script src="/static/scripts/profile/pie_chart.js"></script>
+    <script type="text/javascript">
+
+      
+
+	
+    </script>
 	
 
 {% endblock %}
@@ -45,62 +62,67 @@
 		</div> -->
 		
             <ul id="main_nav">
+            <li class="ui-tabs-nav-item"><a href="#full_profile">Quiz Info</a></li>
                 <li class="ui-tabs-nav-item" id="profile_nav">
+                <a href="#results">Quiz Results</a></li>
                 
-                <a href="#summary">Summary</a></li>
-                <li class="ui-tabs-nav-item"><a href="#full_profile">Full Profile</a></li>
             </ul>
-            <div id="summary" class="profile-panel">
-
-                <div class="panel_content summary">
-             <div class="employer_summary frame_box">
-             GreenFuel Technologies Corporation (GFT) is a startup that has developed a process of growing algae using emissions from fossil fuel combustion and solar panels, mainly to produce biofuel from algae.
-
-It is based in Cambridge, Massachusetts.      <a>Read More...</a>
+            <div id="results" class="profile-panel">
+            
+                 
+            
+             <div class="panel_content results_content">
+                <div class="results">
+<a href="/preview/employer/profile/browse/" target="_blank"><div class="view_rankings">View Top Quiztakers</div></a>
+<div class="frame_box account_details">Your current plan lets you see profiles for <br/><span class="account_score">10 top scores</span>
+<br/><a class="plan">change plan</a></div>
+            </div>
              
-             </div>
-                </div>
- 
-                
-                 <div class="panel_content" id="stats">
-                
-              <div class="stat">   <h2>Range: </h2> <div class="statometer"><img src="http://chart.apis.google.com/chart?chs=100x55&cht=gom&chd=t:82&chco=DDDDDD,00ea00&chf=bg,s,DDDDDD"/></div> </div>
+             
+            <h2 id="activity">Recent Activity</h2>
+<div id="line_chart"></div>
+                   <div class="embed_code results_embed" id="embed_quiz">embed this quiz
+                 <input type="text" value='<script type="text/javascript"><a href="http://www.plopquiz.com/"</script>' onClick="$(this).select();" name="score_embed"/>
                  
-              <div class="stat">      <h2>Depth: </h2>  <div class="statometer"><img src="http://chart.apis.google.com/chart?chs=100x55&cht=gom&chd=t:66&chco=DDDDDD,00ea00&chf=bg,s,DDDDDD"/> </div>  </div>
-                 
+                                  link to this quiz
+                 <input type="text" value='<a href="http://www.plopquiz.com/"</a>' onClick="$(this).select();" name="score_embed"/>
+                 </div>
+        
             </div>
             
             
-            
-            </div><!-- end summary -->
+            </div><!-- end results -->
             
             
             <div id="full_profile" class="profile-panel" >
         
 
-                <div class="panel_content" >
-                
-             <h2>Skill Cloud</h2>
-                
-              <div class="dynacloud" id="dynacloud">  Intelligence  Diversification  Diversification  Diversification  Hydroelectric  Hydroelectric  Nuclear  Nuclear  Off-Grid  Nuclear  Photovoltaic   Photovoltaic  Photovoltaic  Photovoltaic  Pigovian  Peak Oil  Peak Oil  Peak Oil  Peak Oil  Geothermal 
-                 Geothermal  Geothermal  Tidal  Tidal  Tidal  Credit  Grid  Grid   Grid  Grid  Grid  Grid  Credit  Credit  Credit  Credit  Server  Server  Cloud  Cloud  Cloud  Cloud  Bioenergy  Bioenergy  Bioenergy  Bioenergy</div>
-                </div>
-                
-                 <div class="panel_content" id="stats">
-                
-              <div class="stat">   <h2>Range: </h2> <div class="statometer"><img src="http://chart.apis.google.com/chart?chs=100x55&cht=gom&chd=t:82&chco=DDDDDD,00ea00&chf=bg,s,DDDDDD"/></div> </div>
+                <div class="panel_content quiz_info">
+                  <h2>Quiz Topics</h2>
+<div  id="chart_div"></div>
+                  <div class="pfstat" id="popularity">      <h3>Popularity: </h3>  <div class="pfstatometer" ><img src="http://chart.apis.google.com/chart?chs=70x35&cht=gom&chd=t:86&chco=DDDDDD,00ea00&chf=bg,s,DDDDDD"/> </div>  </div>
+   <div class="pfstat" id="difficulty">      <h3>Difficulty: </h3>  <div class="pfstatometer" ><img src="http://chart.apis.google.com/chart?chs=70x35&cht=gom&chd=t:66&chco=DDDDDD,00ea00&chf=bg,s,DDDDDD"/> </div>  </div>
+        <div class="take_quiz"> <img src='/static/stylesheets/img/utils/purple_next.png'/></div>
+                       <div class="embed_code" id="embed_quiz">embed this quiz
+                 <input type="text" value='<script type="text/javascript"><a href="http://www.plopquiz.com/"</script>' onClick="$(this).select();" name="score_embed"/>
                  
-              <div class="stat">      <h2>Depth: </h2>  <div class="statometer"><img src="http://chart.apis.google.com/chart?chs=100x55&cht=gom&chd=t:66&chco=DDDDDD,00ea00&chf=bg,s,DDDDDD"/> </div>  </div>
-                 
-            </div>
+                                  link to this quiz
+                 <input type="text" value='<a href="http://www.plopquiz.com/"</a>' onClick="$(this).select();" name="score_embed"/>
+                 </div>
             
 
             </div>
+        
+                </div>
+
+         
+        
+     
 
 
 
     <ul id="personal_nav">
-		    <li class="ui-tabs-nav-item"><a href="#quote">Quote</a></li>
+		    <li class="ui-tabs-nav-item" style="margin-right: 4px;"><a href="#intro_employer">Intro</a></li>
                 <li class="ui-tabs-nav-item"><a href="#info">Info</a></li>
                 <li class="ui-tabs-nav-item"><a href="#network">Network</a></li>
                 
@@ -117,11 +139,17 @@ It is based in Cambridge, Massachusetts.      <a>Read More...</a>
 		 </div> </div> 
 		
 		
-		<div class="personal_content" id="quote">
-		<div class="quote_content">
-		"If I had 20 days to solve a problem, I would take 19 days to define it." 
-		<br/><br/>
-		-- Albert Einstein
+		<div class="personal_content" id="intro_employer">
+		<div class="intro_content">
+             <div class="employer_summary frame_box">
+             GreenFuel Technologies Corporation (GFT) is a startup that has developed a process of growing algae using emissions from fossil fuel combustion and solar panels, mainly to produce biofuel from algae.
+
+It is based in Cambridge, Massachusetts.      <div class="wiki"><img src="/static/stylesheets/img/profile/wiki_small.png"/><a href="http://en.wikipedia.org/wiki/GreenFuel_Technologies_Corporation" target="_blank">Read More...</a></div>
+             
+             </div>
+
+
+
 		 </div> 
 		 
 		 

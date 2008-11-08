@@ -27,7 +27,7 @@
                         autoStart: true, // debugging only
                         initDone: false,
                         startTime: (new Date()),
-                        timeoutDuration: 18000,
+                        timeoutDuration: 20000,
                         instructions:
                         {
                                 i1complete: false,
@@ -91,10 +91,20 @@
                                                         
                                                         $('.timer_inner', self)
                                                                 .css('width', '100%');
-                                                                timer_width = $('.timer_bar').width();  
-                                                                $('.timer_inner', self)
-                                                                .animate({opacity: 1.0}, 3000)
-                                                                .animate(
+                                                                
+                                                               
+                                                                
+                                                                if (quizItem.item_type == "quiz_item"){
+                                                                timer_width = $('.timer_bar').width(); // to calculate score
+                                                                $('#quiz_answers').find('div').addClass('disabled');
+                                                                $('.timer_inner', self).animate({opacity: 1.0}, 2000, function(){
+                                                                	$('#quiz_content').animate({opacity: 1}, 1000);
+                                                                	$('#quiz_answers').find('div').removeClass('disabled');
+																}
+                                                                	);
+																}
+                                                                
+                                                                $('.timer_inner', self).animate(
                                                                 {
                                                                         width: 0
                                                                 },
@@ -178,7 +188,7 @@
                         url: quizItem.url,
                         complete: function(xhr, s)
                         {
-                                $('#quiz_content').animate({opacity: 0.5}, 50).html(xhr.responseText).animate({opacity: 1.0}, 500);
+                                $('#quiz_content').css({opacity: 0}).html(xhr.responseText).animate({opacity: 1.0}, 800);
 
                                 $('#quiz_answers .answer')
                                         .hide()
@@ -272,17 +282,15 @@
                                                         p[$.plopquiz.quizitemList[i].proficiency] = 0;
                                                 else if($.plopquiz.quizitemList[i].proficiency)
                                                         p[$.plopquiz.quizitemList[i].proficiency]++;
-
+                                        if (p.length == 1){ console.log('skip');} //todo: skip if there is only one proficiency
                                         for(i in p)
                                                 $("#proficiency_choices").append('<input type="checkbox" value="' + i + '" checked /><span class="proficiency">' + i + '</span><br />');
                                 }
                                 
                                       if(quizItem.item_type == "quiz_item")
                                 {
-                                	      console.log($('.timer_bar').width());
-      
-      
                                               $('#blank').empty();
+                                              $('#quiz_content').css({opacity: 0});
 										  }   
                				if(quizItem.item_type == "quiz_complete")
                                 {
@@ -351,6 +359,7 @@
                         break;
 
                         case "begin_quiz":
+                        
                                 var proficiencies = Array();
                                 $('#proficiency_choices input:checked').each(function() { proficiencies.push($(this).val()); });
                                 $.plopquiz.quizitemList = $.grep($.plopquiz.quizitemList, function(n, i)
@@ -364,7 +373,8 @@
                                         return false;
                                 });
                                 $('.timer_bar').css('width', '100%'); 
-                                $.plopquiz.loadItem($.plopquiz.currentItem++);
+                                
+                                 $.plopquiz.loadItem($.plopquiz.currentItem++);
                         break;
 
                         case "quiz_item":
@@ -374,6 +384,7 @@
                          SubmitScore(answer, timer_status, this_item.key, this_item.vendor);
 
                                 $.plopquiz.loadItem($.plopquiz.currentItem++);
+                                $('.timer_bar').css('width', '100%');
                         break;
                         
                         case "quiz_complete":

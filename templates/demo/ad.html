@@ -75,7 +75,7 @@ InstallFunction(server, 'Init', 'quiztaker');
 
 
 function SubmitScore(ans, key) {
-	server.AddScore(ans, key, onAddSuccess);
+	server.AddScore(ans, "1", key, "", onAddSuccess);
 }
 
 function doInit() {

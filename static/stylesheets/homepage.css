@@ -94,8 +94,8 @@ background:#FFFFD1 none repeat scroll 0 0;
 border:1px solid #E2C922;
 font-weight:bold;
 margin:0 5px;
-padding:0px 7px;
 opacity:1;
+padding:4px 11px;
 }
 div#motto
 {
@@ -110,25 +110,26 @@ margin-top:60px;
 
 #smart
 {
+font-size:1.8em;
 font-weight:bold;
-font-size:1.6em;
-margin:-2px 25px;
-position:	absolute;
+margin:-3px 25px;
+position:absolute;
 }
 
 span#two{
-margin: 1px 15px 0px 25px;
+margin:1px 15px 0 114px;
 }
 
 #blinder
 {
 background:#F7F5F4 none repeat scroll 0 0;
-font-size:1.5em;
+font-size:1.9em;
 height:29px;
-margin:-2px 103px;
+letter-spacing:0.05em;
+margin:-5px 98px;
 position:absolute;
 text-align:center;
-width:125px;
+width:210px;
 }
 /* spaces the blank */
 .smart_span_holder
@@ -172,6 +173,7 @@ margin:76px 0 0 -10px;
 
 div.upgrade{
 font-size:1.7em;
+margin: 0 0 -2px 24px;
 }
 
 div#take_quiz{
@@ -183,7 +185,7 @@ background:#DDDDDD none repeat scroll 0 0;
 border:8px solid #DDDDDD;
 color:#000040;
 line-height:1.8em;
-margin:20px 0;
+margin:20px 0 10px;
 padding:3px;
 text-transform:none;
 -webkit-border-radius: 12px;
@@ -216,7 +218,7 @@ font-size:1.5em;
 }
 
 div.employers{
-margin:30px 10px;
+margin:16px 10px;
 width:300px;
 }
 
