@@ -11,7 +11,7 @@ import quizbuilder.rpc
 import dev.views
 import homepage.views
 import quizbuilder
-import profile.views
+import profiles.views
 import employer.views
 from google.appengine.ext import admin
 import employer.rpc
@@ -36,15 +36,15 @@ def url_handler():
                                         ('/preview/proficiency/?',
                                          homepage.views.ChooseProficiency), 
                                         ('/preview/profile/?',
-                                         profile.views.ViewProfile),
+                                         profiles.views.ViewProfile),
                                         ('/preview/employer/profile/?',
-                                         profile.views.ViewEmployerProfile),  
+                                         profiles.views.ViewEmployerProfile),  
                                         ('/preview/employer/profile/browse/?',
-                                         profile.views.BrowseProfiles), 
+                                         profiles.views.BrowseProfiles), 
                                         ('/preview/employer/profile/browse/stats/?',
                                          employer.views.Stats),                                                                                    
                                         ('/preview/employer/load_profile/?',
-                                         profile.views.LoadUserProfile),                                           
+                                         profiles.views.LoadUserProfile),                                           
                                         ('/intro/?',
                                          quiztaker.views.PQIntro),
                                         ('/quiztaker/rpc/?',
