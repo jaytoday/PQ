@@ -64,7 +64,7 @@ $(document).ready(function()
             <ul id="main_nav">
             <li class="ui-tabs-nav-item"><a href="#full_profile">Quiz Info</a></li>
                 <li class="ui-tabs-nav-item" id="profile_nav">
-                <a href="#results">Quiz Results</a></li>
+                <a href="#results">Dashboard</a></li>
                 
             </ul>
             <div id="results" class="profile-panel">
@@ -73,8 +73,8 @@ $(document).ready(function()
             
              <div class="panel_content results_content">
                 <div class="results">
-<a href="/preview/employer/profile/browse/" target="_blank"><div class="view_rankings">View Top Quiztakers</div></a>
-<div class="frame_box account_details">Your current plan lets you see profiles for <br/><span class="account_score">10 top scores</span>
+<a href="/preview/employer/profile/browse/" target="_blank"><div class="view_rankings"><span>View the Top Scores</span></div></a>
+<div class="frame_box account_details">Your current plan lets you see profiles for the <br/><span class="account_score">top 5 scores</span>
 <br/><a class="plan">change plan</a></div>
             </div>
              
@@ -100,9 +100,10 @@ $(document).ready(function()
                 <div class="panel_content quiz_info">
                   <h2>Quiz Topics</h2>
 <div  id="chart_div"></div>
-                  <div class="pfstat" id="popularity">      <h3>Popularity: </h3>  <div class="pfstatometer" ><img src="http://chart.apis.google.com/chart?chs=70x35&cht=gom&chd=t:86&chco=DDDDDD,00ea00&chf=bg,s,DDDDDD"/> </div>  </div>
-   <div class="pfstat" id="difficulty">      <h3>Difficulty: </h3>  <div class="pfstatometer" ><img src="http://chart.apis.google.com/chart?chs=70x35&cht=gom&chd=t:66&chco=DDDDDD,00ea00&chf=bg,s,DDDDDD"/> </div>  </div>
-        <div class="take_quiz"> <img src='/static/stylesheets/img/utils/purple_next.png'/></div>
+                  <div class="pfstat" id="quiz_popularity">      <h3>Popularity: </h3>  <div class="pfstatometer" ><img src="http://chart.apis.google.com/chart?chs=70x35&cht=gom&chd=t:86&chco=DDDDDD,00ea00&chf=bg,s,DDDDDD"/> </div>  </div>
+   <div class="pfstat" id="quiz_difficulty">      <h3>Difficulty: </h3>  <div class="pfstatometer" ><img src="http://chart.apis.google.com/chart?chs=70x35&cht=gom&chd=t:66&chco=DDDDDD,00ea00&chf=bg,s,DDDDDD"/> </div>  </div>
+     
+        <div class="pfstat" id="take_quiz"> <h3>Take Quiz</h3> <img src='/static/stylesheets/img/utils/purple_next_small.png'/></div>
                        <div class="embed_code" id="embed_quiz">embed this quiz
                  <input type="text" value='<script type="text/javascript"><a href="http://www.plopquiz.com/"</script>' onClick="$(this).select();" name="score_embed"/>
                  
@@ -157,7 +158,7 @@ It is based in Cambridge, Massachusetts.      <div class="wiki"><img src="/stati
 		
 				<div class="personal_content" id="network">
 		<div class="network_content">
-		<div class="info_content following">  
+		<div class="network_item following">  
 		Following: 
 		
 		<div>

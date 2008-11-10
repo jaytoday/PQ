@@ -12,7 +12,7 @@ width:300px;
 div.profile_outer{
 height: 430px;
 position:absolute;
-margin:-105px 0;
+margin:-102px 0;
 }
 
 div.pb_scroll{
@@ -24,7 +24,14 @@ padding:20px;
 
 
 div.user{
-margin:0 92px 0 0;
+margin:4px 92px 0 0;
+width:120px;
+}
+
+div.pic{
+height:50px;
+margin:7px 0 4px;
+width:50px;
 }
 
 img.pb_prev{
@@ -43,12 +50,13 @@ position:absolute;
 
 div.user div.ranked{
 margin:5px 0;
-font-size: .9em;
+font-size: 1em;
 }
 
-div.user div.ranked span{
-font-size:2em;
-margin:0 0 0 10px;
+div.user div.ranked span, div.user div.score span{
+font-size:2.2em;
+margin:0 0 0 0;
+padding:0 10px;
 }
 
 div.user div.score{
@@ -56,7 +64,3 @@ margin:5px 0 15px;
 font-size: .9em;
 }
 
-div.user div.score span{
-font-size:2em;
-margin: 0 0 0 10px;
-}

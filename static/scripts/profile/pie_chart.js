@@ -27,7 +27,7 @@
         data.setValue(4, 1, 7);
 
         var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-        chart.draw(data, {width: 500, height: 150, is3D: true, backgroundColor: '#F7F5F4', legendBackgroundColor: '#F7F5F4', title: ''});
+        chart.draw(data, {width: 510, height: 150, is3D: true, backgroundColor: '#F7F5F4', legendBackgroundColor: '#F7F5F4', title: ''});
 
 
       }

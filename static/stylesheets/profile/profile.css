@@ -59,7 +59,6 @@ div.panel_content h2{
 }
 
 div.panel_content h3{
-color:#444444;
 font-size:1em;
 margin:23px 0;
 }
@@ -79,7 +78,8 @@ font-size: 1.2em;
 div#photo{
 float:left;
 height:0;
-margin:-60px 30px;
+margin:-48px 40px;
+
 }
 
 div#profile_photo{
@@ -93,7 +93,7 @@ float:left;
 font-size:1.3em;
 height:0;
 line-height:1.1em;
-margin:-40px 150px;
+margin:-42px 100px;
 }
 
 div#stats h4{
@@ -255,6 +255,15 @@ margin:-20px -23px;
 width:120px;
 padding:4px;
 }
+
+div.network_item{
+margin:3px -23px;
+font-size:0.6em;
+font-weight:bold;
+width:120px;
+padding:4px;
+}
+
 div.info_content div{
 font-weight:normal;
 margin:7px 2px;
@@ -263,14 +272,14 @@ font-size:0.9em;
 width:180px;
 }
 
-div.info_content div li{
+div.network_item div li{
 font-size:1.1em;
 font-weight:bold;
 letter-spacing:0.01em;
 list-style-image:none;
 list-style-position:outside;
 list-style-type:disc;
-margin:8px 2px 0 6px;
+margin:3px 2px 0 6px;
 width:180px;
 }
 
@@ -343,17 +352,39 @@ height:32px;
 line-height:1em;
 padding:3px;
 text-transform:none;
-width:160px;
 }
 
-div.pfstat#popularity{
-margin:15px 0;
+div.pfstat#quiz_popularity{
+margin:15px -10px;
+width:150px;
 }
 
-div.pfstat#difficulty{
-margin:-57px 190px;
+div.pfstat#quiz_difficulty{
+margin:-57px 160px;
+width:150px;
 }
 
+div.pfstat#take_quiz{
+background:#AAAAAA none repeat scroll 0 0;
+border-color:#C9D1CC;
+color:#111111;
+cursor:pointer;
+height:38px;
+margin:-60px 330px;
+width:125px;
+}
+
+div.pfstat#take_quiz:hover{
+color:#000080;
+background:#CCCCCC none repeat scroll 0 0;
+border-color:#C9D1CC;
+}
+
+
+div.pfstat#take_quiz img{
+float:left;
+margin:-21px 90px;
+}
 
 div.pfstatometer{
 float:right;
@@ -362,8 +393,8 @@ margin:-28px 0 0;
 }
 
 div.pfstat h3{
-margin:7px 0 0 10px;
 font-size:0.8em;
+margin:10px 0 0 10px;
 }
 
 div.quiz_info{
@@ -399,6 +430,10 @@ margin:-20px 0 10px;
 padding:3px 40px;
 text-transform:none;
 width:210px;
+}
+
+div.view_rankings span{
+/* border-bottom: 3px dotted #EEE; */
 }
 
 div.view_rankings:hover{

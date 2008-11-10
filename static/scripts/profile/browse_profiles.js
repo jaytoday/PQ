@@ -2,7 +2,8 @@
 
 $('div#right_corner').find('span').text('');
 
-	    var scroll_width = 200 * $('.pb_container').find('.user').length;
+	    var scroll_width = 250 * $('.pb_container').find('.user').length;
+	    console.log(scroll_width);
 $('.pb_container').find('.profiles').css('width', scroll_width);  
 
 
