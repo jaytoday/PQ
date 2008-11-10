@@ -46,7 +46,7 @@ width:950px;
 clear:left;
 float:left;
 height:430px;
-margin:-27px 0 0 90px;
+margin:29px 0 0 90px;
 overflow-x:hidden;
 overflow-y:auto;
 position:relative;
@@ -327,8 +327,8 @@ ul.item_navigation{
 list-style-image:none;
 list-style-position:outside;
 list-style-type:none;
-margin:15px 0 0 55px;
-position:relative;
+margin:20px 0 0 45px;
+position:absolute;
 width:3200px;
 z-index:60;
 }

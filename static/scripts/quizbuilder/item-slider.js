@@ -55,7 +55,7 @@ function item_sliderInit(wrong_answers) {
     
     function trigger(data) {
     
-        $('.item_navigation').animate({marginLeft:"-=.6em"}); //-- don't need this with display:none; 
+       // $('.item_navigation').animate({marginLeft:"-=.6em"}); //-- don't need this with display:none; 
         	
         var el = $('.item_navigation').find('a[href="#' + data.id + '"]');
         selectNav.call(el);
