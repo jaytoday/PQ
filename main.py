@@ -97,6 +97,9 @@ def url_handler():
                                         ('/dev/load_topics/?',
                                          dev.views.LoadTopics),  
 
+                                        ('/debug/?',
+                                         dev.views.Debug),  
+                                         
                                         ('/ranking/graph/?',
                                          ranking.views.Graph),  
                                                                                                                            

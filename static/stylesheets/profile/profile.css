@@ -236,6 +236,26 @@ margin:-20px 3px;
 width:120px;
 }
 
+div.facebook{
+background-image:url(../img/accounts/facebook.gif);
+background-position:left top;
+background-repeat:no-repeat;
+}
+div.linkedin{
+background-image:url(../img/accounts/linkedin.gif);
+background-position:left top;
+background-repeat:no-repeat;
+}
+
+div.outside_profile{
+color:#000040;
+font-size:0.6em;
+margin:3px -20px;
+padding:1px 0 0 24px;
+width:150px;
+cursor:pointer;
+}
+
 div.following{
 padding:5px;
 cursor:pointer;
@@ -257,11 +277,11 @@ padding:4px;
 }
 
 div.network_item{
-margin:3px -23px;
 font-size:0.6em;
 font-weight:bold;
+margin:5px -23px 2px;
+padding:5px 4px 0;
 width:120px;
-padding:4px;
 }
 
 div.info_content div{

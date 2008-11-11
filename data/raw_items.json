@@ -7,12 +7,12 @@
                         "answer_candidates": [
                             "Public policy", 
                             "Numerical analysis", 
-                            "Trigonometric function", 
-                            "Levenshtein distance", 
+                            "Biodiversity", 
+                            "Ecosystems", 
                             "Transport function", 
-                            "Dynamic time warping", 
+                            "Gestalt", 
                             "Adaptive grammar", 
-                            "Knightian uncertainty", 
+                            "Uncertainty", 
                             "Gamma function", 
                             "Competitor indexing", 
                             "Regression analysis", 
@@ -24,16 +24,18 @@
                         "post_content": "   ", 
                         "moderated": false, 
                         "page": {
-                            "url": "http://news.bbc.co.uk/2/hi/science/nature/7662565.stm", 
+                            "url": "http://en.wikipedia.org/wiki/Smart_grid", 
                             "date": {
-                                "ctime": "Tue Oct 21 04:11:12 2008"
+                                "ctime": "Fri Oct 24 00:36:02 2008"
                             }, 
                             "proficiency": {
                                 "date": {
-                                    "ctime": "Tue Oct 21 04:11:12 2008"
+                                    "ctime": "Thu Oct 23 04:23:49 2008"
                                 }, 
-                                "name": "Biofuels"
-                            }
+                                "name": "Electricity", 
+                                "key": "aghwbG9wcXVpenIcCxILUHJvZmljaWVuY3kiC0VsZWN0cmljaXR5DA"
+                            }, 
+                            "key": "aghwbG9wcXVpenISCxILQ29udGVudFBhZ2UY9wIM"
                         }
                     }, 
                     {
@@ -72,9 +74,9 @@
                     }, 
                
                     {
-                        "index": "Saudi Arabia", 
+                        "index": "Iran", 
                         "pre_content": "Nuclear is cheap in the U.S., but it's cheap in large part because the 30 year old plants got paid off a while ago. Personally, I think we need more nuclear, even with all of the issues, but the cost question at the moment it a bit up in the air.", 
-                        "content": "And the<span id=\"blank\">Saudi Arabia</span>in the category  \" turning Alt Energy into a JOKE is ... \"", 
+                        "content": "It's especially important to reduce reliance on foreign oil because of the control <span id=\"blank\">Iran</span> has over the oil supply.", 
                         "answer_candidates": [
                             "Egypt", 
                             "Al-Qaeda", 
@@ -92,22 +94,26 @@
                         "post_content": "", 
                         "moderated": false, 
                         "page": {
-                            "url": "http://greenlight.greentechmedia.com/2008/10/16/peak-power-getting-a-second-hump-because-of-computers-662/", 
+                            "url": "http://en.wikipedia.org/wiki/Smart_grid", 
                             "date": {
-                                "ctime": "Tue Oct 21 04:11:12 2008"
+                                "ctime": "Fri Oct 24 00:36:02 2008"
                             }, 
                             "proficiency": {
                                 "date": {
-                                    "ctime": "Tue Oct 21 04:11:12 2008"
+                                    "ctime": "Thu Oct 23 04:23:49 2008"
                                 }, 
-                                "name": "Energy Economics"
-                            }
+                                "name": "Electricity", 
+                                "key": "aghwbG9wcXVpenIcCxILUHJvZmljaWVuY3kiC0VsZWN0cmljaXR5DA"
+                            }, 
+                            "key": "aghwbG9wcXVpenISCxILQ29udGVudFBhZ2UY9wIM"
                         }
                     }, 
                                        {
                         "index": "Smart grid", 
-                        "pre_content": " ", 
-                        "content": "Smart grid development does not require large-scale technological innovation. Many<span id=\"blank\">Smart grid</span>technologies are already used in other applications such as manufacturing and telecommunications.<span id=\"blank\">Smart grid</span>development for the most part can use existing technologies, applying them in new ways to grid operations. In general,<span id=\"blank\">Smart grid</span>technology can be grouped into five key areas:    ", 
+                        "pre_content": " <span id=\"blank\">Smart grid</span> development does not require large-scale technological innovation. and telecommunications.<span id=\"blank\">Smart grid</span>development for the most part can use existing technologies, applying them in new ways to grid operations.  ",
+                        "content": "The <span id=\"blank\">Smart grid</span> will allow small players like individual homes and small businesses to sell power to their neighbors or back to the grid. ", 
+                        
+                        
                         "answer_candidates": [
                             "Datacenter", 
                             "Home Area Network", 

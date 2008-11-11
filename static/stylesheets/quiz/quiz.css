@@ -290,15 +290,13 @@ td#quiz_pink_right {
 }
 
 div#quiz_outer {
-        position: absolute;
-        top: 50px;
-        left: 150px;
-        z-index: 90;
-        padding: 18px 18px 58px 18px;
-        margin-left:    25%;
-        margin-right:    25%;
-        overflow: visible;
-        background: transparent;
+background:transparent none repeat scroll 0 0;
+left:35%;
+overflow:visible;
+padding:18px 18px 58px;
+position:absolute;
+top:10%;
+z-index:90;
 }
 
 div#quiz_inner {

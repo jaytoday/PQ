@@ -8,6 +8,8 @@ from google.appengine.ext.webapp import template
 from google.appengine.ext import db
 from google.appengine.api import users
 from google.appengine.ext import webapp
+from .model.quiz import QuizItem, ItemScore
+from .model.user import QuizTaker
 from utils.utils import ROOT_PATH, tpl_path
 import simplejson
 from utils.gql_encoder import GqlEncoder, encode
@@ -54,3 +56,22 @@ class LoadTopics(webapp.RequestHandler):
 	path = tpl_path(DEV_PATH +'admin.html')
 	self.response.out.write(template.render(path, template_values))
     
+
+
+class Debug(webapp.RequestHandler):
+
+
+  def get(self):
+      if self.request.get('quiz_item'): return self.quiz_item(self.request.get('quiz_item'))
+    
+
+  def quiz_item(self, item_key):
+		item = QuizItem.get(item_key)
+		item_answers = []
+		[item_answers.append(str(a)) for a in item.answers]  		
+		quiz_item = {"answers": item_answers, "answer1" : item.answers[0], "answer2" : item.answers[1], "answer3": item.answers[2],  #answer1,2,3 is deprecated
+		"proficiency": item.proficiency.name, "topic": item.topic.name, "key": item.key()}      
+		template_values = {"quiz_items": [quiz_item]}
+		logging.debug('loaded quiz...')
+		path = tpl_path(QUIZTAKER_PATH + 'debug_quiz.html')
+		self.response.out.write(template.render(path, template_values))

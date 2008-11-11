@@ -311,7 +311,7 @@ $('.quizbuilder_wrapper .scroller').trigger('next');
 
 function onItemAddSuccess(response)
 {
-
+console.log('new quiz item key:', response);
 }
 
 

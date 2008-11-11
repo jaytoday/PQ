@@ -19,7 +19,7 @@
         data.setValue(0, 1, 11);
         data.setValue(1, 0, 'Green Computing');
         data.setValue(1, 1, 2);
-        data.setValue(2, 0, 'Energy Cogeneration');
+        data.setValue(2, 0, 'Cogeneration');
         data.setValue(2, 1, 2);
         data.setValue(3, 0, 'Regulations');
         data.setValue(3, 1, 2);

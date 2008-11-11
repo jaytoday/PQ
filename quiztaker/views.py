@@ -99,11 +99,13 @@ class TakeQuiz(webapp.RequestHandler):
     if proficiencies == None:
         all_proficiencies = Proficiency.all()
         proficiencies = [proficiency.name for proficiency in all_proficiencies.fetch(4)] 
+        vendor = self.get_default_vendor()
     logging.debug(proficiencies)
     logging.debug('loading quiz...')    
     load_quiz = LoadQuiz()
+    if vendor == "": vendor = self.get_default_vendor()
     template_values = {"quiz_items": load_quiz.get(proficiencies), "proficiencies": proficiencies, "vendor_name": vendor.name.capitalize(), "vendor": vendor.key() }
-    logging.debug('loaded quiz...')    
+    logging.debug('loaded quiz...')
     path = tpl_path(QUIZTAKER_PATH + 'takequiz.html')
     self.response.out.write(template.render(path, template_values))
 
@@ -121,10 +123,13 @@ class TakeQuiz(webapp.RequestHandler):
 		#except: return [proficiency.name for proficiency in all_proficiencies.fetch(4)]
     if self.request.get('proficiencies'):
         proficiencies = self.request.get('proficiencies')
-        return [proficiencies, ""]  
+        
+        return [eval(proficiencies,{"__builtins__":None},{}), self.get_default_vendor()]  
 	return None
          
-
+  def get_default_vendor(self):
+	plopquiz = Employer.gql("WHERE name = :1", "plopquiz")
+	return plopquiz.get()
 
 class QuizFrame(webapp.RequestHandler):
         def get(self):
