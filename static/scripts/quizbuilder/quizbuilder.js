@@ -79,6 +79,31 @@ function AfterGetRawItemsForProficiency(response){ BuildQuizEditor(response, top
 
 
  
+ 
+ 
+ /**************** THIS IS JUST FOR THE YC INTERVIEW ********************/
+
+
+
+function YCInterviewOnly(){
+    var proficiency = 'Electricity';
+
+    server.GetTopicsForProficiency(proficiency, function(response){ 
+    	var topics = response;
+    	server.GetRawItemsForProficiency(proficiency, function(response){  
+    		
+    		BuildQuizEditor(response, topics); });
+		});
+
+$('form#select_proficiency').fadeOut('slow', function(){  $('div#loading_items').fadeIn('slow'); });
+}
+
+
+
+YCInterviewOnly()
+
+
+
 
 });
 

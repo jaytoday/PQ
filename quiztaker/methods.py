@@ -57,7 +57,7 @@ class DataMethods():
 				
 		
   def refresh_quiz_items(self, verbose):
-	proficiencies = []		
+	quiz_items= []		
 	json_file = open(ROOT_PATH + "/data/quiz_items.json")
 	json_str = json_file.read()
 	newdata = simplejson.loads(json_str) # Load JSON file as object
@@ -92,15 +92,16 @@ class DataMethods():
 							 topic = this_topic.key())
 							  #Add List of Answers
 		print quiz_item.__dict__
-		quiz_item.put()
+		quiz_items.append(quiz_item)
 		if verbose[0] == "loud":
-		  print encode(quiz_item) 
+		  print encode(quiz_item)
+	db.put(quiz_items) 
 
 
 
 
   def refresh_scores(self, verbose):
-		proficiencies = []		
+		scores = []		
 		json_file = open(ROOT_PATH + "/data/item_scores.json")
 		json_str = json_file.read()
 		newdata = simplejson.loads(json_str) # Load JSON file as object
@@ -121,9 +122,10 @@ class DataMethods():
 								 vendor = this_vendor,
 								 type = item['type'])
 								  #Add List of Answers
-			score.put()
+			scores.append(score)
 			if verbose[0] == "loud":
-			  print encode(score) 
+			  print encode(score)
+		db.put(scores) # save scores 	   
 							
 
 

@@ -311,7 +311,12 @@ $('.quizbuilder_wrapper .scroller').trigger('next');
 
 function onItemAddSuccess(response)
 {
-console.log('new quiz item key:', response);
+	
+	
+console.log('click link below to debug new quiz item key');
+
+$.get('/debug/?quiz_item=' + response);
+
 }
 
 

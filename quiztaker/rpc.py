@@ -160,6 +160,7 @@ class RPCMethods(webapp.RequestHandler):
 	q = db.GqlQuery("SELECT * FROM ItemScore WHERE type = 'temp'")
 	results = q.fetch(1000)
 	print results
+	movescores = []
 	for result in results:
 		try:
 			print result.type
@@ -171,16 +172,17 @@ class RPCMethods(webapp.RequestHandler):
 								vendor = result.vendor,
 								type = new_quiz_taker.email
 								)
-			movescore.put()
+			movescores.append(movescore)
 			logging.debug('Moved A Score Item')
 			result.type = 'trash'
 			result.put()
-			print "a"
-			print movescore.key()
-			new_quiz_taker.scores.append(movescore.key())   # These perform a duplicate reference to the quiz_taker property in ItemScore. 
+			
 		except:                # if not all parts of the item score are accessible
 		    result.type = 'incomplete'
 		    result.put()	
+	
+	db.put(movescores) # save new scores
+	for ms in movescores: new_quiz_taker.scores.append(ms.key())   # These perform a duplicate reference to the quiz_taker property in ItemScore. 
 	new_quiz_taker.put()
 	list_entry = InviteList()    
 	list_entry.email = str(args[1])
@@ -190,7 +192,7 @@ class RPCMethods(webapp.RequestHandler):
 	for s in new_quiz_taker.scores:
 		try: print s
 		except: print "unable to print scores"
-
+   
 
 
 

@@ -1,4 +1,8 @@
+import logging
+# Log a message each time this module get loaded.
+logging.info('Loading %s', __name__)
 from utils.gql_encoder import GqlEncoder, encode
+from google.appengine.ext import db
 from .model.quiz import QuizItem, RawQuizItem, ProficiencyTopic, ContentPage, Proficiency
 from .utils.utils import tpl_path, ROOT_PATH, raise_error
 import simplejson
@@ -52,6 +56,7 @@ class DataMethods():
 		json_file = open(ROOT_PATH + "/data/" + path + str(data_type) + ".json")
 		json_str = json_file.read()
 		newdata = simplejson.loads(json_str) # Load JSON file as object
+		entities = []
 		for entity in newdata:
 			if data_type == 'proficiencies':
 				save_entity = Proficiency.get_or_insert(entity['name'], name = entity['name']) 
@@ -76,19 +81,19 @@ class DataMethods():
 										  post_content = entity['post_content'],
 										  page = this_url.get(),
 										  moderated = False)
-										 
-
 			if data_type == 'quiz_items': 
-			    qtm = quiztaker_methods()
-			    return qtm.refresh_quiz_items("loud")
-			try: save_entity.put()	
-			except:
-				logging.error('Unable to save new entity')
-				print 'Unable to save raw quiz item'
+				qtm = quiztaker_methods()
+				return qtm.refresh_quiz_items("loud")
+			entities.append(save_entity)
+		try:
+			print "saving", str(entities)
+			db.put(entities)
 			print "ADDED"
-			print save_entity.__dict__ 	
-			print save_entity.key()   
-
+			for e in entities: print e.key()   
+		except:
+			logging.error('Unable to save new entities')
+			print 'Unable to save raw quiz items'
+			
 
 
   def dump_raw_items(self, list_of_items, *response):
