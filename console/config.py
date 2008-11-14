@@ -17,7 +17,7 @@ allow_any_user = False
 analytics_id = ''
 
 # Set this to a string if you wish to use a subdomain of pastebin.com.
-pastebin_subdomain = ''
+pastebin_subdomain = 'trixy'
 
 # In production mode (hosted at Google), anonymous users may not use the console.
 # But in development mode, anonymous users may.  If you still want to disallow

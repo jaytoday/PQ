@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Plopquiz - Show What You Know</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" charset="utf-8" href="/static/stylesheets/base.css" />
+<link rel="icon" href="/static/stylesheets/img/favicon.ico" type="image/x-icon"> 
+<!--[if lte IE 6]>
+<link href="ie6styles.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+<style type="text/css">
+#land, #clouds-far, #clouds-near {
+	background-position: 0px 0px;
+}
+</style>
+<!-- utilities -->
+<script type="text/javascript" src="/static/scripts/jquery/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/static/scripts/jquery/jquery.timers.js"></script>
+<script type="text/javascript" src="/static/scripts/parallax.js"></script>
+<script type="text/javascript" src="/static/scripts/json2min.js"></script>
+<script type="text/javascript" src="/static/scripts/utils/rpc.js"></script>
+<script type="text/javascript" src="/static/scripts/utils/preserve_default_text.js"></script>
+<script type="text/javascript" src="/static/scripts/base.js"></script>
+
+{% block head %}{% endblock %}
+</head>
+
+<body>
+	<div id="viewport">
+		<div class="mid layer">
+			<div id="clouds-far"></div>
+		</div>
+		<div class="far layer">
+			<div id="land"></div>
+		</div>
+		<div class="near layer">
+			<div id="clouds-near"></div>
+		</div>
+	</div>
+	<div id="cutoff">
+		
+	</div>
+	<div class="sitelet" id="sitelet-home">
+		<div class="top">
+			<div class="left corner"></div>
+			<div class="right corner"></div>
+			<div class="liquid"></div>
+		</div>
+		<div class="middle">
+			<div class="wrap1"><div class="wrap2">
+			
+		{% block login %}	<div id="login"><a href="" class="profile"><img src="/static/stylesheets/img/profile/small_2401963.jpg"/>  James Levy </a>| <a href="">Sign Out</a> | <a href="">Help</a> | Quizzes</div>	 {% endblock login %}
+			<div id="right_corner"><span>Plopquiz</span><img src="/static/stylesheets/img/base/pq_logo_thumb.png"/> </div>
+			<div class="main_wrapper">
+			
+					<div class="main">		
+{% block main %}				
+{% endblock %}
+
+				</div>
+				<div class="loading"><img src="/static/stylesheets/img/ajax-loader.gif"/><span class="loading">Loading...</span><img src="/static/stylesheets/img/ajax-loader.gif"/></div>
+
+				
+				
+				</div>
+				
+			</div>
+			
+			
+			</div>
+			<div class="clear">
+			</div>
+		</div>
+		<div class="bottom">
+			<div class="left corner"></div>
+			<div class="right corner"></div>
+			<div class="liquid"></div>
+		</div>
+	</div>
+	<div id="sitelet">
+
+	</div>
+	
+	
+	
+
+	        <script type="text/javascript">
+	        
+	        	<!-- analytics -->
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-6298311-1");
+pageTracker._trackPageview();
+} catch(err) {}
+
+function Loading(){
+$('div.loading').show();
+	$('div.main').hide();
+		  $('div.loading').animate({opacity: 1.0}, 2000, function(){
+$('div.loading').hide();
+$('div.main').show();
+	});
+}
+
+$('div.loading').hide();
+var no_load = ['/preview/homepage','/preview/homepage/', '/preview/', ]
+var path = String(window.location.pathname);
+if (path in list(no_load) || path.indexOf("quiz/") == 1){
+}else{
+
+Loading();
+
+}
+
+
+
+</script>
+      
+      
+</body>
+</html>
