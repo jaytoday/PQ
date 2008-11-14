@@ -5,12 +5,8 @@
 
 (function($)
 {
-	
-	
-
-
-        var opts = {}, 
-        imgPreloader = new Image, imgTypes = ['png', 'jpg', 'jpeg', 'gif'], 
+	var opts = {}, 
+	imgPreloader = new Image, imgTypes = ['png', 'jpg', 'jpeg', 'gif'], 
 	loadingTimer, loadingFrame = 1;
 
         $(function()
@@ -92,43 +88,40 @@
                                                         $('.timer_inner', self)
                                                                 .css('width', '100%');
                                                                 
-                                                               
-                                                                
-                                                                if (quizItem.item_type == "quiz_item"){
-                                                                timer_width = $('.timer_bar').width(); // to calculate score
-                                                                $('#quiz_answers').find('div').addClass('disabled');
-                                                                $('.timer_inner', self).animate({opacity: 1.0}, 2000, function(){
-                                                                	$('#quiz_content').animate({opacity: 1}, 1000);
-                                                                	$('#quiz_answers').find('div').removeClass('disabled');
-																}
-                                                                	);
-																}
+                                                                if (quizItem.item_type == "quiz_item")
+								{
+									timer_width = $('.timer_bar').width(); // to calculate score
+									$('#quiz_answers').find('div').addClass('disabled');
+									$('.timer_inner', self).animate({opacity: 1.0}, 2000, function()
+									{
+										$('#quiz_content').animate({opacity: 1}, 1000);
+										$('#quiz_answers').find('div').removeClass('disabled');
+									});
+								}
                                                                 
                                                                 $('.timer_inner', self).animate(
                                                                 {
                                                                         width: 0
                                                                 },
                                                                 {
-                                                                	
-                                                                      complete: function()
-                                                                        {
-                                                                                if(quizItem.timeout == "reset")
-                                                                                {
-                                                                                        if(quizItem.timed)
-                                                                                                $.plopquiz.specialTimers[quizItem.timed]();
+									complete: function()
+									{
+										if(quizItem.timeout == "reset")
+										{
+											if(quizItem.timed)
+												$.plopquiz.specialTimers[quizItem.timed]();
 
-                                                                                        $(self).stop();
+											$(self).stop();
+										      return reset();
+										}
 
-                                                                                        return reset();
-                                                                                }
-
-                                                                                $.plopquiz.submitAnswer(quizItem.timed, quizItem);
-                                                                        },
-                                                                        duration: $.plopquiz.settings.timeoutDuration,
-                                                                        easing: 'linear'
+										$.plopquiz.submitAnswer(quizItem.timed, quizItem);
+									},
+									duration: $.plopquiz.settings.timeoutDuration,
+									easing: 'linear'
                                                                 })
                                                                 .show();
-                                                }
+						}
                                                 reset();
                                         })
                                         .bind('loadingQuizItem', function()
@@ -146,7 +139,7 @@
                                 $('#quiz_answers .answer').hover(function()
                                 {
                                 	if ($(this).attr('id') == 'skip'){ return; }
-                                        $('#blank').text($(this).text()).css({'padding': '0px 4px'});
+									$('#blank').html($(this).text()).css({'padding': '0px 0px'});
                                         
                                 },
                                 function()
@@ -195,33 +188,28 @@
 
                                 for ( var i in quizItem.answers )
                                 {
-                                      /* some settings... */
-                                      
-                                      
-                                $('#quiz_content').attr('class', quizItem.item_type + '_content');
-                                
-                                $('#quiz_answers').attr('class', quizItem.item_type + '_answers');
-                                
-                                $('#quiz_inner').attr('class', quizItem.item_type + '_quiz_inner');
-                                
-                                $('.quiz_selection').attr('id', quizItem.item_type + '_quiz_selection');
-                                
-                                
-                                      if (quizItem.item_type == 'intro' || quizItem.item_type == 'begin_quiz' || quizItem.item_type == 'quiz_complete'){  
-                                      var this_answer = $('#quiz_answers #confirm');
-                                      }else{ 
-                                      var this_answer = $('#quiz_answers .answer:eq(' + i + ')'); 
-                                      }
+					/* some settings... */
+					$('#quiz_content').attr('class', quizItem.item_type + '_content');
+					
+					$('#quiz_answers').attr('class', quizItem.item_type + '_answers');
+					
+					$('#quiz_inner').attr('class', quizItem.item_type + '_quiz_inner');
+					
+					$('.quiz_selection').attr('id', quizItem.item_type + '_quiz_selection');
+					
+					
+					if (quizItem.item_type == 'intro' || quizItem.item_type == 'begin_quiz' || quizItem.item_type == 'quiz_complete'){  
+						var this_answer = $('#quiz_answers #confirm');
+					}
+					else
+					{ 
+						var this_answer = $('#quiz_answers .answer:eq(' + i + ')'); 
+					}
 
-                                        
-                                        this_answer
-                                                .show()
-                                                .find('.answertext')
-                                                .text(quizItem.answers[i]);
-                                                
-											
-
-                                                
+					this_answer
+						.show()
+						.find('.answertext')
+						.html(quizItem.answers[i]);
                                 }
 
                                 if(quizItem.timed)
@@ -240,13 +228,10 @@
                                  * and does not allow skipping instruction 1 o 2
                                  */
 
-								if(quizItem.item_type == "intro")
+				if(quizItem.item_type == "intro")
                                 {
-          
-                                	if (quizItem.vendor.length > 1){ $('p#employer').find('b').text(quizItem.vendor); }
-                                	
-								}
-
+					if (quizItem.vendor.length > 1){ $('p#employer').find('b').text(quizItem.vendor); }
+				}
                                 	
                                 if(quizItem.item_type == "instructions")
                                 {
@@ -267,7 +252,7 @@
                                         $("#quiz_answers .answer").mouseover(i1mouseOver);
                                 }
                                 
-                                   if(quizItem.item_type == "instructions2")
+				if(quizItem.item_type == "instructions2")
                                 {
                                        $('a#skip').hide(); 
                                 }
@@ -275,8 +260,7 @@
 
                                 if(quizItem.item_type == "begin_quiz")
                                 {
-                                	
-                                        var p = {};
+					var p = {};
                                         for(var i in $.plopquiz.quizitemList)
                                                 if(!p[$.plopquiz.quizitemList[i].proficiency] && $.plopquiz.quizitemList[i].proficiency)
                                                         p[$.plopquiz.quizitemList[i].proficiency] = 0;
