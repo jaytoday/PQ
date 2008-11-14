@@ -1,7 +1,7 @@
 // when the DOM is ready...
 function profile_sliderInit()
 {
-        // need i 
+
         var $panels = $('.pb_container .profiles > div');
         var $container = $('.pb_container .profiles');
         // if false, we'll float all the panels left and fix the width 
@@ -25,23 +25,37 @@ function profile_sliderInit()
                 .after('<img class="scrollButtons pb_next" src="/static/stylesheets/img/utils/purple_next.png" />');
 
         // go find the navigation link that has this target and select the nav
+        
+        $('div.loading').addClass('profile_loading');
         function trigger(data)
         {
                 var user = $($panels[data.data]).attr('id');
                 if (!user){ return false; }
                 $('.profile_outer').hide("slow", function()
                 {
+
+                	$('div.loading').show();
+
                         $('.profile_outer').load("/preview/employer/load_profile?user=" + user, function()
                         {
-                                //$('.profile_outer').fadeTo(1500, 0, function()
-                                //{
+                        	
+                        	$('div.loading').animate({opacity: 1.0}, 700, function(){
+                        		
+                              $('div.loading').hide();
                                 $('.profile_outer').show("slow");
                                 $.getScript("/static/scripts/profile/profile.js");
-                                //});  //.show(); //
+
+                                
+							});
                                 
                         });
                 });
-        }
+                
+
+
+}
+
+
 
         var scrollOptions = 
         {

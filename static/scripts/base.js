@@ -18,6 +18,17 @@ jQuery.fn.extend({
 		return this;
 	}
 });
+
+function list(a)
+{
+  var o = {};
+  for(var i=0;i<a.length;i++)
+  {
+    o[a[i]]='';
+  }
+  return o;
+}
+
  
 $(document).ready(function()
 {

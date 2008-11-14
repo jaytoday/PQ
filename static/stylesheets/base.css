@@ -323,3 +323,18 @@ margin:4px 3px;
 img.scrollButtons{
 cursor:pointer;
 }
+
+
+/* loading */
+
+div.loading{
+margin: 180px 0 0 280px;
+}
+
+div.loading img{
+margin:-5px 40px;
+}
+
+span.loading{
+font-size: 2em;
+}

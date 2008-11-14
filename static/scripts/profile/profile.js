@@ -1,5 +1,10 @@
+
+
 $(function()
 {
+
+	
+	//$('div#loading_items').fadeIn('slow');
         $('div#right_corner').find('span').text('');
         //tabs
         $('.profile ul').tabs();
@@ -10,3 +15,9 @@ $(function()
 
         // $.merge($.dynacloud.stopwords, [ "der", "die", "das" ]); -- add filters
 });
+
+
+
+
+
+
