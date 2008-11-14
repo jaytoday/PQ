@@ -3,16 +3,16 @@
                     {
                         "index": "natural systems", 
                         "pre_content": " The review that Mr Sukhdev leads, The Economics of Ecosystems and Biodiversity (Teeb), was initiated by Germany under its recent EU presidency, with the European Commission providing funding. ", 
-                        "content": " The first phase concluded in May when the team released its finding that forest decline could be costing about 7% of global GDP. The second phase will expand the scope to other<span class=\"blank\">natural systems</span> ", 
+                        "content": " The first phase concluded in May when the team released its finding that forest decline could be costing about 7% of global GDP. The second phase will expand the scope to other<span id=\"blank\">natural systems</span> ", 
                         "answer_candidates": [
                             "Public policy", 
                             "Numerical analysis", 
-                            "Trigonometric function", 
-                            "Levenshtein distance", 
+                            "Biodiversity", 
+                            "Ecosystems", 
                             "Transport function", 
-                            "Dynamic time warping", 
+                            "Gestalt", 
                             "Adaptive grammar", 
-                            "Knightian uncertainty", 
+                            "Uncertainty", 
                             "Gamma function", 
                             "Competitor indexing", 
                             "Regression analysis", 
@@ -24,22 +24,24 @@
                         "post_content": "   ", 
                         "moderated": false, 
                         "page": {
-                            "url": "http://news.bbc.co.uk/2/hi/science/nature/7662565.stm", 
+                            "url": "http://en.wikipedia.org/wiki/Smart_grid", 
                             "date": {
-                                "ctime": "Tue Oct 21 04:11:12 2008"
+                                "ctime": "Fri Oct 24 00:36:02 2008"
                             }, 
                             "proficiency": {
                                 "date": {
-                                    "ctime": "Tue Oct 21 04:11:12 2008"
+                                    "ctime": "Thu Oct 23 04:23:49 2008"
                                 }, 
-                                "name": "Energy Economics"
-                            }
+                                "name": "Electricity", 
+                                "key": "aghwbG9wcXVpenIcCxILUHJvZmljaWVuY3kiC0VsZWN0cmljaXR5DA"
+                            }, 
+                            "key": "aghwbG9wcXVpenISCxILQ29udGVudFBhZ2UY9wIM"
                         }
                     }, 
                     {
                         "index": "energy", 
                         "pre_content": "", 
-                        "content": " Renewable<span class=\"blank\">energy</span> is <span class=\"blank\">energy</span> generated from  natural resources \u2014such as  sunlight    ,  wind ,  rain ,  tides  and  geothermal heat \u2014which are  renewable  (naturally replenished). In 2006, about 18% of global final<span class=\"blank\">energy</span>consumption came from renewables, with 13% coming from traditional  biomass , such as  wood-burning .  Hydroelectricity  was the next largest renewable source, providing 3%, followed by  solar hot water /heating, which contributed 1.3%. Modern technologies, such as  geothermal<span class=\"blank\">energy</span>,  wind power ,  solar power , and  ocean<span class=\"blank\">energy</span> together provided some 0.8% of final<span class=\"blank\">energy</span>consumption.    ", 
+                        "content": " Renewable<span id=\"blank\">energy</span> is <span id=\"blank\">energy</span> generated from  natural resources \u2014such as  sunlight    ,  wind ,  rain ,  tides  and  geothermal heat \u2014which are  renewable  (naturally replenished). In 2006, about 18% of global final<span id=\"blank\">energy</span>consumption came from renewables, with 13% coming from traditional  biomass , such as  wood-burning .", 
                         "answer_candidates": [
                             "Speed", 
                             "Torque", 
@@ -55,7 +57,7 @@
                             "Synergism", 
                             "Pressure"
                         ], 
-                        "post_content": "Some renewable<span class=\"blank\">energy</span>technologies are criticised for being  intermittent  or unsightly, yet the market is growing for many forms of renewable<span class=\"blank\">energy</span> Wind power is growing at the rate of 30 percent annually, with a worldwide installed capacity of over 100 GW,     and is widely used in several European countries and the  United States .     The manufacturing output of the  photovoltaics  industry reached more than 2,000 MW in 2006,     and  photovoltaic (PV) power stations  are particularly popular in Germany.    Solar thermal power  stations operate in the USA and Spain, and the largest of these is the 354 MW  SEGS  power plant in the  Mojave Desert .    . The world's largest  geothermal power  installation is  The Geysers  in California, with a rated capacity of 750 MW.     Brazil has one of the largest renewable<span class=\"blank\">energy</span>programs in the world, involving production of  ethanol fuel  from sugar cane, and ethanol now provides 18 percent of the country's automotive fuel.     Ethanol fuel is also widely available in the USA.", 
+                        "post_content": "",
                         "moderated": false, 
                         "page": {
                             "url": "http://en.wikipedia.org/wiki/Renewable_energy", 
@@ -72,9 +74,9 @@
                     }, 
                
                     {
-                        "index": "Saudi Arabia", 
+                        "index": "Iran", 
                         "pre_content": "Nuclear is cheap in the U.S., but it's cheap in large part because the 30 year old plants got paid off a while ago. Personally, I think we need more nuclear, even with all of the issues, but the cost question at the moment it a bit up in the air.", 
-                        "content": "And the<span class=\"blank\">Saudi Arabia</span>in the category  \" turning Alt Energy into a JOKE is ... \"", 
+                        "content": "It's especially important to reduce reliance on foreign oil because of the control <span id=\"blank\">Iran</span> has over the oil supply.", 
                         "answer_candidates": [
                             "Egypt", 
                             "Al-Qaeda", 
@@ -92,22 +94,26 @@
                         "post_content": "", 
                         "moderated": false, 
                         "page": {
-                            "url": "http://greenlight.greentechmedia.com/2008/10/16/peak-power-getting-a-second-hump-because-of-computers-662/", 
+                            "url": "http://en.wikipedia.org/wiki/Smart_grid", 
                             "date": {
-                                "ctime": "Tue Oct 21 04:11:12 2008"
+                                "ctime": "Fri Oct 24 00:36:02 2008"
                             }, 
                             "proficiency": {
                                 "date": {
-                                    "ctime": "Tue Oct 21 04:11:12 2008"
+                                    "ctime": "Thu Oct 23 04:23:49 2008"
                                 }, 
-                                "name": "Energy Economics"
-                            }
+                                "name": "Electricity", 
+                                "key": "aghwbG9wcXVpenIcCxILUHJvZmljaWVuY3kiC0VsZWN0cmljaXR5DA"
+                            }, 
+                            "key": "aghwbG9wcXVpenISCxILQ29udGVudFBhZ2UY9wIM"
                         }
                     }, 
                                        {
                         "index": "Smart grid", 
-                        "pre_content": " ", 
-                        "content": "Smart grid development does not require large-scale technological innovation. Many<span class=\"blank\">Smart grid</span>technologies are already used in other applications such as manufacturing and telecommunications.<span class=\"blank\">Smart grid</span>development for the most part can use existing technologies, applying them in new ways to grid operations. In general,<span class=\"blank\">Smart grid</span>technology can be grouped into five key areas:    ", 
+                        "pre_content": " <span id=\"blank\">Smart grid</span> development does not require large-scale technological innovation. and telecommunications.<span id=\"blank\">Smart grid</span>development for the most part can use existing technologies, applying them in new ways to grid operations.  ",
+                        "content": "The <span id=\"blank\">Smart grid</span> will allow small players like individual homes and small businesses to sell power to their neighbors or back to the grid. ", 
+                        
+                        
                         "answer_candidates": [
                             "Datacenter", 
                             "Home Area Network", 

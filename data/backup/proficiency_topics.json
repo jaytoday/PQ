@@ -839,6 +839,22 @@
                         "name": "Load Levelling", 
                         "key": "aghwbG9wcXVpenIkCxIQUHJvZmljaWVuY3lUb3BpYyIOTG9hZCBMZXZlbGxpbmcM"
                     }, 
+                    
+                           {
+                        "proficiency": {
+                            "date": {
+                                "ctime": "Mon Oct 27 01:00:25 2008"
+                            }, 
+                            "name": "Electricity"
+                            
+                        }, 
+                        "date": {
+                            "ctime": "Mon Oct 27 01:00:29 2008"
+                        }, 
+                        "name": "Oil Supply", 
+                        "key": "aghwbG9wcXVpenIkCxIQUHJvZmljaWVuY3lUb3BpYyIOTG9hZCBMZXZlbGxpbmcM"
+                    },
+                    
                     {
                         "proficiency": {
                             "date": {

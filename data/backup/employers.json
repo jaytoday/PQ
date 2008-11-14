@@ -1,0 +1,45 @@
+[
+                    {
+                        "proficiencies": [
+                            "Clean Energy", 
+                            "Collective Intelligence",
+                            "Building Webapps",
+                            "Startup Financing"
+                            
+                            
+                        ], 
+                        "email": "james@plopquiz.com", 
+                        "name": "plopquiz"
+                    },
+
+
+                    {
+                        "proficiencies": [
+                            "Freebase" 
+                        ], 
+                        "email": "freebase@plopquiz.com", 
+                        "name": "freebase"
+                    },
+                    
+                                        {
+                        "proficiencies": [
+                            "Clean Energy"
+                        ], 
+                        "email": "email@greenfuel.com", 
+                        "name": "greenfuel"
+                    },
+                    
+                    
+                    {
+                        "proficiencies": [
+                            "Rails", 
+                            "Building Webapps",
+                            "Ruby"
+                            
+                            
+                        ], 
+                        "email": "mark@smartleaf.com", 
+                        "name": "smartleaf"
+                    }
+                ]
+

@@ -4,7 +4,13 @@
                         "date": {
                             "ctime": "Mon Oct 27 01:00:32 2008"
                         }, 
-                        "proficiency": null, 
+                        "proficiency": {
+                            "date": {
+                                "ctime": "Mon Oct 27 01:00:25 2008"
+                            }, 
+                            "name": "Biofuels", 
+                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEJpb2Z1ZWxzDA"
+                        }, 
                         "key": "aghwbG9wcXVpenISCxILQ29udGVudFBhZ2UY5QIM"
                     }, 
                     {

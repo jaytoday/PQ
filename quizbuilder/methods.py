@@ -88,8 +88,6 @@ class DataMethods():
 		try:
 			print "saving", str(entities)
 			db.put(entities)
-			print "ADDED"
-			for e in entities: print e.key()   
 		except:
 			logging.error('Unable to save new entities')
 			print 'Unable to save raw quiz items'

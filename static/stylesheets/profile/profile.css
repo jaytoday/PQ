@@ -47,7 +47,7 @@ padding:5px 0 20px;
 div.proficiency_name{
 height:70px;
 overflow:hidden;
-width:160px;
+width:180px;
 }
 
 div.panel_content div.scoreometer{
@@ -59,7 +59,7 @@ div.panel_content h2{
 }
 
 div.panel_content h3{
-font-size:1em;
+font-size:1.1em;
 margin:23px 0;
 }
 
