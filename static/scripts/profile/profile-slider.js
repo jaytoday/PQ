@@ -29,6 +29,7 @@ function profile_sliderInit()
         $('div.loading').addClass('profile_loading');
         function trigger(data)
         {
+        	
                 var user = $($panels[data.data]).attr('id');
                 if (!user){ return false; }
                 $('.profile_outer').hide("slow", function()
@@ -38,12 +39,13 @@ function profile_sliderInit()
 
                         $('.profile_outer').load("/preview/employer/load_profile?user=" + user, function()
                         {
-                        	
-                        	$('div.loading').animate({opacity: 1.0}, 700, function(){
+                        	$.getScript("/static/scripts/profile/profile.js");
+                        	 
+                        	$('div.loading').animate({opacity: 1.0}, 300, function(){
                         		
                               $('div.loading').hide();
                                 $('.profile_outer').show("slow");
-                                $.getScript("/static/scripts/profile/profile.js");
+                               
 
                                 
 							});
@@ -71,6 +73,7 @@ function profile_sliderInit()
                 offset: 0,
                 start: 0,
                 lazy: true,
+                lock: true, //prevents queuing
                 force: true,
                 // duration of the sliding effect
                 duration: 1000,

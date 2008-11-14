@@ -339,6 +339,10 @@ span.loading{
 font-size: 2em;
 }
 
+div.hide{
+display:none;
+}
+
 
 
 /* errors */

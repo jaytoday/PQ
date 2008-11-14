@@ -32,7 +32,7 @@ import pygments.lexers
 import pygments.formatters
 
 import util
-import model
+import models
 import config
 
 from google.appengine.api        import users
@@ -182,7 +182,7 @@ class Statement(ConsoleHandler):
         else:
             # Access granted.
             session_key = self.request.get('session')
-            engine = model.AppEngineConsole.get(session_key)
+            engine = models.AppEngineConsole.get(session_key)
             result = engine.runsource(code)
             out = engine.out
             err = engine.err
@@ -383,10 +383,10 @@ class Console(Page):
             # Access granted.
             session_key = self.request.get('session')
             if session_key:
-                engine = model.AppEngineConsole.get(session_key)
+                engine = models.AppEngineConsole.get(session_key)
             else:
                 # Create a new session.
-                engine = model.AppEngineConsole()
+                engine = models.AppEngineConsole()
                 engine.unpicklables = [db.Text(line) for line in INITIAL_UNPICKLABLES]
                 session_key = engine.put()
 
