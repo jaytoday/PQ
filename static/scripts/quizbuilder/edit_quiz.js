@@ -392,13 +392,14 @@ function PreviewAnswer(i) {
 	// On a hover over an answer, preview its text in the item content.
 
  	var answer_span = $('div#quiz_item_content_' + i + ' > div.item_inner').find('span');
- 	var answer_text = answer_span.html();
+ 	var answer_text = answer_span.text().replace(/ /g, "&nbsp;");
  	
 	$('div#answers_' + i + ' > div').hover(function()
 	
 	{
         //answer_span.fadeTo(1,0.5);
-        answer_span.html($(this).text());
+	console.log($(this).text());
+        answer_span.html($(this).text().replace(/ /g, "&nbsp;"));
 	    answer_span.fadeTo("slow", 1);
 	
 	},

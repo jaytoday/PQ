@@ -1,5 +1,5 @@
-jQuery.fn.extend({
-	preserveDefaultText: function(defaultValue, replaceValue)
+Query.fn.extend({
+preserveDefaultText: function(defaultValue, replaceValue)
 	{
 		$(this).focus(function()
 		{
