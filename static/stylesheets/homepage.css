@@ -93,10 +93,11 @@ span.blank{
 background:#FFFFD1 none repeat scroll 0 0;
 border:1px solid #E2C922;
 font-weight:bold;
-margin:0 5px;
+margin:0 -1px;
 opacity:1;
-padding:4px 11px;
+padding:4px 16px;
 }
+
 div#motto
 {
 font-size:1.4em;
@@ -117,7 +118,7 @@ position:absolute;
 }
 
 span#two{
-margin:1px 15px 0 114px;
+margin:1px 15px 0 116px;
 }
 
 #blinder
@@ -126,10 +127,10 @@ background:#F7F5F4 none repeat scroll 0 0;
 font-size:1.9em;
 height:29px;
 letter-spacing:0.05em;
-margin:-5px 98px;
+margin:-5px 102px;
 position:absolute;
 text-align:center;
-width:210px;
+width:200px;
 }
 /* spaces the blank */
 .smart_span_holder

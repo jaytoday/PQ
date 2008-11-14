@@ -38,7 +38,7 @@ html += '<div class="answers_container" id="answers_container_' + i + '" ><div c
 
 html += '<div id="answer_choice_previews_' + i + '" class="answer_choice_previews">';
 
-html += '<div class="answer_preview" ><div class="correct">Correct Answer</div><span class="selection" id="correct">' + item.index + '</span><div id="new_index" style="display:none;"><input type="text" name="new_index" class="new_index" value="" /><input type="submit" name="submit_new_index" class="submit_new_index" onClick="return false;" value="ok" /></div></div>';
+html += '<div class="answer_preview" ><div class="correct">Correct Answer</div><span class="selection" id="correct">' + item.index + '</span><div id="new_index" style="display:none;"><input type="text" name="new_index" class="new_index" value="' + item.index + '" /><input type="submit" name="submit_new_index" class="submit_new_index" onClick="return false;" value="ok" /></div></div>';
 
 // item.page.url is webpage
 
@@ -47,7 +47,6 @@ for (w = 0; w < ANSWER_LIMIT; w++){
 html += '<div class="answer_preview"><div class="wrong">Wrong Answer #' + (w + 1) + '</div><span class="selection" id="selection_' + w + '">No Selection</span></div>';
 
 }
-
 
 html += '<div class="new_answer" id="' + i + '" ><input type="text" name="new_answer" class="new_answer" value="write a custom answer" /><input type="submit" name="submit_new_answer" class="submit_new_answer" onClick="return false;" value="ok" /> </div>';  // User submitted answer
 
@@ -78,6 +77,7 @@ $('div#quiz_items').append(html);
 $('.new_answer').preserveDefaultText('write a custom answer');
 //$('.item_topic').preserveDefaultText('        topic');
 // when something is written in this field, a submit button should appear below
+
 
 
 
@@ -240,13 +240,18 @@ $('form#quiz_data_' + i).find('input[@name="new_answer"]').attr('value', 'write 
 
 			});
 			
+			
+			
+		
 // Update index value (correct answer)
 $('#answer_choice_previews_' + i).find('span#correct').click(function(){ 
 	$(this).hide();
 	$('#answer_choice_previews_' + i).find('div#new_index').show();
+	$('input.new_index').preserveDefaultText($(this).text());
 });
 
-$('#answer_choice_previews_' + i).find('input[@name="submit_new_index"]').click(function(){
+// Update index display (correct answer)			
+$('#answer_choice_previews_' + i).find('input[@name="submit_new_index"]').click(function(e){
 	 item.index = $('#answer_choice_previews_' + i).find('input[@name="new_index"]').attr('value');
 	$('#answer_choice_previews_' + i).find('div#new_index').hide();
 	$('#answer_choice_previews_' + i).find('span#correct').text(item.index).show();

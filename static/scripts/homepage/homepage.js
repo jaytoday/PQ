@@ -15,7 +15,10 @@ $(document).ready(function()
 	});
 	
 	$('div#take_quiz').click(function(){ 
-		
+	
+	window.location='/preview/proficiency';
+	return; 
+	// ajax occasionally doesn't work. 	
 	$.getScript("/static/scripts/scroll/jquery.scrollTo-min.js");
 	$.getScript("/static/scripts/scroll/jquery.localscroll-1.2.5.js");
 	$.getScript("/static/scripts/scroll/jquery.serialScroll-1.2.1.js");
