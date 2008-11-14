@@ -52,14 +52,14 @@
 		{% block login %}	<div id="login"><a href="" class="profile"><img src="/static/stylesheets/img/profile/small_2401963.jpg"/>  James Levy </a>| <a href="">Sign Out</a> | <a href="">Help</a> | Quizzes</div>	 {% endblock login %}
 			<div id="right_corner"><span>Plopquiz</span><img src="/static/stylesheets/img/base/pq_logo_thumb.png"/> </div>
 			<div class="main_wrapper">
-			
-					<div class="main">		
+			<div class="loading"><img src="/static/stylesheets/img/ajax-loader.gif"/><span class="loading">Loading...</span><img src="/static/stylesheets/img/ajax-loader.gif"/></div>
+
+					<div class="main" style="display:none;">		
 {% block main %}				
 {% endblock %}
 
 				</div>
-				<div class="loading"><img src="/static/stylesheets/img/ajax-loader.gif"/><span class="loading">Loading...</span><img src="/static/stylesheets/img/ajax-loader.gif"/></div>
-
+				
 				
 				
 				</div>
@@ -115,7 +115,10 @@ Loading();
 
 }
 
+$(document).ready(function(){
 
+
+});
 
 </script>
       

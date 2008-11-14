@@ -19,8 +19,21 @@ import ranking.views
 
 
     
+
+class BaseHandler(webapp.RequestHandler):
+  def __init__(self):
+      pq = PQHandler()
+      wsgiref.handlers.CGIHandler().run(pq.application)
+
+
+  def handle_exception(self, exception, debug_mode):
+    logging.debug('500 error logged') 
+    self.error(500)
+
+
     
-def url_handler():
+
+class PQHandler(webapp.RequestHandler):
   logging.getLogger().setLevel(logging.DEBUG)
   
   application = webapp.WSGIApplication(
@@ -57,8 +70,6 @@ def url_handler():
                                          quiztaker.views.ViewSnaptalentQuiz), 
                                         ('/st_quiz/close/?',
                                          quiztaker.views.ViewNone),     
-                                         
-                                                                             
                                         ('/quiz/.*?',
                                          quiztaker.views.TakeQuiz), 
                                         ('/quiz_item/?',
@@ -102,13 +113,23 @@ def url_handler():
                                          
                                         ('/ranking/graph/?',
                                          ranking.views.Graph),  
-                                                                                                                           
+                                               
+                                         ('/.*', utils.NotFoundPageHandler)                                                                            
                                         ],
-                                       debug=True)
-  wsgiref.handlers.CGIHandler().run(application)
+                                       debug=False)
+  
+  
+  def handle_exception(self, exception, debug_mode):
+    logging.debug('500 error logged') 
+    self.error(500)
+
+
 
 
 
 if __name__ == "__main__":
-  url_handler()
+  BaseHandler()
+
+
+
 

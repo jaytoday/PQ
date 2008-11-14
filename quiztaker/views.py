@@ -14,7 +14,7 @@ from google.appengine.ext import webapp
 from utils.gql_encoder import GqlEncoder, encode
 from google.appengine.ext.webapp import util
 import simplejson
-from .utils.utils import tpl_path, ROOT_PATH, raise_error
+from .utils.utils import tpl_path, ROOT_PATH, raise_error, NotFoundPageHandler
 from .model.quiz import QuizItem, ItemScore
 from .model.user import QuizTaker
 from .model.employer import Employer 
@@ -92,9 +92,8 @@ class TakeQuiz(webapp.RequestHandler):
   def get(self):
     load_proficiencies = self.get_proficiencies()
     try: proficiencies = load_proficiencies[0]
-    except: 
-        print "unable to load proficiencies"  #should redirect to 404...
-        return
+    except:
+        return self.redirect('/not_found/') 
     vendor = load_proficiencies[1]
     if proficiencies == None:
         all_proficiencies = Proficiency.all()

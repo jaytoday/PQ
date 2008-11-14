@@ -4,7 +4,7 @@ import logging
 from google.appengine.ext import db
 from google.appengine.api import users
 from google.appengine.ext import webapp
-
+from google.appengine.ext.webapp import template
 
 
 ROOT_PATH = os.path.dirname(__file__) + "/.."
@@ -81,3 +81,13 @@ def loginrequired(handler):
 
 
 
+
+
+# 404
+class NotFoundPageHandler(webapp.RequestHandler):
+    def get(self):
+        #x for testing 500 error
+        self.error(404)
+        path = tpl_path('404.html')
+        template_values = {}
+        self.response.out.write(template.render(path, template_values))

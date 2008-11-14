@@ -338,3 +338,16 @@ margin:-5px 40px;
 span.loading{
 font-size: 2em;
 }
+
+
+
+/* errors */
+
+div.error_logo{
+margin:120px 230px 30px;
+}
+
+div.error_text{
+font-size:1.4em;
+margin:0 0 0 233px;
+}
