@@ -61,7 +61,7 @@ function item_sliderInit(wrong_answers) {
         selectNav.call(el);
         
   
-         if (data.id == 0){ console.log('no more items'); } // -- only if submitting after all items have been edited. 
+         if (data.id == 0){ return; } // -- only if submitting after all items have been edited. 
 
   
     }

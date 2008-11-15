@@ -103,7 +103,6 @@ $('div#select_topic_' + i).find('select.item_topic').append(topic_option);
 $('div#select_topic_' + i).find('select.item_topic').append('<option>New Topic</option>');
 
 $("select").change(function() {
-	console.log('changing', $('div#select_topic_' + i).find("select option:selected"));
           if ($('div#select_topic_' + i).find("select option:selected").text() == "New Topic") { $(this).hide(); $(this).parent().find('input.new_item_topic').show().preserveDefaultText('write a new topic'); } 
         })
 
@@ -195,15 +194,12 @@ $(this).removeClass("ac_selected");
 $(this).addClass("ac_unselected");
 
 
-console.log('removed text');
 return;
 
 
 }
 
 }
-
-console.log('array', wrong_answers[i]);
 
 if (answer_in_array[i][n] == "False") {
 
@@ -218,7 +214,7 @@ answer_in_array[i][n] == "True"; // this isn't needed.
 $(this).removeClass("ac_unselected");
 $(this).addClass("ac_selected");
 
-  console.log('added item', answer_pair, wrong_answers[i],wrong_answers[i].length);
+  console.log('added answer:',wrong_answers[i]);
   return;
   
 }
@@ -297,7 +293,6 @@ submit_wrong_answers.splice(wrong_answers[i].length, 0, wrong_answers[i][w][0]);
 
 if (submit_wrong_answers.length < 2){ console.info('not enough answers!'); return false;  }
 
-console.log($('div#quiz_item_content_' + i + ' > div.item_inner').html().length);
 if ($('div#quiz_item_content_' + i + ' > div.item_inner').html().length > 500){ console.info('quiz item is too long!'); return false; }
 
 // proceed to next quiz item
@@ -355,6 +350,7 @@ else{  $('div#answer_choice_previews_' + i).find('span#selection_' + w).html('No
 
 
 function UpdateContent(value,i,el){ 
+
 	stripped_value = value.split(' ').join('');
 	stripped_value = stripped_value.split('\n').join('');
 	if (stripped_value.length > 0){ el.html(value); }
@@ -392,23 +388,15 @@ function PreviewAnswer(i) {
 	// On a hover over an answer, preview its text in the item content.
 
  	var answer_span = $('div#quiz_item_content_' + i + ' > div.item_inner').find('span');
- 	var answer_text = answer_span.text().replace(/ /g, "&nbsp;");
- 	
+     var answer_text = $('div#answer_choice_previews_' + i).find('span#correct').text().replace(/ /g, "&nbsp;");
 	$('div#answers_' + i + ' > div').hover(function()
-	
 	{
-        //answer_span.fadeTo(1,0.5);
-	console.log($(this).text());
         answer_span.html($(this).text().replace(/ /g, "&nbsp;"));
-	    answer_span.fadeTo("slow", 1);
-	
 	},
 	function()
 	{
-	    
-		answer_span.empty();
+		answer_span.text('');
 		answer_span.html(answer_text);
-        //answer_span.fadeTo(100, 0.5);
 	});   
     
   
