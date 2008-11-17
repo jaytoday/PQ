@@ -7,12 +7,12 @@ import cgi
 import wsgiref.handlers
 import datetime, time
 import string
-from google.appengine.ext.webapp import template
+from utils.webapp import template
 from google.appengine.ext import db
 from google.appengine.api import users
-from google.appengine.ext import webapp
+from utils import webapp
 from utils.gql_encoder import GqlEncoder, encode
-from google.appengine.ext.webapp import util
+from utils.webapp import util
 import simplejson
 from .utils.utils import tpl_path, ROOT_PATH, raise_error, NotFoundPageHandler
 from .model.quiz import QuizItem, ItemScore
@@ -32,7 +32,7 @@ class PQHome(webapp.RequestHandler):
   #Load Plopquiz Homepage 
 
   def get(self):
-
+    self.response.clear()
     template_values = {}
     path = tpl_path('homepage.html')
     self.response.out.write(template.render(path, template_values))

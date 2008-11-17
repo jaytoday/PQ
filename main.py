@@ -1,5 +1,5 @@
 import logging
-from google.appengine.ext import webapp
+from utils import webapp
 import wsgiref.handlers
 from utils import utils
 from utils import stubs as stubs
@@ -18,17 +18,6 @@ import employer.rpc
 import ranking.views
 
 
-    
-
-class BaseHandler(webapp.RequestHandler):
-  def __init__(self):
-      pq = PQHandler()
-      wsgiref.handlers.CGIHandler().run(pq.application)
-
-
-  def handle_exception(self, exception, debug_mode):
-    logging.debug('500 error logged') 
-    self.error(500)
 
 
     
@@ -38,97 +27,111 @@ class PQHandler(webapp.RequestHandler):
   
   application = webapp.WSGIApplication(
                                        [
-                                        ('/demo/?',
-                                         quiztaker.views.PQDemo),
-                                        ('/preview/ad_embed/?',
-                                         quiztaker.views.PQDemo),  
-                                        ('/preview/?',
-                                         homepage.views.ExitPage),                                                                                  
-                                        ('/preview/homepage/?',
-                                         homepage.views.ViewHomepage),  
-                                        ('/preview/proficiency/?',
-                                         homepage.views.ChooseProficiency), 
-                                        ('/preview/profile/?',
-                                         profiles.views.ViewProfile),
-                                        ('/preview/employer/profile/?',
-                                         profiles.views.ViewEmployerProfile),  
-                                        ('/preview/employer/profile/browse/?',
-                                         profiles.views.BrowseProfiles), 
-                                        ('/preview/employer/profile/browse/stats/?',
-                                         employer.views.Stats),                                                                                    
-                                        ('/preview/employer/load_profile/?',
-                                         profiles.views.LoadUserProfile),                                           
-                                        ('/intro/?',
-                                         quiztaker.views.PQIntro),
-                                        ('/quiztaker/rpc/?',
-                                         quiztaker.rpc.RPCHandler),                                                                                                                     
-                                        ('/viewscore/?',
-                                         quiztaker.views.ViewScore),
-                                        ('/quiz_complete/?',
-                                         quiztaker.views.QuizComplete),                                         
-                                        ('/st_quiz/?',
-                                         quiztaker.views.ViewSnaptalentQuiz), 
-                                        ('/st_quiz/close/?',
-                                         quiztaker.views.ViewNone),     
-                                        ('/quiz/.*?',
-                                         quiztaker.views.TakeQuiz), 
-                                        ('/quiz_item/?',
-                                         quiztaker.views.QuizItemTemplate),                                         
-                                        ('/?',
-                                         quiztaker.views.PQHome),                                        
-                                        ('/create_scores/?',
-                                         stubs.CreateScoreStubs),
-                                        ('/view_scores/?',
-                                         stubs.ViewScoreStubs),
-                                        ('/set_proficiencies/?',
-                                         stubs.Set_Proficiencies),
-                                        ('/set_difficulties/?',
-                                         stubs.Set_Difficulties),
-                                        ('/quizbuilder/?',
-                                         quizbuilder.views.QuizBuilder),
-                                        ('/quizbuilder/induction/?',
-                                         quizbuilder.views.InductionInterface),
-                                        ('/quizbuilder/rpc/?',
-                                         quizbuilder.rpc.RPCHandler),
-                                        ('/quizbuilder/rpc/post/?',
-                                         quizbuilder.rpc.RPCPostHandler),                                         
-                                        ('/quizbuilder/item/?',
-                                         quizbuilder.views.RawItemTemplate),                                         
-                                         ('/dev/admin/?', 
-                                         dev.views.Admin),
-                                         ('/admin/?', 
-                                         admin),                                         
-                                        ('/quiz_frame/?',
-                                         quiztaker.views.QuizFrame),
-                                        ('/drilldown/?',
-                                         quizbuilder.views.Drilldown),
-                                        ('/employer/rpc/?',
-                                         employer.rpc.RPCHandler),                                        
 
-                                        ('/dev/load_topics/?',
-                                         dev.views.LoadTopics),  
+										#Homepage
+										('/?',
+										 quiztaker.views.PQHome), 
+										('/preview/?',
+										 homepage.views.ExitPage),                                                                                  
+										('/preview/homepage/?',
+										 homepage.views.ViewHomepage),  
+										('/preview/proficiency/?',
+										 homepage.views.ChooseProficiency), 
+										
+										# Profiles
+										('/preview/profile/?',
+										 profiles.views.ViewProfile),
+										('/preview/employer/profile/?',
+										 profiles.views.ViewEmployerProfile),  
+										('/preview/employer/profile/browse/?',
+										 profiles.views.BrowseProfiles), 
+										
+										# Employers
+										('/preview/employer/profile/browse/stats/?',
+										 employer.views.Stats),                                                                                    
+										('/preview/employer/load_profile/?',
+										 profiles.views.LoadUserProfile),  
+										
+										
+										# Snaptalent Demo
+										('/demo/?',
+										 quiztaker.views.PQDemo),
+										('/preview/ad_embed/?',
+										 quiztaker.views.PQDemo),
+										('/st_quiz/?',
+										quiztaker.views.ViewSnaptalentQuiz),
+										
+										# Taking Quizzes										  
+										('/intro/?',
+										 quiztaker.views.PQIntro),                                                                                                                 
+										('/viewscore/?',
+										 quiztaker.views.ViewScore),
+										('/quiz_complete/?',
+										 quiztaker.views.QuizComplete),                                         
 
-                                        ('/debug/?',
-                                         dev.views.Debug),  
-                                         
-                                        ('/ranking/graph/?',
-                                         ranking.views.Graph),  
-                                               
-                                         ('/.*', utils.NotFoundPageHandler)                                                                            
+										('/quiz_frame/?',
+										 quiztaker.views.QuizFrame),                                        
+										('/st_quiz/close/?',
+										 quiztaker.views.ViewNone),     
+										('/quiz/.*?',
+										 quiztaker.views.TakeQuiz), 
+										('/quiz_item/?',
+										 quiztaker.views.QuizItemTemplate),                                         
+										
+										
+										# Induction & Building Quizzes
+										('/quizbuilder/?',
+										 quizbuilder.views.QuizBuilder),
+										('/quizbuilder/induction/?',
+										 quizbuilder.views.InductionInterface),
+										('/quizbuilder/item/?',
+										 quizbuilder.views.RawItemTemplate), 
+
+
+										# RPC Handlers
+										('/quiztaker/rpc/?',
+										 quiztaker.rpc.RPCHandler),    
+										('/quizbuilder/rpc/?',
+										 quizbuilder.rpc.RPCHandler),
+										('/quizbuilder/rpc/post/?',
+										 quizbuilder.rpc.RPCPostHandler),
+										('/employer/rpc/?',
+										 employer.rpc.RPCHandler),										   										 										
+										
+										 # Developer Pages
+										 ('/dev/admin/?', 
+										 dev.views.Admin),
+										 ('/admin/?', 
+										 admin),
+										('/dev/load_topics/?',
+										 dev.views.LoadTopics),  
+										('/debug/?',
+										 dev.views.Debug),  
+										('/ranking/graph/?',
+										 ranking.views.Graph),                                                                                       
+										
+										
+										('/create_scores/?',
+										 stubs.CreateScoreStubs),
+										('/view_scores/?',
+										 stubs.ViewScoreStubs),
+										('/set_proficiencies/?',
+										 stubs.Set_Proficiencies),
+										('/set_difficulties/?',
+										 stubs.Set_Difficulties),
+										('/drilldown/?',
+										 quizbuilder.views.Drilldown),
+										 ('/.*', utils.NotFoundPageHandler)                                                                            
                                         ],
-                                       debug=False)
+                                       debug=True)
+  wsgiref.handlers.CGIHandler().run(application)                                  
   
-  
-  def handle_exception(self, exception, debug_mode):
-    logging.debug('500 error logged') 
-    self.error(500)
-
 
 
 
 
 if __name__ == "__main__":
-  BaseHandler()
+  PQHandler()
 
 
 

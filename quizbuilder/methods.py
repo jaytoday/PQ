@@ -34,7 +34,7 @@ def refresh_data(data_type, verbose):
 
 def restore_backup():
     data = DataMethods()
-    data_types =  ["proficiencies", 'proficiency_topics', 'content_pages', 'raw_items', 'raw_items', 'quiz_items']
+    data_types =  ["proficiencies", 'proficiency_topics', 'employers', 'content_pages', 'raw_items', 'raw_items', 'quiz_items']
     for data_type in data_types:
     	data.load_data(data_type, "/backup/")
     

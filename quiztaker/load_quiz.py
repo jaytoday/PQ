@@ -6,11 +6,11 @@ from google.appengine.api import urlfetch
 import cgi
 import wsgiref.handlers
 import datetime, time
-from google.appengine.ext.webapp import template
+from utils.webapp import template
 from google.appengine.ext import db
 from google.appengine.api import users
-from google.appengine.ext import webapp
-from google.appengine.ext.webapp import util
+from utils import webapp
+from utils.webapp import util
 import simplejson
 from .utils.utils import tpl_path, ROOT_PATH, raise_error
 from .model.quiz import QuizItem, ItemScore
@@ -44,7 +44,8 @@ class LoadQuiz():
 		quiz_items.extend(q.fetch(1000))
 	logging.debug('loading items...')		
 	for item in quiz_items:
-		self.load_item(item)
+		try: self.load_item(item)
+		except: logging.debug('unable to load item')
 	self.load_array()
 	return self.quiz_array 
 

@@ -4,10 +4,10 @@ logging.info('Loading %s', __name__)
 import cgi
 import wsgiref.handlers
 import datetime, time
-from google.appengine.ext.webapp import template
+from utils.webapp import template
 from google.appengine.ext import db
 from google.appengine.api import users
-from google.appengine.ext import webapp
+from utils import webapp
 from utils.utils import ROOT_PATH, tpl_path
 
 # Template paths

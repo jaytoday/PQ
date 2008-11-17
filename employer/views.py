@@ -6,10 +6,10 @@ import cgi
 import wsgiref.handlers
 import datetime, time
 import string
-from google.appengine.ext.webapp import template
+from utils.webapp import template
 from google.appengine.ext import db
 from google.appengine.api import users
-from google.appengine.ext import webapp
+from utils import webapp
 from .utils.utils import tpl_path, ROOT_PATH, raise_error
 from .model.quiz import QuizItem, ItemScore
 from .model.user import QuizTaker

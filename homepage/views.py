@@ -8,11 +8,11 @@ import cgi
 import wsgiref.handlers
 import os
 import datetime, time
-from google.appengine.ext.webapp import template
+from utils.webapp import template
 from google.appengine.ext import db
 from google.appengine.api import users
-from google.appengine.ext import webapp
-from google.appengine.ext.webapp import util
+from utils import webapp
+from utils.webapp import util
 import simplejson
 
 from .model.quiz import ContentPage, RawQuizItem, QuizItem
