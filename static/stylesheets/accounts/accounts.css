@@ -1,0 +1,14 @@
+
+
+div.login_box{
+height:260px;
+margin:80px 180px;
+width:500px;
+float:left;
+}
+
+div.login_error{
+float:left;
+margin:50px 180px -70px;
+width:500px;
+}

@@ -3,7 +3,6 @@ import os
 import logging
 from google.appengine.ext import db
 from google.appengine.api import users
-from google.appengine.ext import webapp
 import webapp.template
 from webapp import *
 
@@ -21,15 +20,6 @@ def tpl_path(template_file_name):
                         './templates', template_file_name)
 
                         
-def login_url(uri):
-  # Construct Login/Logout URL.
-  if users.get_current_user():
-    url = users.create_logout_url(uri)
-    url_linktext = 'Logout'
-  else:
-    url = users.create_login_url(uri)
-    url_linktext = 'Login'
-  return url
 
 def login_text():
   # Construct Login/Logout Text.
@@ -80,6 +70,20 @@ def loginrequired(handler):
 
 
 
+def redirect_from_appspot(wsgi_app):
+    def redirect_if_needed(env, start_response):
+        if env["HTTP_HOST"].startswith('plopquiz.appspot.com'):
+            import webob, urlparse
+            request = webob.Request(env)
+            scheme, netloc, path, query, fragment = urlparse.urlsplit(request.url)
+            url = urlparse.urlunsplit([scheme, 'www.plopquiz.com', path, query, fragment])
+            start_response('301 Moved Permanently', [('Location', url)])
+            return ["301 Moved Peramanently",
+                  "Click Here" % url]
+        else:
+            return wsgi_app(env, start_response)
+    return redirect_if_needed
+    
 
 # 404
 class NotFoundPageHandler(webapp.RequestHandler):
@@ -89,3 +93,7 @@ class NotFoundPageHandler(webapp.RequestHandler):
         path = tpl_path('404.html')
         template_values = {}
         self.response.out.write(template.render(path, template_values))
+
+
+
+

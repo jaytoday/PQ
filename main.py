@@ -13,6 +13,7 @@ import homepage.views
 import quizbuilder
 import profiles.views
 import employer.views
+import accounts.views
 from google.appengine.ext import admin
 import employer.rpc
 import ranking.views
@@ -110,7 +111,15 @@ class PQHandler(webapp.RequestHandler):
 										('/ranking/graph/?',
 										 ranking.views.Graph),                                                                                       
 										
-										
+										 # Accounts
+										 ('/login/?', 
+										 accounts.views.Login),
+										 ('/login/response/?', 
+										 accounts.views.LoginResponse),
+										 ('/logout/?', 
+										 accounts.views.Logout),
+										 
+										 # Stubs										
 										('/create_scores/?',
 										 stubs.CreateScoreStubs),
 										('/view_scores/?',
@@ -124,6 +133,9 @@ class PQHandler(webapp.RequestHandler):
 										 ('/.*', utils.NotFoundPageHandler)                                                                            
                                         ],
                                        debug=True)
+                                       
+                                       
+  application = utils.redirect_from_appspot(application) # don't allow access via appspot.com
   wsgiref.handlers.CGIHandler().run(application)                                  
   
 
@@ -132,6 +144,9 @@ class PQHandler(webapp.RequestHandler):
 
 if __name__ == "__main__":
   PQHandler()
+
+
+
 
 
 

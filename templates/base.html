@@ -49,7 +49,16 @@
 		<div class="middle">
 			<div class="wrap1"><div class="wrap2">
 			
-		{% block login %}	<div id="login"><a href="" class="profile"><img src="/static/stylesheets/img/profile/small_2401963.jpg"/>  James Levy </a>| <a href="">Sign Out</a> | <a href="">Help</a> | Quizzes</div>	 {% endblock login %}
+		{% block login %}	
+		{% if user %}
+		<div id="login"><a href="" class="profile"><img src="/static/stylesheets/img/profile/small_2401963.jpg"/>  {{user.nickname}} </a>| <a href="{{ login_url }}">{{ login_text }}</a> | <a href="">Help</a> | Quizzes</div>	 
+		{% else %}
+		<div id="login"><a href="" class="profile"><img src="/static/stylesheets/img/profile/small_2401963.jpg"/>  <a href="{{ login_url }}">{{ login_text }}</a>| <a href="">Help</a> | Quizzes</div>	 
+		
+		{% endif %}
+		{% endblock login %}
+			
+			
 			<div id="right_corner"><span>Plopquiz</span><img src="/static/stylesheets/img/base/pq_logo_thumb.png"/> </div>
 			<div class="main_wrapper">
 			<div class="loading"><img src="/static/stylesheets/img/ajax-loader.gif"/><span class="loading">Loading...</span><img src="/static/stylesheets/img/ajax-loader.gif"/></div>
@@ -106,7 +115,7 @@ $('div.main').show();
 }
 
 $('div.loading').hide();
-var no_load = ['/preview/homepage','/preview/homepage/', '/preview/', ]
+var no_load = ['/preview/homepage','/preview/homepage/', '/preview/', '/login', '/login/response' ]
 var path = String(window.location.pathname);
 if (path in list(no_load) || path.indexOf("quiz/") == 1){
 }else{

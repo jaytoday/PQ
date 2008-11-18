@@ -13,6 +13,7 @@ from google.appengine.ext import db
 from google.appengine.api import users
 from utils import webapp
 from utils.webapp import util
+from utils.webapp.util import login_required
 import simplejson
 
 from .model.quiz import ContentPage, RawQuizItem, QuizItem
@@ -44,6 +45,7 @@ class RawItemTemplate(webapp.RequestHandler):
 
 class InductionInterface(webapp.RequestHandler):
 
+    @login_required
     def get(self):
         template_values = {}
         path = tpl_path(QUIZBUILDER_PATH + 'induction.html')

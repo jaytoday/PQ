@@ -9,6 +9,7 @@ handlers:
 
 - url: /console.*
   script: console/app/console.py
+  login: admin
 
 
 - url: /static/

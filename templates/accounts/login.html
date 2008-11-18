@@ -1,0 +1,22 @@
+{% extends "../base.html" %}
+{% block head %}
+	<link rel="stylesheet" type="text/css" charset="utf-8" href="/static/stylesheets/accounts/accounts.css" />
+{% endblock %}
+
+
+{% block main %}
+
+{% if error %} 
+<div class="login_error frame_box">We were unable to sign you in with the selected service.</div>
+{% endif %}
+
+<div class="login_box frame_box">
+<h2>You can login using any of these services.</h2><br/>
+<iframe src="https://plopquiz.rpxnow.com/openid/embed?token_url={{ token_url }}"
+  scrolling="no" frameBorder="no" style="width:400px;height:240px;">
+</iframe>
+
+
+</div>
+
+{% endblock %}
