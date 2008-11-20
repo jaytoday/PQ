@@ -7,7 +7,6 @@ import simplejson
 import string, re
 from google.appengine.api import urlfetch
 import urllib
-from .lib.BeautifulSoup import BeautifulSoup
 
 from .utils import jsonparser as parser
 from utils.utils import ROOT_PATH

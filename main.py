@@ -14,6 +14,7 @@ import quizbuilder
 import profiles.views
 import employer.views
 import accounts.views
+import store.views
 from google.appengine.ext import admin
 import employer.rpc
 import ranking.views
@@ -118,7 +119,11 @@ class PQHandler(webapp.RequestHandler):
 										 accounts.views.LoginResponse),
 										 ('/logout/?', 
 										 accounts.views.Logout),
-										 
+
+										 # Store
+										 ('/store/?', 
+										 store.views.Store),
+
 										 # Stubs										
 										('/create_scores/?',
 										 stubs.CreateScoreStubs),

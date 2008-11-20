@@ -9,7 +9,7 @@ import simplejson
 #import views
 import induction
 from .quiztaker.methods import DataMethods as quiztaker_methods
-
+from .employer.methods import DataMethods as employer_methods
 
 
 def dump_data(gql_query):
@@ -84,6 +84,9 @@ class DataMethods():
 			if data_type == 'quiz_items': 
 				qtm = quiztaker_methods()
 				return qtm.refresh_quiz_items("loud")
+			if data_type == 'employers':
+				emp = employer_methods()
+				return emp.load_data("employers", "")
 			entities.append(save_entity)
 		try:
 			print "saving", str(entities)

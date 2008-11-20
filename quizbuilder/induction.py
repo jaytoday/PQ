@@ -24,8 +24,8 @@ from collections import defaultdict
 import operator 
 
 
-from .lib.BeautifulSoup import BeautifulSoup, BeautifulStoneSoup, SoupStrainer  # HTML Parsing Library
-from .lib import rdfxml
+from utils.BeautifulSoup import BeautifulSoup, BeautifulStoneSoup, SoupStrainer  # HTML Parsing Library
+from utils import rdfxml
 
 
 
@@ -33,8 +33,8 @@ from .lib import rdfxml
 SEMANTICPROXY_URL = "http://service.semanticproxy.com/processurl/aq9r8pmcbztd4s7s427uw7zg/rdf/" # USE RDF ENDPOINT
 SEMANTICPROXY_MICRO_URL = "http://service.semanticproxy.com/processurl/aq9r8pmcbztd4s7s427uw7zg/microformat/" 
 TILDE_BASE_URL = "http://tilde.jamslevy.user.dev.freebaseapps.com/"
-TILDE_TYPE_LIMIT = 10 # Maximum number of types to query per request topic.
-TILDE_TOPIC_LIMIT = 40 # Maximum number of topics per type to list in response. 
+TILDE_TYPE_LIMIT = 50 # Maximum number of types to query per request topic.
+TILDE_TOPIC_LIMIT = 20 # Maximum number of topics per type to list in response. 
 TILDE_EXCLUDE = 'music,film' # should be array
 TRUNCATE_URL = "http://pqstage.appspot.com/truncate_page/?url=" 
 
@@ -139,10 +139,7 @@ class BuildItemsFromPage():
         if not soup.findAll('c:document'): return ["error", "unable to read the soup"]
         tags = self.get_tags(soup)
         if not tags: return ["error", "SemanticProxy unable to find tags"]
-        for tag in tags:  # Slice [1:...]
-        # Check if tag is too short, or too common. (the "she" problem)
-        # CHECK IF TAG IS A TYPED TOPIC ON FREEBASE 
-            # Make sure that get_similar_topics and get_paragraphs_containing_tag are successful.
+        for tag in tags: 
             if tag_threshold >= RAW_ITEMS_PER_PAGE: continue
 
             
@@ -181,7 +178,6 @@ class BuildItemsFromPage():
 		# escape "" or ' ' 
 		if 'http://' in tag: continue
 		if len(tag.contents[0]) >= MIN_TAG_CHARS: tags.append(str(tag.contents[0]))
-		
 	tags = self.rank_tags(tags)
 	return tags  
     
@@ -199,26 +195,7 @@ class BuildItemsFromPage():
     tags.reverse()
     return tags
           
-  def get_similar_topics_edgelist(self, tag):   # only used for graph
-    # Freebase request to get similar topics for a tag.
-    tag = tag.replace(' ','%20') #urlencode tag
-    tilde_request = str(TILDE_BASE_URL) + "?format=xml&topic_limit=" + str(TILDE_TOPIC_LIMIT) + "&type_limit=" + str(TILDE_TYPE_LIMIT) + "&exclude=" + str(TILDE_EXCLUDE) + "&request=" + str(tag)
-    try:
-        tilde_response = urlfetch.fetch(tilde_request)
-    except:
-        logging.debug('Unable to fetch tilde response') 
-    tilde_soup = BeautifulStoneSoup(tilde_response.content)
-    entries = [entry.contents for entry in tilde_soup.findAll('entry')]
-    similar_topics = [str(topic.contents[0]) for topic in tilde_soup.findAll('title')]
-    similar_ids = [str(id.contents[0]) for id in tilde_soup.findAll('id')]
-    similar_types = [str(type.contents[0]) for type in tilde_soup.findAll('type')]
-    for id in similar_ids:
-    	print id + " " + similar_types[similar_ids.index(id)]
-    if len(similar_topics) >= AC_MIN:
-        return similar_topics[1:AC_LIMIT]
-    else:
-        return False 
-        
+
                   
   def get_similar_topics(self, tag):
     # Freebase request to get similar topics for a tag.
@@ -243,48 +220,49 @@ class BuildItemsFromPage():
         return False 
         
   def get_raw_content_groups(self, page_text,tag):
-    # find paragraph in text containing a tag.    
-    # todo: Templates for mediawiki and google knol
-    raw_content_groups = []
-    w = re.compile(tag)
-    if not page_text: return False
-    for p in page_text[0].contents:
-        psoup = BeautifulSoup(p)
-        logging.debug('number of paragraphs') 
-        logging.debug(len(psoup.findAll('p')))
-        for paragraph in psoup.findAll('p'):
-            main_paragraph = paragraph.find(text=re.compile(r'\W%s\W' % tag ))
-            if main_paragraph:  # Is tag in this paragraph? 
-                # GET NEXT AND PREV <P> ELEMENTS CONTAINING SIGNIFICANT CONTENT. 
-                if (paragraph.findPreviousSibling('p') == None):
-                    previous_paragraph = ""
-                else:
-                    previous_paragraph = paragraph.findPreviousSibling('p').contents[0]
-                if (paragraph.findNextSibling('p') == None):
-                    next_paragraph = ""
-                else:
-                    next_paragraph = paragraph.findNextSibling('p').contents[0]
-                paragraphs = (previous_paragraph, main_paragraph, next_paragraph)
-                clean_paragraphs = []
-                for p in paragraphs:
-                	p = unicode(p).encode('utf-8')
-                	p = p.replace('\n', ' ')
-                	p = self.highlightAnswer(p, tag) 
-                	clean_paragraphs.append(p) 
-                raw_content_groups.append(clean_paragraphs)#return paragraph_containing_tag # this only returns the first instance.
-            else:
-                continue  # tag not found in paragraph
-        return raw_content_groups[0:RAW_ITEMS_PER_TAG]  # This slice could also be a threshold, or randomized, to avoid bias to the top of the document. 
-                
-     
+	# find paragraph in text containing a tag.    
+	# todo: Templates for mediawiki and google knol
+	raw_content_groups = []
+	w = re.compile(tag)
+	if not page_text: return False
+	sentences = str(page_text[0].contents).split(".")
+	for this_sentence in sentences:
+		#main_sentence = sentence.find(text=re.compile(r'\W%s\W' % tag ))
+		if tag in this_sentence:  # Is tag in this sentence? 
+			# previous two sentences
+			prev_two_sentences = ""
+			prev_two = [sentences.index(this_sentence) - 1, sentences.index(this_sentence) - 2]
+			for s in prev_two:
+				try: prev_two_sentences = prev_two_sentences + str(sentences[s]) + "."
+				except: pass
+			# next two sentences
+			next_two_sentences = ""
+			next_two = [sentences.index(this_sentence) + 1, sentences.index(this_sentence) + 2]
+			for s in next_two:
+				try: next_two_sentences = next_two_sentences + str(sentences[s]) + "."
+				except: pass
+			paragraphs = (str(prev_two_sentences), str(this_sentence + "."), str(next_two_sentences))
+			clean_paragraphs = []
+			for p in paragraphs:
+				p = p.replace('\\n', '')
+				p = p.replace("\\'", "'")
+				footnote = re.compile( '\[.*\]' )
+				p = footnote.sub('', p)				
+				p = unicode(p).encode('utf-8')
+				p = self.highlightAnswer(p, tag)
+				clean_paragraphs.append(p) 
+				raw_content_groups.append(clean_paragraphs)#return paragraph_containing_tag # this only returns the first instance.
+		else:
+			continue  # tag not found in paragraph
+	return raw_content_groups[0:RAW_ITEMS_PER_TAG]  # This slice could also be a threshold, or randomized, to avoid bias to the top of the document. 
+			
+ 
                 
   def highlightAnswer(self, text, tag):
     # apply HTML markup to answer within quiz item content
      text = str(text)
      str_tag = str(tag)
      tag_word = re.compile(r'\W%s\W' % tag, re.IGNORECASE)
-     footnote = re.compile( '\[(\d)*\]' )
-     text = footnote.sub('', text)
      return tag_word.sub('<span id="blank">%s</span>' % tag, text)
      #return tag_word.sub('^b%sb$' % tag, text)                
                  

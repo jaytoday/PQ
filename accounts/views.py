@@ -19,7 +19,6 @@ ACCOUNTS_PATH = 'accounts/'
 
 
 class Login(webapp.RequestHandler):
-  #Login
   def get(self):
     login_response = str('http://' + self.request._environ['HTTP_HOST'] + '/login/response')
     template_values = {'token_url': login_response }
@@ -54,7 +53,7 @@ class LoginResponse(webapp.RequestHandler):
 		  # log the user in using the unique_identifier
 		  # this should your cookies or session you already have implemented
 		  
-		  self.log_user_in(unique_identifier)    
+		  #self.log_user_in(unique_identifier)    
 		  self.redirect('/preview/homepage')
 		else:
 		  self.redirect('/login?error=true')

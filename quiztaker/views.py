@@ -14,7 +14,7 @@ from utils import webapp
 from utils.gql_encoder import GqlEncoder, encode
 from utils.webapp import util
 import simplejson
-from .utils.utils import tpl_path, ROOT_PATH, raise_error, NotFoundPageHandler
+from .utils.utils import tpl_path, ROOT_PATH, raise_error
 from .model.quiz import QuizItem, ItemScore
 from .model.user import QuizTaker
 from .model.employer import Employer 
@@ -45,8 +45,6 @@ class PQIntro(webapp.RequestHandler):
     template_values = {}
     intro_template = QUIZTAKER_PATH + self.request.get('page') + ".html"
     if self.request.get('demo') == "true": intro_template = QUIZDEMO_PATH + self.request.get('page') + ".html"
-#    if  self.request.get('page') == "begin_quiz": template_values['proficiencies'] = eval(self.request.get('proficiencies'))
-
     path = tpl_path(intro_template)
     self.response.out.write(template.render(path, template_values))
 
@@ -122,13 +120,13 @@ class TakeQuiz(webapp.RequestHandler):
 		#except: return [proficiency.name for proficiency in all_proficiencies.fetch(4)]
     if self.request.get('proficiencies'):
         proficiencies = self.request.get('proficiencies')
-        
         return [eval(proficiencies,{"__builtins__":None},{}), self.get_default_vendor()]  
 	return None
          
   def get_default_vendor(self):
 	plopquiz = Employer.gql("WHERE name = :1", "plopquiz")
 	return plopquiz.get()
+
 
 class QuizFrame(webapp.RequestHandler):
         def get(self):

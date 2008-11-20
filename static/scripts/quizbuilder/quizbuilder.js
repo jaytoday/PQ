@@ -80,12 +80,11 @@ function AfterGetRawItemsForProficiency(response){ BuildQuizEditor(response, top
 
  
  
- 
- /**************** THIS IS JUST FOR THE YC INTERVIEW ********************/
+ /**************** THIS IS JUST FOR THE DEMOS ********************/
 
+/*
 
-
-function YCInterviewOnly(){
+function DemoOnly(){
     var proficiency = 'Electricity';
 
     server.GetTopicsForProficiency(proficiency, function(response){ 
@@ -100,9 +99,9 @@ $('form#select_proficiency').fadeOut('slow', function(){  $('div#loading_items')
 
 
 
-YCInterviewOnly()
+DemoOnly()
 
-
+*/
 
 
 });
