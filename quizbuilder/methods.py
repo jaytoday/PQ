@@ -59,7 +59,9 @@ class DataMethods():
 		entities = []
 		for entity in newdata:
 			if data_type == 'proficiencies':
-				save_entity = Proficiency.get_or_insert(entity['name'], name = entity['name']) 
+				save_entity = Proficiency.get_or_insert(entity['name'], name = entity['name'])
+				try: save_entity.status = entity['status']
+				except: pass # no status specified
 			if data_type == 'proficiency_topics':
 				this_proficiency = Proficiency.gql("WHERE name = :1", entity['proficiency']['name'])
 				print entity['proficiency']

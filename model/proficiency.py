@@ -13,6 +13,11 @@ logging.info('Loading %s', __name__)
 class Proficiency(db.Model):
   name = db.StringProperty(required=True)  # Proficiency Tag (startup_financing)
   date = db.DateTimeProperty(auto_now_add=True)
+  status = db.StringProperty(required=False)
+  
+  def tag(self): # for views
+  	tag = self.name.replace(' ', '_')
+  	return tag
   #quizitems -- QuizItem reference
   ## pages  
   

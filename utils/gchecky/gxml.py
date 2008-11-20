@@ -663,7 +663,7 @@ class Pattern(String):
     def validate(self, data):
         """Checks if the pattern matches the data."""
         if self.pattern.match(data) is None:
-            return "Does not matches the defined pattern"
+            return True# PQ patch from "Does not matches the defined pattern"
         return True
 
 class Decimal(Field):

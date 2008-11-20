@@ -31,28 +31,32 @@
                         "date": {
                             "ctime": "Mon Oct 27 22:50:48 2008"
                         }, 
-                        "name": "Biofuels", 
+                        "name": "Biofuels",
+                        "status": "public", 
                         "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEJpb2Z1ZWxzDA"
                     }, 
                     {
                         "date": {
                             "ctime": "Mon Oct 27 22:50:48 2008"
                         }, 
-                        "name": "Electricity", 
+                        "name": "Electricity",
+                        "status": "public", 
                         "key": "aghwbG9wcXVpenIcCxILUHJvZmljaWVuY3kiC0VsZWN0cmljaXR5DA"
                     }, 
                     {
                         "date": {
                             "ctime": "Mon Oct 27 22:50:48 2008"
                         }, 
-                        "name": "Energy Economics", 
+                        "name": "Energy Economics",
+                        "status": "public", 
                         "key": "aghwbG9wcXVpenIhCxILUHJvZmljaWVuY3kiEEVuZXJneSBFY29ub21pY3MM"
                     }, 
                     {
                         "date": {
                             "ctime": "Mon Oct 27 22:50:48 2008"
                         }, 
-                        "name": "Energy Efficiency", 
+                        "name": "Energy Efficiency",
+                        "status": "public", 
                         "key": "aghwbG9wcXVpenIiCxILUHJvZmljaWVuY3kiEUVuZXJneSBFZmZpY2llbmN5DA"
                     }, 
                     {
@@ -96,13 +100,15 @@
                             "ctime": "Mon Oct 27 22:50:48 2008"
                         }, 
                         "name": "Oil", 
+                        "status": "public",
                         "key": "aghwbG9wcXVpenIUCxILUHJvZmljaWVuY3kiA09pbAw"
                     }, 
                     {
                         "date": {
                             "ctime": "Mon Oct 27 22:50:48 2008"
                         }, 
-                        "name": "Solar Energy", 
+                        "name": "Solar Energy",
+                        "status": "public", 
                         "key": "aghwbG9wcXVpenIdCxILUHJvZmljaWVuY3kiDFNvbGFyIEVuZXJneQw"
                     }
                 ]

@@ -124,3 +124,9 @@ margin:-24px 0 0;
 div.pfstat h3{
 margin: 7px 0px 0px 20px;  
 }
+
+
+div.buy_button{
+float:left;
+margin:-40px 250px;
+}

@@ -9,8 +9,21 @@
 <script src="/static/scripts/scroll/jquery.localscroll-1.2.5.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/scripts/scroll/jquery.serialScroll-1.2.1.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/scripts/homepage/proficiency-slider.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/scripts/homepage/proficiency.js" type="text/javascript" charset="utf-8"></script>
 
-<script type="text/javascript" src="/static/scripts/homepage/proficiency.js"></script>
+<script type="text/javascript">
+$(document).ready(function()
+{
+
+RenderProficiencyPanels({{ prof_json }}, {{ buy_buttons }});
+
+ });
+ 
+
+
+
+</script>
+
 
 {% endblock %}
 
@@ -22,42 +35,13 @@
 
 <div class="proficiency_container"><div class="proficiencies_scroll"><div class="proficiencies">
 
+{% for p in proficiencies %}
 
-
-<div class="proficiency" id="energy_economics">
-<img src="/static/stylesheets/img/proficiencies/energy_finance.png" />
-</div>
-<div class="proficiency" id="biofuels">
-<img src="/static/stylesheets/img/proficiencies/biofuels.png" />
-</div>
-<div class="proficiency" id="solar_energy">
-<img src="/static/stylesheets/img/proficiencies/solar_energy.png" />
-</div>
-<div class="proficiency" id="energy_efficiency">
-<img src="/static/stylesheets/img/proficiencies/energy_efficiency.png" />
-</div>
-<div class="proficiency" id="oil">
-<img src="/static/stylesheets/img/proficiencies/oil.png" />
+<div class="proficiency" id="{{ p.tag|lower }}">
+<img src="/static/stylesheets/img/proficiencies/{{ p.tag|lower }}.png" />
 </div>
 
-
-<div class="proficiency" id="electricity">
-<img src="/static/stylesheets/img/proficiencies/electricity.png" />
-</div>
-
-<div class="proficiency" id="law_and_policy">
-<img src="/static/stylesheets/img/proficiencies/law_and_policy.png" />
-</div>
-<div class="proficiency" id="wind_power">
-<img src="/static/stylesheets/img/proficiencies/wind_power.png" />
-</div>
-<div class="proficiency" id="nuclear_energy">
-<img src="/static/stylesheets/img/proficiencies/nuclear_energy.png" />
-</div>
-<div class="proficiency" id="tidal_power">
-<img src="/static/stylesheets/img/proficiencies/tidal_power.png" />
-</div>
-
+{% endfor %}
 
 
 </div></div></div>
@@ -71,6 +55,7 @@
 <div class="description_text">
 Between the $100 billion dollars invested in Clean Tech and new energy-conscious tax codes, there is a pressing need for those familiar with the new economic landscape.  
 </div>
+
    <div class="pfstat" id="popularity">      <h3>Popularity: </h3>  <div class="pfstatometer" ><img src="http://chart.apis.google.com/chart?chs=70x35&cht=gom&chd=t:86&chco=DDDDDD,00ea00&chf=bg,s,DDDDDD"/> </div>  </div>
    <div class="pfstat" id="difficulty">      <h3>Difficulty: </h3>  <div class="pfstatometer" ><img src="http://chart.apis.google.com/chart?chs=70x35&cht=gom&chd=t:46&chco=DDDDDD,00ea00&chf=bg,s,DDDDDD"/> </div>  </div>
                  
@@ -195,9 +180,6 @@ The reliability of tidal forces makes ocean-based energy an intriguing method fo
 </div>
 
 </div>
-
-
-
 
 
 {% endblock %}
