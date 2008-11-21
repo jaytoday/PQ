@@ -1,0 +1,74 @@
+{% extends "../base.html" %}
+{% block head %}
+	<link rel="stylesheet" type="text/css" charset="utf-8" href="/static/stylesheets/profile/edit.css" />
+	<link rel="stylesheet" type="text/css" charset="utf-8" href="/static/stylesheets/utils/form.css" />
+	
+	<script type="text/javascript" src="/static/scripts/jquery/jquery.magicpreview.pack.js"></script> 
+	<script type="text/javascript" src="/static/scripts/profile/edit_profile.js"></script> 
+{% endblock %}
+
+
+{% block main %}
+
+
+
+
+<div class="edit_profile_wrapper frame_box">
+
+<div class="edit_profile">
+
+
+<h2>{{ edit_type }} Your Profile</h2>
+
+
+
+        <form action"#" class="signup" name="signup">
+        
+<fieldset><legend>Basic Info</legend> <br/>
+
+<ul id="1">
+<li> <label for="name">Nickname</label> <input class="signup name" type="text" name="name" value="{{ user.nickname }}" id="name"   /> </li>
+<li> <label for="email">Email</label> <input class="signup email" type="text" name="email" value="{{ user.email }}" id="email"   /> </li>
+</ul>
+
+
+
+
+</fieldset>
+
+<fieldset><legend>Personal Details</legend> <br/>
+<ul id="2" >
+<li> <label for="webpage">Webpage</label> <input class="signup occupation" type="text" name="webpage" value="" id="webpage"   /> </li>
+<li> <label for="work_status">Work Status:</label>
+  <select name="work_status">
+  <option>Full-Time</option>
+  <option>Part-Time</option>
+  <option>Student</option>
+</select>
+  </li>
+  <li> <label for="aboutme">About Me</label> <input class="signup aboutme" type="textarea" name="aboutme" value="" id="aboutme"   /> </li>
+
+</ul>
+</fieldset>
+   </form>
+
+
+
+</div>
+</div>
+
+<div class="preview_profile_wrapper">
+<div class="preview_profile">
+
+				<div id="img_select"><img src="images/1.jpg" alt="hello" /></div>
+				<p>Photo <span id="p_select">1</span> chosen</p>
+				
+				<h2 id="p_name">Name</h2>
+<p id="p_webpage">Photo description</p>
+				
+				<p><strong>Work Status:</strong> <span id="p_work_status">No</span></p>
+	<p id="p_aboutme">Photo description</p>
+
+</div>
+</div>
+{% endblock %}

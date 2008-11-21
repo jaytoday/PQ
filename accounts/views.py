@@ -12,6 +12,9 @@ from utils.utils import ROOT_PATH, tpl_path
 import simplejson
 from google.appengine.api import urlfetch
 import urllib
+from utils.appengine_utilities.sessions import Session
+
+from methods import registered
 
 # Template paths
 ACCOUNTS_PATH = 'accounts/'
@@ -24,6 +27,8 @@ class Login(webapp.RequestHandler):
     template_values = {'token_url': login_response }
     if self.request.get('error') == "true":
         template_values['error'] = "True"
+    self.session = Session()
+    if self.request.get('continue'): self.session['continue'] = self.request.get('continue')
     path = tpl_path(ACCOUNTS_PATH +'login.html')
     self.response.out.write(template.render(path, template_values))
     
@@ -31,7 +36,7 @@ class Login(webapp.RequestHandler):
     
 
 class LoginResponse(webapp.RequestHandler):
-		#RPX Response Handler
+	#RPX Response Handler
 	def get(self):
 		token = self.request.get('token')
 		url = 'https://rpxnow.com/api/v2/auth_info'
@@ -46,25 +51,38 @@ class LoginResponse(webapp.RequestHandler):
 						   headers={'Content-Type':'application/x-www-form-urlencoded'}
 						   )
 		json = simplejson.loads(r.content)
-		if json['stat'] == 'ok':    
-		  unique_identifier = json['profile']['identifier']
-		  nickname = json['profile']['preferredUsername']
-		  email = json['profile']['email']
-		  # log the user in using the unique_identifier
-		  # this should your cookies or session you already have implemented
-		  
-		  #self.log_user_in(unique_identifier)    
-		  self.redirect('/preview/homepage')
-		else:
+		if json['stat'] != 'ok':
 		  self.redirect('/login?error=true')
+		else:    
+		  try: unique_identifier = json['profile']['identifier']
+		  except:
+		      logging.debug(json)
+		      self.redirect('/login?error=true')
+		  try: nickname = json['profile']['preferredUsername']
+		  except: nickname = ''
+		  try: email = json['profile']['email']
+		  except: email = ''
+		  self.session = Session()
+		  self.session['user'] = unique_identifier
+		  self.session['nickname'] = nickname
+		  self.session['email'] = email
+		  if registered(self.session['user']) is False: self.redirect('/register')
+		  else: 
+		        if self.session['continue']: self.redirect(self.session['continue'])
+		        else: self.redirect('/preview/homepage')
+		  
 		  
 
     
 class Logout(webapp.RequestHandler):
-  #Login
   def get(self):
-    template_values = {'token_url': self.request.env}
-    path = tpl_path(ACCOUNTS_PATH +'login.html')
-    self.response.out.write(template.render(path, template_values))
-    
+    self.session = Session()
+    self.session['user'] = False
+    if self.request.get('continue'):
+      self.redirect(self.request.get('continue'))
+    else:
+        self.redirect('/preview/homepage')
+        
+
+
 

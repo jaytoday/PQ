@@ -41,8 +41,13 @@ class PQHandler(webapp.RequestHandler):
 										 homepage.views.ChooseProficiency), 
 										
 										# Profiles
-										('/preview/profile/?',
+										('/profile/.*?',
 										 profiles.views.ViewProfile),
+										 ('/register/?', 
+										 profiles.views.EditProfile),
+										 										 										
+										('/preview/profile/?',
+										 profiles.views.PreviewViewProfile),
 										('/preview/employer/profile/?',
 										 profiles.views.ViewEmployerProfile),  
 										('/preview/employer/profile/browse/?',
@@ -113,6 +118,7 @@ class PQHandler(webapp.RequestHandler):
 										 ranking.views.Graph),                                                                                       
 										
 										 # Accounts
+
 										 ('/login/?', 
 										 accounts.views.Login),
 										 ('/login/response/?', 

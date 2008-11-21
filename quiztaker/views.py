@@ -21,6 +21,8 @@ from .model.employer import Employer
 from .model.proficiency import Proficiency, ProficiencyTopic 
 from methods import refresh_data
 from load_quiz import LoadQuiz
+
+
 # Template paths
 QUIZTAKER_PATH = 'quiztaker/'
 QUIZDEMO_PATH = 'quiztaker/demo/'
@@ -258,3 +260,21 @@ class ViewNone(webapp.RequestHandler):
 
    def get(self):
        pass
+
+
+
+
+
+
+
+
+
+class EditProfile(webapp.RequestHandler):
+  def get(self):
+    self.session = Session()
+    if not self.session['user']: self.redirect('/login/')
+    template_values = {'session': self.session}
+    path = tpl_path(PROFILE_PATH +'edit.html')
+    self.response.out.write(template.render(path, template_values))
+
+

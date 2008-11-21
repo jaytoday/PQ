@@ -63,6 +63,7 @@ except (EnvironmentError, RuntimeError):
   pass
 import django.template
 import django.template.loader
+from utils.appengine_utilities.sessions import Session
 
 import __init__
 
@@ -79,10 +80,11 @@ def render(template_path, template_dict, debug=False):
   t = load(template_path, debug)
   
   # PQ - Add User to Template Dict
-  
-  template_dict['user'] = users.get_current_user()
-  template_dict['login_url'] = login_url('/preview/homepage/')
-  template_dict['login_text'] = login_text()
+
+  user_info = get_user_info('/preview/homepage/')
+  template_dict['user'] = user_info[0]
+  template_dict['login_text'] = user_info[1]
+  template_dict['login_url'] = user_info[2]
   return t.render(Context(template_dict))
 
 
@@ -95,7 +97,13 @@ def load(path, debug=False):
   if you want imports and extends to work in the template.
   """
   abspath = os.path.abspath(path)
-
+  # this idiom can be reused anywhere to check server
+  if os.environ.get('SERVER_SOFTWARE','').startswith('Devel'):
+    HOST='local'
+    debug = True
+  elif os.environ.get('SERVER_SOFTWARE','').startswith('Goog'):
+    HOST='google'
+    debug = False
   if not debug:
     template = template_cache.get(abspath, None)
   else:
@@ -230,24 +238,26 @@ def _urlnode_render_replacement(self, context):
 # PQ Helper Functions
 
 
-def login_url(uri):
-  # Construct Login/Logout URL.
-  if users.get_current_user():
-    #url = users.create_logout_url(uri)
-    url = str('/login?continue=' + uri)
-    url_linktext = 'Logout'
-  else:
-    url = str('/logout?continue=' + uri)
-    #url = users.create_login_url(uri)
-    url_linktext = 'Login'
-  return url
 
-def login_text():
-  # Construct Login/Logout Text.
-  if users.get_current_user():
-    LOGINSTATUS = "logged in"
-    url_linktext = 'Logout'
-  else:
-    url_linktext = 'Login'
-  return url_linktext
-  
+
+def get_user_info(uri):
+	# Construct Login/Logout Text.
+	session = Session()
+	profile_path = session['nickname'].lower()
+	profile_path = profile_path.replace(' ','_') # TODO: Datastore lookup for profile path 
+	user = {'user' : session['user'], 'nickname': session['nickname'], 'profile_path': profile_path, 'email':session['email'] }
+	if user['user']:
+		login_text = 'Sign Out'
+		url = str('/logout?continue=' + uri)
+	else:
+		user = False
+		login_text = 'Sign In'
+		url = str('/login?continue=' + uri)
+	return  user, login_text, url
+
+
+
+
+
+
+

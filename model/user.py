@@ -13,17 +13,30 @@ logging.info('Loading %s', __name__)
 
 class QuizTaker(db.Model):
     email = db.EmailProperty(required=True)
-    name = db.StringProperty()
+    nickname = db.StringProperty(required=False)
+    
+    #Quiz Info 
+    
     scores = db.ListProperty(db.Key) # ItemScore keys
     levels = db.ListProperty(db.Key) # ProficiencyLevel keys
-    date = db.DateTimeProperty(auto_now_add=True)
+    
+    
+    # Personal info 
+    name = db.StringProperty()
+    profile_path = db.StringProperty(required=False)
     occupation = db.StringProperty(required=False)
     work_status = db.StringProperty(required=False)
     location = db.StringProperty(required=False)
     webpage = db.LinkProperty(required=False)
     about = db.StringProperty(required=False)
     quote = db.TextProperty(required=False)
-    # storing personal image? 
+    
+    # Image
+    
+    # When Signed Up
+    date = db.DateTimeProperty(auto_now_add=True)
+    
+    
     #itemscores  -- ItemScore reference
     #proficiency_levels -- ProficiencyLevel reference
     """

@@ -1,0 +1,52 @@
+
+div.edit_profile_wrapper{
+
+float: left;
+margin: 40px 50px;
+overflow:hidden;
+
+}
+
+div.edit_profile{
+height:330px;
+width:290px;
+font-size:1.3em;
+}
+
+
+div.preview_profile_wrapper{
+float:right;
+margin:45px 50px;
+}
+
+div.preview_profile{
+height:300px;
+width:300px;
+}
+
+
+
+
+
+form fieldset{
+}
+
+
+form input, form textarea {
+   width:170px;
+}
+
+
+form.signup{
+font-size: .6em;
+}
+
+
+input.email{
+width:200px;
+}
+
+
+input.aboutme{
+height:55px;
+}
