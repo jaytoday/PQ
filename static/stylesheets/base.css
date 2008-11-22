@@ -325,6 +325,24 @@ cursor:pointer;
 }
 
 
+
+/* common */
+
+.panel_box{
+border:1px solid #CCCCCC;
+font-size:1.1em;
+cursor:pointer;
+}
+
+.panel_box:hover{
+background:#DDDDDD none repeat scroll 0 0;
+color:#333333;
+}
+
+.panel_box a{
+font-weight:bold;
+}
+
 /* loading */
 
 div.loading{
@@ -354,4 +372,11 @@ margin:120px 230px 30px;
 div.error_text{
 font-size:1.4em;
 margin:0 0 0 233px;
+}
+
+
+/* forms */
+
+.form_proceed, .form_cancel{
+cursor:pointer;
 }

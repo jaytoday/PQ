@@ -2,8 +2,18 @@
 {% block head %}
 	<link rel="stylesheet" type="text/css" charset="utf-8" href="/static/stylesheets/profile/edit.css" />
 	<link rel="stylesheet" type="text/css" charset="utf-8" href="/static/stylesheets/utils/form.css" />
-	
+	<link rel="stylesheet" type="text/css" charset="utf-8" href="/static/stylesheets/profile/tabs.css" />
+	<link rel="stylesheet" type="text/css" charset="utf-8" href="/static/stylesheets/profile/profile.css" />
 	<script type="text/javascript" src="/static/scripts/jquery/jquery.magicpreview.pack.js"></script> 
+	<script type="text/javascript">
+		function onEditSuccess(response){
+	window.location='/profile/{{user.profile_path}}';
+}
+function onEditCancel(){
+window.location='/profile/{{user.profile_path}}';
+}
+
+		</script>
 	<script type="text/javascript" src="/static/scripts/profile/edit_profile.js"></script> 
 {% endblock %}
 
@@ -27,8 +37,8 @@
 <fieldset><legend>Basic Info</legend> <br/>
 
 <ul id="1">
-<li> <label for="name">Nickname</label> <input class="signup name" type="text" name="name" value="{{ user.nickname }}" id="name"   /> </li>
-<li> <label for="email">Email</label> <input class="signup email" type="text" name="email" value="{{ user.email }}" id="email"   /> </li>
+<li> <label for="fullname">Full Name</label> <input class="signup fullname" type="text" name="fullname" maxlength="15" value="{{ user.fullname }}" id="fullname"   /> </li>
+<li> <label for="email">Email</label> <input class="signup email" type="text" name="email" value="{{ user.email }}" maxlength="25" id="email"   /> </li>
 </ul>
 
 
@@ -37,16 +47,17 @@
 </fieldset>
 
 <fieldset><legend>Personal Details</legend> <br/>
-<ul id="2" >
-<li> <label for="webpage">Webpage</label> <input class="signup occupation" type="text" name="webpage" value="" id="webpage"   /> </li>
-<li> <label for="work_status">Work Status:</label>
+<ul id="2" > 
+<li> <label for="location">Location</label> <input class="signup occupation" type="text" name="location" maxlength="25" value="{{ user.location }}" id="location"   /> </li>
+<li> <label for="webpage">Webpage</label> <input class="signup occupation" type="text" name="webpage" maxlength="25" value="{{ user.webpage }} " id="webpage"   /> </li>
+<li> <label for="work_status">Work Status</label>
   <select name="work_status">
-  <option>Full-Time</option>
-  <option>Part-Time</option>
-  <option>Student</option>
+  <option {% ifequal user.work_status "Full-Time" %}selected{% endifequal %}>Full-Time</option>
+  <option {% ifequal user.work_status "Part-Time" %}selected{% endifequal %}>Part-Time</option>
+  <option {% ifequal user.work_status "Student" %}selected{% endifequal %}>Student</option>
 </select>
   </li>
-  <li> <label for="aboutme">About Me</label> <input class="signup aboutme" type="textarea" name="aboutme" value="" id="aboutme"   /> </li>
+  <li> <label class="aboutme" for="aboutme">About Me</label> <textarea class="signup aboutme"   cols="15" rows="3" type="textarea" name="aboutme" maxlength="80" id="aboutme">{{ user.aboutme }}</textarea> </li>
 
 </ul>
 </fieldset>
@@ -60,14 +71,61 @@
 <div class="preview_profile_wrapper">
 <div class="preview_profile">
 
-				<div id="img_select"><img src="images/1.jpg" alt="hello" /></div>
-				<p>Photo <span id="p_select">1</span> chosen</p>
+
+<div class="profile_outer">
+	
+		<div class="profile">
+	
+		<div id="photo"><img src='/static/stylesheets/img/profile/2401963.jpg'/></div>
+		<div id="basics">
+		<div id="p_nickname">James Levy </div>
+		<div id="profession">Software Designer</div>
+		</div>
+		
+            <ul id="main_nav">
+                <li class="ui-tabs-nav-item" id="profile_nav">
+                
+                <a href="#summary">Summary</a></li>
+                <li class="ui-tabs-nav-item"><a href="#portfolio">Top Scores</a></li>
+            </ul>
+            <div id="summary" class="profile-panel">
+
+                <div class="edit_content big_panel" >
+        
+				<!--<div id="img_select"><img src="images/1.jpg" alt="hello" /></div>
+				<p>Photo <span id="p_select">1</span> chosen</p> -->
 				
-				<h2 id="p_name">Name</h2>
-<p id="p_webpage">Photo description</p>
-				
-				<p><strong>Work Status:</strong> <span id="p_work_status">No</span></p>
-	<p id="p_aboutme">Photo description</p>
+			<ul>
+				<li><strong>Email:</strong> <span id="p_email"></span></li>	
+				<li><strong>Location:</strong> <span id="p_location"></span></li>	
+			<li><strong>Webpage:</strong> <span id="p_webpage"></span></li>		
+				<li><strong>Work Status:</strong> <span id="p_work_status"></span></li>
+	<li><strong>About Me:</strong><span id="p_aboutme"></span></li> 
+</ul>
+      
+               
+                </div>
+                
+                
+            
+            
+            </div><!-- end summary -->
+  
+   <div class="cancel_edit"><span>or Cancel</span> <div class="form_cancel" id='cancil_profile'><img src="/static/stylesheets/img/utils/cancel.png"></div></div>          
+       
+       
+  
+  <div class="submit_edit"><span>Save Changes</span> <div class="form_proceed" id='submit_profile'><img src="/static/stylesheets/img/utils/purple_next.png"></div></div>          
+            
+
+
+</div>  <!-- profile --> 
+
+
+
+
+
+ </div> 
 
 </div>
 </div>

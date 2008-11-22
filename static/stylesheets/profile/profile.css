@@ -178,6 +178,16 @@ div#intro_employer{
 height:176px;
 }
 
+div.edit_profile_link{
+float:left;
+margin:-290px -5px;
+padding:3px 25px;
+-moz-border-radius-topright:5px;
+-moz-border-radius-bottomright:5px;
+-webkit-border-radius-topright: 5px;
+-webkit-border-radius-bottomright:5px;
+}
+
 ul#personal_nav .ui-tabs-nav-item a {
 height:9px;
 }

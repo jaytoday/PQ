@@ -69,6 +69,7 @@ import urlparse
 import webob
 import wsgiref.headers
 import wsgiref.util
+from utils.appengine_utilities.sessions import Session
 
 RE_FIND_GROUPS = re.compile('\(.*?\)')
 _CHARSET_RE = re.compile(r';\s*charset=([^;\s]*)', re.I)
@@ -316,6 +317,7 @@ class RequestHandler(object):
     """Initializes this request handler with the given Request and Response."""
     self.request = request
     self.response = response
+    self.session = Session() # PQ patch
 
   def get(self, *args):
     """Handler method for GET requests."""

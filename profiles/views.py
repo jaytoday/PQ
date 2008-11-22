@@ -11,7 +11,7 @@ from utils.utils import ROOT_PATH, tpl_path
 
 from .model.user import QuizTaker
 from accounts.methods import register_user
-from utils.appengine_utilities.sessions import Session
+
 
 
 # Template paths
@@ -21,33 +21,44 @@ PROFILE_PATH = 'profile/'
 class ViewProfile(webapp.RequestHandler):
   #View a profile
   def get(self):
-    self.get_profile()
-    template_values = {}
-    path = tpl_path(PROFILE_PATH +'prototype.html')
+    template_values = self.get_profile()
+    if not template_values: return
+    path = tpl_path(PROFILE_PATH +'profile_template.html')
     self.response.out.write(template.render(path, template_values))
 
 
   def get_profile(self):
-      if len(self.request.path.split('/profile/')[1]) > 0:
-         profile_path = self.request.path.split('/profile/')[1].lower()
-         profile_path = profile_path.replace(' ','_')
-         user = QuizTaker.gql('WHERE profile_path = :1', self.request.path.split('/profile/')[1].lower())
-      if not user.get(): self.redirect('/profile_not_found/')
-      return user
-      
+		profile_path = self.request.path.split('/profile/')[1].lower()
+		profile_path = profile_path.replace(' ','_')
+		user = QuizTaker.gql('WHERE profile_path = :1', self.request.path.split('/profile/')[1].lower())
+		try:
+			user = user.get()
+		except: self.redirect('/profile_not_found/') # if no user is found
+		
+		if self.session.logged_in(): 
+		    if user.unique_identifier == self.session['user']: profile_owner = True
+		else: profile_owner = False
+		top_proficiencies = self.get_top_proficiencies(user) 
+		return {'user': user, 'profile_owner': profile_owner, 'top_proficiencies': top_proficiencies}
 
+
+      
+  def get_top_proficiencies(self, user):
+      print ""
+      print user.levels
+      
+      
 
 
 class EditProfile(webapp.RequestHandler):
   def get(self):
-    self.session = Session()
-    if not self.session['user']: self.redirect('/login/')
-    
+    if not self.session['user']: self.redirect('/login/') # login_required decorator
     user = QuizTaker.get_by_key_name(self.session['user'])
     edit_type = 'Edit'
     if not user: 
         user = register_user(self.session['user'], self.session['nickname'], self.session['email'])
         edit_type = 'Create'
+        user = QuizTaker.get_by_key_name(self.session['user'])
     template_values = {'user': user, 'edit_type': edit_type}
     path = tpl_path(PROFILE_PATH +'edit.html')
     self.response.out.write(template.render(path, template_values))

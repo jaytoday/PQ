@@ -28,8 +28,7 @@ padding:2px 10px;
 }
 
 div.form_proceed{
-background:#FFFFFF url(../img/utils/purple_next.png) no-repeat scroll 0 0;
+background: url(../img/utils/purple_next.png) no-repeat scroll 0 0;
 cursor:pointer;
-float:right;
-margin:-25px 20px;
+width:50px;
  }

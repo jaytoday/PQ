@@ -10,7 +10,7 @@ from .model.employer import Employer
 from methods import refresh_data, dump_data, load_data
 from .utils.utils import tpl_path, ROOT_PATH, raise_error
 from utils.gql_encoder import GqlEncoder, encode
-
+from utils.appengine_utilities.sessions import Session
 
 class RPCHandler(webapp.RequestHandler):
   # AJAX Handler
@@ -104,16 +104,26 @@ class RPCMethods(webapp.RequestHandler):
 	else:
 		this_score = 0
 		logging.debug('Incorrect answer')
-		
-	# need to factor in timer
-	# Need Better Temp Storing 
 
-	score = ItemScore(type='temp',    
-					  quiz_item = this_item.key(),
+	# Need Better Temp Storing 
+                         
+	score = ItemScore(quiz_item = this_item.key(),
 					  score = this_score,
 					  correct_answer = this_item.index,
 					  picked_answer = picked_answer,
 					  )
+					  	
+	self.session = Session()
+	user = self.session.logged_in()
+	
+	if user:
+		this_user = QuizTaker.get_by_key_name(user)
+		score.quiz_taker = this_user.key()
+		score.type = "site"     # type could be site, practice widget
+	else:
+		score.type = "temp"
+		                           
+
 
 	if len(args[3]) > 0: score.vendor = Employer.get(args[3])
 										
@@ -150,7 +160,6 @@ class RPCMethods(webapp.RequestHandler):
 								   key_name = str(args[1]),
 								   occupation = args[2],
 								   work_status = args[3],
-								   webpage = args[4],
 								   location = args[5]
 								   )
 		if len(args[4]) > 7: new_quiz_taker.webpage = args[4]  

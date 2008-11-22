@@ -14,6 +14,7 @@ import quizbuilder
 import profiles.views
 import employer.views
 import accounts.views
+import accounts.rpc
 import store.views
 from google.appengine.ext import admin
 import employer.rpc
@@ -43,6 +44,8 @@ class PQHandler(webapp.RequestHandler):
 										# Profiles
 										('/profile/.*?',
 										 profiles.views.ViewProfile),
+										('/edit_profile/?',
+										 profiles.views.EditProfile),										 
 										 ('/register/?', 
 										 profiles.views.EditProfile),
 										 										 										
@@ -104,7 +107,8 @@ class PQHandler(webapp.RequestHandler):
 										 quizbuilder.rpc.RPCPostHandler),
 										('/employer/rpc/?',
 										 employer.rpc.RPCHandler),										   										 										
-										
+										('/accounts/rpc/?',
+										 accounts.rpc.RPCHandler),  										
 										 # Developer Pages
 										 ('/dev/admin/?', 
 										 dev.views.Admin),

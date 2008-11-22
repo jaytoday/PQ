@@ -28,7 +28,7 @@
 	
 		<div id="photo"><img src='/static/stylesheets/img/profile/2401963.jpg'/></div>
 		<div id="basics">
-		<div id="name">James Levy </div>
+		<div id="name">{{ user.fullname }} </div>
 		<div id="profession">Software Designer</div>
 		</div>
 		
@@ -94,7 +94,9 @@
                  
                
             </div><!-- portfolio -->
-
+{% if profile_owner %}
+<div class="panel_box edit_profile_link"><a href="/edit_profile">edit profile</a></div>
+{% endif %}
 
     <ul id="personal_nav">
 		    <li class="ui-tabs-nav-item"><a href="#quote">Quote</a></li>
@@ -104,13 +106,13 @@
             </ul>
             <div id="personal">
 		<div class="personal_content" id="info"> <div class="info_content">  
-		Work Status: <div>Full Time </div>
+		Work Status: <div>{{ user.work_status }} </div>
 		
-		Location: <div>San Francisco</div>
+		Location: <div>{{ user.location }}</div>
 		
-		Webpage: <div><a>http://jamtoday.beehold.us</a></div>
+		Webpage: <div><a>{{ user.webpage }}</a></div>
 		
-		Interested In: <div>I like to watch.</div>		
+		About Me: <div>{{ user.aboutme }}</div>		
 		 </div> </div> 
 		
 		

@@ -500,3 +500,11 @@ class Session(object):
     def flush(self):
         self._delete_session()
         self.__init__()
+        
+        
+    def logged_in(self):
+		try:
+			user = self['user']
+			return user
+		except: return False
+     

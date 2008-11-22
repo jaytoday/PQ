@@ -16,13 +16,19 @@ def registered(user_key):
 
 
 def register_user(user_key, nickname, email):
+	
+	profile_path = nickname.lower()
+	profile_path = profile_path.replace(' ','_')
 	new_user = QuizTaker.get_or_insert(user_key,
-	                      nickname = nickname,
-	                      email = email)
-	                      
+						  unique_identifier = user_key, # redundancy
+						  nickname = nickname,
+						  fullname = nickname,
+						  profile_path = profile_path,
+						  email = email)
+						  
 	new_user.put()
 	return new_user 
-	
-	
+
+
 
 

@@ -8,27 +8,30 @@ import quiz
 logging.info('Loading %s', __name__)
 
       
-  
+
+
 
 
 class QuizTaker(db.Model):
+    #key_name = unique_identifier 
+    unique_identifier = db.StringProperty(required=False) # redundant
     email = db.EmailProperty(required=True)
     nickname = db.StringProperty(required=False)
+    profile_path = db.StringProperty(required=False)
+    fullname = db.StringProperty(required=False)
     
     #Quiz Info 
     
     scores = db.ListProperty(db.Key) # ItemScore keys
     levels = db.ListProperty(db.Key) # ProficiencyLevel keys
     
-    
     # Personal info 
     name = db.StringProperty()
-    profile_path = db.StringProperty(required=False)
     occupation = db.StringProperty(required=False)
     work_status = db.StringProperty(required=False)
     location = db.StringProperty(required=False)
     webpage = db.LinkProperty(required=False)
-    about = db.StringProperty(required=False)
+    aboutme = db.TextProperty(required=False)
     quote = db.TextProperty(required=False)
     
     # Image
@@ -75,6 +78,7 @@ class ProficiencyLevel(db.Model):
                                     required=True,
                                     collection_name='proficiency_levels')
   proficiency_level = db.IntegerProperty()
+  percentile = db.IntegerProperty()  
   date = db.DateTimeProperty(auto_now_add=True)
 
   

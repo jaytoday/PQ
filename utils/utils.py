@@ -91,7 +91,7 @@ class NotFoundPageHandler(webapp.RequestHandler):
         if self.request.path == "/": return
         self.error(404)
         path = tpl_path('404.html')
-        template_values = {}
+        template_values = {'no_load': True}
         self.response.out.write(template.render(path, template_values))
 
 

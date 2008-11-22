@@ -82,11 +82,14 @@ def render(template_path, template_dict, debug=False):
   # PQ - Add User to Template Dict
 
   user_info = get_user_info('/preview/homepage/')
-  template_dict['user'] = user_info[0]
+  template_dict['user_session'] = user_info[0]
   template_dict['login_text'] = user_info[1]
   template_dict['login_url'] = user_info[2]
   return t.render(Context(template_dict))
-
+  #var no_load = ['/preview/homepage','/preview/homepage/', '/preview/', '/register', '/login', '/login/response' ]
+  
+  #var no_load = ['/preview/homepage','/preview/homepage/', '/preview/', '/register', '/login', '/login/response' ]
+ 
 
 template_cache = {}
 def load(path, debug=False):
@@ -243,17 +246,17 @@ def _urlnode_render_replacement(self, context):
 def get_user_info(uri):
 	# Construct Login/Logout Text.
 	session = Session()
-	profile_path = session['nickname'].lower()
-	profile_path = profile_path.replace(' ','_') # TODO: Datastore lookup for profile path 
-	user = {'user' : session['user'], 'nickname': session['nickname'], 'profile_path': profile_path, 'email':session['email'] }
-	if user['user']:
+	if session.logged_in():
+		profile_path = session['nickname'].lower()
+		profile_path = profile_path.replace(' ','_') # TODO: Datastore lookup for profile path 
+		login_user = {'user' : session['user'], 'nickname': session['nickname'], 'profile_path': profile_path, 'email':session['email'] }
 		login_text = 'Sign Out'
-		url = str('/logout?continue=' + uri)
+		login_url = str('/logout?continue=' + uri)
 	else:
-		user = False
+		login_user = False
 		login_text = 'Sign In'
-		url = str('/login?continue=' + uri)
-	return  user, login_text, url
+		login_url = str('/login?continue=' + uri)
+	return  login_user, login_text, login_url
 
 
 
