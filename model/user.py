@@ -68,12 +68,36 @@ class QuizTaker(db.Model):
     
 
 
+class Profile(db.Model):
+    #key_name = unique_identifier 
+    unique_identifier = db.StringProperty(required=False) # redundant
+    email = db.EmailProperty(required=True)
+    nickname = db.StringProperty(required=False)
+    profile_path = db.StringProperty(required=False)
+    fullname = db.StringProperty(required=False)
+    
+    # Personal info 
+    name = db.StringProperty()
+    occupation = db.StringProperty(required=False)
+    work_status = db.StringProperty(required=False)
+    location = db.StringProperty(required=False)
+    webpage = db.LinkProperty(required=False)
+    aboutme = db.TextProperty(required=False)
+    quote = db.TextProperty(required=False)
+    
+    # Image
+    image = db.BlobProperty(required=False)
+    
+    # When Signed Up
+    date = db.DateTimeProperty(auto_now_add=True)
+    
+    
 
 
 class ProficiencyLevel(db.Model):
   proficiency = db.ReferenceProperty(proficiency.Proficiency,
                                     required=True,
-                                    collection_name='level') # Proficiency Tag (startup_financing)
+                                    collection_name='pro_levels') # Proficiency Tag (startup_financing)
   quiz_taker = db.ReferenceProperty(QuizTaker,
                                     required=True,
                                     collection_name='proficiency_levels')
@@ -81,6 +105,20 @@ class ProficiencyLevel(db.Model):
   percentile = db.IntegerProperty()  
   date = db.DateTimeProperty(auto_now_add=True)
 
+
+class TopicLevel(db.Model):
+  topic = db.ReferenceProperty(proficiency.ProficiencyTopic,
+                                    required=True,
+                                    collection_name='top_levels') # Proficiency Tag (startup_financing)
+  quiz_taker = db.ReferenceProperty(QuizTaker,
+                                    required=True,
+                                    collection_name='topic_levels')
+  topic_level = db.IntegerProperty()
+  percentile = db.IntegerProperty(required=False)  
+  date = db.DateTimeProperty(auto_now_add=True)
+
+  
+  
   
   
   

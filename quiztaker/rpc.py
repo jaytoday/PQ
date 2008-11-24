@@ -127,15 +127,13 @@ class RPCMethods(webapp.RequestHandler):
 
 	if len(args[3]) > 0: score.vendor = Employer.get(args[3])
 										
-	try:
-		score.put()
-		logging.info('Score entered by user %s with score %s, correct: %s, picked: %s'
-					 % (score.quiz_taker, score.score, score.picked_answer, score.correct_answer))
-	except:
-		raise_error('Error saving score for user %s with score %s, correct: %s, picked: %s'
-					% (score.quiz_taker, score.score, score.picked_answer, score.correct_answer))
 
-	return score.score
+	score.put()
+	if user: 
+	  this_user.scores.append(score.key())
+	  this_user.put()
+	logging.info('Score entered by user %s with score %s, correct: %s, picked: %s'
+				% (score.quiz_taker, score.score, score.picked_answer, score.correct_answer))
 
 
 ## QUIZTAKER SESSION ##

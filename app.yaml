@@ -3,6 +3,9 @@ version: 7
 runtime: python
 api_version: 1
 
+# todo: set static file expiration.... default_expiration: "4d 5h"
+
+
 handlers:
 - url: /console/static
   static_dir: console/app/view/static

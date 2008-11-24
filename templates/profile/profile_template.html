@@ -44,15 +44,21 @@
                 
              <h2>Skill Cloud</h2>
                 
-              <div class="dynacloud" id="dynacloud">  Intelligence  Diversification  Diversification  Diversification  Hydroelectric  Hydroelectric  Nuclear  Nuclear  Off-Grid  Nuclear  Photovoltaic   Photovoltaic  Photovoltaic  Photovoltaic  Pigovian  Peak Oil  Peak Oil  Peak Oil  Peak Oil  Geothermal 
-                 Geothermal  Geothermal  Tidal  Tidal  Tidal  Credit  Grid  Grid   Grid  Grid  Grid  Grid  Credit  Credit  Credit  Credit  Server  Server  Cloud  Cloud  Cloud  Cloud  Bioenergy  Bioenergy  Bioenergy  Bioenergy</div>
+              <div class="dynacloud" id="dynacloud">
+              
+              {% for l in level_cloud %}  {{ l.topic.name }}  {% endfor %}   
+              <!--  Intelligence  Diversification  Diversification  Diversification  Hydroelectric  Hydroelectric  Nuclear  Nuclear  Off-Grid  Nuclear  Photovoltaic   Photovoltaic  Photovoltaic  Photovoltaic  Pigovian  Peak Oil  Peak Oil  Peak Oil  Peak Oil  Geothermal 
+                 Geothermal  Geothermal  Tidal  Tidal  Tidal  Credit  Grid  Grid   Grid  Grid  Grid  Grid  Credit  Credit  Credit  Credit  Server  Server  Cloud  Cloud  Cloud  Cloud  Bioenergy  Bioenergy  Bioenergy  Bioenergy
+              -->
+                </div>
+                
                 </div>
                 
                  <div class="panel_content" id="stats">
                 
-              <div class="stat">   <h2>Range: </h2> <div class="statometer"><img src="http://chart.apis.google.com/chart?chs=100x55&cht=gom&chd=t:82&chco=DDDDDD,00ea00&chf=bg,s,DDDDDD"/></div> </div>
+              <div class="stat">   <h2>Range: </h2> <div class="statometer"><img src="http://chart.apis.google.com/chart?chs=100x55&cht=gom&chd=t:{{ range }}&chco=DDDDDD,00ea00&chf=bg,s,DDDDDD"/></div> </div>
                  
-              <div class="stat">      <h2>Depth: </h2>  <div class="statometer"><img src="http://chart.apis.google.com/chart?chs=100x55&cht=gom&chd=t:66&chco=DDDDDD,00ea00&chf=bg,s,DDDDDD"/> </div>  </div>
+              <div class="stat">      <h2>Depth: </h2>  <div class="statometer"><img src="http://chart.apis.google.com/chart?chs=100x55&cht=gom&chd=t:{{ depth }}&chco=DDDDDD,00ea00&chf=bg,s,DDDDDD"/> </div>  </div>
                  
             </div>
             
@@ -63,29 +69,14 @@
             
             <div id="portfolio" class="profile-panel" >
         
-                
-                <div class="panel_content" >
-                
-                <div class="proficiency_name"><h3>Energy Finance </h3></div>
-                  <h4 class="percentile"><span>96</span>th percentile</h4>
-                <div class="scoreometer"><img src="http://chart.apis.google.com/chart?chs=150x85&cht=gom&chd=t:96&chco=F7F5F4,00ea00&chf=bg,s,F7F5F4"/></div>
+{% for tl in top_levels %}                
+                <div class="panel_content" {% if forloop.last %} style="border-style:none;" {% endif %}>
+                <div class="proficiency_name"><h3>{{ tl.topic.name }} </h3></div>
+                  <h4 class="percentile"><span>{{ tl.topic_level }}</span>th percentile</h4>
+                <div class="scoreometer"><img src="http://chart.apis.google.com/chart?chs=150x85&cht=gom&chd=t:{{ tl.topic_level }}&chco=F7F5F4,00ea00&chf=bg,s,F7F5F4"/></div>
                 </div>
                 
-                <div class="panel_content" >
-                
-                <div class="proficiency_name"><h3> Solar Energy </h3></div>
-                  <h4 class="percentile"><span>74</span>th percentile</h4>
-                <div class="scoreometer"><img src="http://chart.apis.google.com/chart?chs=150x85&cht=gom&chd=t:74&chco=F7F5F4,00ea00&chf=bg,s,F7F5F4"/></div>
-                </div>
-      
-                
-                
-                 <div class="panel_content" style="border:none;">
-                
-                  <div class="proficiency_name"><h3> Law &amp; Policy </h3></div>
-                  <h4 class="percentile"><span>50</span>th percentile</h4>
-                <div class="scoreometer"><img src="http://chart.apis.google.com/chart?chs=150x85&cht=gom&chd=t:50&chco=F7F5F4,00ea00&chf=bg,s,F7F5F4"/></div>
-                </div>
+{% endfor %}
                 <!-- TODO put this on sidebar
     <div class="embed_code">
                  share your top scores 

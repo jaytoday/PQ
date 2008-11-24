@@ -78,8 +78,6 @@ class QuizItem(db.Model):
   
   """ 
 
-
-
     
 class ItemScore(db.Model):
   # Saved Scores for Quiz 
@@ -98,10 +96,10 @@ class ItemScore(db.Model):
                                 required=False,
                                 collection_name='scores') # item slug - ["wiki", "bayesian"]
   type = db.StringProperty(required=False) # demo, stub, etc.
- 
 
   
-
+  def get_key(self, prop_name):
+       getattr(self.__class__, prop_name).get_value_for_datastore(self)
 
 
 class QuizTakerFilter(db.Model):

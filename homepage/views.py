@@ -40,7 +40,7 @@ class ChooseProficiency(webapp.RequestHandler):
 class ViewHomepage(webapp.RequestHandler):
 
     def get(self):
-        template_values = {}
+        template_values = {'no_load': True}
         path = tpl_path(HOMEPAGE_PATH + 'homepage.html')
         self.response.out.write(template.render(path, template_values))
 
@@ -48,7 +48,7 @@ class ViewHomepage(webapp.RequestHandler):
 class ExitPage(webapp.RequestHandler):
 
     def get(self):
-        template_values = {}
+        template_values = {'no_load': True}
         path = tpl_path(HOMEPAGE_PATH + 'exit.html')
         if self.request.get('o'): path = tpl_path(HOMEPAGE_PATH + 'old_exit.html')  #for demo, and old time's sake.
         self.response.out.write(template.render(path, template_values))

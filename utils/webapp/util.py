@@ -31,7 +31,7 @@ from google.appengine.api import users
 from google.appengine.ext import webapp
 
 
-def login_required(handler_method):
+def login_required(handler_method):   # this should be altered. 
   """A decorator to require that a user be logged in to access a handler.
 
   To use it, decorate your get() or post() method like this:

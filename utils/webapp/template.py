@@ -81,7 +81,7 @@ def render(template_path, template_dict, debug=False):
   
   # PQ - Add User to Template Dict
 
-  user_info = get_user_info('/preview/homepage/')
+  user_info = get_user_info()
   template_dict['user_session'] = user_info[0]
   template_dict['login_text'] = user_info[1]
   template_dict['login_url'] = user_info[2]
@@ -243,7 +243,7 @@ def _urlnode_render_replacement(self, context):
 
 
 
-def get_user_info(uri):
+def get_user_info():
 	# Construct Login/Logout Text.
 	session = Session()
 	if session.logged_in():
@@ -251,11 +251,11 @@ def get_user_info(uri):
 		profile_path = profile_path.replace(' ','_') # TODO: Datastore lookup for profile path 
 		login_user = {'user' : session['user'], 'nickname': session['nickname'], 'profile_path': profile_path, 'email':session['email'] }
 		login_text = 'Sign Out'
-		login_url = str('/logout?continue=' + uri)
+		login_url = str('/logout')
 	else:
 		login_user = False
 		login_text = 'Sign In'
-		login_url = str('/login?continue=' + uri)
+		login_url = str('/login')
 	return  login_user, login_text, login_url
 
 

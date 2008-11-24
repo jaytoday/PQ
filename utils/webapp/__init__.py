@@ -208,10 +208,12 @@ class Response(object):
     """Constructs a response with the default settings."""
     self.out = StringIO.StringIO()
     self.__wsgi_headers = []
+    
     self.headers = wsgiref.headers.Headers(self.__wsgi_headers)
     self.headers['Content-Type'] = 'text/html; charset=utf-8'
     self.headers['Cache-Control'] = 'no-cache'
     self.set_status(200)
+    
 
   def set_status(self, code, message=None):
     """Sets the HTTP status code of this response.
@@ -250,6 +252,7 @@ class Response(object):
     write = start_response('%d %s' % self.__status, self.__wsgi_headers)
     write(body)
     self.out.close()
+    
 
   def http_status_message(code):
     """Returns the default HTTP status message for the given code.

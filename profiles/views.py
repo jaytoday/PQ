@@ -8,7 +8,7 @@ from utils.webapp import template
 from google.appengine.ext import db
 from utils import webapp
 from utils.utils import ROOT_PATH, tpl_path
-
+from utils.random import sort_by_attr
 from .model.user import QuizTaker
 from accounts.methods import register_user
 
@@ -35,19 +35,34 @@ class ViewProfile(webapp.RequestHandler):
 			user = user.get()
 		except: self.redirect('/profile_not_found/') # if no user is found
 		
+		profile_owner = False
 		if self.session.logged_in(): 
 		    if user.unique_identifier == self.session['user']: profile_owner = True
-		else: profile_owner = False
-		top_proficiencies = self.get_top_proficiencies(user) 
-		return {'user': user, 'profile_owner': profile_owner, 'top_proficiencies': top_proficiencies}
+		topic_levels = self.get_topic_levels(user)
+		level_cloud = self.make_cloud(topic_levels[0:9])
+		range = 50
+		depth = 50
+		for tl in topic_levels:
+		    pass#print tl.topic_level
+		return {'user': user, 'profile_owner': profile_owner, 
+		        'top_levels': topic_levels[0:3], 'level_cloud': level_cloud,
+		        'range': range, 'depth': depth }
 
 
       
-  def get_top_proficiencies(self, user):
-      print ""
-      print user.levels
+  def get_topic_levels(self, user):
+      topic_levels = user.topic_levels.fetch(100)
+      return sort_by_attr(topic_levels, 'topic_level') # sort from greatest to least
+
       
-      
+  def make_cloud(self, topic_levels):
+	level_cloud = []
+	num = len(topic_levels)
+	for tl in topic_levels:
+		for n in range(num):
+		   level_cloud.append(tl)
+		num -= 1
+	return level_cloud            
 
 
 class EditProfile(webapp.RequestHandler):
@@ -59,7 +74,7 @@ class EditProfile(webapp.RequestHandler):
         user = register_user(self.session['user'], self.session['nickname'], self.session['email'])
         edit_type = 'Create'
         user = QuizTaker.get_by_key_name(self.session['user'])
-    template_values = {'user': user, 'edit_type': edit_type}
+    template_values = {'user': user, 'edit_type': edit_type, 'no_load': True}
     path = tpl_path(PROFILE_PATH +'edit.html')
     self.response.out.write(template.render(path, template_values))
 

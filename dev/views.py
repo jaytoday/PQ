@@ -13,7 +13,7 @@ from .model.user import QuizTaker
 from utils.utils import ROOT_PATH, tpl_path
 import simplejson
 from utils.gql_encoder import GqlEncoder, encode
-
+from ranking.methods import TopicLevelData, ProficiencyLevelData
 
 # Template paths
 QUIZTAKER_PATH = 'quiztaker/'
@@ -35,8 +35,6 @@ class Admin(webapp.RequestHandler):
 
 
 class LoadTopics(webapp.RequestHandler):
-
-
   def get(self):
 	print ""
 	json_file = open(ROOT_PATH + "/data/topics.json")
@@ -48,9 +46,6 @@ class LoadTopics(webapp.RequestHandler):
 	   topics.append(t)
 	   print t['name']
 
-
-	
-
 	return
 	template_values = {}
 	path = tpl_path(DEV_PATH +'admin.html')
@@ -59,12 +54,8 @@ class LoadTopics(webapp.RequestHandler):
 
 
 class Debug(webapp.RequestHandler):
-
-
   def get(self):
       if self.request.get('quiz_item'): return self.quiz_item(self.request.get('quiz_item'))
-    
-
   def quiz_item(self, item_key):
 		item = QuizItem.get(item_key)
 		item_answers = []
@@ -75,3 +66,21 @@ class Debug(webapp.RequestHandler):
 		logging.debug('loaded quiz...')
 		path = tpl_path(QUIZTAKER_PATH + 'debug_quiz.html')
 		self.response.out.write(template.render(path, template_values))
+
+
+
+class SetProficiencyLevels(webapp.RequestHandler):
+  def get(self):
+      quiz_takers = QuizTaker.all().fetch(20)
+      ptl = TopicLevelData()
+      for qt in quiz_takers:
+          ptl.set(qt)
+      pl = ProficiencyLevelData()
+      for qt in quiz_takers:
+          pl.set(qt)      
+      
+          
+      
+
+
+

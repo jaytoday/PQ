@@ -2,8 +2,7 @@ import logging
 from utils import webapp
 import wsgiref.handlers
 from utils import utils
-from utils import stubs as stubs
-from dev import *
+from dev import views, stubs
 import quiztaker.views
 import quiztaker.rpc
 import quizbuilder.views
@@ -108,7 +107,8 @@ class PQHandler(webapp.RequestHandler):
 										('/employer/rpc/?',
 										 employer.rpc.RPCHandler),										   										 										
 										('/accounts/rpc/?',
-										 accounts.rpc.RPCHandler),  										
+										 accounts.rpc.RPCHandler),
+										   										
 										 # Developer Pages
 										 ('/dev/admin/?', 
 										 dev.views.Admin),
@@ -134,6 +134,9 @@ class PQHandler(webapp.RequestHandler):
 										 ('/store/?', 
 										 store.views.Store),
 
+										('/set_levels/?',
+										 dev.views.SetProficiencyLevels),
+										 
 										 # Stubs										
 										('/create_scores/?',
 										 stubs.CreateScoreStubs),

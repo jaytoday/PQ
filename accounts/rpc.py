@@ -59,8 +59,11 @@ class RPCMethods(webapp.RequestHandler):
   	user.email = args[1]
   	user.location = args[2]
   	if len(args[3]) > 8: 
-		try: user.webpage = args[3]
-		except: return "Webpage error"
+		webpage = args[3]
+		if 'http://' not in webpage: webpage = 'http://' + webpage
+		try: user.webpage = webpage
+		except: 
+		      return "Webpage error"
   	user.work_status = args[4]
   	user.aboutme = args[5]
   	user.put()

@@ -24,7 +24,7 @@ ACCOUNTS_PATH = 'accounts/'
 class Login(webapp.RequestHandler):
   def get(self):
     login_response = str('http://' + self.request._environ['HTTP_HOST'] + '/login/response')
-    template_values = {'token_url': login_response }
+    template_values = {'token_url': login_response, 'no_load': True }
     if self.request.get('error') == "true":
         template_values['error'] = "True"
     self.session = Session()
