@@ -17,7 +17,7 @@ from google.appengine.api import users
 from google.appengine.ext import webapp
 
 from google.appengine.ext.webapp import util
-import simplejson
+
 
 # Relevency Tally for Semantic Tags
 from collections import defaultdict

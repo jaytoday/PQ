@@ -3,12 +3,10 @@ import logging
 logging.info('Loading %s', __name__)
 from utils import webapp
 from google.appengine.ext import db
-import simplejson
 import string, re
 from google.appengine.api import urlfetch
 import urllib
-
-from .utils import jsonparser as parser
+from utils import jsonparser as parser, simplejson
 from utils.utils import ROOT_PATH
 from utils.gql_encoder import GqlEncoder, encode
 from .model.quiz import QuizItem, RawQuizItem,  ContentPage

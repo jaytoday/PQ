@@ -7,11 +7,10 @@ import datetime, time
 from utils.webapp import template
 from google.appengine.ext import db
 from google.appengine.api import users
-from utils import webapp
+from utils import webapp, simplejson
 from .model.quiz import QuizItem, ItemScore
 from .model.user import QuizTaker
 from utils.utils import ROOT_PATH, tpl_path
-import simplejson
 from utils.gql_encoder import GqlEncoder, encode
 from ranking.methods import TopicLevelData, ProficiencyLevelData
 

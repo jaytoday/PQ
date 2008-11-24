@@ -15,53 +15,15 @@ logging.info('Loading %s', __name__)
 class QuizTaker(db.Model):
     #key_name = unique_identifier 
     unique_identifier = db.StringProperty(required=False) # redundant
-    email = db.EmailProperty(required=True)
-    nickname = db.StringProperty(required=False)
-    profile_path = db.StringProperty(required=False)
-    fullname = db.StringProperty(required=False)
     
     #Quiz Info 
     
     scores = db.ListProperty(db.Key) # ItemScore keys
     levels = db.ListProperty(db.Key) # ProficiencyLevel keys
-    
-    # Personal info 
-    name = db.StringProperty()
-    occupation = db.StringProperty(required=False)
-    work_status = db.StringProperty(required=False)
-    location = db.StringProperty(required=False)
-    webpage = db.LinkProperty(required=False)
-    aboutme = db.TextProperty(required=False)
-    quote = db.TextProperty(required=False)
-    
-    # Image
-    
-    # When Signed Up
-    date = db.DateTimeProperty(auto_now_add=True)
-    
-    
+
     #itemscores  -- ItemScore reference
     #proficiency_levels -- ProficiencyLevel reference
-    """
-    
-    Foreign Key Usages
-    
-    james = QuizTaker.gql("WHERE email = James")
-    for score_key in james.scores:
-       ItemScore.get(score_key)
-    
-    newscore = Score()
-    james = QuizTaker()
-    james.scores.append(newscore.key())
-    
-    totalscore += score.score for score in james.itemscores
-    
-    for score in scores:
-        if score.key() not in quiz_taker.scores 
-    takers_score = Score.gql("
-    
-    """ 
-    
+
     @property
     def get_level_for_proficiency(self, proficiency):   # Get proficiency_levels for user 
         return ProficiencyLevel.gql("WHERE quiz_taker = :1 AND proficiency = :2", self.key(), proficiency).get()
@@ -70,10 +32,10 @@ class QuizTaker(db.Model):
 
 class Profile(db.Model):
     #key_name = unique_identifier 
-    unique_identifier = db.StringProperty(required=False) # redundant
-    email = db.EmailProperty(required=True)
-    nickname = db.StringProperty(required=False)
-    profile_path = db.StringProperty(required=False)
+    unique_identifier = db.StringProperty(required=True) # redundant
+    email = db.EmailProperty(required=False)
+    nickname = db.StringProperty(required=True)
+    profile_path = db.StringProperty(required=True)
     fullname = db.StringProperty(required=False)
     
     # Personal info 

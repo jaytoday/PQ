@@ -3,7 +3,7 @@ from model.user import QuizTaker
 from .model.proficiency import Proficiency, ProficiencyTopic
 from .model.employer import Employer 
 from .utils.utils import tpl_path, ROOT_PATH, raise_error
-import simplejson
+from utils import simplejson
 from google.appengine.ext import db
 from utils.gql_encoder import GqlEncoder, encode
     

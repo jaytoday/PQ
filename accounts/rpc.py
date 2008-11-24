@@ -1,9 +1,8 @@
 import logging
 # Log a message each time this module get loaded.
 logging.info('Loading %s', __name__)
-from utils import webapp
+from utils import webapp, simplejson
 from google.appengine.ext import db
-import simplejson
 from .utils.utils import tpl_path, ROOT_PATH, raise_error
 from methods import registered
 from utils.gql_encoder import GqlEncoder, encode

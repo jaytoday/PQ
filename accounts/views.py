@@ -7,9 +7,8 @@ import datetime, time
 from utils.webapp import template
 from google.appengine.ext import db
 from google.appengine.api import users
-from utils import webapp
-from utils.utils import ROOT_PATH, tpl_path
-import simplejson
+from utils import webapp, simplejson
+from utils.utils import ROOT_PATH, tpl_path 
 from google.appengine.api import urlfetch
 import urllib
 from utils.appengine_utilities.sessions import Session
@@ -68,8 +67,8 @@ class LoginResponse(webapp.RequestHandler):
 		  self.session['email'] = email
 		  if registered(self.session['user']) is False: self.redirect('/register')
 		  else: 
-		        if self.session['continue']: self.redirect(self.session['continue'])
-		        else: self.redirect('/preview/homepage')
+		        self.session['continue'] = '/preview/homepage'
+		        self.redirect(self.session['continue'])
 		  
 		  
 

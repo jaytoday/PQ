@@ -2,16 +2,8 @@ import logging
 # Log a message each time this module get loaded.
 logging.info('Loading %s', __name__)
 import random
-from google.appengine.api import urlfetch
-import cgi
-import wsgiref.handlers
-import datetime, time
-from utils.webapp import template
-from google.appengine.ext import db
-from google.appengine.api import users
 from utils import webapp
 from utils.webapp import util
-import simplejson
 from .utils.utils import tpl_path, ROOT_PATH, raise_error
 from .model.quiz import QuizItem, ItemScore
 from .model.user import QuizTaker

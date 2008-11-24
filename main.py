@@ -2,18 +2,15 @@ import logging
 from utils import webapp
 import wsgiref.handlers
 from utils import utils
-from dev import views, stubs
-import quiztaker.views
-import quiztaker.rpc
-import quizbuilder.views
-import quizbuilder.rpc
-import dev.views
-import homepage.views
+import dev
+import dev.stubs as stubs
+import quiztaker
 import quizbuilder
-import profiles.views
-import employer.views
-import accounts.views
-import accounts.rpc
+import dev
+import homepage
+import profiles
+import employer
+import accounts
 import store.views
 from google.appengine.ext import admin
 import employer.rpc

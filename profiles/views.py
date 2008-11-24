@@ -9,8 +9,8 @@ from google.appengine.ext import db
 from utils import webapp
 from utils.utils import ROOT_PATH, tpl_path
 from utils.random import sort_by_attr
-from .model.user import QuizTaker
-from accounts.methods import register_user
+from .model.user import Profile, QuizTaker
+from accounts.methods import register_user, register_qt
 
 
 
@@ -30,7 +30,7 @@ class ViewProfile(webapp.RequestHandler):
   def get_profile(self):
 		profile_path = self.request.path.split('/profile/')[1].lower()
 		profile_path = profile_path.replace(' ','_')
-		user = QuizTaker.gql('WHERE profile_path = :1', self.request.path.split('/profile/')[1].lower())
+		user = Profile.gql('WHERE profile_path = :1', self.request.path.split('/profile/')[1].lower())
 		try:
 			user = user.get()
 		except: self.redirect('/profile_not_found/') # if no user is found
@@ -38,20 +38,20 @@ class ViewProfile(webapp.RequestHandler):
 		profile_owner = False
 		if self.session.logged_in(): 
 		    if user.unique_identifier == self.session['user']: profile_owner = True
-		topic_levels = self.get_topic_levels(user)
+		qt = QuizTaker.get_by_key_name(user.unique_identifier)
+		topic_levels = self.get_topic_levels(qt)
 		level_cloud = self.make_cloud(topic_levels[0:9])
 		range = 50
 		depth = 50
-		for tl in topic_levels:
-		    pass#print tl.topic_level
+		user = clean(user)
 		return {'user': user, 'profile_owner': profile_owner, 
 		        'top_levels': topic_levels[0:3], 'level_cloud': level_cloud,
 		        'range': range, 'depth': depth }
 
 
       
-  def get_topic_levels(self, user):
-      topic_levels = user.topic_levels.fetch(100)
+  def get_topic_levels(self, qt):
+      topic_levels = qt.topic_levels.fetch(100)
       return sort_by_attr(topic_levels, 'topic_level') # sort from greatest to least
 
       
@@ -68,12 +68,14 @@ class ViewProfile(webapp.RequestHandler):
 class EditProfile(webapp.RequestHandler):
   def get(self):
     if not self.session['user']: self.redirect('/login/') # login_required decorator
-    user = QuizTaker.get_by_key_name(self.session['user'])
+    user = Profile.get_by_key_name(self.session['user'])
     edit_type = 'Edit'
     if not user: 
         user = register_user(self.session['user'], self.session['nickname'], self.session['email'])
+        qt = register_qt(self.session['user'])
         edit_type = 'Create'
-        user = QuizTaker.get_by_key_name(self.session['user'])
+        user = Profile.get_by_key_name(self.session['user'])
+    user = clean(user)
     template_values = {'user': user, 'edit_type': edit_type, 'no_load': True}
     path = tpl_path(PROFILE_PATH +'edit.html')
     self.response.out.write(template.render(path, template_values))
@@ -123,3 +125,10 @@ class PreviewViewProfile(webapp.RequestHandler):
 
 
 
+
+
+
+
+
+def clean(user):
+    return user

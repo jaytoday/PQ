@@ -5,8 +5,7 @@ from utils.gql_encoder import GqlEncoder, encode
 from google.appengine.ext import db
 from .model.quiz import QuizItem, RawQuizItem, ProficiencyTopic, ContentPage, Proficiency
 from .utils.utils import tpl_path, ROOT_PATH, raise_error
-import simplejson
-#import views
+from utils import simplejson
 import induction
 from .quiztaker.methods import DataMethods as quiztaker_methods
 from .employer.methods import DataMethods as employer_methods

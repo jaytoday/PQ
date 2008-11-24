@@ -118,17 +118,8 @@ $('div.loading').hide();
 
 
 function LoadInit() {
-var no_load = ['/preview/homepage','/preview/homepage/', '/preview/', '/register', '/login', '/login/response' ]
-var path = String(window.location.pathname);
-if (path in list(no_load) || path.indexOf("quiz/") == 1){ return;
-}else{
 
-if ("{{ no_load }}" == "True"){ return; }
-
-Loading();
-
-
-}
+if ("{{ no_load }}" == "True"){ return; } else { Loading();}
 
 }
 

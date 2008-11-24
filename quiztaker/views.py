@@ -10,10 +10,9 @@ import string
 from utils.webapp import template
 from google.appengine.ext import db
 from google.appengine.api import users
-from utils import webapp
+from utils import webapp, simplejson
 from utils.gql_encoder import GqlEncoder, encode
 from utils.webapp import util
-import simplejson
 from .utils.utils import tpl_path, ROOT_PATH, raise_error
 from .model.quiz import QuizItem, ItemScore
 from .model.user import QuizTaker
@@ -39,17 +38,6 @@ class PQHome(webapp.RequestHandler):
     path = tpl_path('homepage.html')
     self.response.out.write(template.render(path, template_values))
     
-    
-class PQIntro(webapp.RequestHandler):
-  #Put something here  
-  def get(self):
-
-    template_values = {}
-    intro_template = QUIZTAKER_PATH + self.request.get('page') + ".html"
-    if self.request.get('demo') == "true": intro_template = QUIZDEMO_PATH + self.request.get('page') + ".html"
-    path = tpl_path(intro_template)
-    self.response.out.write(template.render(path, template_values))
-
 
 
 
@@ -103,7 +91,8 @@ class TakeQuiz(webapp.RequestHandler):
     logging.debug('loading quiz...')    
     load_quiz = LoadQuiz()
     if vendor == "": vendor = self.get_default_vendor()
-    template_values = {"quiz_items": load_quiz.get(proficiencies), "proficiencies": proficiencies, "vendor_name": vendor.name.capitalize(), "vendor": vendor.key() }
+    template_values = {"quiz_items": load_quiz.get(proficiencies), "proficiencies": proficiencies, "vendor_name": vendor.name.capitalize(), "vendor": vendor.key(),
+    'no_load': True }
     logging.debug('loaded quiz...')
     path = tpl_path(QUIZTAKER_PATH + 'takequiz.html')
     self.response.out.write(template.render(path, template_values))
@@ -128,6 +117,21 @@ class TakeQuiz(webapp.RequestHandler):
   def get_default_vendor(self):
 	plopquiz = Employer.gql("WHERE name = :1", "plopquiz")
 	return plopquiz.get()
+
+
+
+    
+class PQIntro(webapp.RequestHandler):
+  #Put something here  
+  def get(self):
+
+    template_values = {}
+    intro_template = QUIZTAKER_PATH + self.request.get('page') + ".html"
+    if self.request.get('demo') == "true": intro_template = QUIZDEMO_PATH + self.request.get('page') + ".html" # only for demo
+    path = tpl_path(intro_template)
+    self.response.out.write(template.render(path, template_values))
+
+
 
 
 class QuizFrame(webapp.RequestHandler):

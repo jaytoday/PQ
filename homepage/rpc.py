@@ -1,14 +1,13 @@
 import logging
 # Log a message each time this module get loaded.
 logging.info('Loading %s', __name__)
-from utils import webapp
+from utils import webapp, simplejson
 from google.appengine.ext import db
-import simplejson
 import string
 from google.appengine.api import urlfetch
 import string
 import urllib
-from .lib.BeautifulSoup import BeautifulSoup
+from utils.BeautifulSoup import BeautifulSoup
 
 from .utils import jsonparser as parser
 from utils.utils import ROOT_PATH
@@ -16,8 +15,6 @@ from utils.gql_encoder import GqlEncoder, encode
 from .model.quiz import QuizItem, RawQuizItem,  ContentPage
 from .model.proficiency import ProficiencyTopic, Proficiency
 import views
-import induction
-from methods import DataMethods, refresh_data, dump_data, load_data
 
 
    
