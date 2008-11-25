@@ -11,6 +11,7 @@ from utils.webapp import template
 from google.appengine.ext import db
 from google.appengine.api import users
 from utils import webapp, simplejson
+from utils.random import jsonp
 from utils.gql_encoder import GqlEncoder, encode
 from utils.webapp import util
 from .utils.utils import tpl_path, ROOT_PATH, raise_error
@@ -124,13 +125,15 @@ class TakeQuiz(webapp.RequestHandler):
 class PQIntro(webapp.RequestHandler):
   #Put something here  
   def get(self):
-
-    template_values = {}
-    intro_template = QUIZTAKER_PATH + self.request.get('page') + ".html"
-    if self.request.get('demo') == "true": intro_template = QUIZDEMO_PATH + self.request.get('page') + ".html" # only for demo
-    path = tpl_path(intro_template)
-    self.response.out.write(template.render(path, template_values))
-
+	template_values = {}
+	intro_template = QUIZTAKER_PATH + self.request.get('page') + ".html"
+	if self.request.get('demo') == "true": intro_template = QUIZDEMO_PATH + self.request.get('page') + ".html" # only for demo
+	path = tpl_path(intro_template)
+	if self.request.get("callback"):
+			response = jsonp(self.request.get("callback"), template.render(path, template_values))
+			self.response.out.write(response);
+	else:
+			self.response.out.write(template.render(path, template_values))
 
 
 
@@ -138,8 +141,11 @@ class QuizFrame(webapp.RequestHandler):
         def get(self):
                 template_values = {}
                 path = tpl_path(QUIZTAKER_PATH + 'quizframe.html')
-                self.response.out.write(template.render(path, template_values))
-
+                if self.request.get("callback"):
+                        response = jsonp(self.request.get("callback"), template.render(path, template_values))
+                        self.response.out.write(response);
+                else:
+                        self.response.out.write(template.render(path, template_values))
 
 
 
@@ -148,58 +154,66 @@ class QuizFrame(webapp.RequestHandler):
 class QuizComplete(webapp.RequestHandler):
   # Quiz Completed Screen
    def get(self):
-    logging.debug('Loading Score')
-    template_values = {}
-    path = tpl_path(QUIZDEMO_PATH + 'quiz_complete.html')
-    self.response.out.write(template.render(path, template_values))
+	logging.debug('Loading Score')
+	template_values = {}
+	path = tpl_path(QUIZDEMO_PATH + 'quiz_complete.html')
+	if self.request.get("callback"):
+			response = jsonp(self.request.get("callback"), template.render(path, template_values))
+			self.response.out.write(response);
+	else:
+			self.response.out.write(template.render(path, template_values))
     
             
 
 class ViewScore(webapp.RequestHandler):
   # View Score Report.
    def get(self):
-    logging.debug('Loading Score')
-    template_values = {}
-    try:
-      latest_scores = TempItemScore.gql("WHERE quiz_taker = :quiz_taker ORDER BY date DESC",
-                                quiz_taker="quiz_taker")   
-      logging.info('Loading all score items') 
-    except:
-      raise_error('Error Retrieving Data From Score Model')
-  
-    try:
-      correct_item = TempItemScore.gql("WHERE score > :score AND quiz_taker = :quiz_taker ORDER BY score DESC, date DESC",
-                             quiz_taker="quiz_taker", score=0 )
-      logging.info('Loading correct Score items from user')
-    except:
-      raise_error('Error Retrieving Data From Score Model')    
-        
-    logging.info(latest_scores.count())
-    totalscore = correct_item.count()
-    totalitems = latest_scores.count()
-    logging.info("totalitems:" + str(totalitems))
-    logging.info("totalscore:" + str(totalscore))
-  
-    percentage = 0
-    if totalitems > 0:
-      percentage = float(totalscore) / float(totalitems) * 100
-      percentage = int(percentage)
+	logging.debug('Loading Score')
+	template_values = {}
+	try:
+	  latest_scores = TempItemScore.gql("WHERE quiz_taker = :quiz_taker ORDER BY date DESC",
+								quiz_taker="quiz_taker")   
+	  logging.info('Loading all score items') 
+	except:
+	  raise_error('Error Retrieving Data From Score Model')
 
-    if percentage > 99:
-       passed = True
-    else:
-       passed = False
-    
-    template_values["scores"] = latest_scores
-    template_values["totalscore"] = totalscore
-    template_values["totalitems"] = totalitems
-    template_values["percentage"] = percentage
-    template_values["passed"] = passed
+	try:
+	  correct_item = TempItemScore.gql("WHERE score > :score AND quiz_taker = :quiz_taker ORDER BY score DESC, date DESC",
+							 quiz_taker="quiz_taker", score=0 )
+	  logging.info('Loading correct Score items from user')
+	except:
+	  raise_error('Error Retrieving Data From Score Model')    
+		
+	logging.info(latest_scores.count())
+	totalscore = correct_item.count()
+	totalitems = latest_scores.count()
+	logging.info("totalitems:" + str(totalitems))
+	logging.info("totalscore:" + str(totalscore))
+
+	percentage = 0
+	if totalitems > 0:
+	  percentage = float(totalscore) / float(totalitems) * 100
+	  percentage = int(percentage)
+
+	if percentage > 99:
+	   passed = True
+	else:
+	   passed = False
+
+	template_values["scores"] = latest_scores
+	template_values["totalscore"] = totalscore
+	template_values["totalitems"] = totalitems
+	template_values["percentage"] = percentage
+	template_values["passed"] = passed
 
 
-    path = tpl_path(QUIZTAKER_PATH + 'score.html')
-    self.response.out.write(template.render(path, template_values))
-    
+	path = tpl_path(QUIZTAKER_PATH + 'score.html')
+	if self.request.get("callback"):
+			response = jsonp(self.request.get("callback"), template.render(path, template_values))
+			self.response.out.write(response);
+	else:
+			self.response.out.write(template.render(path, template_values))
+
 
  
 
@@ -268,17 +282,5 @@ class ViewNone(webapp.RequestHandler):
 
 
 
-
-
-
-
-
-class EditProfile(webapp.RequestHandler):
-  def get(self):
-    self.session = Session()
-    if not self.session['user']: self.redirect('/login/')
-    template_values = {'session': self.session}
-    path = tpl_path(PROFILE_PATH +'edit.html')
-    self.response.out.write(template.render(path, template_values))
 
 

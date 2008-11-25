@@ -16,11 +16,10 @@ $.plopquiz.quizitemList = [
  
 {% for item in quiz_items %}
         {
-     
                 rpc_url: '/quiztaker/rpc?action=get_quiz&arg0="{{ item.key }}"',
                 url: '/quiz_item/?item_key={{ item.key }}',
                 key: "{{ item.key }}", 
-                answer1: "{{ item.answer1 }}", 
+                answer1: "{{ item.answer1 }}", /* deprecated - just used for demo */
                 answer2: "{{ item.answer2 }}",
                 answer3: "{{ item.answer3 }}",
                 answers: {{ item.answers }},
