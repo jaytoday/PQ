@@ -46,15 +46,15 @@ from django.utils import simplejson
 # settings, if you have these set elsewhere, such as your django settings file,
 # you'll need to adjust the values to pull from there.
 
-COOKIE_NAME = 'appengine-utilities-session-sid'
+COOKIE_NAME = 'session-sid'
 DEFAULT_COOKIE_PATH = '/'
-SESSION_EXPIRE_TIME = 7200 # sessions are valid for 7200 seconds (2 hours)
+SESSION_EXPIRE_TIME = 600000 # sessions are valid for 7200 seconds (2 hours)
 CLEAN_CHECK_PERCENT = 15 # 15% of all requests will clean the database
 INTEGRATE_FLASH = True # integrate functionality from flash module?
 CHECK_IP = True # validate sessions by IP
 CHECK_USER_AGENT = True # validate sessions by user agent
 SET_COOKIE_EXPIRES = True # Set to True to add expiration field to cookie
-SESSION_TOKEN_TTL = 5 # Number of seconds a session token is valid for.
+SESSION_TOKEN_TTL = 15 # Number of seconds a session token is valid for.
 
 
 class _AppEngineUtilities_Session(db.Model):

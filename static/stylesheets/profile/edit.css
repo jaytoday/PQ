@@ -108,3 +108,55 @@ background: none;
 label.aboutme{
 margin:7px 5px 0px 1px; float:left;
 }
+
+
+/* img upload */
+
+div.change_picture{
+height:0px;
+float:left;
+margin:-42px -140px;
+}
+
+div.change_picture input{
+font-size: .8em;
+}
+
+div.pic_box{
+font-size:0.8em;
+height:10px;
+margin:0 0 4px;
+padding:3px 10px;
+width:85px;
+-moz-border-radius:3px;
+-webkit-border-radius: 3px;
+}
+
+div.upload_div{
+position:relative;
+overflow:hidden;
+border:1px solid #CCCCCC;
+font-size:1.1em;
+cursor:pointer;
+font-size:0.8em;
+height:10px;
+margin:0 0 4px;
+padding:3px 10px;
+width:85px;
+-moz-border-radius:3px;
+-webkit-border-radius: 3px;
+}
+
+div.upload_div:hover{
+background:#DDDDDD none repeat scroll 0 0;
+color:#333333;
+}
+
+div.cancel{
+float:left;
+font-size:0.8em;
+margin-bottom:-18px;
+margin-left:120px;
+margin-right:0;
+margin-top:-18px;
+}

@@ -2,8 +2,9 @@ import logging
 # Log a message each time this module get loaded.
 logging.info('Loading %s', __name__)
 import cgi
-from .model.user import Profile, QuizTaker, ProfilePicture
-import random
+from .model.user import Profile, QuizTaker
+from google.appengine.api import images
+from google.appengine.ext import db
 
 
 def registered(user_key):
@@ -18,13 +19,11 @@ def registered(user_key):
 def register_user(user_key, nickname, email):
     profile_path = nickname.lower()
     profile_path = profile_path.replace(' ','_')
-    photo = default_photo()
     new_user = Profile.get_or_insert(key_name = user_key,
                           unique_identifier = user_key, # redundancy
                           nickname = nickname,
                           fullname = nickname,
                           profile_path = profile_path,
-                          photo = photo,
                           )
                           
     if email: new_user.email = email
@@ -36,17 +35,9 @@ def register_user(user_key, nickname, email):
 def register_qt(user_key, nickname):
     new_qt = QuizTaker.get_or_insert(key_name = user_key,
                                      unique_identifier = user_key, # redundancy
-                                     nickname = nickname,
+                                     nickname = nickname, # redundancy
                                      )
     new_qt.put()
     return new_qt                                   
     
     
-
-def default_photo():
-	photos = ProfilePicture.gql("WHERE type = :1", "pq").fetch(10)
-	photo = random.sample(photos, 1) 
-	return photo[0]
-
-
-

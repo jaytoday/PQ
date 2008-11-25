@@ -5,6 +5,7 @@
 	<link rel="stylesheet" type="text/css" charset="utf-8" href="/static/stylesheets/profile/tabs.css" />
 	<link rel="stylesheet" type="text/css" charset="utf-8" href="/static/stylesheets/profile/profile.css" />
 	<script type="text/javascript" src="/static/scripts/jquery/jquery.magicpreview.pack.js"></script> 
+	<script type="text/javascript" src="/static/scripts/jquery/jquery.jsupload.0.1.min.js"></script> 
 	<script type="text/javascript">
 		function onEditSuccess(response){
 	window.location='/profile/{{user.profile_path}}';
@@ -13,8 +14,17 @@ function onEditCancel(){
 window.location='/profile/{{user.profile_path}}';
 }
 
+function CyclePictures(){
+
+var photo_keys = {{ photo_keys }};
+getNextPicture(photo_keys);
+
+}
+
+
 		</script>
-	<script type="text/javascript" src="/static/scripts/profile/edit_profile.js"></script> 
+	<script type="text/javascript" src="/static/scripts/jquery/jquery.MultiFile.pack.js"></script> 
+	<script type="text/javascript" src="/static/scripts/profile/edit_profile.js"></script>
 {% endblock %}
 
 
@@ -38,7 +48,7 @@ window.location='/profile/{{user.profile_path}}';
 
 <ul id="1">
 <li> <label for="fullname">Full Name</label> <input class="signup fullname" type="text" name="fullname" maxlength="15" value="{{ user.fullname }}" id="fullname"   /> </li>
-<li> <label for="email">Email</label> <input class="signup email" type="text" name="email" value="{{ user.email }}" maxlength="25" id="email"   /> </li>
+<li> <label for="email">Email</label> <input class="signup email" type="text" name="email" value="{{ user.email|default_if_none:"" }}" maxlength="25" id="email"   /> </li>
 </ul>
 
 
@@ -48,8 +58,8 @@ window.location='/profile/{{user.profile_path}}';
 
 <fieldset><legend>Personal Details</legend> <br/>
 <ul id="2" > 
-<li> <label for="location">Location</label> <input class="signup occupation" type="text" name="location" maxlength="25" value="{{ user.location }}" id="location"   /> </li>
-<li> <label for="webpage">Webpage</label> <input class="signup occupation" type="text" name="webpage" maxlength="25" value="{{ user.webpage }} " id="webpage"   /> </li>
+<li> <label for="location">Location</label> <input class="signup occupation" type="text" name="location" maxlength="25" value="{{ user.location|default_if_none:"" }}" id="location"   /> </li>
+<li> <label for="webpage">Webpage</label> <input class="signup occupation" type="text" name="webpage" maxlength="25" value="{{ user.webpage|default_if_none:"" }} " id="webpage"   /> </li>
 <li> <label for="work_status">Work Status</label>
   <select name="work_status">
   <option {% ifequal user.work_status "Full-Time" %}selected{% endifequal %}>Full-Time</option>
@@ -57,7 +67,7 @@ window.location='/profile/{{user.profile_path}}';
   <option {% ifequal user.work_status "Student" %}selected{% endifequal %}>Student</option>
 </select>
   </li>
-  <li> <label class="aboutme" for="aboutme">About Me</label> <textarea class="signup aboutme"   cols="15" rows="3" type="textarea" name="aboutme" maxlength="80" id="aboutme">{{ user.aboutme }}</textarea> </li>
+  <li> <label class="aboutme" for="aboutme">About Me</label> <textarea class="signup aboutme"   cols="15" rows="3" type="textarea" name="aboutme" maxlength="80" id="aboutme">{{ user.aboutme|default_if_none:"" }}</textarea> </li>
 
 </ul>
 </fieldset>
@@ -75,11 +85,16 @@ window.location='/profile/{{user.profile_path}}';
 <div class="profile_outer">
 	
 		<div class="profile">
-	
-		<div id="photo"><img src='/static/stylesheets/img/profile/2401963.jpg'/></div>
+          
+           <div class="change_picture"> 
+       <form action"#" class="picture" name="picture"> 
+       <div class="panel_box pic_box" id="cycle_img" >Cycle Pictures</div> 
+       <div id="change_img" >Upload Picture</div>
+         <div class="cancel"><a onClick="CancelPhotoUpload()">Cancel</a></div>  </div>
+		<div id="photo"><img class="old" src='/image/profile/?img_id={{ user.photo.key }}'/></div>
 		<div id="basics">
-		<div id="p_fullname">James Levy </div>
-		<div id="profession">Software Designer</div>
+		<div id="p_fullname"></div>
+		<div id="profession"></div>
 		</div>
 		
             <ul id="main_nav">

@@ -15,7 +15,7 @@ logging.info('Loading %s', __name__)
 class QuizTaker(db.Model):
     #key_name = unique_identifier 
     unique_identifier = db.StringProperty(required=False) # redundant
-    
+    nickname = db.StringProperty(required=False)    
     #Quiz Info 
     
     scores = db.ListProperty(db.Key) # ItemScore keys
@@ -29,6 +29,14 @@ class QuizTaker(db.Model):
         return ProficiencyLevel.gql("WHERE quiz_taker = :1 AND proficiency = :2", self.key(), proficiency).get()
     
 
+    
+
+class ProfilePicture(db.Model):
+    image = db.BlobProperty(required=True)	    
+    date = db.DateTimeProperty(auto_now_add=True)
+    type = db.StringProperty(required=False)        
+    
+    
 
 class Profile(db.Model):
     #key_name = unique_identifier 
@@ -48,13 +56,15 @@ class Profile(db.Model):
     quote = db.TextProperty(required=False)
     
     # Image
-    image = db.BlobProperty(required=False)
+    photo = db.ReferenceProperty(ProfilePicture,
+                                    collection_name='profile')  # One Quiz Taker Can Have Many Filters
     
     # When Signed Up
     date = db.DateTimeProperty(auto_now_add=True)
     
-    
 
+
+    
 
 class ProficiencyLevel(db.Model):
   proficiency = db.ReferenceProperty(proficiency.Proficiency,

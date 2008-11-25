@@ -105,7 +105,13 @@ class PQHandler(webapp.RequestHandler):
 										 employer.rpc.RPCHandler),										   										 										
 										('/accounts/rpc/?',
 										 accounts.rpc.RPCHandler),
-										   										
+										('/profiles/rpc/?',
+										 profiles.rpc.RPCHandler),
+										('/dev/rpc/?',
+										 dev.rpc.RPCHandler),										 
+										('/profiles/picture_upload/?',
+										 profiles.rpc.PictureUpload),										 
+										 										   										
 										 # Developer Pages
 										 ('/dev/admin/?', 
 										 dev.views.Admin),
@@ -130,6 +136,9 @@ class PQHandler(webapp.RequestHandler):
 										 # Store
 										 ('/store/?', 
 										 store.views.Store),
+
+										('/image/profile/?',
+										 profiles.views.ProfileImage),
 
 										('/set_levels/?',
 										 dev.views.SetProficiencyLevels),

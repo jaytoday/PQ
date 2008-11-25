@@ -7,6 +7,7 @@ from .utils.utils import tpl_path, ROOT_PATH, raise_error
 from methods import registered
 from utils.gql_encoder import GqlEncoder, encode
 from utils.appengine_utilities.sessions import Session
+from .model.user import ProfilePicture
 
 class RPCHandler(webapp.RequestHandler):
   # AJAX Handler
@@ -55,7 +56,7 @@ class RPCMethods(webapp.RequestHandler):
   	session = Session()
   	user = registered(session['user'])
   	user.fullname = args[0]
-  	user.email = args[1]
+  	if len(args[1]) > 5:  user.email = args[1]
   	user.location = args[2]
   	if len(args[3]) > 8: 
 		webpage = args[3]
@@ -65,11 +66,13 @@ class RPCMethods(webapp.RequestHandler):
 		      return "Webpage error"
   	user.work_status = args[4]
   	user.aboutme = args[5]
+  	if len(args[6]) > 3:
+  		user.photo = ProfilePicture.get(args[6])
   	user.put()
 
 		
 	# add up all scores for a given quiztaker, and then rank them.
-	return encode(user)
+	return str(user.key())
 
 
   	

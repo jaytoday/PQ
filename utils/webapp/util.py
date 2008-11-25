@@ -26,7 +26,7 @@ __all__ = ["login_required", "run_wsgi_app"]
 import os
 import sys
 import wsgiref.util
-
+from utils.appengine_utilities.sessions import Session
 from google.appengine.api import users
 from google.appengine.ext import webapp
 
@@ -49,10 +49,15 @@ def login_required(handler_method):   # this should be altered.
     if self.request.method != 'GET':
       raise webapp.Error('The check_login decorator can only be used for GET '
                          'requests')
-    user = users.GetCurrentUser()
-    if not user:
-      self.redirect(users.CreateLoginURL(self.request.uri))
+    session = Session()
+    try: 
+      if session['user'] is False: 
+        self.redirect('/login/')
+        return
+    except:
+      self.redirect('/login/')
       return
+      
     else:
       handler_method(self, *args)
   return check_login

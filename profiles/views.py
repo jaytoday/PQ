@@ -5,13 +5,13 @@ import cgi
 import wsgiref.handlers
 import datetime, time
 from utils.webapp import template
+from utils.webapp.util import login_required
 from google.appengine.ext import db
 from utils import webapp
 from utils.utils import ROOT_PATH, tpl_path
 from utils.random import sort_by_attr
-from .model.user import Profile, QuizTaker
+from .model.user import Profile, QuizTaker, ProfilePicture
 from accounts.methods import register_user, register_qt
-
 
 
 # Template paths
@@ -43,7 +43,6 @@ class ViewProfile(webapp.RequestHandler):
 		level_cloud = self.make_cloud(topic_levels[0:9])
 		range = 50
 		depth = 50
-		user = clean(user)
 		return {'user': user, 'profile_owner': profile_owner, 
 		        'top_levels': topic_levels[0:3], 'level_cloud': level_cloud,
 		        'range': range, 'depth': depth }
@@ -66,21 +65,27 @@ class ViewProfile(webapp.RequestHandler):
 
 
 class EditProfile(webapp.RequestHandler):
+  @login_required
   def get(self):
-    if not self.session['user']: self.redirect('/login/') # login_required decorator
     user = Profile.get_by_key_name(self.session['user'])
+    public_photos = self.public_photos()
     edit_type = 'Edit'
     if not user: 
         user = register_user(self.session['user'], self.session['nickname'], self.session['email'])
-        qt = register_qt(self.session['user'])
+        qt = register_qt(self.session['user'], self.session['nickname'])
         edit_type = 'Create'
         user = Profile.get_by_key_name(self.session['user'])
-    user = clean(user)
-    template_values = {'user': user, 'edit_type': edit_type, 'no_load': True}
+    template_values = {'user': user, 'edit_type': edit_type, 
+                       'photo_keys': public_photos, 'no_load': True}
     path = tpl_path(PROFILE_PATH +'edit.html')
     self.response.out.write(template.render(path, template_values))
 
-
+  def public_photos(self):
+      public_photos = []
+      photos = ProfilePicture.gql("WHERE type = :1", "pq").fetch(10)
+      for p in photos:
+          public_photos.append(str(p.key()))
+      return public_photos
 
 
   
@@ -127,8 +132,22 @@ class PreviewViewProfile(webapp.RequestHandler):
 
 
 
+class ProfileImage (webapp.RequestHandler):
+  def get(self):
+    if not self.request.get("img_id"): 
+        self.redirect('/picture_not_found')
+        return
+    try: 
+        pic = db.get(self.request.get("img_id"))
+        self.response.headers['Content-Type'] = "image/png"
+        self.response.out.write(pic.image)
+    except: 
+        self.redirect('/picture_not_found')
+        return
+    
+    
+
+      
+      
 
 
-
-def clean(user):
-    return user

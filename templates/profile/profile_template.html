@@ -26,10 +26,10 @@
 	
 		<div class="profile">
 	
-		<div id="photo"><img src='/static/stylesheets/img/profile/2401963.jpg'/></div>
+		<div id="photo"><img src='/image/profile/?img_id={{ user.photo.key }}'/></div>
 		<div id="basics">
 		<div id="name">{{ user.fullname }} </div>
-		<div id="profession">Software Designer</div>
+		<!--TODO <div id="profession">Software Designer</div> -->
 		</div>
 		
             <ul id="main_nav">
@@ -97,13 +97,13 @@
             </ul>
             <div id="personal">
 		<div class="personal_content" id="info"> <div class="info_content">  
-		Work Status: <div>{{ user.work_status }} </div>
+		Work Status: <div>{{ user.work_status|default_if_none:"" }} </div>
 		
-		Location: <div>{{ user.location }}</div>
+		Location: <div>{{ user.location|default_if_none:"" }}</div>
 		
-		Webpage: <div><a>{{ user.webpage }}</a></div>
+		Webpage: <div><a>{{ user.webpage|default_if_none:"" }}</a></div>
 		
-		About Me: <div>{{ user.aboutme }}</div>		
+		About Me: <div>{{ user.aboutme|default_if_none:"" }}</div>		
 		 </div> </div> 
 		
 		
