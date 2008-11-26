@@ -16,7 +16,7 @@ div.quiz_frame_header
 
 div.tab
 {
--webkit-border-radius: 18px;
+-webkit-border-radius-topright: 18px;
 -moz-border-radius-topright:18px;
 background-color:#CDCDCD;
 border-right:1px solid #CDCDCD;
