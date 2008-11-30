@@ -18,19 +18,20 @@ class TopicLevelData():
 			this_score = ItemScore.get(score)
 			print this_score.score
 			try: 
-				current_value = topic_scores[this_score.quiz_item.topic.key()]['value']
-				current_sum = topic_scores[this_score.quiz_item.topic.key()]['sum']
-				current_product = current_value * current_sum
-				new_product = current_product + this_score.score
-				new_sum = current_sum + 1
-				new_value = new_product / new_sum
-			except:# no current value
-				topic_scores[this_score.quiz_item.topic.key()] = {}
-				new_sum = 1
-				new_value = this_score.score
+				current_average = topic_scores[this_score.quiz_item.topic.key()]['average']
+				current_count = topic_scores[this_score.quiz_item.topic.key()]['count']
+				current_sum = current_average * current_count
+				new_sum = current_sum + this_score.score
+				new_count = current_count + 1
+				new_average = new_sum / new_count
+			except:# no current average
+				try: topic_scores[this_score.quiz_item.topic.key()] = {}
+				except: continue # Reference Property error for old scores. 
+				new_count = 1
+				new_average = this_score.score
 				
-			topic_scores[this_score.quiz_item.topic.key()]['sum'] = new_sum
-			topic_scores[this_score.quiz_item.topic.key()]['value'] = new_value
+			topic_scores[this_score.quiz_item.topic.key()]['count'] = new_count
+			topic_scores[this_score.quiz_item.topic.key()]['average'] = new_average
 			
 		print topic_scores
 		# seperate topic_scores into individual topics
@@ -40,12 +41,12 @@ class TopicLevelData():
 			tl_keyname = str(quiz_taker.unique_identifier) + "_" + str(topic_pair[0])
 			if TopicLevel.get_by_key_name(tl_keyname):
 				topic_level = TopicLevel.get_by_key_name(tl_keyname)
-				topic_level.topic_level = topic_pair[1]['value']
+				topic_level.topic_level = topic_pair[1]['average']
 			else:
 			    topic_level = TopicLevel(key_name = tl_keyname,
 										topic = topic_pair[0],
 										quiz_taker = quiz_taker,
-										topic_level = topic_pair[1]['value'])
+										topic_level = topic_pair[1]['average'])
 			topic_level.put()
 			
 			 
@@ -67,28 +68,28 @@ class ProficiencyLevelData():
 		pro_scores = {}
 		for tl in quiz_taker.topic_levels.fetch(1000):
 			try: 
-				current_value = pro_scores[tl.topic.proficiency.key()]['value']
-				current_sum = pro_scores[tl.topic.proficiency.key()]['sum']
-				current_product = current_value * current_sum
-				new_product = current_product + tl.topic_level
-				new_sum = current_sum + 1
-				new_value = new_product / new_sum
-			except: # no current value
+				current_average = pro_scores[tl.topic.proficiency.key()]['average']
+				current_count = pro_scores[tl.topic.proficiency.key()]['count']
+				current_sum = current_average * current_count
+				new_sum = current_sum + tl.topic_level
+				new_count = current_count + 1
+				new_average = new_sum / new_count
+			except: # no current average
 				pro_scores[tl.topic.proficiency.key()] = {}
-				new_sum = 1
-				new_value = tl.topic_level
-			pro_scores[tl.topic.proficiency.key()]['sum'] = new_sum
-			pro_scores[tl.topic.proficiency.key()]['value'] = new_value
+				new_count = 1
+				new_average = tl.topic_level
+			pro_scores[tl.topic.proficiency.key()]['count'] = new_count
+			pro_scores[tl.topic.proficiency.key()]['average'] = new_average
 
 		print pro_scores
 		for pro_pair in pro_scores.items():
 				pl_keyname = str(quiz_taker.unique_identifier) + "_" + str(pro_pair[0])
 				if ProficiencyLevel.get_by_key_name(pl_keyname):
 					proficiency_level = ProficiencyLevel.get_by_key_name(pl_keyname)
-					proficiency_level.proficiency_level = pro_pair[1]['value']
+					proficiency_level.proficiency_level = pro_pair[1]['average']
 				else:
 					 proficiency_level = ProficiencyLevel(key_name = pl_keyname,
 															proficiency = pro_pair[0],
 															quiz_taker = quiz_taker,
-															proficiency_level = pro_pair[1]['value'])
+															proficiency_level = pro_pair[1]['average'])
 				proficiency_level.put()

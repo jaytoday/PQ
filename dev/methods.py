@@ -48,7 +48,7 @@ class Build():
 		image_range = range(3) # change this as you add more. range() is always one int ahead.
 		for i in image_range:
 			print "loading image"
-			image_file = open(ROOT_PATH + "/static/stylesheets/profile/img/profile_" + str(i) + ".png")
+			image_file = open(ROOT_PATH + "/data/img/profile/profile_" + str(i) + ".png")
 			image = image_file.read()
 			image_content = images.resize(image, 45, 45)
 

@@ -226,18 +226,22 @@ def minify(filename):
   jsm.minify(input, output)
   return output.getvalue()  
 
+def console_safe(js):
+    #js = js.replace(r'console.(.*);', '')
+    return js
+    
 class Minify(webapp.RequestHandler):
   def get(self):
     data = memcache.get(self.request.path)    
     if data is None:
       filename = getFileName(self.request.path)
-      #dm = debug_mode()
-      dm = False
-      if dm: # debug mode - don't minify
+      dm = debug_mode()
+      if dm: # debug mode - don't minify. may want to make non-mozilla console-safe
         data = getFileContent(filename)
         expire = debugExpire
       else: 
         data = minify(filename)
+        #data = console_safe(data)
         expire = memCacheExpire
       memcache.add(self.request.path, data, expire)      
     self.response.headers['Content-Type'] = 'text/javascript'
