@@ -21,8 +21,9 @@
 
 
 
-__all__ = ["login_required", "run_wsgi_app"]
+__all__ = ["login_required", "run_wsgi_app", "admin_only"]
 
+import logging
 import os
 import sys
 import wsgiref.util
@@ -93,3 +94,55 @@ def _start_response(status, headers, exc_info=None):
     print "%s: %s" % (name, val)
   print
   return sys.stdout.write
+
+
+def get_debug_mode():
+	if os.environ.get('SERVER_SOFTWARE','').startswith('Devel'):
+		return True
+	elif os.environ.get('SERVER_SOFTWARE','').startswith('Goog'):
+		return False
+	else:
+		return False
+
+
+
+def admin_only(handler_method):   # this should be altered. 
+  """A decorator to require that a user be logged in to access a handler.
+
+  To use it, decorate your get() or post() method like this:
+
+    @login_required
+    def get(self):
+      user = users.GetCurrentUser(self)
+      self.response.out.write('Hello, ' + user.nickname())
+
+  We will redirect to a login page if the user is not logged in. We always
+  redirect to the request URI, and Google Accounts only redirects back as a GET request,
+  so this should not be used for POSTs.
+  """
+  def check_admin(self, *args):
+    raise webapp.Error('aaa')
+    handler_method(self, *args)
+    return check_admin
+      	
+    if authorized():
+    	return self
+    else:
+    	self.redirect('/s/')
+
+
+def authorized(handler):
+	"""Return True if user is authenticated."""
+	user = users.get_current_user()
+	if not user:
+		handler.redirect('/login')
+	else:
+		#auth_user = Admin.gql("where user = :1", user).get()
+		auth_user = False
+		if not auth_user:
+		  logging.warning('An unauthorized user has attempted to enter an authorized page')
+		  handler.redirect('/')
+		  return False
+		else:
+			return True
+			

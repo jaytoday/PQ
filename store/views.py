@@ -12,8 +12,10 @@ from utils.utils import ROOT_PATH, tpl_path
 # Import the main gchecky controller class
 from utils.gchecky.controller import Controller
 # import Google Checkout API model
+import checkout
 from utils.gchecky import model as gmodel
-
+from model.proficiency import  Proficiency, ProficiencyTopic
+from utils.gql_encoder import GqlEncoder, encode
 
 
 # Template paths
@@ -23,6 +25,7 @@ DEFAULT_QUIZ_PRICE = 20
 
 
 user_id = "30"
+
 
 
 
@@ -73,4 +76,23 @@ class Store(webapp.RequestHandler):
 	self.response.out.write(template.render(path, template_values))
 
 	 
+
+
+
+
+
+class ChooseProficiency(webapp.RequestHandler):
+
+    def get(self):
+    	proficiencies = Proficiency.gql("WHERE status = :1", "public");
+    	proficiencies = proficiencies.fetch(1000)
+    	buy_buttons = []
+    	for p in proficiencies: 
+    	    p.checkout_button = checkout.render_quiz_button(self, p.tag(), p.name)
+    	    buy_buttons.append( { 'tag': p.tag().lower(), 'html' : p.checkout_button})
+    	    
+    	prof_json = encode(proficiencies)
+        template_values = {'proficiencies' : proficiencies, 'prof_json': prof_json, 'buy_buttons': encode(buy_buttons)}
+        path = tpl_path(STORE_PATH + 'proficiency.html')
+        self.response.out.write(template.render(path, template_values))
 

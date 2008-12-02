@@ -7,7 +7,9 @@ PQ
 Setup
 ------------
 
-  Run PQ through dev_appserver. To load a datastore snapshot, navigate to /dev/admin
+  Run PQ through dev_appserver. 
+  
+  To load a datastore snapshot, navigate to /dev/admin
   and select the Restore From Backup option.  
     
 Utilities

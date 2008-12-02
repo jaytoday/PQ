@@ -101,6 +101,12 @@ class ItemScore(db.Model):
   def get_key(self, prop_name):
        getattr(self.__class__, prop_name).get_value_for_datastore(self)
 
+  def topic_level(self):
+       query = TopicLevel.gql("WHERE topic = :1 AND quiz_taker = :2", self.quiz_item.topic, self.quiz_taker)
+       if not query.get(): print self.__dict__
+       return query.get()
+       
+
 
 class QuizTakerFilter(db.Model):
   quiz_taker = db.ReferenceProperty(QuizTaker,
@@ -109,7 +115,7 @@ class QuizTakerFilter(db.Model):
   variance = db.IntegerProperty(default=0)
   manhattan = db.IntegerProperty(default=0)
   nudges_count = db.IntegerProperty(default=0)
-  trained = db.IntegerProperty(default=0)    # Either this can be integer for re-use, or new filter can be made if its True. 
+  trained = db.BooleanProperty(default=False)   # Either this can be integer for re-use, or new filter can be made if its True. 
   date = db.DateTimeProperty(auto_now_add=True)
 
 
@@ -120,13 +126,12 @@ class QuizItemFilter(db.Model):
   variance = db.IntegerProperty(default=0)
   manhattan = db.IntegerProperty(default=0)
   nudges_count = db.IntegerProperty(default=0)
-  trained = db.IntegerProperty(default=0)    # Either this can be integer for re-use, or new filter can be made if its True. 
+  trained = db.BooleanProperty(default=False)    # Either this can be integer for re-use, or new filter can be made if its True. 
   date = db.DateTimeProperty(auto_now_add=True)
-
 
 
 class ItemScoreFilter(db.Model):
   score = db.ReferenceProperty(ItemScore,
                                     collection_name='filter')  
-  trained = db.IntegerProperty(default=0)  
+  trained = db.BooleanProperty(default=False)
   residual = db.IntegerProperty(default=0)  

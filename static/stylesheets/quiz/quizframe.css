@@ -16,7 +16,7 @@ div.quiz_frame_header
 
 div.tab
 {
--webkit-border-radius-topright: 18px;
+-webkit-border-top-right-radius: 18px;
 -moz-border-radius-topright:18px;
 background-color:#CDCDCD;
 border-right:1px solid #CDCDCD;
@@ -162,11 +162,16 @@ width:250px;
 #blank
 {
         background:#FFFFD1 none repeat scroll 0 0;
+        display:block;
+        width:100px;
+        height:23px;
         border:1px solid #E2C922;
         font-weight:bold;
-        margin:0 5px;
+       margin:auto;
         opacity:0.5;
-        padding: 0 34px;
+        /*padding: 0 34px; */
+        width:100px;
+        text-align:center;
 }
 
 
@@ -334,18 +339,18 @@ div.quiz_description
 div.hover_example
 {
         margin-right:-2px;
-        overflow:hidden;
         padding:5px;
         text-align:center;
         width:140px;
-        margin-top:15px;
         margin-left:0px;
         height:120px; 
         width:140px;
         float:right;
 }
 
-
+div.first_example{
+margin-top:10px;
+}
 
 div.quiz_description_title
 {
@@ -446,10 +451,8 @@ form span:hover
 {
         -moz-border-bottom-colors:#EDF2F8 #FFFFFF;
         -moz-border-left-colors:#DDDDDD;
-        -moz-border-radius-bottomleft:12px;
-        -moz-border-radius-bottomright:12px;
-        -moz-border-radius-topleft:12px;
-        -moz-border-radius-topright:12px;
+        -moz-border-radius:12px;
+        -webkit-border-radius:12px;
         -moz-border-right-colors:#DDDDDD;
         -moz-border-top-colors:#EDF2F8 #FFFFFF;
         background: url(/static/html/img/background_250.png) repeat-x scroll center top;
@@ -461,7 +464,6 @@ form span:hover
         margin:-5px 0 0 -4px;
         overflow:hidden;
         width:345px;
-        -webkit-border-radius: 12px;
 }
 
 #score_report_title

@@ -10,7 +10,7 @@ from google.appengine.api import users
 from utils import webapp, simplejson
 from .model.quiz import QuizItem, ItemScore
 from .model.user import QuizTaker
-from utils.utils import ROOT_PATH, tpl_path
+from utils.utils import ROOT_PATH, tpl_path, admin_only
 from utils.gql_encoder import GqlEncoder, encode
 from ranking.methods import TopicLevelData, ProficiencyLevelData
 
@@ -23,9 +23,8 @@ DEV_PATH = 'dev/'
 
 class Admin(webapp.RequestHandler):
   #Load admin page
-
+  @admin_only
   def get(self):
-
     template_values = {}
     path = tpl_path(DEV_PATH +'admin.html')
     self.response.out.write(template.render(path, template_values))
@@ -55,6 +54,7 @@ class LoadTopics(webapp.RequestHandler):
 class Debug(webapp.RequestHandler):
   def get(self):
       if self.request.get('quiz_item'): return self.quiz_item(self.request.get('quiz_item'))
+      if self.request.get('error') == '500': return dict['this'] # test 500 errors
   def quiz_item(self, item_key):
 		item = QuizItem.get(item_key)
 		item_answers = []

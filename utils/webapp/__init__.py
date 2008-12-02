@@ -319,8 +319,9 @@ class RequestHandler(object):
   def initialize(self, request, response):
     """Initializes this request handler with the given Request and Response."""
     self.request = request
-    self.response = response
     self.session = Session() # PQ patch
+    self.response = response
+
 
   def get(self, *args):
     """Handler method for GET requests."""
@@ -385,6 +386,8 @@ class RequestHandler(object):
 		  debug_mode: True if the web application is running in debug mode
 		"""
 		self.error(500)
+		from util import get_debug_mode
+		debug_mode = get_debug_mode()
 		lines = ''.join(traceback.format_exception(*sys.exc_info()))
 		logging.error(lines)
 		if debug_mode:
@@ -393,7 +396,7 @@ class RequestHandler(object):
 			self.response.out.write(lines)
 		else:	
 			path = "./templates/500.html"
-			template_values = {}
+			template_values = {'no_load': True}
 			self.response.out.write(template.render(path, template_values))
 
       

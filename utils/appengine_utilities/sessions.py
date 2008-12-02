@@ -393,7 +393,8 @@ class Session(object):
             self._set_memcache()
             return pickle.loads(data.content)
         else:
-            raise KeyError(str(keyname))
+            #raise KeyError(str(keyname))
+            return False
 
     def __setitem__(self, keyname, value):
         """

@@ -1,232 +1,217 @@
 import logging
 import random
+from google.appengine.ext import db
 from utils import *
-from model import *
+from model.quiz import QuizItem, ItemScore, QuizItemFilter, QuizTakerFilter, ItemScoreFilter
+from model.user import QuizTaker 
 import string
 
 # This program calculate the degrees of difficulty and degree of proficiency as well as the consistencies of the quiz items and the quiz takers.
-# Note: Difficulty, Proficiency are normalized to range from 0 to range_max = 10,000
-# Fuzzy logic is used ranging from 0 to range_max. 0 = false range_max = true. intermediate values are allowed.
-
-class Algorithm():
+# Note: Difficulty, Proficiency are normalized to range from 0 to RANGE_MAX = 10,000
+# Fuzzy logic is used ranging from 0 to RANGE_MAX. 0 = false RANGE_MAX = true. intermediate values are allowed.
 
 
-	""" 
+# DEFINE GLOBAL CONSTANTS
+
+CONVERGENCE_RATIO = 100	# Used to determine termination criterion. At first count, converge_min = converge / CONVERGENCE_RATIO
+COUNT_MAX = 200			# Maximum number of times the whole score set is scanned
+DAMPING = 1             # value 1 is fastest convergence assuming no nonlinearities. Larger values slow convergence but deal with non-linearities.
+RANGE_MAX = 100 		# maximum range for difficulty and proficiency
+RANGE_HALF = RANGE_MAX / 2 # half of RANGE_MAX. Used in initialization
+NOISE_AMP = 0           # noise amplitude for simulated annealing
 
 
-	All of the constants for QuizTaker, QuizItem, and ItemScore are stored in a seperate model, accessible with a .filter property.
-	.filter is a child of the parent model.
+class Run_Filter():
+	
+	# Any of these variables that never change should be global constants
+	
+	def __init__(self):                 # initialize variables
+		self.converge = 0			# Measure of convergence, accumulation of residuals during a cycle.
+		self.converge_min = 0		# minimum convergence value at termination of algorithm. Is automatically set in program converge_min = converge / CONVERGENCE_RATIO
+		self.count = 0				# Number of of times the whole score set is scanned
+		self.residual = 0            # Difference between measured score and expected score
+		self.gain = 0                # gain to be applied to residual
+		self.annealing = 0           # noise to be applied to residual to achieve simulated annealing, finding global optimum
+		self.nudge_difficulty = 0    # amount of nudge allocated to difficulty
+		self.nudge_proficiency = 0   # amount of nudge allocated to proficiency
+		self.temp = 0                # temporary buffer
+		self.last_cycle = False      # last cycle flag is used to terminate optimization and to store the last residuals in takers and items
+		self.item_variance = 0       # temporary holds intermediate variance calculations
+		self.taker_variance = 0      # temporary holds intermediate variance calculations
+		self.expected_score = 0      # expected score by quiz taker given the item difficulty and the taker's proficiency
+		self.count = 0				# holds the numbe oftimes the whole score set is passed through the Falman filter.
 
-	George = Parent("name = George").get()
-	James = George.family.son.get()              George is the "parent" of family.
-	George = James.family.father.get()     
-
-	-- using .get() is a quick way of limiting to the first value returned. 
-	If you know there is only one value, it's the fastest way to query, and returns an object instead of a list of objects.  
-
-	Remember to include .filter when reading and writing these values! 
-
-	We can change the name of filter to something else, but it's good to not include it in the main schema, just to keep things neat. 
-
-
-	"""
-
-
-	# DEFINE CONSTANTS
-
-	converge_ratio = 100	# Used to determine termination criterion. At first count, converge_min = converge / converge_ratio
-	count_max = 200			# Maximum number of times the whole score set is scanned
-	damping = 1             # value 1 is fastest convergence assuming no nonlinearities. Larger values slow convergence but deal with non-linearities.
-	range_max = 10000 		# maximum range for difficulty and proficiency
-	range_half = range_max / 2 # half of range_max. Used in initialization
-	noise_amp = 0           # noise amplitude for simulated anealing
-
-
-	# DEFINE VARIABLES
-
-	converge = 0			# Measure of convergence, accumulation of residuals during a cycle.
-	converge_min = 0		# minimum convergence value at termination of algorithm. Is automatically set in program converge_min = converge / converge_ratio
-	count = 0				# Number of of times the whole score set is scanned
-	residual = 0            # Difference between measured score and expected score
-	gain = 0                # gain to be applied to residual
-	annealing = 0           # noise to be applied to residual to achieve simulated annealing, finding global optimum
-	nudge_difficulty = 0    # amount of nudge allocated to difficulty
-	nudge_proficiency = 0   # amount of nudge allocated to proficiency
-	temp = 0                # temporary buffer
-	last_cycle = False      # last cycle flag is used to terminate optimization and to store the last residuals in takers and items
-	item_variance = 0       # temporary holds intermediate variance calculations
-	taker_variance = 0      # temporary holds intermediate variance calculations
-	expected_score = 0      # expected score by quiz taker given the item difficulty and the taker's proficiency
-	count = 0				# holds the numbe oftimes the whole score set is passed through the Falman filter.
-	last_cycle = False		# used to save data on thedatabase on the last cycle through the Kalman filter.
-
-
-	 
-		# SELECT scores with score.trained = False. # This is new data
+	def create_filter(self, entity, filter_type, reference):
+		print "creating filter"
+		new_filter = filter_type(reference = entity)
+		new_filter.put()
+		return  
+	
+			
+	def get_scores(self):    
+			# DATABASE REQUIREMENTS
+			# INPUT AND INITIALIZE SCORE DATA    
+			# If this data could be used across batches, it would be better to do it only once, so we can reduce datastore lookups.
+			# Filters need to be initiated.  
 		
-
-	#  Initialization happens with default values in model.py. Default values can be computed dynamically within model.py. 
-
-
-	def filter():
-		scores = ItemScore.all().fetch(1000
-		quiz_takers = [] 
-		quiz_items = []
-		for s in scores:
-			quiz_takers.append(s.quiz_taker.get())
-			quiz_items.append(s.quiz_item.get())
-		quiz_takers = set(quiz_takers)
-		quiz_items = set(quiz_items)    # set() - only unique entries in list
-		
-		
-		item_count = len(quiz_items)
-		for item in quiz_items:
-		  if item.filter.trained == 0: item.difficulty = range_half
-		  
-		#INPUT AND INITIALIZE QUIZ_TAKER DATA        	
-           # We can also use GQL query or fetch() method for more precision. 
-		taker_count = len(quiz_takers)
-		for taker in quiz_takers:
-		  taker.filter.proficiency = range_half
-		# scores.quiz_taker.proficiency
-		"""
-
-		# Essentially, given a score I want to get the proficiency of the taker.
-
-		scores = ItemScore.all()  # We can also use GQL query for more precision. 
-		for score in scores:
-		   taker_proficiency_levels = score.quiz_taker.proficiency_levels
-		   for pl in taker_proficiency_levels: 
-			  print pl.proficiency.name   # This is the name of the proficiency, using a model Reference
-			  print pl.proficiency_level  # This is the score of the proficiency level for this quiz taker. 
-
-		# The names of these properties can be changed, but now we can thread through all models. 
-
-		"""
-		converge = converge_min + 1
-
-		# Optimization Main Iterative Loop            
-		while ( last_cycle == False ):
-		  last_cycle =  ( converge < converge_min ) or ( count >= count_max ) # Set last cycle flag on last cycle
-
-		  converge = 0	        # Initialize convergence for quiz items
-
-		# SHUFFLE??
-		# Need to shuffle score list (or index list pointing to score list) every cycle to achieve unbiased convergence.
-		# Use the function shuffle( seq[, random])
-		# If computing cost of shuffle is too high apply shuffle every 10 times i.e., if ((count % 10) = 0): shuffle( seq[, random]) # modulus operator: %
-
-		# Reset all nudge counts for the next cycle
-		for item in quiz_items:
-			quiz_item.filter.nudges_count = 0  # set first nudge count to 0.
-			quiz_item.filter.put()  # we need to save it, at least if we want this to be available later on.       			
-
-		for taker in quiz_takers:
-			taker.filter.nudges_count = 0            		# set first nudge count to 0.
-			taker.filter.put()
-
-		   
-		for score in scores:                            
-		# I made a special function called get_level_for_proficiency under the QuizTaker class 
-		# allowing quiz proficiency_level lookups for a given proficiency.
-			score.expected_score = 0 # GEORGE: This should be something else.
-			score.expected_score = (score.quiz_taker.get_level_for_proficiency(score.quiz_item.proficiency) - score.quiz_item.difficulty + range_max)/2 # Fuzzy Expected Answer ranges (0,10000)			
-			#residual = score.score – score.expected_score 	# <-- what is that??  ;Residual or Innovation; +ive Residual means performance better than expected
-														# Residual ranges +10000, -10000
-			converge = max(1073741824, converge + abs(residual)) 	# Convergence monitor. Saturates at 2**30. Max at 2**32
-			gain = damping/(damping + count)			# Gain decrease on each successive pass through the scores to iron out the discrepancies. 
-			annealing = noise_amp * uniform(0, ((count_max - count)/count_max) * range_max/10) 	# annealing is a random number ramping down from range_max/10
-
-			if (score.quiz_item.filter.trained == False ):
-				if (score.quiz_taker.filter.trained == False ):
-					score.quiz_item.nudges_count += 1                				# accumulate number of nudges.
-					score.quiz_taker.nudges_count += 1                           # accumulate number of nudges. 
-					# Allocate nudge to difficulty and proficiency
-					# Note: nudge_count + 1 insures that on the first cycle the nudge is distributed equally 50/50 to diff and prof.
-					# Note: quiz_item.nudges_count is a measure of the variance of quiz_item during the optimization process and allows weighing of new information. 
-					# Note: quiz_taker.nudges_count is a measure of the variance of quiz_taker during the optimization process  and allows weighing of new information.
-					nudge_difficulty = gain * ( residual  + annealing ) / (score.quiz_item.nudges_count + 1) # Compute nudge allocation equally between diff and prof.
-					nudge_proficiency = gain * ( residual  + annealing ) / (score.quiz_taker.nudges_count + 1) # ompute nudge allocation equally between diff and prof.
-
-					# Update Difficulty
-					temp = quiz_item[item_index].difficulty - nudge_difficulty          # Apply correction to difficuly.
-					quiz_item[item_index].difficulty = max(range_max, min(0, temp))     # Restrict range (0,10000)
-
-					# Update Proficiency
-					temp = quiz_taker[index_taker].proficiency + nudge_proficiency      # Apply correction to difficuly.
-					#quiz_taker[index_taker].proficiency = 	# Restrict range (0,10000)
-					quiz_taker.proficiency_levels
-					
-					new_proficiency_level = ProficiencyLevel(quiz_taker = quiz_taker,
-															 proficiency = score.quiz_item.proficiency,
-															 proficiency_level= max(range_max, min(0, temp))
-															 )
-					new_proficiency_level.put()
-					
-				else:																	# quiz_taker[taker_index].trained == True 
-					quiz_item[item_index].nudges_count += 1                             # accumulate number of nudges.
-					# Calculate nudge allocation to difficulty and proficiency
-					# Note: nudge_count begin at 1. This insures that on the first cycle the nudge is distributed wholly to diff.
-					nudge_difficulty = gain * ( residual  + annealing ) / (quiz_item[item_index].nudges_count) # Allocates nudge to Diff. 
-					nudge_proficiency = 0
-
-					# Update Difficulty
-					temp = quiz_item[item_index].difficulty - nudge_difficulty          # Apply correction to difficuly.
-					quiz_item[item_index].difficulty = max(range_max, min(0, temp))	# Restrict range (0,10000)
-
-			else:
-				if (score.quiz_taker.trained == False ):
-									
-					quiz_taker[taker_index].nudges_count += 1                                  # accumulate number of nudges.
-					# Note: nudge_count begin at 1. This insures that on the first cycle the nudge is distributed wholly to prof.
-					nudge_difficulty = 0
-					nudge_proficiency = gain * ( residual  + annealing ) / (quiz_taker[taker_index].nudges_count) # Allocates nudge to diff.
-
-					# Update Proficiency
-					temp = quiz_taker[taker_index].proficiency + nudge_proficiency             # Apply correction to difficuly.
-					quiz_taker[taker_index].proficiency = max(range_max, min(0, temp))	        # Restrict range (0,10000)
-									
-				else:
-					nudge_difficulty =  0
-					nudge_proficiency = 0                           # Both item and taker are trained. No update necessay
-
-
-			# Collect Info for monitoring purposes
-			if last_cycle: 
-
-				score.residual = residual               # for monitoring, accumulate in residual of quiz item all relevent residuals
-
-				# compute means for residuals associated with quiz items and quiz takers.
-				quiz_item[item_index].mean += (residual - quiz_item[item_index].mean) / quiz_item[item_index].nudges_count
-				quiz_taker[taker_index].mean += (residual - quiz_taker[taker_index].mean) / quiz_taker[taker_index].nudges_count
-
-				#compute manhattan
-				quiz_item[item_index].manhattan += abs(residual)      # accumulate absolute value of residuals
-				quiz_taker[taker_index].manhattan += abs(residual)     # accumulate absolute value of residuals
-
-				quiz_item[item_index].trained = True
-				quiz_taker[taker_index].trained = True
-				score.trained = True     			# increment score usage. Used in sorting scores before processing. Use youngest scores first
-
-
+			scores = ItemScore.all().fetch(1)
+			quiz_items = []
+			quiz_takers = []
+			for s in scores:
+			  if not s.quiz_taker or not s.quiz_item:
+				scores.remove(s)
+				#s.delete() 
+				logging.error('score missing reference data')
+				logging.error(s)
+				continue
+				
+			# Is it necessary to generate three seperate lists, or can we just create a list of scores?				
+				
+			  if not s.quiz_taker.filter.get(): self.create_filter(s.quiz_taker, QuizTakerFilter, 'quiz_taker')# reset filter for quiz taker (training=False, etc.)
+			  if not s.quiz_item.filter.get(): self.create_filter(s.quiz_item, QuizItemFilter, 'quiz_item')
+			  if not s.filter.get(): self.create_filter(s, QuizItemFilter, 'score')
+			  # reset filter for quiz_item
+			  quiz_takers.append(s.quiz_taker)
+			  quiz_items.append(s.quiz_item)
+			quiz_takers = set(quiz_takers)    # only unique entries
+			quiz_items = set(quiz_items)
+			for score in scores:
+				score.residual = 0
+				score.trained = 0	# REMOVE THIS INITIALIZATION AFTER TRAINING FIRST BATCH
+				continue
+			
+			return scores
 				
 
+	def Initalize_Kalman_Batch(self, items, takers):
+			# SHUFFLE??
+			# Need to shuffle score list (or index list pointing to score list) every cycle to achieve unbiased convergence.
+			# Use the function shuffle( seq[, random])
+			# If computing cost of shuffle is too high apply shuffle every 10 times i.e., if ((count % 10) = 0): shuffle( seq[, random]) # modulus operator: %
 
-		if last_cycle:        
-								
+			# Reset all nudge counts for the next cycle  - this can be done from datastore model. 
+			
+			for item in items:
+				item.filter.nudges_count = 0         			# set first nudge count to 0.
+
+			for taker in takers:
+				taker.filter.nudges_count = 0            		# set first nudge count to 0.
+			return        	
+				
+				
+	def Compute_Residuals(self, score):
+				# expected score = (proficiency level - difficulty + Range Max) / 2
+				print score.topic_level()
+				expected_score = score.topic_level().topic_level
+				residual = score.score - expected_score 	# Residual or Innovation; +ive Residual means performance better than expected
+				return expected_score, residual
+
+
+	def Apply_Nudge_Difficulty(self, item, one_more_nudge):
+						item.filter.nudges_count += 1                				# accumulate number of nudges.
+						# Allocate nudge to difficulty and proficiency
+						# Note: nudge_count + 1 insures that on the first cycle the nudge is distributed equally 50/50 to diff and prof.
+						# Note: quiz_item.nudges_count is a measure of the variance of quiz_item during the optimization process and allows weighing of new information. 
+						# Note: quiz_taker.nudges_count is a measure of the variance of quiz_taker during the optimization process  and allows weighing of new information.
+						nudge_difficulty = self.gain * ( self.residual  + self.annealing ) / (item.filter.nudges_count + one_more_nudge) # Compute nudge allocation equally between diff and prof.
+
+						# Update Difficulty
+						temp = item.difficulty - self.nudge_difficulty          # Apply correction to difficuly.
+						item.filter.difficulty = max(RANGE_MAX, min(0, self.temp))     # Restrict range (0,10000)
+
+
+	def Apply_Nudge_Proficiency(self, taker, one_more_nudge):			
+						taker.filter.nudges_count += 1                           # accumulate number of nudges. 
+						# Allocate nudge to difficulty and proficiency
+						# Note: nudge_count + 1 insures that on the first cycle the nudge is distributed equally 50/50 to diff and prof.
+						# Note: quiz_item.nudges_count is a measure of the variance of quiz_item during the optimization process and allows weighing of new information. 
+						# Note: quiz_taker.nudges_count is a measure of the variance of quiz_taker during the optimization process  and allows weighing of new information.
+						nudge_proficiency = self.gain * ( self.residual  + self.annealing ) / (taker.filter.nudges_count + one_more_nudge) # ompute nudge allocation equally between diff and prof.
+
+						# Update Proficiency
+						temp = taker.proficiency + nudge_proficiency      # Apply correction to difficuly.
+						taker.proficiency = max(RANGE_MAX, min(0, temp))	# <-- ERROR!!!! taker.proficiency doesn't resolve to anything. See the e-mail I sent you. Restrict range (0,10000)
+
+											
+	def Collect_Residual_Stats(self, item, taker):
+					score.residual = self.residual               # for monitoring, accumulate in residual of quiz item all relevent residuals
+
+					# compute means for residuals associated with quiz items and quiz takers.
+					item.filter.mean += (self.residual - item.filter.mean) / item.filter.nudges_count
+					taker.filter.mean += (self.residual - taker.filter.mean) / taker.filter.nudges_count
+
+					#compute manhattan
+					item.filter.manhattan += abs(self.residual)      # accumulate absolute value of residuals
+					taker.filter.manhattan += abs(self.residual)     # accumulate absolute value of residuals					
+						
+							
+									
+	def Kalman_Single_Score(self, score):
+
+				self.Compute_Residuals(score)
+															# Residual ranges +10000, -10000
+				self.converge = max(1073741824, self.converge + abs(self.residual)) 	# Convergence monitor. Saturates at 2**30. Max at 2**32
+				self.gain = DAMPING/(DAMPING + self.count)			# Gain decrease on each successive pass through the scores to iron out the discrepancies. 
+				self.annealing = NOISE_AMP * random.uniform(0, ((COUNT_MAX - self.count)/COUNT_MAX) * RANGE_MAX/10) 	# annealing is a random number ramping down from RANGE_MAX/10
+
+				print score.quiz_item.filter.get()
+				return 
+				if (score.quiz_item.filter.trained == False ):
+					if ( score.quiz_taker.filter.trained == False ):
+						self.Apply_Nudge_Difficulty(1)
+						self.Apply_Nudge_Proficiency(1)	
+					else:																	# quiz_taker[taker_index].trained == True 
+						self.Apply_Nudge_Difficulty(0) 
+						nudge_proficiency = 0
+				else:
+					if (score.quiz_taker.filter.trained == False ):     
+						nudge_difficuly = 0                
+						self.Apply_Nudge_Proficiency(0)	                                    
+					else:
+						nudge_difficulty =  0
+						nudge_proficiency = 0                           # Both item and taker are trained. No update necessay
+
+
+				# Collect Info for monitoring purposes
+				if self.last_cycle: 
+					self.Collect_Residuals_Stats()
+					score.quiz_taker.filter.trained = True
+					score.quiz_item.filter.trained = True
+					score.filter.trained = True     			# increment score usage. Used in sorting scores before processing. Use youngest scores first
+
+
+	def Collect_Variance_Stats(self):
 			#compute variances. Variances have already been initialized to zero.                                           
 			for score in scores:
-				quiz_item[item_index].variance += (score.residual - quiz_item[item_index].mean)**2
-				quiz_taker[taker_index].variance += (score.residual - quiz_taker[taker_index].mean)**2
+				score.quiz_item.filter.variance += (score.filter.residual - score.quiz_item.filter.mean)**2
+				score.quiz_taker.filter.variance += (score.filter.residual - score.quiz_taker.filter.mean)**2
+				
+				# George, the indentation on these last two had them outside the for-loop, but that would result in an error.
+				score.quiz_item.filter.variance = score.quiz_item.filter.variance /( score.quiz_item.filter.nudges_count -1)
+				score.quiz_taker.filter.variance = score.quiz_taker.filter.variance /( score.quiz_taker.filter.nudges_count -1)  
 
-			quiz_item[item_index].variance = quiz_item[item_index].variance /( quiz_item[item_index].nudges_count -1)
-			quiz_taker[taker_index].variance = quiz_taker[taker_index].variance /( quiz_taker[taker_index].nudges_count -1)                        
-								
-		if count == 0:
-			converge_min = max( 1, (converge / converge_ratio)) # set converge_min to a fraction of first converge value.
-			count += 1 	# increment loop count. Used in terminating the optimization porcess
-											
 
+def run():
+	filter = Run_Filter()
+	scores = filter.get_scores()
+	filter.converge = filter.converge_min + 1
+        # Optimization Main Iterative Loop            
+	while ( filter.last_cycle == False ):	
+		filter.last_cycle =  ( filter.converge < filter.converge_min ) or ( filter.count >= COUNT_MAX ) # Set last cycle flag on last cycle
+		filter.converge = 0	        # Initialize convergence for quiz items
+		# is this necessary? filter.Initalize_Kalman_Batch(quiz_items, quiz_takers)
+		for score in scores:
+			filter.Kalman_Single_Score(score) # Scan all measured scores
+			continue
+ 
+                      
+        # On the first cycle compute converge_min as a ratio of initial converge value                        
+		if filter.count == 0:
+			filter.converge_min = max( 1, (filter.converge / CONVERGENCE_RATIO) ) # set converge_min to a fraction of first converge value.
+		filter.count += 1 	# increment loop count. Used in terminating the optimization porcess
+                                            
+	if filter.last_cycle: filter.Collect_Variance_Stats()
+	
 		# Put back in the database the following
 
 		# score.quiz_item.difficulty = 0          # Difficulty of a Quiz item for a given score
@@ -236,9 +221,13 @@ class Algorithm():
 		# score.quiz_taker.proficiency            # Proficiency of a Quiz Taker of a given score
 		# score.quiz_taker.trained                # True if item has gone through an optimization. Used to freeze proficiency when new data is presented 
 		# score.quiz_taker.consistency            # to be put back into the DB. This is a measure of consistency. Low value is most consistent
+ 
+        #
+# end of algorithm
 
-		#
-		# end of algorithm
+
+
+
 
 
 # Following program is needed to monitor the performance of the optimization program

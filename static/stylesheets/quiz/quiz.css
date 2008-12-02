@@ -48,7 +48,8 @@ div#quiz_content {
 /* Quiz Content Styles */
 
 .intro_content{
-
+height:242px;
+width:360px; 
 }
 
 .instructions_content{

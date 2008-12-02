@@ -92,10 +92,8 @@ margin:-90px 750px;
 
 
 div.pfstat{
--moz-border-radius-bottomleft:12px;
--moz-border-radius-bottomright:12px;
--moz-border-radius-topleft:12px;
--moz-border-radius-topright:12px;
+-moz-border-radius: 12px;
+-webkit-border-radius: 12px;
 background:#DDDDDD none repeat scroll 0 0;
 border:2px solid #DDDDDD;
 color:#000040;

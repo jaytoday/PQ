@@ -29,13 +29,15 @@ class PQHandler(webapp.RequestHandler):
 
 										#Homepage
 										('/?',
-										 quiztaker.views.PQHome), 
+										 quiztaker.views.PQHome),
+										('/about/?',
+										 homepage.views.AboutUs), 										  
 										('/preview/?',
 										 homepage.views.ExitPage),                                                                                  
 										('/preview/homepage/?',
 										 homepage.views.ViewHomepage),  
 										('/preview/proficiency/?',
-										 homepage.views.ChooseProficiency), 
+										 store.views.ChooseProficiency), 
 										
 										# Profiles
 										('/profile/.*?',
@@ -117,6 +119,8 @@ class PQHandler(webapp.RequestHandler):
 										 dev.views.Admin),
 										 ('/admin/?', 
 										 admin),
+										('/dev/filter/?',
+										 ranking.views.Filter),  										 
 										('/dev/load_topics/?',
 										 dev.views.LoadTopics),  
 										('/debug/?',

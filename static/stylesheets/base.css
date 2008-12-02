@@ -81,8 +81,8 @@ height: 100%;
 
 /* Liquid Sitelet Box */
 .clear { clear: both; }
-.sitelet .left { float: left; }
-.sitelet .right { float: right; }
+.sitelet .left { float: left; width:417px; }
+.sitelet .right { float: right; width:509px; }
 .sitelet .top, .sitelet .bottom { position: relative; }
 
 .sitelet .top .liquid { background:url(img/base/sitelet-top.png) repeat-x; }
@@ -120,9 +120,11 @@ height: 35px;
 }
 .sitelet .middle .main_wrapper {
 background: #F7F5F4;
-margin: 0px 11px;
+margin: 0px 0px 0px 3px;
 overflow: hidden;
 height: 420px;
+width:944px;
+float:left;
 }
 
 .sitelet .middle .main_wrapper .main {
@@ -202,10 +204,8 @@ border-width: 1px;
 font-size: 14px;
 margin: 9px 0 0;
 padding: 5px 8px;
--moz-border-radius-bottomleft:12px;
--moz-border-radius-bottomright:12px;
--moz-border-radius-topleft:12px;
--moz-border-radius-topright:12px;
+-moz-border-radius:12px;
+
 -webkit-border-radius: 12px;
 }
 
@@ -239,10 +239,8 @@ div.selection_box
 
 
 div.frame_box{
--moz-border-radius-bottomleft:5px;
--moz-border-radius-bottomright:5px;
--moz-border-radius-topleft:5px;
--moz-border-radius-topright:5px;
+-moz-border-radius:5px;
+-webkit-border-radius: 5px;
 background:#FFFFFF none repeat scroll 0 0;
 border:5px solid #DDDDDD;
 padding:10px;
@@ -262,10 +260,8 @@ color:#DDDDDD;
 .purple_box{
 -moz-border-bottom-colors:#777777 #888888 #999999 #AAAAAA #BBBBBB #CCCCCC;
 -moz-border-left-colors:#777777 #888888 #999999 #AAAAAA #BBBBBB #CCCCCC;
--moz-border-radius-bottomleft:5px;
--moz-border-radius-bottomright:5px;
--moz-border-radius-topleft:5px;
--moz-border-radius-topright:5px;
+-moz-border-radius:5px;
+-webkit-border-radius: 5px;
 -moz-border-right-colors:#777777 #888888 #999999 #AAAAAA #BBBBBB #CCCCCC;
 -moz-border-top-colors:#777777 #888888 #999999 #AAAAAA #BBBBBB #CCCCCC;
 background:transparent url(/static/html/img/background_250.png) repeat scroll center top;
@@ -284,9 +280,9 @@ background:#F7F5F4 none repeat scroll 0 0;
 color:#333333;
 font-size:0.9em;
 font-weight:bold;
-height:0;
+height:20px;
 line-height:1.1em;
-margin:-1px 7px 0;
+margin:-1px 7px -20px;
 }
 
 div#login a{

@@ -14,9 +14,15 @@ class TopicLevelData():
 
     def set(self, quiz_taker):
 		topic_scores = {}
+		edited_scores = False
 		for score in quiz_taker.scores:
 			this_score = ItemScore.get(score)
-			print this_score.score
+			if not this_score:
+				print "score not found. deleting key"
+				edited_scores = True
+				quiz_taker.scores.remove(score)  # remove key from list
+			else:
+				print this_score.score
 			try: 
 				current_average = topic_scores[this_score.quiz_item.topic.key()]['average']
 				current_count = topic_scores[this_score.quiz_item.topic.key()]['count']
@@ -32,8 +38,9 @@ class TopicLevelData():
 				
 			topic_scores[this_score.quiz_item.topic.key()]['count'] = new_count
 			topic_scores[this_score.quiz_item.topic.key()]['average'] = new_average
-			
 		print topic_scores
+		if edited_scores: quiz_taker.put()		
+		
 		# seperate topic_scores into individual topics
 		for topic_pair in topic_scores.items():
 			print topic_pair[0]

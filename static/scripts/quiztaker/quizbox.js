@@ -134,19 +134,25 @@
                                         });
 
                                
-                                var textHolder = $('#blank').text();
+                                //var textHolder = $('#blank').text();
+                                var textHolder = '     ';
 
                                 $('#quiz_answers .answer').hover(function()
                                 {
                                 	if ($(this).attr('id') == 'skip')
 						return;
 
-					$('#blank').html($('.answertext', this).text().replace(/\ /g, "&nbsp;")).css({'padding': '0px 0px'});
+					$('#blank').html($('.answertext', this).text().replace(/\ /g, "&nbsp;"))
+					//.css({'padding': '0px 0px'})
+					.css({'width': '100px'})
+					;
                                         
                                 },
                                 function()
                                 {
-                                        $('#blank').text(textHolder).css({'padding': '0px 34px'});
+                                       $('#blank').text(textHolder)
+                                       //.css({'padding': '0px 34px'});
+                                      .css({'width': '100px'});
                                 })
                                 .click(function(e)
                                 {

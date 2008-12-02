@@ -5,6 +5,7 @@ from google.appengine.ext import db
 from google.appengine.api import users
 import webapp.template
 from webapp import *
+from model.dev import Admin 
 
 
 ROOT_PATH = os.path.dirname(__file__) + "/.."
@@ -58,15 +59,40 @@ def require_login(uri):
 
 
 
-def loginrequired(handler):
-    def redirect_to_login(request):
-        return redirect(users.create_login_url(handler.request.uri))
+def redirect_to_login(*args, **kwargs):
+    return args[0].redirect(users.create_login_url(args[0].request.uri))
 
-    user = users.get_current_user()
-    if user:
-        return func
-    else:
-        return redirect_to_login
+def admin_only(handler):
+    def wrapped_handler(*args, **kwargs):    
+        user = users.get_current_user()
+        logging.debug(user)
+        if user:
+            if users.is_current_user_admin():
+                return handler(args[0])
+            else:
+                logging.warning('An unauthorized user has attempted '
+                                'to enter an authorized page')
+                return args[0].redirect(users.create_logout_url('/')) #(users.create_logout_url(args[0].request.uri))
+        else:
+            return redirect_to_login(*args, **kwargs)
+
+    return wrapped_handler
+        
+        
+        
+def authorized(user):
+	"""Return True if user is authorized."""
+	auth_user = users.is_current_user_admin()
+	if auth_user: return True
+	else: return False 
+	"""
+    else
+	    new_user = Admin(key_name = str(user), user = user)
+	    new_user.put()
+	    return True
+	"""
+	    
+			        
 
 
 

@@ -23,11 +23,11 @@ class RPCHandler(webapp.RequestHandler):
    
     action = self.request.get('action')
     if action:
-      if action[0] == '_':
-        self.error(403) # access denied
-        return
-      else:
-        func = getattr(self.methods, action, None)
+      	if action[0] == '_':
+          self.error(403) # access denied
+          return
+        else:
+          func = getattr(self.methods, action, None)
    
     if not func:
       self.error(404) # file not found
@@ -42,7 +42,8 @@ class RPCHandler(webapp.RequestHandler):
       else:
         break
     result = func(*args)
-    self.response.out.write(simplejson.dumps(result))
+    if self.request.get('callback'): self.response.out.write(self.request.get("callback") + "('" + str(simplejson.dumps(result)) + "');")
+    else: self.response.out.write(simplejson.dumps(result))
     
 
 
@@ -121,18 +122,16 @@ class RPCMethods(webapp.RequestHandler):
 		score.type = "site"     # type could be site, practice widget
 	else:
 		score.type = "temp"
-		                           
-
-
 	if len(args[3]) > 0: score.vendor = Employer.get(args[3])
-										
-
 	score.put()
 	if user: 
 	  this_user.scores.append(score.key())
 	  this_user.put()
 	logging.info('Score entered by user %s with score %s, correct: %s, picked: %s'
 				% (score.quiz_taker, score.score, score.picked_answer, score.correct_answer))
+	
+	# send jsonp response 
+	
 
 
 ## QUIZTAKER SESSION ##
