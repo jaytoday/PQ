@@ -67,3 +67,35 @@ class LoadQuiz():
         
   						
 
+
+
+
+class QuizSession(): 
+
+	def __init__(self, session):
+		self.session = session
+		
+	def load_quiz_items(self, profNames):
+		self.load_quiz = LoadQuiz();
+		# proficiencies should be resolved from employer/user at earlier point.
+		proficiencies = self.get_proficiencies(profNames)
+		quiz_items = self.get_quiz_items(proficiencies)
+		return self.next_quiz_item()
+
+	def get_proficiencies(self, profNames):
+		proficiencies = []
+		for p in profNames:
+		   this_p = Proficiency.get_by_key_name(p)
+		   proficiencies.append(this_p.name)
+		self.session['proficiencies'] = proficiencies
+		return proficiencies
+
+
+	def get_quiz_items(self, proficiencies):
+		quiz_items = self.load_quiz.get(proficiencies)
+		self.session['quiz_items'] = quiz_items
+		return quiz_items
+
+
+
+		

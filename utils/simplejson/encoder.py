@@ -335,7 +335,8 @@ class JSONEncoder(object):
                     return list(iterable)
                 return JSONEncoder.default(self, o)
         """
-        raise TypeError("%r is not JSON serializable" % (o,))
+        try: return str(o)
+        except: raise TypeError("%r is not JSON serializable" % (o,))
 
     def encode(self, o):
         """

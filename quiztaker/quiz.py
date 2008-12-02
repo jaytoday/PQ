@@ -14,7 +14,7 @@ from quiztaker.load_quiz import LoadQuiz
  
 class Main(webapp.RequestHandler):
 	def get(self):
-		if not self.session["start"]:
+		
 				self.session["start"] = time.clock();
 		if self.request.get("prof"): return self.load_quiz_items()
 
