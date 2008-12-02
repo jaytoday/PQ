@@ -52,6 +52,12 @@ class RPCMethods(webapp.RequestHandler):
   NOTE: Do not allow remote callers access to private/protected "_*" methods.
   """
 
+
+  def get_quiz_items(self, *args):
+  	pass
+
+
+
   def get_quiz(self, *args):
     template_values = {}
     item_key = args[0]

@@ -316,10 +316,12 @@ class RequestHandler(object):
   Subclasses should override get(), post(), head(), options(), etc to handle
   different HTTP methods.
   """
+  def __init__(self):
+    self.session = Session() # PQ patch
+  
   def initialize(self, request, response):
     """Initializes this request handler with the given Request and Response."""
     self.request = request
-    self.session = Session() # PQ patch
     self.response = response
 
 

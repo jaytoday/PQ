@@ -10,8 +10,6 @@ from utils.utils import ROOT_PATH
 from utils.gql_encoder import GqlEncoder, encode
 from methods import restore_backup
 from google.appengine.api import memcache
-
-
       	
 class RPCHandler(webapp.RequestHandler):
   # AJAX Handler
@@ -55,6 +53,7 @@ class RPCMethods(webapp.RequestHandler):
 remote callers access to private/protected "_*" methods.
   """
 
+  
   def restore_backup(self, *args):
   	return restore_backup()  	
 
