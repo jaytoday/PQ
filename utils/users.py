@@ -198,3 +198,6 @@ def is_current_user_admin():
   return (os.environ.get('USER_IS_ADMIN', '0')) == "1"
 
 IsCurrentUserAdmin = is_current_user_admin
+
+
+    

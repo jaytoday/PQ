@@ -512,3 +512,10 @@ font-size:1em;
 font-weight:bold;
 margin:0 2px;
 }
+
+
+/* profile owner */
+
+div.share_container{
+float: right;
+}

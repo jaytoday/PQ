@@ -4,11 +4,12 @@ logging.info('Loading %s', __name__)
 import random
 from utils import webapp
 from utils.webapp import util
-from .utils.utils import tpl_path, ROOT_PATH, raise_error
+from .utils.utils import tpl_path, ROOT_PATH, raise_error, hash_pipe
 from .model.quiz import QuizItem, ItemScore
 from .model.user import QuizTaker
 from .model.proficiency import Proficiency, ProficiencyTopic 
 from methods import refresh_data
+from google.appengine.api import memcache
 # Template paths
 QUIZTAKER_PATH = 'quiztaker/'
 DEMO_PATH = 'demo/'
@@ -42,14 +43,15 @@ class LoadQuiz():
 	return self.quiz_array 
 
 
+
     
 
   def load_item(self, item):
         random.shuffle(item.answers)
         item_answers = []
         [item_answers.append(str(a)) for a in item.answers]
-        item_dict = {"answers": item_answers, "answer1" : item.answers[0], "answer2" : item.answers[1], "answer3": item.answers[2],  #answer1,2,3 is deprecated
-        "proficiency": item.proficiency.name, "topic": item.topic.name, "key": item.key()}
+        item_token = hash_pipe(item.key()) # is this useful?
+        item_dict = {"answers": item_answers, "Banana": "Squash", "proficiency": item.proficiency.name, "topic": item.topic.name}
         if item.proficiency.name not in self.proficiencies: self.proficiencies[item.proficiency.name] = []
         self.proficiencies[item.proficiency.name].append(item_dict)
         return self.proficiencies
@@ -72,15 +74,35 @@ class LoadQuiz():
 
 class QuizSession(): 
 
-	def __init__(self, session):
-		self.session = session
+
+
+	def initiate(self):
+		token = self.make_quiz_session()
+		import time
+		self.session["start"] = time.clock()
+		self.session["token"] = token
+		return token 
+	
+	def make_quiz_session(self):
+		self.session = {'start': None, 'token': None}
+		token = hash_pipe("token")
+		memcache.add(token, self.session, 60000)
+		return token
+
+
+
+	def get_quiz_session(self, token):
+	 return memcache.get(token)
+	  
 		
-	def load_quiz_items(self, profNames):
+	def load_quiz_items(self, profNames, token):
+		self.session = self.get_quiz_session(token)
 		self.load_quiz = LoadQuiz();
 		# proficiencies should be resolved from employer/user at earlier point.
 		proficiencies = self.get_proficiencies(profNames)
 		quiz_items = self.get_quiz_items(proficiencies)
-		return self.next_quiz_item()
+		memcache.replace(token, self.session, 60000)
+		return self.next_quiz_item(token)
 
 	def get_proficiencies(self, profNames):
 		proficiencies = []
@@ -97,8 +119,8 @@ class QuizSession():
 		return quiz_items
 
 
-
-	def next_quiz_item(self):
+	def next_quiz_item(self, token):
+		self.session = self.get_quiz_session(token)
 		next_item = self.session['quiz_items'].pop()
 		return next_item
 		

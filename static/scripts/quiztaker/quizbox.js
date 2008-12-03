@@ -189,7 +189,7 @@
                         url: quizItem.url,
                         complete: function(xhr, s)
                         {
-                                $('#quiz_content').css({opacity: 0}).html(xhr.responseText).animate({opacity: 1.0}, 800);
+                                $('#quiz_content').css({opacity: 0}).html(xhr.responseText).animate({opacity: 1.0}, 0);
 
                                 $('#quiz_answers .answer')
                                         .hide()

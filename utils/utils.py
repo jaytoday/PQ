@@ -121,3 +121,23 @@ class NotFoundPageHandler(webapp.RequestHandler):
         self.response.out.write(template.render(path, template_values))
 
 
+
+def GetPathElements():
+    '''split PATH_INFO out to a list, filtering blank/empty values'''
+    return [ x for x in os.environ['PATH_INFO'].split('/') if x ]
+
+def GetUserAgent():
+    '''return the user agent string'''
+    return os.environ['HTTP_USER_AGENT']
+
+
+
+
+def hash_pipe(private_object):
+    import md5
+    from google.appengine.api import memcache
+    new_hash = md5.md5()
+    new_hash.update(str(private_object))
+    public_token = new_hash.hexdigest()
+    memcache.add(public_token, private_object, 6000)
+    return public_token

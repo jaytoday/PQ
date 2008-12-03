@@ -2,6 +2,7 @@ import logging
 # Log a message each time this module get loaded.
 logging.info('Loading %s', __name__)
 from utils import webapp, simplejson
+from google.appengine.api import memcache
 from google.appengine.ext import db
 from .model.quiz import QuizItem, ItemScore
 from .model.user import QuizTaker, InviteList
@@ -9,7 +10,6 @@ from .model.employer import Employer
 from methods import refresh_data, dump_data, load_data
 from .utils.utils import tpl_path, ROOT_PATH, raise_error
 from utils.gql_encoder import GqlEncoder, encode
-from utils.appengine_utilities.sessions import Session
 from load_quiz import QuizSession
 
 class RPCHandler(webapp.RequestHandler):
@@ -55,14 +55,28 @@ class RPCMethods(webapp.RequestHandler):
   """
 
 
+############ For XSS Quiz Service
+  
+  	
 
-  def get_quiz_items(self, *args):
-  	self.session = Session()
-  	if not self.session["start"]:
-		import time
-		self.session["start"] = time.clock()
-	quiz_session = QuizSession(self.session)
-	return quiz_session.load_quiz_items(args[0])
+  def start_quiz(self, *args):
+	quiz_session = QuizSession()
+	token = quiz_session.initiate()
+	profNames = args[0]
+	return {'token': token, 'quiz_item': quiz_session.load_quiz_items(profNames, token)}
+
+
+  def continue_quiz(self, *args):
+		quiz_session = QuizSession()
+		token = args[0]
+		return {'quiz_item': quiz_session.next_quiz_item(token)}
+
+
+
+##############
+
+
+
 
 
   def get_quiz(self, *args):
@@ -77,10 +91,8 @@ class RPCMethods(webapp.RequestHandler):
     json_response = simplejson.dumps(quiz_item) 
     return json_response
     
+    
 
-  def next_quiz_item(self):
-		next_item = self.session['quiz_items'].pop()
-		return next_item
 		        
   def refresh_data(self, *args):
   	if len(args) == 0: return "specify data type"

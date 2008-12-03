@@ -11,7 +11,10 @@
 		<script src="/static/scripts/profile/tagcloud.js"></script>
 		
 		
-	
+	{% if profile_owner %}
+<link rel="stylesheet" href="/static/stylesheets/ui/dialog.css" type="text/css" media="screen">
+<script src="/static/scripts/profile/profile_owner.js"></script>
+{% endif %}
 	
 
 {% endblock %}
@@ -84,10 +87,7 @@
                
             </div><!-- portfolio -->
 {% if profile_owner %}
-<div class="panel_box edit_profile_link"><a href="/edit_profile">edit profile</a></div>
-<div class="panel_box edit_profile_link share_profile_link"><a onClick="ShareProfile();">share your profile</a></div>
-<div id="share_profile"></div>
-
+{% include "profile_owner.html" %}
 {% endif %}
 
     <ul id="personal_nav">
