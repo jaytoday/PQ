@@ -7,6 +7,7 @@ from utils.webapp import util
 from .utils.utils import tpl_path, ROOT_PATH, raise_error, hash_pipe
 from .model.quiz import QuizItem, ItemScore
 from .model.user import QuizTaker
+from .model.employer import Employer 
 from .model.proficiency import Proficiency, ProficiencyTopic 
 from methods import refresh_data
 from google.appengine.api import memcache
@@ -50,8 +51,7 @@ class LoadQuiz():
         random.shuffle(item.answers)
         item_answers = []
         [item_answers.append(str(a)) for a in item.answers]
-        item_token = hash_pipe(item.key()) # is this useful?
-        item_dict = {"answers": item_answers, "Banana": "Squash", "proficiency": item.proficiency.name, "topic": item.topic.name}
+        item_dict = {"answers": item_answers, "key": item.key(), "proficiency": item.proficiency.name, "topic": item.topic.name}
         if item.proficiency.name not in self.proficiencies: self.proficiencies[item.proficiency.name] = []
         self.proficiencies[item.proficiency.name].append(item_dict)
         return self.proficiencies
@@ -82,14 +82,16 @@ class QuizSession():
 		self.session["start"] = time.clock()
 		self.session["token"] = token
 		return token 
-	
+
 	def make_quiz_session(self):
-		self.session = {'start': None, 'token': None}
-		token = hash_pipe("token")
-		memcache.add(token, self.session, 60000)
+		self.session = {'start': None, 'token': None, 'user': None}
+		token = hash_pipe("mytoken")
+		memcache.set(token, self.session, 60000)
 		return token
 
-
+	def get_last_quiz_item(self, token):
+	 return memcache.get(token)
+	 
 
 	def get_quiz_session(self, token):
 	 return memcache.get(token)
@@ -97,6 +99,7 @@ class QuizSession():
 		
 	def load_quiz_items(self, profNames, token):
 		self.session = self.get_quiz_session(token)
+		print self.session
 		self.load_quiz = LoadQuiz();
 		# proficiencies should be resolved from employer/user at earlier point.
 		proficiencies = self.get_proficiencies(profNames)
@@ -121,6 +124,56 @@ class QuizSession():
 
 	def next_quiz_item(self, token):
 		self.session = self.get_quiz_session(token)
-		next_item = self.session['quiz_items'].pop()
+		try: 
+		    next_item = self.session['quiz_items'].pop()
+		    self.session['current_item'] = next_item['key']
+		    del next_item['key']  
+		except IndexError: return False #no items left
+		memcache.replace(token, self.session, 60000)
 		return next_item
 		
+
+
+	def add_score(self, picked_answer, timer_status, token, vendor):
+		logging.info('Posting Score')  
+		self.session = self.get_quiz_session(token)
+		this_item = QuizItem.get(self.session['current_item']) 
+		#Lookup quiz item with slug, clean it, and match it. 
+		logging.info(this_item)  
+		picked_clean = picked_answer.strip()
+		picked_clean = picked_clean.lower()
+		correct_clean = this_item.index.strip()
+		correct_clean = correct_clean.lower()
+
+		if picked_clean == correct_clean:
+			timer_status = float(timer_status)
+			this_score = int(round(timer_status * 100))
+		else:
+			this_score = 0
+			logging.info('Incorrect answer')
+
+		# Need Better Temp Storing 
+							 
+		score = ItemScore(quiz_item = this_item.key(),
+						  score = this_score,
+						  correct_answer = this_item.index,
+						  picked_answer = picked_answer,
+						  )
+
+		user = self.session['user']
+		
+		if user:
+			this_user = QuizTaker.get_by_key_name(user)
+			score.quiz_taker = this_user.key()
+			score.type = "site"     # type could be site, practice widget
+		else:
+			score.type = "temp"
+		if len(vendor) > 0: score.vendor = Employer.get(vendor)
+		score.put()
+		if user: 
+		  this_user.scores.append(score.key())
+		  this_user.put()
+		logging.info('Score entered by user %s with score %s, correct: %s, picked: %s'
+					% (score.quiz_taker, score.score, score.picked_answer, score.correct_answer))
+		
+

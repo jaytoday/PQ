@@ -68,7 +68,12 @@ class RPCMethods(webapp.RequestHandler):
 
   def continue_quiz(self, *args):
 		quiz_session = QuizSession()
-		token = args[0]
+		picked_answer = str(args[0])
+		timer_status = args[1]
+		token = args[2]
+		vendor = args[3]
+		quiz_session.add_score(picked_answer, timer_status, token, vendor)
+		# add score with args
 		return {'quiz_item': quiz_session.next_quiz_item(token)}
 
 
@@ -142,6 +147,7 @@ class RPCMethods(webapp.RequestHandler):
 					  picked_answer = picked_answer,
 					  )
 					  	
+	from utils.appengine_utilities.sessions import Session
 	self.session = Session()
 	user = self.session.logged_in()
 	
@@ -158,8 +164,6 @@ class RPCMethods(webapp.RequestHandler):
 	  this_user.put()
 	logging.info('Score entered by user %s with score %s, correct: %s, picked: %s'
 				% (score.quiz_taker, score.score, score.picked_answer, score.correct_answer))
-	
-	# send jsonp response 
 	
 
 

@@ -16,7 +16,7 @@ function doInit() {
         server.Init();
 }
 
-function onAddSuccess(response)
+function onRegisterSuccess(response)
 {
 
 //$.event.trigger('quizclosing');
@@ -31,7 +31,7 @@ InstallFunction(server, 'NewUser');
 
 
 function Register(f) {
-	server.Register(f.name.value, f.email.value, f.occupation.value, f.work_status.value, f.webpage.value, f.location.value, onAddSuccess);
+	server.Register(f.name.value, f.email.value, f.occupation.value, f.work_status.value, f.webpage.value, f.location.value, onRegisterSuccess);
 return;
 
 
