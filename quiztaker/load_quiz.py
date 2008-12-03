@@ -98,4 +98,7 @@ class QuizSession():
 
 
 
+	def next_quiz_item(self):
+		next_item = self.session['quiz_items'].pop()
+		return next_item
 		

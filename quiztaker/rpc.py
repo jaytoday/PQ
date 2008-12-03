@@ -17,6 +17,7 @@ class RPCHandler(webapp.RequestHandler):
   def __init__(self):
     webapp.RequestHandler.__init__(self)
     self.methods = RPCMethods()
+    
 
  
   def get(self):
@@ -54,7 +55,9 @@ class RPCMethods(webapp.RequestHandler):
   """
 
 
+
   def get_quiz_items(self, *args):
+  	self.session = Session()
   	if not self.session["start"]:
 		import time
 		self.session["start"] = time.clock()

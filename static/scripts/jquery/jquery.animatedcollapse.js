@@ -105,7 +105,7 @@ init:function(){
 				ac.divholders[this.lastactivedivid].$divref.show() //and show last "active" DIV within each group (one that should be expanded)
 		})
 		var $allcontrols=$('*[rel]').filter('[@rel^="collapse-"], [@rel^="expand-"], [@rel^="toggle-"]') //get all elements on page with rel="collapse-", "expand-" and "toggle-"
-		var controlidentifiers=/(collapse-)|(expand-)|(toggle-)/
+		var controlidentifiers=/(collapse-)|(expand-)|(toggle-)/;
 		$allcontrols.each(function(){
 			$(this).click(function(){
 				var relattr=this.getAttribute('rel')
