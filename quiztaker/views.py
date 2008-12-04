@@ -58,10 +58,13 @@ class PQDemo(webapp.RequestHandler):
 class QuizItemTemplate(webapp.RequestHandler):
 
   def get(self):
-    logging.debug('quiz_item')
     template_values = {}
-    #quiz_slug = [self.request.get('slug'), self.request.get('source')] -- deprecated
-    this_quiz_item = QuizItem.get(self.request.get('item_key'))
+    if self.request.get('item_key'): this_quiz_item = QuizItem.get(self.request.get('item_key'))
+    if self.request.get('token'): 
+        from google.appengine.api import memcache
+        self.session = memcache.get(self.request.get('token'))
+        this_item = self.session['current_item']
+        this_quiz_item = QuizItem.get(this_item)
     quiz_item = {}
     try: quiz_item['topic_name'] = this_quiz_item.topic.name
     except: print this_quiz_item
