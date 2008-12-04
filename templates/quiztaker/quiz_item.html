@@ -2,6 +2,27 @@
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 
+<!-- 
+
+TODO: JscrollPane. 
+
+<link rel="stylesheet" type="text/css" media="all" href="static/stylesheets/quiz/scrollpane.css" />
+<script type="text/javascript" src="/static/scripts/jquery/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/static/scripts/jquery/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="/static/scripts/jquery/jScrollPane.js"></script>
+<script type="text/javascript">
+
+$(function(){
+
+$('.quiz_frame_text').jScrollPane({showArrows:true});
+	
+});
+	
+	
+</script>
+
+-->
+
 
 <title>{% block title %} Quiz Item {% endblock title %} </title></head>
 
@@ -40,14 +61,14 @@
 
 <div class="quiz_frame_content" >
 
-
+<div class="quiz_scroll_container">
 <div class="quiz_frame_text">
 
 {% block quiz_frame_text %}{{ content }} {% endblock quiz_frame_text %}
 
 
 </div>
-
+</div>
 
 </div>
 
