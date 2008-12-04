@@ -1,6 +1,13 @@
 {% extends "../base.html" %}
 {% block head %}
+<!-- This should only be loaded when Privacy Policy is clicked -->
+<script src="/static/scripts/jquery/jquery.ui.js"></script>
+<link rel="stylesheet" href="/static/stylesheets/ui/dialog.css" type="text/css" media="screen">
+
+
 	<link rel="stylesheet" type="text/css" charset="utf-8" href="/static/stylesheets/accounts/accounts.css" />
+	<script type="text/javascript" src="/static/scripts/accounts/login.js"></script>
+	
 {% endblock %}
 
 
@@ -10,13 +17,24 @@
 <div class="login_error frame_box">We were unable to sign you in with the selected service.</div>
 {% endif %}
 
+{% if test %} 
+<div class="login_error frame_box">You must sign in before taking a test. </div>
+{% endif %}
+
+
 <div class="login_box frame_box">
 <h2>You can login using any of these services.</h2><br/>
 <iframe src="https://plopquiz.rpxnow.com/openid/embed?token_url={{ token_url }}"
-  scrolling="no" frameBorder="no" style="width:400px;height:240px;">
+  scrolling="no" frameBorder="no" style="width:400px;height:230px;">
 </iframe>
 
-<span class="note"> To access your Plopquiz account, you must always sign in with the same service. </span>
+<span class="note"> To access your Plopquiz account, you must always sign in with the same service.  <br/><a onClick="PrivacyPolicy(); return false;">Privacy Policy </a></span>
+
+
+<div class="ui-dialog-content" style="display:none;" id="privacy_policy" title="Privacy Policy">
+<p>There is no policy.</p>
+</div> 
+
 </div>
 
 {% endblock %}

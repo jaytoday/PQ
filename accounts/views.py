@@ -13,7 +13,7 @@ from google.appengine.api import urlfetch
 import urllib
 from utils.appengine_utilities.sessions import Session
 
-from methods import registered
+from methods import registered, register_user, register_qt
 
 # Template paths
 ACCOUNTS_PATH = 'accounts/'
@@ -24,10 +24,16 @@ class Login(webapp.RequestHandler):
   def get(self):
     login_response = str('http://' + self.request._environ['HTTP_HOST'] + '/login/response')
     template_values = {'token_url': login_response, 'no_load': True }
-    if self.request.get('error') == "true":
-        template_values['error'] = "True"
     self.session = Session()
     if self.request.get('continue'): self.session['continue'] = self.request.get('continue')
+    if self.request.get('test'):
+        template_values['test'] = "True"
+        self.session['continue'] = '/test/' + self.request.get('test')    
+    if self.session['user']: 
+        if self.session['continue']: self.redirect(self.session['continue'])
+        else: self.redirect('/')
+    if self.request.get('error') == "true":
+        template_values['error'] = "True"
     path = tpl_path(ACCOUNTS_PATH +'login.html')
     self.response.out.write(template.render(path, template_values))
     
@@ -65,9 +71,16 @@ class LoginResponse(webapp.RequestHandler):
 		  self.session['user'] = unique_identifier
 		  self.session['nickname'] = nickname
 		  self.session['email'] = email
-		  if registered(self.session['user']) is False: self.redirect('/register')
+		  if registered(self.session['user']) is False:
+			user = register_user(self.session['user'], self.session['nickname'], self.session['email'])
+			self.session['quiz_taker'] = register_qt(self.session['user'], self.session['nickname'])
+			self.session['account'] = register_qt(self.session['user'], self.session['nickname'])
+			self.session['create_profile'] == True
+			if self.session['continue']:
+			    self.redirect(self.session['continue'])
+			else: self.redirect('/register')
 		  else: 
-		        self.session['continue'] = '/preview/homepage'
+		        if not self.session['continue']: self.session['continue'] = '/preview/homepage'
 		        self.redirect(self.session['continue'])
 		  
 		  

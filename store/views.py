@@ -8,7 +8,7 @@ from utils.webapp import template
 from google.appengine.ext import db
 from google.appengine.api import users
 from utils import webapp
-from utils.utils import ROOT_PATH, tpl_path
+from utils.utils import ROOT_PATH, tpl_path, memoize
 # Import the main gchecky controller class
 from utils.gchecky.controller import Controller
 # import Google Checkout API model
@@ -16,7 +16,8 @@ import checkout
 from utils.gchecky import model as gmodel
 from model.proficiency import  Proficiency, ProficiencyTopic
 from utils.gql_encoder import GqlEncoder, encode
-
+from model.account import Account
+from utils.webapp.util import login_required
 
 # Template paths
 STORE_PATH = 'store/'
@@ -42,6 +43,7 @@ class Store(webapp.RequestHandler):
           return {'id': 104857833559093, 'key': "NNTk6Yw-wGioO7rglKai6A", 'is_sandbox': True}      
 
   #Store
+  @memoize # only use for static functions
   def get(self):
 	merchant = self.merchant_info()
 	# Create a (static) instance of Controller using your vendor ID and merchant key
@@ -71,7 +73,7 @@ class Store(webapp.RequestHandler):
 	prepared = controller.prepare_order(order)
 
 	# Now prepared.html contains the full google checkout button html
-	template_values = {'checkout_button': prepared.html() }
+	template_values = {'checkout_button': prepared.html(), 'page_title': 'Take a Quiz' }
 	path = tpl_path(STORE_PATH +'store.html')
 	self.response.out.write(template.render(path, template_values))
 
@@ -96,3 +98,68 @@ class ChooseProficiency(webapp.RequestHandler):
         path = tpl_path(STORE_PATH + 'proficiency.html')
         self.response.out.write(template.render(path, template_values))
 
+
+
+
+
+
+class TakeTest(webapp.RequestHandler):
+
+  @login_required
+  def get(self):
+	# Now prepared.html contains the full google checkout button html
+	account = Account.get_by_key_name(self.session['user'])
+	account.pass_count = 1
+	account.put()
+	try: pass_count = account.pass_count
+	except: # no pass count yet
+	    try: 
+	        account.pass_count = 1      # this is just to upgrade model.
+	        pass_count = account.pass_count
+	    except: 
+	        from accounts.methods import register_account
+	        register_account(self.session['user'])
+	        account = Account.get_by_key_name(self.session['user'])
+	        account.pass_count = 1
+	        pass_count = account.pass_count
+	        # take previous block out
+	        
+	         
+	    account.put()
+	test = self.get_test()
+	template_values = {'no_load': True, 'pass_count': pass_count}
+	path = tpl_path(STORE_PATH +'take_test.html')
+	self.response.out.write(template.render(path, template_values))
+
+  def get_test(self):
+    if len(self.request.path.split('/sponsor/')[1]) > 0:
+		employer = Employer.gql('WHERE name = :1', self.request.path.split('/quiz/')[1].lower())
+		try: these_proficiencies = employer.get().proficiencies
+		except: return None
+		proficiencies = []
+		for p in these_proficiencies:
+		   this_p = Proficiency.get_by_key_name(p)
+		   proficiencies.append(this_p.name)
+		return [proficiencies, employer.get()]        
+		#except: return [proficiency.name for proficiency in all_proficiencies.fetch(4)]
+    if self.request.get('proficiencies'):
+        proficiencies = self.request.get('proficiencies')
+        return [eval(proficiencies,{"__builtins__":None},{}), self.get_default_vendor()]  
+	return None
+
+
+
+
+class Sponsorship(webapp.RequestHandler):
+
+	def get(self):
+		profile = self.get_profile()
+		template_values = {'page_title': 'Sponsorship', 'no_load': True, 'profile': profile}
+		path = tpl_path(STORE_PATH + 'sponsorship.html')
+		self.response.out.write(template.render(path, template_values))
+
+
+	def get_profile(self):
+		if not len(self.request.path.split('/sponsor/')[1]) > 0: return False
+		from model.user import Profile
+		return Profile.gql('WHERE profile_path = :1', self.request.path.split('/sponsor/')[1].lower()).get()

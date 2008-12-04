@@ -1,9 +1,17 @@
 
+ 
+$(function()
+{
 
-function ShareProfile() {
+
+
+	});
+
+ 
+ 
+function PrivacyPolicy() {
 	
-   
-        	$("#share_profile").dialog({ 
+        	$("#privacy_policy").dialog({ 
     modal: true, 
     overlay: { 
         opacity: 0.5, 
@@ -15,6 +23,6 @@ function ShareProfile() {
         }
     } 
      
-}).show();
-	
+}).show();  // show() is to show hidden dialog 
+
 }

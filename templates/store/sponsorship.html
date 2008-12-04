@@ -1,0 +1,54 @@
+{% extends "../base.html" %}
+{% block head %}
+
+<link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/store/sponsorship.css"/>
+
+<!-- <script src="/static/scripts/homepage/proficiency.js" type="text/javascript" charset="utf-8"></script> -->
+
+<!-- For Tips in IE <script src="/static/scripts/utils/excanvas-compressed.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="/static/scripts/jquery/jquery.tips.js" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript">
+$(document).ready(function()
+{
+	
+	var fluency_tip = $('span#fluency_tip').html();
+	var excellence_tip = $('span#excellence_tip').html()
+	$('div#fluency').tip(fluency_tip, {animate: true});
+	$('div#excellence').tip(excellence_tip, {animate: true});
+
+ });
+ 
+</script>
+
+
+{% endblock %}
+
+
+{% block main %}
+
+<div class="sponsoring">
+<span class="sponsor_header">Pledge Your Sponsorship:</span>
+<div class="info_note profile_box">
+{{ profile.fullname }} 
+</div>
+
+</div>
+
+<div class="award_types">
+<span class="award_header">Choose an Award Type</span>
+<div class="purple_box award" title="Fluency" id="fluency">Fluency</div> <div class="purple_box award" title="Excellence" id="excellence">Excellence</div>
+
+<span style="display:none;" id="fluency_tip"><h2>Fluency</h2> is the best!</span>  <span style="display:none;" id="excellence_tip"><b>Excellence</b> is the best!</span>
+</div>
+
+
+<div class="sponsorship_packages">
+
+<span class="package_header"> Choose a Package</span>
+<div class="packages">
+<div class="panel_box package micro">Micro</div> <div class="panel_box package medium">Medium</div> <div class="panel_box package magna">Magna Cum Laude</div>
+</div>
+</div>
+
+{% endblock %}

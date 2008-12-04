@@ -62,8 +62,6 @@ class Profile(db.Model):
     # When Signed Up
     date = db.DateTimeProperty(auto_now_add=True)
     
-
-
     
 
 class ProficiencyLevel(db.Model):

@@ -41,7 +41,38 @@
                 <a href="#summary">Summary</a></li>
                 <li class="ui-tabs-nav-item"><a href="#portfolio">Report Card</a></li>
             </ul>
-            <div id="summary" class="profile-panel">
+
+
+		<div id="summary"  class="profile-panel">
+		{% if profile_owner %}
+		<div class="embed_code">
+		share your top scores 
+		<input type="text" value='<script type="text/javascript"><a href="http://www.plopquiz.com/"</script>' onClick="$(this).select();" name="score_embed"/>
+		</div> 
+		{% endif %} 
+
+		</div><!-- end summary -->
+
+   
+
+            <div id="portfolio" class="profile-panel" >
+            <a id="toggle" style="float:right;">toggle display</a>
+        <div id="report_1"  class="report_section">
+        
+{% for tl in top_levels %}                
+                <div class="panel_content" {% if forloop.last %} style="border-style:none;" {% endif %}>
+                <div class="proficiency_name"><h3>{{ tl.topic.name }} </h3></div>
+                  <h4 class="percentile"><span>{{ tl.topic_level }}</span>th percentile</h4>
+                <div class="scoreometer"><img src="http://chart.apis.google.com/chart?chs=150x85&cht=gom&chd=t:{{ tl.topic_level }}&chco=F7F5F4,00ea00&chf=bg,s,F7F5F4"/></div>
+                </div>
+                
+{% endfor %}
+               
+             </div>    
+            
+
+<div id="report_2" class="report_section hidden">
+
 
                 <div class="panel_content" >
                 
@@ -64,25 +95,9 @@
             </div>
             
             
+            </div>
             
-            </div><!-- end summary -->
             
-            
-            <div id="portfolio" class="profile-panel" >
-        
-{% for tl in top_levels %}                
-                <div class="panel_content" {% if forloop.last %} style="border-style:none;" {% endif %}>
-                <div class="proficiency_name"><h3>{{ tl.topic.name }} </h3></div>
-                  <h4 class="percentile"><span>{{ tl.topic_level }}</span>th percentile</h4>
-                <div class="scoreometer"><img src="http://chart.apis.google.com/chart?chs=150x85&cht=gom&chd=t:{{ tl.topic_level }}&chco=F7F5F4,00ea00&chf=bg,s,F7F5F4"/></div>
-                </div>
-                
-{% endfor %}
-                <!-- TODO put this on sidebar
-    <div class="embed_code">
-                 share your top scores 
-                 <input type="text" value='<script type="text/javascript"><a href="http://www.plopquiz.com/"</script>' onClick="$(this).select();" name="score_embed"/>
-                 </div> -->
                  
                
             </div><!-- portfolio -->

@@ -36,7 +36,7 @@ class PQHome(webapp.RequestHandler):
   def get(self):
     self.response.clear()
     template_values = {}
-    path = tpl_path('homepage.html')
+    path = tpl_path(DEMO_PATH + 'homepage.html')
     self.response.out.write(template.render(path, template_values))
     
 
@@ -102,7 +102,6 @@ class TakeQuiz(webapp.RequestHandler):
     self.response.out.write(template.render(path, template_values))
 
   def get_proficiencies(self):
-    all_proficiencies = Proficiency.all()
     if len(self.request.path.split('/quiz/')[1]) > 0:
 		employer = Employer.gql('WHERE name = :1', self.request.path.split('/quiz/')[1].lower())
 		try: these_proficiencies = employer.get().proficiencies

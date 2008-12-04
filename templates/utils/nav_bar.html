@@ -1,0 +1,9 @@
+		
+		{% block login %}	
+		{% if user_session %}
+		<div id="login"><a href="/profile/{{user_session.profile_path}}" class="profile"> {{user_session.nickname}} </a>| <a href="{{ login_url }}">{{ login_text }}</a>  | Quizzes</div>	 
+		{% else %}
+		<div id="login"><a href="" class="profile"> <a href="{{ login_url }}">{{ login_text }}</a>| <a href="/about">About</a> | Quizzes</div>	 
+		
+		{% endif %}
+		{% endblock login %}

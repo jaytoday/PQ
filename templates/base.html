@@ -54,15 +54,8 @@
 			<div class="main_wrapper">
 			
 			
-		{% block login %}	
-		{% if user_session %}
-		<div id="login"><a href="/profile/{{user_session.profile_path}}" class="profile"> {{user_session.nickname}} </a>| <a href="{{ login_url }}">{{ login_text }}</a> | <a href="">Help</a> | Quizzes</div>	 
-		{% else %}
-		<div id="login"><a href="" class="profile"> <a href="{{ login_url }}">{{ login_text }}</a>| <a href="/about">About</a> | Quizzes</div>	 
-		
-		{% endif %}
-		{% endblock login %}
-			<div id="right_corner"><span>Plopquiz</span><img src="/static/stylesheets/img/base/pq_logo_thumb.png"/> </div>
+	{% include "../utils/nav_bar.html" %}
+			<div id="right_corner"><span class="page_title">{{ page_title }}</span><img src="/static/stylesheets/img/base/pq_logo_thumb.png"/> </div>
 		
 			<div class="loading" style="display:none;"><img src="/static/stylesheets/img/ajax-loader.gif"/><span class="loading">Loading...</span><img src="/static/stylesheets/img/ajax-loader.gif"/></div>
 
@@ -72,7 +65,7 @@
 
 				</div>
 				
-				
+				<div class="quick_links"><a target="_blank" href="/about">About</a> | <a target="_blank" href="/contact">Contact Us</a> | <a target="_blank" href="http://blog.plopquiz.com">Blog</a>  </div>
 				
 				</div>
 				

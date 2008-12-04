@@ -11,7 +11,7 @@ from utils import webapp
 from utils.utils import ROOT_PATH, tpl_path
 from utils.random import sort_by_attr
 from .model.user import Profile, QuizTaker, ProfilePicture
-from accounts.methods import register_user, register_qt
+
 
 
 # Template paths
@@ -71,12 +71,10 @@ class EditProfile(webapp.RequestHandler):
   def get(self):
     user = Profile.get_by_key_name(self.session['user'])
     public_photos = self.public_photos()
-    edit_type = 'Edit'
-    if not user: 
-        user = register_user(self.session['user'], self.session['nickname'], self.session['email'])
-        qt = register_qt(self.session['user'], self.session['nickname'])
-        edit_type = 'Create'
-        user = Profile.get_by_key_name(self.session['user'])
+    if self.session['create_profile'] == True:
+        edit_type = "Create"
+        self.session['create_profile'] = False
+    else: edit_type = 'Edit'
     template_values = {'user': user, 'edit_type': edit_type, 
                        'photo_keys': public_photos, 'no_load': True}
     path = tpl_path(PROFILE_PATH +'edit.html')

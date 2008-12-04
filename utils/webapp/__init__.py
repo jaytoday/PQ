@@ -392,7 +392,7 @@ class RequestHandler(object):
 			self.response.headers['Content-Type'] = 'text/plain'
 			self.response.out.write(lines)
 		else:	
-			path = "./templates/500.html"
+			path = "./templates/utils/500.html"
 			template_values = {}
 			self.response.out.write(template.render(path, template_values))
 

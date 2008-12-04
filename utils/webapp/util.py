@@ -51,14 +51,10 @@ def login_required(handler_method):   # this should be altered.
       raise webapp.Error('The check_login decorator can only be used for GET '
                          'requests')
     session = Session()
-    try: 
-      if session['user'] is False: 
+    if not session['user']: 
+        self.session['continue'] = self.request.path
         self.redirect('/login/')
         return
-    except:
-      self.redirect('/login/')
-      return
-      
     else:
       handler_method(self, *args)
   return check_login

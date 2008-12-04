@@ -519,3 +519,12 @@ margin:0 2px;
 div.share_container{
 float: right;
 }
+
+
+
+a#toggle{
+float:right;
+margin-bottom:20px;
+margin-right:-340px;
+margin-top:-20px;
+}

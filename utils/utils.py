@@ -116,7 +116,7 @@ class NotFoundPageHandler(webapp.RequestHandler):
     def get(self):
         if self.request.path == "/": return
         self.error(404)
-        path = tpl_path('404.html')
+        path = tpl_path('utils/404.html')
         template_values = {'no_load': True}
         self.response.out.write(template.render(path, template_values))
 
@@ -130,7 +130,9 @@ def GetUserAgent():
     '''return the user agent string'''
     return os.environ['HTTP_USER_AGENT']
 
-
+def Debug():
+    '''return True if script is running in the development envionment'''
+    return  'Development' in os.environ['SERVER_SOFTWARE']
 
 
 def hash_pipe(private_object):
@@ -141,3 +143,22 @@ def hash_pipe(private_object):
     public_token = new_hash.hexdigest()
     memcache.add(public_token, private_object, 6000)
     return public_token
+
+
+
+#### MEMCACHE
+
+def memoize(key, time=10000):
+    """Decorator to memoize functions using memcache."""
+    def decorator(fxn):
+        def wrapper(*args, **kwargs):
+            data = memcache.get(key)
+            if data is not None:
+                return data
+            data = fxn(*args, **kwargs)
+            memcache.set(key, data, time)
+            return data
+        return wrapper
+    return decorator  
+
+    

@@ -2,7 +2,6 @@
 
 function RenderProficiencyPanels(prof_dict, buy_buttons){
  
- 
   $.each(buy_buttons, function(b, button){
   	
   	var this_description = $('div#descriptions > div#d_' + button.tag)
@@ -17,7 +16,7 @@ $(this_description).append('<div class="buy_button">' + button.html + '</div>');
 	  	
 	animatedcollapse.addDiv('d_' + proficiency.id, 'fade=1, group=proficiencies');	
 		
-	$(proficiency).append('<div class="buy">{{ proficiencies.checkout_html }}</div>');
+	//$(proficiency).append('<div class="buy">{{ proficiencies.checkout_html }}</div>');
 	
 	
 
@@ -41,11 +40,6 @@ animatedcollapse.init();
  
 $(document).ready(function()
 {
-	
-	
-	$('div#right_corner').show();
-	$('div#right_corner').find('span').text('Take a Quiz');
-
 	
 
 var scroll_width = 170 * $('.proficiency_container').find('.proficiency').length;

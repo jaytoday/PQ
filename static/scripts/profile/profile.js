@@ -3,12 +3,12 @@
 $(function()
 {
 
-	
-	//$('div#loading_items').fadeIn('slow');
+	$('a#toggle').click(function(){$('div#portfolio').find('div.report_section').toggleClass('hidden');}
+	);
         $('div#right_corner').find('span').text('');
-        //tabs
-        $('.profile ul').tabs();
 
+        $('.profile ul').tabs();
+        
         $('.dynacloud').dynaCloud();
 
         //$("div.dynacloud").dynaCloud();
@@ -19,7 +19,6 @@ $(function()
 
 
 });
-
 
 
 

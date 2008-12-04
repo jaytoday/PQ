@@ -140,6 +140,10 @@ class PQHandler(webapp.RequestHandler):
 										 # Store
 										 ('/store/?', 
 										 store.views.Store),
+										 ('/test/.*?', 
+										 store.views.TakeTest),	
+										 ('/sponsor/.*?', 
+										 store.views.Sponsorship),												 									 
 
 										('/image/profile/?',
 										 profiles.views.ProfileImage),

@@ -3,6 +3,7 @@ import logging
 logging.info('Loading %s', __name__)
 import cgi
 from .model.user import Profile, QuizTaker, ProfilePicture
+from model.account import Account
 import random
 
 
@@ -41,7 +42,15 @@ def register_qt(user_key, nickname):
     new_qt.put()
     return new_qt                                   
     
+
+def register_account(user_key):
+    new_account = Account.get_or_insert(key_name = user_key,
+                                     unique_identifier = user_key # redundancy
+                                     )
+    new_account.put()
+    return new_account                                   
     
+        
 
 def default_photo():
 	photos = ProfilePicture.gql("WHERE type = :1", "pq").fetch(10)

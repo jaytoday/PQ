@@ -64,7 +64,6 @@ except (EnvironmentError, RuntimeError):
 import django.template
 import django.template.loader
 from utils.appengine_utilities.sessions import Session
-
 import __init__
 
 def render(template_path, template_dict, debug=False):
@@ -85,6 +84,7 @@ def render(template_path, template_dict, debug=False):
   template_dict['user_session'] = user_info[0]
   template_dict['login_text'] = user_info[1]
   template_dict['login_url'] = user_info[2]
+  #template_dict['root_path'] = os.path.dirname(__file__) + "/../../templates/"
   return t.render(Context(template_dict))
   #var no_load = ['/preview/homepage','/preview/homepage/', '/preview/', '/register', '/login', '/login/response' ]
   
