@@ -105,7 +105,8 @@ class QuizSession():
 		proficiencies = self.get_proficiencies(profNames)
 		quiz_items = self.get_quiz_items(proficiencies)
 		memcache.replace(token, self.session, 60000)
-		return self.next_quiz_item(token)
+		return proficiencies
+		#return self.next_quiz_item(token)
 
 	def get_proficiencies(self, profNames):
 		proficiencies = []

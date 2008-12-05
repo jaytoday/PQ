@@ -348,6 +348,26 @@ width:200px;
 }
 
 
+/* Profile Sections */
+
+div#awards{
+height:133px;
+}
+
+div#sponsors{
+border:medium none;
+height:120px;
+margin-top:-18px;
+}
+
+
+div.panel_content div.gray_box{
+margin:13px 10px 0 0;
+}
+
+
+
+
 /* Employers */
 
 div#chart_div{

@@ -49,6 +49,9 @@ getNextPicture(photo_keys);
 <ul id="1">
 <li> <label for="fullname">Full Name</label> <input class="signup fullname" type="text" name="fullname" maxlength="15" value="{{ user.fullname }}" id="fullname"   /> </li>
 <li> <label for="email">Email</label> <input class="signup email" type="text" name="email" value="{{ user.email|default_if_none:"" }}" maxlength="25" id="email"   /> </li>
+<li> <label for="student">Student</label> <input class="signup student" type="checkbox" name="student" {% if user.student %}checked{% endif %} maxlength="25" id="student"   /> </li>
+<li> <label for="sponsor">Sponsor</label> <input class="signup sponsor" type="checkbox" name="sponsor" {% if user.sponsor %}checked{% endif %} maxlength="25" id="sponsor"   /> </li>
+
 </ul>
 
 
@@ -67,7 +70,7 @@ getNextPicture(photo_keys);
   <option {% ifequal user.work_status "Student" %}selected{% endifequal %}>Student</option>
 </select>
   </li>
-  <li> <label class="aboutme" for="aboutme">About Me</label> <textarea class="signup aboutme"   cols="15" rows="3" type="textarea" name="aboutme" maxlength="80" id="aboutme">{{ user.aboutme|default_if_none:"" }}</textarea> </li>
+  <li> <label class="aboutme" for="aboutme">About Me</label> <textarea class="signup aboutme"   cols="15" rows="2" type="textarea" name="aboutme" maxlength="80" id="aboutme">{{ user.aboutme|default_if_none:"" }}</textarea> </li>
 
 </ul>
 </fieldset>

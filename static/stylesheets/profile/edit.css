@@ -2,13 +2,13 @@
 div.edit_profile_wrapper{
 
 float: left;
-margin: 40px 50px;
+margin: 30px 50px;
 overflow:hidden;
 
 }
 
 div.edit_profile{
-height:350px;
+height:370px;
 width:290px;
 font-size:1.3em;
 }
@@ -16,7 +16,7 @@ font-size:1.3em;
 
 div.preview_profile_wrapper{
 float:right;
-margin:45px 50px;
+margin:35px 50px;
 }
 
 div.preview_profile{
@@ -81,12 +81,12 @@ height:215px;
 div.submit_edit{
 clear:both;
 float:left;
-margin:-77px 0 20px 112px;
+margin:-70px 0 20px 112px;
 }
 
 div.cancel_edit{
 float:left;
-margin:50px 0 7px 259px;
+margin:40px 0 7px 259px;
 }
 
 div.submit_edit span{

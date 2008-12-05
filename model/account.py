@@ -16,3 +16,14 @@ class Account(db.Model):
     #key_name = unique_identifier 
     unique_identifier = db.StringProperty(required=True) # redundant
     pass_count = db.IntegerProperty(required=False) 
+
+
+
+
+
+
+class Sponsor(db.Model):
+    #key_name = unique_identifier 
+    unique_identifier = db.StringProperty(required=True) # redundant
+    pass_count = db.IntegerProperty(required=False) 
+

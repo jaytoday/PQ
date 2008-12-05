@@ -46,6 +46,9 @@ class Profile(db.Model):
     profile_path = db.StringProperty(required=True)
     fullname = db.StringProperty(required=False)
     
+    #scores = db.ListProperty(db.Key) # ItemScore keys
+    #levels = db.ListProperty(db.Key) # ProficiencyLevel keys    
+    
     # Personal info 
     name = db.StringProperty()
     occupation = db.StringProperty(required=False)
