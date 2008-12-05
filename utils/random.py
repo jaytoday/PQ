@@ -9,7 +9,7 @@ def sort_by_attr(seq,attr):
 
 
 def jsonp(callback, html):
-    html = html.replace('\r\n','')
+    html = html.replace('\r\n','').replace("\n", "").replace("'", "&rsquo;");
     return callback + "('" + html + "');"
 
     
