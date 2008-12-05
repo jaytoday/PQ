@@ -12,7 +12,7 @@ from .model.quiz import QuizItem, ItemScore
 from .model.user import QuizTaker
 from utils.utils import ROOT_PATH, tpl_path, admin_only
 from utils.gql_encoder import GqlEncoder, encode
-from ranking.methods import TopicLevelData, ProficiencyLevelData
+
 
 # Template paths
 QUIZTAKER_PATH = 'quiztaker/'
@@ -68,18 +68,6 @@ class Debug(webapp.RequestHandler):
 
 
 
-class SetProficiencyLevels(webapp.RequestHandler):
-  def get(self):
-      quiz_takers = QuizTaker.all().fetch(20)
-      ptl = TopicLevelData()
-      for qt in quiz_takers:
-          ptl.set(qt)
-      pl = ProficiencyLevelData()
-      for qt in quiz_takers:
-          pl.set(qt)      
-      
-          
-      
 
 
 

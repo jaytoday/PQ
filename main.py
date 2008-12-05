@@ -148,8 +148,6 @@ class PQHandler(webapp.RequestHandler):
 										('/image/profile/?',
 										 profiles.views.ProfileImage),
 
-										('/set_levels/?',
-										 dev.views.SetProficiencyLevels),
 										 
 										 # Stubs										
 										('/create_scores/?',

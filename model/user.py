@@ -49,6 +49,13 @@ class Profile(db.Model):
     #scores = db.ListProperty(db.Key) # ItemScore keys
     #levels = db.ListProperty(db.Key) # ProficiencyLevel keys    
     
+    
+    #Awards, Gifts and Scholarships - Use Family Structure
+    # awards
+    #gifts = 
+    
+    
+    
     # Personal info 
     name = db.StringProperty()
     occupation = db.StringProperty(required=False)

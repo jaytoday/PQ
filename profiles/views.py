@@ -69,13 +69,12 @@ class ViewProfile(webapp.RequestHandler):
 class EditProfile(webapp.RequestHandler):
   @login_required
   def get(self):
-    user = Profile.get_by_key_name(self.session['user'])
     public_photos = self.public_photos()
     if self.session['create_profile'] == True:
         edit_type = "Create"
         self.session['create_profile'] = False
     else: edit_type = 'Edit'
-    template_values = {'user': user, 'edit_type': edit_type, 
+    template_values = {'user': self.session['user'], 'edit_type': edit_type, 
                        'photo_keys': public_photos, 'no_load': True}
     path = tpl_path(PROFILE_PATH +'edit.html')
     self.response.out.write(template.render(path, template_values))

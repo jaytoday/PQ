@@ -8,15 +8,19 @@ from utils.webapp import template
 from google.appengine.ext import db
 from google.appengine.api import users
 from utils import webapp, simplejson
-from utils.utils import ROOT_PATH, tpl_path 
+from utils.utils import ROOT_PATH, tpl_path, Debug 
 from google.appengine.api import urlfetch
 import urllib
 from utils.appengine_utilities.sessions import Session
 
-from methods import registered, register_user, register_qt
+from methods import registered, register_user, register_qt, register_account
 
 # Template paths
 ACCOUNTS_PATH = 'accounts/'
+if Debug(): RPX_API_KEY = '081f35f427b90c6ed3415256e8d934ed8d01b11e'
+else: RPX_API_KEY = 'a36dbaa685c9356086c69b9923a637ecf33369bc'
+RPX_API_KEY = 'a36dbaa685c9356086c69b9923a637ecf33369bc'  # Todo: dev key should work.
+DEFAULT_LANDING_PAGE = '/preview/homepage'
 
 
 
@@ -30,7 +34,10 @@ class Login(webapp.RequestHandler):
         template_values['test'] = "True"
         self.session['continue'] = '/test/' + self.request.get('test')    
     if self.session['user']: 
-        if self.session['continue']: self.redirect(self.session['continue'])
+        if self.session['continue']: 
+            self.redirect(self.session['continue'])
+            del self.session['continue']
+            
         else: self.redirect('/')
     if self.request.get('error') == "true":
         template_values['error'] = "True"
@@ -47,7 +54,7 @@ class LoginResponse(webapp.RequestHandler):
 		url = 'https://rpxnow.com/api/v2/auth_info'
 		args = {
 		  'format': 'json',
-		  'apiKey': 'a36dbaa685c9356086c69b9923a637ecf33369bc',
+		  'apiKey': RPX_API_KEY,
 		  'token': token
 		  }
 		r = urlfetch.fetch(url=url,
@@ -67,23 +74,27 @@ class LoginResponse(webapp.RequestHandler):
 		  except: nickname = ''
 		  try: email = json['profile']['email']
 		  except: email = ''
+		  logging.debug(json['profile'])
+		  try: fullname = json['profile']['displayName']
+		  except: fullname = nickname	  
 		  self.session = Session()
-		  self.session['user'] = unique_identifier
+		  self.session['unique_identifier'] = unique_identifier
 		  self.session['nickname'] = nickname
 		  self.session['email'] = email
-		  if registered(self.session['user']) is False:
-			user = register_user(self.session['user'], self.session['nickname'], self.session['email'])
-			self.session['quiz_taker'] = register_qt(self.session['user'], self.session['nickname'])
-			self.session['account'] = register_qt(self.session['user'], self.session['nickname'])
-			self.session['create_profile'] == True
-			if self.session['continue']:
-			    self.redirect(self.session['continue'])
-			else: self.redirect('/register')
+		  self.session['fullname'] = fullname
+		  if registered(self.session['unique_identifier']) is False: self.register_user()  # This should all be in transaction. 
 		  else: 
-		        if not self.session['continue']: self.session['continue'] = '/preview/homepage'
+		        if not self.session['continue']: self.session['continue'] = DEFAULT_LANDING_PAGE
 		        self.redirect(self.session['continue'])
 		  
-		  
+	def register_user(self):		  
+		self.session['account'] = register_account(self.session['unique_identifier'], self.session['nickname'])
+		self.session['user'] = register_user(self.session['unique_identifier'], self.session['nickname'], self.session['fullname'], self.session['email'])
+		self.session['quiz_taker'] = register_qt(self.session['unique_identifier'], self.session['nickname'])
+		self.session['create_profile'] == True
+		if self.session['continue']:
+			self.redirect(self.session['continue'])
+		else: self.redirect('/register')		  
 
     
 class Logout(webapp.RequestHandler):
