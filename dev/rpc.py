@@ -66,14 +66,21 @@ remote callers access to private/protected "_*" methods.
   		
 
 
+  	
+  def set_levels(self, *args):
+  	from quiztaker.methods import ProficiencyLevels
+  	pl = ProficiencyLevels()
+  	pl.set()
+
 
   def set_awards(self, *args):
   	from accounts.methods import Awards
   	awards = Awards()
   	return awards.check_all()  
   	
+  def set_sponsorships(self, *args):
+  	from accounts.methods import Sponsorships
+  	sponsorships = Sponsorships()
+  	return sponsorships.check_all()  
   	
-  def set_levels(self, *args):
-  	from quiztaker.methods import ProficiencyLevels
-  	pl = ProficiencyLevels()
-  	pl.set()
+  	

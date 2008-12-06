@@ -22,7 +22,8 @@ class QuizTaker(db.Model):
     levels = db.ListProperty(db.Key) # ProficiencyLevel keys
 
     #itemscores  -- ItemScore reference
-    #proficiency_levels -- ProficiencyLevel reference
+    #proficiency_levels -- ProficiencyLevel reference         TODO: Rank from top to bottom? 
+    #topic_levels - Topic Level reference
 
     @property
     def get_level_for_proficiency(self, proficiency):   # Get proficiency_levels for user 

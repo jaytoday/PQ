@@ -158,7 +158,29 @@ class Awards():
 
 
 
-class Scholarships():
-	pass
-	
+class Sponsorships():
+
+
+	def check_all(self):
+		self.save_sponsorships = [] # for batch datastore trip
+		awards = Award.all().fetch(1000)
+		for award in awards:
+			self.check_award(award)
+			continue
+			self.check_taker(qt)
+		#db.put(self.save_sponsorships)
+		return
+			
+	def check_award(self,award):
+		matching_sponsorships = award.sponsorships
+		matching_pledges = pledge_query
+		
+		# confirm that no sponsorship exists for matching pledges
+					
+
+
+
+	def notify_sponsor(self,sponsor):
+		print "I will email", sponsor, "after checking my RSS feeds"
+			
 	# Based on awards that have been given, activate scholarships. 

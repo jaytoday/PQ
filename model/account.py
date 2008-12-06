@@ -37,26 +37,51 @@ class Award(db.Model):
    
 
 
-class Sponsor(db.Model):   #what is this needed for? could it be in profile? 
+class Sponsor(db.Model):   #what is this needed for? if its not needed, maybe these values can be help in account or profile?
     #key_name = unique_identifier 
     unique_identifier = db.StringProperty(required=False) # redundant
     pass_count = db.IntegerProperty(required=False)
 
 
+class SponsorPledge(db.Model):    
+    package = db.StringProperty(required=False, choices=set(["micro", "medium", "magna cum laude"]))                                    
+    type = db.StringProperty(required=False, choices=set(["personal", "corporate"])) # target one person, or many people.
+    award = db.ReferenceProperty(Proficiency,
+                                    required=False,
+                                    collection_name='pledges')    
+    target = db.ListProperty(db.Key)#Profile   # paired list.    
+    activated = db.ListProperty(bool)      # micro, medium or magna cum laude
+    
+
+"""
+
+
+Corporate sponsorships have no targets, or different targets. 
+
+Should a sponsorship generator class be used? Sponsorship would only have one target. 
+
+
+"""
+
 
 class Sponsorship(db.Model):
-    #key_name = unique_identifier 
-    
     # There needs to be a sponsorship generator, for when the sponsorship is for a class of people. 
     sponsor = db.ReferenceProperty(Account,
                                     required=True,
                                     collection_name='sponsorships')
-    package = db.StringProperty(required=False, choices=set(["micro", "medium", "magna cum laude"]))      
-                              
-    target = db.ListProperty(db.Key)  
-    activated = db.ListProperty(bool)      # micro, medium or magna cum laude    
+    recipient = db.ReferenceProperty(user.Profile,
+                                    required=True,
+                                    collection_name='sponsorships')                                    
+    package = db.StringProperty(required=False, choices=set(["micro", "medium", "magna cum laude"]))      # redundancy                              
+    type = db.StringProperty(required=False, choices=set(["personal", "corporate"])) # target one person, or many people.
+    
+    award = db.ReferenceProperty(Award,
+                                    required=True,
+                                    collection_name='sponsorships')
+                                    
+    pledge = db.ReferenceProperty(SponsorPledge,
+                                    required=True,
+                                    collection_name='sponsorships')                                        
 
-    #accounts 
-    #topics 
     
-    
+

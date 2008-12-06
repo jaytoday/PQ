@@ -45,9 +45,9 @@
 
 		<div id="summary"  class="profile-panel">
 		<span class="gray_box_header">Academic Awards</span>
-		 <div class="panel_content " id="awards" > <div class="gray_box">
+		 <div class="panel_content " id="awards" > <div class="gray_box awards_box">
 		   {% if user.awards %}{% for award in user.awards %}
-    <div class="gray_square_box">{{ award.name }}</div>
+    <div class="gray_square_box ">{{ award.type }}<br/><b>{{ award.proficiency.name}}</b></div>
 {% endfor %}{% else %}
     <div class="gray_square_box">{% if profile_owner %}You have{% else %}{{ user.fullname }} has{% endif %}  no awards.</div>
 {% endif %}
@@ -56,7 +56,7 @@
 		 </div></div>
 		
 		<span class="gray_box_header">Academic Sponsors</span>
-		<div class="panel_content " id="sponsors" > <div class="gray_box">
+		<div class="panel_content " id="sponsors" > <div class="gray_box sponsors_box">
 		
 	{% if not profile_owner %}	<div class="gray_square_box"> <a>Sponsor {{ user.fullname }} Now!</a> </div>{% endif %}
 				{% if user.sponsors %}

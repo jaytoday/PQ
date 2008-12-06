@@ -30,16 +30,16 @@ class ViewProfile(webapp.RequestHandler):
   def get_profile(self):
 		profile_path = self.request.path.split('/profile/')[1].lower()
 		profile_path = profile_path.replace(' ','_')
-		user = Profile.gql('WHERE profile_path = :1', self.request.path.split('/profile/')[1].lower())
+		import urllib
+		user = Profile.gql('WHERE profile_path = :1', urllib.unquote(self.request.path.split('/profile/')[1].lower()))
 		try:
 			user = user.get()
 			this_user = user.unique_identifier
-		except: 
+		except:
 		    self.redirect('/profile_not_found/') # if no user is found
 		    return
 		profile_owner = False
-		if self.session['user']: # this is all thats needed for login check.
-		    if this_user == self.session['user']: profile_owner = True
+		if this_user == self.session['user']: profile_owner = True
 		qt = QuizTaker.get_by_key_name(user.unique_identifier)
 		topic_levels = self.get_topic_levels(qt)
 		level_cloud = self.make_cloud(topic_levels[0:9])

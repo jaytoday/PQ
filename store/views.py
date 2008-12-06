@@ -153,8 +153,9 @@ class TakeTest(webapp.RequestHandler):
 class Sponsorship(webapp.RequestHandler):
 
 	def get(self):
-		profile = self.get_profile()
-		template_values = {'page_title': 'Sponsorship', 'no_load': True, 'profile': profile}
+		self.get_profile()
+		self.get_proficiencies()
+		template_values = {'page_title': 'Sponsorship', 'no_load': True, 'profile': self.profile, 'proficiencies': self.proficiencies}
 		path = tpl_path(STORE_PATH + 'sponsorship.html')
 		self.response.out.write(template.render(path, template_values))
 
@@ -162,4 +163,20 @@ class Sponsorship(webapp.RequestHandler):
 	def get_profile(self):
 		if not len(self.request.path.split('/sponsor/')[1]) > 0: return False
 		from model.user import Profile
-		return Profile.gql('WHERE profile_path = :1', self.request.path.split('/sponsor/')[1].lower()).get()
+		self.profile = Profile.gql('WHERE profile_path = :1', self.request.path.split('/sponsor/')[1].lower()).get()
+		try: self.profile.unique_identifier
+		except: 
+		    self.redirect('/profile_not_found/')
+		    return
+
+
+
+	def get_proficiencies(self):
+	    from model.user import QuizTaker
+	    qt = QuizTaker.get_by_key_name(self.profile.unique_identifier)
+	    proficiency_levels = qt.proficiency_levels
+	    self.proficiencies = []
+	    for pl in proficiency_levels:
+	        self.proficiencies.append({pl.proficiency.name: pl.proficiency.key()})
+	     
+	    
