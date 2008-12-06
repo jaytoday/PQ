@@ -54,7 +54,7 @@ class RPCMethods(webapp.RequestHandler):
 
   def SubmitProfileEdits(self, *args):
   	session = Session()
-  	user = registered(session['user'])
+  	user = session['user']
   	user.fullname = args[0]
   	if len(args[1]) > 5:  user.email = args[1]
   	user.location = args[2]

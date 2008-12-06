@@ -139,3 +139,26 @@ class DataMethods():
 		if data_type == "item_scores": return self.refresh_scores(verbose)
 		
 		# refresh all?
+
+
+
+
+
+
+class ProficiencyLevels():
+
+
+	def set(self):
+		from ranking.methods import TopicLevelData, ProficiencyLevelData
+		quiz_takers = QuizTaker.all().fetch(20)
+		ptl = TopicLevelData()
+		for qt in quiz_takers:
+		  ptl.set(qt)
+		pl = ProficiencyLevelData()
+		for qt in quiz_takers:
+		  pl.set(qt)      
+	  
+		  
+  
+  
+      

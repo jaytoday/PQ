@@ -7,26 +7,16 @@
 
 <!-- For Tips in IE <script src="/static/scripts/utils/excanvas-compressed.js" type="text/javascript" charset="utf-8"></script> -->
 <script src="/static/scripts/jquery/jquery.tips.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/scripts/store/sponsorship.js" type="text/javascript" charset="utf-8"></script>
 
-<script type="text/javascript">
-$(document).ready(function()
-{
-	
-	var fluency_tip = $('span#fluency_tip').html();
-	var excellence_tip = $('span#excellence_tip').html()
-	$('div#fluency').tip(fluency_tip, {animate: true});
-	$('div#excellence').tip(excellence_tip, {animate: true});
 
- });
- 
-</script>
 
 
 {% endblock %}
 
 
 {% block main %}
-
+<div class="sponsorship_data"></div>
 <div class="sponsoring">
 <span class="sponsor_header">Pledge Your Sponsorship:</span>
 <div class="info_note profile_box">
@@ -47,8 +37,20 @@ $(document).ready(function()
 
 <span class="package_header"> Choose a Package</span>
 <div class="packages">
-<div class="panel_box package micro">Micro</div> <div class="panel_box package medium">Medium</div> <div class="panel_box package magna">Magna Cum Laude</div>
+<div class="panel_box package" id="micro">Micro</div> <div class="panel_box package" id="medium">Medium</div> <div class="panel_box package" id="magna">Magna Cum Laude</div>
 </div>
 </div>
+
+
+<div class="proficiency_field">
+
+<span class="proficiency_header"> Choose a Proficiency (optional)</span>
+<div class="proficiencies">
+<select>
+{% for p in proficiencies %} <option>p.name</option> {% endfor %}
+</select>
+</div>
+</div>
+
 
 {% endblock %}

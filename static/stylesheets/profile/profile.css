@@ -362,10 +362,19 @@ margin-top:-18px;
 
 
 div.panel_content div.gray_box{
-margin:13px 10px 0 0;
+float:left;
+
+width:460px;
+height:109px;
 }
 
+div.awards_box{
+margin:-10px 10px 0px 0px ;
+}
 
+div.sponsors_box{
+margin:17px 10px 0px 0px;
+}
 
 
 /* Employers */
