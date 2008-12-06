@@ -44,7 +44,7 @@ class RPCHandler(webapp.RequestHandler):
       else:
         break
     result = func(*args)
-    if self.request.get('callback'): self.response.out.write(self.request.get("callback") + "('" + str(simplejson.dumps(result)) + "');")
+    if self.request.get('callback'): self.response.out.write(self.request.get("callback") + "(" + str(simplejson.dumps(result)).replace("\n", "") + ");")
     else: self.response.out.write(simplejson.dumps(result))
     
 
