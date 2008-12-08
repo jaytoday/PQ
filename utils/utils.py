@@ -150,8 +150,10 @@ def hash_pipe(private_object):
 
 def memoize(key, time=10000):
     """Decorator to memoize functions using memcache."""
+    
     def decorator(fxn):
         def wrapper(*args, **kwargs):
+            from google.appengine.api import memcache
             data = memcache.get(key)
             if data is not None:
                 return data

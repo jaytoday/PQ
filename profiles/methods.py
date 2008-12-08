@@ -17,6 +17,11 @@ def registered(user_key):
 
 
 def register_user(user_key, nickname, email):
+    import random
+    from model.user import ProfilePicture
+    pq_pics = ProfilePicture.gql("WHERE type = :1", "pq")
+    random_pic = random.sample(pq_pics, 1)[0]
+    
     profile_path = nickname.lower()
     profile_path = profile_path.replace(' ','_')
     new_user = Profile.get_or_insert(key_name = user_key,
@@ -24,6 +29,7 @@ def register_user(user_key, nickname, email):
                           nickname = nickname,
                           fullname = nickname,
                           profile_path = profile_path,
+                          photo = random_pic
                           )
                           
     if email: new_user.email = email

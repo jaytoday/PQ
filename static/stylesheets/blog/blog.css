@@ -5,10 +5,7 @@
       font-weight: bold;
       text-decoration: none;
     }
-    
-    a:hover {
-      text-decoration: underline;
-    }
+
     
     blockquote, ol, p, ul {
       margin: 0 0 1.5em;

@@ -65,7 +65,31 @@ remote callers access to private/protected "_*" methods.
   	print "after flush:", memcache.get_stats()
   		
 
+############# Quiz Material Updates ################
 
+
+  def refresh_subject_images(self, *args):
+  	from methods import Build
+  	build = Build()
+  	build.refresh_subject_images()
+
+  def refresh_profile_images(self, *args):
+  	from methods import Build
+  	build = Build()
+  	build.refresh_profile_images()		
+
+  def working(self, *args):
+  	from model.user import Profile, ProfilePicture
+  	i = ProfilePicture.all().get()
+  	ps = Profile.all().fetch(1000)
+  	for p in ps:
+  		p.photo = i
+  		p.put()
+  	
+
+
+
+############ Account Updates #######################
   	
   def set_levels(self, *args):
   	from quiztaker.methods import ProficiencyLevels

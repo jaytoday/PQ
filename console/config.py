@@ -14,7 +14,7 @@ allow_any_user = False
 # go to your report and get the "id" variable from the URL.  *Note*, this is
 # *not* the ID that Google has you paste into your pages.  It is a different
 # ID that comes from the reports page within google.
-analytics_id = ''
+analytics_id = '12737410'
 
 # Set this to a string if you wish to use a subdomain of pastebin.com.
 pastebin_subdomain = 'trixy'

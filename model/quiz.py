@@ -32,6 +32,8 @@ class RawQuizItem(db.Model):
     content = db.TextProperty() 
     post_content = db.TextProperty() 
     moderated = db.BooleanProperty()
+    date = db.DateTimeProperty(auto_now_add=True)
+    
     
 
 
@@ -53,7 +55,7 @@ class QuizItem(db.Model):
   content_url = db.LinkProperty(required=False)    # Where quiz material is from - wikipedia.org/en/neuroscience/
   theme = db.StringProperty(required=False, default="default")
   date = db.DateTimeProperty(auto_now_add=True)
-
+  modified = db.DateTimeProperty(auto_now=True)
 
 
   def get_theme(self, url):
