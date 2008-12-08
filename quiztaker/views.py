@@ -74,8 +74,10 @@ class QuizItemTemplate(webapp.RequestHandler):
     template_values = quiz_item
     if self.request.get('demo') == 'true': path = tpl_path(QUIZDEMO_PATH + 'quiz_item.html')
     else: path = tpl_path(QUIZTAKER_PATH + 'quiz_item.html')
-    self.response.out.write(template.render(path, template_values))
-
+    if self.request.get("callback"):
+            self.response.out.write(jsonp(self.request.get("callback"), template.render(path, template_values)))
+    else:
+            self.response.out.write(template.render(path, template_values))
 
 
 
