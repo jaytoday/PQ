@@ -1,9 +1,40 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<!-- 
+
+TODO: JscrollPane. 
+
+<link rel="stylesheet" type="text/css" media="all" href="static/stylesheets/quiz/scrollpane.css" />
+<script type="text/javascript" src="{{ http_host }}/static/scripts/jquery/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="{{ http_host }}/static/scripts/jquery/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="{{ http_host }}/static/scripts/jquery/jScrollPane.js"></script>
+<script type="text/javascript">
+
+$(function(){
+
+$('.quiz_frame_text').jScrollPane({showArrows:true});
+	
+});
+	
+	
+</script>
+
+-->
+
+
+<title>{% block title %} Quiz Item {% endblock title %} </title></head>
+
+<body class="frame_body">
+
 {{ index }}
 <div class="quiz_frame_header">
 
 {% block quiz_frame_logo %}
 <div class="quiz_frame_logo" id="{{ theme }}">
-<img src="/static/stylesheets/img/quiztaker/themes/{{ theme }}.png"/>
+<img src="{{ http_host }}/static/stylesheets/img/quiztaker/themes/{{ theme }}.png"/>
 </div>
 {% endblock %}
 
@@ -14,7 +45,7 @@
 <div id="quiz_category">{% block quiz_frame_title %} {{ topic_name }}{% endblock quiz_frame_title %}
 </div>
 
-<img class="tab_left" alt="" src="/static/html/img/tab.png"/>
+<img class="tab_left" alt="" src="{{ http_host }}/static/html/img/tab.png"/>
 </div>
 
 
