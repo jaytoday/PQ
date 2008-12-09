@@ -19,9 +19,6 @@ RenderProficiencyPanels({{ prof_json }}, {{ buy_buttons }});
 
  });
  
-
-
-
 </script>
 
 
@@ -48,9 +45,23 @@ RenderProficiencyPanels({{ prof_json }}, {{ buy_buttons }});
 
 
 
-
 <div id="descriptions">
 
+
+{% for p in proficiencies %}
+<div id="d_{{ p.tag|lower }}" class="description frame_box">
+<div class="proficiency_pic selection_box" style="margin:0 45px;" ><img src="/image/subject/?img_id={{ p.images.0.key }}&size=small"/></div>  
+  <div class="proficiency_title" >{{ p.name }}</div>
+<div class="description_text">
+{{ p.blurb }}</div>
+
+   <div class="pfstat" id="popularity">      <h3>Popularity: </h3>  <div class="pfstatometer" ><img src="http://chart.apis.google.com/chart?chs=70x35&cht=gom&chd=t:86&chco=DDDDDD,00ea00&chf=bg,s,DDDDDD"/> </div>  </div>
+   <div class="pfstat" id="difficulty">      <h3>Difficulty: </h3>  <div class="pfstatometer" ><img src="http://chart.apis.google.com/chart?chs=70x35&cht=gom&chd=t:46&chco=DDDDDD,00ea00&chf=bg,s,DDDDDD"/> </div>  </div>
+                 
+</div>
+
+{% endfor %}
+<!--
 <div id="d_energy_economics" class="description frame_box">
 <div class="proficiency_pic selection_box" style="margin:0 45px;" ><img src="/static/stylesheets/img/proficiencies/energy_economics_pic.png"/></div>  
   <div class="proficiency_title" >Energy Economics</div>
@@ -181,7 +192,11 @@ The reliability of tidal forces makes ocean-based energy an intriguing method fo
             
 </div>
 
-</div>
+-->
+
+</div> 
+
+
 
 
 {% endblock %}

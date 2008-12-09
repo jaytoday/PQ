@@ -282,7 +282,7 @@ class JsNormal_(webapp.RequestHandler):
 apps_binding = []
 
 apps_binding.append(('/static/.*', Minify))
-
+"""
 # serving normal javascript file directly from disk
 apps_binding.append(('/static/scripts_/.*', JsNormal_))
 
@@ -291,7 +291,7 @@ apps_binding.append(('/static/scripts/.*', JsNormal))
 
 # serving minified javascript file directly from disk
 apps_binding.append(('/static/scripts/.*', JsMinify_))
-
+"""
 
     
 application = webapp.WSGIApplication(apps_binding, debug=True)

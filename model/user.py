@@ -20,6 +20,7 @@ class QuizTaker(db.Model):
     
     scores = db.ListProperty(db.Key) # ItemScore keys
     levels = db.ListProperty(db.Key) # ProficiencyLevel keys
+    modified = db.DateTimeProperty(auto_now=True)
 
     #itemscores  -- ItemScore reference
     #proficiency_levels -- ProficiencyLevel reference         TODO: Rank from top to bottom? 
@@ -33,8 +34,9 @@ class QuizTaker(db.Model):
     
 
 class ProfilePicture(db.Model):
-    image = db.BlobProperty(required=True)	    
-    date = db.DateTimeProperty(auto_now_add=True)
+    small_image = db.BlobProperty(required=True)
+    large_image = db.BlobProperty(required=True)	    
+    date = db.DateTimeProperty(auto_now=True)
     type = db.StringProperty(required=False)        
     
     
@@ -46,6 +48,7 @@ class Profile(db.Model):
     nickname = db.StringProperty(required=True)
     profile_path = db.StringProperty(required=True)
     fullname = db.StringProperty(required=False)
+    modified = db.DateTimeProperty(auto_now=True)
     
     #scores = db.ListProperty(db.Key) # ItemScore keys
     #levels = db.ListProperty(db.Key) # ProficiencyLevel keys    
@@ -76,27 +79,19 @@ class Profile(db.Model):
     
 
 class ProficiencyLevel(db.Model):
-  proficiency = db.ReferenceProperty(proficiency.Proficiency,
-                                    required=True,
-                                    collection_name='pro_levels') # Proficiency Tag (startup_financing)
-  quiz_taker = db.ReferenceProperty(QuizTaker,
-                                    required=True,
-                                    collection_name='proficiency_levels')
+  proficiency = db.ReferenceProperty(proficiency.Proficiency,required=True,collection_name='pro_levels') # Proficiency Tag (startup_financing)
+  quiz_taker = db.ReferenceProperty(QuizTaker,required=True, collection_name='proficiency_levels')
   proficiency_level = db.IntegerProperty()
   percentile = db.IntegerProperty()  
-  date = db.DateTimeProperty(auto_now_add=True)
+  modified = db.DateTimeProperty(auto_now=True)
 
 
 class TopicLevel(db.Model):
-  topic = db.ReferenceProperty(proficiency.ProficiencyTopic,
-                                    required=True,
-                                    collection_name='top_levels') # Proficiency Tag (startup_financing)
-  quiz_taker = db.ReferenceProperty(QuizTaker,
-                                    required=True,
-                                    collection_name='topic_levels')
+  topic = db.ReferenceProperty(proficiency.ProficiencyTopic,required=True,collection_name='top_levels') # Proficiency Tag (startup_financing)
+  quiz_taker = db.ReferenceProperty(QuizTaker,required=True,collection_name='topic_levels')
   topic_level = db.IntegerProperty()
   percentile = db.IntegerProperty(required=False)  
-  date = db.DateTimeProperty(auto_now_add=True)
+  modified = db.DateTimeProperty(auto_now=True)
 
   
   

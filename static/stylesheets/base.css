@@ -137,7 +137,6 @@ background: #F7F5F4;
 body {
 /* background: #9ed5ff url(img/base/bg.png) bottom left repeat-x;   */
 background:transparent url(img/base/bg_repeat.png) repeat scroll left bottom;
-
  font-family: Georgia, "Times New Roman", Times, serif; 
 /* font-family:"HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;   --mstcorefonts not required */
 font-size:100%;
@@ -233,7 +232,7 @@ letter-spacing:0.06em;
 }
 
 
-div.selection_box
+.selection_box
 {
         -moz-border-bottom-colors:  #777 #888 #999 #aaa #bbb #ccc;
         -moz-border-top-colors:     #777 #888 #999 #aaa #bbb #ccc;
@@ -295,6 +294,18 @@ font-size:1.1em;
 font-weight:bold;
 margin:4px 3px;
 }
+
+
+/* Pictures */
+
+
+.proficiency_pic{
+height:70px;
+overflow:hidden;
+width:105px;
+cursor:pointer;
+}
+
 
 
 /* Quick Links */
@@ -372,14 +383,23 @@ border:5px solid #DDDDDD;
 -moz-border-radius:8px;
 -webkit-border-radius: 8px;
 height:95px;
-margin:2px 4px;
+margin:4px;
 width:95px;
 float:left;
+position:relative;
+overflow:hidden;
+}
+
+.square_box{
+height:95px;
+margin:4px;
+width:95px;
 }
 
 .gray_box_header{
-margin:-18px 0 0 220px;
-position:absolute;
+float:left;
+margin:-17px 0 0 200px;
+position:relative;
 }
 
 span.checkbox{

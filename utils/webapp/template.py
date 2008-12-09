@@ -81,10 +81,11 @@ def render(template_path, template_dict, debug=False):
   # PQ - Add User to Template Dict
 
   user_info = get_user_info()
+  os.environ['SERVER_SOFTWARE']
   template_dict['user_session'] = user_info[0]
   template_dict['login_text'] = user_info[1]
   template_dict['login_url'] = user_info[2]
-  #template_dict['root_path'] = os.path.dirname(__file__) + "/../../templates/"
+  template_dict['http_host'] = 'http://' + str(os.environ['HTTP_HOST'])
   return t.render(Context(template_dict))
   #var no_load = ['/preview/homepage','/preview/homepage/', '/preview/', '/register', '/login', '/login/response' ]
   

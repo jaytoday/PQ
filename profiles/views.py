@@ -8,15 +8,17 @@ from utils.webapp import template
 from utils.webapp.util import login_required
 from google.appengine.ext import db
 from utils import webapp
-from utils.utils import ROOT_PATH, tpl_path
+from utils.utils import ROOT_PATH, tpl_path, memoize
 from utils.random import sort_by_attr
 from .model.user import Profile, QuizTaker, ProfilePicture
 
 
 
+
 # Template paths
 PROFILE_PATH = 'profile/'
-
+REPORT_CARD_LIMIT = 5
+CLOUD_LIMIT = 9
 
 class ViewProfile(webapp.RequestHandler):
   #View a profile
@@ -42,11 +44,11 @@ class ViewProfile(webapp.RequestHandler):
 		if this_user == self.session['user']: profile_owner = True
 		qt = QuizTaker.get_by_key_name(user.unique_identifier)
 		topic_levels = self.get_topic_levels(qt)
-		level_cloud = self.make_cloud(topic_levels[0:9])
+		level_cloud = self.make_cloud(topic_levels[0:CLOUD_LIMIT])
 		range = 50
 		depth = 50
 		return {'user': user, 'profile_owner': profile_owner, 
-		        'top_levels': topic_levels[0:3], 'level_cloud': level_cloud,
+		        'top_levels': topic_levels[0:REPORT_CARD_LIMIT], 'level_cloud': level_cloud,
 		        'range': range, 'depth': depth }
 
 
@@ -131,22 +133,40 @@ class PreviewViewProfile(webapp.RequestHandler):
 
 
 
-class ProfileImage (webapp.RequestHandler):
+class Image (webapp.RequestHandler):  # TODO: Memoize This!
+
+  @memoize('image_object')
   def get(self):
+    image_type = self.request.path.split('/image/')[1].lower().replace('/','')
+    if image_type == 'profile': return self.profile_image()
+    if image_type == 'subject': return self.subject_image()
+
+  def profile_image(self):      
     if not self.request.get("img_id"): 
         self.redirect('/picture_not_found')
         return
     try: 
-        pic = db.get(self.request.get("img_id"))
+        pic = ProfilePicture.get(self.request.get("img_id"))
         self.response.headers['Content-Type'] = "image/png"
-        self.response.out.write(pic.image)
+        if self.request.get("size") == "large": self.response.out.write(pic.large_image)
+        else: self.response.out.write(pic.small_image)
     except: 
         self.redirect('/picture_not_found')
         return
     
+          
+  def subject_image(self):      
+    from model.proficiency import SubjectImage
+    if not self.request.get("img_id"): 
+        self.redirect('/picture_not_found')
+        return
+    try: 
+        pic = SubjectImage.get(self.request.get("img_id"))
+        self.response.headers['Content-Type'] = "image/png"
+        if self.request.get("size") == "large": self.response.out.write(pic.large_image)
+        else: self.response.out.write(pic.small_image)
+    except: 
+        self.redirect('/picture_not_found')
+        return
     
-
-      
-      
-
 

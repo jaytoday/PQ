@@ -117,14 +117,14 @@ class PQHandler(webapp.RequestHandler):
 										 # Developer Pages
 										 ('/dev/admin/?', 
 										 dev.views.Admin),
-										 ('/admin/?', 
-										 admin),
+										 ('/dev/edit_subjects?', 
+										 dev.views.EditSubjects),
 										('/dev/filter/?',
 										 ranking.views.Filter),  										 
 										('/dev/load_topics/?',
 										 dev.views.LoadTopics),  
 										('/debug/?',
-										 dev.views.Debug),  
+										 dev.views.Debug),
 										('/ranking/graph/?',
 										 ranking.views.Graph),                                                                                       
 										
@@ -136,6 +136,9 @@ class PQHandler(webapp.RequestHandler):
 										 accounts.views.LoginResponse),
 										 ('/logout/?', 
 										 accounts.views.Logout),
+										 
+										 ('/googleb3fe65347863da9a.html',
+										 accounts.views.Login),
 
 										 # Store
 										 ('/store/?', 
@@ -145,8 +148,9 @@ class PQHandler(webapp.RequestHandler):
 										 ('/sponsor/.*?', 
 										 store.views.Sponsorship),												 									 
 
-										('/image/profile/?',
-										 profiles.views.ProfileImage),
+										#Images
+										('/image/.*?',
+										 profiles.views.Image),
 
 										 
 										 # Stubs										
@@ -160,6 +164,7 @@ class PQHandler(webapp.RequestHandler):
 										 stubs.Set_Difficulties),
 										('/drilldown/?',
 										 quizbuilder.views.Drilldown),
+										 
 										 ('/.*', utils.NotFoundPageHandler)                                                                            
                                         ],
                                        debug=True)

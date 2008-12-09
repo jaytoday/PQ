@@ -7,15 +7,35 @@
 		<link rel="stylesheet" href="/static/stylesheets/profile/tabs.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="/static/stylesheets/profile/profile.css" type="text/css" media="screen">
 		
-		<script src="/static/scripts/profile/profile.js"></script>
-		<script src="/static/scripts/profile/tagcloud.js"></script>
 		
+		<script src="/static/scripts/profile/tagcloud.js"></script>
+		   <script src="/static/scripts/utils/s3slider.js"></script>
+		   <script src="/static/scripts/profile/profile.js"></script>
+		   
+		<script type="text/javascript">
+$(document).ready(function()
+{
+	
+{% for award in user.awards %}
+  $('#award_{{ forloop.counter }}').s3Slider({
+            timeOut: 3300
+        });
+{% endfor %}
+
+
+ });
+ 
+</script>
+	   
+	      
 		
 	{% if profile_owner %}
+
 <link rel="stylesheet" href="/static/stylesheets/ui/dialog.css" type="text/css" media="screen">
 <script src="/static/scripts/profile/profile_owner.js"></script>
 {% endif %}
-	
+
+
 
 {% endblock %}
 
@@ -38,7 +58,7 @@
             <ul id="main_nav">
                 <li class="ui-tabs-nav-item" id="profile_nav">
                 
-                <a href="#summary">Summary</a></li>
+                <a href="#summary">Portfolio</a></li>
                 <li class="ui-tabs-nav-item"><a href="#portfolio">Report Card</a></li>
             </ul>
 
@@ -47,7 +67,20 @@
 		<span class="gray_box_header">Academic Awards</span>
 		 <div class="panel_content " id="awards" > <div class="gray_box awards_box">
 		   {% if user.awards %}{% for award in user.awards %}
-    <div class="gray_square_box ">{{ award.type }}<br/><b>{{ award.proficiency.name}}</b></div>
+   
+    <div id="award_{{ forloop.counter }}" class="proficiency_pic selection_box award_img">
+                        <ol class="sliderContent" id="award_{{ forloop.counter }}Content">
+                        
+                        {% for img in award.proficiency.images %}
+                        <li class="sliderImage award_{{ forloop.parentloop.counter }}Image">
+                            <img src="/image/subject/?img_id={{ img.key }}&size=small"/>
+                            <span class="img_{% cycle top,bottom %}">{{ award.type }} <br/><strong>  {{ award.proficiency.name}}</strong></span>
+                        </li>
+{% endfor %}
+                        <div class="clear award_{{ forloop.counter }}Image"></div>
+                    </ol>
+    
+    </div>
 {% endfor %}{% else %}
     <div class="gray_square_box">{% if profile_owner %}You have{% else %}{{ user.fullname }} has{% endif %}  no awards.</div>
 {% endif %}
@@ -58,10 +91,12 @@
 		<span class="gray_box_header">Academic Sponsors</span>
 		<div class="panel_content " id="sponsors" > <div class="gray_box sponsors_box">
 		
-	{% if not profile_owner %}	<div class="gray_square_box"> <a>Sponsor {{ user.fullname }} Now!</a> </div>{% endif %}
-				{% if user.sponsors %}
-				 {% for sponsor in user.sponsors %}
-    <div class="gray_square_box">{{ sponsor.name }}</div>
+	{% if not profile_owner %}	<div class="info_note" id="sponsor_user"> <a>Sponsor {{ user.fullname }} Now!</a> </div>{% endif %}
+				{% if user.sponsorships %}
+				 {% for sponsorship in user.sponsorships %}
+    <div class="gray_square_box">
+    <img src="/image/profile/?img_id={{ sponsorship.sponsor.photo.key }}&size=large"/>
+    <span class="img_bottom">{{ sponsorship.sponsor.fullname }}</span></div>
 {% endfor %}{% else %}
     <div class="gray_square_box">{% if profile_owner %}You have{% else %}{{ user.fullname }} has{% endif %}  no sponsors. </div>
 {% endif %}
@@ -87,16 +122,15 @@
    
 
             <div id="portfolio" class="profile-panel" >
-            <a id="toggle" style="float:right;">toggle display</a>
+            <a id="toggle" >toggle display</a>
         <div id="report_1"  class="report_section">
         
 {% for tl in top_levels %}                
-                <div class="panel_content" {% if forloop.last %} style="border-style:none;" {% endif %}>
+                <div class="panel_content report_card_panel" {% if forloop.last %} style="border-style:none;" {% endif %}>
                 <div class="proficiency_name"><h3>{{ tl.topic.name }} </h3></div>
                   <h4 class="percentile"><span>{{ tl.topic_level }}</span>th percentile</h4>
-                <div class="scoreometer"><img src="http://chart.apis.google.com/chart?chs=150x85&cht=gom&chd=t:{{ tl.topic_level }}&chco=F7F5F4,00ea00&chf=bg,s,F7F5F4"/></div>
+                <div class="scoreometer"><img src="http://chart.apis.google.com/chart?chs=90x45&cht=gom&chd=t:{{ tl.topic_level }}&chco=F7F5F4,00ea00&chf=bg,s,F7F5F4"/></div>
                 </div>
-                
 {% endfor %}
                
              </div>    
@@ -137,9 +171,9 @@
 {% endif %}
 
     <ul id="personal_nav">
-		    <li class="ui-tabs-nav-item"><a href="#quote">Quote</a></li>
-                <li class="ui-tabs-nav-item"><a href="#info">Info</a></li>
-                <li class="ui-tabs-nav-item"><a href="#network">Network</a></li>
+     <li  class="ui-tabs-nav-item"><a href="#info">Info</a></li>
+		    <li style="display:none;" class="ui-tabs-nav-item"><a href="#quote">Quote</a></li>
+                <li  style="display:none;" class="ui-tabs-nav-item"><a href="#network">Network</a></li>
                 
             </ul>
             <div id="personal">

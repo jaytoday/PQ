@@ -39,11 +39,6 @@ width:720px;
 overflow:auto;
 }
 
-div.proficiency_pic{
-height:70px;
-overflow:hidden;
-width:120px;
-}
 
 div.proficiency{
 /* margin:10px 0;
@@ -55,7 +50,9 @@ width:130px;
 
 div.proficiency_title{
 font-size:2em;
-margin:5px;
+margin:5px -15px;
+text-align:center;
+width:260px;
 }
 
 div.proficiency:hover{
@@ -69,8 +66,6 @@ cursor:pointer;
 h1.proficiency{
 margin:-55px 80px;
 }
-
-
 
 
 

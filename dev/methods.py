@@ -10,6 +10,7 @@ from .quiztaker.methods import DataMethods as quiztaker_methods
 from .employer.methods import DataMethods as employer_methods
 from google.appengine.api import images
 from .model.user import ProfilePicture	
+from .model.proficiency import SubjectImage
 
 def dump_data(gql_query):
 	try:
@@ -33,39 +34,67 @@ def refresh_data(data_type, verbose):
 
 def restore_backup():
 	build = Build()
-	build.images()
+	build.refresh_profile_images()
 	data = DataMethods()
 	data_types =  ["proficiencies", 'proficiency_topics', 'employers', 'content_pages', 'raw_items', 'raw_items', 'quiz_items']
 	for data_type in data_types:
 		data.load_data(data_type, "/backup/")
+	build.refresh_subject_images()
     
 
 class Build():
 
-
-	def images(self):
-		self.delete_images()
+	def refresh_profile_images(self):
+		self.delete_profile_images()
 		image_range = range(3) # change this as you add more. range() is always one int ahead.
 		for i in image_range:
 			print "loading image"
 			image_file = open(ROOT_PATH + "/data/img/profile/profile_" + str(i) + ".png")
 			image = image_file.read()
-			image_content = images.resize(image, 45, 45)
+			small_image = images.resize(image, 45, 45)
+			large_image = images.resize(image, 95, 95)
 
-			new_image = ProfilePicture(image = image_content,
+			new_image = ProfilePicture(small_image = small_image,
+									   large_image = large_image,
 									   type="pq")
 			new_image.put()
 			print new_image.__dict__
 			new_image.key_name = str(new_image.key())
 			new_image.put()
-		    		    
-		    
-	def delete_images(self):
+									
+	def delete_profile_images(self):
 		pq_pics = ProfilePicture.gql("WHERE type = :1", "pq").fetch(1000)
-		print pq_pics
+		print "deleting profiles images:", pq_pics
 		for p in pq_pics:
 		  p.delete()	
-		
+
+	def delete_subject_images(self):
+		subject_pics = SubjectImage.all().fetch(1000)
+		print "deleting subject images:", subject_pics
+		for p in subject_pics:
+		  p.delete()	
+		  		
+	def refresh_subject_images(self, *args):
+		self.delete_subject_images()
+		proficiencies = Proficiency.all().fetch(1000)
+		for p in proficiencies:
+			p_path = ROOT_PATH + "/data/img/subject/" + str(p.name) + "/"
+			print p_path
+			for n in range(3):
+				try: image_file = open(p_path + str(n) + ".png")
+				except: continue # no image found
+				print "image found:", str(p_path + str(n) + ".png")
+				image = image_file.read()
+				small_image = images.resize(image, 120, 80)
+				large_image = images.resize(image, 360, 240)
+				new_image = SubjectImage(small_image = small_image,
+				                         large_image = large_image,
+				                         proficiency = p
+									     )
+				new_image.put()
+				new_image.key_name = str(new_image.key())
+				new_image.put()
+   	    		
 	
 class DataMethods():
 

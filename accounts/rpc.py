@@ -7,7 +7,7 @@ from .utils.utils import tpl_path, ROOT_PATH, raise_error
 from methods import registered
 from utils.gql_encoder import GqlEncoder, encode
 from utils.appengine_utilities.sessions import Session
-from .model.user import ProfilePicture
+
 
 class RPCHandler(webapp.RequestHandler):
   # AJAX Handler
@@ -54,7 +54,7 @@ class RPCMethods(webapp.RequestHandler):
 
   def SubmitProfileEdits(self, *args):
   	session = Session()
-  	user = session['user']
+  	user = session['user']    
   	user.fullname = args[0]
   	if len(args[1]) > 5:  user.email = args[1]
   	user.location = args[2]
@@ -67,6 +67,7 @@ class RPCMethods(webapp.RequestHandler):
   	user.work_status = args[4]
   	user.aboutme = args[5]
   	if len(args[6]) > 3:
+  		from .model.user import ProfilePicture
   		user.photo = ProfilePicture.get(args[6])
   	user.put()
 
@@ -75,5 +76,39 @@ class RPCMethods(webapp.RequestHandler):
 	return str(user.key())
 
 
+
+
+  def SubmitSponsorPledge(self, *args):
+  	session = Session()
+  	from .model.account import Account
+  	from .model.user import Profile
+  	sponsor_type = "personal" # or corporate
+  	package = args[0]
+  	award_type = args[1]
+  	raw_target = [args[2]]
+  	target = []
+  	activated = []
+  	for u in raw_target: 
+  	    t = Profile.get(u)
+  	    target.append(t.key())
+  	    activated.append(False)
+  	from model.account import SponsorPledge
+  	new_pledge = SponsorPledge(#key_name?
+  	                           sponsor = session['user'],
+  	                           sponsor_type = sponsor_type,
+  	                           package = package,
+  	                           award_type = award_type,
+  	                           target = target,
+  	                           type = type,
+  	                           activated = activated)
+  	
+  	if len(args[3]) > 0:
+  		from model.proficiency import Proficiency
+  		new_pledge.proficiency = Proficiency.get(args[3])
+  	db.put(new_pledge)
+  	return "True"
+
+
+  	
   	
   	

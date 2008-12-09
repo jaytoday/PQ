@@ -4,15 +4,13 @@ logging.info('Loading %s', __name__)
 import cgi
 import wsgiref.handlers
 import datetime, time
+from utils import webapp
 from utils.webapp import template
 from google.appengine.ext import db
 from google.appengine.api import users
-from utils import webapp, simplejson
-from .model.quiz import QuizItem, ItemScore
-from .model.user import QuizTaker
 from utils.utils import ROOT_PATH, tpl_path, admin_only
 from utils.gql_encoder import GqlEncoder, encode
-
+from google.appengine.ext.db import djangoforms
 
 # Template paths
 QUIZTAKER_PATH = 'quiztaker/'
@@ -37,6 +35,7 @@ class LoadTopics(webapp.RequestHandler):
 	print ""
 	json_file = open(ROOT_PATH + "/data/topics.json")
 	json_str = json_file.read()
+	from utils import simplejson
 	newdata = simplejson.loads(json_str) # Load JSON file as object
 	topics = []
 	types = []
@@ -68,6 +67,16 @@ class Debug(webapp.RequestHandler):
 
 
 
+class EditSubjects(webapp.RequestHandler):
+  def get(self):
+		#from model.proficiency import SubjectProfile
+		#subjects = SubjectProfile.all().fetch(1000)
+		#template_values = {"subjects": subjects}
+		from model.proficiency import Proficiency
+		proficiencies = Proficiency.all().fetch(1000)
+		template_values = {'proficiencies': proficiencies}
+		path = tpl_path(DEV_PATH + 'edit_subjects.html')
+		self.response.out.write(template.render(path, template_values))		
 
 
 

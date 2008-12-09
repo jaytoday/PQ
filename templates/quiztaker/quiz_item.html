@@ -1,9 +1,11 @@
+
+
 {{ index }}
 <div class="quiz_frame_header">
 
 {% block quiz_frame_logo %}
 <div class="quiz_frame_logo" id="{{ theme }}">
-<img src="/static/stylesheets/img/quiztaker/themes/{{ theme }}.png"/>
+<img src="{{ http_host }}/static/stylesheets/img/quiztaker/themes/{{ theme }}.png"/>
 </div>
 {% endblock %}
 
@@ -14,7 +16,7 @@
 <div id="quiz_category">{% block quiz_frame_title %} {{ topic_name }}{% endblock quiz_frame_title %}
 </div>
 
-<img class="tab_left" alt="" src="/static/html/img/tab.png"/>
+<img class="tab_left" alt="" src="{{ http_host }}/static/html/img/tab.png"/>
 </div>
 
 

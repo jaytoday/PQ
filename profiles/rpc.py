@@ -71,8 +71,10 @@ class RPCPostHandler(webapp.RequestHandler):
 class PictureUpload(webapp.RequestHandler):
   def post(self):
   	try:
-  		image_content = images.resize(self.request.get("img"), 45, 45)
-  		new_image = ProfilePicture(image = image_content)
+  		small_image = images.resize(self.request.get("img"), 45, 45)
+  		large_image = images.resize(self.request.get("img"), 95, 95)
+  		new_image = ProfilePicture(small_image = small_image,
+  		                           large_image = large_image)
   		new_image.put()
   		new_image.key_name = str(new_image.key())
   		new_image.put()

@@ -8,7 +8,16 @@
 <!-- For Tips in IE <script src="/static/scripts/utils/excanvas-compressed.js" type="text/javascript" charset="utf-8"></script> -->
 <script src="/static/scripts/jquery/jquery.tips.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/scripts/store/sponsorship.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+$(function()
+{
+$('.sponsorship_data').data('target', '{{ profile.key }}');
+// $('.sponsorship_data').data('sponsor', '{{ profile.key }}');  -- Just Using Session
 
+});
+
+
+</script>
 
 
 
@@ -37,7 +46,7 @@
 
 <span class="package_header"> Choose a Package</span>
 <div class="packages">
-<div class="panel_box package" id="micro">Micro</div> <div class="panel_box package" id="medium">Medium</div> <div class="panel_box package" id="magna">Magna Cum Laude</div>
+<div class="panel_box package" id="micro">Micro</div> <div class="panel_box package" id="medium">Medium</div> <div class="panel_box package" id="magna_cum_laude">Magna Cum Laude</div>
 </div>
 </div>
 
@@ -46,11 +55,17 @@
 
 <span class="proficiency_header"> Choose a Proficiency (optional)</span>
 <div class="proficiencies">
-<select>
-{% for p in proficiencies %} <option>p.name</option> {% endfor %}
+<select id="proficiency">
+<option value='' selected></option>
+{% for p in proficiencies %} <option value='{{ p.key }}'>{{ p.name }}</option> {% endfor %}
 </select>
 </div>
 </div>
 
+
+
+<div class="submit_sponsorpledge"> <div class="form_proceed" id='submit_sponsorpledge'><img src="/static/stylesheets/img/utils/purple_next.png"></div></div>          
+    
+    
 
 {% endblock %}

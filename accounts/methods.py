@@ -3,7 +3,7 @@ import logging
 logging.info('Loading %s', __name__)
 import cgi
 from .model.user import Profile, QuizTaker, ProfilePicture
-from model.account import Account, Award
+from model.account import Account, Award, SponsorPledge, Sponsorship
 import random
 from google.appengine.ext import db
 
@@ -93,14 +93,8 @@ class Awards():
 			self.awarded_proficiencies = {}
 			self.topics_in_proficiency = defaultdict(list)    
 			for level in qt.topic_levels:
-				self.topics_in_proficiency[level.topic.proficiency.key()].append(level.topic.key()) 
-				self.add_topic_fluency(level)
-				self.add_topic_excellence(level)
-			self.check_proficiency_excellence()
-			self.check_proficiency_fluency()
-			self.upgrade_awards(qt)
-			return
-			
+				self.topics_iusers
+
 			
 	def add_topic_fluency(self, level):
 		# topic_level should be replaced by percentile	
@@ -119,11 +113,11 @@ class Awards():
 	def check_proficiency_excellence(self):
 		for proficiency, topics in self.topics_in_proficiency.items():
 			print float(float(len(self.excellence[proficiency])) / float(len(topics)))
-			if float(float(len(self.excellence[proficiency])) / float(len(topics))) > self.EXCELLENCE_PROFICIENCY_THRESHOLD: self.awarded_proficiencies[proficiency] = "Excellence"
+			if float(float(len(self.excellence[proficiency])) / float(len(topics))) > self.EXCELLENCE_PROFICIENCY_THRESHOLD: self.awarded_proficiencies[proficiency] = "excellence"
 
 	def check_proficiency_fluency(self):
 		for proficiency, topics in self.topics_in_proficiency.items():
-			if float(float(len(self.fluency[proficiency])) / float(len(topics))) > self.FLUENCY_PROFICIENCY_THRESHOLD: self.awarded_proficiencies[proficiency] = "Fluency"
+			if float(float(len(self.fluency[proficiency])) / float(len(topics))) > self.FLUENCY_PROFICIENCY_THRESHOLD: self.awarded_proficiencies[proficiency] = "fluency"
 	  	  
 
 	def upgrade_awards(self, qt):
@@ -131,8 +125,8 @@ class Awards():
 			print "upgrading award"
 			print proficiency, type
 			#topic_list = self.topics_in_proficiency[proficiency]   - Only Needed if we need all the topics in the proficiency
-			if type == "Fluency": rankings = self.fluency[proficiency]
-			if type == "Excellence": rankings = self.excellence[proficiency]
+			if type == "fluency": rankings = self.fluency[proficiency]
+			if type == "excellence": rankings = self.excellence[proficiency]
 			this_account = Account.get_by_key_name(qt.unique_identifier)
 			this_profile = Profile.get_by_key_name(qt.unique_identifier)
 			if not this_account: 
@@ -166,18 +160,42 @@ class Sponsorships():
 		awards = Award.all().fetch(1000)
 		for award in awards:
 			self.check_award(award)
-			continue
-			self.check_taker(qt)
-		#db.put(self.save_sponsorships)
+		db.put(self.save_sponsorships)
 		return
 			
 	def check_award(self,award):
+		give_sponsorship = {}
 		matching_sponsorships = award.sponsorships
-		matching_pledges = pledge_query
+		matching_pledges = SponsorPledge.gql("WHERE proficiency = :1", award.proficiency).fetch(1000)  # efficiency - check for target?
+		for pledge in matching_pledges:
+			# eventually allow for corporate sponsor checks.    # This should use zip().
+			if award.winner.key() in pledge.target:
+				give_sponsorship[pledge] = True
+			else: continue # award winner not eligible for this sponsorpledge
+			existing_sponsorships = pledge.sponsorships.get()
+			if existing_sponsorships: # check to make sure scholarship doesn't already exist 
+			    for es in existing_sponsorships:
+			    	if es.recipient == award.winner: give_sponsorship[pledge] = False
+			if give_sponsorship[pledge] == True: self.give_sponsorship(pledge, award)				
+		return
+		
 		
 		# confirm that no sponsorship exists for matching pledges
 					
 
+
+	def give_sponsorship(self, pledge, award):
+		logging.info('saving new sponsorship')
+		new_sponsorship = Sponsorship(sponsor = pledge.sponsor,
+		                              recipient = award.winner,
+		                              package = pledge.package,
+		                              sponsor_type = pledge.sponsor_type,
+		                              award_type = pledge.award_type,
+		                              award = award,
+		                              pledge = pledge )
+		self.save_sponsorships.append(new_sponsorship)
+		self.notify_sponsor(pledge.sponsor)
+		return
 
 
 	def notify_sponsor(self,sponsor):

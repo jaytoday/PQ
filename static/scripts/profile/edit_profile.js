@@ -71,9 +71,14 @@ InstallPostFunction(server, 'SubmitPicture', 'profiles');
 	                          eval('document.signup.work_status.value'), 
 	                          eval('document.signup.aboutme.value'),
 	                          photo,
-	                          onEditSuccess);
-
-	                          
+	                          onEditSuccess //-- this would ensure that webpage and email values are valid.
+	                          );
+/*  Use Loading to Offset Read/Commit Latency
+	 $('div.loading').show();
+	$('div.main').hide();
+$('div.loading').animate({opacity: 1.0}, 500, function(){
+onEditSuccess("")
+	}); */                        
 	                      
 }
 	

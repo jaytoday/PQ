@@ -8,6 +8,8 @@ api_version: 1
 
 handlers:
 
+
+
 # dev handlers
 
 - url: /console/static
@@ -47,13 +49,23 @@ handlers:
 
 # MAIN HANDLER
 
-
-- url: /.*
-  script: main.py
-
-
 - url: /favicon.ico
   static_files: static/stylesheets/img/favicon.ico
   upload: static/stylesheets/img/favicon.ico
+
+
+- url: /robots.txt
+  static_files: static/utils/robots.txt
+  upload: static/utils/robots.txt
+
+- url: /sitemap.xml
+  static_files: static/utils/sitemap.xml
+  upload: static/utils/sitemap.xml
+  
+  
+  
+- url: /.*
+  script: main.py
+
 
 

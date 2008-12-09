@@ -24,5 +24,43 @@ $(function()
 		
 	});
 	
+	$('div#submit_sponsorpledge').click(function(){
+				
+	SubmitSponsorPledge();
+			});
+			
+			
+			// Select Empty Value for Proficiency
+			 if (!$("select#proficiency option:selected").length) $("select#proficiency option[value='']").attr('selected', 'selected');
 
+
+
+			
+			
  });
+
+
+// Setup RPC methods
+var server = {};
+var item_count = 0;
+
+InstallFunction(server, 'SubmitSponsorPledge', 'accounts');
+
+
+
+ function SubmitSponsorPledge() {
+// get the different pieces of data, and submit them
+  
+ var award_type = $('.sponsorship_data').data('award_type');
+ var sponsor_package = $('.sponsorship_data').data('package');
+ var proficiency = $('select#proficiency').attr('value');
+ var target = $('.sponsorship_data').data('target');
+  // var sponsor = $('.sponsorship_data').data('sponsor');  -- Just Using Session
+ console.log(target, award_type, sponsor_package, proficiency);
+ 
+ 
+ server.SubmitSponsorPledge(sponsor_package, award_type, target, proficiency);
+
+	                          
+	                      
+}

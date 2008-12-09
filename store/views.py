@@ -43,7 +43,7 @@ class Store(webapp.RequestHandler):
           return {'id': 104857833559093, 'key': "NNTk6Yw-wGioO7rglKai6A", 'is_sandbox': True}      
 
   #Store
-  @memoize # only use for static functions
+  @memoize('store_view') # only use for static functions
   def get(self):
 	merchant = self.merchant_info()
 	# Create a (static) instance of Controller using your vendor ID and merchant key
@@ -155,7 +155,7 @@ class Sponsorship(webapp.RequestHandler):
 	def get(self):
 		self.get_profile()
 		self.get_proficiencies()
-		template_values = {'page_title': 'Sponsorship', 'no_load': True, 'profile': self.profile, 'proficiencies': self.proficiencies}
+		template_values = {'page_title': 'Sponsorship', 'no_load': True, 'sponsor': self.session['user'].unique_identifier, 'profile': self.profile, 'proficiencies': self.proficiencies}
 		path = tpl_path(STORE_PATH + 'sponsorship.html')
 		self.response.out.write(template.render(path, template_values))
 
@@ -177,6 +177,6 @@ class Sponsorship(webapp.RequestHandler):
 	    proficiency_levels = qt.proficiency_levels
 	    self.proficiencies = []
 	    for pl in proficiency_levels:
-	        self.proficiencies.append({pl.proficiency.name: pl.proficiency.key()})
+	        self.proficiencies.append({'name': pl.proficiency.name, 'key': pl.proficiency.key()})
 	     
 	    

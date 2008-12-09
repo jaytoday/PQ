@@ -96,7 +96,21 @@ height: 50px;
 font-size: 1.5em;
 }
 
-div.packages #magna{
+div.packages #magna_cum_laude{
 height: 60px;
 font-size: 1.7em;
+}
+
+
+div.proficiency_field{
+margin: -140px 10px;
+float: right;
+}
+
+div.proficiencies{
+margin: -30px 0px 0px 55px; clear: both; float: left;
+}
+
+div.submit_sponsorpledge{
+float:right; margin:90px 120px
 }
