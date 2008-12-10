@@ -41,7 +41,8 @@ class ViewProfile(webapp.RequestHandler):
 		    self.redirect('/profile_not_found/') # if no user is found
 		    return
 		profile_owner = False
-		if user.unique_identifier == self.session['user'].unique_identifier: profile_owner = True
+		if self.session['user']:
+		    if user.unique_identifier == self.session['user'].unique_identifier: profile_owner = True
 		qt = QuizTaker.get_by_key_name(user.unique_identifier)
 		topic_levels = self.get_topic_levels(qt)
 		level_cloud = self.make_cloud(topic_levels[0:CLOUD_LIMIT])

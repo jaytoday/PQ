@@ -85,7 +85,7 @@ class RPCMethods(webapp.RequestHandler):
   	sponsor_type = "personal" # or corporate
   	package = args[0]
   	award_type = args[1]
-  	raw_target = [args[2]]
+  	raw_target = [args[2]] # for more than one user
   	target = []
   	activated = []
   	for u in raw_target: 

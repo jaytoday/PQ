@@ -168,6 +168,7 @@ class Sponsorship(webapp.RequestHandler):
 		except: 
 		    self.redirect('/profile_not_found/')
 		    return False
+		return True
 
 
 

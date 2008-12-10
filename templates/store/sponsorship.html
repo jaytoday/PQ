@@ -62,7 +62,7 @@ $('.sponsorship_data').data('target', '{{ profile.key }}');
 <span class="choice_header"> Choose An Award Type</span>
 <div class="choices">
 <select id="award_type">
-<option value='' selected>Any Award Type</option>
+<option value='any award' selected>Any Award Type</option>
 <option value='fluency'>Fluency Award</option><option value='excellence'>Excellence Award</option>
 <span style="display:none;" id="fluency_tip"><h2>Fluency</h2> is the best!</span>  <span style="display:none;" id="excellence_tip"><b>Excellence</b> is the best!</span>
 
@@ -75,13 +75,16 @@ $('.sponsorship_data').data('target', '{{ profile.key }}');
 
     <div class="proficiency_pic selection_box sponsorship_preview">
                         <ol class="sliderContent" id="sponsorshipContent">
-                        {% for p in proficiencies %} 
+                             <div class="bigsliderImage sponsorshipImage"><span class="slider img_{% cycle top,bottom %}"><span class ="preview_award_type">Any Award Type</span><br/><span class ="preview_subject">Any Subject</span></span>
+                         </div> 
+                          {% for p in proficiencies %} 
+                     
                         <li class="bigsliderImage sponsorshipImage">
-                            <img src="/image/subject/?img_id=aghwbG9wcXVpenITCxIMU3ViamVjdEltYWdlGPIMDA{{ p.images.0.key }}&size=large"/>
-                            <span class="slider img_{% cycle top,bottom %}"><span class ="preview_award_type">Any Award Type</span><br/><span class ="preview_subject">Any Subject</span></span>
+                         <img src="/image/subject/?img_id=aghwbG9wcXVpenITCxIMU3ViamVjdEltYWdlGPIMDA{{ p.images.0.key }}&size=large"/>
+                           
                         </li>
 {% endfor %}
-                        <div class="clear sponsorshipImage"></div>
+             <div class="clear sponsorshipImage"></div>
                     </ol>
     
     </div>
