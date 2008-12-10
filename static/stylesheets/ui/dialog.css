@@ -91,21 +91,16 @@ body .ui-resizable-autohide .ui-resizable-handle { display: none; } /* use 'body
 }
 .ui-dialog-title {}
 .ui-dialog-titlebar-close {
-	/*resets*/margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none; font-size: 100%; list-style: none;
-	background: url(../img/ui/50a9f7_11x11_icon_close.gif) 0 0 no-repeat;
-	position: absolute;
-	right: 8px;
-	top: .7em;
-	width: 11px;
-	height: 11px;
-	z-index: 100;
+background:transparent url(../img/quiz_closebox.png) repeat scroll 0 0;
+cursor:pointer;
+height:27px;
+position:absolute;
+right:0;
+top:1px;
+width:28px;
+z-index:100;
 }
-.ui-dialog-titlebar-close-hover, .ui-dialog-titlebar-close:hover {
-	background: url(../img/ui/004285_11x11_icon_close.gif) 0 0 no-repeat;
-}
-.ui-dialog-titlebar-close:active {
-	background: url(../img/ui/ffffff_11x11_icon_close.gif) 0 0 no-repeat;
-}
+
 .ui-dialog-titlebar-close span {
 	display: none;
 }
@@ -123,6 +118,12 @@ body .ui-resizable-autohide .ui-resizable-handle { display: none; } /* use 'body
 	border-top: 1px solid #dddddd;
 	background: #f3f3f3;
 }
+
+.ui-dialog-buttonpane button:active {
+	color: #000000;
+}
+
+/*
 .ui-dialog-buttonpane button {
 	margin: .5em 0 .5em 8px;
 	color: #444444;
@@ -143,6 +144,16 @@ body .ui-resizable-autohide .ui-resizable-handle { display: none; } /* use 'body
 	background: #5acaf6 url(../img/ui/5acaf6_40x100_textures_02_glass_50.png) 0 50% repeat-x;
 	border: 1px solid #700d78;
 }
+
+*/
+
+.ui-dialog-buttonpane button {
+	margin: .5em 0 .5em 8px;
+	padding: .2em .6em .3em .6em;
+
+}
+
+
 /* This file skins dialog */
 .ui-dialog.ui-draggable .ui-dialog-titlebar,
 .ui-dialog.ui-draggable .ui-dialog-titlebar {

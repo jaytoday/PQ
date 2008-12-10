@@ -15,7 +15,7 @@ border:medium none;
 float:left;
 font-size:0.7em;
 line-height:1.3;
-margin:-266px 0 0 10px;
+margin:-236px 0 0 6px;
 position:absolute;
 }
 
@@ -27,7 +27,8 @@ margin:6px 1px 0 0;
 
 div.profile{
 /* float:left; */
-margin:100px 0;
+/* margin:100px 0; */
+margin: 100px 0;
 width:720px;
 }
 
@@ -92,10 +93,8 @@ font-size: 1.2em;
 
 
 div#photo{
-float:left;
-height:0;
-margin:-48px 40px;
-
+margin:-68px 40px;
+position:absolute;
 }
 
 div#profile_photo{
@@ -106,10 +105,11 @@ margin:-30px 20px;
 
 div#basics{
 float:left;
-font-size:1.3em;
-height:0;
+font-size:1.6em;
+position:absolute;
 line-height:1.1em;
-margin:-42px 100px;
+margin:-42px 0 0 140px;
+width:230px;
 }
 
 div#stats h4{
@@ -178,7 +178,7 @@ text-transform:none;
 }
 
 
-div#quote, div#intro_employer, div#info, div#network,d vi#results{
+div#school, div#intro_employer, div#info, div#network,d vi#results{
 /* height:100px; */
 margin:-185px 0 0;
 position:absolute;
@@ -191,9 +191,11 @@ height:176px;
 
 
 div.edit_profile_link{
+border-left:medium none;
 float:left;
-margin:-308px -5px;
-padding:3px 25px;
+margin:-288px 0;
+padding:3px 20px;
+position:absolute;
 -moz-border-radius-topright:5px;
 -moz-border-radius-bottomright:5px;
 -webkit-border-top-right-radius: 5px;
@@ -201,7 +203,7 @@ padding:3px 25px;
 }
 
 div.share_profile_link{
-margin:-280px -5px;
+margin:-260px 0 !important;
 }
 
 
@@ -215,7 +217,8 @@ height:12px;
 
 
 div#personal{
-margin: -57px 0px;
+margin: -27px 0px;
+position: absolute;
 }
 
 div.summary{
@@ -244,7 +247,7 @@ font-weight:bold;
 margin:-17px 30px;
 }
 
-div.quote_content{
+div.school_content{
 font-size:0.7em;
 margin:-5px;
 width:120px;
@@ -375,16 +378,17 @@ height:120px;
 margin-top:-18px;
 }
 
-div#sponsor_user{
+div.sponsor_user{
 float:left;
 font-size:1.2em;
 height:85px;
+cursor:pointer;
 margin:4px;
 padding:5px;
 text-align:center;
 width:110px;
 }
-div#sponsor_user:hover{
+div.sponsor_user:hover{
 background-color:#FFDFEB;
 }
 div.panel_content div.gray_box{
@@ -577,9 +581,9 @@ float: right;
 
 
 a#toggle{
-margin-bottom:20px;
-margin-right:-120px;
-margin-top:-20px;
+height:0;
+margin:-20px 0 0 420px;
+position:absolute;
 }
 
 
@@ -700,3 +704,12 @@ cursor:pointer;
 	display: none;
 }
 
+
+
+
+textarea.share{
+font-size:1.3em;
+height:110px;
+margin:-10px -5px;
+width:300px;
+}

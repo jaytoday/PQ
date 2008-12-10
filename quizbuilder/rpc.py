@@ -140,11 +140,11 @@ remote callers access to private/protected "_*" methods.
 		# And args[2] 
 		# new_quiz_item.proficiency = str(args[5])  # Should be Proficiency   - needs to be calculated. should be proficiency key. 
 		new_quiz_item.content =  args[3].replace('title="Click to edit..."', '')
-		new_quiz_item.content =  new_quiz_item.content.replace('^f"', '<div class="focus">')    # add focus div. 
+		new_quiz_item.content =  new_quiz_item.content.replace('^f"', '<div class=\"focus\">')    # add focus div. 
 		new_quiz_item.content =  new_quiz_item.content.replace('f$"', '</div>')
 		new_quiz_item.content =  new_quiz_item.content.replace(' style="opacity: 1;"', '')
 		blank_span = re.compile('<span id="blank">.*</span>')  #delete whatever is in span.blank!
-		new_quiz_item.content =  blank_span.sub('<span style="opacity: 1;" id="blank"></span>', new_quiz_item.content)
+		new_quiz_item.content =  blank_span.sub('<span style=\"opacity: 1;\" id=\"blank\"></span>', new_quiz_item.content)
 		new_quiz_item.content =  new_quiz_item.content.replace('</div><div class="content">', '')
 		new_quiz_item.content =  new_quiz_item.content.replace('</div><div class="post_content">', '')
 		new_quiz_item.content =  new_quiz_item.content.replace('<div class="pre_content">', '')

@@ -15,14 +15,10 @@ $(function()
 
         // $.merge($.dynacloud.stopwords, [ "der", "die", "das" ]); -- add filters
         
+
      
 
 
 });
-
-
-
-
-
 
 

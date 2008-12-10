@@ -22,7 +22,8 @@
 <script type="text/javascript" src="/static/scripts/utils/rpc.js"></script>
 <script type="text/javascript" src="/static/scripts/utils/preserve_default_text.js"></script>
 <script type="text/javascript" src="/static/scripts/base.js"></script>
-
+<script src="/static/scripts/jquery/jquery.ui.js"></script>
+<link rel="stylesheet" href="/static/stylesheets/ui/dialog.css" type="text/css" media="screen">
 {% block head %}{% endblock %}
 </head>
 
@@ -66,7 +67,10 @@
 
 				</div>
 				
-				<div class="quick_links"><a target="_blank" href="/about">About</a> | <a target="_blank" href="/contact">Contact Us</a> | <a target="_blank" href="http://blog.plopquiz.com">Blog</a>  </div>
+				<div class="quick_links">
+				<!-- Links <a target="_blank" href="/about">About</a> | <a target="_blank" href="/contact">Contact Us</a> | <a target="_blank" href="http://blog.plopquiz.com">Blog</a>  -->
+				<a class="about_dialog">About</a> | <a class="contact_dialog">Contact Us</a> | <a target="_blank" href="http://blog.plopquiz.com">Blog</a> 
+				</div>
 				
 				</div>
 				
@@ -88,50 +92,11 @@
 	</div>
 	
 	
-	
 
-	        <script type="text/javascript">
-	        
-	        	<!-- analytics -->
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-try {
-var pageTracker = _gat._getTracker("UA-6298311-1");
-pageTracker._trackPageview();
-} catch(err) {}
-
-function Loading(){
-$('div.loading').show();
-	$('div.main').hide();
-		  $('div.loading').animate({opacity: 1.0}, 2000, function(){
-$('div.loading').hide();
-$('div.main').show();
-	});
-}
-
-$('div.loading').hide();
-
-
-function LoadInit() {
-
-if ("{{ no_load }}" == "True"){ return; } else { Loading();}
-
-}
-
-LoadInit(); 
-
-$(document).ready(function(){
-
-
-
-$('div.main').removeClass('hide');
-
-});
-
-</script>
+ {% include "../utils/base_script.html" %}
       
+  {% include "../utils/about.html" %}
+  {% include "../utils/contact_us.html" %}
       
 </body>
 </html>

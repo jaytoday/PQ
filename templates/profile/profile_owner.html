@@ -7,9 +7,14 @@
 
 <div class="share_container">
 <div class="ui-dialog-content" id="share_profile" style="display:none;" title="Share Your Profile">
-<p>Woo Hoo!</p>
-</div> 
+<div class="sponsors">
+<textarea class="share" onClick="$(this).select();">Sponsor My PlopQuiz Profile: http://www.plopquiz.com/profile/{{ user.profile_path }}</textarea>
+</div>
 
+<div class="employers" style="display:none;">
+<textarea class="share" onClick="$(this).select();">My Academic Profile From PlopQuiz: http://www.plopquiz.com/profile/{{ user.profile_path }} </textarea>
+</div>
 
+</div>
 
 </div>

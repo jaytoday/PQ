@@ -58,7 +58,7 @@ border-style:solid;
 border-width:1px 0;
 font-size:0.9em;
 margin:-50px 0 20px -196px;
-padding:10px 0;
+padding:30px 0 0;
 width:880px;
 }
 
@@ -115,7 +115,7 @@ margin:7px 5px 0px 1px; float:left;
 div.change_picture{
 height:0px;
 float:left;
-margin:-42px -140px;
+margin:-42px -180px;
 }
 
 div.change_picture input{
@@ -159,4 +159,12 @@ margin-bottom:-18px;
 margin-left:120px;
 margin-right:0;
 margin-top:-18px;
+}
+
+.edit_basics{
+margin:-42px 0 0 90px !important;
+}
+
+.edit_photo{
+margin:-68px -15px !important;
 }

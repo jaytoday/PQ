@@ -95,7 +95,7 @@ console.log('Upload Error!');
 function RefreshImage(img_id){
 	
 $('div#photo > img').hide();
-$('div#photo').append('<img class="new" src="/image/profile/?img_id=' + img_id + '" />');
+$('div#photo').append('<img class="new" src="/image/profile/?img_id=' + img_id + '&size=large />');
 $('div#photo').data('new_image', img_id);
 console.log('image data - ',$('div#photo').data('new_image') );
 $('div.cancel').show();

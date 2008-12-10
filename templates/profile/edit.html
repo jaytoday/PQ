@@ -94,18 +94,12 @@ getNextPicture(photo_keys);
        <div class="panel_box pic_box" id="cycle_img" >Cycle Pictures</div> 
        <div id="change_img" >Upload Picture</div>
          <div class="cancel"><a onClick="CancelPhotoUpload()">Cancel</a></div>  </div>
-		<div id="photo"><img class="old" src='/image/profile/?img_id={{ user.photo.key }}'/></div>
-		<div id="basics">
+		<div id="photo" class="edit_photo"><img class="old" src='/image/profile/?img_id={{ user.photo.key }}&size=large'/></div>
+		<div id="basics" class="edit_basics">
 		<div id="p_fullname"></div>
 		<div id="profession"></div>
 		</div>
 		
-            <ul id="main_nav">
-                <li class="ui-tabs-nav-item" id="profile_nav">
-                
-                <a href="#summary">Summary</a></li>
-                <li class="ui-tabs-nav-item"><a href="#portfolio">Top Scores</a></li>
-            </ul>
             <div id="summary" class="profile-panel">
 
                 <div class="edit_content big_panel" >

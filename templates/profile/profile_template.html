@@ -1,8 +1,5 @@
 {% extends "../base.html" %}
 {% block head %}
-
-
-		<script src="/static/scripts/jquery/jquery.ui.js"></script>
 		<link rel="stylesheet" href="/static/stylesheets/ui/app_screen.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="/static/stylesheets/profile/tabs.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="/static/stylesheets/profile/profile.css" type="text/css" media="screen">
@@ -30,8 +27,6 @@ $(document).ready(function()
 	      
 		
 	{% if profile_owner %}
-
-<link rel="stylesheet" href="/static/stylesheets/ui/dialog.css" type="text/css" media="screen">
 <script src="/static/scripts/profile/profile_owner.js"></script>
 {% endif %}
 
@@ -49,7 +44,7 @@ $(document).ready(function()
 	
 		<div class="profile">
 	
-		<div id="photo"><img src='/image/profile/?img_id={{ user.photo.key }}'/></div>
+		<div id="photo"><img src='/image/profile/?img_id={{ user.photo.key }}&size=large'/></div>
 		<div id="basics">
 		<div id="name">{{ user.fullname }} </div>
 		<!--TODO <div id="profession">Software Designer</div> -->
@@ -91,7 +86,12 @@ $(document).ready(function()
 		<span class="gray_box_header">Academic Sponsors</span>
 		<div class="panel_content " id="sponsors" > <div class="gray_box sponsors_box">
 		
-	{% if not profile_owner %}	<div class="info_note" id="sponsor_user"> <a>Sponsor {{ user.fullname }} Now!</a> </div>{% endif %}
+	{% if profile_owner %}	
+	<div class="info_note sponsor_user" id="sponsor_owner"> <a>Get Sponsors Now!</a> </div>
+	{% else %}
+	<div class="info_note sponsor_user" id="sponsor_not_owner"> <a href="http://{{ http_host }}sponsor/{{ user.profile_path }}">Sponsor {{ user.fullname }} Now!</a> </div>
+	{% endif %}
+	
 				{% if user.sponsorships %}
 				 {% for sponsorship in user.sponsorships %}
     <div class="gray_square_box">
@@ -172,7 +172,7 @@ $(document).ready(function()
 
     <ul id="personal_nav">
      <li  class="ui-tabs-nav-item"><a href="#info">Info</a></li>
-		    <li style="display:none;" class="ui-tabs-nav-item"><a href="#quote">Quote</a></li>
+		    <li style="display:none;" class="ui-tabs-nav-item"><a href="#school">School</a></li>
                 <li  style="display:none;" class="ui-tabs-nav-item"><a href="#network">Network</a></li>
                 
             </ul>
@@ -188,11 +188,9 @@ $(document).ready(function()
 		 </div> </div> 
 		
 		
-		<div class="personal_content" id="quote">
-		<div class="quote_content">
-		"If I had 20 days to solve a problem, I would take 19 days to define it." 
-		<br/><br/>
-		-- Albert Einstein
+		<div class="personal_content" id="school">
+		<div class="school_content">
+
 		 </div> 
 		 
 		 

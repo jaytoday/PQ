@@ -27,19 +27,15 @@ $('.sponsorship_data').data('target', '{{ profile.key }}');
 {% block main %}
 <div class="sponsorship_data"></div>
 <div class="sponsoring">
-<span class="sponsor_header">Pledge Your Sponsorship:</span>
+<span class="sponsor_header"><img class="energy_small" src="/static/stylesheets/img/utils/energy_small.png"/> Pledge Your Sponsorship</span>
 <div class="info_note profile_box">
+<div id="photo"><img src='/image/profile/?img_id={{ profile.photo.key }}&size=small'/></div>
 {{ profile.fullname }} 
 </div>
 
 </div>
 
-<div class="award_types">
-<span class="award_header">Choose an Award Type</span>
-<div class="purple_box award" title="Fluency" id="fluency">Fluency</div> <div class="purple_box award" title="Excellence" id="excellence">Excellence</div>
 
-<span style="display:none;" id="fluency_tip"><h2>Fluency</h2> is the best!</span>  <span style="display:none;" id="excellence_tip"><b>Excellence</b> is the best!</span>
-</div>
 
 
 <div class="sponsorship_packages">
@@ -51,17 +47,44 @@ $('.sponsorship_data').data('target', '{{ profile.key }}');
 </div>
 
 
-<div class="proficiency_field">
+<div class="subject_field">
 
-<span class="proficiency_header"> Choose a Proficiency (optional)</span>
-<div class="proficiencies">
+<span class="choice_header"> Choose A Quiz Subject</span>
+<div class="choices">
 <select id="proficiency">
-<option value='' selected></option>
+<option value='' selected>Any Subject</option>
 {% for p in proficiencies %} <option value='{{ p.key }}'>{{ p.name }}</option> {% endfor %}
 </select>
 </div>
 </div>
 
+<div class="award_type_field">
+<span class="choice_header"> Choose An Award Type</span>
+<div class="choices">
+<select id="award_type">
+<option value='' selected>Any Award Type</option>
+<option value='fluency'>Fluency Award</option><option value='excellence'>Excellence Award</option>
+<span style="display:none;" id="fluency_tip"><h2>Fluency</h2> is the best!</span>  <span style="display:none;" id="excellence_tip"><b>Excellence</b> is the best!</span>
+
+
+
+</select>
+</div>
+</div>
+
+
+    <div class="proficiency_pic selection_box sponsorship_preview">
+                        <ol class="sliderContent" id="sponsorshipContent">
+                        {% for p in proficiencies %} 
+                        <li class="bigsliderImage sponsorshipImage">
+                            <img src="/image/subject/?img_id=aghwbG9wcXVpenITCxIMU3ViamVjdEltYWdlGPIMDA{{ p.images.0.key }}&size=large"/>
+                            <span class="slider img_{% cycle top,bottom %}"><span class ="preview_award_type">Any Award Type</span><br/><span class ="preview_subject">Any Subject</span></span>
+                        </li>
+{% endfor %}
+                        <div class="clear sponsorshipImage"></div>
+                    </ol>
+    
+    </div>
 
 
 <div class="submit_sponsorpledge"> <div class="form_proceed" id='submit_sponsorpledge'><img src="/static/stylesheets/img/utils/purple_next.png"></div></div>          
