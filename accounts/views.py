@@ -79,10 +79,12 @@ class LoginResponse(webapp.RequestHandler):
 		  except: fullname = nickname	  
 		  self.session = Session()
 		  self.session['unique_identifier'] = unique_identifier
+		   
 		  self.session['nickname'] = nickname
 		  self.session['email'] = email
 		  self.session['fullname'] = fullname
-		  if registered(self.session['unique_identifier']) is False: self.register_user()  # This should all be in transaction. 
+		  self.session['user'] = registered(self.session['unique_identifier'])
+		  if self.session['user'] is False: self.register_user()  # This should all be in transaction. 
 		  else: 
 		        if not self.session['continue']: self.session['continue'] = DEFAULT_LANDING_PAGE
 		        self.redirect(self.session['continue'])

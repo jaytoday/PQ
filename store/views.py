@@ -153,7 +153,7 @@ class TakeTest(webapp.RequestHandler):
 class Sponsorship(webapp.RequestHandler):
 
 	def get(self):
-		self.get_profile()
+		if not self.get_profile(): return 
 		self.get_proficiencies()
 		template_values = {'page_title': 'Sponsorship', 'no_load': True, 'sponsor': self.session['user'].unique_identifier, 'profile': self.profile, 'proficiencies': self.proficiencies}
 		path = tpl_path(STORE_PATH + 'sponsorship.html')
@@ -167,7 +167,7 @@ class Sponsorship(webapp.RequestHandler):
 		try: self.profile.unique_identifier
 		except: 
 		    self.redirect('/profile_not_found/')
-		    return
+		    return False
 
 
 
