@@ -1,9 +1,9 @@
 from google.appengine.ext import db
 from google.appengine.api import users
 import logging
-from proficiency import *
-from user import *
-from employer import *
+from model.proficiency import Proficiency, ProficiencyTopic
+from model.user import QuizTaker
+from model.employer import Employer
 
 
 # Log a message each time this module get loaded.

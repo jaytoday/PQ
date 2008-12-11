@@ -89,7 +89,7 @@ $(document).ready(function()
 	{% if profile_owner %}	
 	<div class="info_note sponsor_user" id="sponsor_owner"> <a>Get Sponsors Now!</a> </div>
 	{% else %}
-	<div class="info_note sponsor_user" id="sponsor_not_owner"> <a href="http://{{ http_host }}sponsor/{{ user.profile_path }}">Sponsor {{ user.fullname }} Now!</a> </div>
+	<div class="info_note sponsor_user" id="sponsor_not_owner"> <a href="http://{{ http_host }}/sponsor/{{ user.profile_path }}">Sponsor {{ user.fullname }} Now!</a> </div>
 	{% endif %}
 	
 				{% if user.sponsorships %}

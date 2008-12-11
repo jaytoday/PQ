@@ -114,7 +114,6 @@ def redirect_from_appspot(wsgi_app):
 # 404
 class NotFoundPageHandler(webapp.RequestHandler):
     def get(self):
-        if self.request.path == "/": return
         self.error(404)
         path = tpl_path('utils/404.html')
         template_values = {'no_load': True}

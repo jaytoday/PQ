@@ -1,8 +1,7 @@
 from google.appengine.ext import db
 from google.appengine.api import users
 import logging
-import proficiency 
-import quiz
+from model.proficiency import Proficiency, ProficiencyTopic
 
 # Log a message each time this module get loaded.
 logging.info('Loading %s', __name__)
@@ -79,7 +78,7 @@ class Profile(db.Model):
     
 
 class ProficiencyLevel(db.Model):
-  proficiency = db.ReferenceProperty(proficiency.Proficiency,required=True,collection_name='pro_levels') # Proficiency Tag (startup_financing)
+  proficiency = db.ReferenceProperty(Proficiency,required=True,collection_name='pro_levels') # Proficiency Tag (startup_financing)
   quiz_taker = db.ReferenceProperty(QuizTaker,required=True, collection_name='proficiency_levels')
   proficiency_level = db.IntegerProperty()
   percentile = db.IntegerProperty()  
@@ -87,7 +86,7 @@ class ProficiencyLevel(db.Model):
 
 
 class TopicLevel(db.Model):
-  topic = db.ReferenceProperty(proficiency.ProficiencyTopic,required=True,collection_name='top_levels') # Proficiency Tag (startup_financing)
+  topic = db.ReferenceProperty(ProficiencyTopic,required=True,collection_name='top_levels') # Proficiency Tag (startup_financing)
   quiz_taker = db.ReferenceProperty(QuizTaker,required=True,collection_name='topic_levels')
   topic_level = db.IntegerProperty()
   percentile = db.IntegerProperty(required=False)  

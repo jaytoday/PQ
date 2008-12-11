@@ -147,18 +147,16 @@ class RPCMethods(webapp.RequestHandler):
 					  correct_answer = this_item.index,
 					  picked_answer = picked_answer,
 					  )
-					  	
 	from utils.appengine_utilities.sessions import Session
 	self.session = Session()
-	user = self.session.logged_in()
-	
-	if user:
+	user = args[3]
+	if len(user) > 0:
 		this_user = QuizTaker.get_by_key_name(user)
 		score.quiz_taker = this_user.key()
 		score.type = "site"     # type could be site, practice widget
 	else:
 		score.type = "temp"
-	if len(args[3]) > 0: score.vendor = Employer.get(args[3])
+	if len(args[4]) > 0: score.vendor = Employer.get(args[4])
 	score.put()
 	if user: 
 	  this_user.scores.append(score.key())

@@ -48,6 +48,7 @@ class ViewProfile(webapp.RequestHandler):
 		level_cloud = self.make_cloud(topic_levels[0:CLOUD_LIMIT])
 		range = 50
 		depth = 50
+		from model.account import Award, Sponsorship
 		return {'user': user, 'profile_owner': profile_owner, 
 		        'top_levels': topic_levels[0:REPORT_CARD_LIMIT], 'level_cloud': level_cloud,
 		        'range': range, 'depth': depth }

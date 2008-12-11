@@ -1,8 +1,8 @@
 from google.appengine.ext import db
 from google.appengine.api import users
 import logging
-import user 
-from proficiency import Proficiency
+from model.user import Profile
+from model.proficiency import Proficiency
 
 # Log a message each time this module get loaded.
 logging.info('Loading %s', __name__)
@@ -30,7 +30,7 @@ class Award(db.Model):
                                     required=True,
                                     collection_name='awards')
 
-    winner = db.ReferenceProperty(user.Profile,
+    winner = db.ReferenceProperty(Profile,
                                     required=True,
                                     collection_name='awards')
     date = db.DateTimeProperty(auto_now=True)
@@ -44,7 +44,7 @@ class Award(db.Model):
 
 
 class SponsorPledge(db.Model):    
-    sponsor = db.ReferenceProperty(user.Profile,
+    sponsor = db.ReferenceProperty(Profile,
                                     required=True,
                                     collection_name='pledged_sponsorships')
     sponsor_type = db.StringProperty(required=True, choices=set(["personal", "corporate"])) # target one person, or many people.
@@ -73,10 +73,10 @@ Should a sponsorship generator class be used? Sponsorship would only have one ta
 
 class Sponsorship(db.Model):
     # There needs to be a sponsorship generator, for when the sponsorship is for a class of people. 
-    sponsor = db.ReferenceProperty(user.Profile,
+    sponsor = db.ReferenceProperty(Profile,
                                     required=True,
                                     collection_name='given_sponsorships')
-    recipient = db.ReferenceProperty(user.Profile,
+    recipient = db.ReferenceProperty(Profile,
                                     required=True,
                                     collection_name='sponsorships')                                    
     package = db.StringProperty(required=True, choices=set(["micro", "medium", "magna_cum_laude"]))      # redundancy                              
