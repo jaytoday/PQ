@@ -1,10 +1,9 @@
 application: plopquiz
-version: 7
+version: 8
 runtime: python
 api_version: 1
 
-# todo: set static file expiration.... default_expiration: "4d 5h"
-
+default_expiration: "4d 5h"
 
 handlers:
 
@@ -14,12 +13,12 @@ handlers:
 
 - url: /console/static
   static_dir: console/app/view/static
+  
 
 - url: /console.*
   script: console/app/console.py
   login: admin
 
-  
   
 - url: /gaeutilities/css
 
@@ -30,6 +29,12 @@ handlers:
   script: utils/appengine_utilities/interface/main.py
 
   login: admin
+  
+  
+  
+  
+  
+  
   
   # resource handlers
 
@@ -47,7 +52,7 @@ handlers:
 
 
 
-# MAIN HANDLER
+#### MAIN HANDLER ###
 
 - url: /favicon.ico
   static_files: static/stylesheets/img/favicon.ico

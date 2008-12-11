@@ -106,5 +106,4 @@ remote callers access to private/protected "_*" methods.
   	from accounts.methods import Sponsorships
   	sponsorships = Sponsorships()
   	return sponsorships.check_all()  
-  	
-  	
+  

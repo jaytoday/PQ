@@ -3,12 +3,12 @@ $(function()
 	
 
 	$('select').change(function(){
-		console.log($('select#award_type').val());
-        console.log($('select#proficiency :selected').text());
-	
-	$('span.preview_award_type').html($('select#award_type').val());
+    
+	$('span.preview_award_type').html($('select#award_type').val() + ' Award');
 	$('span.preview_subject').html($('select#proficiency :selected').text());	
 		});
+		
+		$('select#proficiency').change(function(){ DisplaySubjectImage($('select#proficiency').val());});
 	
 	var fluency_tip = $('span#fluency_tip').html();
 	var excellence_tip = $('span#excellence_tip').html()
@@ -43,7 +43,6 @@ $(function()
 			 if (!$("select#proficiency option:selected").length) $("select#proficiency option[value='']").attr('selected', 'selected');
 
 
-
 			
 			
  });
@@ -73,5 +72,16 @@ InstallFunction(server, 'SubmitSponsorPledge', 'accounts');
 
 	                          
 	                      
+}
+
+
+
+function DisplaySubjectImage(img_key){
+	
+	
+$('div.sponsorship_preview').find('li.sponsorshipImage').fadeOut('fast');
+console.log($('div.sponsorship_preview').find('li[id=' + img_key + ']'));
+$('div.sponsorship_preview').find('li[id=' + img_key + ']').fadeIn('slow');
+
 }
 

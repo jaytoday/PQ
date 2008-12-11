@@ -49,7 +49,7 @@ class DataMethods():
 		for object in objects:
 			if verbose[0] == "loud":
 				print ""
-				print "deleted: " + str(object.__dict__) 
+				print "deleted: " + str(object) 
 			object.delete()
 		return True
 			
@@ -91,7 +91,7 @@ class DataMethods():
 							 index = item['index'],
 							 topic = this_topic.key())
 							  #Add List of Answers
-		print quiz_item.__dict__
+		print quiz_item
 		quiz_items.append(quiz_item)
 		if verbose[0] == "loud":
 		  print encode(quiz_item)

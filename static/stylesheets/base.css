@@ -124,7 +124,7 @@ margin: 0px 0px 0px 3px;
 width:944px;
 }
 
-.sitelet .middle .main_wrapper .main {
+.sitelet .middle .main_wrapper .main, .loading {
 background: #F7F5F4;
 height:480px;
 overflow:hidden;
@@ -343,6 +343,10 @@ border:5px solid #F7CA75;
 padding:10px;
 }
 
+h2.info_header{
+line-height:1.1em; font-size:1.1em
+}
+
 .warning_note{
 -moz-border-radius:5px;
 -webkit-border-radius: 5px;
@@ -452,7 +456,7 @@ margin:0 0 0 233px;
 /* forms */
 
 input.button, button {
-	background:#E0E0E0 url(../img/ui/e0e0e0_40x100_textures_02_glass_80.png) repeat-x scroll 0 50%;
+	background:#E0E0E0 url(./img/ui/e0e0e0_40x100_textures_02_glass_80.png) repeat-x scroll 0 50%;
 	border-color:#CCC #999 #999 #CCC;
 	border-style: solid;
 	border-width: 1px;
@@ -466,6 +470,7 @@ input.button, button {
 input.button:hover,button:hover{
 cursor:pointer;
 color: #222;
+background-color:
 }
 button.clicked{
 color: #777;
@@ -492,6 +497,9 @@ input.button.disable {
 }
 
 .form_proceed, .form_cancel{
-cursor:pointer;
+margin:20px -120px;
 }
 
+.continue_button{
+float:right; font-weight:bold; margin:17px 2px 0px 5px;
+}

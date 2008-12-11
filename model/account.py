@@ -48,13 +48,16 @@ class SponsorPledge(db.Model):
                                     required=True,
                                     collection_name='pledged_sponsorships')
     sponsor_type = db.StringProperty(required=True, choices=set(["personal", "corporate"])) # target one person, or many people.
-    award_type = db.StringProperty(required=True, choices=set(["fluency", "excellence", "any award"]))  
+    award_type = db.StringProperty(required=True, choices=set(["fluency", "excellence", "any"]))  
     package = db.StringProperty(required=False, choices=set(["micro", "medium", "magna_cum_laude"]))                                    
     target = db.ListProperty(db.Key)#Profile   # paired list.    
+    single_target = db.ReferenceProperty(Profile,
+                                    required=False,
+                                    collection_name='sponsorships_pledged_to_me')
     activated = db.ListProperty(bool)      # micro, medium or magna cum laude
     # Instead of activated, maybe sponsorship reference?
     proficiency = db.ReferenceProperty(Proficiency,
-                                    required=False, # if False, then any proficiency is assumed. 
+                                    required=False, # if False, then *any* proficiency is assumed. 
                                     collection_name='pledges')    
     date = db.DateTimeProperty(auto_now=True)
     # sponsorships - RefProperty

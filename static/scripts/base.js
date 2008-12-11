@@ -109,7 +109,13 @@ $(document).ready(function()
             
             $(this).find('div').hide();
             $(this).find('div.about_sponsors').show();
+        },
+        "How We Grade": function() { 
+            
+            $(this).find('div').hide();
+            $(this).find('div.about_how_we_grade').show();
         }
+        
     } 
      
 }).show();

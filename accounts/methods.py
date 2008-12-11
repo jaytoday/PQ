@@ -166,6 +166,7 @@ class Sponsorships():
 	def check_award(self,award):
 		give_sponsorship = {}
 		matching_sponsorships = award.sponsorships
+		sponsorships_pledged_to_me = award.winner.sponsorships_pledged_to_me
 		matching_pledges = SponsorPledge.gql("WHERE proficiency = :1", award.proficiency).fetch(1000)  # efficiency - check for target?
 		for pledge in matching_pledges:
 			# eventually allow for corporate sponsor checks.    # This should use zip().

@@ -22,9 +22,9 @@ class Proficiency(db.Model):
   	return tag
   #quizitems -- QuizItem reference
   ## pages  
-  
 
-
+  def default_image(self): 
+      return DefaultSubjectImage.get()
 
 
 class ProficiencyTopic(db.Model):  # sub-topics within proficiencies - These map to content URLs.
@@ -37,5 +37,12 @@ class ProficiencyTopic(db.Model):  # sub-topics within proficiencies - These map
 
 class SubjectImage(db.Model):
     proficiency = db.ReferenceProperty(Proficiency, collection_name='images', required=True) # Proficiency Tag (startup_financing)    
+    small_image = db.BlobProperty(required=True)
+    large_image = db.BlobProperty(required=True)
+
+
+  	
+
+class DefaultSubjectImage(db.Model):
     small_image = db.BlobProperty(required=True)
     large_image = db.BlobProperty(required=True)

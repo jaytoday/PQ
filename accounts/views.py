@@ -79,7 +79,6 @@ class LoginResponse(webapp.RequestHandler):
 		  except: fullname = nickname	  
 		  self.session = Session()
 		  self.session['unique_identifier'] = unique_identifier
-		   
 		  self.session['nickname'] = nickname
 		  self.session['email'] = email
 		  self.session['fullname'] = fullname

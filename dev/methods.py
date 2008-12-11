@@ -76,13 +76,14 @@ class Build():
 		  		
 	def refresh_subject_images(self, *args):
 		self.delete_subject_images()
+		self.refresh_default_subject_image()
 		proficiencies = Proficiency.all().fetch(1000)
 		for p in proficiencies:
 			p_path = ROOT_PATH + "/data/img/subject/" + str(p.name) + "/"
 			print p_path
 			for n in range(3):
 				try: image_file = open(p_path + str(n) + ".png")
-				except: continue # no image found
+				except: continue
 				print "image found:", str(p_path + str(n) + ".png")
 				image = image_file.read()
 				small_image = images.resize(image, 120, 80)
@@ -94,6 +95,26 @@ class Build():
 				new_image.put()
 				new_image.key_name = str(new_image.key())
 				new_image.put()
+		
+		
+
+		
+	def refresh_default_subject_image(self):
+		tile_path = ROOT_PATH + "/data/img/base/pq_tile.png"
+		image_file = open(tile_path)
+		image = image_file.read()
+		small_image = images.resize(image, 120, 80)
+		large_image = images.resize(image, 360, 240)
+		from model.proficiency import DefaultSubjectImage
+		for i in DefaultSubjectImage.all().fetch(1000): i.delete() # delete old images 
+		default_image = DefaultSubjectImage(small_image = small_image,
+									 large_image = large_image)
+		default_image.put()
+		print ""
+		print "saved default image: ", default_image							     
+								
+			
+				
    	    		
 	
 class DataMethods():
@@ -159,6 +180,5 @@ class DataMethods():
   def dump_raw_items(self, list_of_items, *response):
       return encode(list_of_items)
  	
-
 
 

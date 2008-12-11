@@ -88,8 +88,10 @@ class RPCMethods(webapp.RequestHandler):
   	raw_target = [args[2]] # for more than one user
   	target = []
   	activated = []
+  	single_target = False
   	for u in raw_target: 
   	    t = Profile.get(u)
+  	    if len(raw_target) > 1: single_target = t
   	    target.append(t.key())
   	    activated.append(False)
   	from model.account import SponsorPledge
@@ -102,13 +104,27 @@ class RPCMethods(webapp.RequestHandler):
   	                           type = type,
   	                           activated = activated)
   	
-  	if len(args[3]) > 0:
+  	# if only a single person is receiving the pledge
+  	if single_target:
+  		new_pledge.single_target = single_target
+  	# if any subject was chosen
+  	if args[3] != "any_subject":
   		from model.proficiency import Proficiency
   		new_pledge.proficiency = Proficiency.get(args[3])
+  		
   	db.put(new_pledge)
   	return "True"
 
 
   	
   	
+  def intro_mail_message(self, *args):
+  	from model.user import Profile
+  	from accounts.mail import mail_intro_message
+  	profiles = Profile.all().fetch(10)
+  	for p in profiles:
+  		mail_intro_message(p)
+  		
+
   	
+  	  	

@@ -135,7 +135,7 @@ class PreviewViewProfile(webapp.RequestHandler):
 
 
 
-class Image (webapp.RequestHandler):  # TODO: Memoize This!
+class Image (webapp.RequestHandler):  # TODO: Move this to somewhere more appropriate?
 
   @memoize('image_object')
   def get(self):
@@ -162,6 +162,7 @@ class Image (webapp.RequestHandler):  # TODO: Memoize This!
     if not self.request.get("img_id"): 
         self.redirect('/picture_not_found')
         return
+    if self.request.get("img_id") == "default": return self.default_subject_image()
     try: 
         pic = SubjectImage.get(self.request.get("img_id"))
         self.response.headers['Content-Type'] = "image/png"
@@ -172,3 +173,9 @@ class Image (webapp.RequestHandler):  # TODO: Memoize This!
         return
     
 
+  def default_subject_image(self):
+      from model.proficiency import DefaultSubjectImage
+      pic = DefaultSubjectImage.all().get()
+      self.response.headers['Content-Type'] = "image/png"
+      if self.request.get("size") == "large": self.response.out.write(pic.large_image) 
+      else: self.response.out.write(pic.small_image)     
