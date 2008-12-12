@@ -66,7 +66,7 @@ class DataMethods():
 				logging.error('Unable to save new entity')
 				print 'Unable to save new entity'
 			print "ADDED"
-			print save_entity.__dict__ 	
+			print save_entity
 			print save_entity.key()   
 
 

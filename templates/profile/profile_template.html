@@ -12,12 +12,16 @@
 		<script type="text/javascript">
 $(document).ready(function()
 {
-	
+	var has_awards = "False";
 {% for award in user.awards %}
+if ("{{ forloop.first }}") has_awards = "True";
+
   $('#award_{{ forloop.counter }}').s3Slider({
             timeOut: 3300
         });
 {% endfor %}
+
+if (has_awards != "True") $('#main_nav').find('a[href="#report_card"]').click();
 
 
  });
@@ -54,15 +58,15 @@ $(document).ready(function()
                 <li class="ui-tabs-nav-item" id="profile_nav">
                 
                 <a href="#summary">Portfolio</a></li>
-                <li class="ui-tabs-nav-item"><a href="#portfolio">Report Card</a></li>
+                <li class="ui-tabs-nav-item"><a href="#report_card">Report Card</a></li>
             </ul>
 
 
 		<div id="summary"  class="profile-panel">
 		<span class="gray_box_header">Academic Awards</span>
 		 <div class="panel_content " id="awards" > <div class="gray_box awards_box">
-		   {% if user.awards %}{% for award in user.awards %}
-   
+		   {% for award in user.awards %}
+	 {% ifequal {{forloop.first}} True %} <script type="text/javascript" > $(function(){$('div#no_award_note').hide();}); </script> {% endifequal %}
     <div id="award_{{ forloop.counter }}" class="proficiency_pic selection_box award_img">
                         <ol class="sliderContent" id="award_{{ forloop.counter }}Content">
                         
@@ -76,9 +80,8 @@ $(document).ready(function()
                     </ol>
     
     </div>
-{% endfor %}{% else %}
-    <div class="gray_square_box">{% if profile_owner %}You have{% else %}{{ user.fullname }} has{% endif %}  no awards.</div>
-{% endif %}
+{% endfor %}
+ <div id="no_award_note" class="info_note profile_info_note">{% if profile_owner %}You have{% else %}{{ user.fullname }} has{% endif %}  no awards. </div>
 
 		 
 		 </div></div>
@@ -89,17 +92,17 @@ $(document).ready(function()
 	{% if profile_owner %}	
 	<div class="info_note sponsor_user" id="sponsor_owner"> <a>Get Sponsors Now!</a> </div>
 	{% else %}
-	<div class="info_note sponsor_user" id="sponsor_not_owner"> <a href="http://{{ http_host }}/sponsor/{{ user.profile_path }}">Sponsor {{ user.fullname }} Now!</a> </div>
+	<div class="info_note sponsor_user" id="sponsor_not_owner"> <a href="{{ http_host }}/sponsor/{{ user.profile_path }}">Sponsor {{ user.fullname }} Now!</a> </div>
 	{% endif %}
 	
-				{% if user.sponsorships %}
-				 {% for sponsorship in user.sponsorships %}
+	 {% for sponsorship in user.sponsorships %}
+{% ifequal {{forloop.first}} True %} <script type="text/javascript" > $(function(){$('div#no_sponsorship_note').hide();}); </script> {% endifequal %}
     <div class="gray_square_box">
     <img src="/image/profile/?img_id={{ sponsorship.sponsor.photo.key }}&size=large"/>
     <span class="img_bottom">{{ sponsorship.sponsor.fullname }}</span></div>
-{% endfor %}{% else %}
-    <div class="gray_square_box">{% if profile_owner %}You have{% else %}{{ user.fullname }} has{% endif %}  no sponsors. </div>
-{% endif %}
+{% endfor %}
+ <div id="no_sponsorship_note" class="info_note profile_info_note">{% if profile_owner %}You have{% else %}{{ user.fullname }} has{% endif %}  no sponsors. </div>
+
 		
 		
 		</div></div>
@@ -121,10 +124,17 @@ $(document).ready(function()
 
    
 
-            <div id="portfolio" class="profile-panel" >
+            <div id="report_card" class="profile-panel" >
             <a id="toggle" >toggle display</a>
         <div id="report_1"  class="report_section">
-        
+        {% if level_msg %}
+         <div class="panel_content">
+        <div class="info_note profile_info_note">
+        {% if profile_owner %} You {% else %} {{ user.fullname }} {% endif %} can develop a report card
+        by taking <a>quizzes</a>.
+        </div>
+        </div>
+        {% endif %}
 {% for tl in top_levels %}                
                 <div class="panel_content report_card_panel" {% if forloop.last %} style="border-style:none;" {% endif %}>
                 <div class="proficiency_name"><h3>{{ tl.topic.name }} </h3></div>

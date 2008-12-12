@@ -122,12 +122,14 @@ height: 35px;
 background: #F7F5F4;
 margin: 0px 0px 0px 3px;
 width:944px;
+min-height:480px;
 }
 
-.sitelet .middle .main_wrapper .main, .loading {
+.sitelet .middle .main_wrapper .main{
 background: #F7F5F4;
-height:480px;
+/* height:480px; TODO: problems on some pages */
 overflow:hidden;
+height:480px;
 }
 
 /* Homepage */
@@ -329,7 +331,7 @@ background:#DDDDDD none repeat scroll 0 0;
 color:#333333;
 }
 
-.panel_box a{
+.panel_box a, .info_note a, .warning_note a{
 font-weight:bold;
 }
 
@@ -342,6 +344,7 @@ background-color:#FFFEEB;
 border:5px solid #F7CA75;
 padding:10px;
 }
+
 
 h2.info_header{
 line-height:1.1em; font-size:1.1em

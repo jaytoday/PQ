@@ -76,12 +76,17 @@ def render(template_path, template_dict, debug=False):
     template_path: path to a Django template
     template_dict: dictionary of values to apply to the template
   """
+
+
+    
+  debug = get_debug_mode()
   t = load(template_path, debug)
   
   # PQ - Add User to Template Dict
 
   user_info = get_user_info()
   os.environ['SERVER_SOFTWARE']
+  template_dict['dev_server'] = debug
   template_dict['user_session'] = user_info[0]
   template_dict['login_text'] = user_info[1]
   template_dict['login_url'] = user_info[2]
@@ -93,7 +98,7 @@ def render(template_path, template_dict, debug=False):
  
 
 template_cache = {}
-def load(path, debug=False):
+def load(path, debug):
   """Loads the Django template from the given path.
 
   It is better to use this function than to construct a Template using the
@@ -102,12 +107,8 @@ def load(path, debug=False):
   """
   abspath = os.path.abspath(path)
   # this idiom can be reused anywhere to check server
-  if os.environ.get('SERVER_SOFTWARE','').startswith('Devel'):
-    HOST='local'
-    debug = True
-  elif os.environ.get('SERVER_SOFTWARE','').startswith('Goog'):
-    HOST='google'
-    debug = False
+
+    
   if not debug:
     template = template_cache.get(abspath, None)
   else:
@@ -265,3 +266,11 @@ def get_user_info():
 
 
 
+def get_debug_mode():
+  if os.environ.get('SERVER_SOFTWARE','').startswith('Devel'):
+    HOST='local'
+    debug = True
+  elif os.environ.get('SERVER_SOFTWARE','').startswith('Goog'):
+    HOST='google'
+    debug = False
+  return debug

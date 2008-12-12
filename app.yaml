@@ -14,7 +14,11 @@ handlers:
 - url: /console/static
   static_dir: console/app/view/static
   
+# widget source
+- url: /js/quiz/files/
+  static_dir: static/widget/
 
+  
 - url: /console.*
   script: console/app/console.py
   login: admin
@@ -44,6 +48,7 @@ handlers:
 - url: /static/stylesheets/
   static_dir: static/stylesheets/
 
+  
 - url: /static/beehold/
   static_dir: static/beehold/
 

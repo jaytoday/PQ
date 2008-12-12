@@ -14,11 +14,11 @@ from .model.user import Profile, QuizTaker, ProfilePicture
 
 
 
-
 # Template paths
 PROFILE_PATH = 'profile/'
 REPORT_CARD_LIMIT = 5
 CLOUD_LIMIT = 9
+TOPIC_LEVEL_MIN = 60
 
 class ViewProfile(webapp.RequestHandler):
   #View a profile
@@ -51,12 +51,15 @@ class ViewProfile(webapp.RequestHandler):
 		from model.account import Award, Sponsorship
 		return {'user': user, 'profile_owner': profile_owner, 
 		        'top_levels': topic_levels[0:REPORT_CARD_LIMIT], 'level_cloud': level_cloud,
-		        'range': range, 'depth': depth }
+		        'range': range, 'depth': depth, 'level_msg': self.level_msg }
 
 
       
   def get_topic_levels(self, qt):
-      topic_levels = qt.topic_levels.fetch(100)
+      topic_levels = [t for t in qt.topic_levels.fetch(100) if t.topic_level > TOPIC_LEVEL_MIN]
+      self.level_msg = False
+      if len(topic_levels) < 4: 
+          self.level_msg = True
       return sort_by_attr(topic_levels, 'topic_level') # sort from greatest to least
 
       
@@ -136,9 +139,12 @@ class PreviewViewProfile(webapp.RequestHandler):
 
 
 class Image (webapp.RequestHandler):  # TODO: Move this to somewhere more appropriate?
-
+  # File caching controls
+  FILE_CACHE_CONTROL = 'private, max-age=86400'
+  FILE_CACHE_TIME = datetime.timedelta(days=20)
   @memoize('image_object')
   def get(self):
+    self.set_expire_header()
     image_type = self.request.path.split('/image/')[1].lower().replace('/','')
     if image_type == 'profile': return self.profile_image()
     if image_type == 'subject': return self.subject_image()
@@ -179,3 +185,9 @@ class Image (webapp.RequestHandler):  # TODO: Move this to somewhere more approp
       self.response.headers['Content-Type'] = "image/png"
       if self.request.get("size") == "large": self.response.out.write(pic.large_image) 
       else: self.response.out.write(pic.small_image)     
+
+
+  def set_expire_header(self):
+      expires = datetime.datetime.now() + self.FILE_CACHE_TIME 
+      self.response.headers['Cache-Control'] = self.FILE_CACHE_CONTROL
+      self.response.headers['Expires'] = expires.strftime('%a, %d %b %Y %H:%M:%S GMT')

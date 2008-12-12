@@ -17,6 +17,10 @@ def mail_intro_message(profile):
 	message.body = """
 
 	Your name is below!
+	
+	
+	Try to use the latest version of Firefox. 
+	
 
 	%s
 	""" % profile.fullname

@@ -387,9 +387,12 @@ class RequestHandler(object):
 		self.error(500)
 		lines = ''.join(traceback.format_exception(*sys.exc_info()))
 		logging.error(lines)
+		from template import get_debug_mode
+		debug_mode = get_debug_mode()
 		if debug_mode:
 			self.response.clear()
 			self.response.headers['Content-Type'] = 'text/plain'
+			print "Error Report"
 			self.response.out.write(lines)
 		else:	
 			path = "./templates/utils/500.html"

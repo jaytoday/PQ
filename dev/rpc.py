@@ -107,3 +107,16 @@ remote callers access to private/protected "_*" methods.
   	sponsorships = Sponsorships()
   	return sponsorships.check_all()  
   
+  def refresh_mailing_list(self, *args):
+    from model.account import MailingList
+    entries = MailingList.all().fetch(1000)
+    for e in entries: e.delete()
+    from methods import DataMethods
+    data = DataMethods()
+    data.load_data("mailing_list", "")
+    return self.dump_mailing_list()
+    
+    
+  def dump_mailing_list(self, *args):
+    from model.account import MailingList
+    print encode(MailingList.all().fetch(1000))

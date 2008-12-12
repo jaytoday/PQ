@@ -37,7 +37,10 @@ def url_routes(map):
 	map.connect('intro', controller = 'quiztaker.views:PQIntro')
 	map.connect('quiz_complete', controller = 'quiztaker.views:QuizComplete')
 	map.connect('quiz_frame', controller = 'quiztaker.views:QuizFrame')
-	
+
+	map.connect('js/quiz/:quiz_topic', controller = 'widget.handler:QuizJS')
+	#map.connect('css/quiz', controller = 'widget.handler:QuizCSS')
+		
 
 	# Induction & Building Quizzes
 	map.connect('quizbuilder', controller = 'quiztaker.views:QuizBuilder')

@@ -91,6 +91,17 @@ class Sponsorship(db.Model):
     pledge = db.ReferenceProperty(SponsorPledge,
                                     required=True,
                                     collection_name='sponsorships')                                        
-
     date = db.DateTimeProperty(auto_now=True)    
 
+
+
+class MailingList(db.Model):
+    # Useful for contacting non-signed up people. 
+    email = db.EmailProperty(required=True)
+    fullname = db.StringProperty(required=False)
+    type = db.StringProperty(required=False, choices=set(["pq", "site_member", "media"])) 
+    profile = db.ReferenceProperty(Profile,
+                                    required=False,
+                                    collection_name='mailing_list_entry')
+
+    

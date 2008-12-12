@@ -70,6 +70,7 @@ class WSGIApplication(object):
             return ['']
         else:
             response.set_status(404)
+            #redirect('/not_found/')
 
 
 class NotFoundPageHandler(webapp.RequestHandler):

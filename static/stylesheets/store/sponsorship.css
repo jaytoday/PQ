@@ -2,8 +2,18 @@ div.profile_box{
 overflow:hidden;
 position:absolute;
 right:30px;
-top:55px;
+top:50px;
 width:350px;
+padding-bottom:5px;
+}
+
+div.profile_box p{ 
+margin-bottom:5px;
+margin-top:-3px;
+}
+
+div.profile_box a{ 
+font-size: .8em;
 }
 
 div#photo{
@@ -134,7 +144,7 @@ margin: -30px 0px 0px 55px; clear: both; float: left;
 div.submit_sponsorpledge{
 left:770px;
 position:absolute;
-top:380px;
+top:385px;
 }
 
 
@@ -239,6 +249,6 @@ div.sponsorship_preview{
 height:230px;
 position:absolute;
 right:30px;
-top:150px;
+top:160px;
 width: 360px;
 }

@@ -1,3 +1,5 @@
+{# Write comments like this... #}
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -15,7 +17,12 @@
 }
 </style>
 <!-- utilities -->
+{% if dev_server %}
 <script type="text/javascript" src="/static/scripts/jquery/jquery-1.2.6.min.js"></script>
+{% else %}
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+{% endif %}
+
 <script type="text/javascript" src="/static/scripts/jquery/jquery.timers.js"></script>
 <script type="text/javascript" src="/static/scripts/parallax.js"></script>
 <script type="text/javascript" src="/static/scripts/json2min.js"></script>

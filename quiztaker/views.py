@@ -130,6 +130,10 @@ class PQIntro(webapp.RequestHandler):
   #Put something here  
   def get(self):
 	template_values = {}
+	if self.request.get('subjects'): 
+	    from model.proficiency import Proficiency
+	    template_values['proficiencies'] = Proficiency.gql("WHERE name = :1", eval(self.request.get('subjects'))[0]) # TODO: this only works for one proficiency right now 
+	    
 	intro_template = QUIZTAKER_PATH + self.request.get('page') + ".html"
 	if self.request.get('demo') == "true": intro_template = QUIZDEMO_PATH + self.request.get('page') + ".html" # only for demo
 	path = tpl_path(intro_template)

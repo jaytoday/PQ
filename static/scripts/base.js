@@ -84,12 +84,14 @@ $(document).ready(function()
 	});
 	
 	
-	$('a.about_dialog').click(function(){ $("div#about_dialog_content").dialog({ 
+	$('a.about_dialog').click(function(){ 
+		$("div#about_dialog_content").dialog({ 
     modal: true,
     resizable: false,
     draggable: false,
+    dialogClass: 'about_dialog',
     height: 300,
-    width: 405,
+    width: 450,
     overlay: { 
         opacity: 0.5, 
         background: "black" 
@@ -133,6 +135,7 @@ $('div.ui-dialog-buttonpane').find('button:first').addClass('clicked'); // initi
     modal: true,
     draggable: false,
     resizable: false,
+    dialogClass: 'contact_dialog',
     height: 300,
     width: 405,
     overlay: { 

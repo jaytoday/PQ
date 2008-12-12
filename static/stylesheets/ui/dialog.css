@@ -148,10 +148,19 @@ z-index:100;
 */
 
 .ui-dialog-buttonpane button {
-	margin: .5em 0 .5em 8px;
-	padding: .2em .6em .3em .6em;
+margin:0.5em 0.5em 0.5em 0.8em;
+padding:0.4em 0.8em;
+}
+
+.about_dialog button {
+margin-left:0.25em;
+margin-right:0.2em;
+}
+
+.contact_dialog button {
 
 }
+
 
 
 /* This file skins dialog */

@@ -42,7 +42,8 @@ $(function()
 			// Select Empty Value for Proficiency
 			 if (!$("select#proficiency option:selected").length) $("select#proficiency option[value='']").attr('selected', 'selected');
 
-
+//How We Grade dialog
+$('#how_we_grade').click(function(){$('a.about_dialog').click(); $('.about_dialog').find('button:eq(3)').click(); });
 			
 			
  });

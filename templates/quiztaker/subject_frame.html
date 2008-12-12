@@ -1,0 +1,15 @@
+<div id="subject_{{ forloop.counter }}" class="proficiency_pic selection_box subject_preview">
+
+      <ol class="sliderContent" id="subject_{{ forloop.counter }}Content">
+      {% for img in p.images %}
+                        <li class="bigsliderImage subject_{{ forloop.parentloop.counter }}Image">
+                            <img src="{{ http_host }}/image/subject/?img_id={{ img.key }}&size=large"/>
+                            <span class="slider img_{% cycle top,bottom %}">
+                            <span class ="subject_header">{{ p.name }} </span>
+                            <span class="subject_description">{{ p.blurb }}</span>
+                            </span>
+                        </li>
+{% endfor %}
+                        <div class="clear award_{{ forloop.counter }}Image"></div>
+                    </ol>
+</div>

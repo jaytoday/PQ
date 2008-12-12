@@ -22,7 +22,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y1CsM", 
                         "date": {}, 
-                        "content": "Classes begin with one or more constructors.    In Python these must be declared with the name __init(self)__  they may also take parameters. <div class='focus'>  These are the functions that build new objects of a<br/><span id='blank'></span>type.</div>"
+                        "content": "Classes begin with one or more constructors.    In Python these must be declared with the name __init(self)__  they may also take parameters. <div class=\"focus\">  These are the functions that build new objects of a<br/><span id=\"blank\"></span>type.</div>"
                     }, 
                     {
                         "index": "rdfa", 
@@ -47,7 +47,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y1SsM", 
                         "date": {}, 
-                        "content": "If one wishes to use microformat-style embedding but the type of data one wishes to embed does not map to an existing microformat, <div class='focus'> one can use   <span id='blank'></span>to embed </div> arbitrary vocabularies into HTML."
+                        "content": "If one wishes to use microformat-style embedding but the type of data one wishes to embed does not map to an existing microformat, <div class=\"focus\"> one can use   <span id=\"blank\"></span>to embed </div> arbitrary vocabularies into HTML."
                     }, 
                     {
                         "index": "quirks mode", 
@@ -72,7 +72,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y1isM", 
                         "date": {}, 
-                        "content": "<div class='focus'><span id='blank'></span>  refers to a technique </div> used by some web browsers for the sake of maintaining backwards compatibility with web pages designed for older browsers, instead of strictly complying with W3C and IETF standards in standards mode. "
+                        "content": "<div class=\"focus\"><span id=\"blank\"></span>  refers to a technique </div> used by some web browsers for the sake of maintaining backwards compatibility with web pages designed for older browsers, instead of strictly complying with W3C and IETF standards in standards mode. "
                     }, 
                     {
                         "index": "eval()", 
@@ -97,7 +97,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y1ysM", 
                         "date": {}, 
-                        "content": "<div class='focus'>JavaScript includes a <span id='blank'></span> function</div> that can execute statements provided as strings at run-time."
+                        "content": "<div class=\"focus\">JavaScript includes a <span id=\"blank\"></span> function</div> that can execute statements provided as strings at run-time."
                     }, 
                     {
                         "index": "DOM", 
@@ -122,7 +122,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y2CsM", 
                         "date": {}, 
-                        "content": "You may use JavaScript to modify the <div class='focus'><span id='blank'></span> and alter the page</div> you're viewing to suit your preferences. "
+                        "content": "You may use JavaScript to modify the <div class=\"focus\"><span id=\"blank\"></span> and alter the page</div> you're viewing to suit your preferences. "
                     }, 
                     {
                         "index": "iterator", 
@@ -147,7 +147,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y2SsM", 
                         "date": {}, 
-                        "content": "In Python 3000, xrange() is replaced with a new range() function. The new range() <div class='focus'>will return a <span id='blank'></span> instead of a list.</div> "
+                        "content": "In Python 3000, xrange() is replaced with a new range() function. The new range() <div class=\"focus\">will return a <span id=\"blank\"></span> instead of a list.</div> "
                     }, 
                     {
                         "index": "array-slicing", 
@@ -172,7 +172,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y2isM", 
                         "date": {}, 
-                        "content": "<div class='focus'>  Use Python's <span id='blank'></span>syntax to limit your QuerySet</div>to a certain number of results. This is the equivalent of SQL's LIMIT and OFFSET clauses. "
+                        "content": "<div class=\"focus\">  Use Python's <span id=\"blank\"></span>syntax to limit your QuerySet</div>to a certain number of results. This is the equivalent of SQL's LIMIT and OFFSET clauses. "
                     }, 
                     {
                         "index": "is_ authenticated()", 
@@ -197,7 +197,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y2ysM", 
                         "date": {}, 
-                        "content": " If a user isn't currently logged in, request.user will be set to an instance of AnonymousUser.<div class='focus'>   You can tell them apart with <span id='blank'> </span></div> "
+                        "content": " If a user isn't currently logged in, request.user will be set to an instance of AnonymousUser.<div class=\"focus\">   You can tell them apart with <span id=\"blank\"> </span></div> "
                     }, 
                     {
                         "index": "beautiful soup", 
@@ -222,7 +222,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y3CsM", 
                         "date": {}, 
-                        "content": " <div class='focus'>  <span id='blank'> </span>is a library for parsing a web page and building a structured representation.</div> It allows you to access any element of the page by type, ID, or any of its properties, and get a string representation of its contents. "
+                        "content": " <div class=\"focus\">  <span id=\"blank\"> </span>is a library for parsing a web page and building a structured representation.</div> It allows you to access any element of the page by type, ID, or any of its properties, and get a string representation of its contents. "
                     }, 
                     {
                         "index": "transport", 
@@ -247,7 +247,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y3SsM", 
                         "date": {}, 
-                        "content": "<div class='focus'>  The request is made through a hidden IFRAME or XHR object, called the<br/> <span id='blank'></span>. </div>Since it's asynchronous, you don't know when the request is going to complete, so you create a callback..."
+                        "content": "<div class=\"focus\">  The request is made through a hidden IFRAME or XHR object, called the<br/> <span id=\"blank\"></span>. </div>Since it's asynchronous, you don't know when the request is going to complete, so you create a callback..."
                     }, 
                     {
                         "index": "bayesians", 
@@ -272,7 +272,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y3isM", 
                         "date": {}, 
-                        "content": "Frequentists assign probabilities to random events according to their frequencies of occurrence or to subsets of populations as proportions of the whole, <div class='focus'>  while <span id='blank'></span> describe probabilities in terms of beliefs and degrees of uncertainty.</div>"
+                        "content": "Frequentists assign probabilities to random events according to their frequencies of occurrence or to subsets of populations as proportions of the whole, <div class=\"focus\">  while <span id=\"blank\"></span> describe probabilities in terms of beliefs and degrees of uncertainty.</div>"
                     }, 
                     {
                         "index": "pearson correlation", 
@@ -297,7 +297,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y3ysM", 
                         "date": {}, 
-                        "content": "In a social network, a particular user's neighborhood with similar taste or interest <div class='focus'>  can be found by calculating <span id='blank'> </span></div>by collecting the preference data of top-N nearest neighbors of the particular user"
+                        "content": "In a social network, a particular user's neighborhood with similar taste or interest <div class=\"focus\">  can be found by calculating <span id=\"blank\"> </span></div>by collecting the preference data of top-N nearest neighbors of the particular user"
                     }, 
                     {
                         "index": "correlation", 
@@ -322,7 +322,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y4CsM", 
                         "date": {}, 
-                        "content": "Cronbach's alpha will generally increase<div class='focus'>  when the <span id='blank'>  </span> between </div>the items increase."
+                        "content": "Cronbach's alpha will generally increase<div class=\"focus\">  when the <span id=\"blank\">  </span> between </div>the items increase."
                     }, 
                     {
                         "index": "K-means", 
@@ -347,7 +347,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y4SsM", 
                         "date": {}, 
-                        "content": "<div class='focus'>  <span id='blank'> </span>clustering begins with k randomly placed centroids </div> and assigns every item to the nearest one."
+                        "content": "<div class=\"focus\">  <span id=\"blank\"> </span>clustering begins with k randomly placed centroids </div> and assigns every item to the nearest one."
                     }, 
                     {
                         "index": "regression", 
@@ -372,7 +372,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y4isM", 
                         "date": {}, 
-                        "content": "<div class='focus'> because locally weighted  <span id='blank'> </span></div>is a non-parametric algorithm every time you make a prediction you need to fit theta to your entire training set again."
+                        "content": "<div class=\"focus\"> because locally weighted  <span id=\"blank\"> </span></div>is a non-parametric algorithm every time you make a prediction you need to fit theta to your entire training set again."
                     }, 
                     {
                         "index": "good-turing", 
@@ -397,7 +397,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y4ysM", 
                         "date": {}, 
-                        "content": "<div class='focus'> The <span id='blank'> </span> discounted count of the bigram</div>combined with an estimate from a unigram count, are re-normalized to get a probability distribution. "
+                        "content": "<div class=\"focus\"> The <span id=\"blank\"> </span> discounted count of the bigram</div>combined with an estimate from a unigram count, are re-normalized to get a probability distribution. "
                     }, 
                     {
                         "index": "gradient", 
@@ -422,7 +422,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y5CsM", 
                         "date": {}, 
-                        "content": "If you implement Bayesian logistic regression .<div class='focus'> and implement <span id='blank'> </span> descent,</div> 20 percent test error is unacceptably high."
+                        "content": "If you implement Bayesian logistic regression .<div class=\"focus\"> and implement <span id=\"blank\"> </span> descent,</div> 20 percent test error is unacceptably high."
                     }, 
                     {
                         "index": "analysis", 
@@ -447,7 +447,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y5SsM", 
                         "date": {}, 
-                        "content": "<div class='focus'>In Gaussian's Discriminant  <span id='blank'> </span>,</div> you usually model all of the crosses to the same covariant matrix sigma."
+                        "content": "<div class=\"focus\">In Gaussian's Discriminant  <span id=\"blank\"> </span>,</div> you usually model all of the crosses to the same covariant matrix sigma."
                     }, 
                     {
                         "index": "dijkstra's", 
@@ -472,7 +472,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y5isM", 
                         "date": {}, 
-                        "content": " For a given source vertex in the graph, <div class='focus'> <span id='blank'> </span> algorithm finds the path with lowest cost</div> (i.e. the shortest path) between that vertex and every other vertex."
+                        "content": " For a given source vertex in the graph, <div class=\"focus\"> <span id=\"blank\"> </span> algorithm finds the path with lowest cost</div> (i.e. the shortest path) between that vertex and every other vertex."
                     }, 
                     {
                         "index": "clustering", 
@@ -497,7 +497,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y5ysM", 
                         "date": {}, 
-                        "content": "Graphs can be classified according to two independent structural features:  <div class='focus'>the  <span id='blank'> </span> coefficient</div> and average node-to-node distance."
+                        "content": "Graphs can be classified according to two independent structural features:  <div class=\"focus\">the  <span id=\"blank\"> </span> coefficient</div> and average node-to-node distance."
                     }, 
                     {
                         "index": "ethanol fuel", 
@@ -522,7 +522,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y6CsM", 
                         "date": {}, 
-                        "content": "Brazil has one of the largest renewable energy programs in the world,<div class='focus'> involving production of <br/> <span id='blank'></span> from sugar cane. </div>"
+                        "content": "Brazil has one of the largest renewable energy programs in the world,<div class=\"focus\"> involving production of <br/> <span id=\"blank\"></span> from sugar cane. </div>"
                     }, 
                     {
                         "index": "EPEAT", 
@@ -547,7 +547,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y6SsM", 
                         "date": {}, 
-                        "content": "<div class='focus'>  <span id='blank'> </span> helps public and private sector purchasers </div> evaluate, compare, and choose computers, notebooks, and monitors based on environmental attributes."
+                        "content": "<div class=\"focus\">  <span id=\"blank\"> </span> helps public and private sector purchasers </div> evaluate, compare, and choose computers, notebooks, and monitors based on environmental attributes."
                     }, 
                     {
                         "index": "photovoltaic", 
@@ -572,7 +572,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y6isM", 
                         "date": {}, 
-                        "content": "<div class='focus'>  <span id='blank'> </span></div> systems are based on solar electric cells, which convert solar radiation directly into electricity."
+                        "content": "<div class=\"focus\">  <span id=\"blank\"> </span></div> systems are based on solar electric cells, which convert solar radiation directly into electricity."
                     }, 
                     {
                         "index": "fossil fuels", 
@@ -597,7 +597,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y6ysM", 
                         "date": {}, 
-                        "content": "Traditionally electrical power <div class='focus'> has been generated from <span id='blank'> </span></div> in large, centralized plants. Large-scale ambient energy, such as sun, wind and tides, is widely available but trickier to harvest.  "
+                        "content": "Traditionally electrical power <div class=\"focus\"> has been generated from <span id=\"blank\"> </span></div> in large, centralized plants. Large-scale ambient energy, such as sun, wind and tides, is widely available but trickier to harvest.  "
                     }, 
                     {
                         "index": "heterotrophs", 
@@ -622,7 +622,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y7CsM", 
                         "date": {}, 
-                        "content": "<i> What two things are required by every organism for growth? </i>A source of organic carbon and a source of electrons. Energy is also required. Synthesizers get their energy input from the sun or thermal energy.<br/><div class='focus'> <span id='blank'></span> get energy from organic carbon.</div>"
+                        "content": "<i> What two things are required by every organism for growth? </i>A source of organic carbon and a source of electrons. Energy is also required. Synthesizers get their energy input from the sun or thermal energy.<br/><div class=\"focus\"> <span id=\"blank\"></span> get energy from organic carbon.</div>"
                     }, 
                     {
                         "index": "kyoto protocol", 
@@ -647,7 +647,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y7SsM", 
                         "date": {}, 
-                        "content": "I am not against global climate treaties, <div class='focus'>  like the <span id='blank'></span></div> but I think their chances of having the impact that their advocates predict are slim."
+                        "content": "I am not against global climate treaties, <div class=\"focus\">  like the <span id=\"blank\"></span></div> but I think their chances of having the impact that their advocates predict are slim."
                     }, 
                     {
                         "index": "porter", 
@@ -672,7 +672,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y7isM", 
                         "date": {}, 
-                        "content": "Probably the most oft-cited theory about the relationship between enviromental regulation and innovation <div class='focus'>  is the '<span id='blank'> </span> hypothesis', first expounded </div> by the Harvard Business School professor Michael Porter in 1991. "
+                        "content": "Probably the most oft-cited theory about the relationship between enviromental regulation and innovation <div class=\"focus\">  is the '<span id=\"blank\"> </span> hypothesis', first expounded </div> by the Harvard Business School professor Michael Porter in 1991. "
                     }, 
                     {
                         "index": "seer 13", 
@@ -697,7 +697,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y7ysM", 
                         "date": {}, 
-                        "content": "In 2004, the U.S. Court of Appeals for the Second Circuit directed the U.S. Department of Energy<div class='focus'> to reinstate the<span id='blank'> </span> standard</div> for central air conditioners."
+                        "content": "In 2004, the U.S. Court of Appeals for the Second Circuit directed the U.S. Department of Energy<div class=\"focus\"> to reinstate the<span id=\"blank\"> </span> standard</div> for central air conditioners."
                     }, 
                     {
                         "index": "genetic", 
@@ -722,7 +722,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y8CsM", 
                         "date": {}, 
-                        "content": "A September 14, 2007 study conducted by the National Science Foundation found that<div class='focus'> biodiversity and  <span id='blank'> </span> diversity </div>  are dependent upon each other."
+                        "content": "A September 14, 2007 study conducted by the National Science Foundation found that<div class=\"focus\"> biodiversity and  <span id=\"blank\"> </span> diversity </div>  are dependent upon each other."
                     }, 
                     {
                         "index": "gaia", 
@@ -747,7 +747,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y8SsM", 
                         "date": {}, 
-                        "content": "The<div class='focus'><span id='blank'> </span> hypothesis proposes that </div> the biosphere and the physical components of the Earth are coupled to form a complex interacting system."
+                        "content": "The<div class=\"focus\"><span id=\"blank\"> </span> hypothesis proposes that </div> the biosphere and the physical components of the Earth are coupled to form a complex interacting system."
                     }, 
                     {
                         "index": "VoIP", 
@@ -772,7 +772,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y8isM", 
                         "date": {}, 
-                        "content": "A small but growing number of sites are starting to offer plans on a 'Pay per call' basis. <div class='focus'>  The user can click a button to place a <br/><span id='blank'></span></div>call, or to request a call from the advertiser. "
+                        "content": "A small but growing number of sites are starting to offer plans on a 'Pay per call' basis. <div class=\"focus\">  The user can click a button to place a <br/><span id=\"blank\"></span></div>call, or to request a call from the advertiser. "
                     }, 
                     {
                         "index": "consulting", 
@@ -797,7 +797,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y8ysM", 
                         "date": {}, 
-                        "content": "The upshot is, you can choose your pain: either the short, sharp pain of raising money, <br/><div class='focus'> or the chronic ache of <span id='blank'></span>.</div>"
+                        "content": "The upshot is, you can choose your pain: either the short, sharp pain of raising money, <br/><div class=\"focus\"> or the chronic ache of <span id=\"blank\"></span>.</div>"
                     }, 
                     {
                         "index": "one-click", 
@@ -822,7 +822,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y9CsM", 
                         "date": {}, 
-                        "content": "<div class='focus'> The problem with Amazon's notorious<span id='blank'></span> patent</div>for example, is not that it's a software patent, but that it's obvious."
+                        "content": "<div class=\"focus\"> The problem with Amazon's notorious<span id=\"blank\"></span> patent</div>for example, is not that it's a software patent, but that it's obvious."
                     }, 
                     {
                         "index": "valuations", 
@@ -847,7 +847,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y9SsM", 
                         "date": {}, 
-                        "content": "<div class='focus'> Since <span id='blank'></span> are made up</div>founders shouldn't care too much about them. That's not the part to focus on."
+                        "content": "<div class=\"focus\"> Since <span id=\"blank\"></span> are made up</div>founders shouldn't care too much about them. That's not the part to focus on."
                     }, 
                     {
                         "index": "antitrust", 
@@ -872,7 +872,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y9isM", 
                         "date": {}, 
-                        "content": "<div class='focus'> Investing is not covered by <span id='blank'></span> law.</div>At least, it better not be, because investors regularly do things that would be illegal otherwise."
+                        "content": "<div class=\"focus\"> Investing is not covered by <span id=\"blank\"></span> law.</div>At least, it better not be, because investors regularly do things that would be illegal otherwise."
                     }, 
                     {
                         "index": "Sub-S", 
@@ -897,7 +897,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y9ysM", 
                         "date": {}, 
-                        "content": "<div class='focus'>A <span id='blank'></span> is typically substantially more favorable on an after tax basis</div>(including use of dividends to offset wage income to shareholders) and operates with much more settled law."
+                        "content": "<div class=\"focus\">A <span id=\"blank\"></span> is typically substantially more favorable on an after tax basis</div>(including use of dividends to offset wage income to shareholders) and operates with much more settled law."
                     }, 
                     {
                         "index": "preferred", 
@@ -922,7 +922,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y-CsM", 
                         "date": {}, 
-                        "content": "<div class='focus'> <span id='blank'> </span>shares in the U.S. normally carry a call provision, </div>enabling the issuing corporation to repurchase the share at its (usually limited) discretion."
+                        "content": "<div class=\"focus\"> <span id=\"blank\"> </span>shares in the U.S. normally carry a call provision, </div>enabling the issuing corporation to repurchase the share at its (usually limited) discretion."
                     }, 
                     {
                         "index": "takeover", 
@@ -947,7 +947,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y-SsM", 
                         "date": {}, 
-                        "content": "'Poison pill' is sometimes used more broadly<div class='focus'>  to describe other types of<span id='blank'> </span> defenses that involve </div>the target taking some action that harms both target and bidder."
+                        "content": "'Poison pill' is sometimes used more broadly<div class=\"focus\">  to describe other types of<span id=\"blank\"> </span> defenses that involve </div>the target taking some action that harms both target and bidder."
                     }, 
                     {
                         "index": "convertible", 
@@ -972,7 +972,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y-isM", 
                         "date": {}, 
-                        "content": "<div class='focus'>A <span id='blank'> </span> bond can be converted</div>into shares of stock in the issuing company, usually at some pre-announced ratio."
+                        "content": "<div class=\"focus\">A <span id=\"blank\"> </span> bond can be converted</div>into shares of stock in the issuing company, usually at some pre-announced ratio."
                     }, 
                     {
                         "index": "capital gain", 
@@ -997,7 +997,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y-ysM", 
                         "date": {}, 
-                        "content": "Ordinary income is usually characterized <div class='focus'> as income other than<span id='blank'> </span> </div>"
+                        "content": "Ordinary income is usually characterized <div class=\"focus\"> as income other than<span id=\"blank\"> </span> </div>"
                     }, 
                     {
                         "index": "Data modeling", 
@@ -1026,7 +1026,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y_CsM", 
                         "date": {}, 
-                        "content": "<div class='focus'><span  id=\"blank\"></span>shares a lineage</div> with other methods for describing things, like the taxonomy of animal species, but can be applied to everything from birds and insects to cars and comedians. "
+                        "content": "<div class=\"focus\"><span  id=\"blank\"></span>shares a lineage</div> with other methods for describing things, like the taxonomy of animal species, but can be applied to everything from birds and insects to cars and comedians. "
                     }, 
                     {
                         "index": "type", 
@@ -1055,7 +1055,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y_SsM", 
                         "date": {}, 
-                        "content": "  Very often, property names only make sense <div class='focus'>when the <span  id=\"blank\"></span> is known.</div>  For instance, in the Film type, it is enough to for a property to say \"Budget\" since it is understood it is the budget of a Film."
+                        "content": "  Very often, property names only make sense <div class=\"focus\">when the <span  id=\"blank\"></span> is known.</div>  For instance, in the Film type, it is enough to for a property to say \"Budget\" since it is understood it is the budget of a Film."
                     }, 
                     {
                         "index": "properties", 
@@ -1084,7 +1084,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y_isM", 
                         "date": {}, 
-                        "content": "  Cross-typing also provides similar capability to object inheritance.  Although Metaweb does not support inheritance directly, types can declare other types they depend on <div class='focus'>that include <span id=\"blank\"></span></div> that normally would be expected."
+                        "content": "  Cross-typing also provides similar capability to object inheritance.  Although Metaweb does not support inheritance directly, types can declare other types they depend on <div class=\"focus\">that include <span id=\"blank\"></span></div> that normally would be expected."
                     }, 
                     {
                         "index": "full objects", 
@@ -1113,7 +1113,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y_ysM", 
                         "date": {}, 
-                        "content": " In a relational system, it might be more convenient to assign string literals as property values.  In Metaweb however, it's just as easy to make them <div class='focus'><span  id=\"blank\"></span> with significant benefits.</div> "
+                        "content": " In a relational system, it might be more convenient to assign string literals as property values.  In Metaweb however, it's just as easy to make them <div class=\"focus\"><span  id=\"blank\"></span> with significant benefits.</div> "
                     }, 
                     {
                         "index": "domain", 
@@ -1142,7 +1142,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YgCwM", 
                         "date": {}, 
-                        "content": "    The most interesting aspect of Arnold's topic is that it includes a user-created type, Impersonated Celebrity, from <div class='focus'> the user-created <span  id=\"blank\"></span> of American Comedy.</div> "
+                        "content": "    The most interesting aspect of Arnold's topic is that it includes a user-created type, Impersonated Celebrity, from <div class=\"focus\"> the user-created <span  id=\"blank\"></span> of American Comedy.</div> "
                     }, 
                     {
                         "index": "topic", 
@@ -1171,7 +1171,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YgSwM", 
                         "date": {}, 
-                        "content": "The most important concept behind types is that new or existing types can be <div class='focus'> added to a <span id=\"blank\"></span></div> in order to provide additional information about it and to add it to another domain. "
+                        "content": "The most important concept behind types is that new or existing types can be <div class=\"focus\"> added to a <span id=\"blank\"></span></div> in order to provide additional information about it and to add it to another domain. "
                     }, 
                     {
                         "index": "query", 
@@ -1200,7 +1200,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YgiwM", 
                         "date": {}, 
-                        "content": "<div class='focus'> The <span  id=\"blank\"></span> Editor provides an easy way</div> to go through the process of creating the set of properties, also known as the schema, that constitute the essential information about a type.  "
+                        "content": "<div class=\"focus\"> The <span  id=\"blank\"></span> Editor provides an easy way</div> to go through the process of creating the set of properties, also known as the schema, that constitute the essential information about a type.  "
                     }, 
                     {
                         "index": "write", 
@@ -1229,7 +1229,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YgywM", 
                         "date": {}, 
-                        "content": " You can use the Query Editor to <div class='focus'> perform <span  id=\"blank\"></span> operations</div> that insert new information into the Freebase database. "
+                        "content": " You can use the Query Editor to <div class=\"focus\"> perform <span  id=\"blank\"></span> operations</div> that insert new information into the Freebase database. "
                     }, 
                     {
                         "index": "ASCII", 
@@ -1258,7 +1258,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YhCwM", 
                         "date": {}, 
-                        "content": "The value property of a key must be <div class='focus'> a string of <span  id=\"blank\"></span> characters,</div> and may include letters, numbers, underscores, hyphens and dollar signs."
+                        "content": "The value property of a key must be <div class=\"focus\"> a string of <span  id=\"blank\"></span> characters,</div> and may include letters, numbers, underscores, hyphens and dollar signs."
                     }, 
                     {
                         "index": "group", 
@@ -1287,7 +1287,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YhSwM", 
                         "date": {}, 
-                        "content": " The /type/object type exists simply as a convenient placeholder. It serves to <div class='focus'> <span  id=\"blank\"></span> the /type/ property objects</div> that represent the common object properties.\n\n  "
+                        "content": " The /type/object type exists simply as a convenient placeholder. It serves to <div class=\"focus\"> <span  id=\"blank\"></span> the /type/ property objects</div> that represent the common object properties.\n\n  "
                     }, 
                     {
                         "index": "humans", 
@@ -1316,7 +1316,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YhiwM", 
                         "date": {}, 
-                        "content": "In order to make the data structure <div class='focus'> more understandable to <span  id=\"blank\"></span></div> , Metaweb allows us to view the graph through an object-oriented lens. "
+                        "content": "In order to make the data structure <div class=\"focus\"> more understandable to <span  id=\"blank\"></span></div> , Metaweb allows us to view the graph through an object-oriented lens. "
                     }, 
                     {
                         "index": "usergroups", 
@@ -1345,7 +1345,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YhywM", 
                         "date": {}, 
-                        "content": " Every object has a permission property that refers to a /type/permission object. The permission object <div class='focus'> specifies a set of <span  id=\"blank\"></span></div> whose members have permission to modify the object.\n\n"
+                        "content": " Every object has a permission property that refers to a /type/permission object. The permission object <div class=\"focus\"> specifies a set of <span  id=\"blank\"></span></div> whose members have permission to modify the object.\n\n"
                     }, 
                     {
                         "index": "namespaces", 
@@ -1374,7 +1374,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YiCwM", 
                         "date": {}, 
-                        "content": "A number of <div class='focus'> important <span  id=\"blank\"></span> are populated</div> with pre-defined objects using names defined by international standards. The languages in /lang use language codes defined by ISO 639. The media types in /media_type are defined by IANA. "
+                        "content": "A number of <div class=\"focus\"> important <span  id=\"blank\"></span> are populated</div> with pre-defined objects using names defined by international standards. The languages in /lang use language codes defined by ISO 639. The media types in /media_type are defined by IANA. "
                     }, 
                     {
                         "index": "containedby", 
@@ -1403,7 +1403,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YiSwM", 
                         "date": {}, 
-                        "content": "  When creating /location/ location topics the idea is to provide (at least) two levels of hierarchical <div class='focus'> containment in the <span  id=\"blank\"></span> property</div>.  For example, in the US, cities should specify what county they are in as well as what state they are contained in.    "
+                        "content": "  When creating /location/ location topics the idea is to provide (at least) two levels of hierarchical <div class=\"focus\"> containment in the <span  id=\"blank\"></span> property</div>.  For example, in the US, cities should specify what county they are in as well as what state they are contained in.    "
                     }, 
                     {
                         "index": "schema", 
@@ -1432,7 +1432,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YiiwM", 
                         "date": {}, 
-                        "content": "If you have a large amount of data that you want to load into Freebase you should <div class='focus'> first have a <span  id=\"blank\"></span>  designed</div> for it.   You should also take a look at the topics listed under  Content Guidelines and Policies  to make sure your data is appropriate for Freebase. "
+                        "content": "If you have a large amount of data that you want to load into Freebase you should <div class=\"focus\"> first have a <span  id=\"blank\"></span>  designed</div> for it.   You should also take a look at the topics listed under  Content Guidelines and Policies  to make sure your data is appropriate for Freebase. "
                     }, 
                     {
                         "index": "javascript", 
@@ -1461,7 +1461,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YiywM", 
                         "date": {}, 
-                        "content": " <div class='focus'> Mjt  is a <span  id=\"blank\"></span> application framework</div> that runs entirely in a web browser, based on a templating engine. "
+                        "content": " <div class=\"focus\"> Mjt  is a <span  id=\"blank\"></span> application framework</div> that runs entirely in a web browser, based on a templating engine. "
                     }, 
                     {
                         "index": "jsonp", 
@@ -1490,7 +1490,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YjCwM", 
                         "date": {}, 
-                        "content": "Mjt is particularly useful with<div class='focus'>  <span  id=\"blank\"></span>   services that return  JSON  values</div> and accept a   callback=   parameter, such as the  Freebase  service and the  Yahoo JSON API .  With these services you can use mjt to build \"mash-ups\" that incorporate data from services on multiple hosts."
+                        "content": "Mjt is particularly useful with<div class=\"focus\">  <span  id=\"blank\"></span>   services that return  JSON  values</div> and accept a   callback=   parameter, such as the  Freebase  service and the  Yahoo JSON API .  With these services you can use mjt to build \"mash-ups\" that incorporate data from services on multiple hosts."
                     }, 
                     {
                         "index": "hosts", 
@@ -1519,7 +1519,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YjSwM", 
                         "date": {}, 
-                        "content": "The primary mechanism for fetching data is  the dynamic  &lt;script  src=\"\"&gt; tag. This has the advantage that it can be used to fetch data from <div class='focus'>services on other <span  id=\"blank\"></span>.</div> "
+                        "content": "The primary mechanism for fetching data is  the dynamic  &lt;script  src=\"\"&gt; tag. This has the advantage that it can be used to fetch data from <div class=\"focus\">services on other <span  id=\"blank\"></span>.</div> "
                     }, 
                     {
                         "index": "clone", 
@@ -1548,7 +1548,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YjiwM", 
                         "date": {}, 
-                        "content": "A major feature of the application editor is <div class='focus'> the ability to <span id=\"blank\"></span> or import files</div> from applications created by you or other users. If you're a novice developer this is an easy way to bring working code into your own applications. "
+                        "content": "A major feature of the application editor is <div class=\"focus\"> the ability to <span id=\"blank\"></span> or import files</div> from applications created by you or other users. If you're a novice developer this is an easy way to bring working code into your own applications. "
                     }, 
                     {
                         "index": "error", 
@@ -1577,7 +1577,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YjywM", 
                         "date": {}, 
-                        "content": "If an Acre script exits before calling acre.start_response(), a <div class='focus'> <span  id=\"blank\"></span>  response is generated. </div> "
+                        "content": "If an Acre script exits before calling acre.start_response(), a <div class=\"focus\"> <span  id=\"blank\"></span>  response is generated. </div> "
                     }, 
                     {
                         "index": "scaffolding", 
@@ -1606,7 +1606,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YkCwM", 
                         "date": {}, 
-                        "content": "<div class='focus'> Rails provides <span id=\"blank\"></span></div> which can automatically construct some of the models and views needed for a basic website."
+                        "content": "<div class=\"focus\"> Rails provides <span id=\"blank\"></span></div> which can automatically construct some of the models and views needed for a basic website."
                     }, 
                     {
                         "index": "configuration", 
@@ -1635,7 +1635,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YkSwM", 
                         "date": {}, 
-                        "content": "<div class='focus'>   \"Convention over <span id=\"blank\"></span>\" </div>means a developer only needs to specify unconventional aspects of the application."
+                        "content": "<div class=\"focus\">   \"Convention over <span id=\"blank\"></span>\" </div>means a developer only needs to specify unconventional aspects of the application."
                     }, 
                     {
                         "index": "ruby", 
@@ -1664,7 +1664,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YkiwM", 
                         "date": {}, 
-                        "content": "After version 2.0,on Rails by default <div class='focus'> offers both  HTML  and  <span id=\"blank\"></span>  as output format.</div> The latter is the facility for RESTful web services."
+                        "content": "After version 2.0,on Rails by default <div class=\"focus\"> offers both  HTML  and  <span id=\"blank\"></span>  as output format.</div> The latter is the facility for RESTful web services."
                     }, 
                     {
                         "index": "html", 
@@ -1693,7 +1693,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YkywM", 
                         "date": {}, 
-                        "content": " Rails views are where we leave Ruby code. Rails contains a very nice template language for .rhtml files that <div class='focus'> combines pure<span id=\"blank\"></span>with embedded Ruby code.</div> "
+                        "content": " Rails views are where we leave Ruby code. Rails contains a very nice template language for .rhtml files that <div class=\"focus\"> combines pure<span id=\"blank\"></span>with embedded Ruby code.</div> "
                     }, 
                     {
                         "index": "html", 
@@ -1722,7 +1722,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YlCwM", 
                         "date": {}, 
-                        "content": "  RHTML  is a true template format -- <div class='focus'> not simply a way of embedding code in<span id=\"blank\"></span>--</div> and this is a much more powerful approach.  "
+                        "content": "  RHTML  is a true template format -- <div class=\"focus\"> not simply a way of embedding code in<span id=\"blank\"></span>--</div> and this is a much more powerful approach.  "
                     }, 
                     {
                         "index": "html", 
@@ -1751,7 +1751,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YlSwM", 
                         "date": {}, 
-                        "content": "A template engine <div class='focus'> adds a custom set of tags to<span id=\"blank\">HTML</span></div>that allows you to express conditions, loops, and other logic as part of the enhanced markup. "
+                        "content": "A template engine <div class=\"focus\"> adds a custom set of tags to<span id=\"blank\">HTML</span></div>that allows you to express conditions, loops, and other logic as part of the enhanced markup. "
                     }, 
                     {
                         "index": "controllers", 
@@ -1780,7 +1780,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YliwM", 
                         "date": {}, 
-                        "content": " <div class='focus'> <span id=\"blank\"></span> carry out your application logic in its abstract form.</div> That is, the Ruby scripts in an application's app/controllers/ directory will load model data into variables, save it back, and massage and manipulate it.  "
+                        "content": " <div class=\"focus\"> <span id=\"blank\"></span> carry out your application logic in its abstract form.</div> That is, the Ruby scripts in an application's app/controllers/ directory will load model data into variables, save it back, and massage and manipulate it.  "
                     }, 
                     {
                         "index": "model", 
@@ -1809,7 +1809,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YlywM", 
                         "date": {}, 
-                        "content": "<div class='focus'>  The <span id=\"blank\"></span> part of a Rails application</div> is primarily the underlying database it uses.  In fact, in many ways a Rails application is just a way to perform manipulations on the data in a relational database management system."
+                        "content": "<div class=\"focus\">  The <span id=\"blank\"></span> part of a Rails application</div> is primarily the underlying database it uses.  In fact, in many ways a Rails application is just a way to perform manipulations on the data in a relational database management system."
                     }, 
                     {
                         "index": "activerecord", 
@@ -1838,7 +1838,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YmCwM", 
                         "date": {}, 
-                        "content": " <div class='focus'> A central component of Rails is the class  <span id=\"blank\"></span>,</div> which maps relational tables to Ruby objects and thereby to the data manipulated by controllers and shown in views.  "
+                        "content": " <div class=\"focus\"> A central component of Rails is the class  <span id=\"blank\"></span>,</div> which maps relational tables to Ruby objects and thereby to the data manipulated by controllers and shown in views.  "
                     }, 
                     {
                         "index": "auto_increment", 
@@ -1867,7 +1867,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YmSwM", 
                         "date": {}, 
-                        "content": "When you create a table, Rails wants it to be plural. Not  story , but  stories . <div class='focus'> And it wants the  <span id=\"blank\"></span> primary key  column</div> to always be called  id, case sensitive. "
+                        "content": "When you create a table, Rails wants it to be plural. Not  story , but  stories . <div class=\"focus\"> And it wants the  <span id=\"blank\"></span> primary key  column</div> to always be called  id, case sensitive. "
                     }, 
                     {
                         "index": "class", 
@@ -1896,7 +1896,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YmiwM", 
                         "date": {}, 
-                        "content": "All the programmer needs to do is to <div class='focus'> subclass the ActiveRecord::Base <span id=\"blank\"></span>,</div> and the program will automatically figure out which RDBMS table to use and what columns the table has."
+                        "content": "All the programmer needs to do is to <div class=\"focus\"> subclass the ActiveRecord::Base <span id=\"blank\"></span>,</div> and the program will automatically figure out which RDBMS table to use and what columns the table has."
                     }, 
                     {
                         "index": "action pack", 
@@ -1925,7 +1925,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YmywM", 
                         "date": {}, 
-                        "content": "The underlying view code is <div class='focus'> part of the <span id=\"blank\">Action Pack</span></div>. "
+                        "content": "The underlying view code is <div class=\"focus\"> part of the <span id=\"blank\">Action Pack</span></div>. "
                     }, 
                     {
                         "index": "validation", 
@@ -2012,7 +2012,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YniwM", 
                         "date": {}, 
-                        "content": " The character set used in the Ruby source files for the current implementation <div class='focus'> is based on <span id=\"blank\"></span></div>.  "
+                        "content": " The character set used in the Ruby source files for the current implementation <div class=\"focus\"> is based on <span id=\"blank\"></span></div>.  "
                     }, 
                     {
                         "index": "#", 
@@ -2041,7 +2041,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YnywM", 
                         "date": {}, 
-                        "content": "<div class='focus'> Ruby comments start with \" <span id=\"blank\">#</span> \" </div>outside of a string or character literal  and all following text until the end of the line. "
+                        "content": "<div class=\"focus\"> Ruby comments start with \" <span id=\"blank\">#</span> \" </div>outside of a string or character literal  and all following text until the end of the line. "
                     }, 
                     {
                         "index": "ruby", 
@@ -2070,7 +2070,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YoCwM", 
                         "date": {}, 
-                        "content": " If the Ruby interpreter encounters a line beginning with  =begin , it skips that line and all remaining lines through and including a line <div class='focus'> that begins with  <span id=\"blank\">=end</span>.</div> "
+                        "content": " If the Ruby interpreter encounters a line beginning with  =begin , it skips that line and all remaining lines through and including a line <div class=\"focus\"> that begins with  <span id=\"blank\">=end</span>.</div> "
                     }, 
                     {
                         "index": "backslashes", 
@@ -2099,7 +2099,7 @@
                         "content_url": null, 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YoSwM", 
                         "date": {}, 
-                        "content": "Ruby programs are sequence of expressions. <div class='focus'>  <span id=\"blank\">Backslashes</span> at the end of line</div> does not terminate expression. "
+                        "content": "Ruby programs are sequence of expressions. <div class=\"focus\">  <span id=\"blank\">Backslashes</span> at the end of line</div> does not terminate expression. "
                     }, 
                     {
                         "index": "ruby", 
@@ -2128,7 +2128,7 @@
                         "content_url": "http://en.wikipedia.org/wiki/Ruby_MRI", 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YwCwM", 
                         "date": {}, 
-                        "content": " As there is currently no specification of the Ruby language, <div class='focus'> the <span style=\"opacity: 1;\" id=\"blank\"></span> implementation </div> is considered the  de facto  reference."
+                        "content": " As there is currently no specification of the Ruby language, <div class=\"focus\"> the <span style=\"opacity: 1;\" id=\"blank\"></span> implementation </div> is considered the  de facto  reference."
                     }, 
                     {
                         "index": "yarv", 
@@ -2157,7 +2157,7 @@
                         "content_url": "http://en.wikipedia.org/wiki/Ruby_MRI", 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0YwSwM", 
                         "date": {}, 
-                        "content": " The main developers have thrown their weight behind the virtual machine <div class='focus'> provided by the  <span style=\"opacity: 1;\" id=\"blank\"></span>  project,</div> which was  merged  into the Ruby  source  tree on  31 December  2006 , and  released  as part of Ruby 1.9."
+                        "content": " The main developers have thrown their weight behind the virtual machine <div class=\"focus\"> provided by the  <span style=\"opacity: 1;\" id=\"blank\"></span>  project,</div> which was  merged  into the Ruby  source  tree on  31 December  2006 , and  released  as part of Ruby 1.9."
                     }, 
                     {
                         "index": "fcgi", 
@@ -2186,7 +2186,7 @@
                         "content_url": "http://api.rubyonrails.org/files/README.html", 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y7CwM", 
                         "date": {}, 
-                        "content": "  It's possible to run  Rails  on <div class='focus'> any platform that supports <span style=\"opacity: 1;\" id=\"blank\"></span></div>. Apache, LiteSpeed, IIS are just a few."
+                        "content": "  It's possible to run  Rails  on <div class=\"focus\"> any platform that supports <span style=\"opacity: 1;\" id=\"blank\"></span></div>. Apache, LiteSpeed, IIS are just a few."
                     }, 
                     {
                         "index": "mongrel", 
@@ -2215,6 +2215,6 @@
                         "content_url": "http://api.rubyonrails.org/files/README.html", 
                         "key": "aghwbG9wcXVpenIPCxIIUXVpekl0ZW0Y7SwM", 
                         "date": {}, 
-                        "content": "<div class='focus'>  <span style=\"opacity: 1;\" id=\"blank\"></span> is a Ruby based webserver</div> with a C component (which requires compilation) that is suitable for development and deployment of  Rails  applications. "
+                        "content": "<div class=\"focus\">  <span style=\"opacity: 1;\" id=\"blank\"></span> is a Ruby based webserver</div> with a C component (which requires compilation) that is suitable for development and deployment of  Rails  applications. "
                     }
                 ]

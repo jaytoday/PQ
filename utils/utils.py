@@ -20,7 +20,7 @@ def tpl_path(template_file_name):
     return os.path.join(ROOT_PATH,
                         './templates', template_file_name)
 
-                        
+                    
 
 def login_text():
   # Construct Login/Logout Text.

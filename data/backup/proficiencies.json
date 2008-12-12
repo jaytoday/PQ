@@ -1,114 +1,182 @@
 [
                     {
-                        "date": {
-                            "ctime": "Mon Oct 27 22:50:49 2008"
+                        "status": "public", 
+                        "name": "Biofuels", 
+                        "modified": {
+                            "ctime": "Fri Dec 12 07:52:26 2008"
                         }, 
+                        "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEJpb2Z1ZWxzDA", 
+                        "date": {
+                            "ctime": "Sat Nov 22 08:31:49 2008"
+                        }, 
+                        "blurb": "Exciting advances in the conversion of biomass into fuel have made this environmentally-friendly production method into a Clean Tech poster child."
+                    }, 
+                    {
+                        "status": "private", 
                         "name": "Building Webapps", 
-                        "key": "aghwbG9wcXVpenIRCxILUHJvZmljaWVuY3kYHAw"
+                        "modified": {
+                            "ctime": "Fri Dec 12 07:52:26 2008"
+                        }, 
+                        "key": "aghwbG9wcXVpenIhCxILUHJvZmljaWVuY3kiEEJ1aWxkaW5nIFdlYmFwcHMM", 
+                        "date": {
+                            "ctime": "Sat Nov 22 08:31:49 2008"
+                        }, 
+                        "blurb": "A truly good developer knows how to build web apps in an agile way, and to provide solutions that people really need."
                     }, 
                     {
-                        "date": {
-                            "ctime": "Mon Oct 27 22:50:49 2008"
-                        }, 
-                        "name": "Collective Intelligence", 
-                        "key": "aghwbG9wcXVpenIRCxILUHJvZmljaWVuY3kYJww"
-                    }, 
-                    {
-                        "date": {
-                            "ctime": "Mon Oct 27 22:50:50 2008"
-                        }, 
-                        "name": "Clean Energy", 
-                        "key": "aghwbG9wcXVpenIRCxILUHJvZmljaWVuY3kYMgw"
-                    }, 
-                    {
-                        "date": {
-                            "ctime": "Mon Oct 27 22:50:50 2008"
-                        }, 
-                        "name": "Startup Financing", 
-                        "key": "aghwbG9wcXVpenIRCxILUHJvZmljaWVuY3kYPQw"
-                    }, 
-                    {
-                        "date": {
-                            "ctime": "Mon Oct 27 22:50:48 2008"
-                        }, 
-                        "name": "Biofuels",
-                        "status": "public", 
-                        "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEJpb2Z1ZWxzDA"
-                    }, 
-                    {
-                        "date": {
-                            "ctime": "Mon Oct 27 22:50:48 2008"
-                        }, 
-                        "name": "Electricity",
-                        "status": "public", 
-                        "key": "aghwbG9wcXVpenIcCxILUHJvZmljaWVuY3kiC0VsZWN0cmljaXR5DA"
-                    }, 
-                    {
-                        "date": {
-                            "ctime": "Mon Oct 27 22:50:48 2008"
-                        }, 
-                        "name": "Energy Economics",
-                        "status": "public", 
-                        "key": "aghwbG9wcXVpenIhCxILUHJvZmljaWVuY3kiEEVuZXJneSBFY29ub21pY3MM"
-                    }, 
-                    {
-                        "date": {
-                            "ctime": "Mon Oct 27 22:50:48 2008"
-                        }, 
-                        "name": "Energy Efficiency",
-                        "status": "public", 
-                        "key": "aghwbG9wcXVpenIiCxILUHJvZmljaWVuY3kiEUVuZXJneSBFZmZpY2llbmN5DA"
-                    }, 
-                    {
-                        "date": {
-                            "ctime": "Mon Oct 27 22:50:48 2008"
-                        }, 
-                        "name": "Freebase", 
-                        "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
-                    }, 
-                    {
-                        "date": {
-                            "ctime": "Mon Oct 27 22:50:48 2008"
-                        }, 
-                        "name": "Javascript", 
-                        "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
-                    }, 
-                    {
-                        "date": {
-                            "ctime": "Mon Oct 27 22:50:48 2008"
-                        }, 
-                        "name": "Rails", 
-                        "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
-                    },                     
-                    {
-                        "date": {
-                            "ctime": "Mon Oct 27 22:50:48 2008"
-                        }, 
-                        "name": "Ruby", 
-                        "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
-                    },                          
-                    {
-                        "date": {
-                            "ctime": "Mon Oct 27 22:50:48 2008"
-                        }, 
+                        "status": "private", 
                         "name": "CSS", 
-                        "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
-                    },                        
-
-                    {
-                        "date": {
-                            "ctime": "Mon Oct 27 22:50:48 2008"
+                        "modified": {
+                            "ctime": "Fri Dec 12 07:52:26 2008"
                         }, 
-                        "name": "Oil", 
-                        "status": "public",
-                        "key": "aghwbG9wcXVpenIUCxILUHJvZmljaWVuY3kiA09pbAw"
+                        "key": "aghwbG9wcXVpenIUCxILUHJvZmljaWVuY3kiA0NTUww", 
+                        "date": {
+                            "ctime": "Sat Nov 22 08:31:49 2008"
+                        }, 
+                        "blurb": "default"
                     }, 
                     {
-                        "date": {
-                            "ctime": "Mon Oct 27 22:50:48 2008"
+                        "status": "private", 
+                        "name": "Clean Energy", 
+                        "modified": {
+                            "ctime": "Fri Dec 12 07:52:26 2008"
                         }, 
-                        "name": "Solar Energy",
+                        "key": "aghwbG9wcXVpenIdCxILUHJvZmljaWVuY3kiDENsZWFuIEVuZXJneQw", 
+                        "date": {
+                            "ctime": "Sat Nov 22 08:31:49 2008"
+                        }, 
+                        "blurb": "default"
+                    }, 
+                    {
+                        "status": "private", 
+                        "name": "Collective Intelligence", 
+                        "modified": {
+                            "ctime": "Fri Dec 12 07:52:26 2008"
+                        }, 
+                        "key": "aghwbG9wcXVpenIoCxILUHJvZmljaWVuY3kiF0NvbGxlY3RpdmUgSW50ZWxsaWdlbmNlDA", 
+                        "date": {
+                            "ctime": "Sat Nov 22 08:31:49 2008"
+                        }, 
+                        "blurb": "default"
+                    }, 
+                    {
                         "status": "public", 
-                        "key": "aghwbG9wcXVpenIdCxILUHJvZmljaWVuY3kiDFNvbGFyIEVuZXJneQw"
+                        "name": "Electricity", 
+                        "modified": {
+                            "ctime": "Fri Dec 12 07:52:26 2008"
+                        }, 
+                        "key": "aghwbG9wcXVpenIcCxILUHJvZmljaWVuY3kiC0VsZWN0cmljaXR5DA", 
+                        "date": {
+                            "ctime": "Sat Nov 22 08:31:49 2008"
+                        }, 
+                        "blurb": "Intelligent, distributed, and highly adaptive electrical systems aim to reduce power consumption and prevent peak hour failures."
+                    }, 
+                    {
+                        "status": "public", 
+                        "name": "Energy Economics", 
+                        "modified": {
+                            "ctime": "Fri Dec 12 07:52:26 2008"
+                        }, 
+                        "key": "aghwbG9wcXVpenIhCxILUHJvZmljaWVuY3kiEEVuZXJneSBFY29ub21pY3MM", 
+                        "date": {
+                            "ctime": "Sat Nov 22 08:31:49 2008"
+                        }, 
+                        "blurb": "Between the $100 billion dollars invested in Clean Tech and new energy-conscious tax codes, there is a pressing need for those familiar with the new economic landscape."
+                    }, 
+                    {
+                        "status": "public", 
+                        "name": "Energy Efficiency", 
+                        "modified": {
+                            "ctime": "Fri Dec 12 07:52:26 2008"
+                        }, 
+                        "key": "aghwbG9wcXVpenIiCxILUHJvZmljaWVuY3kiEUVuZXJneSBFZmZpY2llbmN5DA", 
+                        "date": {
+                            "ctime": "Sat Nov 22 08:31:49 2008"
+                        }, 
+                        "blurb": "The cheapest and most available source of new energy is the energy we waste. To save money and lower greenhouse gas levels, organizations are increasingly seeking ways to reduce their energy consumption. "
+                    }, 
+                    {
+                        "status": "private", 
+                        "name": "Freebase", 
+                        "modified": {
+                            "ctime": "Fri Dec 12 07:52:26 2008"
+                        }, 
+                        "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA", 
+                        "date": {
+                            "ctime": "Sat Nov 22 08:31:49 2008"
+                        }, 
+                        "blurb": "default"
+                    }, 
+                    {
+                        "status": "private", 
+                        "name": "Javascript", 
+                        "modified": {
+                            "ctime": "Fri Dec 12 07:52:26 2008"
+                        }, 
+                        "key": "aghwbG9wcXVpenIbCxILUHJvZmljaWVuY3kiCkphdmFzY3JpcHQM", 
+                        "date": {
+                            "ctime": "Sat Nov 22 08:31:49 2008"
+                        }, 
+                        "blurb": "default"
+                    }, 
+                    {
+                        "status": "public", 
+                        "name": "Oil", 
+                        "modified": {
+                            "ctime": "Fri Dec 12 07:52:26 2008"
+                        }, 
+                        "key": "aghwbG9wcXVpenIUCxILUHJvZmljaWVuY3kiA09pbAw", 
+                        "date": {
+                            "ctime": "Sat Nov 22 08:31:49 2008"
+                        }, 
+                        "blurb": "Petroleum makes up 40% of energy consumption, and has a worldwide impact on politics, economics, and the environment. "
+                    }, 
+                    {
+                        "status": "private", 
+                        "name": "Rails", 
+                        "modified": {
+                            "ctime": "Fri Dec 12 07:52:26 2008"
+                        }, 
+                        "key": "aghwbG9wcXVpenIWCxILUHJvZmljaWVuY3kiBVJhaWxzDA", 
+                        "date": {
+                            "ctime": "Sat Nov 22 08:31:49 2008"
+                        }, 
+                        "blurb": "default"
+                    }, 
+                    {
+                        "status": "private", 
+                        "name": "Ruby", 
+                        "modified": {
+                            "ctime": "Fri Dec 12 07:52:26 2008"
+                        }, 
+                        "key": "aghwbG9wcXVpenIVCxILUHJvZmljaWVuY3kiBFJ1YnkM", 
+                        "date": {
+                            "ctime": "Sat Nov 22 08:31:49 2008"
+                        }, 
+                        "blurb": "default"
+                    }, 
+                    {
+                        "status": "public", 
+                        "name": "Solar Energy", 
+                        "modified": {
+                            "ctime": "Fri Dec 12 07:52:26 2008"
+                        }, 
+                        "key": "aghwbG9wcXVpenIdCxILUHJvZmljaWVuY3kiDFNvbGFyIEVuZXJneQw", 
+                        "date": {
+                            "ctime": "Sat Nov 22 08:31:49 2008"
+                        }, 
+                        "blurb": "The oldest and most pervasive form of renewable energy draws from the same ambient source that sustains life on Earth. "
+                    }, 
+                    {
+                        "status": "private", 
+                        "name": "Startup Financing", 
+                        "modified": {
+                            "ctime": "Fri Dec 12 07:52:26 2008"
+                        }, 
+                        "key": "aghwbG9wcXVpenIiCxILUHJvZmljaWVuY3kiEVN0YXJ0dXAgRmluYW5jaW5nDA", 
+                        "date": {
+                            "ctime": "Sat Nov 22 08:31:49 2008"
+                        }, 
+                        "blurb": "default"
                     }
                 ]

@@ -23,7 +23,9 @@
 
 
 <div class="login_box frame_box">
-<div class="info_note">For your convenience, Plopquiz does not require account registration. </div>
+<div class="info_note">For your 
+{% if dev_server %} <a href="/dev/admin?shortcut=login">convenience</a> {% else %} convenience {% endif %}
+, Plopquiz does not require account registration. </div>
 
 <!--<h2>Login with your account on  any of these services:</h2><br/>-->
 <iframe src="https://plopquiz.rpxnow.com/openid/embed?token_url={{ token_url }}"

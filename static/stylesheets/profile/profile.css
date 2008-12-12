@@ -322,6 +322,23 @@ font-size:0.9em;
 width:180px;
 }
 
+div.profile_info_note{
+margin: 5px 10px; 
+height: auto;
+text-align:center;
+}
+
+div#no_sponsorship_note{
+margin:30px 140px;
+position:absolute;
+width:200px;
+}
+
+div#no_award_note{
+width:300px;
+margin:30px 70px;
+}
+
 div.network_item div li{
 font-size:1.1em;
 font-weight:bold;
@@ -395,6 +412,7 @@ div.panel_content div.gray_box{
 float:left;
 height:112px;
 width:484px;
+overflow:hidden;
 }
 
 div.awards_box{

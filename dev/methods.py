@@ -36,7 +36,7 @@ def restore_backup():
 	build = Build()
 	build.refresh_profile_images()
 	data = DataMethods()
-	data_types =  ["proficiencies", 'proficiency_topics', 'employers', 'content_pages', 'raw_items', 'raw_items', 'quiz_items']
+	data_types =  ["proficiencies", 'proficiency_topics', 'employers', 'content_pages', 'raw_items', 'raw_items', 'quiz_items', 'mailing_list']
 	for data_type in data_types:
 		data.load_data(data_type, "/backup/")
 	build.refresh_subject_images()
@@ -137,9 +137,9 @@ class DataMethods():
 		entities = []
 		for entity in newdata:
 			if data_type == 'proficiencies':
-				save_entity = Proficiency.get_or_insert(entity['name'], name = entity['name'])
-				try: save_entity.status = entity['status']
-				except: pass # no status specified
+				save_entity = Proficiency.get_or_insert(entity['name'], name = entity['name'] )
+				save_entity.status = entity.get('status', None)
+				save_entity.vlurb = entity.get('blurb', None)
 			if data_type == 'proficiency_topics':
 				this_proficiency = Proficiency.gql("WHERE name = :1", entity['proficiency']['name'])
 				print entity['proficiency']
@@ -167,6 +167,9 @@ class DataMethods():
 			if data_type == 'employers':
 				emp = employer_methods()
 				return emp.load_data("employers", "")
+			if data_type == 'mailing_list':
+				from model.account import MailingList
+				save_entity = MailingList(fullname = entity.get('fullname', ""), email = entity['email'], type = entity.get('type', ""))
 			entities.append(save_entity)
 		try:
 			print "saving", str(entities)
