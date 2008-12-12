@@ -84,7 +84,7 @@ class QuizSession():
 		return token 
 
 	def make_quiz_session(self):
-		self.session = {'start': None, 'token': None, 'user': None}
+		self.session = {'start': None, 'token': None, 'user': None,}
 		token = hash_pipe("mytoken")
 		memcache.set(token, self.session, 60000)
 		return token
@@ -104,9 +104,11 @@ class QuizSession():
 		# proficiencies should be resolved from employer/user at earlier point.
 		proficiencies = self.get_proficiencies(profNames)
 		quiz_items = self.get_quiz_items(proficiencies)
+		if len(self.session['quiz_items']) < 1: return False
+		else: self.session['current_item'] = self.session['quiz_items'][0]
 		memcache.replace(token, self.session, 60000)
-		#return proficiencies
-		return self.next_quiz_item(token)
+		return proficiencies
+		#return self.next_quiz_item(token)
 
 	def get_proficiencies(self, profNames):
 		proficiencies = []
@@ -127,8 +129,8 @@ class QuizSession():
 		self.session = self.get_quiz_session(token)
 		try: 
 		    next_item = self.session['quiz_items'].pop()
-		    self.session['current_item'] = next_item['key']
-		    del next_item['key']  
+		    self.session['current_item'] = next_item
+		    #del next_item['key'] - is this necessary?  
 		except IndexError: return False #no items left
 		memcache.replace(token, self.session, 60000)
 		return next_item
@@ -138,7 +140,9 @@ class QuizSession():
 	def add_score(self, picked_answer, timer_status, token, vendor):
 		logging.info('Posting Score')  
 		self.session = self.get_quiz_session(token)
-		this_item = QuizItem.get(self.session['current_item']) 
+		print ""
+		print self.session['current_item']
+		this_item = QuizItem.get(self.session['current_item']['key']) 
 		#Lookup quiz item with slug, clean it, and match it. 
 		logging.info(this_item)  
 		picked_clean = picked_answer.strip()

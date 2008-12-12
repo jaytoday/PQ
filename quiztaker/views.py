@@ -57,14 +57,18 @@ class PQDemo(webapp.RequestHandler):
 # this is only used for the demo. 
 class QuizItemTemplate(webapp.RequestHandler):
 
+  # TODO: Error Handling, so client can display error messages, logs, etc.
   def get(self):
     template_values = {}
     if self.request.get('item_key'): this_quiz_item = QuizItem.get(self.request.get('item_key'))
     if self.request.get('token'): 
         from google.appengine.api import memcache
         self.session = memcache.get(self.request.get('token'))
-        this_item = self.session['current_item']
-        this_quiz_item = QuizItem.get(this_item)
+        this_item = self.session.get('current_item', False)
+        if this_item: this_quiz_item = QuizItem.get(this_item['key'])
+        else: 
+            logging.warning('token used past expiration', self.request.get('token'))
+            return False
     quiz_item = {}
     try: quiz_item['topic_name'] = this_quiz_item.topic.name
     except: print this_quiz_item

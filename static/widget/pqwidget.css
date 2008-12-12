@@ -196,10 +196,13 @@ font-size:100%;
 
 
 #quiz_wrap div#confirm{
-margin: -10px 0 0 65px;
+margin:-14px 0 0 77px !important;
+}
+#quiz_wrap div#begin_quiz{
+margin:0 0 10px 67px !important;
 }
 
-#confirm div.answertext {
+#confirm div.answertext, #begin_quiz div.answertext {
 font-size:1.3em !important;
 width:170px;
 }
@@ -686,7 +689,7 @@ margin: 11px 4px;
 }
 
 #quiz_wrap div.intro_content div#pq {
-margin:0 0 0 182px;
+margin:0 0 0 212px;
 }
 
 
@@ -1378,11 +1381,18 @@ cursor:pointer;
 /* Intro */
 
 
+.bigsliderImage{
+}
+
+.bigsliderImage span.slider_1{
+display: block;
+}
+
 .bigsliderImage span.slider{
 	font: 25px Arial, Helvetica, sans-serif !important;
 	padding:1px 8px 3px !important;
 	text-transform:capitalize !important;
-	position:absolute !important;
+	position:absolute!important;
 	width:303px !important;
 	background-color: #000 !important;
 	filter: alpha(opacity=70) !important;
@@ -1390,6 +1400,7 @@ cursor:pointer;
 	-khtml-opacity: 0.7 !important;
 	opacity: 0.7 !important;
 	color: #fff !important;
+
 	/* display: none !important; */
 }
 
@@ -1439,23 +1450,18 @@ cursor:pointer;
 
 span.subject_header{
 display:block !important;
-font-size:24px !important;
+font-size:26px !important;
 font-weight:bold !important;
 margin:5px 0 10px !important;
 width:300px !important;
 }
 
-span.subject_description{
-display:block !important;
-font-weight:bold !important;
-font-size:13px !important;
-}
+
 
 div.subject_preview{
 height:230px !important;
-left:25px !important;
-position:absolute !important;
-top:95px !important;
+position:relative !important;
+margin:-5px !important;
 width:320px !important;
 }
 
@@ -1463,4 +1469,27 @@ width:320px !important;
 .proficiency_pic{
 overflow:hidden;
 cursor:pointer;
+}
+
+div.subject_preview_right
+{
+float:right;
+width:300px;
+margin: -175px 1px 0px !important;
+}
+
+div.subject_description{
+background-color:#000000 !important;
+color:#FFFFFF !important;
+display:block !important;
+font-size:14px !important;
+font-weight:bold !important;
+margin:0 5px 3px !important;
+opacity:0.7 !important;
+padding:5px 8px !important;
+position:relative !important;
+text-transform:capitalize !important;
+width:280px !important;
+-webkit-border-radius: 10px;
+-moz-border-radius:10px;
 }

@@ -19,10 +19,10 @@ class QuizJS(webapp.RequestHandler):
   @memoize('quiz_js')
   def get(self):
     if not Debug(): self.set_expire_header()
-    proficiency_arg = self.request.path.split('/quiz/')[1]
+    proficiency_arg = self.request.path.split('/quiz/')[1].replace('%20',' ')
     these_proficiencies = Proficiency.gql("WHERE name = :1", proficiency_arg).fetch(1) #TODO: should use .get_by_key_name() method
-    proficiency_names = [p.name for p in these_proficiencies] 
-    template_values = {'proficiencies': encode(proficiency_names).replace("\n", "") }
+    proficiency_names = [str(p.name) for p in these_proficiencies] 
+    template_values = {'proficiencies': encode(proficiency_names).replace("\n", "") } #encode(proficiency_names).replace("\n", "")
     path = widget_path('pqwidget.js')
     self.response.out.write(template.render(path, template_values))
     

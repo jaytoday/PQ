@@ -4,12 +4,19 @@
       {% for img in p.images %}
                         <li class="bigsliderImage subject_{{ forloop.parentloop.counter }}Image">
                             <img src="{{ http_host }}/image/subject/?img_id={{ img.key }}&size=large"/>
-                            <span class="slider img_{% cycle top,bottom %}">
+                            <span class="slider img_{% cycle top,bottom %} span_{{ forloop.counter }}">
                             <span class ="subject_header">{{ p.name }} </span>
-                            <span class="subject_description">{{ p.blurb }}</span>
+                           
                             </span>
                         </li>
 {% endfor %}
-                        <div class="clear award_{{ forloop.counter }}Image"></div>
+                        <div class="clear subject_{{ forloop.counter }}Image"></div>
                     </ol>
 </div>
+
+
+<div class="subject_preview_right">
+
+ <div class="subject_description">{{ p.blurb }}</div>
+ 
+ </div>

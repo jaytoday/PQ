@@ -20,7 +20,7 @@ var iso = function($)
                         {url: '/intro/?page=intro&subjects={{ proficiencies }}', item_type:'intro', answers: ['Take This Quiz'], noSkip: true, vendor: "Plopquiz"},
                         {url: '/intro/?page=instructions', item_type:'instructions', answers: [ 'dog ate', 'web made' ], noSkip: true},
                         {url: '/intro/?page=instructions2', item_type:'instructions2', answers: [ 'compilers', 'interpreters' ], timed: "instructions2", timeout: 'reset'},
-                        {url: '/intro/?page=begin_quiz', item_type:'begin_quiz', answers: [ 'Begin Quiz' ], noSkip: true}
+      /* TODO: We're merging this with the first frame */ {url: '/intro/?page=begin_quiz', item_type:'begin_quiz', answers: [ 'Begin Quiz' ], noSkip: true}
                 ],
                 quizitemList: Array(),
                 currentItem: 0, // use to skip intros
@@ -30,7 +30,7 @@ var iso = function($)
                         autoStart: false, // debugging only?
                         initDone: false,
                         startTime: (new Date()),
-                        timeoutDuration: 20000, // time to answer question
+                        timeoutDuration: 25000, // time to answer question
                         proficiencies: Array(), // deprecated?
                         sessionToken: "", // provided by server to load and answer questions
                         instructions: // track progress through instruction
@@ -70,7 +70,7 @@ var iso = function($)
                 $.ajax({
                         url: $.plopquiz.settings.serverUrl + '/quiz_frame',
                         dataType: "jsonp",
-                        error: console.log,
+                        //error: console.log('quiz frame error'),
                         success: function(html,status)
                         {
                                 // add to body to overlay is in front
@@ -350,10 +350,9 @@ var iso = function($)
 
 				if(quizItem.item_type == "intro")
                                 {
-                                     /* addScript("files/s3slider.js"); // Having trouble loading this method
                                 	  $('#subject_1').s3Slider({ //eventually this needs to iterate through multiple subjects
-            timeOut: 3300
-        }); */
+            timeOut: 8300
+        });  
 					if (quizItem.vendor.length > 1)
                                         {
                                                 $('p#employer').find('b').text(quizItem.vendor);
@@ -626,7 +625,7 @@ var widgetSource = pqjs.src.substring(0, pqjs.src.lastIndexOf("/") + 1);
 function addScript(script, id)
 {
         var s = document.createElement("script");
-        s.src = widgetSource + script;
+        s.src = /*widgetSource + */script;
         s.rel = "javascript";
         s.type = "text/javascript";
 
@@ -652,7 +651,7 @@ function addScript(script, id)
 function addStyle(src)
 {
         var s = document.createElement("link");
-        s.href = widgetSource + src;
+        s.href = /*widgetSource + */src;
         s.rel = "stylesheet";
         s.type = "text/css";
         pqjs.parentNode.appendChild(s);
@@ -667,8 +666,12 @@ function waitForJQ()
                 setTimeout(waitForJQ, 60);
 }
 
+
+
 function pqLoad()
 {
+
+        
         // force ready jQuery because page load is (likely?) done
         jQuery.isReady = true;
         // load plopquiz (modified) from within closure
@@ -677,7 +680,7 @@ function pqLoad()
 
 // life begins here.
 // load styles right off the bat, no checks are done, if this doesn't load nothing likely will
-addStyle("files/pqwidget.css");
+addStyle("{{ http_host }}/js/quiz/files/pqwidget.css");
 
 // do we have jQuery on the page already?
 if(window.jQuery)
@@ -688,8 +691,18 @@ if(window.jQuery)
 else
 {
         // no? load it from the same location as the widget
-        addScript("files/jquery.js");
+        addScript("{{ http_host }}/static/scripts/jquery/jquery-1.2.6.min.js");
+        
+        
 
         // check in 6ms
         setTimeout(waitForJQ, 60);
+}
+
+addScript("{{ http_host }}/static/scripts/utils/s3slider.js");
+        //if ($.fn.s3Slider)
+        //setTimeout(waitForSlider, 60);
+        
+function waitForSlider()
+{
 }

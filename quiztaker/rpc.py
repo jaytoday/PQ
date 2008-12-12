@@ -64,7 +64,9 @@ class RPCMethods(webapp.RequestHandler):
 	token = quiz_session.initiate()
 	profNames = args[0]
 	#return {'token': token, 'quiz_item': quiz_session.load_quiz_items(profNames, token)}
-	return {'token': token, 'proficiencies': quiz_session.load_quiz_items(profNames, token)}
+	response = quiz_session.load_quiz_items(profNames, token)
+	if not response: return False
+	else: return {'token': token, 'response': response}
 
 
   def continue_quiz(self, *args):
