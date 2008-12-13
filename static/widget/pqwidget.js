@@ -314,10 +314,13 @@ var iso = function($)
 					$('#quiz_inner').attr('class', quizItem.item_type + '_quiz_inner');
 					$('.quiz_selection').attr('id', quizItem.item_type + '_quiz_selection');
 					
-					if (quizItem.item_type == 'intro' || quizItem.item_type == 'begin_quiz' || quizItem.item_type == 'quiz_complete'){  
+					if (quizItem.item_type == 'intro' || quizItem.item_type == 'quiz_complete'){  
 						var this_answer = $('#quiz_answers #confirm');
 					}
-					else
+					else if (quizItem.item_type == 'begin_quiz')
+					{
+						var this_answer = $('#quiz_answers #confirm');
+					}else
 					{ 
 						var this_answer = $('#quiz_answers .answer:eq(' + i + ')'); 
 					}
@@ -347,9 +350,10 @@ var iso = function($)
                                  * does not work well right after ajax load
                                  * and does not allow skipping instruction 1 o 2
                                  */
-
 				if(quizItem.item_type == "intro")
                                 {
+                                	 $('button span#intro_button').show();
+                                	 $('div#quiz_answers div.go_to_site').show();
                                 	  $('#subject_1').s3Slider({ //eventually this needs to iterate through multiple subjects
             timeOut: 8300
         });  
@@ -399,6 +403,7 @@ var iso = function($)
                                 if(quizItem.item_type == "begin_quiz")
                                 {
 					var p = {};
+                                                
                                         // this is a bit hacked together, later the proficiencies will be loaded from the server
                                         for(var i in $.plopquiz.proficiencies)
                                                 $("#proficiency_choices")
@@ -480,13 +485,19 @@ var iso = function($)
 
         $.plopquiz.submitAnswer = function(answer)
         {
-                $.event.trigger("submitingAnswer");
+                $.event.trigger("submittingAnswer");
                 // check the answer for special cases
                 // this will handle the non-skiping timeout on instructions2,
                 // the proficiencies, the score, and any other special boxes
                 switch($.plopquiz.quizItem.item_type)
                 {
+                        
+                        case "intro":
+                        $('div#quiz_answers div.go_to_site').hide();
+                        $.plopquiz.loadItem();
+                        
                         case "instructions":
+                                
                                 if(!$.plopquiz.settings.instructions.i1complete)
                                         return;
                                 else
@@ -680,7 +691,7 @@ function pqLoad()
 
 // life begins here.
 // load styles right off the bat, no checks are done, if this doesn't load nothing likely will
-addStyle("{{ http_host }}/js/quiz/files/pqwidget.css");
+addStyle("{{ http_host }}/css/quiz");
 
 // do we have jQuery on the page already?
 if(window.jQuery)

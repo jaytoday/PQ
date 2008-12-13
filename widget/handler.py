@@ -30,3 +30,22 @@ class QuizJS(webapp.RequestHandler):
       expires = datetime.datetime.now() + FILE_CACHE_TIME 
       self.response.headers['Cache-Control'] = FILE_CACHE_CONTROL
       self.response.headers['Expires'] = expires.strftime('%a, %d %b %Y %H:%M:%S GMT')
+
+
+
+    
+class QuizCSS(webapp.RequestHandler):
+  @memoize('quiz_css')
+  def get(self):
+    if not Debug(): self.set_expire_header()
+    template_values = { } 
+    path = widget_path('pqwidget.css')
+    print ""
+    print template.render(path, template_values)
+    #self.response.out.write(template.render(path, template_values))
+    
+  def set_expire_header(self):
+      expires = datetime.datetime.now() + FILE_CACHE_TIME 
+      self.response.headers['Cache-Control'] = FILE_CACHE_CONTROL
+      self.response.headers['Expires'] = expires.strftime('%a, %d %b %Y %H:%M:%S GMT')
+      

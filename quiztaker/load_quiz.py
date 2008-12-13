@@ -140,8 +140,6 @@ class QuizSession():
 	def add_score(self, picked_answer, timer_status, token, vendor):
 		logging.info('Posting Score')  
 		self.session = self.get_quiz_session(token)
-		print ""
-		print self.session['current_item']
 		this_item = QuizItem.get(self.session['current_item']['key']) 
 		#Lookup quiz item with slug, clean it, and match it. 
 		logging.info(this_item)  
