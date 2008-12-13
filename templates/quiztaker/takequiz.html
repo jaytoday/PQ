@@ -1,39 +1,21 @@
 {% extends "../base.html" %}
 {% block head %}
-<script type="text/javascript" src="/static/scripts/quiztaker/quizbox.js"></script> 
-<script type="text/javascript" src="/static/scripts/quiztaker/take_quiz.js"></script> 
-<link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/quiz/quiz_page.css"/>
-<link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/quiz/quiz.css"/>
-<link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/quiz/quizframe.css"/>
+<style type="text/css" media="screen">
+
+	#pqwidget{ margin: 200px 0px 0px 400px; }
+
+</style>
 
 <script type="text/javascript" >
 
-$.plopquiz.quizitemList = [
-	{url: '/intro/?page=intro', item_type:'intro', answers: ['Take This Quiz'], noSkip: true, vendor: "{{ vendor_name }}"},
-	{url: '/intro/?page=instructions', item_type:'instructions', answers: [ 'dog ate', 'web made' ], noSkip: true},
-	{url: '/intro/?page=instructions2', item_type:'instructions2', answers: [ 'compilers', 'interpreters' ], timed: "instructions2", timeout: 'reset'},
-	{url: '/intro/?page=begin_quiz', item_type:'begin_quiz', answers: [ 'Begin Quiz' ], noSkip: true},
- 
-{% for item in quiz_items %}
-        {
-                rpc_url: '/quiztaker/rpc?action=get_quiz&arg0="{{ item.key }}"',
-                url: '/quiz_item/?item_key={{ item.key }}',
-                key: "{{ item.key }}", 
-                answer1: "{{ item.answer1 }}", /* deprecated - just used for demo */
-                answer2: "{{ item.answer2 }}",
-                answer3: "{{ item.answer3 }}",
-                answers: {{ item.answers }},
-                proficiency: '{{ item.proficiency }}',
-                vendor: '{{ vendor }}',
-                item_type:'quiz_item',
-                timed: "timeout",
-                timeout: "skip"
-        },
-{% endfor %} 
-
-    
-        {url: "/intro/?page=quiz_complete", item_type:"quiz_complete", noSkip: true, answers: [ "Submit" ] }
-];
+$(function(){
+	
+	//$.plopquiz.start
+	console.log($('#"take_quiz'));
+	$('#"take_quiz').click().hide();
+	
+	
+});
 
 </script> 
 
@@ -41,5 +23,9 @@ $.plopquiz.quizitemList = [
 
  {% block login %} {% endblock login %}
 {% block main %}
-<div id="begin_quiz"><a href="javascript:;"></a></div>
+
+<script src="http://localhost:8080/js/quiz/{{ quiz_subject }}" type="text/javascript" rel="javascript"></script>
+
+<div id="pqwidget"></div>
+
 {% endblock %}

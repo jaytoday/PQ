@@ -40,17 +40,21 @@ class ViewProfile(webapp.RequestHandler):
 		except:
 		    self.redirect('/profile_not_found/') # if no user is found
 		    return
-		profile_owner = False
+		is_profile_owner = False
 		if self.session['user']:
-		    if user.unique_identifier == self.session['user'].unique_identifier: profile_owner = True
+		    if user.unique_identifier == self.session['user'].unique_identifier: is_profile_owner = True
 		qt = QuizTaker.get_by_key_name(user.unique_identifier)
 		topic_levels = self.get_topic_levels(qt)
 		level_cloud = self.make_cloud(topic_levels[0:CLOUD_LIMIT])
 		range = 50
 		depth = 50
 		from model.account import Award, Sponsorship
-		return {'user': user, 'profile_owner': profile_owner, 
-		        'top_levels': topic_levels[0:REPORT_CARD_LIMIT], 'level_cloud': level_cloud,
+		for s in user.sponsorships.fetch(100): #just temporarily, to test for referenceproperty errors.
+			try: s.sponsor.photo.key()
+			except: s.delete()
+		s.put()
+		return { 'user': user, 'profile_owner': is_profile_owner,  'top_levels': topic_levels[0:REPORT_CARD_LIMIT],
+		        'level_cloud': level_cloud,
 		        'range': range, 'depth': depth, 'level_msg': self.level_msg }
 
 

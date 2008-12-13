@@ -74,8 +74,8 @@ class Awards():
     
 	EXCELLENCE_PROFICIENCY_THRESHOLD = 0.1
 	FLUENCY_PROFICIENCY_THRESHOLD = .55	
-	EXCELLENCE_TOPIC_THRESHOLD = 90
-	FLUENCY_TOPIC_THRESHOLD = 55
+	EXCELLENCE_TOPIC_THRESHOLD = 60 #90
+	FLUENCY_TOPIC_THRESHOLD = 35  #55
 	
 	def check_all(self):
 		self.save_awards = [] # for batch datastore trip
@@ -86,16 +86,22 @@ class Awards():
 		return
 			
 	def check_taker(self, qt):			
-			# Re-Initialize Values 
-			from collections import defaultdict 
-			self.fluency = defaultdict(list)   
-			self.excellence = defaultdict(list)
-			self.awarded_proficiencies = {}
-			self.topics_in_proficiency = defaultdict(list)    
-			for level in qt.topic_levels:
-				self.topics_iusers
+	  # Re-Initialize Values 
+	  from collections import defaultdict
+	  self.fluency = defaultdict(list)
+	  self.excellence = defaultdict(list)
+	  self.awarded_proficiencies = {}
+	  self.topics_in_proficiency = defaultdict(list)
+	  for level in qt.topic_levels:
+		self.topics_in_proficiency[level.topic.proficiency.key()].append(level.topic.key())
+		self.add_topic_fluency(level)
+		self.add_topic_excellence(level)
+	  self.check_proficiency_excellence()
+	  self.check_proficiency_fluency()
+	  self.upgrade_awards(qt)
+	  return
 
-			
+
 	def add_topic_fluency(self, level):
 		# topic_level should be replaced by percentile	
 	  if level.topic_level > self.FLUENCY_TOPIC_THRESHOLD: 
@@ -170,6 +176,7 @@ class Sponsorships():
 		matching_pledges = SponsorPledge.gql("WHERE proficiency = :1", award.proficiency).fetch(1000)  # efficiency - check for target?
 		for pledge in matching_pledges:
 			# eventually allow for corporate sponsor checks.    # This should use zip().
+			if award.winner.unique_identifier == pledge.sponsor.unique_identifier: continue #can't sponsor yourself. might find a better way...
 			if award.winner.key() in pledge.target:
 				give_sponsorship[pledge] = True
 			else: continue # award winner not eligible for this sponsorpledge
@@ -191,7 +198,7 @@ class Sponsorships():
 		                              recipient = award.winner,
 		                              package = pledge.package,
 		                              sponsor_type = pledge.sponsor_type,
-		                              award_type = pledge.award_type,
+		                              award_type = award.type,
 		                              award = award,
 		                              pledge = pledge )
 		self.save_sponsorships.append(new_sponsorship)

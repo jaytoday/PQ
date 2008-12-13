@@ -23,7 +23,7 @@ class LoadQuiz():
   quiz_array = []
   all_quiz_items = []
   proficiencies = {}
-  QUIZ_ITEM_PER_PROFICIENCY = 5
+  QUIZ_ITEM_PER_PROFICIENCY = 1
     
   def get(self, proficiencies):
 	self.proficiencies = {}

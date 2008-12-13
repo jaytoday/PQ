@@ -36,7 +36,10 @@ def restore_backup():
 	build = Build()
 	build.refresh_profile_images()
 	data = DataMethods()
-	data_types =  ["proficiencies", 'proficiency_topics', 'employers', 'content_pages', 'raw_items', 'raw_items', 'quiz_items', 'mailing_list']
+	data_types =  ["proficiencies", 'proficiency_topics', 'employers', 'content_pages', 
+	                'raw_items', 'raw_items', 'quiz_items', 'mailing_list', 
+	                'accounts', 'proficiency_level', 'topic_level',
+	                'awards', 'sponsorships', ]
 	for data_type in data_types:
 		data.load_data(data_type, "/backup/")
 	build.refresh_subject_images()

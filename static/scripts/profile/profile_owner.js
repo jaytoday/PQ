@@ -28,7 +28,7 @@ function ShareProfile() {
     resizable: false,
     draggable: false,
     height: 250,
-    width: 370,
+    width: 400,
     overlay: { 
         opacity: 0.5, 
         background: "black" 

@@ -719,7 +719,7 @@ cursor:pointer;
 .sliderImage, .slider1Image, .slider2Image {
     float: left;
     position: relative;
-	display: none;
+	/* display: none; */
 }
 
 

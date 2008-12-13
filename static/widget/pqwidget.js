@@ -262,7 +262,7 @@ var iso = function($)
 
                                         // yay the widget script loaded, setup the start handler
                                         $("#pqwidget").append(
-                                                $("<div id\"takeQuiz\">Take PlopQuiz</div>").click($.plopquiz.start)
+                                                $("<div id\"take_quiz\">Begin Quiz</div>").click($.plopquiz.start)
                                         );
                                 }
                 });
@@ -352,6 +352,7 @@ var iso = function($)
                                  */
 				if(quizItem.item_type == "intro")
                                 {
+                                	 $('#quiz_answers #confirm').addClass('intro_quiz')
                                 	 $('button span#intro_button').show();
                                 	 $('div#quiz_answers div.go_to_site').show();
                                 	  $('#subject_1').s3Slider({ //eventually this needs to iterate through multiple subjects
@@ -403,7 +404,7 @@ var iso = function($)
                                 if(quizItem.item_type == "begin_quiz")
                                 {
 					var p = {};
-                                                
+                            $('#quiz_answers #confirm').removeClass('intro_quiz').addClass('begin_quiz').find('span.continue_button').text('Begin Quiz');                    
                                         // this is a bit hacked together, later the proficiencies will be loaded from the server
                                         for(var i in $.plopquiz.proficiencies)
                                                 $("#proficiency_choices")
@@ -421,7 +422,8 @@ var iso = function($)
 
                                 if(quizItem.item_type == "quiz_complete")
                                 {
-                                        $('div#confirm').hide();
+                                        //update text for Button
+                                        $('#quiz_answers #confirm').removeClass('begin_quiz').addClass('quiz_complete').find('span.continue_button').text('See Results').show();
                                         // signup binding
                                         $('div.form_proceed').click(function(){
                                                 
@@ -600,6 +602,8 @@ var iso = function($)
                         break;
                         
                         case "quiz_complete":
+                             $.event.trigger('quizclosing');
+                              window.location = "{{http_host}}/preview/";
                         break;
                         
                         default:

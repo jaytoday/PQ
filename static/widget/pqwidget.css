@@ -923,7 +923,7 @@ height:110px;
 }
 
 #quiz_wrap div#begin_quiz_quiz_selection{
-height:210px;
+height:170px;
 margin:-20px 0 0 -32px !important;
 overflow:hidden;
 width:310px;
@@ -1169,6 +1169,7 @@ form span:hover
 {
         float:left;
         width:330px;
+        height:110px;
         background:white none repeat scroll 0 0;
         -moz-border-radius: 20px;
         -webkit-border-radius: 20px;
@@ -1386,8 +1387,16 @@ color:#EAF2F8;
 	cursor: pointer !important;
 }
 
-#quiz_wrap button#confirm{
+#quiz_wrap button.intro_quiz{
 margin: -22px 60px;
+}
+
+#quiz_wrap button.begin_quiz{
+margin:-50px 90px !important;
+}
+
+#quiz_wrap button.quiz_complete{
+margin:-156px 0 0 110px !important;
 }
 
 #quiz_wrap .continue_button{

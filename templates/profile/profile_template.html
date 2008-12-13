@@ -3,10 +3,10 @@
 		<link rel="stylesheet" href="/static/stylesheets/ui/app_screen.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="/static/stylesheets/profile/tabs.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="/static/stylesheets/profile/profile.css" type="text/css" media="screen">
-		
+		<script src="/static/scripts/utils/s3slider.js"></script> 
 		
 		<script src="/static/scripts/profile/tagcloud.js"></script>
-		   <script src="/static/scripts/utils/s3slider.js"></script>
+		   
 		   <script src="/static/scripts/profile/profile.js"></script>
 		   
 		<script type="text/javascript">
@@ -16,13 +16,21 @@ $(document).ready(function()
 {% for award in user.awards %}
 if ("{{ forloop.first }}") has_awards = "True";
 
-  $('#award_{{ forloop.counter }}').s3Slider({
-            timeOut: 3300
-        });
+ // TODO: THIS DOESN'T WORK, BUT IT DID AS OF DEC 11... $('#award_{{ forloop.counter }}').s3Slider({ timeOut: 3300 });
+        
 {% endfor %}
 
 if (has_awards != "True") $('#main_nav').find('a[href="#report_card"]').click();
 
+if (!$('div.is_sponsor')) $('div#no_sponsorship_note').show();
+
+
+if (!$('div.award_img')) $('div#no_award_note').show();
+
+
+{% for award in user.awards %}
+ if (!$('.{{ forloop.counter }}_has_subject_image')) $('li#{{ forloop.counter }}_default_subject_image').show();
+{% endfor %}  
 
  });
  
@@ -66,12 +74,16 @@ if (has_awards != "True") $('#main_nav').find('a[href="#report_card"]').click();
 		<span class="gray_box_header">Academic Awards</span>
 		 <div class="panel_content " id="awards" > <div class="gray_box awards_box">
 		   {% for award in user.awards %}
-	 {% ifequal {{forloop.first}} True %} <script type="text/javascript" > $(function(){$('div#no_award_note').hide();}); </script> {% endifequal %}
     <div id="award_{{ forloop.counter }}" class="proficiency_pic selection_box award_img">
                         <ol class="sliderContent" id="award_{{ forloop.counter }}Content">
+
+                        <li id="{{ forloop.counter }}_default_subject_image"  class="sliderImage award_{{ forloop.parentloop.counter }}Image">
+                            <img src="/image/subject/?img_id=default&size=small"/>
+                            <span class="img_{% cycle top,bottom %}">{{ award.type }} <br/><strong>  {{ award.proficiency.name}}</strong></span>
+                        </li>
                         
                         {% for img in award.proficiency.images %}
-                        <li class="sliderImage award_{{ forloop.parentloop.counter }}Image">
+                        <li class="sliderImage award_{{ forloop.parentloop.counter }}Image {{ forloop.counter }}_has_subject_image">
                             <img src="/image/subject/?img_id={{ img.key }}&size=small"/>
                             <span class="img_{% cycle top,bottom %}">{{ award.type }} <br/><strong>  {{ award.proficiency.name}}</strong></span>
                         </li>
@@ -81,7 +93,7 @@ if (has_awards != "True") $('#main_nav').find('a[href="#report_card"]').click();
     
     </div>
 {% endfor %}
- <div id="no_award_note" class="info_note profile_info_note">{% if profile_owner %}You have{% else %}{{ user.fullname }} has{% endif %}  no awards. </div>
+ <div id="no_award_note" class="info_note profile_info_note" style="display:none;">{% if profile_owner %}You have{% else %}{{ user.fullname }} has{% endif %}  no awards. </div>
 
 		 
 		 </div></div>
@@ -96,12 +108,13 @@ if (has_awards != "True") $('#main_nav').find('a[href="#report_card"]').click();
 	{% endif %}
 	
 	 {% for sponsorship in user.sponsorships %}
-{% ifequal {{forloop.first}} True %} <script type="text/javascript" > $(function(){$('div#no_sponsorship_note').hide();}); </script> {% endifequal %}
-    <div class="gray_square_box">
+
+
+    <div class="gray_square_box is_sponsor">
     <img src="/image/profile/?img_id={{ sponsorship.sponsor.photo.key }}&size=large"/>
     <span class="img_bottom">{{ sponsorship.sponsor.fullname }}</span></div>
 {% endfor %}
- <div id="no_sponsorship_note" class="info_note profile_info_note">{% if profile_owner %}You have{% else %}{{ user.fullname }} has{% endif %}  no sponsors. </div>
+ <div id="no_sponsorship_note" class="info_note profile_info_note" style="display:none;">{% if profile_owner %}You have{% else %}{{ user.fullname }} has{% endif %}  no sponsors. </div>
 
 		
 		
