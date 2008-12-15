@@ -121,7 +121,7 @@ class RPCMethods(webapp.RequestHandler):
   
   
   
-  
+  # deprecated
   def AddScore(self, *args):
 	logging.debug('Posting Answer')    
 	picked_answer = str(args[0])

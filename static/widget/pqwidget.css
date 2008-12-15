@@ -1388,7 +1388,9 @@ color:#EAF2F8;
 }
 
 #quiz_wrap button.intro_quiz{
-margin: -22px 60px;
+bottom:7px !important;
+left:20px !important;
+position:absolute !important;
 }
 
 #quiz_wrap button.begin_quiz{

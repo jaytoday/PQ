@@ -250,8 +250,19 @@ if (!$('div.award_img')) $('div#no_award_note').show();
 
 
 </div>  <!-- profile --> 
+{% if flash_msg %}
+<div class="flash_msg info_note">
 
+{% ifequal flash_msg "anon_viewer" %}
+{% include "flash/anon_viewer.html" %}
+{% endifequal %}
 
+{% ifequal flash_msg "post_quiz" %}
+{% include "flash/post_quiz.html" %}
+{% endifequal %}
+
+</div>
+{% endif %}
 
 
  </div> 

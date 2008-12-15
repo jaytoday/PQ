@@ -17,6 +17,7 @@
 }
 </style>
 <!-- utilities -->
+{% block base_head %}
 {% if dev_server %}
 <script type="text/javascript" src="/static/scripts/jquery/jquery-1.2.6.min.js"></script>
 {% else %}
@@ -31,6 +32,9 @@
 <script type="text/javascript" src="/static/scripts/base.js"></script>
 <script src="/static/scripts/jquery/jquery.ui.js"></script>
 <link rel="stylesheet" href="/static/stylesheets/ui/dialog.css" type="text/css" media="screen">
+{% endblock %}
+
+
 {% block head %}{% endblock %}
 </head>
 

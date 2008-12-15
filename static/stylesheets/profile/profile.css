@@ -731,3 +731,13 @@ height:110px;
 margin:-10px -5px;
 width:300px;
 }
+
+
+/* Flash messages */
+
+div.flash_msg{
+float:right;
+height:302px;
+margin:-430px 7px;
+width:180px;
+}

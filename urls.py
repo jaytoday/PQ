@@ -33,6 +33,7 @@ def url_routes(map):
 	
 	# Taking Quizzes
 	map.connect('quiz/*quiz', controller = 'quiztaker.views:TakeQuiz')
+	map.connect('widget', controller = 'quiztaker.views:Widget')	
 	map.connect('quiz_item', controller = 'quiztaker.views:QuizItemTemplate')		
 	map.connect('intro', controller = 'quiztaker.views:PQIntro')
 	map.connect('quiz_complete', controller = 'quiztaker.views:QuizComplete')
@@ -67,6 +68,7 @@ def url_routes(map):
 			   										
 																														 
 	#Utils
-	map.connect('image/*img', controller = 'profiles.views:Image')	
+	map.connect('image/*img', controller = 'profiles.views:Image')
+	map.connect('Redirect', 'redirect/*path', controller = 'accounts.views:Redirect')	
 	map.connect('404 error', '*url/:not_found', controller = 'utils.utils:NotFoundPageHandler')
 	map.connect('404 error', '*url', controller = 'utils.utils:NotFoundPageHandler')     

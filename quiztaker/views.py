@@ -54,9 +54,8 @@ class PQDemo(webapp.RequestHandler):
     
 
 
-# this is only used for the demo. 
+# this is only used for the demo!!!
 class QuizItemTemplate(webapp.RequestHandler):
-
   # TODO: Error Handling, so client can display error messages, logs, etc.
   def get(self):
     template_values = {}
@@ -91,19 +90,17 @@ class TakeQuiz(webapp.RequestHandler):
     load_proficiencies = self.get_proficiencies()
     try: proficiencies = load_proficiencies[0]
     except:
-        return self.redirect('/not_found/') 
+        return self.redirect('/not_found/')
+        logging.info('quiz not found') 
     vendor = load_proficiencies[1]
     if proficiencies == None:
         all_proficiencies = Proficiency.all()
         proficiencies = [proficiency.name for proficiency in all_proficiencies.fetch(4)] 
         vendor = self.get_default_vendor()
-    logging.debug(proficiencies)
-    logging.debug('loading quiz...')    
     load_quiz = LoadQuiz()
     if vendor == "": vendor = self.get_default_vendor()
     template_values = {"proficiencies": proficiencies, "quiz_subject": str(proficiencies[0]), "vendor_name": vendor.name.capitalize(), "vendor": vendor.key(), # "quiz_items": load_quiz.get(proficiencies), 
     'no_load': True }
-    logging.debug('loaded quiz...')
     path = tpl_path(QUIZTAKER_PATH + 'takequiz.html')
     self.response.out.write(template.render(path, template_values))
 
@@ -148,7 +145,15 @@ class PQIntro(webapp.RequestHandler):
 			self.response.out.write(template.render(path, template_values))
 
 
-
+class Widget(webapp.RequestHandler):
+        def get(self):
+                path = tpl_path(QUIZTAKER_PATH + '/widget/widget.html')
+                proficiencies = [Proficiency.get(self.request.get('proficiency'))]
+                #except: return False
+                template_values = {'proficiencies': proficiencies}
+                self.response.out.write(template.render(path, template_values))
+                        
+                        
 class QuizFrame(webapp.RequestHandler):
         def get(self):
                 template_values = {}

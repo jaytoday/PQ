@@ -163,3 +163,21 @@ def memoize(key, time=10000):
     return decorator  
 
     
+
+### SESSIONS
+
+
+def set_flash(msg):
+	from appengine_utilities.sessions import Session
+	session = Session()
+	session['flash_msg'] = msg
+	return msg
+
+
+def get_flash(keep=False):
+    from appengine_utilities.sessions import Session
+    session = Session()
+    msg = session['flash_msg']
+    if not keep: session['flash_msg'] = False
+    return msg
+    

@@ -12,6 +12,7 @@ from utils.utils import ROOT_PATH, tpl_path, Debug
 from google.appengine.api import urlfetch
 import urllib
 from utils.appengine_utilities.sessions import Session
+from utils.webapp.util import login_required
 
 from methods import registered, register_user, register_qt, register_account
 
@@ -110,3 +111,24 @@ class Logout(webapp.RequestHandler):
 
 
 
+
+
+
+class Redirect(webapp.RequestHandler):
+  def get(self):
+    redirect_path = self.request.path.split('/redirect/')[1]
+    if redirect_path.split('/')[0] == 'from_quiz': return self.token_redirect()
+    return False
+        
+        
+        
+  @login_required
+  def token_redirect(self):
+      token = self.request.path.split('/from_quiz/')[1]
+      from utils.utils import set_flash
+      set_flash('post_quiz')
+      from quiztaker.load_quiz import QuizSession
+      quiz_session = QuizSession()
+      quiz_session.update_scores(token, self.session['user'].unique_identifier) 
+      #do other jobs to make sure profile is ready. proficiency level, (awards?)
+      self.redirect('/profile/' + self.session['user'].profile_path)

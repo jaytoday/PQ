@@ -26,7 +26,8 @@ var iso = function($)
                 currentItem: 0, // use to skip intros
                 settings:
                 {
-                        serverUrl: "http://localhost:8080",
+                        user_session: "{{ user_token }}",
+                        serverUrl: "{{ http_host }}",
                         autoStart: false, // debugging only?
                         initDone: false,
                         startTime: (new Date()),
@@ -174,7 +175,7 @@ var iso = function($)
                                 	if ($(this).attr("id") == "skip")
                                                 return;
 
-					var blank_width = 12 * $(".answertext", this).text().length; //todo: multiplier may need adjustment
+					var blank_width = 15 + (10 * $(".answertext", this).text().length); //todo: multiplier may need adjustment
 
 					$("#blank")
                                                 .html($(".answertext", this)
@@ -246,6 +247,7 @@ var iso = function($)
                         {
                                 // still there?
                                 if(window[jsonpcallback] != "undefined")
+                                
                                         $("#pqwidget").append(
                                                 $("<a href=\"http://www.plopquiz.com\">Visit PlopQuiz</a>").hide().fadeIn()
                                         );
@@ -259,10 +261,17 @@ var iso = function($)
                                 {
                                         // the script just loaded so stop the timeout
                                         clearTimeout(timewatch);
-
-                                        // yay the widget script loaded, setup the start handler
+                        console.log($.plopquiz.settings.serverUrl + '/widget?proficiency={{ widget_subject }}');
+                        //load widget
+                        $.ajax({
+                        url: $.plopquiz.settings.serverUrl + '/widget',
+                        dataType: "jsonp",
+                        data: {proficiency: "{{ widget_subject }}"},
+                        success: function(html){ console.log("html" + html);} 
+                        });  
+                        	// yay the widget script loaded, setup the start handler
                                         $("#pqwidget").append(
-                                                $("<div id\"take_quiz\">Begin Quiz</div>").click($.plopquiz.start)
+                                                $("<div id\"take_quiz\">Begin Quiz</div>").hide().fadeIn().click($.plopquiz.start)
                                         );
                                 }
                 });
@@ -352,7 +361,7 @@ var iso = function($)
                                  */
 				if(quizItem.item_type == "intro")
                                 {
-                                	 $('#quiz_answers #confirm').addClass('intro_quiz')
+                                	 $('#quiz_answers #confirm').attr('class', 'answer intro_quiz').find('span.continue_button').text('Practice Quiz');
                                 	 $('button span#intro_button').show();
                                 	 $('div#quiz_answers div.go_to_site').show();
                                 	  $('#subject_1').s3Slider({ //eventually this needs to iterate through multiple subjects
@@ -569,7 +578,6 @@ var iso = function($)
                                 // ajax call to submit -- (answer, key, vendor)
                                 var this_item = $.plopquiz.quizItem;
                                 var timer_status = $('.timer_bar').width()/$.plopquiz.settings.timer_width;
-                                var user = "" //TODO: retrieve user token, if user is logged in. 
                                 var vendor = "" //TODO: retrieve vendor token.
 
                                 $.ajax(
@@ -582,8 +590,7 @@ var iso = function($)
                                                 arg0: "\"" + answer + "\"",
                                                 arg1: timer_status,
                                                 arg2: "\"" + $.plopquiz.settings.sessionToken + "\"",
-                                                arg3: "\"" + user + "\"",
-                                                arg4: "\"" + vendor + "\""
+                                                arg3: "\"" + vendor + "\""
                                         },
                                         success: function(obj)
                                         {
@@ -603,7 +610,8 @@ var iso = function($)
                         
                         case "quiz_complete":
                              $.event.trigger('quizclosing');
-                              window.location = "{{http_host}}/preview/";
+                              window.location = "{{http_host}}/redirect/from_quiz/" + $.plopquiz.settings.sessionToken;
+                              
                         break;
                         
                         default:
@@ -693,9 +701,8 @@ function pqLoad()
         iso(jQuery); // wtf does iso mean again?
 }
 
-// life begins here.
-// load styles right off the bat, no checks are done, if this doesn't load nothing likely will
-addStyle("{{ http_host }}/css/quiz");
+
+addStyle("{{ http_host }}/css/quiz"); // can we use the include tag here?
 
 // do we have jQuery on the page already?
 if(window.jQuery)
@@ -706,7 +713,12 @@ if(window.jQuery)
 else
 {
         // no? load it from the same location as the widget
-        addScript("{{ http_host }}/static/scripts/jquery/jquery-1.2.6.min.js");
+        //addScript("{{ http_host }}/static/scripts/jquery/jquery-1.2.6.min.js");
+        
+        // Load external javascript files
+        {% include "jquery.js" %}       // Since this is being done on the server-side, it's much faster than getScript().
+        {% include "s3slider.js" %}
+        // This could also make it easier for us to manage the quiztaking code, since there's no penalty to seperating the code between files. 
         
         
 
@@ -714,7 +726,7 @@ else
         setTimeout(waitForJQ, 60);
 }
 
-addScript("{{ http_host }}/static/scripts/utils/s3slider.js");
+//addScript("{{ http_host }}/static/scripts/utils/s3slider.js");
         //if ($.fn.s3Slider)
         //setTimeout(waitForSlider, 60);
         

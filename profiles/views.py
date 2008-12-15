@@ -8,7 +8,7 @@ from utils.webapp import template
 from utils.webapp.util import login_required
 from google.appengine.ext import db
 from utils import webapp
-from utils.utils import ROOT_PATH, tpl_path, memoize
+from utils.utils import ROOT_PATH, tpl_path, memoize, get_flash, set_flash
 from utils.random import sort_by_attr
 from .model.user import Profile, QuizTaker, ProfilePicture
 
@@ -27,7 +27,7 @@ class ViewProfile(webapp.RequestHandler):
     if not template_values: return
     path = tpl_path(PROFILE_PATH +'profile_template.html')
     self.response.out.write(template.render(path, template_values))
-
+    
 
   def get_profile(self):
 		profile_path = self.request.path.split('/profile/')[1].lower()
@@ -38,11 +38,14 @@ class ViewProfile(webapp.RequestHandler):
 			user = user.get()
 			this_user = user.unique_identifier
 		except:
+		    logging.info('profile not found')
+		    logging.info(profile_path)
 		    self.redirect('/profile_not_found/') # if no user is found
 		    return
 		is_profile_owner = False
 		if self.session['user']:
 		    if user.unique_identifier == self.session['user'].unique_identifier: is_profile_owner = True
+		else: set_flash('anon_viewer')
 		qt = QuizTaker.get_by_key_name(user.unique_identifier)
 		topic_levels = self.get_topic_levels(qt)
 		level_cloud = self.make_cloud(topic_levels[0:CLOUD_LIMIT])
@@ -52,9 +55,9 @@ class ViewProfile(webapp.RequestHandler):
 		for s in user.sponsorships.fetch(100): #just temporarily, to test for referenceproperty errors.
 			try: s.sponsor.photo.key()
 			except: s.delete()
-		s.put()
+			s.put()
 		return { 'user': user, 'profile_owner': is_profile_owner,  'top_levels': topic_levels[0:REPORT_CARD_LIMIT],
-		        'level_cloud': level_cloud,
+		        'level_cloud': level_cloud, 'flash_msg': get_flash(),
 		        'range': range, 'depth': depth, 'level_msg': self.level_msg }
 
 
@@ -77,6 +80,8 @@ class ViewProfile(webapp.RequestHandler):
 	return level_cloud            
 
 
+
+  
 class EditProfile(webapp.RequestHandler):
   @login_required
   def get(self):

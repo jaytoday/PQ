@@ -161,22 +161,34 @@ class QuizSession():
 						  score = this_score,
 						  correct_answer = this_item.index,
 						  picked_answer = picked_answer,
+						  type = token # temp storage
 						  )
 
+		"""
 		user = self.session['user']
-		
 		if user:
 			this_user = QuizTaker.get_by_key_name(user)
 			score.quiz_taker = this_user.key()
 			score.type = "site"     # type could be site, practice widget
 		else:
 			score.type = "temp"
+		"""
 		if len(vendor) > 0: score.vendor = Employer.get(vendor)
 		score.put()
-		if user: 
-		  this_user.scores.append(score.key())
-		  this_user.put()
 		logging.info('Score entered by user %s with score %s, correct: %s, picked: %s'
 					% (score.quiz_taker, score.score, score.picked_answer, score.correct_answer))
 		
 
+
+	# save temporary scores
+	def update_scores(self, token, unique_identifier):
+		logging.info('Transferring Score')  
+		this_user = QuizTaker.get_by_key_name(unique_identifier)
+		save_items = []
+		these_items = ItemScore.gql("WHERE type = :1", token).fetch(1000)
+		for i in these_items:
+			i.quiz_taker = this_user
+			save_items.append(i)
+		from google.appengine.ext import db
+		db.put(save_items)
+		return True

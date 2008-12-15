@@ -13,3 +13,6 @@ execute "from autoexec import *".  So you may place anything in here which you f
 import site
 help = site._Helper()
 del site
+
+from model.profile import Profile
+
