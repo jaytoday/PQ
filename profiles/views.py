@@ -66,7 +66,7 @@ class ViewProfile(webapp.RequestHandler):
       try: all_topic_levels = qt.topic_levels.fetch(100)
       except: # no topic levels set
           all_topic_levels = None
-          public_topic_levels = []
+      public_topic_levels = []
       if all_topic_levels: public_topic_levels = [t for t in all_topic_levels if t.topic_level > TOPIC_LEVEL_MIN]
       self.level_msg = False
       if len(public_topic_levels) < 4: 

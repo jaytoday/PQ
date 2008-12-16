@@ -71,7 +71,7 @@ class LoginResponse(webapp.RequestHandler):
 		      logging.debug(json)
 		      self.redirect('/login?error=true')
 		  try: nickname = json['profile']['preferredUsername']
-		  except: nickname = ''
+		  except: nickname = json['profile'].get('displayName', unique_identifier[-7:-1]) # TODO: whoops, your name is gibberish. 
 		  try: email = json['profile']['email']
 		  except: email = ''
 		  logging.debug(json['profile'])
@@ -82,7 +82,7 @@ class LoginResponse(webapp.RequestHandler):
 		  self.session['email'] = email
 		  self.session['fullname'] = fullname
 		  self.session['user'] = registered(self.session['unique_identifier'])
-		  if self.session['user'] is False: self.register_user()  # This should all be in transaction. 
+		  if self.session['user'] is False: self.register_user()  # TODO: This should all be in transaction-esque block using db.put() 
 		  else: 
 		        if not self.session['continue']: self.session['continue'] = DEFAULT_LANDING_PAGE
 		        self.redirect(self.session['continue'])

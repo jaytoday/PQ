@@ -52,7 +52,7 @@ class Build():
 		self.delete_profile_images()
 		image_range = range(3) # change this as you add more. range() is always one int ahead.
 		for i in image_range:
-			print "loading image"
+			print "loading profile image"
 			image_file = open(ROOT_PATH + "/data/img/profile/profile_" + str(i) + ".png")
 			image = image_file.read()
 			small_image = images.resize(image, 45, 45)
