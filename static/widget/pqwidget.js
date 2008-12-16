@@ -31,7 +31,7 @@ var iso = function($)
                         autoStart: false, // debugging only?
                         initDone: false,
                         startTime: (new Date()),
-                        timeoutDuration: 25000, // time to answer question
+                        timeoutDuration: 24000, // time to answer question
                         proficiencies: Array(), // deprecated?
                         sessionToken: "", // provided by server to load and answer questions
                         instructions: // track progress through instruction
@@ -108,7 +108,7 @@ var iso = function($)
                                         
                                 });
 
-                                // timer controls. listenes for startTimer, loadingQuizItem, submitingAnswer
+                                // timer controls. listens for startTimer, loadingQuizItem, submitingAnswer
                                 $("#quiz_timer")
                                         .bind("startTimer", function(event, quizItem)
                                         {
@@ -129,9 +129,9 @@ var iso = function($)
                                                         if (quizItem.item_type == "quiz_item")
         								{
 									timer_width = $('.timer_bar').width(); // to calculate score
-									$('.timer_inner', self).animate({opacity: 1.0}, 3000, function()
+									$('.timer_inner', self).animate({opacity: 1.0}, 5000, function()
 									{
-										$('#quiz_answers').find('div').removeClass('disabled');
+										$('#quiz_answers').find('div').removeClass('disabled').data("disabled", false);
 									});
 								}
                                                         
@@ -200,6 +200,7 @@ var iso = function($)
                                 })
                                 .click(function(e)
                                 {
+                                       
                                         // data("disabled") prevents double submissions
                                         if ($(this).hasClass('disabled')){ return false; }
                                         if($(this).data("disabled") != true)
@@ -211,14 +212,15 @@ var iso = function($)
                                 .bind("disableAnswers", function()
                                 {
                                         // reset in loadItem
-                                        if($.plopquiz.quizItem.item_type == "quiz_item")
-                                                $(this).data("disabled", true);
+                                        if($.plopquiz.quizItem.item_type == "quiz_item" || $.plopquiz.quizItem.item_type == "begin_quiz")
+                                               $('#quiz_answers').find('div').addClass('disabled').data("disabled", true);
                                 });
 
                                 $("#quiz_content")
                                         // when the item is loaded, opac fade in, then trigger startTimer
                                         .bind("quizItemLoaded", function(e, quizItem)
                                         {
+                                        	 
                                                 $('#quiz_content').animate(
                                                 {
                                                         opacity: 1
@@ -228,9 +230,10 @@ var iso = function($)
                                                         complete: function()
                                                         {
                                                                 $.event.trigger("startTimer", [ quizItem ]);
+                                                                
                                                         }
                                                 });
-                                                $('#quiz_answers').find('div').removeClass('disabled');
+                                                
 
                                         });
 
@@ -321,17 +324,24 @@ var iso = function($)
                 if(!quizItem)
                         return;
                         
-                $('#quiz_inner > div').addClass('disabled').animate({opacity:0},{duration:500, complete:function(){
-                	//$('#quiz_content > div').add('hidden');
-                	$('#quiz_loading').show().animate({opacity: .5}, 200);
-                	}});
-                
-                // hardcoded versus server provided
+                $('#quiz_inner > div').addClass('disabled').animate({opacity:0},100); 
+                	
+
+		
+                	$('#quiz_loading').show().animate({opacity: .5}, 100).animate({opacity: .5 }, {duration:1000, complete:function(){ 
+
+                        	
+                        
+                        	
+                        	
+
+                        // hardcoded versus server provided
                 quizItem["url"] = quizItem.url ? quizItem.url : "/quiz_item/?token=" + $.plopquiz.settings.sessionToken;
 
                 // heeaayy, we're loading a quiz item
                 $.event.trigger('loadingQuizItem');
-
+                
+                
                 // load from the server not the widget location
                 $.ajax({
                         url: $.plopquiz.settings.serverUrl + quizItem.url,
@@ -341,15 +351,14 @@ var iso = function($)
 // set the quiz content -- it can be seen
 $('#quiz_content').html(html);
 // hide the answers for now
-     $('#quiz_answers .answer')
-                                        .hide()
+     $('#quiz_answers .answer').hide()
 
                                 $('#quiz_loading').animate({opacity: 0}, { 
                                 	duration: 0, complete: function(){ 
 
                                 		$('#quiz_inner > div').animate({opacity:1},{duration:200}).removeClass('disabled');
                                 		
-                                		 } });
+                                		 } }).hide();
                                 		 
                                 
                                 for ( var i in quizItem.answers )
@@ -531,6 +540,9 @@ $('#quiz_content').html(html);
                                 console.log("Ajax error: ", xhr,s);
                         }
                 });
+     
+     	}});
+     
         };
 
 
@@ -630,7 +642,7 @@ $('#quiz_content').html(html);
                                 var this_item = $.plopquiz.quizItem;
                                 var timer_status = $('.timer_bar').width()/$.plopquiz.settings.timer_width;
                                 var vendor = "" //TODO: retrieve vendor token.
-
+                                $('.timer_bar').css('width', '100%');
                                 $.ajax(
                                 {
                                         url: $.plopquiz.settings.serverUrl + "/quiztaker/rpc",
@@ -658,7 +670,7 @@ $('#quiz_content').html(html);
                                         }
                                 });
 
-                                $('.timer_bar').css('width', '100%');
+                               
                         break;
                         
                         case "quiz_complete":

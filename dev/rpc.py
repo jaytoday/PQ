@@ -129,15 +129,9 @@ remote callers access to private/protected "_*" methods.
 	if not args: return "Specify A Business Name and Proficiency List"
 	if len(args) > 1: return "Specify A Business Name and Proficiency List"
 	business_name = args[0]
-	from accounts.methods import register_account, register_user
-	import string
-	fullname = string.capwords(business_name.replace("_", " "))
-	business_account = register_account(business_name, fullname)
-	business_profile = register_user(business_name, fullname, fullname, False)
 	from employer.methods import DataMethods
 	dm = DataMethods()
-	business_employer = dm.register_employer(business_name, fullname)
-	return business_account, business_profile, new_employer 
+	return dm.create_business_account(business_name)
 
 
   def add_auto_pledge(self, *args):

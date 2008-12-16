@@ -62,8 +62,7 @@ class Build():
 									   large_image = large_image,
 									   type="pq")
 			new_image.put()
-			print new_image.__dict__
-			new_image.key_name = str(new_image.key())
+			new_image.key_name = str(new_image.key())# or this?
 			new_image.put()
 									
 	def delete_profile_images(self):
@@ -96,7 +95,11 @@ class Build():
 				new_image.put()
 					
 		
-		
+	def delete_subject_images(self):
+		pics = SubjectImage.all().fetch(1000)
+		print "deleting %d subject images" % len(pics)
+		for p in pics:
+		  p.delete()			
 				
 
 		
@@ -138,7 +141,7 @@ class DataMethods():
 		entities = []
 		for entity in newdata:
 			if data_type == 'proficiencies':
-				save_entity = Proficiency.get_or_insert(key_name=entity['name'], name = entity['name'] )
+				save_entity = Proficiency.get_or_insert(key_name=entity['name'], name = entity['name'], blurb = entity.get("blurb", ""))
 				save_entity.status = entity.get('status', None)
 				save_entity.vlurb = entity.get('blurb', None)
 			if data_type == 'proficiency_topics':

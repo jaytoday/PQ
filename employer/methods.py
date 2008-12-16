@@ -6,7 +6,7 @@ from .utils.utils import tpl_path, ROOT_PATH, raise_error
 from utils import simplejson
 from google.appengine.ext import db
 from utils.gql_encoder import GqlEncoder, encode
-    
+import logging
 
 def refresh_data(data_type, verbose):
   data = DataMethods()
@@ -57,28 +57,28 @@ class DataMethods():
 				these_proficiencies = []
 				for p in entity['proficiencies']:
 				  these_proficiencies.append(Proficiency.get_or_insert(p, name = p).name)
-				save_entity = Employer.get_or_insert(key_name=entity['name'],
-				                                     unique_identifier = entity['unique_identifier'], 
-				                                     name = entity['name'],
-				                                     email = entity['email'],
-				                                     proficiencies = these_proficiencies) 
-			try: save_entity.put()	
+			print self.create_business_account(entity['unique_identifier'])
+			try: pass#self.create_business_account(entity['unique_identifier'])
 			except:
 				logging.error('Unable to save new entity')
 				print 'Unable to save new entity'
-			print "ADDED"
-			print save_entity
-			print save_entity.key()
 		self.refresh_employer_images()   
 
 
 
+  def create_business_account(self, uid, proficiencies=False):
+	from accounts.methods import register_account, register_user
+	import string
+	fullname = string.capwords(uid.replace("_", " "))
+	business_account = register_account(uid, fullname)
+	business_profile = register_user(uid, fullname, fullname, False)
+	business_employer = self.register_employer(uid, fullname, proficiencies)
+	return business_account, business_profile, business_employer 
 
 
-
-
-  def register_employer(self, business_name, fullname):
-	  new_employer = Employer(key_name=business_name, unique_identifier = business_name, name = fullname)
+  def register_employer(self, business_name, fullname, proficiencies=False):
+	  new_employer = Employer.get_or_insert(key_name=business_name, unique_identifier = business_name, name = fullname)
+	  if proficiencies: new_employer.proficiencies = proficiencies
 	  self.refresh_employer_images([new_employer])
 	  new_employer.put()
 	  return new_employer
