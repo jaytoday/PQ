@@ -1,7 +1,7 @@
 {% extends "../base.html" %}
 {% block head %}
 <!-- This should only be loaded when Privacy Policy is clicked -->
-<script src="/static/scripts/jquery/jquery.ui.js"></script>
+
 <link rel="stylesheet" href="/static/stylesheets/ui/dialog.css" type="text/css" media="screen">
 
 
@@ -17,10 +17,17 @@
 <div class="login_notice warning_note">We were unable to sign you in with the selected service.</div>
 {% endif %}
 
-{% if test %} 
+{% if pre_test %} 
 <div class="login_notice warning_note">You must sign in before taking a test. </div>
 {% endif %}
 
+{% ifequal login_context.1 "register"%}
+<!--<div class="login_notice warning_note">You must sign in before registering. </div> -->
+{% endifequal %}
+
+{% ifequal login_context.2 "from_quiz"%}
+<div class="login_notice warning_note">Please sign in to save your quiz. </div>
+{% endifequal %}
 
 <div class="login_box frame_box">
 <div class="info_note">For your 

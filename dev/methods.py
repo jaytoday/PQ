@@ -71,11 +71,6 @@ class Build():
 		for p in pq_pics:
 		  p.delete()	
 
-	def delete_subject_images(self):
-		subject_pics = SubjectImage.all().fetch(1000)
-		print "deleting subject images:", subject_pics
-		for p in subject_pics:
-		  p.delete()	
 		  		
 	def refresh_subject_images(self, *args):
 		self.delete_subject_images()
@@ -96,10 +91,12 @@ class Build():
 				                         proficiency = p
 									     )
 				new_image.put()
-				new_image.key_name = str(new_image.key())
+				new_image.key_name = str(new_image.key()) # why would I do this?
 				new_image.put()
+					
 		
 		
+				
 
 		
 	def refresh_default_subject_image(self):
@@ -140,19 +137,19 @@ class DataMethods():
 		entities = []
 		for entity in newdata:
 			if data_type == 'proficiencies':
-				save_entity = Proficiency.get_or_insert(entity['name'], name = entity['name'] )
+				save_entity = Proficiency.get_or_insert(key_name=entity['name'], name = entity['name'] )
 				save_entity.status = entity.get('status', None)
 				save_entity.vlurb = entity.get('blurb', None)
 			if data_type == 'proficiency_topics':
 				this_proficiency = Proficiency.gql("WHERE name = :1", entity['proficiency']['name'])
 				print entity['proficiency']
-				save_entity = ProficiencyTopic.get_or_insert(entity['name'], name = entity['name'], 
+				save_entity = ProficiencyTopic.get_or_insert(key_name=entity['name'], name = entity['name'], 
 											   proficiency = this_proficiency.get())
 			if data_type == 'content_pages':
 				 try: this_proficiency = Proficiency.gql("WHERE name = :1", entity['proficiency']['name'])
 				 except TypeError: continue # some old content pages dont have proficiencies
 				 print entity['url']
-				 save_entity = ContentPage(url = entity['url'], proficiency = this_proficiency.get()) 
+				 save_entity = ContentPage(key_name=entity['url'], url = entity['url'], proficiency = this_proficiency.get()) 
 			if data_type == 'raw_items':
 				print entity['page']['url']
 				this_url = ContentPage.gql("WHERE url = :1", entity['page']['url'])

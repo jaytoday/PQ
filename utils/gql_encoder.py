@@ -54,8 +54,8 @@ class GqlEncoder(simplejson.JSONEncoder):
       properties = obj.properties().items()
       output = {}
       for field, value in properties:
-      	try: output['key'] = str(obj.key())
-      	except: pass
+      	#try: output['key'] = str(obj.key())
+      	#except: pass
         output[field] = getattr(obj, field)
       return output
 

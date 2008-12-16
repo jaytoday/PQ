@@ -77,13 +77,14 @@ class Awards():
 	EXCELLENCE_TOPIC_THRESHOLD = 60 #90
 	FLUENCY_TOPIC_THRESHOLD = 35  #55
 	
-	def check_all(self):
+	def check_all(self, qt=False): # specify qt for a single person
 		self.save_awards = [] # for batch datastore trip
-		quiz_takers = QuizTaker.all().fetch(1000)
+		if not qt: quiz_takers = QuizTaker.all().fetch(1000) # TODO: do more than 1000, with version check.
+		else: quiz_takers = [qt]
 		for qt in quiz_takers:
 			self.check_taker(qt)
 		db.put(self.save_awards)
-		return
+		return len(self.save_awards)
 			
 	def check_taker(self, qt):			
 	  # Re-Initialize Values 
@@ -118,7 +119,7 @@ class Awards():
 
 	def check_proficiency_excellence(self):
 		for proficiency, topics in self.topics_in_proficiency.items():
-			print float(float(len(self.excellence[proficiency])) / float(len(topics)))
+			logging.info('ratio of excellent scores to total length of topics - %s',float(float(len(self.excellence[proficiency])) / float(len(topics))) )
 			if float(float(len(self.excellence[proficiency])) / float(len(topics))) > self.EXCELLENCE_PROFICIENCY_THRESHOLD: self.awarded_proficiencies[proficiency] = "excellence"
 
 	def check_proficiency_fluency(self):
@@ -128,8 +129,7 @@ class Awards():
 
 	def upgrade_awards(self, qt):
 		for proficiency, type in self.awarded_proficiencies.items():
-			print "upgrading award"
-			print proficiency, type
+			logging.info('upgrading awards for user %s and proficiency %s', qt.unique_identifier, proficiency)
 			#topic_list = self.topics_in_proficiency[proficiency]   - Only Needed if we need all the topics in the proficiency
 			if type == "fluency": rankings = self.fluency[proficiency]
 			if type == "excellence": rankings = self.excellence[proficiency]
@@ -137,10 +137,8 @@ class Awards():
 			this_profile = Profile.get_by_key_name(qt.unique_identifier)
 			if not this_account: 
 			    this_account = register_account(qt.unique_identifier)
-			print this_account
 			award_topics = [] 
 			award_levels = []
-			print rankings.__class__
 			for rank_dict in rankings:
 				for topic, level in rank_dict.items():
 					award_topics.append(topic)
@@ -161,35 +159,28 @@ class Awards():
 class Sponsorships():
 
 
-	def check_all(self):
+	def check_all(self, qt=False):
 		self.save_sponsorships = [] # for batch datastore trip
 		awards = Award.all().fetch(1000)
 		for award in awards:
 			self.check_award(award)
 		db.put(self.save_sponsorships)
-		return
+		return len(self.save_sponsorships)
 			
 	def check_award(self,award):
 		give_sponsorship = {}
-		matching_sponsorships = award.sponsorships
-		sponsorships_pledged_to_me = award.winner.sponsorships_pledged_to_me
-		matching_pledges = SponsorPledge.gql("WHERE proficiency = :1", award.proficiency).fetch(1000)  # efficiency - check for target?
-		for pledge in matching_pledges:
+		for pledge in award.winner.sponsorships_pledged_to_me:
 			# eventually allow for corporate sponsor checks.    # This should use zip().
-			if award.winner.unique_identifier == pledge.sponsor.unique_identifier: continue #can't sponsor yourself. might find a better way...
-			if award.winner.key() in pledge.target:
-				give_sponsorship[pledge] = True
-			else: continue # award winner not eligible for this sponsorpledge
-			existing_sponsorships = pledge.sponsorships.get()
-			if existing_sponsorships: # check to make sure scholarship doesn't already exist 
-			    for es in existing_sponsorships:
-			    	if es.recipient == award.winner: give_sponsorship[pledge] = False
+			if award.winner.unique_identifier == pledge.sponsor.unique_identifier: continue #can't sponsor yourself. TODO: this should be done before now!
+			give_sponsorship[pledge] = True
+			# check to make sure it hasn't been awarded yet. 
+			existing_sponsorships = pledge.sponsorships.fetch(1000)
+			if existing_sponsorships: 
+			    if award.winner in existing_sponsorships: give_sponsorship[pledge] = False 
 			if give_sponsorship[pledge] == True: self.give_sponsorship(pledge, award)				
 		return
 		
 		
-		# confirm that no sponsorship exists for matching pledges
-					
 
 
 	def give_sponsorship(self, pledge, award):
@@ -207,6 +198,51 @@ class Sponsorships():
 
 
 	def notify_sponsor(self,sponsor):
-		print "I will email", sponsor, "after checking my RSS feeds"
+		pass#print "I will email", sponsor, "after checking my RSS feeds"
 			
 	# Based on awards that have been given, activate scholarships. 
+
+
+
+
+
+
+
+class SponsorPledge():
+
+  def submit(self, args):
+  	session = Session()
+  	from .model.account import Account
+  	from .model.user import Profile
+  	sponsor_type = "personal" # or corporate
+  	package = args[0]
+  	award_type = args[1]
+  	raw_target = [args[2]] # for more than one user. TODO: Front-end.
+  	target = []
+  	activated = []
+  	single_target = False
+  	for u in raw_target: 
+  	    t = Profile.get(u)
+  	    if len(raw_target) > 1: single_target = t
+  	    target.append(t.key())
+  	    activated.append(False)
+  	from model.account import SponsorPledge
+  	new_pledge = SponsorPledge(#key_name?
+  	                           sponsor = session['user'],
+  	                           sponsor_type = sponsor_type,
+  	                           package = package,
+  	                           award_type = award_type,
+  	                           target = target,
+  	                           type = type,
+  	                           activated = activated)
+  	
+  	# if only a single person is receiving the pledge
+  	if single_target:
+  		new_pledge.single_target = single_target
+  	# if any subject was chosen
+  	if args[3] != "any_subject":
+  		from model.proficiency import Proficiency
+  		new_pledge.proficiency = Proficiency.get(args[3])
+  		
+  	db.put(new_pledge)
+  	return "True"

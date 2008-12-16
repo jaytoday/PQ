@@ -150,7 +150,7 @@ class ProficiencyLevels():
 
 	def set(self):
 		from ranking.methods import TopicLevelData, ProficiencyLevelData
-		quiz_takers = QuizTaker.all().fetch(20)
+		quiz_takers = QuizTaker.all().fetch(1000)        # this can only do a thousand at a time
 		ptl = TopicLevelData()
 		for qt in quiz_takers:
 		  ptl.set(qt)
@@ -159,6 +159,12 @@ class ProficiencyLevels():
 		  pl.set(qt)      
 	  
 		  
-  
+	def set_for_user(self, qt):
+		from ranking.methods import TopicLevelData, ProficiencyLevelData
+		ptl = TopicLevelData()
+		ptl.set(qt)
+		pl = ProficiencyLevelData()
+		pl.set(qt) 
+		# TODO: return value so it is known whether award check should be done. 
   
       

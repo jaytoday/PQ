@@ -1,9 +1,8 @@
 
 
 div.login_box{
-float:left;
 height:340px;
-margin:50px 180px;
+margin:70px 180px;
 position:absolute;
 width:500px;
 }
@@ -15,8 +14,9 @@ margin:13px 3px;
 }
 
 div.login_notice{
-float:left;
-margin:10px 255px -50px;
+margin:25px 255px 10px;
+position:absolute;
+text-align:center;
 width:350px;
 }
 

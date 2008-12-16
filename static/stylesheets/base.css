@@ -470,6 +470,12 @@ input.button, button {
 	-webkit-border-radius: 12px;
 }
 
+button img{
+float:left;
+}
+
+
+
 input.button:hover,button:hover{
 cursor:pointer;
 color: #222;
@@ -501,9 +507,11 @@ input.button.disable {
 
 .form_proceed, .form_cancel{
 margin:20px -120px;
+cursor:pointer;
 }
 
 .continue_button{
-float:right; font-weight:bold; 
+float:right; 
+font-weight:bold; 
 margin:18px 4px;
 }

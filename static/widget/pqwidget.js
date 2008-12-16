@@ -694,7 +694,7 @@ function waitForJQ()
 function pqLoad()
 {
 
-        
+        {% include "s3slider.js" %}
         // force ready jQuery because page load is (likely?) done
         jQuery.isReady = true;
         // load plopquiz (modified) from within closure
@@ -717,7 +717,7 @@ else
         
         // Load external javascript files
         {% include "jquery.js" %}       // Since this is being done on the server-side, it's much faster than getScript().
-        {% include "s3slider.js" %}
+        
         // This could also make it easier for us to manage the quiztaking code, since there's no penalty to seperating the code between files. 
         
         

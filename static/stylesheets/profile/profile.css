@@ -93,7 +93,7 @@ font-size: 1.2em;
 
 
 div#photo{
-margin:-68px 40px;
+margin:-68px 20px;
 position:absolute;
 }
 
@@ -740,4 +740,16 @@ float:right;
 height:302px;
 margin:-430px 7px;
 width:180px;
+}
+
+div.flash_msg h2{
+font-size:1.4em;
+text-align:center;
+width:103%;
+}
+div.flash_msg ul li{
+font-size:0.8em;
+margin:20px -1px;
+width:180px;
+line-height:1.4em;
 }

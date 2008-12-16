@@ -18,11 +18,11 @@ class TopicLevelData():
 		for score in quiz_taker.scores:
 			this_score = ItemScore.get(score)
 			if not this_score:
-				print "score not found. deleting key"
+				logging.error("score not found. deleting key")
 				edited_scores = True
 				quiz_taker.scores.remove(score)  # remove key from list
 			else:
-				print this_score.score
+				pass
 			try: 
 				current_average = topic_scores[this_score.quiz_item.topic.key()]['average']
 				current_count = topic_scores[this_score.quiz_item.topic.key()]['count']
@@ -38,13 +38,10 @@ class TopicLevelData():
 				
 			topic_scores[this_score.quiz_item.topic.key()]['count'] = new_count
 			topic_scores[this_score.quiz_item.topic.key()]['average'] = new_average
-		print topic_scores
 		if edited_scores: quiz_taker.put()		
 		
 		# seperate topic_scores into individual topics
 		for topic_pair in topic_scores.items():
-			print topic_pair[0]
-			print quiz_taker
 			tl_keyname = str(quiz_taker.unique_identifier) + "_" + str(topic_pair[0])
 			if TopicLevel.get_by_key_name(tl_keyname):
 				topic_level = TopicLevel.get_by_key_name(tl_keyname)
@@ -88,7 +85,6 @@ class ProficiencyLevelData():
 			pro_scores[tl.topic.proficiency.key()]['count'] = new_count
 			pro_scores[tl.topic.proficiency.key()]['average'] = new_average
 
-		print pro_scores
 		for pro_pair in pro_scores.items():
 				pl_keyname = str(quiz_taker.unique_identifier) + "_" + str(pro_pair[0])
 				if ProficiencyLevel.get_by_key_name(pl_keyname):

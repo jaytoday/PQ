@@ -54,8 +54,8 @@ class ViewProfile(webapp.RequestHandler):
 		from model.account import Award, Sponsorship
 		for s in user.sponsorships.fetch(100): #just temporarily, to test for referenceproperty errors.
 			try: s.sponsor.photo.key()
-			except: s.delete()
-			s.put()
+			except: 
+			    s.delete()
 		return { 'user': user, 'profile_owner': is_profile_owner,  'top_levels': topic_levels[0:REPORT_CARD_LIMIT],
 		        'level_cloud': level_cloud, 'flash_msg': get_flash(),
 		        'range': range, 'depth': depth, 'level_msg': self.level_msg }
@@ -63,11 +63,15 @@ class ViewProfile(webapp.RequestHandler):
 
       
   def get_topic_levels(self, qt):
-      topic_levels = [t for t in qt.topic_levels.fetch(100) if t.topic_level > TOPIC_LEVEL_MIN]
+      try: all_topic_levels = qt.topic_levels.fetch(100)
+      except: # no topic levels set
+          all_topic_levels = None
+          public_topic_levels = []
+      if all_topic_levels: public_topic_levels = [t for t in all_topic_levels if t.topic_level > TOPIC_LEVEL_MIN]
       self.level_msg = False
-      if len(topic_levels) < 4: 
+      if len(public_topic_levels) < 4: 
           self.level_msg = True
-      return sort_by_attr(topic_levels, 'topic_level') # sort from greatest to least
+      return sort_by_attr(public_topic_levels, 'topic_level') # sort from greatest to least
 
       
   def make_cloud(self, topic_levels):

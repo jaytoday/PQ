@@ -129,10 +129,10 @@ body {
 	width: 60px;
 	height: 45px;
 	background: url(../img/base/plane.png) no-repeat;
-	position: relative;
+	position: absolute;
 	text-decoration:none; 
 	display: block;
-    top: 20%;
+    top: 10%;
 	left: 0%;
 	z-index: 5;
 }

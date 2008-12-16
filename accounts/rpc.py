@@ -79,41 +79,10 @@ class RPCMethods(webapp.RequestHandler):
 
 
   def SubmitSponsorPledge(self, *args):
-  	session = Session()
-  	from .model.account import Account
-  	from .model.user import Profile
-  	sponsor_type = "personal" # or corporate
-  	package = args[0]
-  	award_type = args[1]
-  	raw_target = [args[2]] # for more than one user
-  	target = []
-  	activated = []
-  	single_target = False
-  	for u in raw_target: 
-  	    t = Profile.get(u)
-  	    if len(raw_target) > 1: single_target = t
-  	    target.append(t.key())
-  	    activated.append(False)
-  	from model.account import SponsorPledge
-  	new_pledge = SponsorPledge(#key_name?
-  	                           sponsor = session['user'],
-  	                           sponsor_type = sponsor_type,
-  	                           package = package,
-  	                           award_type = award_type,
-  	                           target = target,
-  	                           type = type,
-  	                           activated = activated)
+  	 from accounts.methods import SponsorPledge
+  	 sp = SponsorPledge()
+  	 return sp.submit(args)
   	
-  	# if only a single person is receiving the pledge
-  	if single_target:
-  		new_pledge.single_target = single_target
-  	# if any subject was chosen
-  	if args[3] != "any_subject":
-  		from model.proficiency import Proficiency
-  		new_pledge.proficiency = Proficiency.get(args[3])
-  		
-  	db.put(new_pledge)
-  	return "True"
 
 
   	

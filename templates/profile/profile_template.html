@@ -56,7 +56,7 @@ if (!$('div.award_img')) $('div#no_award_note').show();
 	
 		<div class="profile">
 	
-		<div id="photo"><img src='/image/profile/?img_id={{ user.photo.key }}&size=large'/></div>
+		<div id="photo"><img src='/image/profile/?img_id={{ user.photo.key }}&size=small'/></div>
 		<div id="basics">
 		<div id="name">{{ user.fullname }} </div>
 		<!--TODO <div id="profession">Software Designer</div> -->
@@ -259,6 +259,14 @@ if (!$('div.award_img')) $('div#no_award_note').show();
 
 {% ifequal flash_msg "post_quiz" %}
 {% include "flash/post_quiz.html" %}
+{% endifequal %}
+
+{% ifequal flash_msg "new_award"  %}
+{% include "flash/new_award.html" %}
+{% endifequal %}
+
+{% ifequal flash_msg "new_sponsorship" %}
+{% include "flash/new_sponsorship.html" %}
 {% endifequal %}
 
 </div>

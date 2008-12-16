@@ -120,3 +120,44 @@ remote callers access to private/protected "_*" methods.
   def dump_mailing_list(self, *args):
     from model.account import MailingList
     print encode(MailingList.all().fetch(1000))
+
+
+
+###### BUSINESSES ###############
+
+  def add_business(self, *args):
+	if not args: return "Specify A Business Name and Proficiency List"
+	if len(args) > 1: return "Specify A Business Name and Proficiency List"
+	business_name = args[0]
+	from accounts.methods import register_account, register_user
+	import string
+	fullname = string.capwords(business_name.replace("_", " "))
+	business_account = register_account(business_name, fullname)
+	business_profile = register_user(business_name, fullname, fullname, False)
+	from employer.methods import DataMethods
+	dm = DataMethods()
+	business_employer = dm.register_employer(business_name, fullname)
+	return business_account, business_profile, new_employer 
+
+
+  def add_auto_pledge(self, *args):
+  	if not args: return "Specify A Business Identifier, Proficiency Name, and Number of Pledges."
+  	if len(args) > 3: return "Specify A Business Identifier, Proficiency Name, and Number of Pledges."
+  	business_name = args[0]
+  	from model.employer import Employer
+  	this_employer = Employer.get_by_key_name(business_name)
+  	proficiency_name = args[1]
+  	from model.proficiency import Proficiency
+  	this_proficiency = Proficiency.get_by_key_name(proficiency_name.capitalize())
+  	pledge_num = args[2]
+  	from model.employer import AutoPledge
+  	new_pledge = AutoPledge(employer = this_employer,
+  	                        proficiency = this_proficiency,
+  	                        count = pledge_num)
+  	new_pledge.put()
+  	return encode(new_pledge)                       
+
+  def refresh_employer_images(self, *args):
+  	 from employer.methods import DataMethods
+  	 d = DataMethods()
+  	 return d.refresh_employer_images()

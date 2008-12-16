@@ -10,8 +10,10 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-
+<script type="text/javascript" src="/static/scripts/jquery/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/static/scripts/dev/admin.js"></script>
 <title>Admin Options </title>
+
 </head>
 <html><body>
 
@@ -83,6 +85,21 @@
 <br/><li>
 <a href="/dev/rpc?action=restore_backup">Restore Backup Datastore</a>
 </li><br/><br/>
+
+<h1>Adding Entities</h1>
+<br/><li>
+<a href="/dev/rpc?action=add_business">Add a Business</a>
+<input type="text" id="business_name" value="business_name" onFocus="if (this.value == this.defaultValue) { this.value = ''; }"/> 
+<!-- <input type="text" id="business_proficiencies" value="subject1, subject2..." onFocus="if (this.value == this.defaultValue) { this.value = ''; }"/> --> 
+<input type="submit" id="submit_business" value="submit business">
+</li><br/><br/>
+<br/><li>
+<a href="/dev/rpc?action=add_auto_pledge">Add Auto-Pledge</a>
+</li><br/><br/>
+<br/><li>
+<a>Add a School</a>
+</li><br/><br/>
+
 
 <h1>Data Utilities</h1>
 <br/><li>

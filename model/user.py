@@ -53,8 +53,10 @@ class Profile(db.Model):
     #levels = db.ListProperty(db.Key) # ProficiencyLevel keys    
     
     
-    #Awards, Gifts and Scholarships - Use Family Structure
-    # awards
+    #Awards, Gifts and Scholarships 
+    #pledged_sponsorships - these are sponsorships that I've pledged. 
+    #sponsorships_pledged_to_me - these are sponsorships that have been pledged to me. 
+    
     #gifts = 
     
     
