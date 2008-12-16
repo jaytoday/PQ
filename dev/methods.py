@@ -37,9 +37,10 @@ def restore_backup():
 	build.refresh_profile_images()
 	data = DataMethods()
 	data_types =  ["proficiencies", 'proficiency_topics', 'employers', 'content_pages', 
-	                'raw_items', 'raw_items', 'quiz_items', 'mailing_list', 
-	                'accounts', 'proficiency_level', 'topic_level',
-	                'awards', 'sponsorships', ]
+	                'raw_items', 'raw_items', 'quiz_items', 'mailing_list']
+	                #TODO - These will break after refresh, and should be wiped during deletion process, if not restored. 
+	                #'accounts', 'proficiency_level', 'topic_level',
+	                #TODO 'awards', 'sponsorships', 
 	for data_type in data_types:
 		data.load_data(data_type, "/backup/")
 	build.refresh_subject_images()

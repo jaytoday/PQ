@@ -22,10 +22,10 @@ if ("{{ forloop.first }}") has_awards = "True";
 
 if (has_awards != "True") $('#main_nav').find('a[href="#report_card"]').click();
 
-if (!$('div.is_sponsor')) $('div#no_sponsorship_note').show();
+if ($('div.is_sponsor').length == 0) $('div#no_sponsorship_note').show();
 
 
-if (!$('div.award_img')) $('div#no_award_note').show();
+if (($('div.award_img').length == 0)) $('div#no_award_note').show();
 
 
 {% for award in user.awards %}
@@ -56,7 +56,7 @@ if (!$('div.award_img')) $('div#no_award_note').show();
 	
 		<div class="profile">
 	
-		<div id="photo"><img src='/image/profile/?img_id={{ user.photo.key }}&size=small'/></div>
+		<div id="photo"><img src='/image/profile/?img_id={{ user.photo.key }}&size=large'/></div>
 		<div id="basics">
 		<div id="name">{{ user.fullname }} </div>
 		<!--TODO <div id="profession">Software Designer</div> -->

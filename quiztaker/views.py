@@ -149,7 +149,6 @@ class Widget(webapp.RequestHandler):
         def get(self):
                 path = tpl_path(QUIZTAKER_PATH + '/widget/widget.html')
                 proficiencies = [Proficiency.get(self.request.get('proficiency'))]
-                #except: return False
                 template_values = {'proficiencies': proficiencies}
                 self.response.out.write(template.render(path, template_values))
                         

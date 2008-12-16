@@ -107,8 +107,8 @@ class DataMethods():
 			except: continue
 			print "image found:", str(p_path + str(e.unique_identifier) + ".png")
 			image = image_file.read()
-			small_image = images.resize(image, 120, 80)
-			large_image = images.resize(image, 360, 240)
+			small_image = images.resize(image, 45, 45)
+			large_image = images.resize(image, 95, 95)
 			new_image = ProfilePicture(small_image = small_image,
 									 large_image = large_image,
 									 type = "employer"

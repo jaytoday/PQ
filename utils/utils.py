@@ -154,6 +154,7 @@ def memoize(key, time=10000):
         def wrapper(*args, **kwargs):
             from google.appengine.api import memcache
             data = memcache.get(key)
+            if Debug(): return fxn(*args, **kwargs) # not active in dev mode 
             if data is not None:
                 return data
             data = fxn(*args, **kwargs)

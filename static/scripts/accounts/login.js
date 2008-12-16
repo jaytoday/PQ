@@ -1,18 +1,14 @@
 
  
-$(function()
-{
-
-
-
-	});
 
  
  
 function PrivacyPolicy() {
 	
         	$("#privacy_policy").dialog({ 
-    modal: true, 
+    modal: true,
+    resizable: false,
+    draggable: false, 
     overlay: { 
         opacity: 0.5, 
         background: "black" 

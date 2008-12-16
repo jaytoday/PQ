@@ -42,25 +42,7 @@
 	z-index: 90;
 }
 
-#quiz_wrap div#quiz_loading {
-	position: absolute;
-	height: 40px;
-	width: 40px;
-	cursor: pointer;
-	display: none;
-	overflow: hidden;
-	background: transparent;
-	z-index: 100;
-}
 
-#quiz_wrap div#quiz_loading div {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 40px;
-	height: 480px;
-	background: transparent url({{ http_host }}/static/stylesheets/img/quiz_progress.png) no-repeat;
-}
 
 #quiz_wrap div#quiz_close {
 background:transparent url({{ http_host }}/static/stylesheets/img/quiz_closebox.png) repeat scroll 0 0;
@@ -131,6 +113,35 @@ height:302px;
         height: 100%;
         display: none;
 }
+
+
+/* WIDGET */
+
+.widget_wrap{
+
+margin:20px;
+}
+
+.widget_footer{
+font-size: .8em;
+color: #DDDDDD;
+}
+
+#pqwidget{
+height:290px;
+width:380px;
+}
+
+button.widget_button{
+margin:-140px 50px;
+position:absolute;
+}
+
+button.widget_button span{
+margin:15px 5px !important;
+}
+
+
 
 img#quiz_img {
         position: absolute;
@@ -331,7 +342,7 @@ td#quiz_pink_right {
 
 }
 
-#quiz_wrap div#quiz_outer {
+#quiz_wrap div#quiz_outer  {
 background:transparent none repeat scroll 0 0 !important;
 left:30%;
 overflow:visible;
@@ -341,7 +352,7 @@ top:10%;
 z-index:90;
 }
 
-#quiz_wrap div#quiz_inner {
+#quiz_wrap div#quiz_inner,#quiz_wrap #quiz_loading {
         position: relative;
         border:8px solid #DDDDDD;
          background:#EDF2F8 none repeat scroll 0 0 !important;
@@ -350,6 +361,12 @@ z-index:90;
 
 }
 
+#quiz_loading  {
+left:15%;
+position:absolute !important;
+top:40%;
+width:250px;
+}
 
 
 #quiz_left, #quiz_right {
@@ -555,7 +572,12 @@ margin:-48px -10px !important;
 color:#666 !important;
 }
 
-
+/*
+.quiz_intro_text  .first_tutorial{
+height:158px; background: #EDF2F8 none repeat scroll 0 0 !important;
+position:absolute; width:280px; margin: -2px -18px;
+}
+*/
 
 /* Signup */
 
@@ -1542,4 +1564,22 @@ text-transform:capitalize !important;
 width:280px !important;
 -webkit-border-radius: 10px;
 -moz-border-radius:10px;
+}
+
+
+/* loading */
+
+
+div.loading img{
+margin:-5px 40px !important;
+}
+
+span.loading{
+font-size:2em !important;
+padding:0 15px !important;
+}
+
+
+.hidden{
+display:none;
 }
