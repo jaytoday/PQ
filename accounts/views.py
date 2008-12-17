@@ -71,7 +71,9 @@ class LoginResponse(webapp.RequestHandler):
 		      logging.debug(json)
 		      self.redirect('/login?error=true')
 		  try: nickname = json['profile']['preferredUsername']
-		  except: nickname = json['profile'].get('displayName', unique_identifier[-7:-1]) # TODO: whoops, your name is gibberish. 
+		  except: 
+		          try:  nickname = json['profile'].get('displayName', json['profile']['email'].split('@')[0]) # try to get a nickname, somehow! 
+		          except: nickname = json['profile'].get('displayName', unique_identifier[-7:-1]) # TODO: whoops, your name is gibberish. 
 		  try: email = json['profile']['email']
 		  except: email = ''
 		  logging.debug(json['profile'])
@@ -144,5 +146,5 @@ class Redirect(webapp.RequestHandler):
       if new_awards > 0: self.set_flash('new_award')
       from accounts.methods import Sponsorships
       sponsorships = Sponsorships()
-      if new_sponsorships > 0: self.set_flash('new_sponsorship')
       new_sponsorships = sponsorships.check_all(qt)
+      if new_sponsorships > 0: self.set_flash('new_sponsorship')

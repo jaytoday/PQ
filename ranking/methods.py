@@ -15,15 +15,17 @@ class TopicLevelData():
     def set(self, quiz_taker):
 		topic_scores = {}
 		edited_scores = False
-		for score in quiz_taker.scores:
-			this_score = ItemScore.get(score)
+		for score in quiz_taker.itemscores:
+			this_score = ItemScore.get(score.key())
 			if not this_score:
 				logging.error("score not found. deleting key")
 				edited_scores = True
 				quiz_taker.scores.remove(score)  # remove key from list
 			else:
 				pass
+			# TODO: could this be rewritten with .get()?
 			try: 
+				
 				current_average = topic_scores[this_score.quiz_item.topic.key()]['average']
 				current_count = topic_scores[this_score.quiz_item.topic.key()]['count']
 				current_sum = current_average * current_count

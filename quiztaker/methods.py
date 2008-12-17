@@ -75,8 +75,6 @@ class DataMethods():
 		this_topic = ProficiencyTopic.gql("WHERE name = :topic" ,
 									   topic=item['topic']['name']).get()
 		if not this_topic:
-			print ""
-			print item['topic']['name']
 			this_topic = ProficiencyTopic(name=item['topic']['name'], proficiency=this_proficiency.key())
 			this_topic.put()
 			if verbose[0] == "loud":
@@ -91,7 +89,6 @@ class DataMethods():
 							 index = item['index'],
 							 topic = this_topic.key())
 							  #Add List of Answers
-		print quiz_item
 		quiz_items.append(quiz_item)
 		if verbose[0] == "loud":
 		  print encode(quiz_item)

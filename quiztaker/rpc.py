@@ -121,7 +121,7 @@ class RPCMethods(webapp.RequestHandler):
   
   
   
-  # deprecated
+  # DEPRECATED!!!!!!!!!!!!!!!!
   def AddScore(self, *args):
 	logging.debug('Posting Answer')    
 	picked_answer = str(args[0])
@@ -138,11 +138,10 @@ class RPCMethods(webapp.RequestHandler):
 	if picked_clean == correct_clean:
 		timer_status = float(args[1])
 		this_score = int(round(timer_status * 100))
+		
 	else:
 		this_score = 0
 		logging.debug('Incorrect answer')
-
-	# Need Better Temp Storing 
                          
 	score = ItemScore(quiz_item = this_item.key(),
 					  score = this_score,
@@ -164,7 +163,7 @@ class RPCMethods(webapp.RequestHandler):
 	  this_user.scores.append(score.key())
 	  this_user.put()
 	logging.info('Score entered by user %s with score %s, correct: %s, picked: %s'
-				% (score.quiz_taker, score.score, score.picked_answer, score.correct_answer))
+				% (score.quiz_taker, score.score, score.correct_answer, score.picked_answer))
 	
 
 

@@ -16,8 +16,7 @@ class QuizTaker(db.Model):
     unique_identifier = db.StringProperty(required=False) # redundant
     nickname = db.StringProperty(required=False)    
     #Quiz Info 
-    
-    scores = db.ListProperty(db.Key) # ItemScore keys
+
     levels = db.ListProperty(db.Key) # ProficiencyLevel keys
     modified = db.DateTimeProperty(auto_now=True)
 
@@ -83,7 +82,8 @@ class ProficiencyLevel(db.Model):
   proficiency = db.ReferenceProperty(Proficiency,required=True,collection_name='pro_levels') # Proficiency Tag (startup_financing)
   quiz_taker = db.ReferenceProperty(QuizTaker,required=True, collection_name='proficiency_levels')
   proficiency_level = db.IntegerProperty()
-  percentile = db.IntegerProperty()  
+  percentile = db.IntegerProperty()
+  awarded=db.BooleanProperty(default=False)  
   modified = db.DateTimeProperty(auto_now=True)
 
 

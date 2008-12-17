@@ -138,7 +138,7 @@ class QuizSession():
 
 
 	def add_score(self, picked_answer, timer_status, token, vendor):
-		logging.info('Posting Score')  
+		logging.info('Posting the Score')  
 		self.session = self.get_quiz_session(token)
 		this_item = QuizItem.get(self.session['current_item']['key']) 
 		#Lookup quiz item with slug, clean it, and match it. 
@@ -153,7 +153,6 @@ class QuizSession():
 			this_score = int(round(timer_status * 100))
 		else:
 			this_score = 0
-			logging.info('Incorrect answer')
 
 		# Need Better Temp Storing 
 							 

@@ -32,7 +32,6 @@ var iso = function($)
                         initDone: false,
                         startTime: (new Date()),
                         timeoutDuration: 24000, // time to answer question
-                        proficiencies: Array(), // deprecated?
                         sessionToken: "", // provided by server to load and answer questions
                         instructions: // track progress through instruction
                         {
@@ -126,16 +125,18 @@ var iso = function($)
                                                         $(".timer_inner", self)
                                                                 .css("width", "100%");
                                                                 
+                                                                $.plopquiz.settings.timer_width = $('.timer_bar').width(); // to calculate score
+                                                         
+                                                         
                                                         if (quizItem.item_type == "quiz_item")
         								{
-									timer_width = $('.timer_bar').width(); // to calculate score
-									$('.timer_inner', self).animate({opacity: 1.0}, 5000, function()
+
+									$('.timer_inner', self).animate({opacity: 1.0}, 3000, function()
 									{
+										console.log('removing disabled class');
 										$('#quiz_answers').find('div').removeClass('disabled').data("disabled", false);
-									});
-								}
-                                                        
-                                                        // start running the timer down
+										
+										                                                        // start running the timer down
                                                         $(".timer_inner", self).animate(
                                                         {
                                                                 width: 0
@@ -161,6 +162,11 @@ var iso = function($)
                                                                 easing: "linear"
                                                         })
                                                         .show();
+                                                        
+
+									});
+								}
+                                                        
 						}
                                                 reset();
                                         })
@@ -201,11 +207,13 @@ var iso = function($)
                                 .click(function(e)
                                 {
                                        
+                                        console.log($.plopquiz.settings.timer_width);
                                         // data("disabled") prevents double submissions
-                                        if ($(this).hasClass('disabled')){ return false; }
-                                        if($(this).data("disabled") != true)
+                                        if ($(this).hasClass('disabled')){ return false; console.log('disabled');}
+                                        if($(this).data("disabled") != true){
                                                 $.plopquiz.submitAnswer($(this).find('div.answertext').text().replace(/\n/g,"")); 
-                                        
+                                         
+									 }
                                         // disable all the answers
                                         $.event.trigger("disableAnswers");
                                 })
@@ -640,8 +648,13 @@ $('#quiz_content').html(html);
                         case "quiz_item":
                                 // ajax call to submit -- (answer, key, vendor)
                                 var this_item = $.plopquiz.quizItem;
+                                console.log($('.timer_bar').width());
+                                console.log($.plopquiz.settings.timer_width);
+                                
                                 var timer_status = $('.timer_bar').width()/$.plopquiz.settings.timer_width;
                                 var vendor = "" //TODO: retrieve vendor token.
+                                console.log(timer_status);
+                                $(".timer_inner", self).stop();
                                 $('.timer_bar').css('width', '100%');
                                 $.ajax(
                                 {

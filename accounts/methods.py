@@ -143,7 +143,11 @@ class Awards():
 				for topic, level in rank_dict.items():
 					award_topics.append(topic)
 					award_levels.append(level)
-			new_award = Award(type = type,
+					
+			# make sure that awards are not duplicated - can we avoid the loop in general? 
+			award_key_name = str(this_profile.unique_identifier) + str(proficiency.name) + str(type)
+			new_award = Award.get_or_insert(key_name = award_key_name,
+			                   type = type,
 			                   topics = award_topics,
 			                   levels = award_levels,
 			                   proficiency = proficiency,
