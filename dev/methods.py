@@ -34,7 +34,7 @@ def refresh_data(data_type, verbose):
 
 def restore_backup():
 	build = Build()
-	build.refresh_profile_images()
+	build.refresh_profile_images(refresh=True)
 	data = DataMethods()
 	data_types =  ["proficiencies", 'proficiency_topics', 'employers', 'content_pages', 
 	                'raw_items', 'raw_items', 'quiz_items', 'mailing_list']
@@ -44,12 +44,13 @@ def restore_backup():
 	for data_type in data_types:
 		data.load_data(data_type, "/backup/", refresh=True)
 	build.refresh_subject_images()
+
     
 
 class Build():
 
-	def refresh_profile_images(self):
-		self.delete_profile_images()
+	def refresh_profile_images(self, refresh=False):
+		self.delete_profile_images(refresh)
 		image_range = range(3) # change this as you add more. range() is always one int ahead.
 		for i in image_range:
 			print "loading profile image"
@@ -57,18 +58,17 @@ class Build():
 			image = image_file.read()
 			small_image = images.resize(image, 45, 45)
 			large_image = images.resize(image, 95, 95)
-
 			new_image = ProfilePicture(small_image = small_image,
 									   large_image = large_image,
 									   type="pq")
 			new_image.put()
-			new_image.key_name = str(new_image.key())# or this?
-			new_image.put()
+			print "new profile image with key %s " % new_image.key()
 									
-	def delete_profile_images(self):
-		pq_pics = ProfilePicture.gql("WHERE type = :1", "pq").fetch(1000)
-		print "deleting profiles images:", pq_pics
-		for p in pq_pics:
+	def delete_profile_images(self, refresh=False):
+		if refresh: pics =  ProfilePicture.all().fetch(1000)
+		else: pics = ProfilePicture.gql("WHERE type = :1", "pq").fetch(1000)
+		print "deleting profiles images:", pics
+		for p in pics:
 		  p.delete()	
 
 		  		

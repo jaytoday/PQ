@@ -83,7 +83,7 @@ class DataMethods():
 		for e in Employer.all().fetch(1000):
 			try:  
 				this_profile = Profile.get_by_key_name(e.unique_identifier)
-				this_profile.photo.delete()
+				if this_profile.photo.type != "pq": this_profile.photo.delete()
 			except: pass 	
 			
   def refresh_employer_images(self, employer_list=False):
