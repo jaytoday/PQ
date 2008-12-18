@@ -150,13 +150,16 @@ class PQIntro(webapp.RequestHandler):
 
   def get_quiz_subjects(self):
 		from model.proficiency import Proficiency
-		quiz_subjects = Proficiency.all().fetch(50)  # TODO: WHERE type....
+		quiz_subjects = Proficiency.gql("WHERE status = :1", "public").fetch(50)  # TODO: WHERE type....
 		for p in quiz_subjects:
-		    if not p.images.get(): quiz_subjects.remove(p)
+		    if not p.images.get(): 
+		        logging.info("removing %s because it has no images ", p.name)
+		        quiz_subjects.remove(p)
+		        continue
 		    if p.name == eval(self.request.get('subject'))[0]: 
 		        quiz_subjects.remove(p)
 		        quiz_subjects.insert(0, p)
-		        #break
+		        continue
 		return quiz_subjects[0:5]
 		        
 class Widget(webapp.RequestHandler):

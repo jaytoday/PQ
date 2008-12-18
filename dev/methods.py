@@ -42,7 +42,7 @@ def restore_backup():
 	                #'accounts', 'proficiency_level', 'topic_level',
 	                #TODO 'awards', 'sponsorships', 
 	for data_type in data_types:
-		data.load_data(data_type, "/backup/")
+		data.load_data(data_type, "/backup/", refresh=True)
 	build.refresh_subject_images()
     
 
@@ -86,7 +86,7 @@ class Build():
 				image = image_file.read()
 				small_image = images.resize(image, 120, 80)
 				large_image = images.resize(image, 360, 240)
-				new_image = SubjectImage(key_name = p.name
+				new_image = SubjectImage(key_name = p.name,
 				                         small_image = small_image,
 				                         large_image = large_image,
 				                         proficiency = p
@@ -133,7 +133,7 @@ class DataMethods():
      	entity.delete()
 
     
-  def load_data(self, data_type, path):
+  def load_data(self, data_type, path, refresh=False):
 		print data_type
 		print ""
 		json_file = open(ROOT_PATH + "/data/" + path + str(data_type) + ".json")
@@ -142,43 +142,50 @@ class DataMethods():
 		entities = []
 		for entity in newdata:
 			if data_type == 'proficiencies':
-				save_entity = Proficiency.get_or_insert(key_name=entity['name'], name = entity['name'], blurb = entity.get("blurb", ""))
+				if refresh: self.delete_data(Proficiency.all())
+				save_entity = Proficiency.get_or_insert(key_name=entity['name'], name = entity['name'], status = entity.get("status", ""), blurb = entity.get("blurb", ""))
 				save_entity.status = entity.get('status', None)
 				save_entity.blurb = entity.get('blurb', None)
 			if data_type == 'proficiency_topics':
+				if refresh: self.delete_data(ProficiencyTopic.all())
 				this_proficiency = Proficiency.get_by_key_name(entity['proficiency']['name'])
-				print "proficiency topic keyname" 
+				
 				save_entity = ProficiencyTopic.get_or_insert(key_name=entity['name'], name = entity['name'], 
-											   proficiency = this_proficiency.get())
+											   proficiency = this_proficiency)
 			if data_type == 'content_pages':
+				 if refresh: self.delete_data(ContentPage.all())
 				 try: this_proficiency = Proficiency.get_by_key_name(entity['proficiency']['name'])
 				 except TypeError: continue # some old content pages dont have proficiencies
 				 print entity['url']
-				 save_entity = ContentPage(key_name=entity['url'], url = entity['url'], proficiency = this_proficiency.get()) 
+				 save_entity = ContentPage(key_name=entity['url'], url = entity['url'], proficiency = this_proficiency) 
 			if data_type == 'raw_items':
-				print entity['page']['url']
-				this_url = ContentPage.gql("WHERE url = :1", entity['page']['url'])
-				save_entity = RawQuizItem(
+				if refresh: self.delete_data(RawQuizItem.all())
+				this_url = ContentPage.get_by_key_name(entity['page']['url'])
+				save_entity = RawQuizItem(#key_name?
 										  index = entity['index'],
 										  answer_candidates = entity['answer_candidates'],
 										  pre_content = entity['pre_content'],
 										  content = entity['content'],
 										  post_content = entity['post_content'],
-										  page = this_url.get(),
+										  page = this_url,
 										  moderated = False)
+			# why dont you want to be with your friends?
 			if data_type == 'quiz_items': 
 				qtm = quiztaker_methods()
-				return qtm.refresh_quiz_items("loud")
+				return qtm.refresh_quiz_items("loud") # does this refresh?
 			if data_type == 'employers':
 				emp = employer_methods()
-				return emp.load_data("employers", "")
+				return emp.load_data("employers", "", refresh=True)
 			if data_type == 'mailing_list':
 				from model.account import MailingList
-				save_entity = MailingList(fullname = entity.get('fullname', ""), email = entity['email'], type = entity.get('type', ""))
+				if refresh: self.delete_data(MailingList.all())
+				save_entity = MailingList(key_name=entity['email'], fullname = entity.get('fullname', ""), email = entity['email'], type = entity.get('type', ""))
 			entities.append(save_entity)
+			
 		try:
-			print "saving", str(entities)
 			db.put(entities)
+			for entity in entities:
+				print "saved entity with class ",  entity.__class__, "and key ", entity.key() # more info?
 		except:
 			logging.error('Unable to save new entities')
 			print 'Unable to save raw quiz items'

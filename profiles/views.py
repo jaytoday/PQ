@@ -85,7 +85,6 @@ class ViewProfile(webapp.RequestHandler):
 
 
 
-  
 class EditProfile(webapp.RequestHandler):
   @login_required
   def get(self):

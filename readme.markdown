@@ -12,7 +12,9 @@ Setup
   To load a datastore snapshot, navigate to /dev/admin
   and select the Restore From Backup option. 
   
-  If you get a Traceback Error, refresh until no errors are returned.
+  If you get a Traceback Error, it may be a read/commit error.
+  If that's the case, refresh until no errors are returned.
+  
   
    
     

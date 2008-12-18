@@ -119,7 +119,7 @@ height:302px;
 
 .widget_wrap{
 
-margin:20px;
+margin:20px !important;
 }
 
 .widget_footer{
@@ -1612,6 +1612,7 @@ width:280px !important;
 height:70px;
 margin:4px 0 0 30px !important;
 width:640px;
+position:relative;
 }
 
 

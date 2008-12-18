@@ -2,16 +2,16 @@
 {% spaceless %} 
 
 
-
-{% for p in proficiencies %} 
+<div id='quiz_wrap' style='display:block;'>
 {# Remember, kids. Always use protection. #}
-<div id='quiz_wrap' class='widget_wrap' onClick='$(this).fadeOut();'>
+{% for p in proficiencies %} 
+<div class='widget_wrap' onClick='$(this).fadeOut();'>
 {% include "widget_frame.html" %}
 </div>
 {% endfor %}
 {# Broken <a class='widget_footer'>PlopQuiz.Com</a> #}
 
-
+</div>
 
 
 

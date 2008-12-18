@@ -3,6 +3,25 @@
 
 */
 
+
+
+/*
+ * 
+ * This code is badly in need of a tune-up. It needs more efficient use of:
+ * 
+ *  selector context,
+ * selectors and events in loops, 
+ * ID selectors instead of CLASS selectors, wherever possible
+ * chaining,
+ * no DOM manipulation just for data
+ * everything wrapped in a single element for DOM insertion
+ * for SEO-important sections, add in unimportant markup in JS
+ *
+ */ 
+
+
+
+
 // this is a modified version of the quiz from the main site
 // at some point they should both be able to run from the exact script
 // the widget version will include the widget bootstrapper
@@ -94,7 +113,7 @@ var iso = function($)
                                         .bind("quizclosing", function()
                                         {
                                                 $(this).hide();
-                                                $('.widget_wrap').fadeIn();
+                                                $('.widget_w').fadeIn();
 
                                                 // reset to start of quiz, later this should handle skipping instructions;
                                                 $.plopquiz.currentItem = 0;
@@ -424,17 +443,22 @@ $('#quiz_content').html(html);
 				if(quizItem.item_type == "intro")
                                 {
                                 	 $('#quiz_answers #confirm').attr('class', 'answer intro_quiz').find('span.continue_button').text('Practice Quiz');
-                                	 $('button span#intro_button').show(); // this is coming late 
+                                	 $('button span#intro_button').show(); // todo: this is coming late 
                                 	 $('.intro_frame_content #subject_container_1').show().addClass('selected'); // show first subject
                                 	 
-                                     $('#subject_1').s3Slider({ timeOut: 8300 });  
+                                     $('#subject_1').s3Slider({ timeOut: 5300 });  
         
+                         $('div.subject_thumb_container > div').each(function(n){ console.log($('#subject_thumb_' + n)); console.log(n);  
+                        $('#subject_thumb_' + n).s3Slider({ timeOut: 5300 });  // todo: slight offset
+                          });  
+        
+                                     
                                 	 $('div.subject_thumb_container li').click(function(){ //TODO: Slider/Coverflow (low priority)
                                 	 	$('div.subject_thumb_container li').removeClass('selected_thumb'); $(this).addClass('selected_thumb');
                                 	 	$('.intro_frame_content .subject_container').hide('fast');
                                 	 	$('.intro_frame_content #subject_container_' + $(this).attr('id')).show('fast');
                                 	 	
-                                	 	$('#subject_' + $(this).attr('id')).s3Slider({ timeOut: 8300 }); 
+                                	 	$('#subject_' + $(this).attr('id')).s3Slider({ timeOut: 5300 }); // initiate a slider for the subject being shown.
                                 	 	
                                 	 	
                                 	 	});

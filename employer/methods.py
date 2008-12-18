@@ -33,22 +33,16 @@ def dump_data(gql_query):
      
 class DataMethods():
 	
-  def delete_data(self, data_type, *verbose):
-		query = ""
-		if data_type == "employers": query = db.GqlQuery("SELECT * FROM Employer")
-		if not query: return False	
+  def delete_data(self, query, *verbose):
 		objects = query.fetch(1000)
 		for object in objects:
-			if verbose[0] == "loud":
-				print ""
-				print "deleted: " + str(object.__dict__) 
+			print "deleted: " + str(object.__dict__) 
 			object.delete()
 		return True
 			
 			
-  def load_data(self, data_type, path):
-		print data_type
-		print ""
+  def load_data(self, data_type, path, refresh=False):
+		if refresh: self.delete_data(Employer.all())
 		json_file = open(ROOT_PATH + "/data/" + path + str(data_type) + ".json")
 		json_str = json_file.read()
 		newdata = simplejson.loads(json_str) # Load JSON file as object

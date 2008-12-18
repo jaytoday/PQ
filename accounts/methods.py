@@ -22,16 +22,17 @@ def registered(user_key):
 def register_user(user_key, nickname, fullname, email):
     profile_path = nickname.lower()
     profile_path = profile_path.replace(' ','_')
-    photo = default_photo()
+    
     new_user = Profile.get_or_insert(key_name = user_key,
                           unique_identifier = user_key, # redundancy
                           nickname = nickname,
                           fullname = fullname,
-                          profile_path = profile_path,
-                          photo = photo,
+                          profile_path = profile_path
                           )
                           
     if email: new_user.email = email
+    photo = default_photo() 
+    if photo: new_user.photo = photo
     new_user.put()
     return new_user 
 
@@ -58,11 +59,8 @@ def register_account(user_key, nickname):
 
 def default_photo():
 	photos = ProfilePicture.gql("WHERE type = :1", "pq").fetch(10)
-	if len(photos) < 1: 
-	    from dev.methods import Build
-	    b = Build()
-	    b.refresh_profile_images()
-	photo = random.sample(photos, 1) 
+	try: photo = random.sample(photos, 1)
+	except: return False 
 	return photo[0]
 
 

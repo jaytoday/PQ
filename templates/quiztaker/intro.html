@@ -10,21 +10,8 @@
 
 <div class="subject_thumb_container">
 {% for p in proficiencies %} 
-{# this should be in sepereate html #}
 
-    <div id="subject_thumb_{{ forloop.counter }}" class="proficiency_pic selection_box subject_thumb">
-                        <ol class="sliderContent" id="subject_thumb_{{ forloop.counter }}Content">
-
-                        <li class="smallsliderImage" id="{{ forloop.counter }}" >
-                            <img src="{{ http_host}}/image/subject/?img_id={{ p.images.0.key|default:"default" }}&size=small"/>
-                            <span class="slider img_{% cycle top,bottom %}">
-                            <span class="subject_thumb_name"> {{ p.name }} </span>
-                            </span>
-                        </li>
-
-                        <div class="clear subject_thumb_{{ forloop.counter }}Image"></div>
-                    </ol>
-    </div>
+{% include "intro/subject_thumb.html" %}
 
 {% endfor %}
 </div>
@@ -36,7 +23,7 @@
 
 <div id="subject_container_{{ forloop.counter }}" class="subject_container" style="display:none;">
 
-{% include "subject_frame.html" %}
+{% include "intro/subject_frame.html" %}
 
 <div class="subject_preview_right">
 

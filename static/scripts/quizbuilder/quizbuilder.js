@@ -1,3 +1,16 @@
+/*
+ * 
+ * This code is badly in need of a tune-up. It needs more efficient use of:
+ * 
+ *  selector context,
+ * selectors and events in loops, 
+ * ID selectors instead of CLASS selectors, wherever possible
+ * chaining,
+ * no DOM manipulation just for data
+ * everything wrapped in a single element for DOM insertion
+ * for SEO-important sections, add in unimportant markup in JS
+ *
+ */ 
 
 
 
