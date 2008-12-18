@@ -86,7 +86,8 @@ class Build():
 				image = image_file.read()
 				small_image = images.resize(image, 120, 80)
 				large_image = images.resize(image, 360, 240)
-				new_image = SubjectImage(small_image = small_image,
+				new_image = SubjectImage(key_name = p.name
+				                         small_image = small_image,
 				                         large_image = large_image,
 				                         proficiency = p
 									     )
@@ -143,14 +144,14 @@ class DataMethods():
 			if data_type == 'proficiencies':
 				save_entity = Proficiency.get_or_insert(key_name=entity['name'], name = entity['name'], blurb = entity.get("blurb", ""))
 				save_entity.status = entity.get('status', None)
-				save_entity.vlurb = entity.get('blurb', None)
+				save_entity.blurb = entity.get('blurb', None)
 			if data_type == 'proficiency_topics':
-				this_proficiency = Proficiency.gql("WHERE name = :1", entity['proficiency']['name'])
-				print entity['proficiency']
+				this_proficiency = Proficiency.get_by_key_name(entity['proficiency']['name'])
+				print "proficiency topic keyname" 
 				save_entity = ProficiencyTopic.get_or_insert(key_name=entity['name'], name = entity['name'], 
 											   proficiency = this_proficiency.get())
 			if data_type == 'content_pages':
-				 try: this_proficiency = Proficiency.gql("WHERE name = :1", entity['proficiency']['name'])
+				 try: this_proficiency = Proficiency.get_by_key_name(entity['proficiency']['name'])
 				 except TypeError: continue # some old content pages dont have proficiencies
 				 print entity['url']
 				 save_entity = ContentPage(key_name=entity['url'], url = entity['url'], proficiency = this_proficiency.get()) 

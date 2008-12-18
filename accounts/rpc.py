@@ -70,6 +70,7 @@ class RPCMethods(webapp.RequestHandler):
   		from .model.user import ProfilePicture
   		user.photo = ProfilePicture.get(args[6])
   	user.put()
+  	session['user'] = user
 
 		
 	# add up all scores for a given quiztaker, and then rank them.

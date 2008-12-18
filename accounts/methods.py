@@ -58,6 +58,10 @@ def register_account(user_key, nickname):
 
 def default_photo():
 	photos = ProfilePicture.gql("WHERE type = :1", "pq").fetch(10)
+	if len(photos) < 1: 
+	    from dev.methods import Build
+	    b = Build()
+	    b.refresh_profile_images()
 	photo = random.sample(photos, 1) 
 	return photo[0]
 
@@ -173,7 +177,8 @@ class Sponsorships():
 			
 	def check_award(self,award):
 		give_sponsorship = {}
-		for pledge in award.winner.sponsorships_pledged_to_me:
+		# check for targetted sponsorships
+		for pledge in award.winner.sponsorships_pledged_to_me: 
 			# eventually allow for corporate sponsor checks.    # This should use zip().
 			if award.winner.unique_identifier == pledge.sponsor.unique_identifier: continue #can't sponsor yourself. TODO: this should be done before now!
 			give_sponsorship[pledge] = True
@@ -181,30 +186,64 @@ class Sponsorships():
 			existing_sponsorships = pledge.sponsorships.fetch(1000)
 			if existing_sponsorships: 
 			    if award.winner in existing_sponsorships: give_sponsorship[pledge] = False 
-			if give_sponsorship[pledge] == True: self.give_sponsorship(pledge, award)				
+			if give_sponsorship[pledge] == True: self.give_sponsorship(pledge, award)
+			
+		# check for business sponsorship	
+		from model.employer import AutoPledge
+		auto_pledges = AutoPledge.gql("WHERE proficiency = :1", award.proficiency).fetch(3)#untargetted sponsorships
+		# maybe randomize sponsor selection
+		already_biz_sponsors = [s.sponsor.unique_identifier for s in award.winner.sponsorships]
+		for pledge in auto_pledges:
+			biz_profile = Profile.get_by_key_name(pledge.employer.unique_identifier)
+			if biz_profile.unique_identifier in already_biz_sponsors: continue # don't let business sponsor user twice 
+			self.give_biz_sponsorship(pledge, award, biz_profile)
+			pledge.count -= 1  
+			if pledge.count == 0: s.delete()
+			else: pledge.put()
 		return
 		
 		
-
 
 	def give_sponsorship(self, pledge, award):
 		logging.info('saving new sponsorship')
 		new_sponsorship = Sponsorship(sponsor = pledge.sponsor,
 		                              recipient = award.winner,
 		                              package = pledge.package,
-		                              sponsor_type = pledge.sponsor_type,
+		                              sponsor_type = pledge.sponsor_type, # this could be hardcoded as "personal"
 		                              award_type = award.type,
 		                              award = award,
 		                              pledge = pledge )
 		self.save_sponsorships.append(new_sponsorship)
-		self.notify_sponsor(pledge.sponsor)
+		self.notify_sponsor(new_sponsorship.sponsor)
+		self.notify_sponsee(award.winner)
 		return
 
+	def give_biz_sponsorship(self, pledge, award, biz_profile):
+		logging.info('saving new sponsorship')
+		new_sponsorship = Sponsorship(sponsor = biz_profile,
+		                              recipient = award.winner,
+		                              sponsor_type = "business",
+		                              award_type = award.type,
+		                              award = award,
+		                              #pledge = pledge TODO: this refers to personal pledge
+		                              )
+		self.save_sponsorships.append(new_sponsorship)
+		self.notify_sponsor(new_sponsorship.sponsor)
+		self.notify_sponsee(award.winner)
+		return
+		
 
 	def notify_sponsor(self,sponsor):
 		pass#print "I will email", sponsor, "after checking my RSS feeds"
 			
 	# Based on awards that have been given, activate scholarships. 
+
+	def notify_sponsee(self,sponsee):
+		pass#print "I will email", sponsor, "after checking my RSS feeds"
+			
+	# Based on awards that have been given, activate scholarships. 
+
+
 
 
 

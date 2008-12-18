@@ -8,27 +8,33 @@
 
 </div>
 
+<div class="subject_thumb_container">
+{% for p in proficiencies %} 
+{# this should be in sepereate html #}
+
+    <div id="subject_thumb_{{ forloop.counter }}" class="proficiency_pic selection_box subject_thumb">
+                        <ol class="sliderContent" id="subject_thumb_{{ forloop.counter }}Content">
+
+                        <li class="smallsliderImage" id="{{ forloop.counter }}" >
+                            <img src="{{ http_host}}/image/subject/?img_id={{ p.images.0.key|default:"default" }}&size=small"/>
+                            <span class="slider img_{% cycle top,bottom %}">
+                            <span class="subject_thumb_name"> {{ p.name }} </span>
+                            </span>
+                        </li>
+
+                        <div class="clear subject_thumb_{{ forloop.counter }}Image"></div>
+                    </ol>
+    </div>
+
+{% endfor %}
+</div>
 
 <div class="quiz_frame_content intro_frame_content" >
 
-<!--<div class="quiz_intro_title" ><b>Instructions</b></div>-->
-
-
-<!--
-<div class="quiz_intro_text" >
-
-<p class="quiz_distributor" id="employer"><b>Plopquiz</b> would like you to take a short proficiency assessment.</p> 
-
-<p class="quiz_distributor" style="margin-bottom:12px; margin-top:16px">It will require about <b>five minutes</b> of uninterrupted time.</p> 
-</div>
-
-
-</div>
-
--->
 
 {% for p in proficiencies %} 
 
+<div id="subject_container_{{ forloop.counter }}" class="subject_container" style="display:none;">
 
 {% include "subject_frame.html" %}
 
@@ -38,6 +44,7 @@
  
  </div>
 
+</div>
 
 {% endfor %}
 

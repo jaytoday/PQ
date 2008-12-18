@@ -13,12 +13,12 @@
 $(document).ready(function()
 {
 	var has_awards = "False";
+	
 {% for award in user.awards %}
 if ("{{ forloop.first }}") has_awards = "True";
-
- // TODO: THIS DOESN'T WORK, BUT IT DID AS OF DEC 11... $('#award_{{ forloop.counter }}').s3Slider({ timeOut: 3300 });
-        
-{% endfor %}
+ if (!$('.{{ forloop.counter }}_has_subject_image')) $('li#{{ forloop.counter }}_default_subject_image').show(); {# show default image, no slider #}
+ else  $('#award_{{ forloop.counter }}').s3Slider({ timeOut: 3300 });  {# load slider for this award#} 
+{% endfor %}  
 
 if (has_awards != "True") $('#main_nav').find('a[href="#report_card"]').click();
 
@@ -28,9 +28,7 @@ if ($('div.is_sponsor').length == 0) $('div#no_sponsorship_note').show();
 if (($('div.award_img').length == 0)) $('div#no_award_note').show();
 
 
-{% for award in user.awards %}
- if (!$('.{{ forloop.counter }}_has_subject_image')) $('li#{{ forloop.counter }}_default_subject_image').show();
-{% endfor %}  
+
 
  });
  
@@ -77,7 +75,7 @@ if (($('div.award_img').length == 0)) $('div#no_award_note').show();
     <div id="award_{{ forloop.counter }}" class="proficiency_pic selection_box award_img">
                         <ol class="sliderContent" id="award_{{ forloop.counter }}Content">
 
-                        <li id="{{ forloop.counter }}_default_subject_image"  class="sliderImage award_{{ forloop.parentloop.counter }}Image">
+                        <li style="display:none;" id="{{ forloop.counter }}_default_subject_image"  class="sliderImage award_{{ forloop.parentloop.counter }}Image">
                             <img src="/image/subject/?img_id=default&size=small"/>
                             <span class="img_{% cycle top,bottom %}">{{ award.type }} <br/><strong>  {{ award.proficiency.name}}</strong></span>
                         </li>

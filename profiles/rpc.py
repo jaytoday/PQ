@@ -34,7 +34,7 @@ class RPCHandler(webapp.RequestHandler):
     args = ()
     while True:
       key = 'arg%d' % len(args)
-      val = self.request.get(key)
+      val = self.request.get(ksey)
       if val:
         args += (simplejson.loads(val),)
       else:

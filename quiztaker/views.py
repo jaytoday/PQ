@@ -54,7 +54,6 @@ class PQDemo(webapp.RequestHandler):
     
 
 
-# this is only used for the demo!!!
 class QuizItemTemplate(webapp.RequestHandler):
   # TODO: Error Handling, so client can display error messages, logs, etc.
   def get(self):
@@ -99,13 +98,17 @@ class TakeQuiz(webapp.RequestHandler):
         vendor = self.get_default_vendor()
     load_quiz = LoadQuiz()
     if vendor == "": vendor = self.get_default_vendor()
-    template_values = {"proficiencies": proficiencies, "quiz_subject": str(proficiencies[0]), "vendor_name": vendor.name.capitalize(), "vendor": vendor.key(), # "quiz_items": load_quiz.get(proficiencies), 
+    template_values = {"proficiencies": proficiencies, "quiz_subject": str(proficiencies[0].name), "vendor_name": vendor.name.capitalize(), "vendor": vendor.key(), # "quiz_items": load_quiz.get(proficiencies), 
     'no_load': True }
     path = tpl_path(QUIZTAKER_PATH + 'takequiz.html')
     self.response.out.write(template.render(path, template_values))
 
   def get_proficiencies(self):
     if len(self.request.path.split('/quiz/')[1]) > 0:
+		import string
+		this_proficiency = string.capwords(self.request.path.split('/quiz/')[1].replace("%20"," "))
+		return [[Proficiency.get_by_key_name(this_proficiency)], ""]
+		"""
 		employer = Employer.gql('WHERE name = :1', self.request.path.split('/quiz/')[1].lower())
 		try: these_proficiencies = employer.get().proficiencies
 		except: return None
@@ -117,11 +120,13 @@ class TakeQuiz(webapp.RequestHandler):
 		#except: return [proficiency.name for proficiency in all_proficiencies.fetch(4)]
     if self.request.get('proficiencies'):
         proficiencies = self.request.get('proficiencies')
-        return [eval(proficiencies,{"__builtins__":None},{}), self.get_default_vendor()]  
-	return None
+        return [eval(proficiencies,{"__builtins__":None},{}), self.get_default_vendor()] 
+        """ 
+    return None
+	   
          
   def get_default_vendor(self):
-	plopquiz = Employer.gql("WHERE name = :1", "plopquiz")
+	plopquiz = Employer.gql("WHERE name = :1", "Plopquiz")
 	return plopquiz.get()
 
 
@@ -131,9 +136,8 @@ class PQIntro(webapp.RequestHandler):
   #Put something here  
   def get(self):
 	template_values = {}
-	if self.request.get('subjects'): 
-	    from model.proficiency import Proficiency
-	    template_values['proficiencies'] = Proficiency.gql("WHERE name = :1", eval(self.request.get('subjects'))[0]).fetch(1) # TODO: this only works for one proficiency right now 
+	
+	if self.request.get('subject'): template_values['proficiencies'] = self.get_quiz_subjects()
 	    
 	intro_template = QUIZTAKER_PATH + self.request.get('page') + ".html"
 	if self.request.get('demo') == "true": intro_template = QUIZDEMO_PATH + self.request.get('page') + ".html" # only for demo
@@ -144,7 +148,17 @@ class PQIntro(webapp.RequestHandler):
 	else:
 			self.response.out.write(template.render(path, template_values))
 
-
+  def get_quiz_subjects(self):
+		from model.proficiency import Proficiency
+		quiz_subjects = Proficiency.all().fetch(50)  # TODO: WHERE type....
+		for p in quiz_subjects:
+		    if not p.images.get(): quiz_subjects.remove(p)
+		    if p.name == eval(self.request.get('subject'))[0]: 
+		        quiz_subjects.remove(p)
+		        quiz_subjects.insert(0, p)
+		        #break
+		return quiz_subjects[0:5]
+		        
 class Widget(webapp.RequestHandler):
         def get(self):
                 path = tpl_path(QUIZTAKER_PATH + '/widget/widget.html')

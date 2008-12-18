@@ -142,9 +142,12 @@ class Redirect(webapp.RequestHandler):
       pl.set_for_user(qt)
       from accounts.methods import Awards
       awards = Awards()
+      # check for new awards
       new_awards = awards.check_all(qt)
-      if new_awards > 0: self.set_flash('new_award')
+      if new_awards > 0: self.set_flash('new_award') 
       from accounts.methods import Sponsorships
       sponsorships = Sponsorships()
+      # check for new sponsorships, both personal and business
       new_sponsorships = sponsorships.check_all(qt)
       if new_sponsorships > 0: self.set_flash('new_sponsorship')
+      

@@ -17,7 +17,7 @@ var iso = function($)
                 // intro and instruction hard coded items
                 introItems:
                 [
-                        {url: '/intro/?page=intro&subjects={{ proficiencies }}', item_type:'intro', answers: ['Take This Quiz'], noSkip: true, vendor: "Plopquiz"},
+                        {url: '/intro/?page=intro&subject={{ proficiencies }}', item_type:'intro', answers: ['Take This Quiz'], noSkip: true, vendor: "Plopquiz"},
                         {url: '/intro/?page=instructions', item_type:'instructions', answers: [ 'dog ate', 'web made' ], noSkip: true},
                         {url: '/intro/?page=instructions2', item_type:'instructions2', answers: [ 'compilers', 'interpreters' ], timed: "instructions2", timeout: 'reset'},
       /* TODO: We're merging this with the first frame */ {url: '/intro/?page=begin_quiz', item_type:'begin_quiz', answers: [ 'Begin Quiz' ], noSkip: true}
@@ -26,7 +26,7 @@ var iso = function($)
                 currentItem: 0, // use to skip intros
                 settings:
                 {
-                        user_session: "{{ user_token }}",
+                        /* needed? */ user_session: "{{ user_token }}",
                         serverUrl: "{{ http_host }}",
                         autoStart: false, // debugging only?
                         initDone: false,
@@ -76,7 +76,7 @@ var iso = function($)
                 $.ajax({
                         url: $.plopquiz.settings.serverUrl + '/quiz_frame',
                         dataType: "jsonp",
-                        //error: console.log('quiz frame error'),
+                       // error: console.log('quiz frame error'),
                         success: function(html,status)
                         {
                                 // add to body to overlay is in front
@@ -131,9 +131,8 @@ var iso = function($)
                                                         if (quizItem.item_type == "quiz_item")
         								{
 
-									$('.timer_inner', self).animate({opacity: 1.0}, 3000, function()
+									$('.timer_inner', self).animate({opacity: 1.0}, 2000, function()
 									{
-										console.log('removing disabled class');
 										$('#quiz_answers').find('div').removeClass('disabled').data("disabled", false);
 										
 										                                                        // start running the timer down
@@ -189,6 +188,9 @@ var iso = function($)
                                         // skip doesn't have hover
                                 	if ($(this).attr("id") == "skip")
                                                 return;
+                                                
+                                                // hover event on span
+                                                $(".answertext", this).addClass('hover');
 
 					var blank_width = 15 + (10 * $(".answertext", this).text().length); //todo: multiplier may need adjustment
 
@@ -199,17 +201,19 @@ var iso = function($)
                                 },
                                 function()
                                 {
+                                	
                                         // replace blank space
                                         $("#blank").text(textHolder)
                                         //.css({"padding": "0px 34px"});
                                                 .css("width", "100px");
+                                                
+                                                 $(".answertext", this).removeClass('hover');
                                 })
                                 .click(function(e)
                                 {
                                        
-                                        console.log($.plopquiz.settings.timer_width);
                                         // data("disabled") prevents double submissions
-                                        if ($(this).hasClass('disabled')){ return false; console.log('disabled');}
+                                        if ($(this).hasClass('disabled')){ return false; }
                                         if($(this).data("disabled") != true){
                                                 $.plopquiz.submitAnswer($(this).find('div.answertext').text().replace(/\n/g,"")); 
                                          
@@ -261,8 +265,10 @@ var iso = function($)
                                 jsonpcallback = i;
                 }
                 
+                //console.log(jsonpcallback);
                 // this should be the last (if any) jsonp123blah123 callback
                 if(jsonpcallback)
+                
                         // if the callback still exists after 6 seconds, time it out
                         var timewatch = setTimeout(function()
                         {
@@ -279,19 +285,17 @@ var iso = function($)
                 // second part of the hack, find the script with the same callback in the src and setup onload
                 $("script").each(function()
                 {
+                        /* COMMENTED OUT FOR DEBUGGING  if(this.src.indexOf(jsonpcallback) > -1)  */
+                        
                         if(this.src.indexOf(jsonpcallback) > -1)
+                	//console.log(this.src.indexOf(jsonpcallback));
+                	
                                 this.onload = function()
                                 {
                                         // the script just loaded so stop the timeout
                                         clearTimeout(timewatch);
-                        //load widget
-                        
-                        /* $.ajax({
-                        url: $.plopquiz.settings.serverUrl + '/widget',
-                        dataType: "jsonp",
-                        data: {proficiency: "{{ widget_subject }}"},
-                        success: function(html){ console.log("html" + html);} 
-                        }); */
+   
+
                         
                         var widget_html = "{% spaceless %}{{ widget_html }}{% endspaceless %}";
     
@@ -299,10 +303,13 @@ var iso = function($)
                                         $("#pqwidget").append(
                                                 $(widget_html).hide().fadeIn().click($.plopquiz.start)
                                         );
-                                        $('#subject_1').s3Slider({ //eventually this needs to iterate through multiple subjects
+                                        
+                                 $('#subject_1').s3Slider({ //eventually this needs to iterate through multiple subjects
             timeOut: 8300
         });  
                                 }
+                                
+                                
                 });
         }; // $.plopquiz.init
 
@@ -412,17 +419,30 @@ $('#quiz_content').html(html);
 
                                 /*
                                  * Setup special cases for instructions here
-                                 * does not work well right after ajax load
-                                 * and does not allow skipping instruction 1 o 2
                                  */
+                                
 				if(quizItem.item_type == "intro")
                                 {
                                 	 $('#quiz_answers #confirm').attr('class', 'answer intro_quiz').find('span.continue_button').text('Practice Quiz');
-                                	 $('button span#intro_button').show();
+                                	 $('button span#intro_button').show(); // this is coming late 
+                                	 $('.intro_frame_content #subject_container_1').show().addClass('selected'); // show first subject
+                                	 
+                                     $('#subject_1').s3Slider({ timeOut: 8300 });  
+        
+                                	 $('div.subject_thumb_container li').click(function(){ //TODO: Slider/Coverflow (low priority)
+                                	 	$('div.subject_thumb_container li').removeClass('selected_thumb'); $(this).addClass('selected_thumb');
+                                	 	$('.intro_frame_content .subject_container').hide('fast');
+                                	 	$('.intro_frame_content #subject_container_' + $(this).attr('id')).show('fast');
+                                	 	
+                                	 	$('#subject_' + $(this).attr('id')).s3Slider({ timeOut: 8300 }); 
+                                	 	
+                                	 	
+                                	 	});
+                                	 
+                                	 $('button.take_test').show();
                                 	 $('div#quiz_answers div.go_to_site').show();
-                                	  $('#subject_1').s3Slider({ //eventually this needs to iterate through multiple subjects
-            timeOut: 8300
-        });  
+                                	 
+
 					if (quizItem.vendor.length > 1)
                                         {
                                                 $('p#employer').find('b').text(quizItem.vendor);
@@ -571,6 +591,7 @@ $('#quiz_content').html(html);
                 {
                         
                         case "intro":
+                        $('button.take_test').hide();
                         $('div#quiz_answers div.go_to_site').hide();
                         $.plopquiz.loadItem();
                         
@@ -633,8 +654,6 @@ $('#quiz_content').html(html);
                                                         $.plopquiz.proficiencies = rpc.proficiencies;
                                                 
                                                 var q = rpc["quiz_item"];
-                                                
-                                                console.log(q);
 
                                                 // instructions are done, we can skip them if the test is reset
                                                 $.plopquiz.settings.instructions.completed = true;
@@ -648,12 +667,9 @@ $('#quiz_content').html(html);
                         case "quiz_item":
                                 // ajax call to submit -- (answer, key, vendor)
                                 var this_item = $.plopquiz.quizItem;
-                                console.log($('.timer_bar').width());
-                                console.log($.plopquiz.settings.timer_width);
                                 
                                 var timer_status = $('.timer_bar').width()/$.plopquiz.settings.timer_width;
                                 var vendor = "" //TODO: retrieve vendor token.
-                                console.log(timer_status);
                                 $(".timer_inner", self).stop();
                                 $('.timer_bar').css('width', '100%');
                                 $.ajax(
@@ -671,8 +687,6 @@ $('#quiz_content').html(html);
                                         success: function(obj)
                                         {
                                                 var q = obj["quiz_item"];
-                                                
-                                                console.log(q);
 
                                                 if(q === false)
                                                 {
@@ -787,7 +801,8 @@ function waitForJQ()
 function pqLoad()
 {
 
-        addScript("{{ http_host }}/static/scripts/utils/s3slider.js");
+        {% include "../scripts/utils/s3slider.js" %} // this is causing an error when run from the site.
+        
         // force ready jQuery because page load is (likely?) done
         jQuery.isReady = true;
         // load plopquiz (modified) from within closure

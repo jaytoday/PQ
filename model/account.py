@@ -82,14 +82,14 @@ class Sponsorship(db.Model):
     recipient = db.ReferenceProperty(Profile,
                                     required=True,
                                     collection_name='sponsorships')                                    
-    package = db.StringProperty(required=True, choices=set(["micro", "medium", "magna_cum_laude"]))      # redundancy                              
-    sponsor_type = db.StringProperty(required=False, choices=set(["personal", "corporate"])) # target one person, or many people.
+    package = db.StringProperty(required=False, choices=set(["micro", "medium", "magna_cum_laude"]))      # redundancy                              
+    sponsor_type = db.StringProperty(required=False, choices=set(["personal", "business"])) # target one person, or many people.
     award_type = db.StringProperty(required=True, choices=set(["fluency", "excellence"]))  
     award = db.ReferenceProperty(Award,
                                     required=True,
                                     collection_name='sponsorships')
     pledge = db.ReferenceProperty(SponsorPledge,
-                                    required=True,
+                                    required=False, #TODO: AutoPledge model for sponsorships.
                                     collection_name='sponsorships')                                        
     date = db.DateTimeProperty(auto_now=True)    
 

@@ -42,7 +42,7 @@ getNextPicture(photo_keys);
 
 
 
-        <form action"#" class="signup" name="signup">
+        <form action="#" class="signup" name="signup" enctype="multipart/form-data" onSubmit="return false;" method="get">
         
 <fieldset><legend>Basic Info</legend> <br/>
 
@@ -75,6 +75,7 @@ getNextPicture(photo_keys);
 </ul>
 </fieldset>
    </form>
+  
 
 
 
@@ -90,7 +91,7 @@ getNextPicture(photo_keys);
 		<div class="profile">
           
            <div class="change_picture"> 
-       <form action"#" class="picture" name="picture"> 
+       <form action="/profile/{{user.profile_path}}" class="picture" name="picture" onSubmit="return false;" enctype="multipart/form-data" method="get"> 
        <div class="panel_box pic_box" id="cycle_img" >Cycle Pictures</div> 
        <div id="change_img" >Upload Picture</div>
          <div class="cancel"><a onClick="CancelPhotoUpload()">Cancel</a></div>  </div>
@@ -129,7 +130,7 @@ getNextPicture(photo_keys);
   
 
    <div id="submit_profile" class="form_proceed">
-  <button><img src="/static/stylesheets/img/utils/purple_next.png"/><span class="continue_button">Save Changes</span></button>
+  <button onSubmit="return false;" onClick="return false;"><img src="/static/stylesheets/img/utils/purple_next.png"/><span class="continue_button" >Save Changes</span></button>
   </div>
 
             

@@ -142,7 +142,8 @@ remote callers access to private/protected "_*" methods.
   	this_employer = Employer.get_by_key_name(business_name)
   	proficiency_name = args[1]
   	from model.proficiency import Proficiency
-  	this_proficiency = Proficiency.get_by_key_name(proficiency_name.capitalize())
+  	import string
+  	this_proficiency = Proficiency.get_by_key_name(string.capwords(proficiency_name))
   	pledge_num = args[2]
   	from model.employer import AutoPledge
   	new_pledge = AutoPledge(employer = this_employer,

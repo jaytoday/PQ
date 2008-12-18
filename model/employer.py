@@ -24,4 +24,6 @@ class AutoPledge(db.Model):
     proficiency = db.ReferenceProperty(Proficiency,
                                     required=True, collection_name='auto_pledges')
                                     
+                                   #TODO: package?
+                                    
     # Put BP down 5000 for Automotive Industry. Then give out pledges as people take tests.                             

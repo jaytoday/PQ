@@ -34,16 +34,17 @@ function ShareProfile() {
         background: "black" 
     },
         buttons: { 
+                "Share With Sponsors": function() { 
+            
+            $(this).find('div').hide();
+            $(this).find('div.sponsors').show();
+        },
         "Share With Employers": function() { 
             
             $(this).find('div').hide();
             $(this).find('div.employers').show();
-        },
-         "Share With Sponsors": function() { 
-            
-            $(this).find('div').hide();
-            $(this).find('div.sponsors').show();
         }
+
     } 
      
 }).show();
