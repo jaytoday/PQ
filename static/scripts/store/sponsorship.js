@@ -85,12 +85,17 @@ InstallFunction(server, 'SubmitSponsorPledge', 'accounts');
  console.log(target, award_type, sponsor_package, proficiency);
  
  
- server.SubmitSponsorPledge(sponsor_package, award_type, target, proficiency);
+ server.SubmitSponsorPledge(sponsor_package, award_type, target, proficiency, OnSponsorPledgeSuccess);
 
 	                          
 	                      
 }
 
+function OnSponsorPledgeSuccess(response) {
+	
+	if (response != "error") { window.location="/redirect/from_pledge"; return false; }
+	
+}
 
 
 function DisplaySubjectImage(img_key){

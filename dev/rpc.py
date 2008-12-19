@@ -68,6 +68,13 @@ remote callers access to private/protected "_*" methods.
 ############# Quiz Material Updates ################
 
 
+  def add_proficiency(self, *args):
+  	if len(args) < 3: return "Please give a name, status, and blurb"
+  	from model.proficiency import Proficiency
+  	save_entity = Proficiency.get_or_insert(key_name=args[0], name = args[0], status = args[1], blurb = args[2])
+  	save_entity.put()
+  	return encode(save_entity)
+
   def refresh_subject_images(self, *args):
   	from methods import Build
   	build = Build()

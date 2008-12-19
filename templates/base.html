@@ -7,6 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta id="description" name="Description" content="Landing page for PlopQuiz.com" /><meta id="keywords" name="Keywords" content="Certify Your Energy Tech Skills, Upgrade Your Resume, Get Educational Sponsors.  " />
 <link rel="stylesheet" type="text/css" charset="utf-8" href="/static/stylesheets/base.css" />
+<link rel="stylesheet" href="/static/stylesheets/ui/dialog.css" type="text/css" media="screen">
+
 <link rel="icon" href="/static/stylesheets/img/favicon.ico" type="image/x-icon"> 
 <!--[if lte IE 6]>
 <link href="ie6styles.css" rel="stylesheet" type="text/css" />
@@ -19,19 +21,18 @@
 <!-- utilities -->
 {% block base_head %}
 {% if dev_server %}
-<script type="text/javascript" src="/static/scripts/jquery/jquery.js"></script>
+<script type="text/javascript" src="/static/scripts/jquery/jquery.js"></script><script src="/static/scripts/jquery/jquery.ui.js"></script>
 {% else %}
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.5.3/jquery-ui.min.js"></script><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.ui.js"></script>
 {% endif %}
 
-<script type="text/javascript" src="/static/scripts/jquery/jquery.timers.js"></script>
-<script type="text/javascript" src="/static/scripts/parallax.js"></script>
-<script type="text/javascript" src="/static/scripts/json2min.js"></script>
-<script type="text/javascript" src="/static/scripts/utils/rpc.js"></script>
-<script type="text/javascript" src="/static/scripts/utils/preserve_default_text.js"></script>
-<script type="text/javascript" src="/static/scripts/base.js"></script>
-<script src="/static/scripts/jquery/jquery.ui.js"></script>
-<link rel="stylesheet" href="/static/stylesheets/ui/dialog.css" type="text/css" media="screen">
+
+<!-- deprecation warning
+If not including this breaks something, then package it with the app that uses it. 
+<script type="text/javascript" src="/static/scripts/jquery/jquery.timers.js"></script>  -->
+
+<script type="text/javascript" src="/js/base"></script> <!-- compile JS into one file -->
+
 {% endblock %}
 
 
@@ -78,9 +79,9 @@
 
 				</div>
 				
-				<div class="quick_links">
+				<div id="quick_links" class="quick_links">
 				<!-- Links <a target="_blank" href="/about">About</a> | <a target="_blank" href="/contact">Contact Us</a> | <a target="_blank" href="http://blog.plopquiz.com">Blog</a>  -->
-				<a class="about_dialog">About</a> | <a class="contact_dialog">Contact Us</a> | <a target="_blank" href="http://blog.plopquiz.com">Blog</a> 
+				<a  id="about_dialog" class="about_dialog">About</a> | <a id="contact_dialog" class="contact_dialog">Contact Us</a> | <a target="_blank" href="http://blog.plopquiz.com">Blog</a> 
 				</div>
 				
 				</div>

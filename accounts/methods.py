@@ -4,7 +4,6 @@ logging.info('Loading %s', __name__)
 import cgi
 from .model.user import Profile, QuizTaker, ProfilePicture
 from model.account import Account, Award, SponsorPledge, Sponsorship
-import random
 from google.appengine.ext import db
 
 
@@ -232,15 +231,16 @@ class Sponsorships():
 		
 
 	def notify_sponsor(self,sponsor):
-		pass#print "I will email", sponsor, "after checking my RSS feeds"
+		from accounts.mail import mail_sponsor_message
+		mail_sponsor_message(sponsor)
+		return
 			
-	# Based on awards that have been given, activate scholarships. 
 
 	def notify_sponsee(self,sponsee):
-		pass#print "I will email", sponsor, "after checking my RSS feeds"
+		from accounts.mail import mail_sponsee_message
+		mail_sponsee_message(sponsee)
+		return
 			
-	# Based on awards that have been given, activate scholarships. 
-
 
 
 
@@ -250,9 +250,11 @@ class Sponsorships():
 
 
 class SponsorPledge():
-
+  # Submit a new sponsorship pledge
   def submit(self, args):
+  	from utils.appengine_utilities.sessions import Session
   	session = Session()
+  	if not session['user']: return False
   	from .model.account import Account
   	from .model.user import Profile
   	sponsor_type = "personal" # or corporate
@@ -262,13 +264,15 @@ class SponsorPledge():
   	target = []
   	activated = []
   	single_target = False
-  	for u in raw_target: 
+  	for u in raw_target:
+  		# for now, it really is just for one person.  
   	    t = Profile.get(u)
   	    if len(raw_target) > 1: single_target = t
+  	    #if single_target == session['user'].key(): return False # can't sponsor yourself 
   	    target.append(t.key())
   	    activated.append(False)
   	from model.account import SponsorPledge
-  	new_pledge = SponsorPledge(#key_name?
+  	new_pledge = SponsorPledge( #specify key name if uniqueness is important, but its not high priority for now. 
   	                           sponsor = session['user'],
   	                           sponsor_type = sponsor_type,
   	                           package = package,
@@ -286,4 +290,4 @@ class SponsorPledge():
   		new_pledge.proficiency = Proficiency.get(args[3])
   		
   	db.put(new_pledge)
-  	return "True"
+  	return True

@@ -51,6 +51,7 @@ class SponsorPledge(db.Model):
     award_type = db.StringProperty(required=True, choices=set(["fluency", "excellence", "any"]))  
     package = db.StringProperty(required=False, choices=set(["micro", "medium", "magna_cum_laude"]))                                    
     target = db.ListProperty(db.Key)#Profile   # paired list.    
+    # we're not using single_target yet
     single_target = db.ReferenceProperty(Profile,
                                     required=False,
                                     collection_name='sponsorships_pledged_to_me')
@@ -66,9 +67,8 @@ class SponsorPledge(db.Model):
 """
 
 
-Corporate sponsorships have no targets, or different targets. 
+For business (one-to-many) sponsorships, see model.employer.AutoPledge
 
-Should a sponsorship generator class be used? Sponsorship would only have one target. 
 
 
 """

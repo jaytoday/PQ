@@ -3,8 +3,7 @@ import logging
 logging.info('Loading %s', __name__)
 from utils import webapp, simplejson
 from google.appengine.ext import db
-from .utils.utils import tpl_path, ROOT_PATH, raise_error
-from methods import registered
+from .utils.utils import tpl_path, ROOT_PATH
 from utils.gql_encoder import GqlEncoder, encode
 from utils.appengine_utilities.sessions import Session
 
@@ -80,10 +79,14 @@ class RPCMethods(webapp.RequestHandler):
 
 
   def SubmitSponsorPledge(self, *args):
-  	 from accounts.methods import SponsorPledge
-  	 sp = SponsorPledge()
-  	 return sp.submit(args)
-  	
+  	 # check args 
+  	 if len(args) < 4: return "error"
+  	 # TODO: better checking!
+  	 else:
+  	 	session = Session()
+  	 	session['pledge'] = args
+  	 	return True
+
 
 
   	

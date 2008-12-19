@@ -116,25 +116,28 @@ class Logout(webapp.RequestHandler):
 class Redirect(webapp.RequestHandler):
   def get(self):
     redirect_path = self.request.path.split('/redirect/')[1]
-    if redirect_path.split('/')[0] == 'from_quiz': return self.token_redirect()
+    if redirect_path.split('/')[0] == 'from_quiz': return self.from_quiz_redirect()
+    if redirect_path.split('/')[0] == 'from_pledge': return self.from_pledge_redirect()
     return False
         
         
         
   @login_required
-  def token_redirect(self):
+  def from_quiz_redirect(self):
+      # redirect after quiz
       token = self.request.path.split('/from_quiz/')[1]
       from utils.utils import set_flash
       self.set_flash = set_flash
       self.set_flash('post_quiz')
       from quiztaker.load_quiz import QuizSession
       quiz_session = QuizSession()
-      quiz_session.update_scores(token, self.session['user'].unique_identifier) 
-      #do other jobs to make sure profile is ready. proficiency level, (awards?)
+      quiz_session.update_scores(token, self.session['user'].unique_identifier)
+      self.response.out.write('<b>Please wait while we save your quiz results.....</b>') # this doesn't work right now
       self.update_user_stats()
       self.redirect('/profile/' + self.session['user'].profile_path)
 
   def update_user_stats(self):
+      # update stats after quiz to update profile.
       from quiztaker.methods import ProficiencyLevels
       pl = ProficiencyLevels()
       from model.quiz import QuizTaker
@@ -151,3 +154,18 @@ class Redirect(webapp.RequestHandler):
       new_sponsorships = sponsorships.check_all(qt)
       if new_sponsorships > 0: self.set_flash('new_sponsorship')
       
+
+
+
+  @login_required
+  def from_pledge_redirect(self):
+	# redirect after submitting sponsorship pledge
+	if not self.session['pledge']: 
+	    logging.error('Expired sponsor pledge call made by user %s', self.session['user'])
+	    return False
+	from accounts.methods import SponsorPledge
+	sp = SponsorPledge()
+	if sp.submit(self.session['pledge']): print "redirect me somewhere, please"
+	else: print "there was a problem"
+	#self.redirect('/profile/' + self.session['user'].profile_path) # I don't know...where else? 
+  	

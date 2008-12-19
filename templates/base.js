@@ -1,33 +1,14 @@
-/* Firebug Degradation */
-
-if (!window.console || !console.firebug)
-{
-    var names = ["log", "debug", "info", "warn", "error", "assert", "dir", "dirxml",
-    "group", "groupEnd", "time", "timeEnd", "count", "trace", "profile", "profileEnd"];
-
-    window.console = {};
-    for (var i = 0; i < names.length; ++i)
-        window.console[names[i]] = function() {}
-}
 
 
-function list(a)
-{
-  var o = {};
-  for(var i=0;i<a.length;i++)
-  {
-    o[a[i]]='';
-  }
-  return o;
-}
 
 // Include utility scripts 
 
-{% include "/utils/parallax.js" %}
-{% include "/utils/json2min.js" %}
-{% include "/utils/rpc.js" %}
-{% include "/utils/preserve_default_text.js" %}
 
+{% include "../static/scripts/utils/parallax.js" %}
+{% include "../static/scripts/utils/json2min.js" %}
+{% include "../static/scripts/utils/rpc.js" %}
+{% include "../static/scripts/utils/preserve_default_text.js" %}
+{% include "../static/scripts/utils/console.js" %}
 
 
  

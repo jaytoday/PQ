@@ -26,7 +26,7 @@ def url_routes(map):
 	map.connect('preview/employer/load_profile', controller = 'profiles.views:LoadUserProfile')
 
 	#Demo
-	map.connect('demo', controller = 'quiztaker.views:PQDemo')
+	#map.connect('demo', controller = 'quiztaker.views:PQDemo')
 	map.connect('preview/ad_embed', controller = 'quiztaker.views:PQDemo')
 	map.connect('st_quiz', controller = 'quiztaker.views:ViewSnaptalentQuiz')
 	map.connect('st_quiz/close', controller = 'quiztaker.views:ViewNone')	
@@ -69,6 +69,7 @@ def url_routes(map):
 																														 
 	#Utils
 	map.connect('image/*img', controller = 'profiles.views:Image')
+	map.connect('js/base', controller = 'homepage.views:BaseJS')
 	map.connect('Redirect', 'redirect/*path', controller = 'accounts.views:Redirect')	
 	map.connect('404 error', '*url/:not_found', controller = 'utils.utils:NotFoundPageHandler')
 	map.connect('404 error', '*url', controller = 'utils.utils:NotFoundPageHandler')     

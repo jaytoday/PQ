@@ -27,6 +27,7 @@ class Proficiency(db.Model):
       return DefaultSubjectImage.get()
 
 
+      
 class ProficiencyTopic(db.Model):  # sub-topics within proficiencies - These map to content URLs.
   name = db.StringProperty(required=True)
   proficiency = db.ReferenceProperty(Proficiency, collection_name='topics') # Proficiency Tag (startup_financing)
