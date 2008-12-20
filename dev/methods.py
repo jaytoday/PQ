@@ -72,10 +72,12 @@ class Build():
 		  p.delete()	
 
 		  		
-	def refresh_subject_images(self, *args):
-		self.delete_subject_images()
-		self.refresh_default_subject_image()
-		proficiencies = Proficiency.all().fetch(1000)
+	def refresh_subject_images(self, proficiency=False):
+		if not proficiency: 
+		    proficiencies = Proficiency.all().fetch(1000)
+		    self.delete_subject_images()
+		    self.refresh_default_subject_image()
+		else: proficiencies = [proficiency]
 		for p in proficiencies:
 			p_path = ROOT_PATH + "/data/img/subject/" + str(p.name) + "/"
 			print p_path

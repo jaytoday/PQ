@@ -51,7 +51,8 @@ class QuizJS(webapp.RequestHandler):
 	#memcache.set(token, self.session['user'].unique_identifier, 60000)
 	return token
 
-    
+
+# Is this necessary? At all?
 class QuizCSS(webapp.RequestHandler):
   @memoize('quiz_css')
   def get(self):

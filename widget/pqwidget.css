@@ -135,6 +135,7 @@ width:380px;
 button.widget_button{
 margin:-140px 50px;
 position:absolute;
+width:216px;
 }
 
 button.widget_button span{
@@ -1576,6 +1577,7 @@ height:230px !important;
 position:relative !important;
 margin:-5px !important;
 width:320px !important;
+float:left;
 }
 
 
@@ -1586,9 +1588,9 @@ overflow:hidden;
 
 #quiz_wrap div.subject_preview_right
 {
-float:right;
+margin:85px 1px 0 339px !important;
+position:absolute;
 width:300px;
-margin: -175px 1px 0px !important;
 }
 
 #quiz_wrap div.subject_description{
@@ -1600,7 +1602,6 @@ font-weight:bold !important;
 line-height:2.5em;
 margin:-40px 5px 3px !important;
 padding:5px 8px !important;
-position:absolute;
 text-transform:capitalize !important;
 width:280px !important;
 -webkit-border-radius: 10px;

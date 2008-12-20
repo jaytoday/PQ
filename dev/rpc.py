@@ -78,6 +78,10 @@ remote callers access to private/protected "_*" methods.
   def refresh_subject_images(self, *args):
   	from methods import Build
   	build = Build()
+  	if len(args) > 0: 
+  	    from model.proficiency import Proficiency 
+  	    subject = Proficiency.get_by_key_name(args[0])
+  	    if subject: return build.refresh_subject_images(subject)
   	build.refresh_subject_images()
 
   def refresh_profile_images(self, *args):
