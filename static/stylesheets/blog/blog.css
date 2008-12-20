@@ -47,13 +47,14 @@
     
     h2 {
       color: {color:Description};
-      font-size: 1em;
-      margin-bottom: .5em;
+      font-size:2em !important;
+margin:0.4em !important;
+text-indent:0 !important;
     }
     
     h3 {
-font-size:1.4em;
-margin:10px;
+font-size:1.5em;
+margin:10px 0 40px;
     }
     
     
@@ -69,7 +70,7 @@ margin:10px;
     #meta {
       list-style: none;
 float:right;
-margin:-170px 10px;
+margin:-175px 55px;
 padding:0;
 text-align:right;
     }
@@ -80,7 +81,7 @@ text-align:right;
 
 
 		/* Search */
-		#search { text-align: right; margin:0 10px; }
+		#search { text-align: right; margin:-70px 10px; }
 		
 
 		/* Search Result Count */
@@ -158,8 +159,8 @@ padding:2em 2em 1em 0;
     
     .post .post-footer {
       color: {color:Post Footer};
-      margin-left: 7em;
-      text-align: right;
+margin:2em 0 0 7em;
+text-align:right;
     }
     
     .post .post-footer .permalink, .post .post-footer .when {
@@ -204,4 +205,23 @@ padding:2em 2em 1em 0;
     }
 
 		.query { font-weight: bold; }
+
+
+
+/* customize elements from the base template */
+
+div#right_corner span{
+display:none;
+}
+
+.sitelet .middle .main_wrapper .main {
+
+height:auto;
+
+}
+
+div#posts{
+margin:7em 0 0;
+}
+
 

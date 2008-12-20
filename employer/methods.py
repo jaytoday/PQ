@@ -34,7 +34,7 @@ def dump_data(gql_query):
 class DataMethods():
 	
   def delete_data(self, query, *verbose):
-		objects = query.fetch(1000)
+		objects = Employer.all().fetch(1000)
 		for object in objects:
 			print "deleted: " + str(object.__dict__) 
 			object.delete()

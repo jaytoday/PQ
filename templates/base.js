@@ -3,12 +3,12 @@
 
 // Include utility scripts 
 
-
+{% spaceless %}
 {% include "../static/scripts/utils/parallax.js" %}
 {% include "../static/scripts/utils/rpc.js" %}
 {% include "../static/scripts/utils/preserve_default_text.js" %}
 {% include "../static/scripts/utils/console.js" %}
-
+{ % endspaceless %}
 
  
 $(document).ready(function()
