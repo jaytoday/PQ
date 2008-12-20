@@ -12,8 +12,9 @@
 		<script type="text/javascript">
 $(document).ready(function()
 {
-	var has_awards = "False";
 	
+	// Show messages based on whether user has awards and sponsorships
+	var has_awards = "False";	
 {% for award in user.awards %}
 if ("{{ forloop.first }}") has_awards = "True";
  if (!$('.{{ forloop.counter }}_has_subject_image')) $('li#{{ forloop.counter }}_default_subject_image').show(); {# show default image, no slider #}

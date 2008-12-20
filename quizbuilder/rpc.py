@@ -86,7 +86,7 @@ remote callers access to private/protected "_*" methods.
   def RetrieveProficiencies(self, *args):   # todo: should be nested list of proficiencies and topics.
       return_proficiencies = []
       #proficiencies = Proficiency.all()
-      proficiencies = Proficiency.gql("WHERE name in :1", ["Oil", "Solar Energy","Energy Finance","Biofuels","Electricity", "Energy Efficiency", "Law and Policy"])  # remove after refactoring quiztaker
+      proficiencies = Proficiency.gql("WHERE name in :1", ["Oil", "Misconceptions", "Solar Energy","Energy Finance","Biofuels","Electricity", "Energy Efficiency", "Law and Policy"])  # remove after refactoring quiztaker
       return encode(proficiencies.fetch(1000, offset=0)) # temporary offset
 
 
@@ -133,7 +133,7 @@ remote callers access to private/protected "_*" methods.
 		lc_answers = [string.lower(answer) for answer in args[1]]
 		new_quiz_item.answers = lc_answers
 		this_proficiency = Proficiency.gql("WHERE name = :1", args[5])
-		this_topic = ProficiencyTopic.get_or_insert(args[2], name=args[2], proficiency=this_proficiency.get())
+		this_topic = ProficiencyTopic.get_or_insert(key_name=args[2], name=args[2], proficiency=this_proficiency.get())
 		this_topic.put()
 		new_quiz_item.topic = this_topic.key()
 		new_quiz_item.proficiency = this_topic.proficiency.key()

@@ -35,7 +35,6 @@ def mail_intro_message(profile):
 	""" % profile.fullname
 
 	message.send()
-	print "sent message: ", message.body
 
 
 	
@@ -60,7 +59,6 @@ def mail_sponsor_message(profile):
 	""" % profile.fullname
 
 	message.send()
-	print "sent message: ", message.body
 
 
 	
@@ -87,5 +85,4 @@ def mail_sponsee_message(profile):
 	""" % profile.fullname
 
 	message.send()
-	print "sent message: ", message.body
 

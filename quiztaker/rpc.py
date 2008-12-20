@@ -157,7 +157,7 @@ class RPCMethods(webapp.RequestHandler):
 		score.type = "site"     # type could be site, practice widget
 	else:
 		score.type = "temp"
-	if len(args) > 4: score.vendor = Employer.get(args[4])
+	#if len(args) > 4: score.vendor = Employer.get(args[4])
 	score.put()
 	if user: 
 	  this_user.scores.append(score.key())

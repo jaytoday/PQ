@@ -58,8 +58,8 @@ def register_account(user_key, nickname):
 
 def default_photo():
 	photos = ProfilePicture.gql("WHERE type = :1", "pq").fetch(10)
+	import random
 	photo = random.sample(photos, 1)
-	#except: return False 
 	return photo[0]
 
 

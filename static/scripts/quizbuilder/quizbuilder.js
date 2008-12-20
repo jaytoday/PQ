@@ -14,9 +14,10 @@
 
 
 
+
+
 jQuery(function($) {
 
-$('div#right_corner').find('span').text('Quizbuilder');	
 	
 // Setup RPC methods
 var server = {};
@@ -42,7 +43,7 @@ $('.url_name').preserveDefaultText('url');
 
 server.RetrieveProficiencies("all", AfterRetrieveProficiencies);  // Create list of proficiencies 
 
-
+// On page load, when quiz subjects are retrieved. 
 function AfterRetrieveProficiencies(response){  
 
 var proficiencies = parseJSON(response);
@@ -68,7 +69,12 @@ $('#submit_proficiency').click(function () {
         for (j = 0; j < proficiency_sum; j++) {
 if (eval('document.select_proficiency.proficiency[' + j + '].checked') == true) {
     var proficiency = eval('document.select_proficiency.proficiency[' + j + '].value'); }}
+  // yikes. i think jQuery's .val() could be useful here...
 
+   // The topics are retrieved now. This is silly, because you actually want to retrieve the topics 
+   // each time you make a quiz item (and possibly make a new topic).
+   // TODO: Re-factor this. 
+   
     server.GetTopicsForProficiency(proficiency, function(response){ 
     	var topics = response;
     	server.GetRawItemsForProficiency(proficiency, function(response){  

@@ -1,167 +1,189 @@
 [
                     {
+                        "status": "private", 
+                        "date": {
+                            "ctime": "Fri Dec 19 08:56:00 2008"
+                        }, 
+                        "name": "Bananas", 
+                        "blurb": "This is a test blurb", 
+                        "modified": {
+                            "ctime": "Fri Dec 19 08:56:00 2008"
+                        }
+                    }, 
+                    {
                         "status": "public", 
                         "date": {
-                            "ctime": "Tue Dec 16 10:54:05 2008"
+                            "ctime": "Thu Dec 18 09:18:52 2008"
                         }, 
                         "name": "Biofuels", 
                         "blurb": "Exciting advances in the conversion of biomass into fuel have made this environmentally-friendly production method into a Clean Tech poster child.", 
                         "modified": {
-                            "ctime": "Tue Dec 16 10:58:10 2008"
+                            "ctime": "Thu Dec 18 09:18:52 2008"
                         }
                     }, 
                     {
                         "status": "private", 
                         "date": {
-                            "ctime": "Tue Dec 16 10:54:05 2008"
+                            "ctime": "Thu Dec 18 09:18:52 2008"
                         }, 
                         "name": "Building Webapps", 
                         "blurb": "A truly good developer knows how to build web apps in an agile way, and to provide solutions that people really need.", 
                         "modified": {
-                            "ctime": "Tue Dec 16 10:58:10 2008"
+                            "ctime": "Thu Dec 18 09:18:52 2008"
                         }
                     }, 
                     {
                         "status": "private", 
                         "date": {
-                            "ctime": "Tue Dec 16 10:54:05 2008"
+                            "ctime": "Thu Dec 18 09:18:52 2008"
                         }, 
                         "name": "CSS", 
                         "blurb": "default", 
                         "modified": {
-                            "ctime": "Tue Dec 16 10:58:10 2008"
+                            "ctime": "Thu Dec 18 09:18:52 2008"
                         }
                     }, 
                     {
                         "status": "private", 
                         "date": {
-                            "ctime": "Tue Dec 16 10:54:05 2008"
+                            "ctime": "Thu Dec 18 09:18:52 2008"
                         }, 
                         "name": "Clean Energy", 
                         "blurb": "default", 
                         "modified": {
-                            "ctime": "Tue Dec 16 10:58:10 2008"
+                            "ctime": "Thu Dec 18 09:18:52 2008"
                         }
                     }, 
                     {
                         "status": "private", 
                         "date": {
-                            "ctime": "Tue Dec 16 10:54:05 2008"
+                            "ctime": "Thu Dec 18 09:18:52 2008"
                         }, 
                         "name": "Collective Intelligence", 
                         "blurb": "default", 
                         "modified": {
-                            "ctime": "Tue Dec 16 10:58:10 2008"
+                            "ctime": "Thu Dec 18 09:18:52 2008"
                         }
                     }, 
                     {
                         "status": "public", 
                         "date": {
-                            "ctime": "Tue Dec 16 10:54:05 2008"
+                            "ctime": "Thu Dec 18 09:18:52 2008"
                         }, 
                         "name": "Electricity", 
                         "blurb": "Intelligent, distributed, and highly adaptive electrical systems aim to reduce power consumption and prevent peak hour failures.", 
                         "modified": {
-                            "ctime": "Tue Dec 16 10:58:10 2008"
+                            "ctime": "Thu Dec 18 09:18:52 2008"
                         }
                     }, 
                     {
                         "status": "public", 
                         "date": {
-                            "ctime": "Tue Dec 16 10:54:05 2008"
+                            "ctime": "Thu Dec 18 09:18:52 2008"
                         }, 
                         "name": "Energy Economics", 
                         "blurb": "Between the $100 billion dollars invested in Clean Tech and new energy-conscious tax codes, there is a pressing need for those familiar with the new economic landscape.", 
                         "modified": {
-                            "ctime": "Tue Dec 16 10:58:10 2008"
+                            "ctime": "Thu Dec 18 09:18:52 2008"
                         }
                     }, 
                     {
                         "status": "public", 
                         "date": {
-                            "ctime": "Tue Dec 16 10:54:05 2008"
+                            "ctime": "Thu Dec 18 09:18:52 2008"
                         }, 
                         "name": "Energy Efficiency", 
                         "blurb": "The cheapest and most available source of new energy is the energy we waste. To save money and lower greenhouse gas levels, organizations are increasingly seeking ways to reduce their energy consumption. ", 
                         "modified": {
-                            "ctime": "Tue Dec 16 10:58:10 2008"
+                            "ctime": "Thu Dec 18 09:18:52 2008"
                         }
                     }, 
                     {
                         "status": "private", 
                         "date": {
-                            "ctime": "Tue Dec 16 10:54:05 2008"
+                            "ctime": "Thu Dec 18 09:18:52 2008"
                         }, 
                         "name": "Freebase", 
                         "blurb": "default", 
                         "modified": {
-                            "ctime": "Tue Dec 16 10:58:10 2008"
+                            "ctime": "Thu Dec 18 09:18:52 2008"
                         }
                     }, 
                     {
                         "status": "private", 
                         "date": {
-                            "ctime": "Tue Dec 16 10:54:05 2008"
+                            "ctime": "Thu Dec 18 09:18:52 2008"
                         }, 
                         "name": "Javascript", 
                         "blurb": "default", 
                         "modified": {
-                            "ctime": "Tue Dec 16 10:58:10 2008"
+                            "ctime": "Thu Dec 18 09:18:52 2008"
                         }
                     }, 
                     {
                         "status": "public", 
                         "date": {
-                            "ctime": "Tue Dec 16 10:54:05 2008"
+                            "ctime": "Fri Dec 19 08:02:17 2008"
+                        }, 
+                        "name": "Misconceptions", 
+                        "blurb": "Have you been fooled by common misconceptions?", 
+                        "modified": {
+                            "ctime": "Fri Dec 19 08:02:17 2008"
+                        }
+                    }, 
+                    {
+                        "status": "public", 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:52 2008"
                         }, 
                         "name": "Oil", 
                         "blurb": "Petroleum makes up 40% of energy consumption, and has a worldwide impact on politics, economics, and the environment. ", 
                         "modified": {
-                            "ctime": "Tue Dec 16 10:58:10 2008"
+                            "ctime": "Thu Dec 18 09:18:52 2008"
                         }
                     }, 
                     {
                         "status": "private", 
                         "date": {
-                            "ctime": "Tue Dec 16 10:54:05 2008"
+                            "ctime": "Thu Dec 18 09:18:52 2008"
                         }, 
                         "name": "Rails", 
                         "blurb": "default", 
                         "modified": {
-                            "ctime": "Tue Dec 16 10:58:10 2008"
+                            "ctime": "Thu Dec 18 09:18:52 2008"
                         }
                     }, 
                     {
                         "status": "private", 
                         "date": {
-                            "ctime": "Tue Dec 16 10:54:05 2008"
+                            "ctime": "Thu Dec 18 09:18:52 2008"
                         }, 
                         "name": "Ruby", 
                         "blurb": "default", 
                         "modified": {
-                            "ctime": "Tue Dec 16 10:58:10 2008"
+                            "ctime": "Thu Dec 18 09:18:52 2008"
                         }
                     }, 
                     {
                         "status": "public", 
                         "date": {
-                            "ctime": "Tue Dec 16 10:54:05 2008"
+                            "ctime": "Thu Dec 18 09:18:52 2008"
                         }, 
                         "name": "Solar Energy", 
                         "blurb": "The oldest and most pervasive form of renewable energy draws from the same ambient source that sustains life on Earth. ", 
                         "modified": {
-                            "ctime": "Tue Dec 16 10:58:10 2008"
+                            "ctime": "Thu Dec 18 09:18:52 2008"
                         }
                     }, 
                     {
                         "status": "private", 
                         "date": {
-                            "ctime": "Tue Dec 16 10:54:05 2008"
+                            "ctime": "Thu Dec 18 09:18:52 2008"
                         }, 
                         "name": "Startup Financing", 
                         "blurb": "default", 
                         "modified": {
-                            "ctime": "Tue Dec 16 10:58:10 2008"
+                            "ctime": "Thu Dec 18 09:18:52 2008"
                         }
                     }
                 ]

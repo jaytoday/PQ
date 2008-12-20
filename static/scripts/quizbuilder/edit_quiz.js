@@ -21,6 +21,7 @@ ANSWER_LIMIT = 2;
 function BuildQuizEditor(response, topics){
 var raw_quiz_items = parseJSON(response);
 
+//errors
 if (raw_quiz_items.length == 0) { $('div#loading_items').html('no quiz items returned -- <a href="">try again?</a>'); return false;}  // no items returned
 if (raw_quiz_items[0] == "error") { $('div#loading_items').html('error: ' + raw_quiz_items[1]); return false; }  // error
 
@@ -36,7 +37,11 @@ $('div#quiz_items').css('width', scroll_width);
 $('ul.item_navigation').append('<li class="index"><a href="#' + i + '" onClick="return false;">' + item.index + '</a></li>');   // href="#' + i + '" -- for navigation. 
 	
  	
-// raw item template 	-- use jsrepeater template
+/*
+ * 
+ * TODO....make it stop.
+ * 
+ */
  	
 var html = '<div class="quiz_item"  id="' + i + '" ><form id="quiz_data_' + i + '" name="quiz_data_' + i + '">';
 
@@ -134,7 +139,7 @@ EditQuizItem(i, item, answers); // Run function after the above code is evaluate
 
 
 
-// PopUpBubble(); should be done once and apply to all 
+// PopUpBubble(); //should be done once and apply to all 
 
 
 item_sliderInit();   
@@ -157,7 +162,7 @@ function EditQuizItem(i, item, answers) {
 // setup for ajax call     
 var server = {};
 InstallPostFunction(server, 'SubmitQuizItem', 'quizbuilder');  // POST Request
-InstallFunction(server, 'SetItemModStatus', 'quizbuilder');
+InstallFunction(server, 'SetItemModStatus', 'quizbuilder'); // are we still using this? 
 
 // setup arrays
 wrong_answers[i] = [];
@@ -423,7 +428,8 @@ function PreviewAnswer(i) {
 
 
 
-// Pop-up Bubble
+// Pop-up Bubble -- Not using right now 
+
 function PopUpBubble() {
   $('.answers_container').each(function () {
   	

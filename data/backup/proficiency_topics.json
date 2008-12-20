@@ -1,1264 +1,1804 @@
 [
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:39 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
-                            "name": "Building Webapps", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kY7gIM"
+                            "name": "Rails", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:39 2008"
+                            "ctime": "Thu Dec 18 09:18:54 2008"
                         }, 
-                        "name": "Constructors", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxjvAgw"
+                        "name": "Development"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:39 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
-                            "name": "Building Webapps", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kY7gIM"
+                            "name": "Rails", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:39 2008"
+                            "ctime": "Thu Dec 18 09:18:54 2008"
                         }, 
-                        "name": "Microformats", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxjxAgw"
+                        "name": "Modelling"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:39 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
-                            "name": "Building Webapps", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kY7gIM"
+                            "name": "Rails", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:39 2008"
+                            "ctime": "Thu Dec 18 09:18:54 2008"
                         }, 
-                        "name": "HTML", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxjzAgw"
+                        "name": "Formatting"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:39 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
-                            "name": "Building Webapps", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kY7gIM"
+                            "name": "Rails", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:39 2008"
+                            "ctime": "Thu Dec 18 09:18:54 2008"
                         }, 
-                        "name": "Javascript", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxj1Agw"
+                        "name": "Front-End"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:39 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
-                            "name": "Building Webapps", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kY7gIM"
+                            "name": "Ruby", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:39 2008"
+                            "ctime": "Thu Dec 18 09:18:55 2008"
                         }, 
-                        "name": "Python 3.0", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxj4Agw"
+                        "name": "Handlers"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:39 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
-                            "name": "Building Webapps", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kY7gIM"
+                            "name": "Ruby", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:39 2008"
+                            "ctime": "Thu Dec 18 09:18:55 2008"
                         }, 
-                        "name": "Models", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxj6Agw"
+                        "name": "Database"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:39 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
-                            "name": "Building Webapps", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kY7gIM"
+                            "name": "Ruby", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:39 2008"
+                            "ctime": "Thu Dec 18 09:18:55 2008"
                         }, 
-                        "name": "django.contrib", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxj8Agw"
+                        "name": "Characters"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:39 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
-                            "name": "Building Webapps", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kY7gIM"
+                            "name": "Ruby", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:40 2008"
+                            "ctime": "Thu Dec 18 09:18:55 2008"
                         }, 
-                        "name": "Scraping", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxj-Agw"
+                        "name": "Comments"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:39 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
-                            "name": "Building Webapps", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kY7gIM"
+                            "name": "Ruby", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:40 2008"
+                            "ctime": "Thu Dec 18 09:18:55 2008"
                         }, 
-                        "name": "Closures", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxiAAww"
+                        "name": "Syntax"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:40 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
-                            "name": "Collective Intelligence", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kYggMM"
+                            "name": "Ruby", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:40 2008"
+                            "ctime": "Thu Dec 18 09:18:55 2008"
                         }, 
-                        "name": "Probability", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxiDAww"
+                        "name": "Performance"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:40 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
-                            "name": "Collective Intelligence", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kYggMM"
+                            "name": "Rails", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:40 2008"
+                            "ctime": "Thu Dec 18 09:18:55 2008"
                         }, 
-                        "name": "Algorithms", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxiFAww"
+                        "name": "Deployment"
                     }, 
                     {
                         "proficiency": {
+                            "status": "public", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:40 2008"
-                            }, 
-                            "name": "Collective Intelligence", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kYggMM"
-                        }, 
-                        "date": {
-                            "ctime": "Mon Oct 27 01:00:40 2008"
-                        }, 
-                        "name": "Statistics", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxiHAww"
-                    }, 
-                    {
-                        "proficiency": {
-                            "date": {
-                                "ctime": "Mon Oct 27 01:00:40 2008"
-                            }, 
-                            "name": "Collective Intelligence", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kYggMM"
-                        }, 
-                        "date": {
-                            "ctime": "Mon Oct 27 01:00:40 2008"
-                        }, 
-                        "name": "Clustering", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxiJAww"
-                    }, 
-                    {
-                        "proficiency": {
-                            "date": {
-                                "ctime": "Mon Oct 27 01:00:40 2008"
-                            }, 
-                            "name": "Collective Intelligence", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kYggMM"
-                        }, 
-                        "date": {
-                            "ctime": "Mon Oct 27 01:00:40 2008"
-                        }, 
-                        "name": "Prediction", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxiLAww"
-                    }, 
-                    {
-                        "proficiency": {
-                            "date": {
-                                "ctime": "Mon Oct 27 01:00:40 2008"
-                            }, 
-                            "name": "Collective Intelligence", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kYggMM"
-                        }, 
-                        "date": {
-                            "ctime": "Mon Oct 27 01:00:40 2008"
-                        }, 
-                        "name": "NLP", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxiNAww"
-                    }, 
-                    {
-                        "proficiency": {
-                            "date": {
-                                "ctime": "Mon Oct 27 01:00:40 2008"
-                            }, 
-                            "name": "Collective Intelligence", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kYggMM"
-                        }, 
-                        "date": {
-                            "ctime": "Mon Oct 27 01:00:40 2008"
-                        }, 
-                        "name": "Machine Learning", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxiPAww"
-                    }, 
-                    {
-                        "proficiency": {
-                            "date": {
-                                "ctime": "Mon Oct 27 01:00:40 2008"
-                            }, 
-                            "name": "Collective Intelligence", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kYggMM"
-                        }, 
-                        "date": {
-                            "ctime": "Mon Oct 27 01:00:40 2008"
-                        }, 
-                        "name": "Gaussians", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxiRAww"
-                    }, 
-                    {
-                        "proficiency": {
-                            "date": {
-                                "ctime": "Mon Oct 27 01:00:40 2008"
-                            }, 
-                            "name": "Collective Intelligence", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kYggMM"
-                        }, 
-                        "date": {
-                            "ctime": "Mon Oct 27 01:00:40 2008"
-                        }, 
-                        "name": "Graph Theory", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxiTAww"
-                    }, 
-                    {
-                        "proficiency": {
-                            "date": {
-                                "ctime": "Mon Oct 27 01:00:40 2008"
-                            }, 
-                            "name": "Clean Energy", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kYlgMM"
-                        }, 
-                        "date": {
-                            "ctime": "Mon Oct 27 01:00:40 2008"
-                        }, 
-                        "name": "Energy", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxiXAww"
-                    }, 
-                    {
-                        "proficiency": {
-                            "date": {
-                                "ctime": "Mon Oct 27 01:00:40 2008"
-                            }, 
-                            "name": "Clean Energy", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kYlgMM"
-                        }, 
-                        "date": {
-                            "ctime": "Mon Oct 27 01:00:40 2008"
-                        }, 
-                        "name": "E-Waste", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxiZAww"
-                    }, 
-                    {
-                        "proficiency": {
-                            "date": {
-                                "ctime": "Mon Oct 27 01:00:40 2008"
-                            }, 
-                            "name": "Clean Energy", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kYlgMM"
-                        }, 
-                        "date": {
-                            "ctime": "Mon Oct 27 01:00:40 2008"
-                        }, 
-                        "name": "Solar Energy", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxibAww"
-                    }, 
-                    {
-                        "proficiency": {
-                            "date": {
-                                "ctime": "Mon Oct 27 01:00:40 2008"
-                            }, 
-                            "name": "Clean Energy", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kYlgMM"
-                        }, 
-                        "date": {
-                            "ctime": "Mon Oct 27 01:00:40 2008"
-                        }, 
-                        "name": "Ambient Energy", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxidAww"
-                    }, 
-                    {
-                        "proficiency": {
-                            "date": {
-                                "ctime": "Mon Oct 27 01:00:40 2008"
-                            }, 
-                            "name": "Clean Energy", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kYlgMM"
-                        }, 
-                        "date": {
-                            "ctime": "Mon Oct 27 01:00:40 2008"
-                        }, 
-                        "name": "Carbon Fuel", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxifAww"
-                    }, 
-                    {
-                        "proficiency": {
-                            "date": {
-                                "ctime": "Mon Oct 27 01:00:40 2008"
-                            }, 
-                            "name": "Clean Energy", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kYlgMM"
-                        }, 
-                        "date": {
-                            "ctime": "Mon Oct 27 01:00:41 2008"
-                        }, 
-                        "name": "Treaties", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxihAww"
-                    }, 
-                    {
-                        "proficiency": {
-                            "date": {
-                                "ctime": "Mon Oct 27 01:00:40 2008"
-                            }, 
-                            "name": "Clean Energy", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kYlgMM"
-                        }, 
-                        "date": {
-                            "ctime": "Mon Oct 27 01:00:41 2008"
-                        }, 
-                        "name": "Regulation", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxijAww"
-                    }, 
-                    {
-                        "proficiency": {
-                            "date": {
-                                "ctime": "Mon Oct 27 01:00:40 2008"
-                            }, 
-                            "name": "Clean Energy", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kYlgMM"
-                        }, 
-                        "date": {
-                            "ctime": "Mon Oct 27 01:00:41 2008"
-                        }, 
-                        "name": "Standards", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxilAww"
-                    }, 
-                    {
-                        "proficiency": {
-                            "date": {
-                                "ctime": "Mon Oct 27 01:00:40 2008"
-                            }, 
-                            "name": "Clean Energy", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kYlgMM"
-                        }, 
-                        "date": {
-                            "ctime": "Mon Oct 27 01:00:41 2008"
-                        }, 
-                        "name": "Biodiversity", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxinAww"
-                    }, 
-                    {
-                        "proficiency": {
-                            "date": {
-                                "ctime": "Mon Oct 27 01:00:40 2008"
-                            }, 
-                            "name": "Clean Energy", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kYlgMM"
-                        }, 
-                        "date": {
-                            "ctime": "Mon Oct 27 01:00:41 2008"
-                        }, 
-                        "name": "Ecology", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxipAww"
-                    }, 
-                    {
-                        "proficiency": {
-                            "date": {
-                                "ctime": "Mon Oct 27 01:00:41 2008"
-                            }, 
-                            "name": "Startup Financing", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kYqwMM"
-                        }, 
-                        "date": {
-                            "ctime": "Mon Oct 27 01:00:41 2008"
-                        }, 
-                        "name": "Advertising", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxisAww"
-                    }, 
-                    {
-                        "proficiency": {
-                            "date": {
-                                "ctime": "Mon Oct 27 01:00:41 2008"
-                            }, 
-                            "name": "Startup Financing", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kYqwMM"
-                        }, 
-                        "date": {
-                            "ctime": "Mon Oct 27 01:00:41 2008"
-                        }, 
-                        "name": "Fundraising", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxiuAww"
-                    }, 
-                    {
-                        "proficiency": {
-                            "date": {
-                                "ctime": "Mon Oct 27 01:00:41 2008"
-                            }, 
-                            "name": "Startup Financing", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kYqwMM"
-                        }, 
-                        "date": {
-                            "ctime": "Mon Oct 27 01:00:41 2008"
-                        }, 
-                        "name": "Patent Law", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxiwAww"
-                    }, 
-                    {
-                        "proficiency": {
-                            "date": {
-                                "ctime": "Mon Oct 27 01:00:41 2008"
-                            }, 
-                            "name": "Startup Financing", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kYqwMM"
-                        }, 
-                        "date": {
-                            "ctime": "Mon Oct 27 01:00:41 2008"
-                        }, 
-                        "name": "Investment", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxiyAww"
-                    }, 
-                    {
-                        "proficiency": {
-                            "date": {
-                                "ctime": "Mon Oct 27 01:00:41 2008"
-                            }, 
-                            "name": "Startup Financing", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kYqwMM"
-                        }, 
-                        "date": {
-                            "ctime": "Mon Oct 27 01:00:41 2008"
-                        }, 
-                        "name": "Law", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxi0Aww"
-                    }, 
-                    {
-                        "proficiency": {
-                            "date": {
-                                "ctime": "Mon Oct 27 01:00:41 2008"
-                            }, 
-                            "name": "Startup Financing", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kYqwMM"
-                        }, 
-                        "date": {
-                            "ctime": "Mon Oct 27 01:00:41 2008"
-                        }, 
-                        "name": "Incorporating", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxi2Aww"
-                    }, 
-                    {
-                        "proficiency": {
-                            "date": {
-                                "ctime": "Mon Oct 27 01:00:41 2008"
-                            }, 
-                            "name": "Startup Financing", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kYqwMM"
-                        }, 
-                        "date": {
-                            "ctime": "Mon Oct 27 01:00:41 2008"
-                        }, 
-                        "name": "Options", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxi4Aww"
-                    }, 
-                    {
-                        "proficiency": {
-                            "date": {
-                                "ctime": "Mon Oct 27 01:00:41 2008"
-                            }, 
-                            "name": "Startup Financing", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kYqwMM"
-                        }, 
-                        "date": {
-                            "ctime": "Mon Oct 27 01:00:41 2008"
-                        }, 
-                        "name": "Bond Market", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxi7Aww"
-                    }, 
-                    {
-                        "proficiency": {
-                            "date": {
-                                "ctime": "Mon Oct 27 01:00:41 2008"
-                            }, 
-                            "name": "Startup Financing", 
-                            "key": "aghwbG9wcXVpenISCxILUHJvZmljaWVuY3kYqwMM"
-                        }, 
-                        "date": {
-                            "ctime": "Mon Oct 27 01:00:41 2008"
-                        }, 
-                        "name": "Taxation", 
-                        "key": "aghwbG9wcXVpenIXCxIQUHJvZmljaWVuY3lUb3BpYxi9Aww"
-                    }, 
-                    {
-                        "proficiency": {
-                            "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Oil", 
-                            "key": "aghwbG9wcXVpenIUCxILUHJvZmljaWVuY3kiA09pbAw"
+                            "blurb": "Petroleum makes up 40% of energy consumption, and has a worldwide impact on politics, economics, and the environment. ", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:30 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Abiogenesis", 
-                        "key": "aghwbG9wcXVpenIhCxIQUHJvZmljaWVuY3lUb3BpYyILQWJpb2dlbmVzaXMM"
+                        "name": "Abiogenesis"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Freebase", 
-                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 03:26:23 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Acre", 
-                        "key": "aghwbG9wcXVpenIaCxIQUHJvZmljaWVuY3lUb3BpYyIEQWNyZQw"
+                        "name": "Acre"
                     }, 
                     {
                         "proficiency": {
+                            "status": "public", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Solar Energy", 
-                            "key": "aghwbG9wcXVpenIdCxILUHJvZmljaWVuY3kiDFNvbGFyIEVuZXJneQw"
+                            "blurb": "The oldest and most pervasive form of renewable energy draws from the same ambient source that sustains life on Earth. ", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:30 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Active Solar", 
-                        "key": "aghwbG9wcXVpenIiCxIQUHJvZmljaWVuY3lUb3BpYyIMQWN0aXZlIFNvbGFyDA"
+                        "name": "Active Solar"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Startup Financing", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "Advertising"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "public", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Biofuels", 
-                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEJpb2Z1ZWxzDA"
+                            "blurb": "Exciting advances in the conversion of biomass into fuel have made this environmentally-friendly production method into a Clean Tech poster child.", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:29 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Algae Power", 
-                        "key": "aghwbG9wcXVpenIhCxIQUHJvZmljaWVuY3lUb3BpYyILQWxnYWUgUG93ZXIM"
+                        "name": "Algae Power"
                     }, 
                     {
                         "proficiency": {
+                            "status": "public", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Biofuels", 
-                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEJpb2Z1ZWxzDA"
+                            "blurb": "Exciting advances in the conversion of biomass into fuel have made this environmentally-friendly production method into a Clean Tech poster child.", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:29 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Algae", 
-                        "key": "aghwbG9wcXVpenIbCxIQUHJvZmljaWVuY3lUb3BpYyIFQWxnYWUM"
+                        "name": "Algae"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Collective Intelligence", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "Algorithms"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "private", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Clean Energy", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "Ambient Energy"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "public", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Biofuels", 
-                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEJpb2Z1ZWxzDA"
+                            "blurb": "Exciting advances in the conversion of biomass into fuel have made this environmentally-friendly production method into a Clean Tech poster child.", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:29 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Biobutanol", 
-                        "key": "aghwbG9wcXVpenIgCxIQUHJvZmljaWVuY3lUb3BpYyIKQmlvYnV0YW5vbAw"
+                        "name": "Biobutanol"
                     }, 
                     {
                         "proficiency": {
+                            "status": "public", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Biofuels", 
-                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEJpb2Z1ZWxzDA"
+                            "blurb": "Exciting advances in the conversion of biomass into fuel have made this environmentally-friendly production method into a Clean Tech poster child.", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:29 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Biodiesel", 
-                        "key": "aghwbG9wcXVpenIfCxIQUHJvZmljaWVuY3lUb3BpYyIJQmlvZGllc2VsDA"
+                        "name": "Biodiesel"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Clean Energy", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "Biodiversity"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "public", 
+                            "date": {
+                                "ctime": "Fri Dec 19 08:02:17 2008"
+                            }, 
+                            "name": "Misconceptions", 
+                            "blurb": "Have you been fooled by common misconceptions?", 
+                            "modified": {
+                                "ctime": "Fri Dec 19 08:02:17 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Fri Dec 19 08:40:18 2008"
+                        }, 
+                        "name": "Biology"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "private", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Startup Financing", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "Bond Market"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "public", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Energy Economics", 
-                            "key": "aghwbG9wcXVpenIhCxILUHJvZmljaWVuY3kiEEVuZXJneSBFY29ub21pY3MM"
+                            "blurb": "Between the $100 billion dollars invested in Clean Tech and new energy-conscious tax codes, there is a pressing need for those familiar with the new economic landscape.", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:29 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Carbon Cap and Trade", 
-                        "key": "aghwbG9wcXVpenIqCxIQUHJvZmljaWVuY3lUb3BpYyIUQ2FyYm9uIENhcCBhbmQgVHJhZGUM"
+                        "name": "Carbon Cap and Trade"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Clean Energy", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "Carbon Fuel"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "public", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Biofuels", 
-                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEJpb2Z1ZWxzDA"
+                            "blurb": "Exciting advances in the conversion of biomass into fuel have made this environmentally-friendly production method into a Clean Tech poster child.", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:29 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Cellulosic ethanol", 
-                        "key": "aghwbG9wcXVpenIoCxIQUHJvZmljaWVuY3lUb3BpYyISQ2VsbHVsb3NpYyBldGhhbm9sDA"
+                        "name": "Cellulosic ethanol"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Building Webapps", 
+                            "blurb": "A truly good developer knows how to build web apps in an agile way, and to provide solutions that people really need.", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "Closures"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "private", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Collective Intelligence", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "Clustering"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "public", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Energy Efficiency", 
-                            "key": "aghwbG9wcXVpenIiCxILUHJvZmljaWVuY3kiEUVuZXJneSBFZmZpY2llbmN5DA"
+                            "blurb": "The cheapest and most available source of new energy is the energy we waste. To save money and lower greenhouse gas levels, organizations are increasingly seeking ways to reduce their energy consumption. ", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:30 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Cogeneration", 
-                        "key": "aghwbG9wcXVpenIiCxIQUHJvZmljaWVuY3lUb3BpYyIMQ29nZW5lcmF0aW9uDA"
+                        "name": "Cogeneration"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Building Webapps", 
+                            "blurb": "A truly good developer knows how to build web apps in an agile way, and to provide solutions that people really need.", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "Constructors"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "public", 
+                            "date": {
+                                "ctime": "Fri Dec 19 08:02:17 2008"
+                            }, 
+                            "name": "Misconceptions", 
+                            "blurb": "Have you been fooled by common misconceptions?", 
+                            "modified": {
+                                "ctime": "Fri Dec 19 08:02:17 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Fri Dec 19 08:46:53 2008"
+                        }, 
+                        "name": "Culture"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "private", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Clean Energy", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "E-Waste"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "private", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Clean Energy", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "Ecology"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "public", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Oil", 
-                            "key": "aghwbG9wcXVpenIUCxILUHJvZmljaWVuY3kiA09pbAw"
+                            "blurb": "Petroleum makes up 40% of energy consumption, and has a worldwide impact on politics, economics, and the environment. ", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:30 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Energy Independence", 
-                        "key": "aghwbG9wcXVpenIpCxIQUHJvZmljaWVuY3lUb3BpYyITRW5lcmd5IEluZGVwZW5kZW5jZQw"
+                        "name": "Energy Independence"
                     }, 
                     {
                         "proficiency": {
+                            "status": "public", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Energy Efficiency", 
-                            "key": "aghwbG9wcXVpenIiCxILUHJvZmljaWVuY3kiEUVuZXJneSBFZmZpY2llbmN5DA"
+                            "blurb": "The cheapest and most available source of new energy is the energy we waste. To save money and lower greenhouse gas levels, organizations are increasingly seeking ways to reduce their energy consumption. ", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:30 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Energy Resilience", 
-                        "key": "aghwbG9wcXVpenInCxIQUHJvZmljaWVuY3lUb3BpYyIRRW5lcmd5IFJlc2lsaWVuY2UM"
+                        "name": "Energy Resilience"
                     }, 
                     {
                         "proficiency": {
+                            "status": "public", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Energy Economics", 
-                            "key": "aghwbG9wcXVpenIhCxILUHJvZmljaWVuY3kiEEVuZXJneSBFY29ub21pY3MM"
+                            "blurb": "Between the $100 billion dollars invested in Clean Tech and new energy-conscious tax codes, there is a pressing need for those familiar with the new economic landscape.", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:29 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Energy Tax Act", 
-                        "key": "aghwbG9wcXVpenIkCxIQUHJvZmljaWVuY3lUb3BpYyIORW5lcmd5IFRheCBBY3QM"
+                        "name": "Energy Tax Act"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Clean Energy", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "Energy"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "public", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Biofuels", 
-                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEJpb2Z1ZWxzDA"
+                            "blurb": "Exciting advances in the conversion of biomass into fuel have made this environmentally-friendly production method into a Clean Tech poster child.", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:29 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Ethanol", 
-                        "key": "aghwbG9wcXVpenIdCxIQUHJvZmljaWVuY3lUb3BpYyIHRXRoYW5vbAw"
+                        "name": "Ethanol"
                     }, 
                     {
                         "proficiency": {
+                            "status": "public", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Energy Economics", 
-                            "key": "aghwbG9wcXVpenIhCxILUHJvZmljaWVuY3kiEEVuZXJneSBFY29ub21pY3MM"
+                            "blurb": "Between the $100 billion dollars invested in Clean Tech and new energy-conscious tax codes, there is a pressing need for those familiar with the new economic landscape.", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:29 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Feed-in Tariff", 
-                        "key": "aghwbG9wcXVpenIkCxIQUHJvZmljaWVuY3lUb3BpYyIORmVlZC1pbiBUYXJpZmYM"
+                        "name": "Feed-in Tariff"
                     }, 
                     {
                         "proficiency": {
+                            "status": "public", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Electricity", 
-                            "key": "aghwbG9wcXVpenIcCxILUHJvZmljaWVuY3kiC0VsZWN0cmljaXR5DA"
+                            "blurb": "Intelligent, distributed, and highly adaptive electrical systems aim to reduce power consumption and prevent peak hour failures.", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:30 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Flywheel Storage", 
-                        "key": "aghwbG9wcXVpenImCxIQUHJvZmljaWVuY3lUb3BpYyIQRmx5d2hlZWwgU3RvcmFnZQw"
+                        "name": "Flywheel Storage"
                     }, 
                     {
                         "proficiency": {
+                            "status": "public", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Energy Efficiency", 
-                            "key": "aghwbG9wcXVpenIiCxILUHJvZmljaWVuY3kiEUVuZXJneSBFZmZpY2llbmN5DA"
+                            "blurb": "The cheapest and most available source of new energy is the energy we waste. To save money and lower greenhouse gas levels, organizations are increasingly seeking ways to reduce their energy consumption. ", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:30 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Fossil Fuels", 
-                        "key": "aghwbG9wcXVpenIiCxIQUHJvZmljaWVuY3lUb3BpYyIMRm9zc2lsIEZ1ZWxzDA"
+                        "name": "Fossil Fuels"
                     }, 
                     {
                         "proficiency": {
+                            "status": "public", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Energy Economics", 
-                            "key": "aghwbG9wcXVpenIhCxILUHJvZmljaWVuY3kiEEVuZXJneSBFY29ub21pY3MM"
+                            "blurb": "Between the $100 billion dollars invested in Clean Tech and new energy-conscious tax codes, there is a pressing need for those familiar with the new economic landscape.", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:29 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Full Cost Accounting", 
-                        "key": "aghwbG9wcXVpenIqCxIQUHJvZmljaWVuY3lUb3BpYyIURnVsbCBDb3N0IEFjY291bnRpbmcM"
+                        "name": "Full Cost Accounting"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Startup Financing", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "Fundraising"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "private", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Collective Intelligence", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "Gaussians"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "public", 
+                            "date": {
+                                "ctime": "Fri Dec 19 08:02:17 2008"
+                            }, 
+                            "name": "Misconceptions", 
+                            "blurb": "Have you been fooled by common misconceptions?", 
+                            "modified": {
+                                "ctime": "Fri Dec 19 08:02:17 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Fri Dec 19 08:44:16 2008"
+                        }, 
+                        "name": "Geography"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "public", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Solar Energy", 
-                            "key": "aghwbG9wcXVpenIdCxILUHJvZmljaWVuY3kiDFNvbGFyIEVuZXJneQw"
+                            "blurb": "The oldest and most pervasive form of renewable energy draws from the same ambient source that sustains life on Earth. ", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:30 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Geothermal Power", 
-                        "key": "aghwbG9wcXVpenImCxIQUHJvZmljaWVuY3lUb3BpYyIQR2VvdGhlcm1hbCBQb3dlcgw"
+                        "name": "Geothermal Power"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Collective Intelligence", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "Graph Theory"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "public", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Energy Efficiency", 
-                            "key": "aghwbG9wcXVpenIiCxILUHJvZmljaWVuY3kiEUVuZXJneSBFZmZpY2llbmN5DA"
+                            "blurb": "The cheapest and most available source of new energy is the energy we waste. To save money and lower greenhouse gas levels, organizations are increasingly seeking ways to reduce their energy consumption. ", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:30 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Green Computing", 
-                        "key": "aghwbG9wcXVpenIlCxIQUHJvZmljaWVuY3lUb3BpYyIPR3JlZW4gQ29tcHV0aW5nDA"
+                        "name": "Green Computing"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Building Webapps", 
+                            "blurb": "A truly good developer knows how to build web apps in an agile way, and to provide solutions that people really need.", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "HTML"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "public", 
+                            "date": {
+                                "ctime": "Fri Dec 19 08:02:17 2008"
+                            }, 
+                            "name": "Misconceptions", 
+                            "blurb": "Have you been fooled by common misconceptions?", 
+                            "modified": {
+                                "ctime": "Fri Dec 19 08:02:17 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Fri Dec 19 08:20:27 2008"
+                        }, 
+                        "name": "History"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "public", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Electricity", 
-                            "key": "aghwbG9wcXVpenIcCxILUHJvZmljaWVuY3kiC0VsZWN0cmljaXR5DA"
+                            "blurb": "Intelligent, distributed, and highly adaptive electrical systems aim to reduce power consumption and prevent peak hour failures.", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:29 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Home Area Networks", 
-                        "key": "aghwbG9wcXVpenIoCxIQUHJvZmljaWVuY3lUb3BpYyISSG9tZSBBcmVhIE5ldHdvcmtzDA"
+                        "name": "Home Area Networks"
                     }, 
                     {
                         "proficiency": {
+                            "status": "public", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Electricity", 
-                            "key": "aghwbG9wcXVpenIcCxILUHJvZmljaWVuY3kiC0VsZWN0cmljaXR5DA"
+                            "blurb": "Intelligent, distributed, and highly adaptive electrical systems aim to reduce power consumption and prevent peak hour failures.", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:30 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Hydroelectricity", 
-                        "key": "aghwbG9wcXVpenImCxIQUHJvZmljaWVuY3lUb3BpYyIQSHlkcm9lbGVjdHJpY2l0eQw"
+                        "name": "Hydroelectricity"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Startup Financing", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "Incorporating"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "private", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Startup Financing", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "Investment"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "private", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Building Webapps", 
+                            "blurb": "A truly good developer knows how to build web apps in an agile way, and to provide solutions that people really need.", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "Javascript"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "private", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Startup Financing", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "Law"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "public", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Electricity", 
-                            "key": "aghwbG9wcXVpenIcCxILUHJvZmljaWVuY3kiC0VsZWN0cmljaXR5DA"
+                            "blurb": "Intelligent, distributed, and highly adaptive electrical systems aim to reduce power consumption and prevent peak hour failures.", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:29 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Load Levelling", 
-                        "key": "aghwbG9wcXVpenIkCxIQUHJvZmljaWVuY3lUb3BpYyIOTG9hZCBMZXZlbGxpbmcM"
+                        "name": "Load Levelling"
                     }, 
-                    
-                           {
-                        "proficiency": {
-                            "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
-                            }, 
-                            "name": "Electricity"
-                            
-                        }, 
-                        "date": {
-                            "ctime": "Mon Oct 27 01:00:29 2008"
-                        }, 
-                        "name": "Oil Supply", 
-                        "key": "aghwbG9wcXVpenIkCxIQUHJvZmljaWVuY3lUb3BpYyIOTG9hZCBMZXZlbGxpbmcM"
-                    },
-                    
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Freebase", 
-                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 03:15:57 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "MJT", 
-                        "key": "aghwbG9wcXVpenIZCxIQUHJvZmljaWVuY3lUb3BpYyIDTUpUDA"
+                        "name": "MJT"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Collective Intelligence", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "Machine Learning"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "private", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Building Webapps", 
+                            "blurb": "A truly good developer knows how to build web apps in an agile way, and to provide solutions that people really need.", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "Microformats"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "private", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Freebase", 
-                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:46:08 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Modeling", 
-                        "key": "aghwbG9wcXVpenIeCxIQUHJvZmljaWVuY3lUb3BpYyIITW9kZWxpbmcM"
+                        "name": "Modeling"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Building Webapps", 
+                            "blurb": "A truly good developer knows how to build web apps in an agile way, and to provide solutions that people really need.", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "Models"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "private", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Collective Intelligence", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "NLP"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "public", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Oil", 
-                            "key": "aghwbG9wcXVpenIUCxILUHJvZmljaWVuY3kiA09pbAw"
+                            "blurb": "Petroleum makes up 40% of energy consumption, and has a worldwide impact on politics, economics, and the environment. ", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:30 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Offshore Drilling", 
-                        "key": "aghwbG9wcXVpenInCxIQUHJvZmljaWVuY3lUb3BpYyIRT2Zmc2hvcmUgRHJpbGxpbmcM"
+                        "name": "Offshore Drilling"
                     }, 
                     {
                         "proficiency": {
+                            "status": "public", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Oil", 
-                            "key": "aghwbG9wcXVpenIUCxILUHJvZmljaWVuY3kiA09pbAw"
+                            "blurb": "Petroleum makes up 40% of energy consumption, and has a worldwide impact on politics, economics, and the environment. ", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:30 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Oil Politics", 
-                        "key": "aghwbG9wcXVpenIiCxIQUHJvZmljaWVuY3lUb3BpYyIMT2lsIFBvbGl0aWNzDA"
+                        "name": "Oil Politics"
                     }, 
                     {
                         "proficiency": {
+                            "status": "public", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Electricity", 
+                            "blurb": "Intelligent, distributed, and highly adaptive electrical systems aim to reduce power consumption and prevent peak hour failures.", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "Oil Supply"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "private", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Startup Financing", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "Options"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "public", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Solar Energy", 
-                            "key": "aghwbG9wcXVpenIdCxILUHJvZmljaWVuY3kiDFNvbGFyIEVuZXJneQw"
+                            "blurb": "The oldest and most pervasive form of renewable energy draws from the same ambient source that sustains life on Earth. ", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:30 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Passive Solar", 
-                        "key": "aghwbG9wcXVpenIjCxIQUHJvZmljaWVuY3lUb3BpYyINUGFzc2l2ZSBTb2xhcgw"
+                        "name": "Passive Solar"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Startup Financing", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "Patent Law"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "public", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Oil", 
-                            "key": "aghwbG9wcXVpenIUCxILUHJvZmljaWVuY3kiA09pbAw"
+                            "blurb": "Petroleum makes up 40% of energy consumption, and has a worldwide impact on politics, economics, and the environment. ", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:30 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Peak Oil", 
-                        "key": "aghwbG9wcXVpenIeCxIQUHJvZmljaWVuY3lUb3BpYyIIUGVhayBPaWwM"
+                        "name": "Peak Oil"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Freebase", 
-                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 02:37:55 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Permissions", 
-                        "key": "aghwbG9wcXVpenIhCxIQUHJvZmljaWVuY3lUb3BpYyILUGVybWlzc2lvbnMM"
+                        "name": "Permissions"
                     }, 
                     {
                         "proficiency": {
+                            "status": "public", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Solar Energy", 
-                            "key": "aghwbG9wcXVpenIdCxILUHJvZmljaWVuY3kiDFNvbGFyIEVuZXJneQw"
+                            "blurb": "The oldest and most pervasive form of renewable energy draws from the same ambient source that sustains life on Earth. ", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:30 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Photovoltaics", 
-                        "key": "aghwbG9wcXVpenIjCxIQUHJvZmljaWVuY3lUb3BpYyINUGhvdG92b2x0YWljcww"
+                        "name": "Photovoltaics"
                     }, 
                     {
                         "proficiency": {
+                            "status": "public", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Energy Economics", 
-                            "key": "aghwbG9wcXVpenIhCxILUHJvZmljaWVuY3kiEEVuZXJneSBFY29ub21pY3MM"
+                            "blurb": "Between the $100 billion dollars invested in Clean Tech and new energy-conscious tax codes, there is a pressing need for those familiar with the new economic landscape.", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:29 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Pigovian Tax", 
-                        "key": "aghwbG9wcXVpenIiCxIQUHJvZmljaWVuY3lUb3BpYyIMUGlnb3ZpYW4gVGF4DA"
+                        "name": "Pigovian Tax"
                     }, 
                     {
                         "proficiency": {
+                            "status": "public", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Energy Economics", 
-                            "key": "aghwbG9wcXVpenIhCxILUHJvZmljaWVuY3kiEEVuZXJneSBFY29ub21pY3MM"
+                            "blurb": "Between the $100 billion dollars invested in Clean Tech and new energy-conscious tax codes, there is a pressing need for those familiar with the new economic landscape.", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:29 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Pollution Taxes", 
-                        "key": "aghwbG9wcXVpenIlCxIQUHJvZmljaWVuY3lUb3BpYyIPUG9sbHV0aW9uIFRheGVzDA"
+                        "name": "Pollution Taxes"
                     }, 
                     {
                         "proficiency": {
+                            "status": "public", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Electricity", 
-                            "key": "aghwbG9wcXVpenIcCxILUHJvZmljaWVuY3kiC0VsZWN0cmljaXR5DA"
+                            "blurb": "Intelligent, distributed, and highly adaptive electrical systems aim to reduce power consumption and prevent peak hour failures.", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:29 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Portability", 
-                        "key": "aghwbG9wcXVpenIhCxIQUHJvZmljaWVuY3lUb3BpYyILUG9ydGFiaWxpdHkM"
+                        "name": "Portability"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Collective Intelligence", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "Prediction"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "private", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Collective Intelligence", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "Probability"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "private", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Freebase", 
-                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:20:42 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Properties", 
-                        "key": "aghwbG9wcXVpenIgCxIQUHJvZmljaWVuY3lUb3BpYyIKUHJvcGVydGllcww"
+                        "name": "Properties"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Building Webapps", 
+                            "blurb": "A truly good developer knows how to build web apps in an agile way, and to provide solutions that people really need.", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "Python 3.0"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "private", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Freebase", 
-                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 02:06:35 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Queries", 
-                        "key": "aghwbG9wcXVpenIdCxIQUHJvZmljaWVuY3lUb3BpYyIHUXVlcmllcww"
+                        "name": "Queries"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Clean Energy", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "Regulation"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "public", 
+                            "date": {
+                                "ctime": "Fri Dec 19 08:02:17 2008"
+                            }, 
+                            "name": "Misconceptions", 
+                            "blurb": "Have you been fooled by common misconceptions?", 
+                            "modified": {
+                                "ctime": "Fri Dec 19 08:02:17 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Fri Dec 19 08:48:53 2008"
+                        }, 
+                        "name": "Religion"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "public", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Solar Energy", 
-                            "key": "aghwbG9wcXVpenIdCxILUHJvZmljaWVuY3kiDFNvbGFyIEVuZXJneQw"
+                            "blurb": "The oldest and most pervasive form of renewable energy draws from the same ambient source that sustains life on Earth. ", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:30 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Residential Solar", 
-                        "key": "aghwbG9wcXVpenInCxIQUHJvZmljaWVuY3lUb3BpYyIRUmVzaWRlbnRpYWwgU29sYXIM"
+                        "name": "Residential Solar"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Freebase", 
-                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:04:48 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Schemas", 
-                        "key": "aghwbG9wcXVpenIdCxIQUHJvZmljaWVuY3lUb3BpYyIHU2NoZW1hcww"
+                        "name": "Schemas"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Building Webapps", 
+                            "blurb": "A truly good developer knows how to build web apps in an agile way, and to provide solutions that people really need.", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "Scraping"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "public", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Energy Economics", 
-                            "key": "aghwbG9wcXVpenIhCxILUHJvZmljaWVuY3kiEEVuZXJneSBFY29ub21pY3MM"
+                            "blurb": "Between the $100 billion dollars invested in Clean Tech and new energy-conscious tax codes, there is a pressing need for those familiar with the new economic landscape.", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:29 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Site Value Taxes", 
-                        "key": "aghwbG9wcXVpenImCxIQUHJvZmljaWVuY3lUb3BpYyIQU2l0ZSBWYWx1ZSBUYXhlcww"
+                        "name": "Site Value Taxes"
                     }, 
                     {
                         "proficiency": {
+                            "status": "public", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Energy Efficiency", 
-                            "key": "aghwbG9wcXVpenIiCxILUHJvZmljaWVuY3kiEUVuZXJneSBFZmZpY2llbmN5DA"
+                            "blurb": "The cheapest and most available source of new energy is the energy we waste. To save money and lower greenhouse gas levels, organizations are increasingly seeking ways to reduce their energy consumption. ", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:30 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Soft Energy", 
-                        "key": "aghwbG9wcXVpenIhCxIQUHJvZmljaWVuY3lUb3BpYyILU29mdCBFbmVyZ3kM"
+                        "name": "Soft Energy"
                     }, 
                     {
                         "proficiency": {
+                            "status": "public", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Solar Energy", 
-                            "key": "aghwbG9wcXVpenIdCxILUHJvZmljaWVuY3kiDFNvbGFyIEVuZXJneQw"
+                            "blurb": "The oldest and most pervasive form of renewable energy draws from the same ambient source that sustains life on Earth. ", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:30 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Solar Building Design", 
-                        "key": "aghwbG9wcXVpenIrCxIQUHJvZmljaWVuY3lUb3BpYyIVU29sYXIgQnVpbGRpbmcgRGVzaWduDA"
+                        "name": "Solar Building Design"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Clean Energy", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "Solar Energy"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "public", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Solar Energy", 
-                            "key": "aghwbG9wcXVpenIdCxILUHJvZmljaWVuY3kiDFNvbGFyIEVuZXJneQw"
+                            "blurb": "The oldest and most pervasive form of renewable energy draws from the same ambient source that sustains life on Earth. ", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:30 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Solar Thermal Collectors", 
-                        "key": "aghwbG9wcXVpenIuCxIQUHJvZmljaWVuY3lUb3BpYyIYU29sYXIgVGhlcm1hbCBDb2xsZWN0b3JzDA"
+                        "name": "Solar Thermal Collectors"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Clean Energy", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "Standards"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "public", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Energy Efficiency", 
-                            "key": "aghwbG9wcXVpenIiCxILUHJvZmljaWVuY3kiEUVuZXJneSBFZmZpY2llbmN5DA"
+                            "blurb": "The cheapest and most available source of new energy is the energy we waste. To save money and lower greenhouse gas levels, organizations are increasingly seeking ways to reduce their energy consumption. ", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:30 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Standby Power", 
-                        "key": "aghwbG9wcXVpenIjCxIQUHJvZmljaWVuY3lUb3BpYyINU3RhbmRieSBQb3dlcgw"
+                        "name": "Standby Power"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Collective Intelligence", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "Statistics"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "public", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Electricity", 
-                            "key": "aghwbG9wcXVpenIcCxILUHJvZmljaWVuY3kiC0VsZWN0cmljaXR5DA"
+                            "blurb": "Intelligent, distributed, and highly adaptive electrical systems aim to reduce power consumption and prevent peak hour failures.", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:29 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Storage", 
-                        "key": "aghwbG9wcXVpenIdCxIQUHJvZmljaWVuY3lUb3BpYyIHU3RvcmFnZQw"
+                        "name": "Storage"
                     }, 
                     {
                         "proficiency": {
+                            "status": "public", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Biofuels", 
-                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEJpb2Z1ZWxzDA"
+                            "blurb": "Exciting advances in the conversion of biomass into fuel have made this environmentally-friendly production method into a Clean Tech poster child.", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:29 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Syngas", 
-                        "key": "aghwbG9wcXVpenIcCxIQUHJvZmljaWVuY3lUb3BpYyIGU3luZ2FzDA"
+                        "name": "Syngas"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Startup Financing", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "Taxation"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "private", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Freebase", 
-                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 03:07:18 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Templating", 
-                        "key": "aghwbG9wcXVpenIgCxIQUHJvZmljaWVuY3lUb3BpYyIKVGVtcGxhdGluZww"
+                        "name": "Templating"
                     }, 
                     {
                         "proficiency": {
+                            "status": "public", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Oil", 
-                            "key": "aghwbG9wcXVpenIUCxILUHJvZmljaWVuY3kiA09pbAw"
+                            "blurb": "Petroleum makes up 40% of energy consumption, and has a worldwide impact on politics, economics, and the environment. ", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:30 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "The Oil Market", 
-                        "key": "aghwbG9wcXVpenIkCxIQUHJvZmljaWVuY3lUb3BpYyIOVGhlIE9pbCBNYXJrZXQM"
+                        "name": "The Oil Market"
                     }, 
                     {
                         "proficiency": {
+                            "status": "public", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Energy Efficiency", 
-                            "key": "aghwbG9wcXVpenIiCxILUHJvZmljaWVuY3kiEUVuZXJneSBFZmZpY2llbmN5DA"
+                            "blurb": "The cheapest and most available source of new energy is the energy we waste. To save money and lower greenhouse gas levels, organizations are increasingly seeking ways to reduce their energy consumption. ", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:30 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Top Energy Wasters", 
-                        "key": "aghwbG9wcXVpenIoCxIQUHJvZmljaWVuY3lUb3BpYyISVG9wIEVuZXJneSBXYXN0ZXJzDA"
+                        "name": "Top Energy Wasters"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Clean Energy", 
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "Treaties"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "private", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Freebase", 
-                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:37:57 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Types", 
-                        "key": "aghwbG9wcXVpenIbCxIQUHJvZmljaWVuY3lUb3BpYyIFVHlwZXMM"
+                        "name": "Types"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Freebase", 
-                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 02:56:21 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Uploading", 
-                        "key": "aghwbG9wcXVpenIfCxIQUHJvZmljaWVuY3lUb3BpYyIJVXBsb2FkaW5nDA"
+                        "name": "Uploading"
                     }, 
                     {
                         "proficiency": {
+                            "status": "public", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Electricity", 
-                            "key": "aghwbG9wcXVpenIcCxILUHJvZmljaWVuY3kiC0VsZWN0cmljaXR5DA"
+                            "blurb": "Intelligent, distributed, and highly adaptive electrical systems aim to reduce power consumption and prevent peak hour failures.", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 01:00:29 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Vehicle-to-Grid", 
-                        "key": "aghwbG9wcXVpenIlCxIQUHJvZmljaWVuY3lUb3BpYyIPVmVoaWNsZS10by1HcmlkDA"
+                        "name": "Vehicle-to-Grid"
                     }, 
                     {
                         "proficiency": {
+                            "status": "private", 
                             "date": {
-                                "ctime": "Mon Oct 27 01:00:25 2008"
+                                "ctime": "Thu Dec 18 09:18:52 2008"
                             }, 
                             "name": "Freebase", 
-                            "key": "aghwbG9wcXVpenIZCxILUHJvZmljaWVuY3kiCEZyZWViYXNlDA"
+                            "blurb": "default", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
                         }, 
                         "date": {
-                            "ctime": "Mon Oct 27 02:34:02 2008"
+                            "ctime": "Thu Dec 18 09:18:53 2008"
                         }, 
-                        "name": "Views", 
-                        "key": "aghwbG9wcXVpenIbCxIQUHJvZmljaWVuY3lUb3BpYyIFVmlld3MM"
+                        "name": "Views"
+                    }, 
+                    {
+                        "proficiency": {
+                            "status": "private", 
+                            "date": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }, 
+                            "name": "Building Webapps", 
+                            "blurb": "A truly good developer knows how to build web apps in an agile way, and to provide solutions that people really need.", 
+                            "modified": {
+                                "ctime": "Thu Dec 18 09:18:52 2008"
+                            }
+                        }, 
+                        "date": {
+                            "ctime": "Thu Dec 18 09:18:53 2008"
+                        }, 
+                        "name": "django.contrib"
                     }
                 ]

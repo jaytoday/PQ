@@ -55,6 +55,7 @@ class Debug(webapp.RequestHandler):
       if self.request.get('quiz_item'): return self.quiz_item(self.request.get('quiz_item'))
       if self.request.get('error') == '500': return dict['this'] # test 500 errors
   def quiz_item(self, item_key):
+		from model.quiz import QuizItem
 		item = QuizItem.get(item_key)
 		item_answers = []
 		[item_answers.append(str(a)) for a in item.answers]  		

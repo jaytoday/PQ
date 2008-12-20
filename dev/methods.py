@@ -169,7 +169,8 @@ class DataMethods():
 										  post_content = entity['post_content'],
 										  page = this_url,
 										  moderated = False)
-			# why dont you want to be with your friends?
+			 
+			 # why dont you want to be with your friends?
 			if data_type == 'quiz_items': 
 				qtm = quiztaker_methods()
 				return qtm.refresh_quiz_items("loud") # does this refresh?

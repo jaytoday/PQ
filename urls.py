@@ -26,7 +26,7 @@ def url_routes(map):
 	map.connect('preview/employer/load_profile', controller = 'profiles.views:LoadUserProfile')
 
 	#Demo
-	#map.connect('demo', controller = 'quiztaker.views:PQDemo')
+	map.connect('demo', controller = 'quiztaker.views:PQDemo')
 	map.connect('preview/ad_embed', controller = 'quiztaker.views:PQDemo')
 	map.connect('st_quiz', controller = 'quiztaker.views:ViewSnaptalentQuiz')
 	map.connect('st_quiz/close', controller = 'quiztaker.views:ViewNone')	
@@ -44,8 +44,8 @@ def url_routes(map):
 		
 
 	# Induction & Building Quizzes
-	map.connect('quizbuilder', controller = 'quiztaker.views:QuizBuilder')
-	map.connect('quizbuilder/induction', controller = 'quiztaker.views:InductionInterface')		
+	map.connect('quizbuilder', controller = 'quizbuilder.views:QuizBuilder')
+	map.connect('quizbuilder/induction', controller = 'quizbuilder.views:InductionInterface')		
 	map.connect('quizbuilder/item', controller = 'quizbuilder.views:RawItemTemplate')
 
 	# RPC Handlers
