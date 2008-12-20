@@ -12,7 +12,7 @@ FILE_CACHE_TIME = datetime.timedelta(days=20)
 def widget_path(template_file_name):
     import os
     return os.path.join(ROOT_PATH,
-                        './static/widget', template_file_name)    
+                        './widget', template_file_name)    
                         
     
 class QuizJS(webapp.RequestHandler):

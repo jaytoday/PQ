@@ -8,7 +8,7 @@
 {% include "../static/scripts/utils/rpc.js" %}
 {% include "../static/scripts/utils/preserve_default_text.js" %}
 {% include "../static/scripts/utils/console.js" %}
-{ % endspaceless %}
+{% endspaceless %}
 
  
 $(document).ready(function()
