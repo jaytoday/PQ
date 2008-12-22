@@ -17,7 +17,8 @@ handlers:
 # widget source
 - url: /js/quiz/files/
   static_dir: static/widget/
-  
+
+
 
   
 - url: /console.*

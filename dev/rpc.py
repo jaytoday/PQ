@@ -141,8 +141,8 @@ remote callers access to private/protected "_*" methods.
 ###### BUSINESSES ###############
 
   def add_business(self, *args):
-	if not args: return "Specify A Business Name and Proficiency List"
-	if len(args) > 1: return "Specify A Business Name and Proficiency List"
+	if not args: return "Specify A Business Name"
+	if len(args) < 1: return "Specify A Business Name"
 	business_name = args[0]
 	from employer.methods import DataMethods
 	dm = DataMethods()
@@ -155,11 +155,12 @@ remote callers access to private/protected "_*" methods.
   	business_name = args[0]
   	from model.employer import Employer
   	this_employer = Employer.get_by_key_name(business_name)
+  	if not this_employer: return "employer does not exist"
   	proficiency_name = args[1]
   	from model.proficiency import Proficiency
   	import string
   	this_proficiency = Proficiency.get_by_key_name(string.capwords(proficiency_name))
-  	pledge_num = args[2]
+  	pledge_num = int(args[2])
   	from model.employer import AutoPledge
   	new_pledge = AutoPledge(employer = this_employer,
   	                        proficiency = this_proficiency,

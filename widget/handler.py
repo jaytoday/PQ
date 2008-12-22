@@ -56,12 +56,11 @@ class QuizJS(webapp.RequestHandler):
 class QuizCSS(webapp.RequestHandler):
   @memoize('quiz_css')
   def get(self):
+    self.response.headers['Content-Type'] = 'text/css'
     if not Debug(): self.set_expire_header()
     template_values = { } 
     path = widget_path('pqwidget.css')
-    print ""
-    print template.render(path, template_values)
-    #self.response.out.write(template.render(path, template_values))
+    self.response.out.write(template.render(path, template_values))
     
   def set_expire_header(self):
       expires = datetime.datetime.now() + FILE_CACHE_TIME 

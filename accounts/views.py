@@ -19,7 +19,7 @@ from methods import registered, register_user, register_qt, register_account
 ACCOUNTS_PATH = 'accounts/'
 if Debug(): RPX_API_KEY = '081f35f427b90c6ed3415256e8d934ed8d01b11e'
 else: RPX_API_KEY = 'a36dbaa685c9356086c69b9923a637ecf33369bc'
-RPX_API_KEY = 'a36dbaa685c9356086c69b9923a637ecf33369bc'  #### TODO: dev key should work.
+RPX_API_KEY = 'a36dbaa685c9356086c69b9923a637ecf33369bc'  #### TODO: dev key doesn't work. ('data not found' error)
 DEFAULT_LANDING_PAGE = '/preview/homepage'
 
 
@@ -63,17 +63,16 @@ class LoginResponse(webapp.RequestHandler):
 						   headers={'Content-Type':'application/x-www-form-urlencoded'}
 						   )
 		json = simplejson.loads(r.content)
-		unique_identifier = self.check_response(json)
-		if unique_identifier:
+		if self.validate_response(json):
 		  if not self.session['continue']: self.session['continue'] = DEFAULT_LANDING_PAGE
-		  self.session['user'] = registered(unique_identifier)
-		  if self.session['user'] is False: return self.register_user(unique_identifier) 
+		  self.session['user'] = registered(json['profile']['identifier'])
+		  if self.session['user'] is False: return self.register_user(json) 
 		  else: 
 		        self.redirect(self.session['continue'])
 		return
 
 
-	def check_response(self, json):	
+	def validate_response(self, json):	
 		if json['stat'] != 'ok':
 		  logging.error('unable login user with json response: %s',json) 
 		  self.redirect('/login?error=true')
@@ -84,10 +83,10 @@ class LoginResponse(webapp.RequestHandler):
 			  logging.error('unable login user with json response: %s',json) 
 			  self.redirect('/login?error=true')
 			  return False
-		return unique_identifier
+		return True
 		      
 		      		  
-	def register_user(self, unique_identifier):	# TODO: This should all be in transaction-esque block using db.put() 	  
+	def register_user(self, json):	# TODO: This should all be in transaction-esque block using db.put() 	  
 		try: nickname = json['profile']['preferredUsername']
 		except: 
 			  try:  nickname = json['profile'].get('displayName', json['profile']['email'].split('@')[0]) # try to get a nickname, somehow! 
@@ -97,7 +96,7 @@ class LoginResponse(webapp.RequestHandler):
 		except: email = ''
 		try: fullname = json['profile']['displayName']
 		except: fullname = nickname	  
-		self.session['unique_identifier'] = unique_identifier
+		self.session['unique_identifier'] = json['profile']['identifier']
 		self.session['nickname'] = nickname
 		self.session['email'] = email
 		self.session['fullname'] = fullname
@@ -129,6 +128,7 @@ class Register(webapp.RequestHandler):
 		self.session['create_profile'] == True
 		if self.session['continue']:
 			self.redirect(self.session['continue'])
+			del self.session['continue']
 		else: self.redirect('/edit_profile')
 	  
     

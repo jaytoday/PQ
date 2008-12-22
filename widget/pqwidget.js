@@ -449,6 +449,7 @@ function pqLoad()
 
 addStyle("{{ http_host }}/css/quiz"); // can we use the include tag here?
 
+
 // do we have jQuery on the page already?
 if(window.jQuery)
 {
