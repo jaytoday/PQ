@@ -72,12 +72,14 @@ class Build():
 		  p.delete()	
 
 		  		
-	def refresh_subject_images(self, proficiency=False):
-		if not proficiency: 
+	def refresh_subject_images(self, this_proficiency=False):
+		if not this_proficiency: 
 		    proficiencies = Proficiency.all().fetch(1000)
 		    self.delete_subject_images()
 		    self.refresh_default_subject_image()
-		else: proficiencies = [proficiency]
+		else: 
+		    proficiencies = [this_proficiency]
+		    self.delete_subject_images(subject=this_proficiency)
 		for p in proficiencies:
 			p_path = ROOT_PATH + "/data/img/subject/" + str(p.name) + "/"
 			print p_path
@@ -88,7 +90,7 @@ class Build():
 				image = image_file.read()
 				small_image = images.resize(image, 120, 80)
 				large_image = images.resize(image, 360, 240)
-				new_image = SubjectImage(key_name = p.name,
+				new_image = SubjectImage(key_name = str(p.name + "_" + str(n)), #unique keyname
 				                         small_image = small_image,
 				                         large_image = large_image,
 				                         proficiency = p
@@ -98,8 +100,9 @@ class Build():
 				new_image.put()
 					
 		
-	def delete_subject_images(self):
-		pics = SubjectImage.all().fetch(1000)
+	def delete_subject_images(self, subject=False):
+		if not subject: pics = SubjectImage.all().fetch(1000)
+		else: pics = SubjectImage.gql("WHERE proficiency = :1", subject).fetch(1000)
 		print "deleting %d subject images" % len(pics)
 		for p in pics:
 		  p.delete()			
@@ -147,6 +150,7 @@ class DataMethods():
 				if refresh: self.delete_data(Proficiency.all())
 				save_entity = Proficiency.get_or_insert(key_name=entity['name'], name = entity['name'], status = entity.get("status", ""), blurb = entity.get("blurb", ""))
 				save_entity.status = entity.get('status', None)
+
 				save_entity.blurb = entity.get('blurb', None)
 			if data_type == 'proficiency_topics':
 				if refresh: self.delete_data(ProficiencyTopic.all())

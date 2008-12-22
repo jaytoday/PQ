@@ -101,3 +101,11 @@ class RPCMethods(webapp.RequestHandler):
 
   	
   	  	
+
+  def nickname_check(self, *args):
+	profile_path = args[0].lower()
+	profile_path = profile_path.replace(' ','_')
+	from model.user import Profile
+	same_path = Profile.gql("WHERE profile_path = :1", profile_path).fetch(1)
+	if same_path: return "not_available"
+	else: return "available"

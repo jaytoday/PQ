@@ -9,11 +9,12 @@ def url_routes(map):
 	map.connect('login', controller = 'accounts.views:Login')
 	map.connect('login/response', controller = 'accounts.views:LoginResponse')
 	map.connect('logout', controller = 'accounts.views:Logout')
+	map.connect('register', controller = 'accounts.views:Register')
 	
 	#Profiles
 	map.connect('profile/*username', controller = 'profiles.views:ViewProfile')
 	map.connect('edit_profile', controller = 'profiles.views:EditProfile')
-	map.connect('register', controller = 'profiles.views:EditProfile')
+	
 	
 	#Store
 	map.connect('preview/proficiency', controller = 'store.views:ChooseProficiency')

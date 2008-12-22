@@ -13,7 +13,7 @@ from .model.quiz import QuizItem, RawQuizItem,  ContentPage
 from .model.proficiency import ProficiencyTopic, Proficiency
 import views
 import induction
-from methods import DataMethods, refresh_data, dump_data, load_data, restore_backup
+from dev.methods import DataMethods, refresh_data, dump_data, load_data, restore_backup
 
 
 class RPCMethods(webapp.RequestHandler):

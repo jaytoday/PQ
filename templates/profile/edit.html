@@ -6,23 +6,7 @@
 	<link rel="stylesheet" type="text/css" charset="utf-8" href="/static/stylesheets/profile/profile.css" />
 	<script type="text/javascript" src="/static/scripts/jquery/jquery.magicpreview.pack.js"></script> 
 	<script type="text/javascript" src="/static/scripts/jquery/jquery.jsupload.0.1.min.js"></script> 
-	<script type="text/javascript">
-		function onEditSuccess(response){
-	window.location='/profile/{{user.profile_path}}';
-}
-function onEditCancel(){
-window.location='/profile/{{user.profile_path}}';
-}
-
-function CyclePictures(){
-
-var photo_keys = {{ photo_keys }};
-getNextPicture(photo_keys);
-
-}
-
-
-		</script>
+	<script type="text/javascript"> profile_path = '/profile/{{user.profile_path}}'; photo_keys = {{ photo_keys }}; </script>
 	<script type="text/javascript" src="/static/scripts/jquery/jquery.MultiFile.pack.js"></script> 
 	<script type="text/javascript" src="/static/scripts/profile/edit_profile.js"></script>
 {% endblock %}

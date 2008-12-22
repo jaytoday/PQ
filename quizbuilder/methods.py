@@ -1,3 +1,4 @@
+"""
 import logging
 # Log a message each time this module get loaded.
 logging.info('Loading %s', __name__)
@@ -105,3 +106,4 @@ class DataMethods():
 
 
 
+"""

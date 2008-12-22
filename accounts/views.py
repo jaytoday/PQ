@@ -63,41 +63,77 @@ class LoginResponse(webapp.RequestHandler):
 						   headers={'Content-Type':'application/x-www-form-urlencoded'}
 						   )
 		json = simplejson.loads(r.content)
+		unique_identifier = self.check_response(json)
+		if unique_identifier:
+		  if not self.session['continue']: self.session['continue'] = DEFAULT_LANDING_PAGE
+		  self.session['user'] = registered(unique_identifier)
+		  if self.session['user'] is False: return self.register_user(unique_identifier) 
+		  else: 
+		        self.redirect(self.session['continue'])
+		return
+
+
+	def check_response(self, json):	
 		if json['stat'] != 'ok':
+		  logging.error('unable login user with json response: %s',json) 
 		  self.redirect('/login?error=true')
+		  return False
 		else:    
 		  try: unique_identifier = json['profile']['identifier']
 		  except:
-		      logging.debug(json)
-		      self.redirect('/login?error=true')
-		  try: nickname = json['profile']['preferredUsername']
-		  except: 
-		          try:  nickname = json['profile'].get('displayName', json['profile']['email'].split('@')[0]) # try to get a nickname, somehow! 
-		          except: nickname = json['profile'].get('displayName', unique_identifier[-7:-1]) # TODO: whoops, your name is gibberish. 
-		  try: email = json['profile']['email']
-		  except: email = ''
-		  logging.debug(json['profile'])
-		  try: fullname = json['profile']['displayName']
-		  except: fullname = nickname	  
-		  self.session['unique_identifier'] = unique_identifier
-		  self.session['nickname'] = nickname
-		  self.session['email'] = email
-		  self.session['fullname'] = fullname
-		  self.session['user'] = registered(self.session['unique_identifier'])
-		  if self.session['user'] is False: self.register_user()  # TODO: This should all be in transaction-esque block using db.put() 
-		  else: 
-		        if not self.session['continue']: self.session['continue'] = DEFAULT_LANDING_PAGE
-		        self.redirect(self.session['continue'])
-		  
-	def register_user(self):		  
+			  logging.error('unable login user with json response: %s',json) 
+			  self.redirect('/login?error=true')
+			  return False
+		return unique_identifier
+		      
+		      		  
+	def register_user(self, unique_identifier):	# TODO: This should all be in transaction-esque block using db.put() 	  
+		try: nickname = json['profile']['preferredUsername']
+		except: 
+			  try:  nickname = json['profile'].get('displayName', json['profile']['email'].split('@')[0]) # try to get a nickname, somehow! 
+			  #except: nickname = json['profile'].get('displayName', unique_identifier[-7:-1]) # TODO: whoops, your name is gibberish. 
+			  except: nickname = ''
+		try: email = json['profile']['email']
+		except: email = ''
+		try: fullname = json['profile']['displayName']
+		except: fullname = nickname	  
+		self.session['unique_identifier'] = unique_identifier
+		self.session['nickname'] = nickname
+		self.session['email'] = email
+		self.session['fullname'] = fullname
+		self.redirect('/register')
+		return
+		
+
+
+    
+    
+class Register(webapp.RequestHandler):
+  def get(self):
+		self.session['user'] = registered(self.session['unique_identifier'])
+		if self.session['user']: 
+		                       logging.warning('user %s attempting to register while signed in', self.session['user'].unique_identifier) 
+		                       return self.redirect('/')
+		if self.request.get('nickname'): return self.create_user()
+
+		template_values = {'nickname': self.session['nickname']}
+		path = tpl_path(ACCOUNTS_PATH +'signup.html')
+		self.response.out.write(template.render(path, template_values))
+		return
+
+  def create_user(self):		
+		self.session['nickname'] = self.request.get('nickname')
 		self.session['account'] = register_account(self.session['unique_identifier'], self.session['nickname'])
 		self.session['user'] = register_user(self.session['unique_identifier'], self.session['nickname'], self.session['fullname'], self.session['email'])
 		self.session['quiz_taker'] = register_qt(self.session['unique_identifier'], self.session['nickname'])
 		self.session['create_profile'] == True
 		if self.session['continue']:
 			self.redirect(self.session['continue'])
-		else: self.redirect('/register')		  
-
+		else: self.redirect('/edit_profile')
+	  
+    
+    
+    
     
 class Logout(webapp.RequestHandler):
   def get(self):

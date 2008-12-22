@@ -2,7 +2,7 @@
 //      PQ Quiz Client Library 
 
 
-
+// TODO: error handling for ajax responses
 
 
 var iso = function($)
@@ -29,7 +29,7 @@ var iso = function($)
                         autoStart: false, // debugging only?
                         initDone: false,
                         startTime: (new Date()),
-                        sliderDuration: 5300,
+                        sliderDuration: 5300, // used for subject preview image sliders
                         timeoutDuration: 24000, // time to answer question
                         sessionToken: "", // provided by server to load and answer questions
                         instructions: // track progress through instruction
@@ -101,7 +101,7 @@ $("#pqwidget").append(
 $("script").each(function()
 {
 /*
-* This is the part where quiz clients are embedded on the PQ site are failing.
+* TODO: This is the part where quiz clients are embedded on the PQ site are failing.
 * 
 *  This if statement fails from PQ site:  if(this.src.indexOf(jsonpcallback) > -1)  */
 
@@ -115,11 +115,18 @@ clearTimeout(timewatch);
 var widget_html = "{% spaceless %}{{ widget_html }}{% endspaceless %}";
 
 // yay the widget script loaded, setup the start handler
-$("#pqwidget").append(
+$("#pqwidget").html(
 	$(widget_html).hide().fadeIn().click($.plopquiz.start)
 );
 
-$('#pqwidget #subject_1').s3Slider({ timeOut: 8300  });  
+
+// remove default image if there are custom images (if we will never have subjects without pictures, this isn't necessary)
+	if ($("#pqwidget").find('li').length > 1) $("#pqwidget").find('li:first').remove();   
+	 
+	 
+
+$('#pqwidget #subject_1').s3Slider({ timeOut: 8300  }); 
+
 }
 
 
@@ -139,16 +146,17 @@ $('#pqwidget #subject_1').s3Slider({ timeOut: 8300  });
 				$.plopquiz.answers = $.plopquiz.answer_container.find('div');
 				
 
-				
-
                 // if the click handler is setup before the frame loads, wait for it
                 if($.pq_wrapper.length > 0)
                         $.plopquiz.loadItem();
                 else
                         setTimeout($.plopquiz.start, 600);
+                        
+                        
+				//widget is draggable -- TODO: having trouble with this, more info at http://docs.jquery.com/UI/Draggable/draggable#options
+				$('#quiz_outer', $.pq_wrapper).draggable(); 
+
         }; 
-
-
 
 
 
@@ -413,7 +421,7 @@ function addStyle(src)
         pqjs.parentNode.appendChild(s);
 }
 
-function waitForJQ()
+function waitForScript()
 {
         // loaded yet? Yes? good continue. No? keep waiting
         if(window.jQuery)
@@ -429,6 +437,9 @@ function pqLoad()
 
         {% include "../static/scripts/utils/s3slider.js" %} // this is causing an error when run from the site.
         
+        if (!jQuery.ui) { {% include "../static/scripts/jquery/jquery.ui.js" %}  /* this would have to be an addscript to actually work... */ }
+                        
+
         // force ready jQuery because page load is (likely?) done
         jQuery.isReady = true;
         // load plopquiz (modified) from within closure
@@ -454,9 +465,9 @@ else
         // This could also make it easier for us to manage the quiztaking code, since there's no penalty to seperating the code between files. 
         
         
-
+ pqLoad();
         // check in 6ms
-        setTimeout(waitForJQ, 60);
+        //setTimeout(waitForJQ, 60);
 }
 
 

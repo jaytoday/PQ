@@ -685,8 +685,10 @@ min-width:120px;
 	clear: both;
 }
 .sliderImage span strong, .gray_square_box span strong {
-    font-size: 15px;
-    font-variant:normal;
+font-size:14px;
+font-variant:normal;
+letter-spacing:-0.03em;
+margin:0 -4px;
 }
 .img_top {
 	top: 0;

@@ -67,13 +67,18 @@ $("#skip", $.plopquiz.answer_container).hide();
 
 if(quizItem.item_type == "intro")
 {
+	
+	
 $('#quiz_answers #confirm', $.plopquiz.answer_container).attr('class', 'answer intro_quiz').find('span.continue_button').text('Practice Quiz');
 $('button span#intro_button', $.plopquiz.answer_container).show(); // todo: this is coming late 
 $('.intro_frame_content #subject_container_1').show().addClass('selected'); // show first subject
 
-$('#subject_1', $.plopquiz.quiz_content).s3Slider({ timeOut: $.plopquiz.settings.sliderDuration });  // might not be working properly
 
-$('div.subject_thumb_container > div', $.plopquiz.quiz_content).each(function(n){ 
+$('div.subject_thumb_container > div', $.plopquiz.quiz_content).each(function(n){
+	
+	// remove default image if there are custom images (if we will never have subjects without pictures, this isn't necessary)
+	if ($(this).find('li').length > 1) { $('#subject_' + $(this).find('li:first').attr('id'), $.plopquiz.quiz_content).find('li:first').remove(); $(this).find('li:first').remove();   }//console.log($('#subject_' + $(this).attr('id'), $.plopquiz.quiz_content) );  }
+	 
 $('#subject_thumb_' + n, $.plopquiz.quiz_content).s3Slider({ timeOut: $.plopquiz.settings.sliderDuration });  // todo: slight offset
 });  
 
@@ -86,6 +91,14 @@ $('#subject_' + $(this).attr('id'), $.plopquiz.quiz_content).s3Slider({ timeOut:
 
 
 });
+
+
+$('#subject_1 li:first', $.plopquiz.quiz_content).show();
+
+//$('#subject_1', $.plopquiz.quiz_content).click();
+
+$('#subject_1', $.plopquiz.quiz_content).s3Slider({ timeOut: $.plopquiz.settings.sliderDuration });  // might not be working properly
+
 
 $('button.take_test', $.plopquiz.answer_container).show();
 $('div.go_to_site', $.plopquiz.answer_container).show();

@@ -1,0 +1,61 @@
+
+ 
+
+$(function(){
+	
+//TODO: Check for invalid chars, like $ and <, etc.
+
+
+$('input#nickname').keydown(function(){ $('input#nickname').data('availability', 'unknown') }); // just for sneaky fast people
+
+$('input#nickname').typeWatch( 
+ {
+    callback:function(){ NicknameCheck(); },
+    wait:500,          // milliseconds
+    highlight:true
+}
+);
+
+
+$('div#submit_nickname').click(function(){
+	console.log($('input#nickname').data('availability'));
+	if($('input#nickname').data('availability') != 'available') { $('#signup_reminder').show(); return false; } //hasn't chosen a valid name yet 
+	
+	window.location="/register?nickname=" + $('input#nickname').val();
+	
+});
+
+NicknameCheck();
+});
+
+
+
+
+function NicknameCheck(){
+	
+	var nickname = $('input#nickname').val();
+	
+$.ajax({
+		url: http_host + '/accounts/rpc?',
+        data:
+			{
+					action: "nickname_check",
+					arg0: '"' + nickname + '"'
+			},
+		success: function(response) { 
+			
+			var response =  eval(response);
+			
+			console.log($('div#notice > span#' + response))
+			
+			$('div#notice > span').hide();
+			$('div#notice > span#' + response).show();
+			
+			$('input#nickname').data('availability', response) 
+			
+			} 
+		// available or not 
+
+});
+
+}

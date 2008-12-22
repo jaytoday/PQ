@@ -1,0 +1,30 @@
+{% extends "../base.html" %}
+{% block head %}
+
+	<link rel="stylesheet" type="text/css" charset="utf-8" href="/static/stylesheets/accounts/accounts.css" />
+<script type="text/javascript" src="/static/scripts/utils/typewatch.js"></script>	
+<script type="text/javascript" src="/static/scripts/accounts/signup.js"></script>
+
+{% endblock %}
+
+
+{% block main %}
+
+<div id="signup_box" class="frame_box">
+
+<h2 id="header"> Choose Your Profile Nickname</h2>
+
+<input type="text" name="nickname" id="nickname" value="{{nickname}}" maxlength="15">
+
+<div id="notice"><span id="available" style="display:none;">Available</span><span id="not_available" style="display:none;">Not Available</span></div>
+</div>
+
+<div class="submit_nickname"> <div class="form_proceed" id='submit_nickname'>
+
+<button><span class="continue_button">Continue</span> <img src="/static/stylesheets/img/utils/purple_next.png"/></button></div></div>          
+    
+    
+        
+    <div style="display:none;" id="signup_reminder" class="warning_note">You must choose a valid profile name to continue.</div>
+    
+{% endblock %}

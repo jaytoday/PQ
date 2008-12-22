@@ -8,6 +8,11 @@ from google.appengine.api import mail
 
 # This should be used when a user logs in for the first time. 
 
+
+### For support, use self.request.headers['User-Agent']
+### For feedback forms, etc. use user info.
+
+
 def mail_intro_message(profile):
 	if not mail.is_email_valid(profile.email):
 		logging.error("%s is not valid", profile.email)

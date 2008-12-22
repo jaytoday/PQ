@@ -76,20 +76,24 @@ remote callers access to private/protected "_*" methods.
   	return encode(save_entity)
 
   def refresh_subject_images(self, *args):
+  	if len(args) == 0: return "enter in a proficiency name, or an empty arg0 string to refresh all subjects"
   	from methods import Build
   	build = Build()
-  	if len(args) > 0: 
-  	    from model.proficiency import Proficiency 
-  	    subject = Proficiency.get_by_key_name(args[0])
-  	    if subject: return build.refresh_subject_images(subject)
-  	build.refresh_subject_images()
+	from model.proficiency import Proficiency
+	import string 
+	if len(args[0]) > 0: 
+	    subject = Proficiency.get_by_key_name(string.capwords(args[0]))
+	    return build.refresh_subject_images(subject)
+  	return build.refresh_subject_images()
 
+  # refresh default profile images
   def refresh_profile_images(self, *args):
   	from methods import Build
   	build = Build()
   	build.refresh_profile_images()		
 
   def working(self, *args):
+  	return
   	from model.user import Profile, ProfilePicture
   	i = ProfilePicture.all().get()
   	ps = Profile.all().fetch(1000)
