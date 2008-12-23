@@ -19,7 +19,6 @@ handlers:
   static_dir: static/widget/
 
 
-
   
 - url: /console.*
   script: console/app/console.py

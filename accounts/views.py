@@ -27,7 +27,7 @@ DEFAULT_LANDING_PAGE = '/preview/homepage'
 class Login(webapp.RequestHandler):
   def get(self):
     login_response = str('http://' + self.request._environ['HTTP_HOST'] + '/login/response')
-    template_values = {'token_url': login_response, 'no_load': True }
+    template_values = {'token_url': login_response }
     if self.request.get('continue'): self.session['continue'] = self.request.get('continue')
     if self.request.get('test'):
         template_values['pre_test'] = "True"

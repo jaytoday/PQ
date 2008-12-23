@@ -23,7 +23,15 @@ class QuizJS(webapp.RequestHandler):
     self.these_proficiencies = Proficiency.gql("WHERE name = :1", proficiency_arg).fetch(1) #TODO: should use .get_by_key_name() method
     proficiency_names = [str(p.name) for p in self.these_proficiencies] 
     session_token = self.get_session_token()
-    template_values = {'proficiencies': encode(proficiency_names).replace("\n", ""), 'user_token': session_token, 'widget_html': self.get_widget_html(), 'widget_subject': self.these_proficiencies[0].key() } #encode(proficiency_names).replace("\n", "")
+    
+    template_values = {
+    'proficiencies': encode(proficiency_names).replace("\n", ""), 
+    'user_token': session_token, 
+    'css': self.get_widget_css().replace('\n','').replace("'",'"'),
+    'widget_html': self.get_widget_html(), 
+    'widget_subject': self.these_proficiencies[0].key() 
+    }
+     
     path = widget_path('pqwidget.js')
     self.response.out.write(template.render(path, template_values))
     
@@ -44,15 +52,16 @@ class QuizJS(webapp.RequestHandler):
   	template_values = {'proficiencies': self.these_proficiencies}
   	return template.render(path, template_values)
   	
-  	
-  	
-  		
-	#token = hash_pipe(self.session['user'].unique_identifier) # TODO: in most cases, there won't be a session. 
-	#memcache.set(token, self.session['user'].unique_identifier, 60000)
-	return token
+  @memoize('widget_css')
+  def get_widget_css(self):
+    template_values = {} 
+    path = widget_path('pqwidget.css')
+    return template.render(path, template_values)
+    
 
 
-# Is this necessary? At all?
+
+# this might be deprecated since we're loading the css inline with the JS 
 class QuizCSS(webapp.RequestHandler):
   @memoize('quiz_css')
   def get(self):
@@ -65,5 +74,5 @@ class QuizCSS(webapp.RequestHandler):
   def set_expire_header(self):
       expires = datetime.datetime.now() + FILE_CACHE_TIME 
       self.response.headers['Cache-Control'] = FILE_CACHE_CONTROL
-      self.response.headers['Expires'] = expires.strftime('%a, %d %b %Y %H:%M:%S GMT')
+      self.response.headers['Expires'] = expires.strftime('%a, %d %b %Y %H:%M:%S GMT') # TODO: is this working? 
       

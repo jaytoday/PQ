@@ -25,6 +25,7 @@ class ViewProfile(webapp.RequestHandler):
   def get(self):
     template_values = self.get_profile()
     if not template_values: return
+    template_values['load'] = 2000
     path = tpl_path(PROFILE_PATH +'profile_template.html')
     self.response.out.write(template.render(path, template_values))
     
@@ -94,7 +95,7 @@ class EditProfile(webapp.RequestHandler):
         self.session['create_profile'] = False
     else: edit_type = 'Edit'
     template_values = {'user': self.session['user'], 'edit_type': edit_type, 
-                       'photo_keys': public_photos, 'no_load': True}
+                       'photo_keys': public_photos}
     path = tpl_path(PROFILE_PATH +'edit.html')
     self.response.out.write(template.render(path, template_values))
 

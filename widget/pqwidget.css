@@ -1,3 +1,5 @@
+
+
 #pqdiv
 {
         background:     white;
@@ -201,6 +203,7 @@ font-size:100%;
 
 #quiz_wrap div#quiz_answers{
 /* background:#EDF2F8 none repeat scroll 0 0; */
+clear:both;
 }
 
 

@@ -98,8 +98,7 @@ class TakeQuiz(webapp.RequestHandler):
         vendor = self.get_default_vendor()
     load_quiz = LoadQuiz()
     if vendor == "": vendor = self.get_default_vendor()
-    template_values = {"proficiencies": proficiencies, "quiz_subject": str(proficiencies[0].name), "vendor_name": vendor.name.capitalize(), "vendor": vendor.key(), # "quiz_items": load_quiz.get(proficiencies), 
-    'no_load': True }
+    template_values = {"proficiencies": proficiencies, "quiz_subject": str(proficiencies[0].name), "vendor_name": vendor.name.capitalize(), "vendor": vendor.key() }
     path = tpl_path(QUIZTAKER_PATH + 'takequiz.html')
     self.response.out.write(template.render(path, template_values))
 

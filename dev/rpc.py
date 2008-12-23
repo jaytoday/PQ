@@ -172,3 +172,18 @@ remote callers access to private/protected "_*" methods.
   	 from employer.methods import DataMethods
   	 d = DataMethods()
   	 return d.refresh_employer_images()
+
+
+
+
+
+
+#### EXPERIMENTAL #####
+
+
+  def zemanta(self, *args):
+  	 from dev.zemanta import request
+  	 return request()
+
+
+

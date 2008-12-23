@@ -13,10 +13,10 @@ pageTracker._trackPageview();
 {% endifequal %}
 
 <script type="text/javascript">
-function Loading(){
+function Loading(duration){
 $('div.loading').show();
 	$('div.main').hide();
-		  $('div.loading').animate({opacity: 1.0}, 2000, function(){
+		  $('div.loading').animate({opacity: 1.0}, duration, function(){
 $('div.loading').hide();
 $('div.main').show();
 	});
@@ -27,7 +27,8 @@ $('div.loading').hide();
 
 function LoadInit() {
 
-if ("{{ no_load }}" == "True"){ return; } else { Loading();}
+
+if ('{{ load|default:"false" }}' == "false"){ return; } else { Loading({{ load }});}
 
 }
 

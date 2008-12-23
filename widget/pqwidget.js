@@ -62,6 +62,11 @@ var iso = function($)
        
         $.plopquiz.init = function()
         {
+        	
+//load css
+$.plopquiz.loadStyles();                
+                
+                
 // preload the quiz frame for quick start
 $.ajax({
 		url: $.plopquiz.settings.serverUrl + '/quiz_frame',
@@ -133,8 +138,7 @@ $('#pqwidget #subject_1').s3Slider({ timeOut: 8300  });
 });
         }; 
 
-        $.plopquiz.start = function()
-        {
+ $.plopquiz.start = function(){
 				 // Setup commonly used selectors
 				$.pq_wrapper = $("#quiz_wrap");  // the entire interface, including bg and overlay.
 				$.plopquiz.quiz_inner_content = $('#quiz_inner > div'); // both content and answers
@@ -146,6 +150,8 @@ $('#pqwidget #subject_1').s3Slider({ timeOut: 8300  });
 				$.plopquiz.answers = $.plopquiz.answer_container.find('div');
 				
 
+               
+                
                 // if the click handler is setup before the frame loads, wait for it
                 if($.pq_wrapper.length > 0)
                         $.plopquiz.loadItem();
@@ -158,6 +164,16 @@ $('#pqwidget #subject_1').s3Slider({ timeOut: 8300  });
 
         }; 
 
+
+
+// inject quiz css into the document head
+$.plopquiz.loadStyles = function(){
+var quizStyles = '{{ css }}';
+var style = document.createElement('style');
+style.rel = "stylesheet"; style.type = "text/css";
+$(style).html(quizStyles);
+$('head').append(style);
+}
 
 
 
@@ -412,13 +428,20 @@ function addScript(script, id)
         pqjs.parentNode.appendChild(s);
 }
 
+
+
+
 function addStyle(src)
 {
         var s = document.createElement("link");
-        s.href = /*widgetSource + */src;
+        s.href = src;
         s.rel = "stylesheet";
         s.type = "text/css";
         pqjs.parentNode.appendChild(s);
+
+
+
+
 }
 
 function waitForScript()
@@ -447,7 +470,7 @@ function pqLoad()
 }
 
 
-addStyle("{{ http_host }}/css/quiz"); // can we use the include tag here?
+//addStyle("{{ http_host }}/css/quiz"); // can we use the include tag here?
 
 
 // do we have jQuery on the page already?

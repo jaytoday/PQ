@@ -94,7 +94,7 @@ class ChooseProficiency(webapp.RequestHandler):
     	    buy_buttons.append( { 'tag': p.tag().lower(), 'html' : p.checkout_button})
     	    
     	prof_json = encode(proficiencies)
-        template_values = {'proficiencies' : proficiencies, 'prof_json': prof_json, 'buy_buttons': encode(buy_buttons)}
+        template_values = {'proficiencies' : proficiencies, 'prof_json': prof_json, 'buy_buttons': encode(buy_buttons), 'load': 2000}
         path = tpl_path(STORE_PATH + 'proficiency.html')
         self.response.out.write(template.render(path, template_values))
 
