@@ -102,7 +102,14 @@ remote callers access to private/protected "_*" methods.
   		p.put()
   	
 
-
+  def god_mode(self, *args): # for debugging quizzes
+  	from google.appengine.api import users
+  	if not users.is_current_user_admin(): return "You can login through the console."
+  	from utils.appengine_utilities.sessions import Session
+  	self.session = Session()
+  	if self.session['god_mode']: self.session['god_mode'] = False
+  	else: self.session['god_mode'] = True
+  	return self.session['god_mode']
 
 ############ Account Updates #######################
   	
@@ -110,7 +117,6 @@ remote callers access to private/protected "_*" methods.
   	from quiztaker.methods import ProficiencyLevels
   	pl = ProficiencyLevels()
   	pl.set()
-
 
   def set_awards(self, *args):
   	from accounts.methods import Awards
@@ -189,17 +195,23 @@ remote callers access to private/protected "_*" methods.
 
   def wipe_accounts(self, *args):
   	 from model.user import QuizTaker
-  	 from model.account import Profile, Account
+  	 from model.account import Profile, Account, Award, Sponsorship
   	 qs = QuizTaker.all().fetch(1000)
   	 ps = Profile.all().fetch(1000)
   	 acs = Account.all().fetch(1000)
+  	 aws = Award.all().fetch(1000)
+  	 sns = Sponsorship.all().fetch(1000)
+  	 for a in aws: a.delete()
+  	 for s in sns: s.delete()
   	 for q in qs: q.delete()
   	 for q in ps: q.delete()
   	 for q in acs: q.delete()
   	 qs = QuizTaker.all().fetch(1000)
   	 ps = Profile.all().fetch(1000)
   	 acs = Account.all().fetch(1000)
-  	 print qs, ps, acs  	 
+  	 aws = Award.all().fetch(1000)
+  	 sns = Sponsorship.all().fetch(1000)  	 
+  	 print qs, ps, acs, aws, sns	 
   	 
   	 
 

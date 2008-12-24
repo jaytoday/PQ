@@ -4,7 +4,7 @@ logging.info('Loading %s', __name__)
 import random
 from utils import webapp
 from utils.webapp import util
-from .utils.utils import tpl_path, ROOT_PATH, raise_error, hash_pipe
+from .utils.utils import tpl_path, ROOT_PATH, raise_error, hash_pipe, Debug
 from .model.quiz import QuizItem, ItemScore
 from .model.user import QuizTaker
 from .model.employer import Employer 
@@ -36,8 +36,11 @@ class LoadQuiz():
 		this_p = Proficiency.gql("WHERE name = :1", p)
 		q = QuizItem.gql("WHERE proficiency = :1", this_p.get())   # use topic for key
 		quiz_items.extend(q.fetch(1000))
-	logging.debug('loading items...')		
-	for item in quiz_items:
+	logging.debug('loading items...')
+	if Debug():
+		from utils.appengine_utilities.sessions import Session
+		self.session = Session()
+  	for item in quiz_items:
 		try: self.load_item(item)
 		except: logging.debug('unable to load item')
 	self.load_array()
@@ -50,7 +53,9 @@ class LoadQuiz():
   def load_item(self, item):
         random.shuffle(item.answers)
         item_answers = []
-        [item_answers.append(str(a)) for a in item.answers]
+        [item_answers.append(str(a)) for a in item.answers] # is this necessary?
+        if Debug():
+        	item_answers = self.god_mode(item, item_answers)
         item_dict = {"answers": item_answers, "key": item.key(), "proficiency": item.proficiency.name, "topic": item.topic.name}
         if item.proficiency.name not in self.proficiencies: self.proficiencies[item.proficiency.name] = []
         self.proficiencies[item.proficiency.name].append(item_dict)
@@ -69,12 +74,15 @@ class LoadQuiz():
         
   						
 
-
+  def god_mode(self, item, item_answers):
+  	if self.session['god_mode']: 
+		try: item_answers[item_answers.index(item.index)] = str(item.index) + "!"
+		except: logging.debug('unable to run god mode process')
+		return item_answers
 
 
 class QuizSession(): 
-
-
+     ##### TODO: Better logging
 
 	def initiate(self):
 		token = self.make_quiz_session()
@@ -101,7 +109,6 @@ class QuizSession():
 		self.session = self.get_quiz_session(token)
 		print self.session
 		self.load_quiz = LoadQuiz();
-		# proficiencies should be resolved from employer/user at earlier point.
 		proficiencies = self.get_proficiencies(profNames)
 		quiz_items = self.get_quiz_items(proficiencies)
 		if len(self.session['quiz_items']) < 1: return False
@@ -142,7 +149,6 @@ class QuizSession():
 		self.session = self.get_quiz_session(token)
 		this_item = QuizItem.get(self.session['current_item']['key']) 
 		#Lookup quiz item with slug, clean it, and match it. 
-		logging.info(this_item)  
 		picked_clean = picked_answer.strip()
 		picked_clean = picked_clean.lower()
 		correct_clean = this_item.index.strip()
@@ -174,7 +180,7 @@ class QuizSession():
 		"""
 		if len(vendor) > 0: score.vendor = Employer.get(vendor)
 		score.put()
-		logging.info('Score entered by user %s with score %s, correct: %s, picked: %s'
+		logging.info('Score entered by user %s with score %s, picked: %s, correct: %s'
 					% (score.quiz_taker, score.score, score.picked_answer, score.correct_answer))
 		
 

@@ -115,7 +115,7 @@ margin: -10px 0 0 -10px;
 }
 
 #quiz_wrap .quiz_complete_answers{
-height:302px;
+height:0;
 }
 
 #quiz_frame {
