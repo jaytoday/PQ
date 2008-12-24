@@ -31,27 +31,29 @@ class ViewProfile(webapp.RequestHandler):
     
 
   def get_profile(self):
-		profile_path = self.request.path.split('/profile/')[1].lower()
-		profile_path = profile_path.replace(' ','_')
+		profile_stub = self.request.path.split('/profile/')[1].lower()
+		profile_path = profile_stub.replace(' ','_')
 		import urllib
-		user = Profile.gql('WHERE profile_path = :1', urllib.unquote(self.request.path.split('/profile/')[1].lower()))
+		user = Profile.gql('WHERE profile_path = :1', urllib.unquote(profile_stub))
 		try:
 			user = user.get()
+			logging.info('loading profile of %s for user %s' % (user.profile_path, getattr(self.session['user'], 'profile_path', "?")))
 			this_user = user.unique_identifier
 		except:
-		    logging.info('profile not found')
-		    logging.info(profile_path)
+		    logging.debug('no profile of %s found for user %s' % (profile_path, getattr(self.session['user'], 'profile_path', "?")))
 		    self.redirect('/profile_not_found/') # if no user is found
 		    return
 		is_profile_owner = False
 		if self.session['user']:
 		    if user.unique_identifier == self.session['user'].unique_identifier: is_profile_owner = True
 		else: set_flash('anon_viewer')
+		# get report card scores
 		qt = QuizTaker.get_by_key_name(user.unique_identifier)
 		topic_levels = self.get_topic_levels(qt)
 		level_cloud = self.make_cloud(topic_levels[0:CLOUD_LIMIT])
 		range = 50
 		depth = 50
+		# get awards and sponsorships
 		from model.account import Award, Sponsorship
 		for s in user.sponsorships.fetch(100): #just temporarily, to test for referenceproperty errors.
 			try: s.sponsor.photo.key()

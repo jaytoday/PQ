@@ -1,5 +1,3 @@
-
-
 #pqdiv
 {
         background:     white;
@@ -34,23 +32,20 @@
 
 
 #quiz_wrap div#quiz_overlay {
-background-color: #333;
-height: 100%;
-left: 0;
-opacity: .5 !important;
-filter: alpha(opacity=50) !important;
--moz-opacity: 0.5 !important;
--khtml-opacity: 0.5 !important;
-position:absolute;
-top: 0;
-width: 100%;
-z-index: 90;
+	background-color: #333;
+        height: 100%;
+	left: 0;
+        opacity: .5;
+	position:absolute;
+	top: 0;
+	width: 100%;
+	z-index: 90;
 }
 
 
 
 #quiz_wrap div#quiz_close {
-background:transparent url({{ http_host }}/static/stylesheets/img/quiz_closebox.png) repeat scroll 0 0;
+background:transparent url(http://pqstage.appspot.com/static/stylesheets/img/quiz_closebox.png) repeat scroll 0 0;
 cursor:pointer;
 height:27px;
 position:absolute;
@@ -64,12 +59,6 @@ z-index:100;
         background:#EDF2F8 none repeat scroll 0 0;
 }
 
-#quiz_wrap div.content {
-font-size:1.3em;
-letter-spacing:0.01em;
-line-height:1.4em;
-}
-
 
 /* Quiz Content Styles */
 
@@ -79,11 +68,11 @@ width:700px;
 }
 
 #quiz_wrap .instructions_content{
-height: 370px;
+height: 340px;
 }
 
 #quiz_wrap .instructions2_content{
-height: 394px;
+height: 340px;
 width:369px;
 }
 
@@ -212,7 +201,6 @@ font-size:100%;
 
 #quiz_wrap div#quiz_answers{
 /* background:#EDF2F8 none repeat scroll 0 0; */
-clear:both;
 }
 
 
@@ -290,13 +278,13 @@ width:80px;
 td#quiz_purple_left {
         height: 50px;
         width: 12px;
-        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_purple_left.png) repeat-x !important;
+        background: transparent url(http://pqstage.appspot.com/static/stylesheets/img/quiz_purple_left.png) repeat-x !important;
 }
 
 td#quiz_purple_main {
         width:80px;
         height: 52px;
-        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_purple_main.png) repeat-x !important;
+        background: transparent url(http://pqstage.appspot.com/static/stylesheets/img/quiz_purple_main.png) repeat-x !important;
         padding-left:20px !important;
         padding-right:20px !important;
         background-position: 0px 2px !important;
@@ -305,7 +293,7 @@ td#quiz_purple_main {
 td#quiz_purple_right {
         height: 50px;
         width: 13px;
-        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_purple_right.png) no-repeat scroll -2px 0px !important;
+        background: transparent url(http://pqstage.appspot.com/static/stylesheets/img/quiz_purple_right.png) no-repeat scroll -2px 0px !important;
 }
 
 
@@ -313,13 +301,13 @@ td#quiz_purple_right {
 td#quiz_blue_left {
         height: 50px;
         width: 12px;
-        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_blue_left.png) repeat-x !important;
+        background: transparent url(http://pqstage.appspot.com/static/stylesheets/img/quiz_blue_left.png) repeat-x !important;
 }
 
 td#quiz_blue_main {
         min-width:80px !important;
         height: 52px;
-        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_blue_main.png) repeat-x !important;
+        background: transparent url(http://pqstage.appspot.com/static/stylesheets/img/quiz_blue_main.png) repeat-x !important;
         padding-left:20px !important;
         padding-right:20px !important;
         background-position: 0px 2px !important;
@@ -328,19 +316,19 @@ td#quiz_blue_main {
 td#quiz_blue_right {
         height: 50px;
         width: 13px;
-        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_blue_right.png) no-repeat scroll -2px 0px !important;
+        background: transparent url(http://pqstage.appspot.com/static/stylesheets/img/quiz_blue_right.png) no-repeat scroll -2px 0px !important;
 }
 
 td#quiz_pink_left {
         height: 50px;
         width: 12px;
-        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_pink_left.png) repeat-x !important;
+        background: transparent url(http://pqstage.appspot.com/static/stylesheets/img/quiz_pink_left.png) repeat-x !important;
 }
 
 td#quiz_pink_main {
         min-width:20px;
         height: 50px;
-        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_pink_main.png) repeat-x !important;
+        background: transparent url(http://pqstage.appspot.com/static/stylesheets/img/quiz_pink_main.png) repeat-x !important;
         padding-left:7px !important; 
         padding-right:5px !important;
         background-position: 0px 2px !important;
@@ -349,7 +337,7 @@ td#quiz_pink_main {
 td#quiz_pink_right {
         height: 50px;
         width: 13px;
-        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_pink_right.png) no-repeat scroll -2px 0px !important;
+        background: transparent url(http://pqstage.appspot.com/static/stylesheets/img/quiz_pink_right.png) no-repeat scroll -2px 0px !important;
 }
 
 #quiz_wrap .arrow{
@@ -389,7 +377,7 @@ width:250px;
         height: 100%; 
         width: 35%; 
         cursor: pointer;
-        background-image: url({{ http_host }}/static/stylesheets/img/data:image/gif;base64,AAAA) !important;
+        background-image: url(http://pqstage.appspot.com/static/stylesheets/img/data:image/gif;base64,AAAA) !important;
         z-index: 100; 
 }
 
@@ -402,11 +390,11 @@ width:250px;
 }
 
 #quiz_left:hover {
-        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_left.gif) no-repeat 0% 100% !important; 
+        background: transparent url(http://pqstage.appspot.com/static/stylesheets/img/quiz_left.gif) no-repeat 0% 100% !important; 
 }
 
 #quiz_right:hover {
-        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_right.gif) no-repeat 100% 100% !important;
+        background: transparent url(http://pqstage.appspot.com/static/stylesheets/img/quiz_right.gif) no-repeat 100% 100% !important;
 }
 
 #quiz_bigIframe, #quiz_freeIframe {
@@ -431,7 +419,7 @@ width:250px;
         top: -18px;
         width: 100%;
         height: 18px;
-        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_shadow_n.png) repeat-x !important;
+        background: transparent url(http://pqstage.appspot.com/static/stylesheets/img/quiz_shadow_n.png) repeat-x !important;
 }
 
 #quiz_wrap div.quiz_bg_ne {
@@ -439,14 +427,14 @@ width:250px;
         right: -13px;
         width: 13px;
         height: 18px;
-        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_shadow_ne.png) no-repeat !important;
+        background: transparent url(http://pqstage.appspot.com/static/stylesheets/img/quiz_shadow_ne.png) no-repeat !important;
 }
 
 #quiz_wrap div.quiz_bg_e {
         right: -13px;
         height: 100%;
         width: 13px;
-        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_shadow_e.png) repeat-y !important;
+        background: transparent url(http://pqstage.appspot.com/static/stylesheets/img/quiz_shadow_e.png) repeat-y !important;
 }
 
 #quiz_wrap div.quiz_bg_se {
@@ -454,14 +442,14 @@ width:250px;
         right: -13px;
         width: 13px;
         height: 18px;
-        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_shadow_se.png) no-repeat !important;
+        background: transparent url(http://pqstage.appspot.com/static/stylesheets/img/quiz_shadow_se.png) no-repeat !important;
 }
 
 #quiz_wrap div.quiz_bg_s {
         bottom: -18px;
         width: 100%;
         height: 18px;
-        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_shadow_s.png) repeat-x !important;
+        background: transparent url(http://pqstage.appspot.com/static/stylesheets/img/quiz_shadow_s.png) repeat-x !important;
 }
 
 #quiz_wrap div.quiz_bg_sw {
@@ -469,14 +457,14 @@ width:250px;
         left: -13px;
         width: 13px;
         height: 18px;
-        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_shadow_sw.png) no-repeat !important;
+        background: transparent url(http://pqstage.appspot.com/static/stylesheets/img/quiz_shadow_sw.png) no-repeat !important;
 }
 
 #quiz_wrap div.quiz_bg_w {
         left: -13px;
         height: 100%;
         width: 13px;
-        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_shadow_w.png) repeat-y !important;
+        background: transparent url(http://pqstage.appspot.com/static/stylesheets/img/quiz_shadow_w.png) repeat-y !important;
 }
 
 #quiz_wrap div.quiz_bg_nw {
@@ -484,7 +472,7 @@ width:250px;
         left: -13px;
         width: 13px;
         height: 18px;
-        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_shadow_nw.png) no-repeat !important;
+        background: transparent url(http://pqstage.appspot.com/static/stylesheets/img/quiz_shadow_nw.png) no-repeat !important;
 }
 
 #quiz_wrap .answer{
@@ -627,7 +615,7 @@ padding:2px 10px;
 }
 
 #quiz_wrap div.form_proceed{
-background:#FFFFFF url({{ http_host }}/static/stylesheets/img/utils/purple_next.png) no-repeat scroll 0 0 !important;
+background:#FFFFFF url(http://pqstage.appspot.com/static/stylesheets/img/utils/purple_next.png) no-repeat scroll 0 0 !important;
 cursor:pointer;
 float:right;
 margin:-25px 20px;
@@ -809,25 +797,21 @@ width:250px;
         background:#FFF8E2 none repeat scroll 0 0 !important;
         /* border-bottom:2px solid #E3D922; */
         text-align:center;
-        font-size:1em;
 }
 
 #blank
 {
-background:#FFFFD1 none repeat scroll 0 0 !important;
-border:1px solid #E2C922 !important;
-display:block;
-font-size:1em !important;
-font-weight:bold;
-height:28px;
-width: 105px;
-margin:auto !important;
-padding:3px 8px 2px !important;
-text-align:center;
-opacity:0.8 !important;
-	filter: alpha(opacity=80) !important;
-	-moz-opacity: 0.8 !important;
-	-khtml-opacity: 0.8 !important;
+        background:#FFFFD1 none repeat scroll 0 0 !important;
+        display:block;
+        width:100px !important;
+        height:23px;
+        border:1px solid #E2C922 !important;
+        font-weight:bold;
+       margin:auto !important;
+        opacity:0.5;
+        /*padding: 0 34px; */
+        width:100px;
+        text-align:center;
 }
 
 
@@ -874,7 +858,7 @@ left:66px;
 }
 
 #instructions_frame{
-height:270px !important;
+height:220px !important;
 }
 
 /* =========== */
@@ -934,7 +918,11 @@ li.select_quiz
 #quiz_wrap div.quiz_selection
 {
         float:left;
-        font-size:1.2em;
+        /*
+        height:110px;
+        margin:2px 0 20px -25px;
+        width:305px;
+        */
         -moz-border-bottom-colors:  #777 #888 #999 #aaa #bbb #ccc;
         -moz-border-top-colors:     #777 #888 #999 #aaa #bbb #ccc;
         -moz-border-left-colors:    #777 #888 #999 #aaa #bbb #ccc;
@@ -954,13 +942,12 @@ width: 205px;
 
 #quiz_wrap div#instructions_quiz_selection {
 margin:2px 0 20px -30px !important;
-height:202px !important;
+height:110px;
 }
 
 #quiz_wrap div#instructions2_quiz_selection {
-height:212px !important;
-margin:2px 0 20px -30px !important;
-width:320px !important;
+margin:2px 0 20px -25px !important; 
+height:110px;
 }
 
 #quiz_wrap div#begin_quiz_quiz_selection{
@@ -991,14 +978,11 @@ width:355px;
 #quiz_wrap div.quiz_description
 {
         background:#523871 none repeat scroll 0 0; 
-        /* background: url({{ http_host }}/static/html/img/background.png) repeat-x scroll center top; */
+        /* background: url(http://pqstage.appspot.com/static/html/img/background.png) repeat-x scroll center top; */
         border:2px solid #CDCDCD;
         color:#EAF2F8;
         overflow:hidden;
-        height:180px;
-margin:5px 0;
         padding:5px;
-        font-size: 1em;
         text-align:center;
         -moz-border-radius: 5px;
         -webkit-border-radius: 5px;
@@ -1013,7 +997,6 @@ margin:5px 0;
         margin-left:0px !important;
         height:120px; 
         width:140px;
-        font-size: 1em;
         float:right;
 }
 
@@ -1024,7 +1007,7 @@ margin-left:160px !important;
 }
 
 #quiz_wrap div.first_example{
-margin-top:30px !important;
+margin-top:10px !important;
 }
 
 #quiz_wrap div.quiz_description_title
@@ -1056,7 +1039,6 @@ margin-top:30px !important;
 
 #quiz_wrap div#example_1 div{
 margin-bottom: 13px;
-font-size: 1em;
 }
 
 #quiz_wrap div.quiz_description_text
@@ -1090,7 +1072,7 @@ overflow:hidden;
 
 #profs
 {
-background:transparent url({{ http_host }}/static/html/img/background_250.png) repeat-x scroll center top !important;
+background:transparent url(http://pqstage.appspot.com/static/html/img/background_250.png) repeat-x scroll center top !important;
 height:300px;
 margin-left:-12px !important;
 margin-top:-12px !important;
@@ -1134,7 +1116,7 @@ form span:hover
         -webkit-border-radius:12px;
         -moz-border-right-colors:#DDDDDD;
         -moz-border-top-colors:#EDF2F8 #FFFFFF;
-        background: url({{ http_host }}/static/html/img/background_250.png) repeat-x scroll center top;
+        background: url(http://pqstage.appspot.com/static/html/img/background_250.png) repeat-x scroll center top;
         border-color:#DDDDDD;
         border-style:solid;
         border-width:12px 8px;
@@ -1420,7 +1402,7 @@ color:#EAF2F8;
 /* forms */
 
 #quiz_wrap input.button, button {
-	background:#E0E0E0 url({{ http_host }}/static/stylesheets/img/ui/e0e0e0_40x100_textures_02_glass_80.png) repeat-x scroll 0 50%;
+	background:#E0E0E0 url(http://pqstage.appspot.com/static/stylesheets/img/ui/e0e0e0_40x100_textures_02_glass_80.png) repeat-x scroll 0 50%;
 	border-color:#CCC #999 #999 #CCC;
 	border-style: solid;
 	border-width: 1px;

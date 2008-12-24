@@ -66,13 +66,14 @@ var iso = function($)
 //load css
 $.plopquiz.loadStyles();                
                 
-                
-// preload the quiz frame for quick start
+     
+      
+// preload the quiz frame for quick start, ajax puts it into script element
 $.ajax({
 		url: $.plopquiz.settings.serverUrl + '/quiz_frame',
 		dataType: "jsonp",
 		// error: console.log('quiz frame error'), TODO: error handling
-		success: function(html,status) { startQuiz(html, status) } // code in start_quiz.js
+		success: function(html,status) { startQuiz(html, status); } // code in start_quiz.js
 
 });
 
@@ -81,41 +82,30 @@ var jsonpcallback = false;
 // this is a jQuery JSONP timeout hack
 for(var i in window)
 {
-// if it starts with jsonp, keep going, we want the last one
-if(i.substring(0,5) == "jsonp")
-jsonpcallback = i;
+	// if it starts with jsonp, keep going, we want the last one
+if(i.substring(0,5) == "jsonp")jsonpcallback = i;
 }
 
 // this should be the last (if any) jsonp123123 callback
 if(jsonpcallback)
+		// if the callback still exists after 6 seconds, time it out
+		$.plopquiz.timewatch = setTimeout(function()
+		{
+		if(window[jsonpcallback]) 
+		$("#pqwidget").append( $("<a href=\"http://www.plopquiz.com\">Take This Quiz At PlopQuiz.Com</a>").hide().fadeIn())
+		}, 6000);
 
-// if the callback still exists after 6 seconds, time it out
-var timewatch = setTimeout(function()
+
+        }; 
+
+
+
+$.plopquiz.load_widget = function()
 {
-// still there?
-if(window[jsonpcallback] != "undefined")
+	
 
-$("#pqwidget").append(
-	$("<a href=\"http://www.plopquiz.com\">Visit PlopQuiz</a>").hide().fadeIn()
-);
-
-
-}, 6000);
-
-// second part of the hack, find the script with the same callback in the src and setup onload
-$("script").each(function()
-{
-/*
-* TODO: This is the part where quiz clients are embedded on the PQ site are failing.
-* 
-*  This if statement fails from PQ site:  if(this.src.indexOf(jsonpcallback) > -1)  */
-
-if(this.src.indexOf(jsonpcallback) > -1)
-
-this.onload = function()
-{
 // the script just loaded so stop the timeout
-clearTimeout(timewatch);
+clearTimeout($.plopquiz.timewatch);
 
 var widget_html = "{% spaceless %}{{ widget_html }}{% endspaceless %}";
 
@@ -132,13 +122,14 @@ $("#pqwidget").html(
 
 $('#pqwidget #subject_1').s3Slider({ timeOut: 8300  }); 
 
-}
+};
 
 
-});
-        }; 
+
 
  $.plopquiz.start = function(){
+ 	
+ 	
 				 // Setup commonly used selectors
 				$.pq_wrapper = $("#quiz_wrap");  // the entire interface, including bg and overlay.
 				$.plopquiz.quiz_inner_content = $('#quiz_inner > div'); // both content and answers
@@ -207,6 +198,7 @@ $.event.trigger('loadingQuizItem');
 $.ajax({
 		url: $.plopquiz.settings.serverUrl + quizItem.url,
 		dataType: "jsonp",
+		cache: false,
 		success: function(html,s){ quizItemLoad(quizItem, html, s)}, // code in quiz_item_load.js
 		error: function(xhr,s)
 		{
@@ -287,6 +279,7 @@ case "begin_quiz":
 	{
 			url: $.plopquiz.settings.serverUrl + "/quiztaker/rpc",
 			dataType: "jsonp",
+			cache: false,
 			data:
 			{
 					action: "start_quiz",
@@ -395,17 +388,13 @@ $.plopquiz.init(); //the init fn is started when the document is ready.
 // Some of these utilities may not be necessary now that we're compiling
 // the JS from Django 
 
-var pqjs = document.getElementsByTagName("script");
-pqjs = pqjs[pqjs.length - 1];
-
-var widgetSource = pqjs.src.substring(0, pqjs.src.lastIndexOf("/") + 1);
 
 // We only still need this function if there's a reason we can use the include tag
 // script should be plain filename ( jqwidget.js not /loc/script.js )
 function addScript(script, id)
 {
         var s = document.createElement("script");
-        s.src = /*widgetSource + */script;
+        s.src = script;
         s.rel = "javascript";
         s.type = "text/javascript";
 

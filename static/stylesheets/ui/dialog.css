@@ -183,3 +183,9 @@ font-size: 1.3em;
 .ui-dialog-content span.note{
 font-size: .6em;
 }
+
+
+
+.ui-dialog-content p{
+margin:0 60px 15px 0;
+}

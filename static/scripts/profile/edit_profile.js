@@ -74,6 +74,8 @@ InstallPostFunction(server, 'SubmitPicture', 'profiles');
 
  function SubmitProfileEdits() {
 // get the different pieces of data, and submit them
+
+// TODO: We can use jQuery.serialize() for fast form serialization
   
  var aboutme = $('textarea.aboutme').attr('value');
  var photo = $('div#photo').data('new_image');
@@ -159,9 +161,13 @@ function getNextPicture(photo_keys){
 
 	function onEditSuccess(response){
 			//TODO make sure that response has no errors
+			$('div.loading').show();
+	$('div.main').hide();
 	window.location=profile_path;
 }
 function onEditCancel(){
+$('div.loading').show();
+	$('div.main').hide();	
 window.location=profile_path;
 }
 

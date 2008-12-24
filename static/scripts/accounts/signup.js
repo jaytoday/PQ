@@ -11,25 +11,34 @@ $('input#nickname').keydown(function(){ $('input#nickname').data('availability',
 $('input#nickname').typeWatch( 
  {
     callback:function(){ NicknameCheck(); },
-    wait:500,          // milliseconds
+    wait:300,          // milliseconds
     highlight:true
 }
 );
 
 
-$('div#submit_nickname').click(function(){
-	console.log($('input#nickname').data('availability'));
-	if($('input#nickname').data('availability') != 'available') { $('#signup_reminder').show(); return false; } //hasn't chosen a valid name yet 
-	
-	window.location="/register?nickname=" + $('input#nickname').val();
-	
-});
+$('div#submit_nickname').click(function(){ SubmitName(); });
 
 NicknameCheck();
 });
 
 
 
+function SubmitName(){
+	console.log($('input#nickname').data('availability'));
+	
+	if ($('input#nickname').val().length < 3) console.log('nickname is too short'); 
+	
+	
+	if($('input#nickname').data('availability') == 'unknown') setTimeout(function(){ SubmitName(); }, 1000);  // still unknown
+	
+	if($('input#nickname').data('availability') != 'available') { $('#signup_reminder').show(); return false; } //hasn't chosen a valid name yet 
+	
+	$('div.loading').show();
+	$('div.main').hide();
+	window.location="/register?nickname=" + $('input#nickname').val();
+	
+}
 
 function NicknameCheck(){
 	
@@ -57,5 +66,6 @@ $.ajax({
 		// available or not 
 
 });
+
 
 }

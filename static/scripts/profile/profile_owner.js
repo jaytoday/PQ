@@ -26,20 +26,20 @@ function ShareProfile() {
         	$("#share_profile").dialog({ 
     modal: true,
     resizable: false,
-    draggable: false,
-    height: 250,
-    width: 400,
+    draggable: true,
+    height: 380,
+    width: 515,
     overlay: { 
         opacity: 0.5, 
         background: "black" 
     },
         buttons: { 
-                "Share With Sponsors": function() { 
+                "Upgrade Your Resume": function() { 
             
             $(this).find('div').hide();
             $(this).find('div.sponsors').show();
         },
-        "Share With Employers": function() { 
+        "Earn Sponsorships" : function() { 
             
             $(this).find('div').hide();
             $(this).find('div.employers').show();

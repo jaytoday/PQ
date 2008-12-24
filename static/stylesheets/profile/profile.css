@@ -736,10 +736,11 @@ margin:0 -4px;
 
 
 textarea.share{
-font-size:1.3em;
-height:110px;
-margin:-10px -5px;
-width:300px;
+font-size:0.8em;
+height:30px;
+margin:5px -5px;
+padding:3px;
+width:400px;
 }
 
 
@@ -762,4 +763,10 @@ font-size:0.8em;
 margin:20px -1px;
 width:180px;
 line-height:1.4em;
+}
+
+
+.sponsorship_preview{
+margin:20px;
+width:300px;
 }

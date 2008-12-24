@@ -8,7 +8,9 @@ function PrivacyPolicy() {
         	$("#privacy_policy").dialog({ 
     modal: true,
     resizable: false,
-    draggable: false, 
+    draggable: true, 
+    height: 380,
+	width: 535,
     overlay: { 
         opacity: 0.5, 
         background: "black" 

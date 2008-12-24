@@ -1,6 +1,4 @@
 import logging
-# Log a message each time this module get loaded.
-logging.info('Loading %s', __name__)
 import cgi
 import wsgiref.handlers
 import datetime, time
@@ -26,6 +24,7 @@ DEFAULT_LANDING_PAGE = '/preview/homepage'
 
 class Login(webapp.RequestHandler):
   def get(self):
+    logging.info('Loading Login Page')
     login_response = str('http://' + self.request._environ['HTTP_HOST'] + '/login/response')
     template_values = {'token_url': login_response }
     if self.request.get('continue'): self.session['continue'] = self.request.get('continue')
@@ -50,6 +49,7 @@ class Login(webapp.RequestHandler):
 class LoginResponse(webapp.RequestHandler):
 	#RPX Response Handler
 	def get(self):
+		logging.info('Loading Login Response')
 		token = self.request.get('token')
 		url = 'https://rpxnow.com/api/v2/auth_info'
 		args = {
@@ -109,6 +109,7 @@ class LoginResponse(webapp.RequestHandler):
     
 class Register(webapp.RequestHandler):
   def get(self):
+		logging.info('Loading Registration Page')
 		self.session['user'] = registered(self.session['unique_identifier'])
 		if self.session['user']: 
 		                       logging.warning('user %s attempting to register while signed in', self.session['user'].unique_identifier) 
@@ -120,8 +121,10 @@ class Register(webapp.RequestHandler):
 		self.response.out.write(template.render(path, template_values))
 		return
 
-  def create_user(self):		
+  def create_user(self):
+		logging.info('Creating New User With Nickname %s', self.request.get('nickname'))
 		self.session['nickname'] = self.request.get('nickname')
+		if not self.session['fullname']: self.session['fullname'] = self.session['nickname']
 		self.session['account'] = register_account(self.session['unique_identifier'], self.session['nickname'])
 		self.session['user'] = register_user(self.session['unique_identifier'], self.session['nickname'], self.session['fullname'], self.session['email'])
 		self.session['quiz_taker'] = register_qt(self.session['unique_identifier'], self.session['nickname'])
@@ -137,6 +140,7 @@ class Register(webapp.RequestHandler):
     
 class Logout(webapp.RequestHandler):
   def get(self):
+    logging.info('Logging Out User %s', self.session['nickname'])
     self.session['user'] = False
     if self.request.get('continue'):
       self.redirect(self.request.get('continue'))
@@ -161,6 +165,7 @@ class Redirect(webapp.RequestHandler):
   @login_required
   def from_quiz_redirect(self):
       # redirect after quiz
+      logging.info('Redirecting From Quiz')
       token = self.request.path.split('/from_quiz/')[1]
       from utils.utils import set_flash
       self.set_flash = set_flash
@@ -173,7 +178,7 @@ class Redirect(webapp.RequestHandler):
       self.redirect('/profile/' + self.session['user'].profile_path)
 
   def update_user_stats(self):
-      # update stats after quiz to update profile.
+      logging.info('Updating User Stats for User %s', self.session['user'].unique_identifier)
       from quiztaker.methods import ProficiencyLevels
       pl = ProficiencyLevels()
       from model.quiz import QuizTaker
@@ -195,7 +200,7 @@ class Redirect(webapp.RequestHandler):
 
   @login_required
   def from_pledge_redirect(self):
-	# redirect after submitting sponsorship pledge
+	logging.info('Redirecting from Sponsorship Pledge From User %s', self.session['user'].unique_identifier)
 	if not self.session['pledge']: 
 	    logging.error('Expired sponsor pledge call made by user %s', self.session['user'])
 	    return False

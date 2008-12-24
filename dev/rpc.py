@@ -187,3 +187,20 @@ remote callers access to private/protected "_*" methods.
 
 
 
+  def wipe_accounts(self, *args):
+  	 from model.user import QuizTaker
+  	 from model.account import Profile, Account
+  	 qs = QuizTaker.all().fetch(1000)
+  	 ps = Profile.all().fetch(1000)
+  	 acs = Account.all().fetch(1000)
+  	 for q in qs: q.delete()
+  	 for q in ps: q.delete()
+  	 for q in acs: q.delete()
+  	 qs = QuizTaker.all().fetch(1000)
+  	 ps = Profile.all().fetch(1000)
+  	 acs = Account.all().fetch(1000)
+  	 print qs, ps, acs  	 
+  	 
+  	 
+
+

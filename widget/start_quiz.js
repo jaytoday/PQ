@@ -1,24 +1,26 @@
 
 
-function startQuiz(html, status){
+function startQuiz(html){
+
 	// add to body to overlay is in front
 $("body").append(html);
 
 // resize overlay to document not window
 $("#quiz_overlay").css("height", $(document).height());
 
-// stating and stoping quiz
+// stating and stopping quiz
 $("#quiz_wrap")
 .bind("quizstarting", function()
 {
 	$(this).show();
+	// re-init
 })
 .bind("quizclosing", function()
 {
 	$(this).hide();
 	$('.widget_wrap').fadeIn();
 
-	// reset to start of quiz, later this should handle skipping instructions;
+	// reset to start of quiz, TODO: this should handle skipping instructions;
 	$.plopquiz.currentItem = 0;
 });
 
@@ -112,7 +114,7 @@ if ($(this).attr("id") == "skip")
 	// hover event on span
 	$(".answertext", this).addClass('hover');
 
-var blank_width = 15 + (10 * $(".answertext", this).text().length); //todo: multiplier may need adjustment
+var blank_width = 15 + (12 * $(".answertext", this).text().length); //todo: multiplier may need adjustment
 
 $("#blank", $.plopquiz.quiz_content)
 	.html($(".answertext", this)
@@ -149,7 +151,7 @@ if($.plopquiz.quizItem.item_type == "quiz_item" || $.plopquiz.quizItem.item_type
 });
 
 $("#quiz_content", $.pq_wrapper)
-// when the item is loaded, opac fade in, then trigger startTimer
+// when the item is loaded, fade in, then trigger startTimer
 .bind("quizItemLoaded", function(e, quizItem)
 {
  
@@ -169,11 +171,17 @@ $("#quiz_content", $.pq_wrapper)
 
 });
 
-//  is this deprecated?
+//  auto-start
 if($.plopquiz.settings.autoStart)
 $.plopquiz.start();
 
 
+
+
+//we're finished
+$('body').data('pq','True');
+
+$.plopquiz.load_widget();
 
 
 } // end of startQuiz
