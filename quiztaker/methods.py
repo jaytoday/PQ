@@ -9,23 +9,7 @@ from google.appengine.ext import db
 from utils.gql_encoder import GqlEncoder, encode
     
 
-def refresh_data(data_type, verbose):
-  data = DataMethods()
-  data.delete_data(data_type, verbose) 
-  data.load_data(data_type, verbose) 
-     
 
-def load_data(data_type, verbose):
-  data = DataMethods()
-  data.load_data(data_type, verbose) 
-       
- 
-def dump_data(gql_query):
-	objects = gql_query.fetch(1000)
-	response = []
-	try: return encode(objects)
-	except: logging.debug('unable to encode objects')
-	#return encode(object)
  
 
 def new_topic(topic_name, proficiency_name): 
@@ -40,59 +24,6 @@ def new_topic(topic_name, proficiency_name):
      
 class DataMethods():
 	
-  def delete_data(self, data_type, *verbose):
-		query = ""
-		if data_type == "quiz_items": query = db.GqlQuery("SELECT * FROM QuizItem")
-		if data_type == "item_scores": query = db.GqlQuery("SELECT * FROM ItemScore")
-		if not query: return False	
-		objects = query.fetch(1000)
-		for object in objects:
-			if verbose[0] == "loud":
-				print ""
-				print "deleted: " + str(object) 
-			object.delete()
-		return True
-			
-
-				
-		
-  def refresh_quiz_items(self, verbose):
-	quiz_items= []		
-	json_file = open(ROOT_PATH + "/data/quiz_items.json")
-	json_str = json_file.read()
-	newdata = simplejson.loads(json_str) # Load JSON file as object
-	# Retrieve Proficiency. If new, then save it.
-	for item in newdata:
-		this_proficiency = Proficiency.gql("WHERE name = :proficiency",
-									   proficiency=item['proficiency']['name']).get()
-		if not this_proficiency:
-			this_proficiency = Proficiency(name=item['proficiency']['name'])
-			this_proficiency.put()
-			if verbose[0] == "loud":
-				print ""
-				print "added proficiency: " + str(this_proficiency.name)
-				
-		this_topic = ProficiencyTopic.gql("WHERE name = :topic" ,
-									   topic=item['topic']['name']).get()
-		if not this_topic:
-			this_topic = ProficiencyTopic(name=item['topic']['name'], proficiency=this_proficiency.key())
-			this_topic.put()
-			if verbose[0] == "loud":
-				print ""
-				print "added topic: " + str(this_topic.name)
-	# Store Item in Datastore
-		quiz_item = QuizItem(
-							 content = item['content'],
-							 theme = item['theme'],
-							 proficiency = this_proficiency.key(),
-							 answers = item['answers'],
-							 index = item['index'],
-							 topic = this_topic.key())
-							  #Add List of Answers
-		quiz_items.append(quiz_item)
-		if verbose[0] == "loud":
-		  print encode(quiz_item)
-	db.put(quiz_items) 
 
 
 

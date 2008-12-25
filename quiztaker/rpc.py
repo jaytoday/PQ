@@ -7,7 +7,7 @@ from google.appengine.ext import db
 from .model.quiz import QuizItem, ItemScore
 from .model.user import QuizTaker, InviteList
 from .model.employer import Employer 
-from methods import refresh_data, dump_data, load_data
+from dev.methods import refresh_data, dump_data, load_data
 from .utils.utils import tpl_path, ROOT_PATH, raise_error
 from utils.gql_encoder import GqlEncoder, encode
 from load_quiz import QuizSession

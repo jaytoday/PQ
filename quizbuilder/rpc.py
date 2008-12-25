@@ -1,19 +1,16 @@
 import logging
-# Log a message each time this module get loaded.
-logging.info('Loading %s', __name__)
 from utils import webapp
 from google.appengine.ext import db
 import string, re
 from google.appengine.api import urlfetch
 import urllib
-from utils import jsonparser as parser, simplejson
+from utils import simplejson
 from utils.utils import ROOT_PATH
 from utils.gql_encoder import GqlEncoder, encode
 from .model.quiz import QuizItem, RawQuizItem,  ContentPage
 from .model.proficiency import ProficiencyTopic, Proficiency
 import views
 import induction
-from dev.methods import DataMethods, refresh_data, dump_data, load_data, restore_backup
 
 
 class RPCMethods(webapp.RequestHandler):
@@ -38,27 +35,7 @@ remote callers access to private/protected "_*" methods.
 	save_topic.put()
   	return self.dump_data(["proficiency_topics"])  
   	
-  	
-  def refresh_data(self, *args):
-  	if len(args) == 0: return "specify data type"
-  	return refresh_data(args[0], "loud")
 
-  def load_data(self, *args):
-  	if len(args) == 0: return "specify data type"
-  	return load_data(args[0], "loud")
-   
-
-  def dump_data(self, *args):  # dump data for fixtures
-  	if len(args) == 0: return "specify data type"
-  	if args[0] == "raw_items" : print dump_data(RawQuizItem.all())
-  	if args[0] == "content_pages" : print dump_data(ContentPage.all())
-  	if args[0] == "proficiency_topics": print dump_data(ProficiencyTopic.all())
-  	if args[0] == "proficiencies" : print dump_data(Proficiency.all())
-  	print ""
-  	print "---do not copy this line or below---"
-
-  def restore_backup(self, *args):
-  	return restore_backup()  	
 
 
 ######## INDUCTION METHODS ##########  

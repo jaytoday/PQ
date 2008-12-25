@@ -1,6 +1,4 @@
 import logging
-# Log a message each time this module get loaded.
-logging.info('Loading %s', __name__)
 import random
 from utils import webapp
 from utils.webapp import util
@@ -9,12 +7,13 @@ from .model.quiz import QuizItem, ItemScore
 from .model.user import QuizTaker
 from .model.employer import Employer 
 from .model.proficiency import Proficiency, ProficiencyTopic 
-from methods import refresh_data
 from google.appengine.api import memcache
 # Template paths
 QUIZTAKER_PATH = 'quiztaker/'
 DEMO_PATH = 'demo/'
 
+
+# TODO: Better logging
     
     
     
@@ -74,11 +73,11 @@ class LoadQuiz():
         
   						
 
-  def god_mode(self, item, item_answers):
+  def god_mode(self, item, item_answers): # check if god mode is enabled
   	if self.session['god_mode']: 
 		try: item_answers[item_answers.index(item.index)] = str(item.index) + "!"
 		except: logging.debug('unable to run god mode process')
-		return item_answers
+	return item_answers
 
 
 class QuizSession(): 

@@ -8,56 +8,11 @@ from google.appengine.ext import db
 from utils.gql_encoder import GqlEncoder, encode
 import logging
 
-def refresh_data(data_type, verbose):
-  data = DataMethods()
-  data.delete_data(data_type, verbose) 
-  data.load_data(data_type, "") 
-     
 
-def load_data(data_type, verbose):
-  data = DataMethods()
-  data.load_data(data_type, "") 
-       
- 
-def dump_data(gql_query):
-  try:
-	objects = gql_query.fetch(1000)
-	return encode(objects)
-  except:
-	encode(objects)
-	return "unable to encode objects"     
- 
-
-     
      
      
 class DataMethods():
 	
-  def delete_data(self, query, *verbose):
-		objects = Employer.all().fetch(1000)
-		for object in objects:
-			print "deleted: " + str(object.__dict__) 
-			object.delete()
-		return True
-			
-			
-  def load_data(self, data_type, path, refresh=False):
-		if refresh: self.delete_data(Employer.all())
-		json_file = open(ROOT_PATH + "/data/" + path + str(data_type) + ".json")
-		json_str = json_file.read()
-		newdata = simplejson.loads(json_str) # Load JSON file as object
-		for entity in newdata:
-			if data_type == 'employers':
-				these_proficiencies = []
-				for p in entity['proficiencies']:
-				  these_proficiencies.append(Proficiency.get_or_insert(p, name = p).name)
-			print self.create_business_account(entity['unique_identifier'])
-			try: pass#self.create_business_account(entity['unique_identifier'])
-			except:
-				logging.error('Unable to save new entity')
-				print 'Unable to save new entity'
-		self.refresh_employer_images()   
-
 
 
   def create_business_account(self, uid, proficiencies=False):
@@ -71,6 +26,7 @@ class DataMethods():
 
 
   def register_employer(self, business_name, fullname, proficiencies=False):
+	  print "registering ", business_name
 	  new_employer = Employer.get_or_insert(key_name=business_name, unique_identifier = business_name, name = fullname)
 	  if proficiencies: new_employer.proficiencies = proficiencies
 	  self.refresh_employer_images([new_employer])
@@ -87,7 +43,7 @@ class DataMethods():
 			except: pass 	
 			
   def refresh_employer_images(self, employer_list=False):
-		print "refreshing employer images"
+
 		from google.appengine.api import images
 		save_profiles = []
 		from model.user import Profile, ProfilePicture
@@ -95,11 +51,9 @@ class DataMethods():
 		if not employer_list: employers = Employer.all().fetch(1000)
 		else: employers = employer_list
 		for e in employers:
-			print e.unique_identifier
 			p_path = ROOT_PATH + "/data/img/business/"
 			try: image_file = open(p_path + str(e.unique_identifier) + ".png")
 			except: continue
-			print "image found:", str(p_path + str(e.unique_identifier) + ".png")
 			image = image_file.read()
 			small_image = images.resize(image, 45, 45)
 			large_image = images.resize(image, 95, 95)
@@ -112,4 +66,6 @@ class DataMethods():
 			this_profile.photo = new_image
 			save_profiles.append(this_profile)
 		db.put(save_profiles)
+		logging.info('refreshed %d employer images', len(save_profiles))
+		if save_profiles: print "refreshed employer images for", [p.unique_identifier for p in save_profiles]
 			

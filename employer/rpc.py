@@ -6,7 +6,6 @@ from google.appengine.ext import db
 from .model.quiz import QuizItem, ItemScore
 from .model.user import QuizTaker, InviteList
 from .model.employer import Employer
-from methods import refresh_data, dump_data, load_data
 from .utils.utils import tpl_path, ROOT_PATH, raise_error
 
 
@@ -51,22 +50,6 @@ class RPCMethods(webapp.RequestHandler):
   """
 
 
-        
-  def refresh_data(self, *args):
-  	if len(args) == 0: return "specify data type"
-  	return refresh_data(args[0], "loud")
-
-  def load_data(self, *args):
-  	if len(args) == 0: return "specify data type"
-  	return load_data(args[0], "loud")
-  	            
-  def dump_data(self, *args):
-  	if len(args) == 0: return "specify data type"
-  	if args[0] == "employers":
-  	    print dump_data(Employer.all())  
-  	    print ""
-  	    print "---do not copy this line or below---"  #TODO: Don't print HTTP headers
-  
 
 
 

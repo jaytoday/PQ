@@ -52,9 +52,25 @@ class RPCMethods(webapp.RequestHandler):
   NOTE: Do not allow reload(sys); sys.setdefaultencoding('utf-8')
 remote callers access to private/protected "_*" methods.
   """
+  
+         
+  def refresh_data(self, *args):
+  	from dev.methods import refresh_data
+  	if len(args) == 0: return "specify data type"
+  	return refresh_data(args[0], "loud")
 
+  def load_data(self, *args):
+  	from dev.methods import load_data
+  	if len(args) == 0: return "specify data type"
+  	return load_data(args[0], "loud")
+  	            
+  def dump_data(self, *args):
+  	from dev.methods import dump_data
+  	dump_data(args[0]) 
+ 
   
   def restore_backup(self, *args):
+  	from dev.methods import restore_backup
   	return restore_backup()  	
 
 
@@ -193,25 +209,13 @@ remote callers access to private/protected "_*" methods.
 
 
 
-  def wipe_accounts(self, *args):
-  	 from model.user import QuizTaker
-  	 from model.account import Profile, Account, Award, Sponsorship
-  	 qs = QuizTaker.all().fetch(1000)
-  	 ps = Profile.all().fetch(1000)
-  	 acs = Account.all().fetch(1000)
-  	 aws = Award.all().fetch(1000)
-  	 sns = Sponsorship.all().fetch(1000)
-  	 for a in aws: a.delete()
-  	 for s in sns: s.delete()
-  	 for q in qs: q.delete()
-  	 for q in ps: q.delete()
-  	 for q in acs: q.delete()
-  	 qs = QuizTaker.all().fetch(1000)
-  	 ps = Profile.all().fetch(1000)
-  	 acs = Account.all().fetch(1000)
-  	 aws = Award.all().fetch(1000)
-  	 sns = Sponsorship.all().fetch(1000)  	 
-  	 print qs, ps, acs, aws, sns	 
+  def destroy_everything(self, *args):
+  	from dev.methods import destroy_everything
+  	return destroy_everything()
+  	 
+  	 
+  	 
+
   	 
   	 
 

@@ -1,6 +1,4 @@
 import logging
-# Log a message each time this module get loaded.
-logging.info('Loading %s', __name__)
 from utils.webapp import template
 from google.appengine.ext import db
 from google.appengine.api import users

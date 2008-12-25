@@ -16,7 +16,6 @@ from .model.quiz import QuizItem, ItemScore
 from .model.user import QuizTaker
 from .model.employer import Employer 
 from .model.proficiency import Proficiency, ProficiencyTopic 
-from methods import refresh_data
 from load_quiz import LoadQuiz
 
 
@@ -218,7 +217,6 @@ class ViewSnaptalentQuiz(webapp.RequestHandler): # most work should go into its 
         q = db.GqlQuery("SELECT * FROM QuizItem")
         quiz_items = q.fetch(1000) 
     # Load Fixture Data if Necessary
-        refresh_data("quiz_items", "quiet") 
         q = db.GqlQuery("SELECT * FROM QuizItem")
         quiz_items = q.fetch(1000)
     import random
