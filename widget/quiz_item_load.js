@@ -145,7 +145,8 @@ $(".answer", $.plopquiz.answer_container).mouseover(i1mouseOver);
 
 if(quizItem.item_type == "instructions2")
 {
-//$('a#skip', $.plopquiz.answer_container).hide(); 
+	
+$('#skip', $.plopquiz.answer_container).hide();
 
 $("#skip_tutorial", $.plopquiz.quiz_content).click(function()
 {

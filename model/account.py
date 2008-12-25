@@ -1,11 +1,6 @@
 from google.appengine.ext import db
-from google.appengine.api import users
-import logging
 from model.user import Profile
 from model.proficiency import Proficiency
-
-# Log a message each time this module get loaded.
-logging.info('Loading %s', __name__)
 
       
 

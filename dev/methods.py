@@ -5,7 +5,7 @@ from google.appengine.ext import db
 from .model.quiz import QuizItem, RawQuizItem, ProficiencyTopic, ContentPage, Proficiency
 from .utils.utils import tpl_path, ROOT_PATH
 from utils import simplejson
-from .employer.methods import DataMethods as employer_methods
+from employer.methods import DataMethods as emp_data
 from google.appengine.api import images
 from .model.user import ProfilePicture	
 from .model.proficiency import SubjectImage
@@ -24,6 +24,7 @@ def refresh_data(data_type, verbose):
     data.delete_data(DATA_TYPES.get(data_type, False))
     data.execute_delete()
     data.load_data(data_type, "")
+    data.special_processes(data_type)
     data.execute_load()
 
 # Full Datastore Refresh
@@ -37,8 +38,8 @@ def restore_backup():
 	data.execute_delete()
 	for data_type in DATA_TYPES.keys():
 		data.load_data(data_type, "/backup/")
+		data.special_processes(data_type)
 		data.execute_load()
-		data.execute_load() #- TODO: inefficient! we would do only one execution, but then the loaded references wouldn't work
 	build.refresh_subject_images()
 
 
@@ -182,6 +183,8 @@ class DataMethods():
 		json_str = json_file.read()
 		newdata = simplejson.loads(json_str) # Load JSON file as object
 		entities = []
+		# Setup, Imports
+		if data_type == 'employers': emp = emp_data()
 		for entity in newdata: # Could this be more efficient? 
 			
 			if data_type == 'proficiencies':
@@ -223,12 +226,10 @@ class DataMethods():
 									 topic = this_topic.key())
 
 				
-			if data_type == 'employers':
-				emp = employer_methods()
-				for e in emp.create_business_account(entity['unique_identifier'], entity['proficiencies']):
+			if data_type == 'employers': 
+				for e in emp.create_business_account(entity['unique_identifier'], entity['proficiencies'], batch=True):
 					entities.append(e)
 					save_entity = False
-					
 			if data_type == 'mailing_list':
 				save_entity = MailingList(key_name=entity['email'], fullname = entity.get('fullname', ""), email = entity['email'], type = entity.get('type', ""))
 			if save_entity: entities.append(save_entity)
@@ -264,6 +265,7 @@ class DataMethods():
      for i in itertools.chain(*[list[1] for list in self.load_entities.items()]): load_list.append(i)
      db.put(load_list)
      #db.put(itertools.chain(*[list[1] for list in self.load_entities.items()])) # still a list of lists  
+     self.special_processes(list[0])
      for list in self.load_entities.items():
      	logging.info('executed load for %s', list[0])
      	print "executed load for ", len(list[1]), " rows of ", list[0]
@@ -275,3 +277,8 @@ class DataMethods():
  	
 
 
+
+  def special_processes(self, data_type):
+     if data_type == 'employers': 
+       emp = emp_data()
+       emp.refresh_employer_images()

@@ -18,7 +18,7 @@ var iso = function($)
                 [
                         {url: '/intro/?page=intro&subject={{ proficiencies }}', item_type:'intro', answers: ['Take This Quiz'], noSkip: true, vendor: "Plopquiz"},
                         {url: '/intro/?page=instructions', item_type:'instructions', answers: [ 'dog ate', 'web made' ], noSkip: true},
-                        {url: '/intro/?page=instructions2', item_type:'instructions2', answers: [ 'compilers', 'interpreters' ], timed: "instructions2", timeout: 'reset'},
+                        {url: '/intro/?page=instructions2', item_type:'instructions2', answers: [ 'oil', 'battery' ], timed: "instructions2", timeout: 'reset'},
       /* TODO: We're merging this with the first frame */ {url: '/intro/?page=begin_quiz', item_type:'begin_quiz', answers: [ 'Begin Quiz' ], noSkip: true}
                 ],
                 quizitemList: Array(),
@@ -253,7 +253,7 @@ case "instructions2":
 			$.plopquiz.timer.css('width', '100%'); 
 			$('#example_1,#example_3', $.plopquiz.quiz_content).hide('slow');
 			$('#example_2', $.plopquiz.quiz_content).show('slow');
-			$('a#skip', $.plopquiz.answer_container).show();
+			$('#skip', $.plopquiz.answer_container).show('slow');
 			//click binding
 			$('#answer1,#answer2', $.plopquiz.answer_container).addClass('disabled');
 			$.plopquiz.settings.instructions.skip_segment = "true";

@@ -1,5 +1,4 @@
 from google.appengine.ext import db
-from google.appengine.api import users
 from model.proficiency import Proficiency, ProficiencyTopic
 from model.user import QuizTaker
 from model.employer import Employer
