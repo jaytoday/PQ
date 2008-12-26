@@ -114,6 +114,7 @@ $("#pqwidget").html(
 	$(widget_html).hide().fadeIn().click($.plopquiz.start)
 );
 
+$('button',$("#pqwidget")).focus(function(){$(this).blur();})
 
 // remove default image if there are custom images (if we will never have subjects without pictures, this isn't necessary)
 	if ($("#pqwidget").find('li').length > 1) $("#pqwidget").find('li:first').remove();   

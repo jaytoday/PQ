@@ -58,7 +58,7 @@ $("#skip", $.plopquiz.answer_container).hide();
 /*
  * 
  * 
-* Setup special cases for instructions here
+* Setup special cases for quiz frames
 * 
 * 
 */
@@ -73,7 +73,7 @@ $('#quiz_answers #confirm', $.plopquiz.answer_container).attr('class', 'answer i
 $('button span#intro_button', $.plopquiz.answer_container).show(); // todo: this is coming late 
 $('.intro_frame_content #subject_container_1').show().addClass('selected'); // show first subject
 
-
+// setup thumbnails
 $('div.subject_thumb_container > div', $.plopquiz.quiz_content).each(function(n){
 	
 	// remove default image if there are custom images (if we will never have subjects without pictures, this isn't necessary)
@@ -82,6 +82,7 @@ $('div.subject_thumb_container > div', $.plopquiz.quiz_content).each(function(n)
 $('#subject_thumb_' + n, $.plopquiz.quiz_content).s3Slider({ timeOut: $.plopquiz.settings.sliderDuration });  // todo: slight offset
 });  
 
+// bind thumbnail clicks
 $('div.subject_thumb_container li', $.plopquiz.quiz_content).click(function(){ //TODO: Slider/Coverflow (low priority)
 $('div.subject_thumb_container li', $.plopquiz.quiz_content).removeClass('selected_thumb'); $(this).addClass('selected_thumb');
 $('.intro_frame_content .subject_container', $.plopquiz.quiz_content).hide('fast');
@@ -95,11 +96,22 @@ $('#subject_' + $(this).attr('id'), $.plopquiz.quiz_content).s3Slider({ timeOut:
 
 $('#subject_1 li:first', $.plopquiz.quiz_content).show();
 
-//$('#subject_1', $.plopquiz.quiz_content).click();
-
 $('#subject_1', $.plopquiz.quiz_content).s3Slider({ timeOut: $.plopquiz.settings.sliderDuration });  // might not be working properly
 
 
+
+$('button.summary',$.plopquiz.quiz_content).addClass('clicked'); // summaries are open by default
+$('button',$.plopquiz.quiz_content).focus(function(){$(this).blur();}).click(function(){
+var this_subject = $('div#subject_container_' + $(this).attr('id'), $.plopquiz.quiz_content)
+$('div.subject_panel', this_subject).hide();
+$('div#' + $(this).attr('class') + '_' + $(this).attr('id'), this_subject).show();
+
+$(this).parent().find('button').removeClass('clicked'); $(this).addClass('clicked'); // change styles
+
+});
+
+
+//temporary
 $('button.take_test', $.plopquiz.answer_container).show();
 $('div.go_to_site', $.plopquiz.answer_container).show();
 

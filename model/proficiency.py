@@ -1,6 +1,38 @@
 
 from google.appengine.ext import db
 
+"""
+
+# Get or Insert when unique key_name isn't possible. 
+
+from google.appengine.ext import db
+
+class SuperModel(db.Model):
+  @classmethod
+  def get_or_insert_by(cls, parent=None, **kwds):
+    query = db.Query(cls)
+    if parent is not None:
+      query.ancestor(parent)
+    for kw in kwds:
+      query.filter("%s =" % kw, kwds[kw])
+    entity = query.get()
+    if entity is not None:
+      return entity
+    entity = cls(parent, **kwds)
+    return entity
+
+class Movie(SuperModel):
+  name = db.StringProperty()
+  year = db.IntegerProperty()
+
+movie = Movie.get_or_insert_by(name="Magnolia", year=1999)
+if not movie.is_saved():
+  movie.put()
+
+
+
+
+"""
 
 class Proficiency(db.Model):
   name = db.StringProperty(required=True)  # Proficiency Tag (startup_financing)
