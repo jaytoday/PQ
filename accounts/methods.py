@@ -1,7 +1,4 @@
 import logging
-# Log a message each time this module get loaded.
-logging.info('Loading %s', __name__)
-import cgi
 from .model.user import Profile, QuizTaker, ProfilePicture
 from model.account import Account, Award, SponsorPledge, Sponsorship
 from google.appengine.ext import db
@@ -72,11 +69,11 @@ class Awards():
 	# Analyze proficiency levels and topiclevels, give awards to quiztakers. 
 
      # Eventually, a quiztaker attribute will have to mark whether its been processed.
-    
+
 	EXCELLENCE_PROFICIENCY_THRESHOLD = 0.1
 	FLUENCY_PROFICIENCY_THRESHOLD = .55	
-	EXCELLENCE_TOPIC_THRESHOLD = 60 #90
-	FLUENCY_TOPIC_THRESHOLD = 35  #55
+	EXCELLENCE_TOPIC_THRESHOLD = 10 #90
+	FLUENCY_TOPIC_THRESHOLD = 15  #55
 	
 	def check_all(self, qt=False): # specify qt for a single person
 		self.save_awards = [] # for batch datastore trip
@@ -146,7 +143,7 @@ class Awards():
 					award_levels.append(level)
 					
 			# make sure that awards are not duplicated - can we avoid the loop in general? 
-			award_key_name = str(this_profile.unique_identifier) + str(proficiency.name) + str(type)
+			award_key_name = str(this_profile.unique_identifier) + str(proficiency.name) + str(type) # you can get more than one type of award per proficiency
 			new_award = Award.get_or_insert(key_name = award_key_name,
 			                   type = type,
 			                   topics = award_topics,

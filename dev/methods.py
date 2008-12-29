@@ -13,8 +13,8 @@ from model.employer import Employer
 from model.account import MailingList
 
 
-DATA_TYPES = {"proficiencies": Proficiency.all(), 'proficiency_topics': ProficiencyTopic.all(), 
-              'content_pages': ContentPage.all(), 'raw_items' : RawQuizItem.all(), 'quiz_items': QuizItem.all(),
+DATA_TYPES = {"proficiencies": Proficiency.all(), 'proficiency_topics': ProficiencyTopic.all(), 'content_pages': ContentPage.all(), 'raw_items' : RawQuizItem.all(),
+               'quiz_items': QuizItem.all(),
                'mailing_list': MailingList.all(), 'employers': Employer.all()}
 
 
@@ -31,8 +31,8 @@ def refresh_data(data_type, verbose):
 def restore_backup():
 	build = Build()
 	build.refresh_profile_images(refresh=True)
+	build.destroy_everything()  # TODO: This wipes all user data!!!! 
 	data = DataMethods()
-	destroy_everything()  # TODO: This wipes all user data!!!! 
 	for query in DATA_TYPES.values():
 		data.delete_data(query)
 	data.execute_delete()
@@ -44,7 +44,7 @@ def restore_backup():
 
 
 
-
+# Display data in JSON format, for backups
 def dump_data(data_type):
 	try:
 		query = DATA_TYPES[data_type]
@@ -54,25 +54,12 @@ def dump_data(data_type):
 		return "unable to encode objects"
 		
 
+# Load data, without deleting (TODO: make sure this works) 
 def load_data(data_type, verbose):
     logging.info('loading data for %s', data_type)
     data = DataMethods()
     return data.load_data(data_type, "")
 
-
-
-#TODO: This should go in Build 
-def destroy_everything():
-  	 from model.user import QuizTaker, ProficiencyLevel, TopicLevel
-  	 from model.account import Profile, Account, Award, Sponsorship
-  	 account_classes = [QuizTaker, ProficiencyLevel, TopicLevel, Profile, Account, Award, Sponsorship]
-  	 destroy_list = []
-  	 for c in account_classes:
-  	 	for entity in c.all().fetch(1000): destroy_list.append(entity)
-  	 db.delete(destroy_list)
-  	 print "destroyed ", len(destroy_list), " account entries"
-  	 logging.info('deleted %d account entries', len(destroy_list))  	 
-  	 
   	 
     
 
@@ -155,8 +142,21 @@ class Build():
 		logging.info('saved default image: %s', default_image)
 		print "saved default image: ", default_image							     
 								
-			
-				
+
+
+	def destroy_everything(self):
+		 from model.user import QuizTaker, ProficiencyLevel, TopicLevel
+		 from model.account import Profile, Account, Award, Sponsorship
+		 from model.quiz import ItemScore
+		 account_classes = [ItemScore, QuizTaker, ProficiencyLevel, TopicLevel, Profile, Account, Award, Sponsorship]
+		 destroy_list = []
+		 for c in account_classes:
+			for entity in c.all().fetch(1000): destroy_list.append(entity)
+		 db.delete(destroy_list)
+		 print "destroyed ", len(destroy_list), " account entries"
+		 logging.info('deleted %d account entries', len(destroy_list))  	 
+					
+					
    	    		
 	
 class DataMethods():
@@ -188,13 +188,16 @@ class DataMethods():
 		for entity in newdata: # Could this be more efficient? 
 			
 			if data_type == 'proficiencies':
-				save_entity = Proficiency.get_or_insert(key_name=entity['name'], name = entity['name'], status = entity.get("status", ""), blurb = entity.get("blurb", ""))
+				save_entity = Proficiency.get_or_insert(key_name=entity['name'], name = entity['name'], status = entity.get("status", ""), link_html = entity.get("link_html", ""), video_html = entity.get("video_html", ""), blurb = entity.get("blurb", ""))
 				save_entity.status = entity.get('status', None)
-
 				save_entity.blurb = entity.get('blurb', None)
 				
 			if data_type == 'proficiency_topics':
 				this_proficiency = Proficiency.get_by_key_name(entity['proficiency']['name'])
+				if not this_proficiency: 
+				         print "proficiency ", entity['proficiency']['name'], " not found when inserting topic ", entity['name']
+				         logging.error('proficiency %s not found for topic %s' % (entity['proficiency']['name'],  entity['name']))
+				         continue
 				save_entity = ProficiencyTopic.get_or_insert(key_name=entity['name'], name = entity['name'], 
 											   proficiency = this_proficiency)
 											   
@@ -215,9 +218,15 @@ class DataMethods():
 
 			if data_type == 'quiz_items': 
 				this_proficiency = Proficiency.get_by_key_name(entity['proficiency']['name'])
-				if not this_proficiency: logging.error('proficiency %s not found for quiz item', entity['proficiency']['name']) 
+				if not this_proficiency: 
+				    print "proficiency ", entity['proficiency']['name'], " not found when inserting quiz item"
+				    logging.error('proficiency %s not found for quiz item', entity['proficiency']['name'])
+				    continue 
 				this_topic = ProficiencyTopic.get_by_key_name(entity['topic']['name'])
-				if not this_topic: logging.error('proficiency %s not found for quiz item', entity['proficiency']['name']) 
+				if not this_topic: 
+				    print "proficiency topic ", entity['topic']['name'], " not found when inserting quiz item"
+				    logging.error('proficiency topic %s not found for quiz item', entity['topic']['name'])
+				    continue 
 				save_entity = QuizItem( content = entity['content'],
 									 theme = entity['theme'],
 									 proficiency = this_proficiency.key(),

@@ -1,189 +1,223 @@
 [
                     {
                         "status": "private", 
-                        "date": {
-                            "ctime": "Fri Dec 19 08:56:00 2008"
-                        }, 
                         "name": "Bananas", 
-                        "blurb": "This is a test blurb", 
+                        "video_html": null, 
                         "modified": {
-                            "ctime": "Fri Dec 19 08:56:00 2008"
-                        }
+                            "ctime": "Sun Dec 28 00:42:26 2008"
+                        }, 
+                        "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                        "date": {
+                            "ctime": "Thu Dec 25 10:42:49 2008"
+                        }, 
+                        "blurb": "This is a test blurb"
                     }, 
                     {
                         "status": "public", 
-                        "date": {
-                            "ctime": "Thu Dec 18 09:18:52 2008"
-                        }, 
                         "name": "Biofuels", 
-                        "blurb": "Exciting advances in the conversion of biomass into fuel have made this environmentally-friendly production method into a Clean Tech poster child.", 
+                        "video_html": null, 
                         "modified": {
-                            "ctime": "Thu Dec 18 09:18:52 2008"
-                        }
+                            "ctime": "Sun Dec 28 00:42:26 2008"
+                        }, 
+                        "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                        "date": {
+                            "ctime": "Thu Dec 25 10:42:49 2008"
+                        }, 
+                        "blurb": "Exciting advances in the conversion of biomass into fuel have made this environmentally-friendly production method into a Clean Tech poster child."
                     }, 
                     {
                         "status": "private", 
-                        "date": {
-                            "ctime": "Thu Dec 18 09:18:52 2008"
-                        }, 
                         "name": "Building Webapps", 
-                        "blurb": "A truly good developer knows how to build web apps in an agile way, and to provide solutions that people really need.", 
+                        "video_html": null, 
                         "modified": {
-                            "ctime": "Thu Dec 18 09:18:52 2008"
-                        }
+                            "ctime": "Sun Dec 28 00:42:26 2008"
+                        }, 
+                        "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                        "date": {
+                            "ctime": "Thu Dec 25 10:42:49 2008"
+                        }, 
+                        "blurb": "A truly good developer knows how to build web apps in an agile way, and to provide solutions that people really need."
                     }, 
                     {
                         "status": "private", 
-                        "date": {
-                            "ctime": "Thu Dec 18 09:18:52 2008"
-                        }, 
                         "name": "CSS", 
-                        "blurb": "default", 
+                        "video_html": null, 
                         "modified": {
-                            "ctime": "Thu Dec 18 09:18:52 2008"
-                        }
+                            "ctime": "Sun Dec 28 00:42:26 2008"
+                        }, 
+                        "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                        "date": {
+                            "ctime": "Thu Dec 25 10:42:49 2008"
+                        }, 
+                        "blurb": "default"
                     }, 
                     {
                         "status": "private", 
-                        "date": {
-                            "ctime": "Thu Dec 18 09:18:52 2008"
-                        }, 
                         "name": "Clean Energy", 
-                        "blurb": "default", 
+                        "video_html": null, 
                         "modified": {
-                            "ctime": "Thu Dec 18 09:18:52 2008"
-                        }
+                            "ctime": "Sun Dec 28 00:42:26 2008"
+                        }, 
+                        "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                        "date": {
+                            "ctime": "Thu Dec 25 10:42:49 2008"
+                        }, 
+                        "blurb": "default"
                     }, 
                     {
                         "status": "private", 
-                        "date": {
-                            "ctime": "Thu Dec 18 09:18:52 2008"
-                        }, 
                         "name": "Collective Intelligence", 
-                        "blurb": "default", 
+                        "video_html": null, 
                         "modified": {
-                            "ctime": "Thu Dec 18 09:18:52 2008"
-                        }
+                            "ctime": "Sun Dec 28 00:42:26 2008"
+                        }, 
+                        "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                        "date": {
+                            "ctime": "Thu Dec 25 10:42:49 2008"
+                        }, 
+                        "blurb": "default"
                     }, 
                     {
                         "status": "public", 
-                        "date": {
-                            "ctime": "Thu Dec 18 09:18:52 2008"
-                        }, 
                         "name": "Electricity", 
-                        "blurb": "Intelligent, distributed, and highly adaptive electrical systems aim to reduce power consumption and prevent peak hour failures.", 
+                        "video_html": null, 
                         "modified": {
-                            "ctime": "Thu Dec 18 09:18:52 2008"
-                        }
+                            "ctime": "Sun Dec 28 00:42:26 2008"
+                        }, 
+                        "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                        "date": {
+                            "ctime": "Thu Dec 25 10:42:49 2008"
+                        }, 
+                        "blurb": "Intelligent, distributed, and highly adaptive electrical systems aim to reduce power consumption and prevent peak hour failures."
                     }, 
                     {
                         "status": "public", 
-                        "date": {
-                            "ctime": "Thu Dec 18 09:18:52 2008"
-                        }, 
                         "name": "Energy Economics", 
-                        "blurb": "Between the $100 billion dollars invested in Clean Tech and new energy-conscious tax codes, there is a pressing need for those familiar with the new economic landscape.", 
+                        "video_html": null, 
                         "modified": {
-                            "ctime": "Thu Dec 18 09:18:52 2008"
-                        }
+                            "ctime": "Sun Dec 28 00:42:26 2008"
+                        }, 
+                        "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                        "date": {
+                            "ctime": "Thu Dec 25 10:42:49 2008"
+                        }, 
+                        "blurb": "Between the $100 billion dollars invested in Clean Tech and new energy-conscious tax codes, there is a pressing need for those familiar with the new economic landscape."
                     }, 
                     {
                         "status": "public", 
-                        "date": {
-                            "ctime": "Thu Dec 18 09:18:52 2008"
-                        }, 
                         "name": "Energy Efficiency", 
-                        "blurb": "The cheapest and most available source of new energy is the energy we waste. To save money and lower greenhouse gas levels, organizations are increasingly seeking ways to reduce their energy consumption. ", 
+                        "video_html": null, 
                         "modified": {
-                            "ctime": "Thu Dec 18 09:18:52 2008"
-                        }
+                            "ctime": "Sun Dec 28 00:42:26 2008"
+                        }, 
+                        "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                        "date": {
+                            "ctime": "Thu Dec 25 10:42:49 2008"
+                        }, 
+                        "blurb": "The cheapest and most available source of new energy is the energy we waste. To save money and lower greenhouse gas levels, organizations are increasingly seeking ways to reduce their energy consumption. "
                     }, 
                     {
                         "status": "private", 
-                        "date": {
-                            "ctime": "Thu Dec 18 09:18:52 2008"
-                        }, 
                         "name": "Freebase", 
-                        "blurb": "default", 
+                        "video_html": null, 
                         "modified": {
-                            "ctime": "Thu Dec 18 09:18:52 2008"
-                        }
+                            "ctime": "Sun Dec 28 00:42:26 2008"
+                        }, 
+                        "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                        "date": {
+                            "ctime": "Thu Dec 25 10:42:49 2008"
+                        }, 
+                        "blurb": "default"
                     }, 
                     {
                         "status": "private", 
-                        "date": {
-                            "ctime": "Thu Dec 18 09:18:52 2008"
-                        }, 
                         "name": "Javascript", 
-                        "blurb": "default", 
+                        "video_html": null, 
                         "modified": {
-                            "ctime": "Thu Dec 18 09:18:52 2008"
-                        }
+                            "ctime": "Sun Dec 28 00:42:26 2008"
+                        }, 
+                        "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                        "date": {
+                            "ctime": "Thu Dec 25 10:42:49 2008"
+                        }, 
+                        "blurb": "default"
                     }, 
                     {
                         "status": "public", 
-                        "date": {
-                            "ctime": "Fri Dec 19 08:02:17 2008"
-                        }, 
                         "name": "Misconceptions", 
-                        "blurb": "Have you been fooled by common misconceptions?<br/><br/>Test your savvy of some of the most common errors in history, geography, and culture.", 
+                        "video_html": null, 
                         "modified": {
-                            "ctime": "Fri Dec 19 08:02:17 2008"
-                        }
+                            "ctime": "Sun Dec 28 00:45:34 2008"
+                        }, 
+                        "link_html": "<li><a href='http://en.wikipedia.org/wiki/List_of_common_misconceptions'>Wikipedia List of Common Misconceptions</a></li><li><a href='http://www.zyra.org.uk/miscon.htm'>Zyra.org: Popular Misconceptions</a></li><li><a href='http://www.darylscience.com/Misconceptions.htm'>Science Misconceptions</a></li>", 
+                        "date": {
+                            "ctime": "Thu Dec 25 10:42:49 2008"
+                        }, 
+                        "blurb": "Have you been fooled by common misconceptions?<br/><br/>\r\nTest your savvy of some of the most common errors in history, geography, and culture."
                     }, 
                     {
                         "status": "public", 
-                        "date": {
-                            "ctime": "Thu Dec 18 09:18:52 2008"
-                        }, 
                         "name": "Oil", 
-                        "blurb": "Petroleum makes up 40% of energy consumption, and has a worldwide impact on politics, economics, and the environment. ", 
+                        "video_html": null, 
                         "modified": {
-                            "ctime": "Thu Dec 18 09:18:52 2008"
-                        }
+                            "ctime": "Sun Dec 28 00:42:26 2008"
+                        }, 
+                        "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                        "date": {
+                            "ctime": "Thu Dec 25 10:42:49 2008"
+                        }, 
+                        "blurb": "Petroleum makes up 40% of energy consumption, and has a worldwide impact on politics, economics, and the environment. "
                     }, 
                     {
                         "status": "private", 
-                        "date": {
-                            "ctime": "Thu Dec 18 09:18:52 2008"
-                        }, 
                         "name": "Rails", 
-                        "blurb": "default", 
+                        "video_html": null, 
                         "modified": {
-                            "ctime": "Thu Dec 18 09:18:52 2008"
-                        }
+                            "ctime": "Sun Dec 28 00:42:26 2008"
+                        }, 
+                        "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                        "date": {
+                            "ctime": "Thu Dec 25 10:42:49 2008"
+                        }, 
+                        "blurb": "default"
                     }, 
                     {
                         "status": "private", 
-                        "date": {
-                            "ctime": "Thu Dec 18 09:18:52 2008"
-                        }, 
                         "name": "Ruby", 
-                        "blurb": "default", 
+                        "video_html": null, 
                         "modified": {
-                            "ctime": "Thu Dec 18 09:18:52 2008"
-                        }
+                            "ctime": "Sun Dec 28 00:42:26 2008"
+                        }, 
+                        "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                        "date": {
+                            "ctime": "Thu Dec 25 10:42:49 2008"
+                        }, 
+                        "blurb": "default"
                     }, 
                     {
                         "status": "public", 
-                        "date": {
-                            "ctime": "Thu Dec 18 09:18:52 2008"
-                        }, 
                         "name": "Solar Energy", 
-                        "blurb": "The oldest and most pervasive form of renewable energy draws from the same ambient source that sustains life on Earth. ", 
+                        "video_html": null, 
                         "modified": {
-                            "ctime": "Thu Dec 18 09:18:52 2008"
-                        }
+                            "ctime": "Sun Dec 28 00:42:26 2008"
+                        }, 
+                        "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                        "date": {
+                            "ctime": "Thu Dec 25 10:42:49 2008"
+                        }, 
+                        "blurb": "The oldest and most pervasive form of renewable energy draws from the same ambient source that sustains life on Earth. "
                     }, 
                     {
                         "status": "private", 
-                        "date": {
-                            "ctime": "Thu Dec 18 09:18:52 2008"
-                        }, 
                         "name": "Startup Financing", 
-                        "blurb": "default", 
+                        "video_html": null, 
                         "modified": {
-                            "ctime": "Thu Dec 18 09:18:52 2008"
-                        }
+                            "ctime": "Sun Dec 28 00:42:26 2008"
+                        }, 
+                        "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                        "date": {
+                            "ctime": "Thu Dec 25 10:42:49 2008"
+                        }, 
+                        "blurb": "default"
                     }
                 ]

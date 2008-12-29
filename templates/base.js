@@ -106,16 +106,22 @@ $('div#quick_links a#contact_dialog').click(function(){ $("div#contact_dialog_co
 		background: "black" 
 		},
 buttons: { 
+	
+	"Support": function() { 
+
+		$(this).find('div').hide();
+		$(this).find('div.contact_support').show().find('div').show();
+	
+},
+
 "Feedback": function() { 
+$('a#uservoice-feedback-tab').click();
+	//	$(this).find('div').hide(); $(this).find('div.contact_feedback').show();
+}
 
-		$(this).find('div').hide();
-		$(this).find('div.contact_feedback').show();
-},
-"Support": function() { 
 
-		$(this).find('div').hide();
-		$(this).find('div.contact_support').show();
-},
+
+/*  Temporarily disabled
 "Media": function() { 
 
 		$(this).find('div').hide();
@@ -125,7 +131,11 @@ buttons: {
 
 		$(this).find('div').hide();
 		$(this).find('div.contact_sales').show();
-}        
+}
+*/
+
+
+        
 } 
 
 }).show();

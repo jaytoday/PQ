@@ -173,6 +173,8 @@ $.plopquiz.loadItem();
 
 if(quizItem.item_type == "begin_quiz")
 {
+		/* TEMPORARILY we are just bypassing this frame. Eventually, we want to refactor the functionality of this frame into the intro frame */
+
 var p = {};
 $('#confirm', $.plopquiz.answer_container).removeClass('intro_quiz').addClass('begin_quiz').find('span.continue_button').text('Begin Quiz');                    
 // this is a bit hacked together, later the proficiencies will be loaded from the server

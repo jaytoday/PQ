@@ -822,7 +822,7 @@ font-weight:bold;
 height:28px;
 width: 105px;
 margin:auto !important;
-padding:3px 8px 2px !important;
+/* 3px 8px 2px !important; */ padding: 4px 8px 1px !important;
 text-align:center;
 opacity:0.8 !important;
 	filter: alpha(opacity=80) !important;
@@ -1075,12 +1075,20 @@ font-size: 1em;
 
 #quiz_wrap div.begin_quiz
 {
-        font-size:0.9em !important;
+        font-size:1.1em !important;
         line-height:1.2em;
         margin-left:15px !important;
         margin-top:-7px !important;
         width:90%;
 }
+
+#quiz_wrap div.begin_quiz div#quiz_minutes
+{
+font-size:2em !important;
+letter-spacing:0.1em;
+margin:2px 0 15px;
+}
+
 #quiz_wrap div#choose_profs
 {
 height:210px;
@@ -1456,11 +1464,12 @@ position:absolute !important;
 }
 
 #quiz_wrap button.begin_quiz{
-margin:-50px 90px !important;
+float:left;
+margin:-50px 60px !important;
 }
 
 #quiz_wrap button.quiz_complete{
-margin:-156px 0 0 110px !important;
+margin:-156px 0 0 66px !important;
 }
 
 #quiz_wrap .continue_button{
@@ -1689,8 +1698,13 @@ text-align: center;
 font-size:.8em;
 }
 
+#quiz_wrap div.study_links li{
+margin: 5px 0px;
+}
+
 #quiz_wrap div.study_links a{
 color: #7799DD;
+font-size: 0.7em !important;
 }
 
 #quiz_wrap div.study_links a:hover{

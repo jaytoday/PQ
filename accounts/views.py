@@ -64,12 +64,15 @@ class LoginResponse(webapp.RequestHandler):
 						   )
 		json = simplejson.loads(r.content)
 		if self.validate_response(json):
-		  if not self.session['continue']: self.session['continue'] = DEFAULT_LANDING_PAGE
 		  self.session['user'] = registered(json['profile']['identifier'])
 		  if self.session['user'] is False: return self.register_user(json) 
 		  else: 
+		        if not self.session['continue']: self.session['continue'] = '/profile/' + self.session['user'].profile_path #DEFAULT_LANDING_PAGE
 		        self.redirect(self.session['continue'])
+		        self.session['continue'] = False
 		return
+
+
 
 
 	def validate_response(self, json):	
@@ -100,6 +103,8 @@ class LoginResponse(webapp.RequestHandler):
 		self.session['nickname'] = nickname
 		self.session['email'] = email
 		self.session['fullname'] = fullname
+		from utils.utils import set_flash
+		set_flash('fresh_register')  # didn't take quiz first
 		self.redirect('/register')
 		return
 		

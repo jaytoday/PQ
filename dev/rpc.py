@@ -66,7 +66,7 @@ remote callers access to private/protected "_*" methods.
   	            
   def dump_data(self, *args):
   	from dev.methods import dump_data
-  	dump_data(args[0]) 
+  	print dump_data(args[0]) 
  
   
   def restore_backup(self, *args):
@@ -109,14 +109,13 @@ remote callers access to private/protected "_*" methods.
   	build.refresh_profile_images()		
 
   def working(self, *args):
-  	return
-  	from model.user import Profile, ProfilePicture
-  	i = ProfilePicture.all().get()
-  	ps = Profile.all().fetch(1000)
-  	for p in ps:
-  		p.photo = i
-  		p.put()
-  	
+  	#return
+  	from model.proficiency import Proficiency
+  	p = Proficiency.get_by_key_name("Misconceptions")
+  	p.link_html = "<li><a href='http://en.wikipedia.org/wiki/List_of_common_misconceptions'>Wikipedia List of Common Misconceptions</a></li><li><a href='http://www.zyra.org.uk/miscon.htm'>Zyra.org: Popular Misconceptions</a></li><li><a href='http://www.darylscience.com/Misconceptions.htm'>Science Misconceptions</a></li>"
+  	db.put(p)
+
+
 
   def god_mode(self, *args): # for debugging quizzes
   	from google.appengine.api import users
@@ -210,8 +209,9 @@ remote callers access to private/protected "_*" methods.
 
 
   def destroy_everything(self, *args):
-  	from dev.methods import destroy_everything
-  	return destroy_everything()
+  	from dev.methods import Build
+  	build = Build()
+  	build.destroy_everything()
   	 
   	 
   	 

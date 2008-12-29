@@ -38,12 +38,18 @@ class Proficiency(db.Model):
   name = db.StringProperty(required=True)  # Proficiency Tag (startup_financing)
   date = db.DateTimeProperty(auto_now_add=True)
   modified = db.DateTimeProperty(auto_now=True)
-  blurb = db.TextProperty(required=False)
   status = db.StringProperty(required=False)
-  #images - RefProperty
+  #subject material
+  blurb = db.TextProperty(required=False)
+  link_html = db.TextProperty()
+  video_html = db.StringProperty() 
+ 
+  
   def tag(self): # for views
   	tag = self.name.replace(' ', '_')
   	return tag
+  	
+  #images - RefProperty
   #quizitems -- QuizItem reference
   ## pages  
 

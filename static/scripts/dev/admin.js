@@ -17,4 +17,24 @@ $('#submit_business').click(function(){
 });
 });
 
+
+
+$('a.rpc').click(function(){
+
+	$.ajax(
+                                {
+                                        url:  "/dev/rpc",
+                                        data:
+                                        {
+                                                action: "refresh_data",
+                                                arg0: '"' + $(this).attr('id') + '"'
+                                        },
+                                        success: function(response)
+                                        {
+	console.log(response)               }
+});
+});
+
+
+
 });
