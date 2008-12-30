@@ -19,22 +19,72 @@ $('#submit_business').click(function(){
 
 
 
-$('a.rpc').click(function(){
+$('a.delete').click(function(){
+
+var this_link = $(this);
 
 	$.ajax(
                                 {
                                         url:  "/dev/rpc",
                                         data:
                                         {
-                                                action: "refresh_data",
+                                                action: "delete_data",
                                                 arg0: '"' + $(this).attr('id') + '"'
                                         },
                                         success: function(response)
                                         {
-	console.log(response)               }
+	console.log(response.split('Status')[0]);
+	this_link.parent().find('div.response').append(response.split('Status')[0]);                   
+	
+	}
 });
 });
 
 
 
+$('a.load').click(function(){
+	
+
+LoadData($(this));
+
+
 });
+
+
+
+
+
+});
+
+
+
+function LoadData(this_link){
+
+	$.ajax(
+                                {
+                                        url:  "/dev/rpc",
+                                        data:
+                                        {
+                                                action: "load_data",
+                                                arg0: '"' + this_link.attr('id') + '"'
+                                        },
+                                        success: function(response)
+                                        {
+	
+	
+	
+	this_link.parent().find('div.response').append(response.split('Status')[0]);    
+	
+	console.log(response.substr(0, 8));
+	if (response.indexOf("Data Load Is Finished") != -1)  { 
+		console.log("finished!");
+		return;
+	
+	}
+	     console.log(response.split('Status')[0]);   
+	      LoadData(this_link);    // Cycle is not completed yet     
+	
+	}
+});
+
+}

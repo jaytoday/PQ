@@ -94,7 +94,7 @@ class MailingList(db.Model):
     # Useful for contacting non-signed up people. 
     email = db.EmailProperty(required=True)
     fullname = db.StringProperty(required=False)
-    type = db.StringProperty(required=False, choices=set(["pq", "site_member", "media"])) 
+    type = db.StringProperty(required=False, choices=set(["pq", "site_member", "media", "friend"])) 
     profile = db.ReferenceProperty(Profile,
                                     required=False,
                                     collection_name='mailing_list_entry')

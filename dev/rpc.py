@@ -53,16 +53,30 @@ class RPCMethods(webapp.RequestHandler):
 remote callers access to private/protected "_*" methods.
   """
   
-         
+ 
+
+  	        
   def refresh_data(self, *args):
   	from dev.methods import refresh_data
   	if len(args) == 0: return "specify data type"
-  	return refresh_data(args[0], "loud")
+  	return refresh_data(args[0])
+
+
+  def delete_data(self, *args):
+  	from dev.methods import delete_data
+  	if len(args) == 0: return "specify data type"
+  	return delete_data(args[0])
+  	
 
   def load_data(self, *args):
-  	from dev.methods import load_data
+   	if args[0] == "refresh_subject_images": 
+   	    args = ()
+   	    return self.refresh_subject_images(args) 
+   	from dev.methods import load_data
   	if len(args) == 0: return "specify data type"
-  	return load_data(args[0], "loud")
+  	return load_data(args[0])
+  	
+  	
   	            
   def dump_data(self, *args):
   	from dev.methods import dump_data
@@ -72,6 +86,10 @@ remote callers access to private/protected "_*" methods.
   def restore_backup(self, *args):
   	from dev.methods import restore_backup
   	return restore_backup()  	
+
+
+
+
 
 
   def flush_memcache(self, *args):
@@ -91,16 +109,13 @@ remote callers access to private/protected "_*" methods.
   	save_entity.put()
   	return encode(save_entity)
 
+
   def refresh_subject_images(self, *args):
-  	if len(args) == 0: return "enter in a proficiency name, or an empty arg0 string to refresh all subjects"
-  	from methods import Build
-  	build = Build()
-	from model.proficiency import Proficiency
-	import string 
-	if len(args[0]) > 0: 
-	    subject = Proficiency.get_by_key_name(string.capwords(args[0]))
-	    return build.refresh_subject_images(subject)
-  	return build.refresh_subject_images()
+  	this_subject = False
+  	if len(args) > 0: this_subject = args[0]
+  	from methods import refresh_subject_images
+  	refresh_subject_images(this_subject)
+  	
 
   # refresh default profile images
   def refresh_profile_images(self, *args):
@@ -108,12 +123,19 @@ remote callers access to private/protected "_*" methods.
   	build = Build()
   	build.refresh_profile_images()		
 
+
   def working(self, *args):
   	#return
   	from model.proficiency import Proficiency
-  	p = Proficiency.get_by_key_name("Misconceptions")
-  	p.link_html = "<li><a href='http://en.wikipedia.org/wiki/List_of_common_misconceptions'>Wikipedia List of Common Misconceptions</a></li><li><a href='http://www.zyra.org.uk/miscon.htm'>Zyra.org: Popular Misconceptions</a></li><li><a href='http://www.darylscience.com/Misconceptions.htm'>Science Misconceptions</a></li>"
-  	db.put(p)
+  	import random
+  	ps = Proficiency.all().fetch(1000)
+  	save = []
+  	for p in ps:
+  		p.popularity = random.randint(60,100)
+  		p.difficulty = random.randint(60,100)
+  		save.append(p)
+  	db.put(save)	
+  	
 
 
 

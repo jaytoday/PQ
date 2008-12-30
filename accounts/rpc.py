@@ -99,6 +99,14 @@ class RPCMethods(webapp.RequestHandler):
   		mail_intro_message(p)
   		
 
+
+  def new_years_message(self, *args):
+  	from accounts.mail import new_years_message
+  	return new_years_message()
+  		
+
+  	
+  	
   	
   	  	
 

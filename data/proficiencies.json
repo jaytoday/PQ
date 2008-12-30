@@ -2,222 +2,256 @@
                     {
                         "status": "private", 
                         "name": "Bananas", 
-                        "video_html": null, 
-                        "modified": {
-                            "ctime": "Sun Dec 28 00:42:26 2008"
-                        }, 
                         "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
-                        "date": {
-                            "ctime": "Thu Dec 25 10:42:49 2008"
+                        "popularity": 90, 
+                        "modified": {
+                            "ctime": "Tue Dec 30 06:53:11 2008"
                         }, 
+                        "video_html": null, 
+                        "date": {
+                            "ctime": "Tue Dec 30 06:08:44 2008"
+                        }, 
+                        "difficulty": 95, 
                         "blurb": "This is a test blurb"
                     }, 
                     {
                         "status": "public", 
                         "name": "Biofuels", 
-                        "video_html": null, 
-                        "modified": {
-                            "ctime": "Sun Dec 28 00:42:26 2008"
-                        }, 
                         "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
-                        "date": {
-                            "ctime": "Thu Dec 25 10:42:49 2008"
+                        "popularity": 62, 
+                        "modified": {
+                            "ctime": "Tue Dec 30 06:53:11 2008"
                         }, 
+                        "video_html": null, 
+                        "date": {
+                            "ctime": "Tue Dec 30 06:08:44 2008"
+                        }, 
+                        "difficulty": 71, 
                         "blurb": "Exciting advances in the conversion of biomass into fuel have made this environmentally-friendly production method into a Clean Tech poster child."
                     }, 
                     {
                         "status": "private", 
                         "name": "Building Webapps", 
-                        "video_html": null, 
-                        "modified": {
-                            "ctime": "Sun Dec 28 00:42:26 2008"
-                        }, 
                         "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
-                        "date": {
-                            "ctime": "Thu Dec 25 10:42:49 2008"
+                        "popularity": 79, 
+                        "modified": {
+                            "ctime": "Tue Dec 30 06:53:11 2008"
                         }, 
+                        "video_html": null, 
+                        "date": {
+                            "ctime": "Tue Dec 30 06:08:44 2008"
+                        }, 
+                        "difficulty": 83, 
                         "blurb": "A truly good developer knows how to build web apps in an agile way, and to provide solutions that people really need."
                     }, 
                     {
                         "status": "private", 
                         "name": "CSS", 
-                        "video_html": null, 
-                        "modified": {
-                            "ctime": "Sun Dec 28 00:42:26 2008"
-                        }, 
                         "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
-                        "date": {
-                            "ctime": "Thu Dec 25 10:42:49 2008"
+                        "popularity": 74, 
+                        "modified": {
+                            "ctime": "Tue Dec 30 06:53:11 2008"
                         }, 
+                        "video_html": null, 
+                        "date": {
+                            "ctime": "Tue Dec 30 06:08:44 2008"
+                        }, 
+                        "difficulty": 93, 
                         "blurb": "default"
                     }, 
                     {
                         "status": "private", 
                         "name": "Clean Energy", 
-                        "video_html": null, 
-                        "modified": {
-                            "ctime": "Sun Dec 28 00:42:26 2008"
-                        }, 
                         "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
-                        "date": {
-                            "ctime": "Thu Dec 25 10:42:49 2008"
+                        "popularity": 97, 
+                        "modified": {
+                            "ctime": "Tue Dec 30 06:53:11 2008"
                         }, 
+                        "video_html": null, 
+                        "date": {
+                            "ctime": "Tue Dec 30 06:08:44 2008"
+                        }, 
+                        "difficulty": 98, 
                         "blurb": "default"
                     }, 
                     {
                         "status": "private", 
                         "name": "Collective Intelligence", 
-                        "video_html": null, 
-                        "modified": {
-                            "ctime": "Sun Dec 28 00:42:26 2008"
-                        }, 
                         "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
-                        "date": {
-                            "ctime": "Thu Dec 25 10:42:49 2008"
+                        "popularity": 72, 
+                        "modified": {
+                            "ctime": "Tue Dec 30 06:53:11 2008"
                         }, 
+                        "video_html": null, 
+                        "date": {
+                            "ctime": "Tue Dec 30 06:08:44 2008"
+                        }, 
+                        "difficulty": 82, 
                         "blurb": "default"
                     }, 
                     {
                         "status": "public", 
                         "name": "Electricity", 
-                        "video_html": null, 
-                        "modified": {
-                            "ctime": "Sun Dec 28 00:42:26 2008"
-                        }, 
                         "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
-                        "date": {
-                            "ctime": "Thu Dec 25 10:42:49 2008"
+                        "popularity": 81, 
+                        "modified": {
+                            "ctime": "Tue Dec 30 06:53:11 2008"
                         }, 
+                        "video_html": null, 
+                        "date": {
+                            "ctime": "Tue Dec 30 06:08:44 2008"
+                        }, 
+                        "difficulty": 90, 
                         "blurb": "Intelligent, distributed, and highly adaptive electrical systems aim to reduce power consumption and prevent peak hour failures."
                     }, 
                     {
                         "status": "public", 
                         "name": "Energy Economics", 
-                        "video_html": null, 
-                        "modified": {
-                            "ctime": "Sun Dec 28 00:42:26 2008"
-                        }, 
                         "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
-                        "date": {
-                            "ctime": "Thu Dec 25 10:42:49 2008"
+                        "popularity": 92, 
+                        "modified": {
+                            "ctime": "Tue Dec 30 06:53:11 2008"
                         }, 
+                        "video_html": null, 
+                        "date": {
+                            "ctime": "Tue Dec 30 06:08:44 2008"
+                        }, 
+                        "difficulty": 65, 
                         "blurb": "Between the $100 billion dollars invested in Clean Tech and new energy-conscious tax codes, there is a pressing need for those familiar with the new economic landscape."
                     }, 
                     {
                         "status": "public", 
                         "name": "Energy Efficiency", 
-                        "video_html": null, 
-                        "modified": {
-                            "ctime": "Sun Dec 28 00:42:26 2008"
-                        }, 
                         "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
-                        "date": {
-                            "ctime": "Thu Dec 25 10:42:49 2008"
+                        "popularity": 84, 
+                        "modified": {
+                            "ctime": "Tue Dec 30 06:53:11 2008"
                         }, 
+                        "video_html": null, 
+                        "date": {
+                            "ctime": "Tue Dec 30 06:08:44 2008"
+                        }, 
+                        "difficulty": 79, 
                         "blurb": "The cheapest and most available source of new energy is the energy we waste. To save money and lower greenhouse gas levels, organizations are increasingly seeking ways to reduce their energy consumption. "
                     }, 
                     {
                         "status": "private", 
                         "name": "Freebase", 
-                        "video_html": null, 
-                        "modified": {
-                            "ctime": "Sun Dec 28 00:42:26 2008"
-                        }, 
                         "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
-                        "date": {
-                            "ctime": "Thu Dec 25 10:42:49 2008"
+                        "popularity": 77, 
+                        "modified": {
+                            "ctime": "Tue Dec 30 06:53:11 2008"
                         }, 
+                        "video_html": null, 
+                        "date": {
+                            "ctime": "Tue Dec 30 06:08:44 2008"
+                        }, 
+                        "difficulty": 92, 
                         "blurb": "default"
                     }, 
                     {
                         "status": "private", 
                         "name": "Javascript", 
-                        "video_html": null, 
-                        "modified": {
-                            "ctime": "Sun Dec 28 00:42:26 2008"
-                        }, 
                         "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
-                        "date": {
-                            "ctime": "Thu Dec 25 10:42:49 2008"
+                        "popularity": 64, 
+                        "modified": {
+                            "ctime": "Tue Dec 30 06:53:11 2008"
                         }, 
+                        "video_html": null, 
+                        "date": {
+                            "ctime": "Tue Dec 30 06:08:44 2008"
+                        }, 
+                        "difficulty": 66, 
                         "blurb": "default"
                     }, 
                     {
                         "status": "public", 
                         "name": "Misconceptions", 
-                        "video_html": null, 
-                        "modified": {
-                            "ctime": "Sun Dec 28 00:45:34 2008"
-                        }, 
                         "link_html": "<li><a href='http://en.wikipedia.org/wiki/List_of_common_misconceptions'>Wikipedia List of Common Misconceptions</a></li><li><a href='http://www.zyra.org.uk/miscon.htm'>Zyra.org: Popular Misconceptions</a></li><li><a href='http://www.darylscience.com/Misconceptions.htm'>Science Misconceptions</a></li>", 
-                        "date": {
-                            "ctime": "Thu Dec 25 10:42:49 2008"
+                        "popularity": 70, 
+                        "modified": {
+                            "ctime": "Tue Dec 30 06:53:11 2008"
                         }, 
+                        "video_html": null, 
+                        "date": {
+                            "ctime": "Tue Dec 30 06:08:44 2008"
+                        }, 
+                        "difficulty": 63, 
                         "blurb": "Have you been fooled by common misconceptions?<br/><br/>\r\nTest your savvy of some of the most common errors in history, geography, and culture."
                     }, 
                     {
                         "status": "public", 
                         "name": "Oil", 
-                        "video_html": null, 
-                        "modified": {
-                            "ctime": "Sun Dec 28 00:42:26 2008"
-                        }, 
                         "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
-                        "date": {
-                            "ctime": "Thu Dec 25 10:42:49 2008"
+                        "popularity": 94, 
+                        "modified": {
+                            "ctime": "Tue Dec 30 06:53:11 2008"
                         }, 
+                        "video_html": null, 
+                        "date": {
+                            "ctime": "Tue Dec 30 06:08:44 2008"
+                        }, 
+                        "difficulty": 73, 
                         "blurb": "Petroleum makes up 40% of energy consumption, and has a worldwide impact on politics, economics, and the environment. "
                     }, 
                     {
                         "status": "private", 
                         "name": "Rails", 
-                        "video_html": null, 
-                        "modified": {
-                            "ctime": "Sun Dec 28 00:42:26 2008"
-                        }, 
                         "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
-                        "date": {
-                            "ctime": "Thu Dec 25 10:42:49 2008"
+                        "popularity": 95, 
+                        "modified": {
+                            "ctime": "Tue Dec 30 06:53:11 2008"
                         }, 
+                        "video_html": null, 
+                        "date": {
+                            "ctime": "Tue Dec 30 06:08:44 2008"
+                        }, 
+                        "difficulty": 87, 
                         "blurb": "default"
                     }, 
                     {
                         "status": "private", 
                         "name": "Ruby", 
-                        "video_html": null, 
-                        "modified": {
-                            "ctime": "Sun Dec 28 00:42:26 2008"
-                        }, 
                         "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
-                        "date": {
-                            "ctime": "Thu Dec 25 10:42:49 2008"
+                        "popularity": 85, 
+                        "modified": {
+                            "ctime": "Tue Dec 30 06:53:11 2008"
                         }, 
+                        "video_html": null, 
+                        "date": {
+                            "ctime": "Tue Dec 30 06:08:44 2008"
+                        }, 
+                        "difficulty": 95, 
                         "blurb": "default"
                     }, 
                     {
                         "status": "public", 
                         "name": "Solar Energy", 
-                        "video_html": null, 
-                        "modified": {
-                            "ctime": "Sun Dec 28 00:42:26 2008"
-                        }, 
                         "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
-                        "date": {
-                            "ctime": "Thu Dec 25 10:42:49 2008"
+                        "popularity": 85, 
+                        "modified": {
+                            "ctime": "Tue Dec 30 06:53:11 2008"
                         }, 
+                        "video_html": null, 
+                        "date": {
+                            "ctime": "Tue Dec 30 06:08:44 2008"
+                        }, 
+                        "difficulty": 68, 
                         "blurb": "The oldest and most pervasive form of renewable energy draws from the same ambient source that sustains life on Earth. "
                     }, 
                     {
                         "status": "private", 
                         "name": "Startup Financing", 
-                        "video_html": null, 
-                        "modified": {
-                            "ctime": "Sun Dec 28 00:42:26 2008"
-                        }, 
                         "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
-                        "date": {
-                            "ctime": "Thu Dec 25 10:42:49 2008"
+                        "popularity": 93, 
+                        "modified": {
+                            "ctime": "Tue Dec 30 06:53:11 2008"
                         }, 
+                        "video_html": null, 
+                        "date": {
+                            "ctime": "Tue Dec 30 06:08:44 2008"
+                        }, 
+                        "difficulty": 72, 
                         "blurb": "default"
                     }
                 ]

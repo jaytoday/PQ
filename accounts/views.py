@@ -134,6 +134,11 @@ class Register(webapp.RequestHandler):
 		self.session['user'] = register_user(self.session['unique_identifier'], self.session['nickname'], self.session['fullname'], self.session['email'])
 		self.session['quiz_taker'] = register_qt(self.session['unique_identifier'], self.session['nickname'])
 		self.session['create_profile'] == True
+		from account.mail import intro_mail_message
+		intro_mail_message(self.session['user'])
+	
+    
+    
 		if self.session['continue']:
 			self.redirect(self.session['continue'])
 			del self.session['continue']

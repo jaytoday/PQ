@@ -11,21 +11,75 @@ from .model.user import ProfilePicture
 from .model.proficiency import SubjectImage
 from model.employer import Employer
 from model.account import MailingList
-
+from google.appengine.api import memcache
 
 DATA_TYPES = {"proficiencies": Proficiency.all(), 'proficiency_topics': ProficiencyTopic.all(), 'content_pages': ContentPage.all(), 'raw_items' : RawQuizItem.all(),
                'quiz_items': QuizItem.all(),
                'mailing_list': MailingList.all(), 'employers': Employer.all()}
 
+LOAD_INCREMENT = 10 # How many entities are loaded into datastore at a time
+IMAGE_INCREMENT = 1 # How many entities are loaded into datastore at a time
 
 #Refresh One Data Type
-def refresh_data(data_type, verbose):
+def refresh_data(data_type):
     data = DataMethods()
     data.delete_data(DATA_TYPES.get(data_type, False))
-    data.execute_delete()
     data.load_data(data_type, "")
     data.special_processes(data_type)
     data.execute_load()
+
+
+def delete_data(data_type):
+    data = DataMethods()
+    data.delete_data(DATA_TYPES.get(data_type, False))
+    data.execute_delete()
+    return "executed delete for data type", data_type
+
+
+def load_data(data_type):
+    data = DataMethods()
+    MIN_SLICE = memcache.get("MIN_SLICE_" + data_type)
+    if MIN_SLICE == None:
+    	MIN_SLICE = 0 
+        data.special_processes(data_type)
+        data.load_json(data_type, "")
+    MAX_SLICE = MIN_SLICE + LOAD_INCREMENT
+    data_load = data.load_data(data_type, MIN_SLICE, MAX_SLICE)
+    if data_load == "Finished": 
+        memcache.set("MIN_SLICE_" + data_type, None, 60000) # reset min-slice'
+        return "Finished"
+    elif data_load > 0:
+    	data.execute_load() 
+        memcache.set("MIN_SLICE_" + data_type, MIN_SLICE + 10, 60000) # reset min-slice
+        print str("Added Data Rows " + str(MIN_SLICE) + "-" + str(MAX_SLICE) + " For " + data_type + " Data")
+
+ 
+ 
+					
+def refresh_subject_images(this_subject=False):
+	#no argument refreshes all subject images. argument refresh a single subject.
+	if this_subject: 
+		import string 
+		subject = Proficiency.get_by_key_name(string.capwords(this_subject))
+		return build.refresh_subject_images(subject)
+		
+	data_type = "subject_images"
+	proficiencies = memcache.get("subject_image_queue")
+	if not proficiencies: proficiencies = Proficiency.all().fetch(1000)
+
+	# Get the next proficiency in sequence 
+	next_proficiency = proficiencies.pop()
+	build = Build()
+	data_load = build.refresh_subject_images(next_proficiency)
+	memcache.set("subject_image_queue", proficiencies, 60000) # reset min-slice
+	print "Added ", data_load, " Subject Images for Proficiency ", next_proficiency.name
+	print len(proficiencies), " subjects left"	
+	if len(proficiencies) == 0: 
+	    memcache.set("subject_image_queue", None, 60000) # reset min-slice'
+	    print "Data Load Is Finished"
+	    return		  	
+	   
+
 
 # Full Datastore Refresh
 def restore_backup():
@@ -44,6 +98,10 @@ def restore_backup():
 
 
 
+    
+    
+    
+
 # Display data in JSON format, for backups
 def dump_data(data_type):
 	try:
@@ -54,13 +112,7 @@ def dump_data(data_type):
 		return "unable to encode objects"
 		
 
-# Load data, without deleting (TODO: make sure this works) 
-def load_data(data_type, verbose):
-    logging.info('loading data for %s', data_type)
-    data = DataMethods()
-    return data.load_data(data_type, "")
 
-  	 
     
 
 class Build():
@@ -89,7 +141,10 @@ class Build():
 		print "deleting profiles images:", pics
 		db.delete(pics)	
 
-		  		
+	    	
+   	    	
+   	    	
+   	    			  		
 	def refresh_subject_images(self, this_proficiency=False):
 		if not this_proficiency: 
 		    proficiencies = Proficiency.all().fetch(1000)
@@ -115,6 +170,7 @@ class Build():
 				save_images.append(new_image)
 			db.put(save_images)
 			logging.info('refreshed %d subject images', len(save_images))
+			return len(save_images)
 					
 		
 	def delete_subject_images(self, subject=False):
@@ -156,7 +212,9 @@ class Build():
 		 print "destroyed ", len(destroy_list), " account entries"
 		 logging.info('deleted %d account entries', len(destroy_list))  	 
 					
-					
+
+   	    	
+   	    	
    	    		
 	
 class DataMethods():
@@ -164,6 +222,7 @@ class DataMethods():
   def __init__(self):
 	  self.delete_entities = {}
 	  self.load_entities = {}
+	  
   
   
   def delete_data(self, query):
@@ -172,34 +231,61 @@ class DataMethods():
      self.delete_entities[query]= entities
 
 
+
     
-    
-  def load_data(self, data_type, path):
-		logging.info('loading data type %s', data_type)
+  def load_json(self, data_type, path):
+		logging.info('loading json for data type %s', data_type)
 		print ""
-		print 'loading data type: ', data_type
+		print 'loading JSON data type: ', data_type
 		print ""
 		json_file = open(ROOT_PATH + "/data/" + path + str(data_type) + ".json")
 		json_str = json_file.read()
-		newdata = simplejson.loads(json_str) # Load JSON file as object
+		json_data = simplejson.loads(json_str) # Load JSON file as object
+		memcache.set("json_" + str(data_type), json_data, 60000)
+		
+		
 		entities = []
 		# Setup, Imports
 		if data_type == 'employers': emp = emp_data()
-		for entity in newdata: # Could this be more efficient? 
+
+
+    
+    
+  def load_data(self, data_type, MIN_SLICE = None, MAX_SLICE = None):
+		logging.info('loading data type %s from %s to %s' % (data_type, str(MIN_SLICE), str(MAX_SLICE)))
+		print ""
+		print 'loading data type: ', data_type, " from ", MIN_SLICE, " to ", MAX_SLICE
+		print ""
+
+
+		entities = []
+		# Setup, Imports
+		if data_type == 'employers': emp = emp_data()
+
+		newdata = memcache.get("json_" + str(data_type))
+		
+		if len(newdata[MIN_SLICE:MAX_SLICE]) == 0: 
+		                           print "Data Load Is Finished"
+		                           return "Finished"
+		for entity in newdata[MIN_SLICE:MAX_SLICE]: # Could this be more efficient? 
 			
 			if data_type == 'proficiencies':
-				save_entity = Proficiency.get_or_insert(key_name=entity['name'], name = entity['name'], status = entity.get("status", ""), link_html = entity.get("link_html", ""), video_html = entity.get("video_html", ""), blurb = entity.get("blurb", ""))
-				save_entity.status = entity.get('status', None)
-				save_entity.blurb = entity.get('blurb', None)
-				
+				save_entity = Proficiency.get_or_insert(key_name=entity['name'], name = entity['name'], 
+				status = entity.get("status", ""), link_html = entity.get("link_html", ""), 
+				video_html = entity.get("video_html", ""), blurb = entity.get("blurb", ""), 
+				popularity = entity.get("popularity", 50), difficulty = entity.get("difficulty", 50),
+				status = entity.get('status', None), blurb = entity.get('blurb', None))
+				# temporary upgrades
+				save_entity.popularity = entity.get("popularity", 50) 
+				save_entity.difficulty = entity.get("difficulty", 50)
+
 			if data_type == 'proficiency_topics':
 				this_proficiency = Proficiency.get_by_key_name(entity['proficiency']['name'])
 				if not this_proficiency: 
 				         print "proficiency ", entity['proficiency']['name'], " not found when inserting topic ", entity['name']
 				         logging.error('proficiency %s not found for topic %s' % (entity['proficiency']['name'],  entity['name']))
 				         continue
-				save_entity = ProficiencyTopic.get_or_insert(key_name=entity['name'], name = entity['name'], 
-											   proficiency = this_proficiency)
+				save_entity = ProficiencyTopic.get_or_insert(key_name=entity['name'], name = entity['name'], proficiency = this_proficiency)
 											   
 			if data_type == 'content_pages':
 				 this_proficiency = Proficiency.get_by_key_name(entity['proficiency']['name'])
@@ -249,6 +335,7 @@ class DataMethods():
 			for entity in entities: entity_num += 1
 			logging.info('finished preparing data load for %d %s' % (len(entities), data_type))
 			print 'finished preparing data load for' , len(entities), data_type
+			return len(entities)
 		except:
 			logging.error('Unable to save %s at number %d' % (data_type, entity_num))
 			print 'Unable to save', data_type, "at number ", entity_num
@@ -265,7 +352,7 @@ class DataMethods():
      #db.delete(itertools.chain(*[list[1] for list in self.delete_entities.items()]))
      for list in self.delete_entities.items():
      	logging.info('executed delete for %s', list[0]._model_class)
-     	print "DELETED ", len(list[1]), " rows of ", list[0]._model_class
+     	print "DELETED ", len(list[1]), " rows of ", str(list[0]._model_class).replace('<','').replace('>','')
      self.delete_entities = {}
      	
      	

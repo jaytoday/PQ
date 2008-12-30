@@ -187,12 +187,15 @@ class Sponsorships():
 		auto_pledges = AutoPledge.gql("WHERE proficiency = :1", award.proficiency).fetch(3)#untargetted sponsorships
 		# maybe randomize sponsor selection
 		already_biz_sponsors = [s.sponsor.unique_identifier for s in award.winner.sponsorships]
+		biz_sponsor_profiles = []
 		for pledge in auto_pledges:
 			biz_profile = Profile.get_by_key_name(pledge.employer.unique_identifier)
 			if biz_profile.unique_identifier in already_biz_sponsors: continue # don't let business sponsor user twice 
+			if biz_profile.unique_identifier in biz_sponsor_profiles: continue # catch unsaved business sponsors
 			self.give_biz_sponsorship(pledge, award, biz_profile)
+			biz_sponsor_profiles.append(biz_profile.unique_identifier)
 			pledge.count -= 1  
-			if pledge.count == 0: s.delete()
+			if pledge.count == 0: pledge.delete()
 			else: pledge.put()
 		return
 		
@@ -213,7 +216,7 @@ class Sponsorships():
 		return
 
 	def give_biz_sponsorship(self, pledge, award, biz_profile):
-		logging.info('saving new sponsorship')
+		logging.info('saving new business sponsorship')
 		new_sponsorship = Sponsorship(sponsor = biz_profile,
 		                              recipient = award.winner,
 		                              sponsor_type = "business",

@@ -42,7 +42,9 @@ class Proficiency(db.Model):
   #subject material
   blurb = db.TextProperty(required=False)
   link_html = db.TextProperty()
-  video_html = db.StringProperty() 
+  video_html = db.StringProperty()
+  popularity = db.IntegerProperty()
+  difficulty = db.IntegerProperty() 
  
   
   def tag(self): # for views
