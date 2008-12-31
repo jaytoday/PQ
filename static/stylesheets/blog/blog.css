@@ -20,6 +20,7 @@
     blockquote {
       border-left: 2px solid {color:Title};
       font-style: italic;
+      line-height:1.6em;
       margin-left: 1em;
       padding: 0 2em 0 1em;
     }

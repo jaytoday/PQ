@@ -135,7 +135,7 @@ def Debug():
 
 
 def hash_pipe(private_object):
-    import md5
+    import md5 # TODO use something else
     from google.appengine.api import memcache
     new_hash = md5.md5()
     new_hash.update(str(private_object))

@@ -106,6 +106,12 @@ def mail_sponsee_message(profile):
 def new_years_message():
 	from model.account import MailingList
 	peoples = MailingList.all().fetch(1000)
+
+
+	from utils.utils import ROOT_PATH
+	file = open(ROOT_PATH + "/data/new_years.pdf")
+	pdf_str = file.read()
+	
 	for p in peoples: 
 		message = mail.EmailMessage()
 		message.sender = "notify@plopquiz.com"
@@ -168,15 +174,7 @@ def new_years_message():
 
 		
 		""" % p.fullname
-
-
-	# Temporary
-	from utils.utils import ROOT_PATH
-	file = open(ROOT_PATH + "/data/new_years.pdf")
-	pdf_str = file.read()
-	message.attachments = [("PlopQuiz_News_Years.pdf", pdf_str)]
-	
-	
-	message.send()
-	print "sent message to ", p.email
+		message.attachments = [("PlopQuiz_News_Years_Resolution.pdf", pdf_str)]
+		message.send()
+		print "sent message to ", p.email
 	

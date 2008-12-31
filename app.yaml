@@ -49,7 +49,10 @@ handlers:
 - url: /static/stylesheets/
   static_dir: static/stylesheets/
 
-  
+- url: /static/stylesheets/
+  static_dir: static/files/
+
+
 - url: /static/beehold/
   static_dir: static/beehold/
 
