@@ -19,17 +19,20 @@ class DataMethods():
 	from accounts.methods import register_account, register_user
 	import string
 	fullname = string.capwords(uid.replace("_", " "))
-	business_account = register_account(uid, fullname)
+	business_account = register_account(uid, fullname, save=False)
 	business_profile = register_user(uid, fullname, fullname, False)
-	business_employer = self.register_employer(uid, fullname, proficiencies)
-	if not batch: db.put(self.refresh_employer_images([business_employer]))
+	business_employer = self.register_employer(uid, fullname, proficiencies, save=False)
+	if not batch: #only one account being made
+	    self.refresh_employer_images([business_employer])
+	    db.put([business_account, business_profile, business_employer])
 	return business_account, business_profile, business_employer 
 
 
-  def register_employer(self, business_name, fullname, proficiencies=False):
+  def register_employer(self, business_name, fullname, proficiencies=False, save=True):
 	  print "registering employer: ", business_name
 	  new_employer = Employer(key_name=business_name, unique_identifier = business_name, name = fullname)
 	  if proficiencies: new_employer.proficiencies = proficiencies
+	  if save: db.put(new_employer)
 	  return new_employer
 
   def delete_employer_images(self):

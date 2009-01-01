@@ -2,9 +2,17 @@
 @import url('proficiency.css');
 @import url('profile/profile.css');
 
+/* vertical scroll */
+.sitelet .middle .main_wrapper .main {
+height: auto !important;
+}
+
+/* Get rid of corner logo */
+#right_corner{ display:none; }
+
 #sitelet-home #logo {
 float:left;
-margin:140px 0 20px 10px;
+margin:50px 0 20px 10px;
 }
 #sitelet-home #intro {
 clear: both;
@@ -172,8 +180,8 @@ div.right{
 div.right_inner{
 font-size:0.9em;
 letter-spacing:0.02em;
-margin:76px 0 0 0px;
-width:506px;
+margin:0px 0 0 0px;
+width:519px;
 }
 
 div.upgrade{
@@ -186,15 +194,34 @@ div#take_quiz{
 -moz-border-radius-bottomright:92px;
 -moz-border-radius-topleft:92px;
 -moz-border-radius-topright:2px;
+-webkit-border-bottom-left-radius:2px;
+-webkit-border-bottom-right-radius:92px;
+-webkit-border-top-left-radius:92px;
+-webkit-border-top-right-radius-:2px;
 background:#DDDDDD none repeat scroll 0 0;
 border:8px solid #DDDDDD;
 color:#000040;
+cursor:pointer;
+height:280px;
 line-height:1.8em;
-margin:20px 0 10px;
+margin:10px 0;
 padding:3px;
 text-transform:none;
--webkit-border-radius: 12px;
-cursor: pointer;
+width:460px;
+
+}
+
+div.featured_quiz{
+margin:35px 0;
+}
+
+div#featured_quiz_header{
+border:medium none;
+font-size:1.2em;
+margin:-2px 120px;
+padding:1px 8px;
+position:absolute;
+width:100px;
 }
 
 div.upgrade span.mag{
@@ -258,3 +285,59 @@ color:#000080;
 cursor:pointer;
 }
 
+
+
+/* action feed */
+
+.action_feed{
+height: 600px;
+}
+
+.action_item{
+height:100px;
+margin:10px 0;
+padding:5px 0 15px;
+width:440px;
+}
+
+
+.is_winner{
+margin:4px 10px;
+}
+
+.is_subject{
+float:right;
+width:120px;
+margin:8px 10px;
+}
+
+.is_recipient{
+margin:4px 15px;
+}
+
+.is_sponsor{
+float:right;
+margin:4px 18px;
+}
+
+span.action_type{
+display:block;
+font-size:1.5em;
+line-height:1.3em;
+margin:25px 0px 0px 120px;
+position:absolute;
+text-align:center;
+width:160px;
+background: #FFF;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        padding: 3px;
+}
+
+span.action_date{
+position: absolute;
+font-size: .7em;
+}
+span.sponsored_by{
+margin-left: 135px;
+}

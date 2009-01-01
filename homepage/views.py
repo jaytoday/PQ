@@ -17,9 +17,26 @@ HOMEPAGE_PATH = 'homepage/'
 class ViewHomepage(webapp.RequestHandler):
 
     def get(self):
-        template_values = {'page_title': 'Plopquiz'}
+        template_values = {'page_title': 'Plopquiz', 'recent_actions': self.get_recent_actions(), 'featured_quiz': 'Misconceptions'}
         path = tpl_path(HOMEPAGE_PATH + 'homepage.html')
         self.response.out.write(template.render(path, template_values))
+
+    def get_recent_actions(self):
+    	recent_actions = []
+    	from model.account import Sponsorship, Award
+    	recent_sponsorships = Sponsorship.all().order('date').fetch(5)
+    	recent_awards = Award.all().order('date').fetch(5)
+    	# Would be better to sort both lists by date and combine
+    	for sponsorship, award in zip(recent_sponsorships, recent_awards):
+    		recent_actions.append(sponsorship)
+    		recent_actions.append(award)
+    	return recent_sponsorships
+
+
+
+
+
+
 
 
 class ExitPage(webapp.RequestHandler):

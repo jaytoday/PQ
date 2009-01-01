@@ -851,14 +851,13 @@ span#quiz_category
 }
 
 #quiz_wrap div.quiz_scroll_container{
-width:400px;
+    height:190px;
+left:40px;
+overflow-y:auto;
+position:absolute;
 top:100px;
-left:66px;
-	position: absolute;
-	/* overflow: hidden; -used for jscrollpane */
-	z-index: 1;
-	height:190px;
-    overflow-y:auto;
+width:440px;
+z-index:1;
 
 }
 
@@ -870,7 +869,7 @@ left:66px;
         line-height:1.5em;
         overflow: visible; 
         height: auto; 
-        width:355px;
+        width:375px;
 }
 
 #instructions_frame{

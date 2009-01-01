@@ -15,7 +15,7 @@ def registered(user_key):
 
 
 
-def register_user(user_key, nickname, fullname, email):
+def register_user(user_key, nickname, fullname, email, save=True):
     profile_path = nickname.lower()
     profile_path = profile_path.replace(' ','_')
     
@@ -29,26 +29,26 @@ def register_user(user_key, nickname, fullname, email):
     if email: new_user.email = email
     photo = default_photo() 
     if photo: new_user.photo = photo
-    new_user.put()
+    if save: new_user.put()
     return new_user 
 
 
 
-def register_qt(user_key, nickname):
+def register_qt(user_key, nickname, save=True):
     new_qt = QuizTaker.get_or_insert(key_name = user_key,
                                      unique_identifier = user_key, # redundancy
                                      nickname = nickname,
                                      )
-    new_qt.put()
+    if save: new_qt.put()
     return new_qt                                   
     
 
-def register_account(user_key, nickname):
+def register_account(user_key, nickname, save=True):
     new_account = Account.get_or_insert(key_name = user_key,
                                      unique_identifier = user_key, # redundancy
                                      nickname = nickname # redundancy 
                                      )
-    new_account.put()
+    if save: new_account.put()
     return new_account                                   
     
         

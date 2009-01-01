@@ -152,6 +152,10 @@ $(this).addClass('clicked');
 
 
 
+/* add third party scripts */
+
+$.getScript("http://plopquiz.uservoice.com/pages/general/widgets/tab.js?alignment=right&amp;color=69075A");
+
 
 //end ready()
 });

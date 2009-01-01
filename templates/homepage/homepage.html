@@ -36,6 +36,14 @@
 							</div>
 			
 						</div>
+		
+		
+<div class="employers frame_box">
+<h3>Employers</h3>
+<div id="claim">claim your profile and discover new talent.</div>
+<input type="text" id="employer_name" value="what's the name of your business?" />
+</div>
+
 		</div>	
 
 
@@ -43,21 +51,63 @@
 <div class="right">	
 <div class="right_inner">	
 
-<div class="upgrade">Upgrade your resume in <span class="mag">five minutes</span>. It's <span class="mag">free</span>. </div>
+<!-- <div class="upgrade">Upgrade your resume in <span class="mag">five minutes</span>. It's <span class="mag">free</span>. </div> -->
 
 <div id="take_quiz">
 
+<div id="featured_quiz_header" class="frame_box">featured quiz</div>
+{# This is where the featured quiz loads #}
+
+
+<!-- TODO: This breaks js on the rest of the page 
+<script src="http://localhost:8080/js/quiz/{{ featured_quiz }}" type="text/javascript" rel="javascript"></script> <div class="featured_quiz" id="pqwidget"></div> -->
+
+<!--
 <h1>Take an <span id="et">Energy Tech</span> <span id="q">Quiz</span></h1>
 
-<!--<div id="energy_pic"><img src="/static/stylesheets/img/homepage/energy_small.png"/></div> -->
 <div class="p_links"><a>biofuels</a> - <a>finance</a> - <a>solar power</a> - <a>law &amp; policy</a> -  <a>smart grid tech</a> - <a> and more!</a></div>
-
+-->
 </div>
 
-<div class="employers frame_box">
-<h3>Employers</h3>
-<div id="claim">claim your profile and discover new talent.</div>
-<input type="text" id="employer_name" value="what's the name of your business?" />
+<div class="action_feed">
+{% for action in recent_actions %}
+
+<div class="info_note action_item">
+{% ifequal action.sponsor None %} {# This is an award #}
+
+    <div class="gray_square_box is_winner">
+    <img src="/image/profile/?img_id={{ action.winner.photo.key }}&size=large"/>
+    <span class="img_bottom">{{ action.winner.nickname }}</span></div>
+
+<span class="action_type">Earned An Award For</span>
+<span class="action_date">{{ action.date }}</span>
+
+  <div class="selection_box is_subject">
+<img src="{{ http_host}}/image/subject/?img_id={{ action.proficiency.images.1.key }}&size=small"/>
+<div class="sliderImage">
+<span class="img_bottom">{{ action.proficiency.name }}</span></div>
+</div>
+
+
+ 
+{% else %}
+
+    <div class="gray_square_box is_recipient">
+    <img src="/image/profile/?img_id={{ action.recipient.photo.key }}&size=large"/>
+    <span class="img_bottom">{{ action.recipient.nickname }}</span></div>
+    
+
+<span class="action_type sponsored_by">Earned A Sponsorship From</span>
+<span class="action_date">{{ action.date }}</span>
+
+    <div class="gray_square_box is_sponsor">
+    <img src="/image/profile/?img_id={{ action.sponsor.photo.key }}&size=large"/>
+    <span class="img_bottom">{{ action.sponsor.nickname }}</span></div>
+{% endifequal %}
+</div>
+
+
+{% endfor %}
 </div>
 
 </div>
