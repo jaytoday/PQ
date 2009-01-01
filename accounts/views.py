@@ -118,24 +118,32 @@ class Register(webapp.RequestHandler):
 		self.session['user'] = registered(self.session['unique_identifier'])
 		if self.session['user']: 
 		                       logging.warning('user %s attempting to register while signed in', self.session['user'].unique_identifier) 
-		                       return self.redirect('/')
+		                       if not self.session['continue']: self.session['continue'] = '/profile/' + self.session['user'].profile_path 
+		                       self.redirect(self.session['continue'])
+		                       self.session['continue'] = False
 		if self.request.get('nickname'): return self.create_user()
-
-		template_values = {'nickname': self.session['nickname']}
+		nickname, email = None, None
+		if self.session['nickname']: nickname = self.session['nickname']
+		if self.session['email']: email = self.session['email']
+		template_values = {'nickname': nickname, 'email': email}
 		path = tpl_path(ACCOUNTS_PATH +'signup.html')
 		self.response.out.write(template.render(path, template_values))
 		return
 
   def create_user(self):
+		if not self.request.get('nickname') and self.request.get('email'):
+		    self.response.out.write('nickname and email required')
+		    return 
 		logging.info('Creating New User With Nickname %s', self.request.get('nickname'))
 		self.session['nickname'] = self.request.get('nickname')
 		if not self.session['fullname']: self.session['fullname'] = self.session['nickname']
+		self.session['email'] = self.request.get('email')
 		self.session['account'] = register_account(self.session['unique_identifier'], self.session['nickname'])
 		self.session['user'] = register_user(self.session['unique_identifier'], self.session['nickname'], self.session['fullname'], self.session['email'])
 		self.session['quiz_taker'] = register_qt(self.session['unique_identifier'], self.session['nickname'])
 		self.session['create_profile'] == True
 		from accounts.mail import mail_intro_message
-		intro_mail_message(self.session['user'])
+		mail_intro_message(self.session['user'])
 	
     
     
@@ -182,7 +190,7 @@ class Redirect(webapp.RequestHandler):
       self.set_flash('post_quiz')
       from quiztaker.load_quiz import QuizSession
       quiz_session = QuizSession()
-      quiz_session.update_scores(token, self.session['user'].unique_identifier)
+      quiz_session.update_scores(token, self.session['user'].unique_identifier) # re-assigns token scores to this user
       self.response.out.write('<b>Please wait while we save your quiz results.....</b>') # this doesn't work right now
       self.update_user_stats()
       self.redirect('/profile/' + self.session['user'].profile_path)

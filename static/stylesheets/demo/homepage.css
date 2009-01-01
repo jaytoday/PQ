@@ -118,12 +118,11 @@ body {
 	left: 0px;
 	overflow: hidden;
 }
+
 #flyer {
-/* margin-top:110px; */
 	top: 20%;
 	left: 0%;
 }
-
 
 #flyer a {
 	width: 60px;

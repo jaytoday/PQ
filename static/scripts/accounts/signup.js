@@ -6,6 +6,10 @@ $(function(){
 //TODO: Check for invalid chars, like $ and <, etc.
 
 
+$('input#nickname').preserveDefaultText('your name');
+$('input#email').preserveDefaultText('your email address');
+
+
 $('input#nickname').keydown(function(){ $('input#nickname').data('availability', 'unknown') }); // just for sneaky fast people
 
 $('input#nickname').typeWatch( 
@@ -20,6 +24,12 @@ $('input#nickname').typeWatch(
 $('div#submit_nickname').click(function(){ SubmitName(); });
 
 NicknameCheck();
+
+
+// flyer
+console.log($('#flyer a'));
+$('#flyer a').css('top', '50%').show().animate({left: "100%"},17000);
+
 });
 
 
@@ -32,15 +42,18 @@ function SubmitName(){
 	
 	if($('input#nickname').data('availability') == 'unknown') setTimeout(function(){ SubmitName(); }, 1000);  // still unknown
 	
-	if($('input#nickname').data('availability') != 'available') { $('#signup_reminder').show(); return false; } //hasn't chosen a valid name yet 
+	if($('input#nickname').data('availability') != 'available') { $('#signup_reminder').show(); $('input#nickname').addClass('invalid'); return false; } //hasn't chosen a valid name yet 
+	
+	if($('input#email').val().indexOf('@') == -1) { $('#signup_reminder').show(); $('input#email').addClass('invalid'); return false; } //hasn't chosen a valid name yet 
 	
 	$('div.loading').show();
 	$('div.main').hide();
-	window.location="/register?nickname=" + $('input#nickname').val();
+	window.location="/register?nickname=" + $('input#nickname').val() + "&email=" + $('input#email').val();
 	
 }
 
 function NicknameCheck(){
+	
 	
 	var nickname = $('input#nickname').val();
 	

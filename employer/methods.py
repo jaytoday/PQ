@@ -65,8 +65,12 @@ class DataMethods():
 									 type = "employer"
 									 )
 			new_image.put()
+			logging.info('saved employer image for %s', e.unique_identifier)
 			this_profile = Profile.get_by_key_name(e.unique_identifier)
-			this_profile.photo = new_image
+			try:this_profile.photo = new_image
+			except:
+				logging.info('unable to refresh employer image for %s', e.unique_identifier)
+				continue
 			save_profiles.append(this_profile)
 		if employer_list: db.put(save_profiles) # do we need to do this save, or is it done in dev.methods?
 		logging.info('refreshed %d employer images', len(save_profiles))

@@ -202,9 +202,10 @@ class Build():
 
 	def destroy_everything(self):
 		 from model.user import QuizTaker, ProficiencyLevel, TopicLevel
-		 from model.account import Profile, Account, Award, Sponsorship
+		 from model.account import Profile, Account, Award, Sponsorship, SponsorPledge
+		 from model.employer import AutoPledge
 		 from model.quiz import ItemScore
-		 account_classes = [ItemScore, QuizTaker, ProficiencyLevel, TopicLevel, Profile, Account, Award, Sponsorship]
+		 account_classes = [ItemScore, QuizTaker, ProficiencyLevel, TopicLevel, Profile, Account, Award, Sponsorship, SponsorPledge, AutoPledge]
 		 destroy_list = []
 		 for c in account_classes:
 			for entity in c.all().fetch(1000): destroy_list.append(entity)

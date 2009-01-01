@@ -23,9 +23,21 @@ class Admin(webapp.RequestHandler):
   #Load admin page
   @admin_only
   def get(self):
+    if self.request.get('shortcut') == 'login':
+        return self.dev_login()
     template_values = {}
     path = tpl_path(DEV_PATH +'admin.html')
     self.response.out.write(template.render(path, template_values))
+    
+
+
+  def dev_login(self):
+	if not self.request.get('uid'):
+		self.response.out.write('please enter a uid')
+		return
+	self.session['unique_identifier'] = self.request.get('uid')
+	self.redirect('/register')
+
     
 
 

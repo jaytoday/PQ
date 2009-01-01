@@ -132,6 +132,30 @@ overflow:hidden;
 height:480px;
 }
 
+/* Flyer */
+
+
+
+#flyer {
+	top: 20%;
+	left: 0%;
+}
+
+#flyer a {
+	width: 60px;
+	height: 45px;
+	background: url(img/base/plane.png) no-repeat;
+	position: absolute;
+	text-decoration:none; 
+	display: block;
+    top: 10%;
+	left: 0%;
+	z-index: 100;
+}
+#flyer a span {
+visibility:hidden;
+}
+
 /* Homepage */
 
 

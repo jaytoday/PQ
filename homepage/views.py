@@ -30,7 +30,7 @@ class ViewHomepage(webapp.RequestHandler):
     	for sponsorship, award in zip(recent_sponsorships, recent_awards):
     		recent_actions.append(sponsorship)
     		recent_actions.append(award)
-    	return recent_sponsorships
+    	return recent_actions
 
 
 

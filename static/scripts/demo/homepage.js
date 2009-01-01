@@ -29,7 +29,7 @@ $(document).ready(function()
 	$('#viewport .layer.far').css({width: (viewWidth * 1.04), height: (viewHeight*1.01)});
 	jQuery('#viewport').jparallax({});
 	$('#viewport').css({overflow: "hidden"});
-	$('#flyer a').animate({left: "100%"},24000);
+	$('#flyer a').show().animate({left: "100%"},24000);
 	
 	
 

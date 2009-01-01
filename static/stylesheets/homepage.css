@@ -254,6 +254,13 @@ margin:16px 10px;
 width:300px;
 }
 
+div#intro_frame_box{
+width:360px;
+height: 400px;
+
+}
+
+
 div.employers h3{
 font-size:1.6em;
 margin:1px 8px;

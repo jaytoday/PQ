@@ -7,9 +7,10 @@ from google.appengine.ext import db
 
 
 def registered(user_key):
-    this_user = Profile.get_by_key_name(user_key)
-    if this_user: return this_user
-    else: return False
+    if user_key: 
+        this_user = Profile.get_by_key_name(user_key)
+        if this_user: return this_user
+    return False
     
     
 
@@ -190,6 +191,7 @@ class Sponsorships():
 		biz_sponsor_profiles = []
 		for pledge in auto_pledges:
 			biz_profile = Profile.get_by_key_name(pledge.employer.unique_identifier)
+			if not biz_profile: continue #old references were causing Attribute Error
 			if biz_profile.unique_identifier in already_biz_sponsors: continue # don't let business sponsor user twice 
 			if biz_profile.unique_identifier in biz_sponsor_profiles: continue # catch unsaved business sponsors
 			self.give_biz_sponsorship(pledge, award, biz_profile)

@@ -65,7 +65,8 @@ remote callers access to private/protected "_*" methods.
   def delete_data(self, *args):
   	from dev.methods import delete_data
   	if len(args) == 0: return "specify data type"
-  	return delete_data(args[0])
+  	print delete_data(args[0])
+  	return
   	
 
   def load_data(self, *args):
