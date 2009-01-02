@@ -23,8 +23,8 @@ class DataMethods():
 	business_profile = register_user(uid, fullname, fullname, False)
 	business_employer = self.register_employer(uid, fullname, proficiencies, save=False)
 	if not batch: #only one account being made
-	    self.refresh_employer_images([business_employer])
 	    db.put([business_account, business_profile, business_employer])
+	    self.refresh_employer_images([business_employer])
 	return business_account, business_profile, business_employer 
 
 
@@ -47,12 +47,12 @@ class DataMethods():
 		
   def refresh_employer_images(self, employer_list=False):
         #TODO: Reduce multiple writes
-		print "refreshing images"
 		from google.appengine.api import images
 		save_profiles = []
 		from model.user import Profile, ProfilePicture
 		if not employer_list: employers = Employer.all().fetch(1000)
 		else: employers = employer_list
+		logging.info('saving employer images for %s', employers)
 		for e in employers:
 			p_path = ROOT_PATH + "/data/img/business/"
 			try: image_file = open(p_path + str(e.unique_identifier) + ".png")
@@ -72,7 +72,6 @@ class DataMethods():
 				logging.info('unable to refresh employer image for %s', e.unique_identifier)
 				continue
 			save_profiles.append(this_profile)
-		if employer_list: db.put(save_profiles) # do we need to do this save, or is it done in dev.methods?
 		logging.info('refreshed %d employer images', len(save_profiles))
 		if save_profiles: print "refreshed employer images for", [p.unique_identifier for p in save_profiles]
 		db.put(save_profiles)

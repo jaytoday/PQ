@@ -12,7 +12,7 @@ height: auto !important;
 
 #sitelet-home #logo {
 float:left;
-margin:50px 0 20px 10px;
+margin:120px 0 20px 10px;
 }
 #sitelet-home #intro {
 clear: both;
@@ -255,9 +255,18 @@ width:300px;
 }
 
 div#intro_frame_box{
-width:360px;
-height: 400px;
+height:400px;
+margin:90px 10px;
+width:366px;
+}
 
+div#intro_frame_box h3{
+font-size:1.6em;
+margin:1px 8px;
+}
+
+div#intro_frame_box div#claim{
+margin:6px 10px 10px;
 }
 
 

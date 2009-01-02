@@ -118,7 +118,8 @@ def dump_data(data_type):
 class Build():
 
 	def refresh_profile_images(self, refresh=False):
-		self.delete_profile_images(refresh)
+		if refresh: self.delete_default_profile_images() 
+		else: self.archive_default_profile_images() 
 		image_range = range(3) # change this as you add more. range() is always one int ahead.
 		save_images = []
 		for i in image_range:
@@ -135,13 +136,18 @@ class Build():
 		logging.info("saved %d new profile images", len(save_images))
 
 									
-	def delete_profile_images(self, refresh=False):
-		if refresh: pics =  ProfilePicture.all().fetch(1000)
-		else: pics = ProfilePicture.gql("WHERE type = :1", "pq").fetch(1000)
-		print "deleting profiles images:", pics
+	def delete_default_profile_images(self): # delete images, since all profiles are being refreshed.
+		pics =  ProfilePicture.all().fetch(1000)
+		logging.info("deleting %d profiles images", pics)
 		db.delete(pics)	
 
-	    	
+	def archive_default_profile_images(self): # image types are re-assigned, since deleting would cause a ReferenceError.
+		pics = ProfilePicture.gql("WHERE type = :1", "pq").fetch(1000)
+		logging.info("archiving %d profiles images", pics)
+		for p in pics: p.type = "pq_old"
+		db.put(pics)
+		
+			    	
    	    	
    	    	
    	    			  		
