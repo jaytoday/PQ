@@ -57,7 +57,13 @@ def register_account(user_key, nickname, save=True):
 def default_photo():
 	photos = ProfilePicture.gql("WHERE type = :1", "pq").fetch(10)
 	import random
-	photo = random.sample(photos, 1)
+	try: photo = random.sample(photos, 1)
+	except ValueError: # no default images yet!
+	    logging.warning('sampling error for default images! Refreshing profile images...')
+	    from dev.methods import Build
+	    b = Build()
+	    b.refresh_profile_images()
+	    return default_photo()
 	return photo[0]
 
 

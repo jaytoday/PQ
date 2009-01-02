@@ -32,9 +32,15 @@ div.response{
 
 
 
-<h1>Delete and Load Data</h1>
-<br/><li>
+<h1>Refresh Data</h1>
 
+<br/><li>
+<a {# href="/dev/rpc?action=restore_backup" #}><b>Restore Backup Datastore</b></a> (note: this isn't working right now)
+</li><br/><br/>
+
+<br/><li><i>These should be loaded from top to bottom, in order.</i></li>
+
+<br/><li>
 <a class="delete" id="proficiencies">Delete Proficiencies</a> <div class="response"></div>
 </li><br/><br/><li>
 <a class="load" id="proficiencies">Load Proficiencies</a> <div class="response"></div>
@@ -116,11 +122,6 @@ div.response{
 <a href="/dev/rpc?action=dump_data&arg0=%22employers%22">Dump Employers</a>
 </li><br/><br/>
 
-<br/><br/>
-<h1>Load Backup Data</h1>
-<br/><li>
-<a href="/dev/rpc?action=restore_backup">Restore Backup Datastore</a>
-</li><br/><br/>
 
 <h1>Adding Entities</h1>
 <br/><li>

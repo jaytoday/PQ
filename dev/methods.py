@@ -32,8 +32,8 @@ def refresh_data(data_type):
 def delete_data(data_type):
     data = DataMethods()
     data.delete_data(DATA_TYPES.get(data_type, False))
-    data.execute_delete()
-    return "executed delete for data type", data_type
+    deleted_count = data.execute_delete()
+    return str("deleted " + str(deleted_count) + " rows of " + data_type)
 
 
 def load_data(data_type):
@@ -358,9 +358,9 @@ class DataMethods():
      db.delete(delete_list) # inefficient! why wont itertools work....
      #db.delete(itertools.chain(*[list[1] for list in self.delete_entities.items()]))
      for list in self.delete_entities.items():
-     	logging.info('executed delete for %s', list[0]._model_class)
-     	print "DELETED ", len(list[1]), " rows of ", str(list[0]._model_class).replace('<','').replace('>','')
+     	logging.info('deleted %d rows of %s' % (len(list[1]), list[0]._model_class) )
      self.delete_entities = {}
+     return len(list[1])
      	
      	
   def execute_load(self):

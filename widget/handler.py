@@ -29,7 +29,8 @@ class QuizJS(webapp.RequestHandler):
     'user_token': session_token, 
     'css': self.get_widget_css().replace('\n','').replace("'",'"'),
     'widget_html': self.get_widget_html(), 
-    'widget_subject': self.these_proficiencies[0].key() 
+    'widget_subject': self.these_proficiencies[0].key(),
+    'auto_start': self.get_auto_start() 
     }
      
     path = widget_path('pqwidget.js')
@@ -58,7 +59,11 @@ class QuizJS(webapp.RequestHandler):
     path = widget_path('pqwidget.css')
     return template.render(path, template_values)
     
-
+  def get_auto_start(self):
+  	if self.request.get('autostart') == "True":
+  		return "true"
+  	return "false"
+	
 
 
 # this might be deprecated since we're loading the css inline with the JS 

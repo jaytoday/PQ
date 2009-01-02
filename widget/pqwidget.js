@@ -26,7 +26,7 @@ var iso = function($)
                 settings:
                 {
                         serverUrl: "{{ http_host }}",
-                        autoStart: false, // debugging only?
+                        autoStart: {{ auto_start }},
                         initDone: false,
                         startTime: (new Date()),
                         sliderDuration: 5300, // used for subject preview image sliders
