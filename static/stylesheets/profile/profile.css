@@ -398,14 +398,14 @@ margin-top:-18px;
 }
 
 div.sponsor_user{
-float:left;
-font-size:1.1em;
-height:85px;
 cursor:pointer;
-margin:4px;
-padding:5px;
+float:left;
+font-size:0.9em;
+height:75px;
+margin:8px 4px 4px;
+padding:10px 10px 0;
 text-align:center;
-width:110px;
+width:80px;
 }
 div.sponsor_user:hover{
 background-color:#FFDFEB;

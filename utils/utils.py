@@ -72,7 +72,7 @@ def admin_only(handler):
             else:
                 logging.warning('An unauthorized user has attempted '
                                 'to enter an authorized page')
-                return args[0].redirect(users.create_logout_url('/')) #(users.create_logout_url(args[0].request.uri))
+                return args[0].redirect(users.create_logout_url('/')) 
         else:
             return redirect_to_login(*args, **kwargs)
 

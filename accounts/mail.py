@@ -19,7 +19,7 @@ def mail_intro_message(profile):
 		return False
 	message = mail.EmailMessage()
 	message.sender = "notify@plopquiz.com"
-	message.subject = "Welcome to Plopquiz!" 
+	message.subject = "Welcome to PlopQuiz!" 
 	message.to = profile.email
 	if len(profile.fullname) < 1: user_name = "PlopQuiz User"
 	else: user_name = profile.fullname
