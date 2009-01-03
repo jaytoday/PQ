@@ -1,6 +1,12 @@
 
 
 function startQuiz(html){
+	/*
+	 * Note: This is run before the quiz frame is loaded.
+	 * $.plopquiz.start runs when the quiz frame is loaded
+	 * 
+	 * TODO: Could use some refactoring.
+	 */ 
 
 	// add to body to overlay is in front
 $("body").append(html);

@@ -27,21 +27,7 @@ $(document).ready(function()
 	$(this).find('h1').css({"color":"#000040"});
 	});
 	
-	$('div#take_quiz').click(function(){ 
-	
-	window.location='/preview/proficiency';
-	return; 
-	// ajax occasionally doesn't work. 	
-	$.getScript("/static/scripts/scroll/jquery.scrollTo-min.js");
-	$.getScript("/static/scripts/scroll/jquery.localscroll-1.2.5.js");
-	$.getScript("/static/scripts/scroll/jquery.serialScroll-1.2.1.js");
-	$.getScript("/static/scripts/jquery/jquery.animatedcollapse.js");
-	
-	$('.main').fadeOut(500, function(){ 
-	choose_proficiency(); 
-		
-	});  });
-    //$('div.p_links').click(function(){ choose_proficiency(); });
+
 	$('input#employer_name').preserveDefaultText("what's the name of your business?");
 	
 		

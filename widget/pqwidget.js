@@ -1,11 +1,22 @@
 {% spaceless %}
-//      PQ Quiz Client Library 
-
+{% comment %}
+/*
+ *       PQ Quiz Client Library 
+ * 
+ *  1. jQuery and jQuery core are loaded, if not already loaded.
+ *  2. Quiz session token receieved, and start_quiz runs.
+ *  3. Widget HTML is loaded. (unless autostart == true, and we skip to 4.)
+ *  4. On widget click, $.plopquiz.start runs and item loop begins.
+ *  5. Hard-coded items come first (intro, instructions), and then quiz items.
+ *  6. quiz_item_load.js loop for loading items, and quiz_item_submit.js for submitting items.
+ * 
+ */ 
+{% endcomment %}
 
 // TODO: error handling for ajax responses
 
 
-var iso = function($)
+var session_setup = function($)
 {
 	var opts = {}, 
 	imgPreloader = new Image, imgTypes = ['png', 'jpg', 'jpeg', 'gif'], 
@@ -214,22 +225,14 @@ $.ajax({
 
 
 
-
-
-
 /*
  * This is called when an answer is submitted,
  * even if not during the actual quiz session
  */ 
  
-
-
-
-
-
 $.plopquiz.fetchNextItem = function()
 {
-if($.plopquiz.settings.instructions.completed == false)
+if($.plopquiz.settings.instructions.completed == false) // still in instructions
 		return $.plopquiz.introItems[$.plopquiz.currentItem++]; 
 
 return {
@@ -251,65 +254,6 @@ $.plopquiz.init(); //the init fn is started when the document is ready.
 
 
 
-// Some of these utilities may not be necessary now that we're compiling
-// the JS from Django 
-
-
-// We only still need this function if there's a reason we can use the include tag
-// script should be plain filename ( jqwidget.js not /loc/script.js )
-function addScript(script, id)
-{
-        var s = document.createElement("script");
-        s.src = script;
-        s.rel = "javascript";
-        s.type = "text/javascript";
-
-        var timeout = function()
-        {
-                console.log('failed to load ' + s.src);
-        }
-
-        // six second timeout before throwing error
-        setTimeout(function()
-        {
-                timeout();
-        }, 6000);
-
-        s.onload = function()
-        {
-                timeout = function() {};
-        }
-
-        pqjs.parentNode.appendChild(s);
-}
-
-
-
-
-function addStyle(src)
-{
-        var s = document.createElement("link");
-        s.href = src;
-        s.rel = "stylesheet";
-        s.type = "text/css";
-        pqjs.parentNode.appendChild(s);
-
-
-
-
-}
-
-function waitForScript()
-{
-        // loaded yet? Yes? good continue. No? keep waiting
-        if(window.jQuery)
-                pqLoad();
-        else
-                setTimeout(waitForJQ, 60);
-}
-
-
-
 function pqLoad()
 {
 
@@ -319,40 +263,18 @@ function pqLoad()
                         
 
         // force ready jQuery because page load is (likely?) done
-        jQuery.isReady = true;
+        // jQuery.isReady = true; -- this was breaking some javascript
         // load plopquiz (modified) from within closure
-        iso(jQuery); // wtf does iso mean again?
+        session_setup(jQuery); 
 }
 
-
-//addStyle("{{ http_host }}/css/quiz"); // can we use the include tag here?
 
 
 // do we have jQuery on the page already?
 if(window.jQuery)
-{
-        // yup,
-        pqLoad();
-}
+{ pqLoad(); }
 else
-{
-        // no? load it from the same location as the widget
-        
-        // Load external javascript files
-        {% include "../static/scripts/jquery/jquery.js" %}       // Since this is being done on the server-side, it's much faster than getScript().
-        
-        // This could also make it easier for us to manage the quiztaking code, since there's no penalty to seperating the code between files. 
-        
-        
- pqLoad();
-        // check in 6ms
-        //setTimeout(waitForJQ, 60);
-}
-
-
-
-
-
+{ {% include "../static/scripts/jquery/jquery.js" %}    pqLoad(); }
 
 
 
@@ -364,9 +286,7 @@ else
 
 {% include "quiz_item_submit.js" %}     //plopquiz.submitAnswer    -- submitting each item type  
 
-{% include "start_quiz.js" %}  //startQuiz     
-
-
+{% include "start_quiz.js" %}  //startQuiz.    
 
 
 

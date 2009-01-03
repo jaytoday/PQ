@@ -16,6 +16,7 @@ Setup
 Tips
 ------------    
 
+
 * Developer Methods
 
 
@@ -24,9 +25,11 @@ Tips
   On the development server, this is as easy as clicking the "Sign in as Administrator" checkbox.
 
 
+
+
 * Offline Development
 
-  To make it convenient to develop while offline, you can click "convenience" at the login screen.
+  For convenience while developing offline, you can click "convenience" at the login screen. (zing!)
 
   You can then enter your UID as an argument, like __"http://localhost:8080/dev/admin?shortcut=login&uid=myusername"__ 
 

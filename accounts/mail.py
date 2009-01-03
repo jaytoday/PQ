@@ -55,7 +55,7 @@ def mail_sponsor_message(profile):
 		return False
 	message = mail.EmailMessage()
 	message.sender = "notify@plopquiz.com"
-	message.subject = "Your sponsorship has been awarded!" 
+	message.subject = "Your PlopQuiz sponsorship has been awarded!" 
 	message.to = profile.email
 	
 	message.body = """
@@ -81,7 +81,7 @@ def mail_sponsee_message(profile):
 		return False
 	message = mail.EmailMessage()
 	message.sender = "notify@plopquiz.com"
-	message.subject = "You've earned a sponsorship!" 
+	message.subject = "You've earned a PlopQuiz sponsorship!" 
 	message.to = profile.email
 	
 	message.body = """

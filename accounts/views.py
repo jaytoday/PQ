@@ -115,7 +115,7 @@ class LoginResponse(webapp.RequestHandler):
 class Register(webapp.RequestHandler):
   def get(self):
 		logging.info('Loading Registration Page')
-		self.session['user'] = registered(self.session['unique_identifier'])
+		self.session['user'] = registered(self.session['unique_identifier']) 
 		if self.session['user']: 
 		                       logging.warning('user %s attempting to register while signed in', self.session['user'].unique_identifier) 
 		                       if not self.session['continue']: self.session['continue'] = '/profile/' + self.session['user'].profile_path 
@@ -159,7 +159,7 @@ class Register(webapp.RequestHandler):
 class Logout(webapp.RequestHandler):
   def get(self):
     logging.info('Logging Out User %s', self.session['nickname'])
-    self.session['user'] = False
+    self.session.flush()
     if self.request.get('continue'):
       self.redirect(self.request.get('continue'))
     else:
