@@ -1,19 +1,22 @@
+
 {% spaceless %}
-{% comment %}
+{% comment %} 
 /*
  *       PQ Quiz Client Library 
  * 
- *  1. jQuery and jQuery core are loaded, if not already loaded.
+ *  1. jQuery and jQuery ui are loaded, if not already loaded.
  *  2. Quiz session token receieved, and start_quiz runs.
  *  3. Widget HTML is loaded. (unless autostart == true, and we skip to 4.)
  *  4. On widget click, $.plopquiz.start runs and item loop begins.
  *  5. Hard-coded items come first (intro, instructions), and then quiz items.
- *  6. quiz_item_load.js loop for loading items, and quiz_item_submit.js for submitting items.
+ *  6. quiz_item_load.js contains loop for loading items (updating content and answers), 
+ *     and quiz_item_submit.js contains loop for submitting items.
  * 
  */ 
+ 
+ // TODO: error handling for ajax responses
+ 
 {% endcomment %}
-
-// TODO: error handling for ajax responses
 
 
 var session_setup = function($)

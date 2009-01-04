@@ -15,49 +15,26 @@
 
 $(document).ready(function()
 {
-	
-	$('div#right_corner').hide();
-	
-	$('div#take_quiz').hover(function(){ 
-		
-		$(this).css({"background-color":"#CCCCCC","border-color":"#CCCCCC"});
-		$(this).find('h1').css({"color":"#000080"});
-	},function(){
-	$(this).css({"background-color":"#DDDDDD","border-color":"#DDDDDD"});
-	$(this).find('h1').css({"color":"#000040"});
-	});
-	
 
-	$('input#employer_name').preserveDefaultText("what's the name of your business?");
+$('div#right_corner').hide();
+
+$('div#take_quiz').hover(function(){ 
 	
-		
-	 $('input#employer_name').freebaseSuggest( {ac_param:{type:'/business/company'}})
-				.bind("fb-select", function(e, data) { 
-					
-					window.location = "/preview/employer/profile/";
-					return;
-						$.getScript("/static/scripts/jquery/jquery.ui.js");
-	$.getScript("/static/scripts/profile/tagcloud.js");
-					$('.main').fadeOut(500, function(){ 
-	set_employer(data); 
-		
-	});  })
+	$(this).css({"background-color":"#CCCCCC","border-color":"#CCCCCC"});
+	$(this).find('h1').css({"color":"#000080"});
+},function(){
+$(this).css({"background-color":"#DDDDDD","border-color":"#DDDDDD"});
+$(this).find('h1').css({"color":"#000040"});
+});
 
 
-	
-	
-	// hover and focus fx        
-	$('input').focus(function()
-	{
-		$(this).addClass('focus');
-	})
-	.blur(function()
-	{
-		$(this).removeClass('focus');
-	});
+$('input#employer_name').preserveDefaultText("what's the name of your business?");
 
-	MottoAnimation();	
+
+
+MottoAnimation();
 	
+FeedScroll();	
 	
 });
 
@@ -65,7 +42,7 @@ $(document).ready(function()
 
 
 
-function MottoAnimation()
+function MottoAnimation() 
 {
 	if ($('#smart').length < 1) { return false; }
 	var ml = Number($('#smart').css('marginLeft').replace(/p[xt]/,''));
@@ -108,44 +85,39 @@ function MottoAnimation()
 }
 
 
-function set_employer(data){
-	
 
-	
-	console.log(data);
-	
-$('.main_wrapper').load("/preview/employer/profile .main_wrapper", function(){
-	
-		$.getScript("/static/scripts/profile/profile.js");		
-			});
 
-	$('.main').fadeIn(2000);
-	
-	
 
+
+//scroll through action feed items
+function FeedScroll(){	
+	
+	console.log($("#action_feed > div").length);
+	
+	//if ($("#action_feed > div").length < 6) ExtendFeed();
+	
+var scroll_feed = setTimeout(function()
+		{
+		$("#action_feed > div:first").animate({opacity: 0, height: 0 }, {duration:800, complete:function(){ $(this).remove(); $("#action_feed").append($(this).animate({opacity: 1, height: 100 }));    }});
+		
+		FeedScroll();
+		}, 6000);
 }
 
+/*
+ *  This is not necessary if we won't be doing memcache/ajax combo for newsfeed.
+function ExtendFeed(){	
+	
+	console.log('extending!');
+	
+	$.ajax({
+		url: '/homepage/rpc?action=extend_feed',
+		//dataType: "json",
+		cache: false,
+		success: function(html){ console.log(html);  $("#action_feed").append(html);  }, // code in quiz_item_load.js
+});
 
-function choose_proficiency(data){	
-	/*
-	$.getScript("/static/scripts/scroll/jquery.scrollTo-min.js");
-	$.getScript("/static/scripts/scroll/jquery.localscroll-1.2.5.js");
-	$.getScript("/static/scripts/scroll/jquery.serialScroll-1.2.1.js");
-	$.getScript("/static/scripts/jquery/jquery.animatedcollapse.js");
-	
-	*/
-	
-		$('.main_wrapper').load("/preview/proficiency .main_wrapper", function(){
-	
-	$('div.proficiency_container').hide({ complete:function(){ $(this).animate({opacity: 1}).show();  }}); 
-			
-	$.getScript("/static/scripts/homepage/proficiency-slider.js");		
-	$.getScript("/static/scripts/homepage/proficiency.js");
-	
-	// $('.proficiency_container').find('div#biofuels').trigger('click'); -- get this working for shortcuts from homepage
-			});
+	}
 
-	
-	
-}
-
+* 
+* */

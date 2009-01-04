@@ -56,7 +56,8 @@ def url_routes(map):
 	map.connect('employer/rpc', controller = 'employer.rpc:RPCHandler')		
 	map.connect('accounts/rpc', controller = 'accounts.rpc:RPCHandler')	
 	map.connect('profiles/rpc', controller = 'profiles.rpc:RPCHandler')		
-	map.connect('dev/rpc', controller = 'dev.rpc:RPCHandler')			
+	map.connect('dev/rpc', controller = 'dev.rpc:RPCHandler')		
+	map.connect('homepage/rpc', controller = 'homepage.rpc:RPCHandler')		
 	map.connect('profiles/picture_upload', controller = 'profiles.rpc:PictureUpload')	
 	
 	

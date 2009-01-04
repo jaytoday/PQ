@@ -1,6 +1,4 @@
 import logging
-# Log a message each time this module get loaded.
-logging.info('Loading %s', __name__)
 import cgi
 import wsgiref.handlers
 import os
@@ -17,23 +15,26 @@ HOMEPAGE_PATH = 'homepage/'
 class ViewHomepage(webapp.RequestHandler):
 
     def get(self):
-        template_values = {'page_title': 'Plopquiz', 'recent_actions': self.get_recent_actions(), 'featured_quiz': 'Misconceptions'}
+        from homepage.methods import load_action_feed
+        template_values = {'page_title': 'Plopquiz', 'recent_actions': load_action_feed(), 'featured_quiz': 'Misconceptions'}
         path = tpl_path(HOMEPAGE_PATH + 'homepage.html')
         self.response.out.write(template.render(path, template_values))
 
-    def get_recent_actions(self):
-    	recent_actions = []
-    	from model.account import Sponsorship, Award
-    	recent_sponsorships = Sponsorship.all().order('date').fetch(5)
-    	recent_awards = Award.all().order('date').fetch(5)
-    	# Would be better to sort both lists by date and combine
-    	for sponsorship, award in zip(recent_sponsorships, recent_awards):
-    		recent_actions.append(sponsorship)
-    		recent_actions.append(award)
-    	return recent_actions
 
+	
 
-
+	def load_action_feed():
+		ACTION_THRESHOLD = 20 # too much? do testing on laptops.
+		action_feed = []
+		from model.account import Sponsorship, Award
+		recent_sponsorships = Sponsorship.all().order('date').fetch(ACTION_THRESHOLD)
+		recent_awards = Award.all().order('date').fetch(ACTION_THRESHOLD)
+		action_feed.extend(recent_sponsorships)
+		action_feed.extend(recent_awards)
+		from operator import attrgetter
+		action_feed.sort(key = attrgetter('date'), reverse = True)
+		return action_feed
+		
 
 
 
