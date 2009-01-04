@@ -92,8 +92,6 @@ function MottoAnimation()
 //scroll through action feed items
 function FeedScroll(){	
 	
-	console.log($("#action_feed > div").length);
-	
 	//if ($("#action_feed > div").length < 6) ExtendFeed();
 	
 var scroll_feed = setTimeout(function()

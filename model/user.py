@@ -45,16 +45,18 @@ class Profile(db.Model):
     
     #scores = db.ListProperty(db.Key) # ItemScore keys
     #levels = db.ListProperty(db.Key) # ProficiencyLevel keys    
-    
-    
+
     #Awards, Gifts and Scholarships 
     #pledged_sponsorships - these are sponsorships that I've pledged. 
     #sponsorships_pledged_to_me - these are sponsorships that have been pledged to me. 
+    #awards - awards that have been earned
     
-    #gifts = 
+    #award_count = db.IntegerProperty(default = 0) # this is to avoid lookups for counts
+    #sponsorship_count = db.IntegerProperty(default = 0) # this is to avoid lookups for counts
     
-    
-    
+    #sponsorships - sponsorships that have been earned
+    #gifts = TODO
+
     # Personal info 
     name = db.StringProperty()
     occupation = db.StringProperty(required=False)

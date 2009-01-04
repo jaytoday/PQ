@@ -325,7 +325,7 @@ margin:4px 10px;
 .is_subject{
 float:right;
 width:120px;
-margin:-80px 10px;
+margin:-102px 10px;
 }
 
 .is_recipient{
@@ -334,7 +334,7 @@ margin:4px 15px;
 
 .is_sponsor{
 float:right;
-margin:-85px 18px;
+margin:-75px 18px;
 }
 
 span.action_type{
@@ -351,7 +351,10 @@ background: #FFF;
 }
 
 span.action_date{
-font-size: .7em;
+display:block;
+float:left;
+font-size:0.7em;
+margin:10px 49px;
 }
 span.sponsored_by{
 margin-left: 135px;

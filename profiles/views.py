@@ -18,7 +18,7 @@ from .model.user import Profile, QuizTaker, ProfilePicture
 PROFILE_PATH = 'profile/'
 REPORT_CARD_LIMIT = 5
 CLOUD_LIMIT = 9
-TOPIC_LEVEL_MIN = 60
+TOPIC_LEVEL_MIN = 50
 
 class ViewProfile(webapp.RequestHandler):
   #View a profile
@@ -55,13 +55,15 @@ class ViewProfile(webapp.RequestHandler):
 		depth = 50
 		# get awards and sponsorships
 		from model.account import Award, Sponsorship
+		"""
 		for s in user.sponsorships.fetch(100): #just temporarily, to test for referenceproperty errors.
 			try: s.sponsor.photo.key()
 			except: 
 			    s.delete()
+		"""
 		return { 'user': user, 'profile_owner': is_profile_owner,  'top_levels': topic_levels[0:REPORT_CARD_LIMIT],
 		        'level_cloud': level_cloud, 'flash_msg': get_flash(),
-		        'range': range, 'depth': depth, 'level_msg': self.level_msg }
+		        'range': range, 'depth': depth, 'level_msg': self.level_msg, 'scroll': self.set_scroll(user) }
 
 
       
@@ -85,6 +87,17 @@ class ViewProfile(webapp.RequestHandler):
 		   level_cloud.append(tl)
 		num -= 1
 	return level_cloud            
+
+
+  def set_scroll(self, user):
+    # TODO: Could these extra fetches be avoided? A count would have to be created seperately, in QT. 
+	SCROLL_THRESHOLD = 3
+	scroll = {}
+	if len(user.awards.fetch(1000)) > SCROLL_THRESHOLD: scroll['awards'] = True
+	if len(user.sponsorships.fetch(1000)) > SCROLL_THRESHOLD: scroll['sponsors'] = True
+	if len(scroll) == 0: scroll = False
+	return scroll
+
 
 
 

@@ -2,44 +2,19 @@
 {% block title %}{{ user.fullname }}{% endblock %}
 
 {% block head %}
-		<link rel="stylesheet" href="/static/stylesheets/ui/app_screen.css" type="text/css" media="screen">
-		<link rel="stylesheet" href="/static/stylesheets/profile/tabs.css" type="text/css" media="screen">
-		<link rel="stylesheet" href="/static/stylesheets/profile/profile.css" type="text/css" media="screen">
-		<script src="/static/scripts/utils/s3slider.js"></script> 
-		
-		<script src="/static/scripts/profile/tagcloud.js"></script>
-		   
-		   <script src="/static/scripts/profile/profile.js"></script>
-		   
-		<script type="text/javascript">
-$(document).ready(function()
-{
-	
-	// Show messages based on whether user has awards and sponsorships
-	var has_awards = "False";	
-{% for award in user.awards %}
-if ("{{ forloop.first }}") has_awards = "True";
- if (!$('.{{ forloop.counter }}_has_subject_image')) $('li#{{ forloop.counter }}_default_subject_image').show(); {# show default image, no slider #}
- else  $('#award_{{ forloop.counter }}').s3Slider({ timeOut: 3300 });  {# load slider for this award#} 
-{% endfor %}  
+<link rel="stylesheet" href="/static/stylesheets/ui/app_screen.css" type="text/css" media="screen">
+<link rel="stylesheet" href="/static/stylesheets/profile/tabs.css" type="text/css" media="screen">
+<link rel="stylesheet" href="/static/stylesheets/profile/profile.css" type="text/css" media="screen">
+<script src="/static/scripts/utils/s3slider.js"></script> 
+<script src="/static/scripts/profile/tagcloud.js"></script>
+<script src="/static/scripts/profile/profile.js"></script>
+<script type="text/javascript"> {% include "scripts/profile_init.js" %}</script>
 
-if (has_awards != "True") $('#main_nav').find('a[href="#report_card"]').click();
+{% if scroll %}
+<script type="text/javascript">{% include "scripts/profile_scroll.js" %}</script>
+{% endif %}
 
-if ($('div.is_sponsor').length == 0) $('div#no_sponsorship_note').show();
-
-
-if (($('div.award_img').length == 0)) $('div#no_award_note').show();
-
-
-
-
- });
- 
-</script>
-	   
-	      
-		
-	{% if profile_owner %}
+{% if profile_owner %}
 <script src="/static/scripts/profile/profile_owner.js"></script>
 {% endif %}
 
@@ -50,204 +25,181 @@ if (($('div.award_img').length == 0)) $('div#no_award_note').show();
 
 {% block main %}
 
-	<!-- TABS -->
-	
-	<div class="profile_outer">
-	
-	
-		<div class="profile">
-	
-		<div id="photo"><img src='/image/profile/?img_id={{ user.photo.key }}&size=large'/></div>
-		<div id="basics">
-		<div id="name">{{ user.fullname }} </div>
-		<!--TODO <div id="profession">Software Designer</div> -->
-		</div>
+<!-- TABS -->
+
+<div class="profile_outer">
+
+
+<div class="profile">
+
+<div id="photo"><img src='/image/profile/?img_id={{ user.photo.key }}&size=large'/></div>
+<div id="basics">
+<div id="name">{{ user.fullname }} </div>
+<!--TODO <div id="profession">Software Designer</div> -->
+</div>
+
+	<ul id="main_nav">
+		<li class="ui-tabs-nav-item" id="profile_nav">
 		
-            <ul id="main_nav">
-                <li class="ui-tabs-nav-item" id="profile_nav">
-                
-                <a href="#summary">Portfolio</a></li>
-                <li class="ui-tabs-nav-item"><a href="#report_card">Report Card</a></li>
-            </ul>
+		<a href="#summary">Portfolio</a></li>
+		<li class="ui-tabs-nav-item"><a href="#report_card">Report Card</a></li>
+	</ul>
 
 
-		<div id="summary"  class="profile-panel">
-		<span class="gray_box_header">Academic Awards</span>
-		 <div class="panel_content " id="awards" > <div class="gray_box awards_box">
-		   {% for award in user.awards %}
-    <div id="award_{{ forloop.counter }}" class="proficiency_pic selection_box award_img">
-                        <ol class="sliderContent" id="award_{{ forloop.counter }}Content">
+<div id="summary"  class="profile-panel">
+<span class="gray_box_header">Academic Awards</span>
+<div class="panel_content " id="award_content" > 
+<div class="gray_box awards_box" id="award_container">
+<div id="award_scroll">
+<div id="awards">
 
-                        <li style="display:none;" id="{{ forloop.counter }}_default_subject_image"  class="sliderImage award_{{ forloop.parentloop.counter }}Image">
-                            <img src="/image/subject/?img_id=default&size=small"/>
-                            <span class="img_{% cycle top,bottom %}">{{ award.type }} <br/><strong>  {{ award.proficiency.name}}</strong></span>
-                        </li>
-                        
-                        {% for img in award.proficiency.images %}
-                        <li class="sliderImage award_{{ forloop.parentloop.counter }}Image {{ forloop.counter }}_has_subject_image">
-                            <img src="/image/subject/?img_id={{ img.key }}&size=small"/>
-                            <span class="img_{% cycle top,bottom %}">{{ award.type }} <br/><strong>  {{ award.proficiency.name}}</strong></span>
-                        </li>
+
+ 
+{% for award in user.awards %}
+<div id="award_{{ forloop.counter }}" class="proficiency_pic selection_box award_img">
+		<ol class="sliderContent" id="award_{{ forloop.counter }}Content">
+
+		<li style="display:none;" id="{{ forloop.counter }}_default_subject_image"  class="sliderImage award_{{ forloop.parentloop.counter }}Image">
+			<img src="/image/subject/?img_id=default&size=small"/>
+			<span class="img_{% cycle top,bottom %}">{{ award.type }} <br/><strong>  {{ award.proficiency.name}}</strong></span>
+		</li>
+		
+		{% for img in award.proficiency.images %}
+		<li class="sliderImage award_{{ forloop.parentloop.counter }}Image {{ forloop.counter }}_has_subject_image">
+			<img src="/image/subject/?img_id={{ img.key }}&size=small"/>
+			<span class="img_{% cycle top,bottom %}">{{ award.type }} <br/><strong>  {{ award.proficiency.name}}</strong></span>
+		</li>
+		{% endfor %}
+
+		<div class="clear award_{{ forloop.counter }}Image"></div>
+	</ol>
+
+</div>
 {% endfor %}
-                        <div class="clear award_{{ forloop.counter }}Image"></div>
-                    </ol>
-    
-    </div>
+
+<div id="no_award_note" class="info_note profile_info_note" style="display:none;">{% if profile_owner %}You have{% else %}{{ user.fullname }} has{% endif %}  no awards. </div>
+ 
+ </div> {# awards #}
+ </div> {# award_scroll #}
+ 
+  <div class="box_nav" id="award_scroll_nav" style="display:none">
+<button id="award_next" class="small_nav"><img src="/static/stylesheets/img/utils/purple_next_tiny.png"></button>
+<button id="award_prev" class="small_nav"><img src="/static/stylesheets/img/utils/purple_prev_tiny.png"></button>
+</div>
+
+ </div> {# award_container #}
+ 
+ 
+
+
+ </div> {# award_content #}
+
+
+<span class="gray_box_header">Academic Sponsors</span>
+<div class="panel_content " id="sponsor_content" > 
+<div class="gray_box sponsors_box" id="sponsor_container">
+<div id="sponsor_scroll">
+
+
+{% if profile_owner %}	
+<div class="info_note sponsor_user" id="sponsor_owner"> <a>Get Sponsors Now!</a> </div>
+{% else %}
+<div class="info_note sponsor_user" id="sponsor_not_owner"> <a href="{{ http_host }}/sponsor/{{ user.profile_path }}">Sponsor {{ user.fullname }} Now!</a> </div>
+{% endif %}
+
+
+<div id="sponsors">
+
+{% for sponsorship in user.sponsorships %}
+<div class="gray_square_box is_sponsor">
+<img src="/image/profile/?img_id={{ sponsorship.sponsor.photo.key }}&size=large"/>
+<span class="img_bottom">{{ sponsorship.sponsor.fullname }}</span></div>
 {% endfor %}
- <div id="no_award_note" class="info_note profile_info_note" style="display:none;">{% if profile_owner %}You have{% else %}{{ user.fullname }} has{% endif %}  no awards. </div>
 
-		 
-		 </div></div>
-		
-		<span class="gray_box_header">Academic Sponsors</span>
-		<div class="panel_content " id="sponsors" > <div class="gray_box sponsors_box">
-		
-	{% if profile_owner %}	
-	<div class="info_note sponsor_user" id="sponsor_owner"> <a>Get Sponsors Now!</a> </div>
-	{% else %}
-	<div class="info_note sponsor_user" id="sponsor_not_owner"> <a href="{{ http_host }}/sponsor/{{ user.profile_path }}">Sponsor {{ user.fullname }} Now!</a> </div>
-	{% endif %}
-	
-	 {% for sponsorship in user.sponsorships %}
+<div id="no_sponsorship_note" class="info_note profile_info_note" style="display:none;">{% if profile_owner %}You have{% else %}{{ user.fullname }} has{% endif %}  no sponsors. </div>
+
+</div> {# sponsors #}
+</div> {# sponsor_scroll #}
+
+<div class="box_nav" id="sponsor_scroll_nav" style="display:none">
+<button id="sponsor_next" class="small_nav"><img src="/static/stylesheets/img/utils/purple_next_tiny.png"></button>
+<button id="sponsor_prev" class="small_nav"><img src="/static/stylesheets/img/utils/purple_prev_tiny.png"></button>
+</div>
+
+</div> {# sponsor_container #}
+
+</div> {# sponsor_content #}
 
 
-    <div class="gray_square_box is_sponsor">
-    <img src="/image/profile/?img_id={{ sponsorship.sponsor.photo.key }}&size=large"/>
-    <span class="img_bottom">{{ sponsorship.sponsor.fullname }}</span></div>
-{% endfor %}
- <div id="no_sponsorship_note" class="info_note profile_info_note" style="display:none;">{% if profile_owner %}You have{% else %}{{ user.fullname }} has{% endif %}  no sponsors. </div>
 
-		
-		
-		</div></div>
-		
-		
-		
-		
-		{% if profile_owner %}
-		<!--
-		<div class="embed_code">
-		share your top scores 
-		<input type="text" value='<script type="text/javascript"><a href="http://www.plopquiz.com/"</script>' onClick="$(this).select();" name="score_embed"/>
-		</div> 
-		
-		-->
-		{% endif %} 
 
-		</div><!-- end summary -->
+{% if profile_owner %}
+<!--
+<div class="embed_code">
+share your top scores 
+<input type="text" value='<script type="text/javascript"><a href="http://www.plopquiz.com/"</script>' onClick="$(this).select();" name="score_embed"/>
+</div> 
 
-   
+-->
+{% endif %} 
 
-            <div id="report_card" class="profile-panel" >
-            <a id="toggle" >toggle display</a>
-        <div id="report_1"  class="report_section">
-        {% if level_msg %}
-         <div class="panel_content">
-        <div class="info_note profile_info_note">
-        {% if profile_owner %} You {% else %} {{ user.fullname }} {% endif %} can develop a report card
-        by taking <a>quizzes</a>.
-        </div>
-        </div>
-        {% endif %}
+</div><!-- end summary -->
+
+
+	<div id="report_card" class="profile-panel" >
+	<a id="toggle" style="display:none;" >toggle display</a>
+<div id="report_1"  class="report_section">
+{% if level_msg %}
+ <div class="panel_content">
+<div class="info_note profile_info_note">
+{% if profile_owner %} You {% else %} {{ user.fullname }} {% endif %} can develop a report card
+by taking <a>quizzes</a>.
+</div>
+</div>
+{% endif %}
 {% for tl in top_levels %}                
-                <div class="panel_content report_card_panel" {% if forloop.last %} style="border-style:none;" {% endif %}>
-                <div class="proficiency_name"><h3>{{ tl.topic.name }} </h3></div>
-                  <h4 class="percentile"><span>{{ tl.topic_level }}</span>th percentile</h4>
-                <div class="scoreometer"><img src="http://chart.apis.google.com/chart?chs=90x45&cht=gom&chd=t:{{ tl.topic_level }}&chco=F7F5F4,00ea00&chf=bg,s,F7F5F4"/></div>
-                </div>
+		<div class="panel_content report_card_panel" {% if forloop.last %} style="border-style:none;" {% endif %}>
+		<div class="proficiency_name"><h3>{{ tl.topic.name }} </h3></div>
+		  <h4 class="percentile"><span>{{ tl.topic_level }}</span>th percentile</h4>
+		<div class="scoreometer"><img src="http://chart.apis.google.com/chart?chs=90x45&cht=gom&chd=t:{{ tl.topic_level }}&chco=F7F5F4,00ea00&chf=bg,s,F7F5F4"/></div>
+		</div>
 {% endfor %}
-               
-             </div>    
-            
+	   
+	 </div>    
+	
 
+<!-- This may be deprecated
 <div id="report_2" class="report_section hidden">
 
 
-                <div class="panel_content" >
-                
-             <h2>Skill Cloud</h2>
-                
-              <div class="dynacloud" id="dynacloud">
-              
-              {% for l in level_cloud %}  {{ l.topic.name }}  {% endfor %}   
+<div class="panel_content" >
 
-                </div>
-                
-                </div>
-                
-                 <div class="panel_content" id="stats">
-                
-              <div class="stat">   <h2>Range: </h2> <div class="statometer"><img src="http://chart.apis.google.com/chart?chs=100x55&cht=gom&chd=t:{{ range }}&chco=DDDDDD,00ea00&chf=bg,s,DDDDDD"/></div> </div>
-                 
-              <div class="stat">      <h2>Depth: </h2>  <div class="statometer"><img src="http://chart.apis.google.com/chart?chs=100x55&cht=gom&chd=t:{{ depth }}&chco=DDDDDD,00ea00&chf=bg,s,DDDDDD"/> </div>  </div>
-                 
-            </div>
-            
-            
-            </div>
-            
-            
-                 
-               
-            </div><!-- portfolio -->
-{% if profile_owner %}
-{% include "profile_owner.html" %}
-{% endif %}
+<h2>Skill Cloud</h2>
 
-    <ul id="personal_nav">
-     <li  class="ui-tabs-nav-item"><a href="#info">Info</a></li>
-		    <li style="display:none;" class="ui-tabs-nav-item"><a href="#school">School</a></li>
-                <li  style="display:none;" class="ui-tabs-nav-item"><a href="#network">Network</a></li>
-                
-            </ul>
-            <div id="personal">
-		<div class="personal_content" id="info"> <div class="info_content">  
-		Work Status: <div>{{ user.work_status|default_if_none:"" }} </div>
-		
-		Location: <div>{{ user.location|default_if_none:"" }}</div>
-		
-		Webpage: <div><a>{{ user.webpage|default_if_none:"" }}</a></div>
-		
-		About Me: <div>{{ user.aboutme|default_if_none:"" }}</div>		
-		 </div> </div> 
-		
-		
-		<div class="personal_content" id="school">
-		<div class="school_content">
+<div class="dynacloud" id="dynacloud">
 
-		 </div> 
+{% for l in level_cloud %}  {{ l.topic.name }}  {% endfor %}   
+
+</div>
+
+</div>
+
+ <div class="panel_content" id="stats">
+
+<div class="stat">   <h2>Range: </h2> <div class="statometer"><img src="http://chart.apis.google.com/chart?chs=100x55&cht=gom&chd=t:{{ range }}&chco=DDDDDD,00ea00&chf=bg,s,DDDDDD"/></div> </div>
+ 
+<div class="stat">      <h2>Depth: </h2>  <div class="statometer"><img src="http://chart.apis.google.com/chart?chs=100x55&cht=gom&chd=t:{{ depth }}&chco=DDDDDD,00ea00&chf=bg,s,DDDDDD"/> </div>  </div>
+ 
+</div>
+
+
+</div>
+-->
 		 
-		 
-		</div>
-		
-							<div class="personal_content" id="network">
-		<div class="network_content"><div class="outside_profile linkedin">LinkedIn Profile</div><div class="outside_profile facebook">Facebook Profile</div>
-		<div class="network_item following"> 
-		Following: 
-		
-		<div>
-		<li>Greenfuel Technologies</li>
-		<li>Brightsource</li>
-		<li>Sopogy</li>
-		</div>
-
-		 </div> <!--end info_content-->
-		 
-			<div class="network_item following"> 
-		Employed By: 
-		
-		<div>
-		<li>Plopquiz</li>
-
-		</div>
-
-		 </div> <!--end info_content-->	
-		
-		 </div> 
-		 
-		 
-		</div>
-        </div> <!-- personal_nav -->
+	   
+	</div><!-- portfolio -->
+	
+{% include "profile_sidebar.html" %}
 
 
 </div>  <!-- profile --> 
@@ -274,7 +226,7 @@ if (($('div.award_img').length == 0)) $('div#no_award_note').show();
 {% endif %}
 
 
- </div> 
+</div> 
 
 
 

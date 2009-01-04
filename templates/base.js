@@ -23,7 +23,8 @@ $('#viewport').css({overflow: "hidden"});
 
 
 
-$('input[type=button]').focus(function()
+
+$('input[type=button], button').focus(function()
 {
 $(this).addClass('focus');
 })
@@ -43,7 +44,7 @@ $(this).removeClass('down');
 $(this).removeClass('focus');
 });
 
-$('input[type=button]').hover(function()
+$('input[type=button], button').hover(function()
 {
 $(this).addClass('hover');      
 },function(){

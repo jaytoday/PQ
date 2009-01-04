@@ -19,6 +19,14 @@ margin:-236px 0 0 6px;
 position:absolute;
 }
 
+div.box_nav{
+margin:-90px 0 0 456px;
+position:absolute;
+}
+
+
+
+
 ul#personal_nav li{
 margin:6px 1px 0 0;
 }
@@ -387,11 +395,11 @@ width:200px;
 
 /* Profile Sections */
 
-div#awards{
+div#award_content{
 height:121px;
 }
 
-div#sponsors{
+div#sponsor_content{
 border:medium none;
 height:120px;
 margin-top:-18px;
@@ -400,12 +408,12 @@ margin-top:-18px;
 div.sponsor_user{
 cursor:pointer;
 float:left;
-font-size:0.9em;
+font-size:0.8em;
 height:75px;
 margin:8px 4px 4px;
 padding:10px 10px 0;
 text-align:center;
-width:80px;
+width:72px;
 }
 div.sponsor_user:hover{
 background-color:#FFDFEB;
@@ -770,3 +778,21 @@ line-height:1.4em;
 margin:20px;
 width:300px;
 }
+
+
+/* scrolling */
+
+#award_container, #sponsor_container{
+position:relative;
+}
+
+
+#award_scroll, #sponsor_scroll{
+height: 118px;
+/* overflow: auto; */
+overflow: hidden;
+margin:0 0 0 5px;
+}
+
+#sponsor_scroll{ width: 450px; }
+#award_scroll{ width: 470px; }

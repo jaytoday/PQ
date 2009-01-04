@@ -498,6 +498,17 @@ button img{
 float:left;
 }
 
+button.small_nav{
+display:block;
+height:22px;
+width:25px;
+margin-top: 3px;
+}
+/* if we want to do horizontal buttons, some of this may have to be redistributed */
+
+button.small_nav img{
+margin-top: -4px;
+}
 
 
 input.button:hover,button:hover{
