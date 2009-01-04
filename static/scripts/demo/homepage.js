@@ -5,37 +5,49 @@ preserveDefaultText: function(defaultValue, replaceValue)
 		$(this).focus(function()
 		{
 			if(typeof(replaceValue) == 'undefined')
-				replaceValue = '';  
+				replaceValue = '';
 			if($(this).val() == defaultValue)
 				$(this).val(replaceValue);
 		});
 
-		$(this).blur(function(){  
+		$(this).blur(function(){
 			if(typeof(replaceValue) == 'undefined')
-				replaceValue = '';  
+				replaceValue = '';
 			if($(this).val() == replaceValue)
 				$(this).val(defaultValue);
 		});
 		return this;
 	}
 });
- 
-$(document).ready(function()
-{
-	var viewWidth = $('#viewport').width();
-	var viewHeight = $('#viewport').height();
-	$('#viewport .layer.near').css({width: (viewWidth * 1.4), height: (viewHeight*1.3)});
-	$('#viewport .layer.mid').css({width: (viewWidth * 1.15), height: (viewHeight*1.05)});
-	$('#viewport .layer.far').css({width: (viewWidth * 1.04), height: (viewHeight*1.01)});
-	jQuery('#viewport').jparallax({});
-	$('#viewport').css({overflow: "hidden"});
-	$('#flyer a').show().animate({left: "100%"},24000);
-	
-	
+
+$(document).ready(function () {
+    /**
+     * Recalculate dimensions of layers for parallax effect
+     */
+    function resizeViewport() {
+        var jqViewport = $('#viewport');
+        var viewWidth = jqViewport.width();
+        var viewHeight = jqViewport.height();
+
+        $('.layer.near', jqViewport).css({ width: (viewWidth * 1.4),  height: (viewHeight*1.3)  });
+        $('.layer.mid',  jqViewport).css({ width: (viewWidth * 1.15), height: (viewHeight*1.05) });
+        $('.layer.far',  jqViewport).css({ width: (viewWidth * 1.04), height: (viewHeight*1.01) });
+
+        jqViewport.jparallax({});
+    }
+
+    resizeViewport();
+
+    // Call resizeViewport() each time when window was resized
+    $(window).resize(resizeViewport);
+
+    $('#viewport').css({overflow: "hidden"});
+    $('#flyer a').show().animate({left: "100%"},24000);
+
 
 	$('form#signup #email').preserveDefaultText('nobel@macarthur.com');
 
-	// hover and focus fx        
+	// hover and focus fx
 	$('input').focus(function()
 	{
 		$(this).addClass('focus');
@@ -47,7 +59,7 @@ $(document).ready(function()
 
 	$('#signup input[type=button]').hover(function()
 	{
-		$(this).addClass('hover');      
+		$(this).addClass('hover');
 	},function(){
 		$(this).removeClass('hover');
 	});
@@ -59,7 +71,7 @@ $(document).ready(function()
 		{
 			$('form#signup input').hide();
 			$('#add_success').show('fast');
-		});      
+		});
 
 	}).focus(function()
 	{
@@ -73,13 +85,13 @@ $(document).ready(function()
 		$(this).removeClass('down');
 	});
 
-	MottoAnimation();	
+	MottoAnimation();
 });
- 
- 
- 
- 
-  
+
+
+
+
+
 function MottoAnimation()
 {
 	var ml = Number($('#smart').css('marginLeft').replace(/p[xt]/,''));
@@ -111,7 +123,7 @@ function MottoAnimation()
 	},1400);
 }
 
-     
+
 
 // Server object that will contain the callable methods
 var server = {};
