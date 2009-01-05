@@ -14,12 +14,12 @@ $("body").append(html);
 // resize overlay to document not window
 $("#quiz_overlay").css("height", $(document).height());
 
-// stating and stopping quiz
-$("#quiz_wrap")
+// starting and stopping quiz
+$("#pq_wrapper")
 .bind("quizstarting", function()
 {
 	$(this).show();
-	// re-init
+	// TODO: Show loader from widget location, instead of immediate fadeout.
 })
 .bind("quizclosing", function()
 {
@@ -107,8 +107,6 @@ $.plopquiz.answers.removeClass('disabled').data("disabled", false);
 	$.plopquiz.timer.stop();
 });
 
-// totally useless?
-//var textHolder = $('#blank').text();
 var textHolder = '     ';
 
 $('#quiz_answers .answer', $.pq_wrapper).hover(function()

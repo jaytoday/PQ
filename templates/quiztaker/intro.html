@@ -34,31 +34,39 @@
 
 <div class="subject_panel" id="summary_{{ forloop.counter }}">
 
- <div class="subject_description">{{ p.blurb }}</div>
+ <div class="subject_description summary">{{ p.blurb }}</div>
  
  <div class="subject_stats">
  <div class="subject_stat popularity"><h3>Popularity: </h3>  <div class="statometer" ><img src="http://chart.apis.google.com/chart?chs=50x25&cht=gom&chd=t:{{ p.popularity }}&chco=DDDDDD,00ea00&chf=bg,s,DDDDDD"/> </div> </div>
  <div class="subject_stat difficulty"><h3>Difficulty: </h3>  <div class="statometer" ><img src="http://chart.apis.google.com/chart?chs=50x25&cht=gom&chd=t:{{ p.difficulty }}&chco=DDDDDD,00ea00&chf=bg,s,DDDDDD"/> </div></div>
  </div>
  
- </div>
+ </div>   {# end summary #}
+ 
+ 
  
  
  <div class="subject_panel" id="study_{{ forloop.counter }}" style="display:none;">
  
  <div class="subject_description study_guide">
  
- <div class="study_header">Links:</div>
- <div class="study_links">
+ <div id="links" class="study_header links_header">Links</div>
+ <div class="study_content study_links">
 {{ p.link_html }}
 </div>
-<!-- <div class="study_header">Videos:</div> -->
+<div id="videos" class="study_header videos_header">Videos</div> 
+ <div class="study_content study_videos" style="display:none;">
+{{ p.video_html }}
+</div>
+
 
  
  </div>
  
- </div>
- 
+ </div>   {# end study guide #}
+
+
+
  
  
  </div> {# end subject preview #}

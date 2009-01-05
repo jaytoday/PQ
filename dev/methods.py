@@ -76,6 +76,7 @@ def refresh_subject_images(this_subject=False):
 	print len(proficiencies), " subjects left"	
 	if len(proficiencies) == 0: 
 	    memcache.set("subject_image_queue", None, 60000) # reset min-slice'
+	    build.refresh_default_subject_image() # refresh default
 	    print "Data Load Is Finished"
 	    return		  	
 	   

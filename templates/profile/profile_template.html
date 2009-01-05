@@ -214,6 +214,10 @@ by taking <a>quizzes</a>.
 {% include "flash/post_quiz.html" %}
 {% endifequal %}
 
+{% ifequal flash_msg "fresh_register" %}
+{% include "flash/post_quiz.html" %}
+{% endifequal %}
+
 {% ifequal flash_msg "new_award"  %}
 {% include "flash/new_award.html" %}
 {% endifequal %}

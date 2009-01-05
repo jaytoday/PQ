@@ -146,7 +146,7 @@ $('#pqwidget #subject_1').s3Slider({ timeOut: 8300  });
  	
  	
 				 // Setup commonly used selectors
-				$.pq_wrapper = $("#quiz_wrap");  // the entire interface, including bg and overlay.
+				$.pq_wrapper = $("#pq_wrapper");  // the entire interface, including bg and overlay.
 				$.plopquiz.quiz_inner_content = $('#quiz_inner > div'); // both content and answers
 				$.plopquiz.quiz_content = $('#quiz_inner  #quiz_content'); // content loaded from server
 				$.plopquiz.quiz_loader = $('#quiz_inner #quiz_loading');
@@ -155,8 +155,6 @@ $('#pqwidget #subject_1').s3Slider({ timeOut: 8300  });
 				$.plopquiz.answer_container = $("#quiz_inner #quiz_answers"); // just answers and buttons
 				$.plopquiz.answers = $.plopquiz.answer_container.find('div');
 				
-                console.log($("#quiz_wrap"));
-               
                 
                 // if the click handler is setup before the frame loads, wait for it
                 if($.pq_wrapper.length > 0)

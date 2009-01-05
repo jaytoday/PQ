@@ -118,7 +118,7 @@ remote callers access to private/protected "_*" methods.
   	refresh_subject_images(this_subject)
   	
 
-  # refresh default profile images
+
   def refresh_profile_images(self, *args):
   	from methods import Build
   	build = Build()

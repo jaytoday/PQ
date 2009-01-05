@@ -3,7 +3,7 @@ $.plopquiz.submitAnswer = function(answer)
 {
 $.event.trigger("submittingAnswer");
 // check the answer for special cases
-// this will handle the non-skiping timeout on instructions2,
+// this will handle the non-skipping timeout on instructions2,
 // the proficiencies, the score, and any other special boxes
 switch($.plopquiz.quizItem.item_type)
 {

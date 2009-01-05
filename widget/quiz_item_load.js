@@ -68,7 +68,6 @@ $("#skip", $.plopquiz.answer_container).hide();
 if(quizItem.item_type == "intro")
 {
 	
-	
 $('#quiz_answers #confirm', $.plopquiz.answer_container).attr('class', 'answer intro_quiz').find('span.continue_button').text('Practice Quiz');
 $('button span#intro_button', $.plopquiz.answer_container).show(); // todo: this is coming late 
 $('.intro_frame_content #subject_container_1').show().addClass('selected'); // show first subject
@@ -102,14 +101,21 @@ $('#subject_1', $.plopquiz.quiz_content).s3Slider({ timeOut: $.plopquiz.settings
 
 $('button.summary',$.plopquiz.quiz_content).addClass('clicked'); // summaries are open by default
 $('button',$.plopquiz.quiz_content).focus(function(){$(this).blur();}).click(function(){
-var this_subject = $('div#subject_container_' + $(this).attr('id'), $.plopquiz.quiz_content)
-$('div.subject_panel', this_subject).hide();
-$('div#' + $(this).attr('class') + '_' + $(this).attr('id'), this_subject).show();
-
-$(this).parent().find('button').removeClass('clicked'); $(this).addClass('clicked'); // change styles
-
+		var this_subject = $('div#subject_container_' + $(this).attr('id'), $.plopquiz.quiz_content)
+		$('div.subject_panel', this_subject).hide();
+		$('div#' + $(this).attr('class') + '_' + $(this).attr('id'), this_subject).show();
+		$(this).parent().find('button').removeClass('clicked'); $(this).addClass('clicked'); // change styles
 });
 
+
+
+$('.study_header',$.plopquiz.quiz_content).click(function(){
+	$(this).parent().find('.study_header').removeClass('selected').end()
+	.find('.study_content').hide('fast').end()
+	.find('.study_' + $(this).attr('id')).show().end().end()
+	.addClass('selected');
+	
+});
 
 //temporary
 $('button.take_test', $.plopquiz.answer_container).show();
