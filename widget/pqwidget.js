@@ -155,7 +155,7 @@ $('#pqwidget #subject_1').s3Slider({ timeOut: 8300  });
 				$.plopquiz.answer_container = $("#quiz_inner #quiz_answers"); // just answers and buttons
 				$.plopquiz.answers = $.plopquiz.answer_container.find('div');
 				
-
+                console.log($("#quiz_wrap"));
                
                 
                 // if the click handler is setup before the frame loads, wait for it
@@ -165,7 +165,7 @@ $('#pqwidget #subject_1').s3Slider({ timeOut: 8300  });
                         setTimeout($.plopquiz.start, 600);
                         
                         
-				//widget is draggable
+				//widget is draggable -- TODO: having trouble with this, more info at http://docs.jquery.com/UI/Draggable/draggable#options
 				$('#quiz_outer').draggable(); 
 
         }; 

@@ -624,13 +624,13 @@ position:absolute;
 cursor:pointer;
 }
 .gray_square_box span{
-	font: 13px Arial, Helvetica, sans-serif;
+	font: 12px Arial, Helvetica, sans-serif;
 	font-variant:small-caps;
-	padding:3px 11px 7px;
+	padding:3px 11px;
 	position:absolute;
 	width:73px;
 	background-color: #000;
-	filter: alpha(opacity=70);
+	filter: alpha(opacity=85);
 	-moz-opacity: 0.85;
 	-khtml-opacity: 0.85;
 	opacity: 0.85;

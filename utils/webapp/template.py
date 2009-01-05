@@ -249,8 +249,6 @@ def get_user_info():
 	# Construct Login/Logout Text.
 	session = Session()
 	if session.logged_in():
-		profile_path = session['nickname'].lower()
-		profile_path = profile_path.replace(' ','_') # TODO: Datastore lookup for profile path 
 		login_user = {'user' : session['user'], 'nickname': session['user'].nickname, 'profile_path': session['user'].profile_path, 'email':session['user'].email }
 		login_text = 'Sign Out'
 		login_url = str('/logout')

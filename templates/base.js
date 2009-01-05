@@ -13,13 +13,29 @@
  
 $(document).ready(function()
 {
-var viewWidth = $('#viewport').width();
-var viewHeight = $('#viewport').height();
-$('#viewport .layer.near').css({width: (viewWidth * 1.4), height: (viewHeight*1.3)});
-$('#viewport .layer.mid').css({width: (viewWidth * 1.15), height: (viewHeight*1.05)});
-$('#viewport .layer.far').css({width: (viewWidth * 1.04), height: (viewHeight*1.01)});
-jQuery('#viewport').jparallax({});
-$('#viewport').css({overflow: "hidden"});
+	jqViewport = $('#viewport');
+	    /**
+     * Recalculate dimensions of layers for parallax effect
+     */
+    function resizeViewport() {
+        var viewWidth = jqViewport.width();
+        var viewHeight = jqViewport.height();
+
+        $('.layer.near', jqViewport).css({ width: (viewWidth * 1.4),  height: (viewHeight*1.3)  });
+        $('.layer.mid',  jqViewport).css({ width: (viewWidth * 1.15), height: (viewHeight*1.05) });
+        $('.layer.far',  jqViewport).css({ width: (viewWidth * 1.04), height: (viewHeight*1.01) });
+
+        jqViewport.jparallax({});
+    }
+
+    resizeViewport();
+
+    // Call resizeViewport() each time when window was resized
+    $(window).resize(resizeViewport);
+    
+
+jQuery(jqViewport).jparallax({});
+$(jqViewport).css({overflow: "hidden"});
 
 
 

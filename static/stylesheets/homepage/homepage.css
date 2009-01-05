@@ -255,8 +255,8 @@ width:300px;
 }
 
 div#intro_frame_box{
-height:400px;
-margin:90px 10px;
+height:380px;
+margin:100px 0 60px 10px;
 width:366px;
 }
 
@@ -373,30 +373,31 @@ font-weight: bold;
 
 div.intro_item_header{
 font-size:1.2em;
-margin:0 8px;
+margin:10px 8px 0px;
 }
 
 div.intro_item{
-margin: 10px 15px;
+line-height:1.2em;
+margin:3px 15px;
 }
 
+div.intro_item a{ font-weight: bold; }
 
 
 
+/* cut out what isnt needed, and share more between stylesheets */
 
-/* cut out what isnt needed */
-
-.gray_square_box{
+.gray_square_box, .selection_box{
 cursor:pointer;
 }
 .gray_square_box span{
-	font: 13px Arial, Helvetica, sans-serif;
+	font: 12px Arial, Helvetica, sans-serif;
 	font-variant:small-caps;
-	padding:3px 11px 7px;
+	padding:3px 11px;
 	position:absolute;
 	width:73px;
 	background-color: #000;
-	filter: alpha(opacity=70);
+	filter: alpha(opacity=85);
 	-moz-opacity: 0.85;
 	-khtml-opacity: 0.85;
 	opacity: 0.85;
