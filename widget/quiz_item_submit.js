@@ -10,6 +10,11 @@ switch($.plopquiz.quizItem.item_type)
 
 case "intro":
 
+// selected quiz subject is saved
+var quiz_subject_choice = $('.intro_frame_content > .selected', $.plopquiz.quiz_content).find('.subject_guide').attr('id');
+$.plopquiz.settings.proficiencies = Array(); // clear out proficiencies in case its a restart
+$.plopquiz.settings.proficiencies.push(quiz_subject_choice);
+
 $('button.take_test').hide();
 $('div.go_to_site', $.plopquiz.answer_container).hide(); // temporary, while in development
 $.plopquiz.loadItem();
@@ -46,10 +51,8 @@ case "instructions2":
 break;
 
 case "begin_quiz":
-	// clear out proficiencies in case its a restart
-	$.plopquiz.settings.proficiencies = Array();
 
-	$('#proficiency_choices input:checked', $.plopquiz.quiz_content).each(function() { $.plopquiz.settings.proficiencies.push($(this).val()); });
+	//$('#proficiency_choices input:checked', $.plopquiz.quiz_content).each(function() { $.plopquiz.settings.proficiencies.push($(this).val()); });
 	$.plopquiz.timer.css('width', '100%'); 
 
 	// this start the server session and retrieves the first questions
@@ -68,8 +71,8 @@ case "begin_quiz":
 			success: function(rpc)
 			{
 					// the session token to submit answers and load quiz content
-					if(rpc.token)
-							$.plopquiz.settings.sessionToken = rpc.token;
+					if (!rpc.token) return $.plopquiz.fatalError('invalid quiz subject');
+					else $.plopquiz.settings.sessionToken = rpc.token;
 
 					// just echo what we send
 					// reset the proficiencies here incase the server returns something different
@@ -84,6 +87,7 @@ case "begin_quiz":
 					// load the first question
 					$.plopquiz.loadItem($.extend({timed:true,"item_type":"quiz_item"}, q));
 			}
+		       // TODO: error  -- this is only for when the call itself doesn't work
 	});
 break;
 
@@ -107,17 +111,17 @@ case "quiz_item":
 					arg2: "\"" + $.plopquiz.settings.sessionToken + "\"",
 					arg3: "\"" + vendor + "\""
 			},
-			success: function(obj)
+			success: function(rpc)
 			{
-					var q = obj["quiz_item"];
-
-					if(q === false)
-					{
-							return $.plopquiz.loadItem({url: "/intro/?page=quiz_complete", item_type:"quiz_complete", noSkip: true, answers: [ "Submit" ]});
+					var q = rpc["quiz_item"];
+                    // no more quiz items left
+					if(q === false) { 
+					return $.plopquiz.loadItem({url: "/intro/?page=quiz_complete", item_type:"quiz_complete", noSkip: true, answers: [ "Submit" ]});
 					}
 
 					$.plopquiz.loadItem($.extend({timed:true,"item_type":"quiz_item"}, q));
 			}
+			//todo: ajax error
 	});
 
    

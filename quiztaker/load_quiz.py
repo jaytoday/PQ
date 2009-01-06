@@ -72,7 +72,7 @@ class LoadQuiz():
         return self.quiz_array
         
   						
-
+  # God mode lets moderators debug quiz items
   def god_mode(self, item, item_answers): # check if god mode is enabled
   	if self.session['god_mode']: 
 		try: item_answers[item_answers.index(item.index)] = str(item.index) + "!"
@@ -120,7 +120,7 @@ class QuizSession():
 		proficiencies = []
 		for p in profNames:
 		   this_p = Proficiency.get_by_key_name(p)
-		   proficiencies.append(this_p.name)
+		   if this_p: proficiencies.append(this_p.name)
 		self.session['proficiencies'] = proficiencies
 		return proficiencies
 

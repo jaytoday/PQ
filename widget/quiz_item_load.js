@@ -84,8 +84,8 @@ $('#subject_thumb_' + n, $.plopquiz.quiz_content).s3Slider({ timeOut: $.plopquiz
 // bind thumbnail clicks
 $('div.subject_thumb_container li', $.plopquiz.quiz_content).click(function(){ //TODO: Slider/Coverflow (low priority)
 $('div.subject_thumb_container li', $.plopquiz.quiz_content).removeClass('selected_thumb'); $(this).addClass('selected_thumb');
-$('.intro_frame_content .subject_container', $.plopquiz.quiz_content).hide('fast');
-$('.intro_frame_content #subject_container_' + $(this).attr('id'), $.plopquiz.quiz_content).show('fast');
+$('.intro_frame_content .subject_container', $.plopquiz.quiz_content).hide('fast').removeClass('selected');
+$('.intro_frame_content #subject_container_' + $(this).attr('id'), $.plopquiz.quiz_content).show('fast').addClass('selected');
 
 $('#subject_' + $(this).attr('id'), $.plopquiz.quiz_content).s3Slider({ timeOut: $.plopquiz.settings.sliderDuration }); // initiate a slider for the subject being shown.
 
@@ -98,9 +98,10 @@ $('#subject_1 li:first', $.plopquiz.quiz_content).show();
 $('#subject_1', $.plopquiz.quiz_content).s3Slider({ timeOut: $.plopquiz.settings.sliderDuration });  // might not be working properly
 
 
-
+// switch between summary and study guide
 $('button.summary',$.plopquiz.quiz_content).addClass('clicked'); // summaries are open by default
 $('button',$.plopquiz.quiz_content).focus(function(){$(this).blur();}).click(function(){
+	if ($(this).hasClass('clicked')) return false;
 		var this_subject = $('div#subject_container_' + $(this).attr('id'), $.plopquiz.quiz_content)
 		$('div.subject_panel', this_subject).hide();
 		$('div#' + $(this).attr('class') + '_' + $(this).attr('id'), this_subject).show();
@@ -108,10 +109,10 @@ $('button',$.plopquiz.quiz_content).focus(function(){$(this).blur();}).click(fun
 });
 
 
-
+// in study guide, switch between links and videos
 $('.study_header',$.plopquiz.quiz_content).click(function(){
 	$(this).parent().find('.study_header').removeClass('selected').end()
-	.find('.study_content').hide('fast').end()
+	.find('.study_content').hide().end()
 	.find('.study_' + $(this).attr('id')).show().end().end()
 	.addClass('selected');
 	
@@ -182,11 +183,14 @@ if(quizItem.item_type == "begin_quiz")
 		/* TEMPORARILY we are just bypassing this frame. Eventually, we want to refactor the functionality of this frame into the intro frame */
 
 var p = {};
-$('#confirm', $.plopquiz.answer_container).removeClass('intro_quiz').addClass('begin_quiz').find('span.continue_button').text('Begin Quiz');                    
+$('#confirm', $.plopquiz.answer_container).removeClass('intro_quiz').addClass('begin_quiz').find('span.continue_button').text('Begin Quiz');    
+                
 // this is a bit hacked together, later the proficiencies will be loaded from the server
 for(var i in $.plopquiz.proficiencies)
 $("#proficiency_choices")
 .append('<input type="checkbox" value="' + $.plopquiz.proficiencies[i] + '" checked /><span class="proficiency">' + $.plopquiz.proficiencies[i] + '</span><br />');
+
+
 }
 
 

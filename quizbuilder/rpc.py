@@ -11,6 +11,7 @@ from .model.quiz import QuizItem, RawQuizItem,  ContentPage
 from .model.proficiency import ProficiencyTopic, Proficiency
 import views
 import induction
+from dev.methods import dump_data
 
 
 class RPCMethods(webapp.RequestHandler):
@@ -43,12 +44,11 @@ remote callers access to private/protected "_*" methods.
   def SubmitContentUrl(self, *args):
       induce_url = induction.RawItemInduction()
       #JSON Serialize save_url
-      data = DataMethods()
       # Induction:
       # 1. Perform semantic analysis
       # 2. Retrieve answer candidates
       # 3. Attempt to create raw quiz items.
-      json_response = data.dump_raw_items(induce_url.get(args))
+      json_response = dump_raw_items(induce_url.get(args))
       return json_response
 
 
@@ -68,15 +68,13 @@ remote callers access to private/protected "_*" methods.
 
 
   def GetRawItemsForTopic(self, *args):  
-      data = DataMethods()
       raw_quiz_items = []
       this_topic = ProficiencyTopic.gql("WHERE name = :1 ORDER BY date DESC", args[0])
       #these_items = RawQuizItem().gql("WHERE topic = :1", this_topic.get())
-      try: return data.dump_raw_items(this_topic.get().pages.get().raw_items.fetch(10))  # get 10 at a time...todo: lazy rpc-loader.
+      try: return dump_raw_items(this_topic.get().pages.get().raw_items.fetch(10))  # get 10 at a time...todo: lazy rpc-loader.
       except: return simplejson.dumps([])
 
   def GetRawItemsForProficiency(self, *args):  
-      data = DataMethods()
       this_proficiency = Proficiency.gql("WHERE name = :1 ORDER BY date DESC", args[0]) # try get_or_insert if Proficiency is key
       prof_pages = this_proficiency.get().pages.fetch(10)
       raw_items = []
@@ -84,15 +82,14 @@ remote callers access to private/protected "_*" methods.
           these_items = RawQuizItem.gql("WHERE page = :1 AND moderated = False", p ) # only get unmoderated items
           items = these_items.fetch(1000)
           raw_items += items
-      try: return data.dump_raw_items(raw_items)  # get 10 at a time...todo: lazy rpc-loader.
+      try: return dump_raw_items(raw_items)  # get 10 at a time...todo: lazy rpc-loader.
       except: return simplejson.dumps([])
 
   def GetTopicsForProficiency(self, *args):  
-      data = DataMethods()
       topics = []
       this_proficiency = Proficiency.gql("WHERE name = :1 ORDER BY date DESC", args[0]) # try get_or_insert if Proficiency is key
       topics = ProficiencyTopic.gql("WHERE proficiency = :1 ORDER BY date DESC", this_proficiency.get().key())
-      try: return data.dump_raw_items(topics.fetch(10))  # get 10 at a time...todo: lazy rpc-loader.
+      try: return dump_raw_items(topics.fetch(10))  # get 10 at a time...todo: lazy rpc-loader.
       except: return simplejson.dumps([])
       
 

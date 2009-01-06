@@ -244,7 +244,12 @@ return {
 };
 }
 
- 
+
+$.plopquiz.fatalError = function(msg) { 
+	//TODO: collect error stats
+	window.location = '{{ http_host }}/error/quiz'
+	console.log('fatal error: ', msg) 
+} 
  
 
 $(function()
