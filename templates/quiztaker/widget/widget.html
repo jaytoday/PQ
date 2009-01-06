@@ -5,9 +5,14 @@
 <div class='quiz_wrap' id='widget_wrapper' style='display:block;'>
 {# Remember, kids. Always use protection. #}
 {% for p in proficiencies %} 
-<div class='widget_wrap' onClick='$(this).fadeOut();'>
-{% include "widget_frame.html" %}
+<div class='widget_wrap'>
+{% include 'widget_frame.html' %}
 </div>
+
+<div class='widget_load' style='display:none;'>
+<ul><li><div id='widget_loading'><img src='{{ http_host }}/static/stylesheets/img/ajax-loader.gif'/><span class='loading'>Loading...</span><img src='{{ http_host }}/static/stylesheets/img/ajax-loader.gif'/></div>
+</div>
+
 {% endfor %}
 {# In case there is no javascript or JS error, link to the quiz #}
 

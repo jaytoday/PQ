@@ -18,14 +18,15 @@ $("#quiz_overlay").css("height", $(document).height());
 $("#pq_wrapper")
 .bind("quizstarting", function()
 {
+	$('#widget_wrapper').fadeOut();
 	$(this).show();
 	// TODO: Show loader from widget location, instead of immediate fadeout.
 })
 .bind("quizclosing", function()
 {
 	$(this).hide();
-	$('.widget_wrap').fadeIn();
-
+	$('#widget_wrapper').fadeIn().find('button').css('display', 'inline').end().find('.widget_load').hide();
+  console.log($('#widget_wrapper').find('button'));
 	// reset to start of quiz, TODO: this should handle skipping instructions;
 	$.plopquiz.currentItem = 0;
 });

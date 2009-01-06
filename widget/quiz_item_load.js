@@ -8,7 +8,7 @@ $.plopquiz.quiz_content.html(html);
 // hide the answers for now
 $('.answer', $.plopquiz.answer_container).hide();
 
-$.plopquiz.quiz_loader.animate({opacity: 0}, {  duration: 0, complete: function()
+$.plopquiz.quiz_loader.attr('class', quizItem.item_type + '_load').animate({opacity: 0}, {  duration: 0, complete: function()
 { $.plopquiz.quiz_inner_content.animate({opacity:1},{duration:200}).removeClass('disabled'); } 
 }).hide();
 
@@ -67,6 +67,7 @@ $("#skip", $.plopquiz.answer_container).hide();
 
 if(quizItem.item_type == "intro")
 {
+
 	
 $('#quiz_answers #confirm', $.plopquiz.answer_container).attr('class', 'answer intro_quiz').find('span.continue_button').text('Practice Quiz');
 $('button span#intro_button', $.plopquiz.answer_container).show(); // todo: this is coming late 
@@ -260,7 +261,7 @@ $(this).attr('id', next_id);
 });      
 }                
 
-// start the quiz now
+// start the quiz now -- This seems to be working, but isn't it the wrong place? 
 $.event.trigger('quizstarting');
 
 // short delay to ensure everything is loaded

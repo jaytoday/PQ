@@ -147,6 +147,7 @@ button.widget_button{
 position:absolute;
 width:216px;
 margin:90px -280px !important;
+display:inline;
 }
 
 button.widget_button span{
@@ -366,7 +367,7 @@ top:10%;
 z-index:90;
 }
 
-.quiz_wrap div#quiz_inner,.quiz_wrap #quiz_loading {
+.quiz_wrap div#quiz_inner,.quiz_wrap #quiz_loading, .quiz_wrap #widget_loading {
 position: relative;
 border:8px solid #DDDDDD;
  background:#EDF2F8 none repeat scroll 0 0 !important;
@@ -375,13 +376,26 @@ border:8px solid #DDDDDD;
 
 }
 
-#quiz_loading  {
+.quiz_wrap #quiz_loading  {
 left:15%;
 position:absolute !important;
 top:40%;
 width:250px;
+z-index: 99;
 }
 
+.quiz_wrap #widget_loading  {
+float:left;
+margin:-145px 50px;
+top:40%;
+width:250px;
+z-index:99;
+}
+
+
+#quiz_loading.intro_load { left:30% !important; }
+
+#quiz_loading.quiz_item_load { left:22% !important; }
 
 #quiz_left, #quiz_right {
         position: absolute; 

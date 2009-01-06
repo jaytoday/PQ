@@ -27,8 +27,7 @@ DEMO_PATH = 'demo/'
 
 
 class PQHome(webapp.RequestHandler):
-  #Load Plopquiz Homepage 
-
+  #Load Plopquiz Homepage -- Just for Teaser Homepage
   def get(self):
     self.response.clear()
     template_values = {}
@@ -42,7 +41,6 @@ class PQHome(webapp.RequestHandler):
 
 class PQDemo(webapp.RequestHandler):
   #Load Ad Embed Preview Page
-
   def get(self):
     template_values = {}
     path = tpl_path(DEMO_PATH +'example_blog.html')
@@ -81,18 +79,17 @@ class QuizItemTemplate(webapp.RequestHandler):
 
 
 class TakeQuiz(webapp.RequestHandler):
-  #Load Plopquiz Homepage 
+  #Load Quiz Based on Path Argument
   def get(self):
     load_proficiencies = self.get_proficiencies()
-    try: proficiencies = load_proficiencies[0]
-    except:
-        return self.redirect('/not_found/')
-        logging.info('quiz not found') 
-    vendor = load_proficiencies[1]
-    if proficiencies == None:
-        all_proficiencies = Proficiency.all()
-        proficiencies = [proficiency.name for proficiency in all_proficiencies.fetch(4)] 
-        vendor = self.get_default_vendor()
+    proficiencies = load_proficiencies[0]
+    vendor = load_proficiencies[1] 
+    if proficiencies[0] == None:
+        return self.redirect('/quiz_not_found/')
+        logging.info('quiz not found for argument %s', load_proficiencies[0]) 
+        #all_proficiencies = Proficiency.all() # not all, just public ones. 
+        #proficiencies = [proficiency for proficiency in all_proficiencies.fetch(4)] 
+        #vendor = self.get_default_vendor()
     load_quiz = LoadQuiz()
     if vendor == "": vendor = self.get_default_vendor()
     template_values = {"proficiencies": proficiencies, "quiz_subject": str(proficiencies[0].name), "vendor_name": vendor.name.capitalize(), "vendor": vendor.key() }
@@ -100,26 +97,17 @@ class TakeQuiz(webapp.RequestHandler):
     self.response.out.write(template.render(path, template_values))
 
   def get_proficiencies(self):
+  # Get proficiencies from path
     if len(self.request.path.split('/quiz/')[1]) > 0:
 		import string
 		this_proficiency = string.capwords(self.request.path.split('/quiz/')[1].replace("%20"," "))
-		return [[Proficiency.get_by_key_name(this_proficiency)], ""]
+		return [[Proficiency.get_by_key_name(this_proficiency)], ""]  # This only allows one proficiency, and no vendor. 
 		"""
-		employer = Employer.gql('WHERE name = :1', self.request.path.split('/quiz/')[1].lower())
-		try: these_proficiencies = employer.get().proficiencies
-		except: return None
-		proficiencies = []
-		for p in these_proficiencies:
-		   this_p = Proficiency.get_by_key_name(p)
-		   proficiencies.append(this_p.name)
-		return [proficiencies, employer.get()]        
-		#except: return [proficiency.name for proficiency in all_proficiencies.fetch(4)]
     if self.request.get('proficiencies'):
         proficiencies = self.request.get('proficiencies')
         return [eval(proficiencies,{"__builtins__":None},{}), self.get_default_vendor()] 
         """ 
-    return None
-	   
+    return None	   
          
   def get_default_vendor(self):
 	plopquiz = Employer.gql("WHERE name = :1", "Plopquiz")
@@ -156,16 +144,24 @@ class PQIntro(webapp.RequestHandler):
 		        quiz_subjects.insert(0, p)
 		        continue
 		return quiz_subjects[0:5]
+		    
+		    
+		    
 		        
 class Widget(webapp.RequestHandler):
+        # Load Quiz Widget
         def get(self):
                 path = tpl_path(QUIZTAKER_PATH + '/widget/widget.html')
                 proficiencies = [Proficiency.get(self.request.get('proficiency'))]
                 template_values = {'proficiencies': proficiencies}
                 self.response.out.write(template.render(path, template_values))
+                 
+                 
+                 
                         
                         
 class QuizFrame(webapp.RequestHandler):
+        # Load HTML layout for Quiz
         def get(self):
                 template_values = {}
                 path = tpl_path(QUIZTAKER_PATH + 'quizframe.html')

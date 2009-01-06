@@ -117,24 +117,22 @@ if(jsonpcallback)
 $.plopquiz.load_widget = function()
 {
 	
-
 // the script just loaded so stop the timeout
 clearTimeout($.plopquiz.timewatch);
+$.plopquiz.widget_html = "{% spaceless %}{{ widget_html }}{% endspaceless %}";
+// add widget HTML
+$.plopquiz.widget_wrapper = $("#pqwidget");
 
-var widget_html = "{% spaceless %}{{ widget_html }}{% endspaceless %}";
-
-// yay the widget script loaded, setup the start handler
-$("#pqwidget").html(
-	$(widget_html).hide().fadeIn().click($.plopquiz.start)
+$.plopquiz.widget_wrapper.html(
+ $($.plopquiz.widget_html).hide().fadeIn().click($.plopquiz.start)
 );
 
-$('button',$("#pqwidget")).focus(function(){$(this).blur();})
+$('button',$.plopquiz.widget_wrapper).focus(function(){$(this).blur();})
 
 // remove default image if there are custom images (if we will never have subjects without pictures, this isn't necessary)
-	if ($("#pqwidget").find('li').length > 1) $("#pqwidget").find('li:first').remove();   
+	if ($.plopquiz.widget_wrapper.find('li').length > 1) $.plopquiz.widget_wrapper.find('li:first').remove();   
 	 
 	 
-
 $('#pqwidget #subject_1').s3Slider({ timeOut: 8300  }); 
 
 };
@@ -143,7 +141,6 @@ $('#pqwidget #subject_1').s3Slider({ timeOut: 8300  });
 
 
  $.plopquiz.start = function(){
- 	
  	
 				 // Setup commonly used selectors
 				$.pq_wrapper = $("#pq_wrapper");  // the entire interface, including bg and overlay.
@@ -155,15 +152,16 @@ $('#pqwidget #subject_1').s3Slider({ timeOut: 8300  });
 				$.plopquiz.answer_container = $("#quiz_inner #quiz_answers"); // just answers and buttons
 				$.plopquiz.answers = $.plopquiz.answer_container.find('div');
 				
+                $.plopquiz.widget_wrapper.find('button').hide().end().find('.widget_load').show();
                 
-                // if the click handler is setup before the frame loads, wait for it
+                // Is this ever necessary?? if the click handler is setup before the frame loads, wait for it
                 if($.pq_wrapper.length > 0)
                         $.plopquiz.loadItem();
                 else
-                        setTimeout($.plopquiz.start, 600);
+                        setTimeout($.plopquiz.start, 100);
+                       
                         
-                        
-				//widget is draggable -- TODO: having trouble with this, more info at http://docs.jquery.com/UI/Draggable/draggable#options
+				//widget is draggable
 				$('#quiz_outer').draggable(); 
 
         }; 
