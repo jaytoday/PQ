@@ -95,10 +95,8 @@ class LoginResponse(webapp.RequestHandler):
 			  try:  nickname = json['profile'].get('displayName', json['profile']['email'].split('@')[0]) # try to get a nickname, somehow! 
 			  #except: nickname = json['profile'].get('displayName', unique_identifier[-7:-1]) # TODO: whoops, your name is gibberish. 
 			  except: nickname = ''
-		try: email = json['profile']['email']
-		except: email = ''
-		try: fullname = json['profile']['displayName']
-		except: fullname = nickname	  
+		email = json['profile'].get('email', '')
+		fullname = json['profile'].get('displayName', nickname)
 		self.session['unique_identifier'] = json['profile']['identifier']
 		self.session['nickname'] = nickname
 		self.session['email'] = email

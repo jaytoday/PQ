@@ -120,6 +120,13 @@ $.plopquiz.load_widget = function()
 // the script just loaded so stop the timeout
 clearTimeout($.plopquiz.timewatch);
 $.plopquiz.widget_html = "{% spaceless %}{{ widget_html }}{% endspaceless %}";
+
+                // TODO: visible error if no <body> in document
+                $("script", $("body")).each(function() {
+                if(this.src.indexOf('{{ http_host }}/quiz') > -1) 
+                $(this).after('<div id="pqwidget"><a href="{{ http_host }}/quiz/" class="widget_footer">Take This Quiz at PlopQuiz.Com</a></div>"'); } );
+                        
+                        
 // add widget HTML
 $.plopquiz.widget_wrapper = $("#pqwidget");
 
@@ -135,13 +142,15 @@ $('button',$.plopquiz.widget_wrapper).focus(function(){$(this).blur();})
 	 
 $('#pqwidget #subject_1').s3Slider({ timeOut: 8300  }); 
 
+
 };
 
 
 
 
  $.plopquiz.start = function(){
- 	
+ 	                                       
+                       
 				 // Setup commonly used selectors
 				$.pq_wrapper = $("#pq_wrapper");  // the entire interface, including bg and overlay.
 				$.plopquiz.quiz_inner_content = $('#quiz_inner > div'); // both content and answers
@@ -151,15 +160,21 @@ $('#pqwidget #subject_1').s3Slider({ timeOut: 8300  });
 				$.plopquiz.timer = $('#timer_bar', $.plopquiz.timer_wrapper);
 				$.plopquiz.answer_container = $("#quiz_inner #quiz_answers"); // just answers and buttons
 				$.plopquiz.answers = $.plopquiz.answer_container.find('div');
-				
-                $.plopquiz.widget_wrapper.find('button').hide().end().find('.widget_load').show();
                 
-                // Is this ever necessary?? if the click handler is setup before the frame loads, wait for it
+                
+                // if quiz is loaded from widget
+                if(!$.plopquiz.settings.autoStart) $.plopquiz.widget_wrapper.find('button').hide().end().find('.widget_load').show();
+                 
+                // if the click handler is setup before the frame loads, wait for it
                 if($.pq_wrapper.length > 0)
+                        
                         $.plopquiz.loadItem();
                 else
-                        setTimeout($.plopquiz.start, 100);
-                       
+                        return setTimeout($.plopquiz.start, 100);
+                        
+                        				
+                
+
                         
 				//widget is draggable
 				$('#quiz_outer').draggable(); 

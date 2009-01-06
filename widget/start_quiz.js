@@ -12,7 +12,12 @@ function startQuiz(html){
 $("body").append(html);
 
 // resize overlay to document not window
+function drawOverlay(){
 $("#quiz_overlay").css("height", $(document).height());
+}
+drawOverlay();
+$(window).resize(drawOverlay);
+
 
 // starting and stopping quiz
 $("#pq_wrapper")
@@ -176,17 +181,18 @@ $("#quiz_content", $.pq_wrapper)
 
 });
 
+
+
 //  auto-start
-if($.plopquiz.settings.autoStart)
-$.plopquiz.start();
+if($.plopquiz.settings.autoStart) $.plopquiz.start();
+else $.plopquiz.load_widget();
 
 
 
-
-//we're finished
+//confirm setup is finished
 $('body').data('pq','True');
 
-$.plopquiz.load_widget();
+
 
 
 } // end of startQuiz
