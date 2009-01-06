@@ -62,8 +62,7 @@ class RPCMethods(webapp.RequestHandler):
   def start_quiz(self, *args):
 	quiz_session = QuizSession()
 	token = quiz_session.initiate()
-	profNames = args[0]
-	#return {'token': token, 'quiz_item': quiz_session.load_quiz_items(profNames, token)}
+	profNames = args[0] # only one right now
 	response = quiz_session.load_quiz_items(profNames, token)
 	if not response: return False
 	else: return {'token': token, 'quiz_item': quiz_session.next_quiz_item(token)}

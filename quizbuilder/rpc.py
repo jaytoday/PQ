@@ -10,7 +10,7 @@ from utils.gql_encoder import GqlEncoder, encode
 from .model.quiz import QuizItem, RawQuizItem,  ContentPage
 from .model.proficiency import ProficiencyTopic, Proficiency
 import views
-import induction
+from induction import RawItemInduction
 from dev.methods import dump_data
 
 
@@ -42,14 +42,14 @@ remote callers access to private/protected "_*" methods.
 ######## INDUCTION METHODS ##########  
         
   def SubmitContentUrl(self, *args):
-      induce_url = induction.RawItemInduction()
+      induce_url = RawItemInduction()
       #JSON Serialize save_url
       # Induction:
       # 1. Perform semantic analysis
       # 2. Retrieve answer candidates
       # 3. Attempt to create raw quiz items.
-      json_response = dump_raw_items(induce_url.get(args))
-      return json_response
+      return encode(induce_url.get(args))
+
 
 
 

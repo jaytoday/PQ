@@ -72,7 +72,7 @@ html += '<div class="answer_preview"><div class="wrong">Wrong Answer #' + (w + 1
 html += '<div class="new_answer" id="' + i + '" ><input type="text" name="new_answer" class="new_answer" value="write a custom answer" /><input type="submit" name="submit_new_answer" class="submit_new_answer" onClick="return false;" value="ok" /> </div>';  // User submitted answer
 
 
-html += '<div class="select_topic" id="select_topic_' + i + '"><select name="item_topic" class="item_topic"><option>Pick a Topic</option></select><input type="text" name="new_item_topic" maxlength="11" class="new_item_topic" style="display:none;"  value="write a new topic" /></div>';
+html += '<div class="select_topic" id="select_topic_' + i + '"><select name="item_topic" class="item_topic"><option>Pick a Topic</option></select><input type="text" name="new_item_topic" maxlength="15" class="new_item_topic" style="display:none;"  value="write a new topic" /></div>';
 
 html += '<input type="submit" name="submit_item" class="submit_item" onClick="return false;" value="submit item" />';  // Submit Item
 html += '<input type="submit" name="skip_item" class="skip_item" onClick="return false;" value="skip item" />';  // skip Item

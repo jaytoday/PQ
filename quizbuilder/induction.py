@@ -202,7 +202,8 @@ class BuildItemsFromPage():
     try:
         tilde_response = urlfetch.fetch(tilde_request)
     except:
-        logging.debug('Unable to fetch tilde response') 
+        logging.debug('Unable to fetch tilde response')
+        return False 
     tilde_soup = BeautifulStoneSoup(tilde_response.content)
     similar_topics = []
     for topic in tilde_soup.findAll('title'):

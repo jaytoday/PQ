@@ -32,11 +32,11 @@ class LoadQuiz():
 	#except: pass
 	logging.debug('getting proficiencies...')
 	for p in proficiencies:  # TODO make these keys for easy lookup   -- these are proficiencies, not topics.
-		this_p = Proficiency.gql("WHERE name = :1", p)
-		q = QuizItem.gql("WHERE proficiency = :1", this_p.get())   # use topic for key
+		this_p = Proficiency.get_by_key_name(p)
+		q = QuizItem.gql("WHERE proficiency = :1", this_p)   # use topic for key
 		quiz_items.extend(q.fetch(1000))
 	logging.debug('loading items...')
-	if Debug():
+	if Debug(): # just for god_mode
 		from utils.appengine_utilities.sessions import Session
 		self.session = Session()
   	for item in quiz_items:
@@ -66,7 +66,10 @@ class LoadQuiz():
         for prof_type in self.proficiencies:
             try: proficiency = random.sample(self.proficiencies[prof_type],
                                   self.QUIZ_ITEM_PER_PROFICIENCY)
-            except ValueError: continue     #sample size larger than population
+            except ValueError: 
+                logging.error('not enough items for proficiency %s to sample -- only %d items available' %
+                             (prof_type, len(self.proficiencies[prof_type]) ) )
+                continue 
             self.quiz_array += proficiency
         random.shuffle(self.quiz_array)
         return self.quiz_array
@@ -106,7 +109,6 @@ class QuizSession():
 		
 	def load_quiz_items(self, profNames, token):
 		self.session = self.get_quiz_session(token)
-		print self.session
 		self.load_quiz = LoadQuiz();
 		proficiencies = self.get_proficiencies(profNames)
 		quiz_items = self.get_quiz_items(proficiencies)

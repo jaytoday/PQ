@@ -686,6 +686,14 @@ z-index:100;
 }
 
 
+.quiz_wrap div#quiz_category {
+font-size:0.8em;
+margin:3px 0 0 -10px;
+width:155px;
+}
+
+
+
 img.tab_left
 {
         height:40px;

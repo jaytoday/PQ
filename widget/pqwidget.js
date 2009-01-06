@@ -44,7 +44,7 @@ var session_setup = function($)
                         initDone: false,
                         startTime: (new Date()),
                         sliderDuration: 5300, // used for subject preview image sliders
-                        timeoutDuration: 24000, // time to answer question
+                        timeoutDuration: 240000, // time to answer question
                         sessionToken: "", // provided by server to load and answer questions
                         instructions: // track progress through instruction
                         {
