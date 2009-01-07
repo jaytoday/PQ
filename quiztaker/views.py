@@ -98,6 +98,7 @@ class TakeQuiz(webapp.RequestHandler):
 
   def get_proficiencies(self):
   # Get proficiencies from path
+    DEFAULT_QUIZ_SUBJECT = "Misconceptions"
     if len(self.request.path.split('/quiz/')[1]) > 0:
 		import string
 		this_proficiency = string.capwords(self.request.path.split('/quiz/')[1].replace("%20"," "))
@@ -107,7 +108,8 @@ class TakeQuiz(webapp.RequestHandler):
         proficiencies = self.request.get('proficiencies')
         return [eval(proficiencies,{"__builtins__":None},{}), self.get_default_vendor()] 
         """ 
-    return None	   
+    # if no quiz argument, return newest Quiz Subject
+    return [[Proficiency.get_by_key_name(DEFAULT_QUIZ_SUBJECT)], ""]	   
          
   def get_default_vendor(self):
 	plopquiz = Employer.gql("WHERE name = :1", "Plopquiz")

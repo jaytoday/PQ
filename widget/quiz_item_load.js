@@ -124,6 +124,10 @@ $('button.take_test', $.plopquiz.answer_container).show();
 $('div.go_to_site', $.plopquiz.answer_container).show();
 
 
+// we haven't display quiz yet if this is a widget, so do it now
+if(!$.plopquiz.settings.autoStart) $.event.trigger("displayQuiz");
+else { $('#quiz_init').hide();   $('#quiz_inner').show();  }
+
 }
 
 
@@ -216,6 +220,8 @@ if(quizItem.item_type == "quiz_complete")
 {
 //update text for Button
 $('#quiz_answers #confirm').removeClass('begin_quiz').addClass('quiz_complete').find('span.continue_button').text('See Results').show();
+
+/* DEPRECATED
 // signup binding
 $('div.form_proceed').click(function(){
 
@@ -258,22 +264,19 @@ $('form.signup').find('ul#' + next_id).fadeIn(200);
 });
 
 $(this).attr('id', next_id);
-});      
-}                
 
-// start the quiz now -- This seems to be working, but isn't it the wrong place? 
-$.event.trigger('quizstarting');
+
+});      
+
+*/
+ }                
+
 
 // short delay to ensure everything is loaded
 setTimeout(function()
 {
 $.event.trigger('quizItemLoaded', [ quizItem ]);
 },100);
-
-
-
-
-
 
 
 

@@ -18,9 +18,12 @@ def widget_path(template_file_name):
 class QuizJS(webapp.RequestHandler):
   @memoize('quiz_js')
   def get(self):
+    DEFAULT_QUIZ_SUBJECT = "Misconceptions"
     if not Debug(): self.set_expire_header()
-    proficiency_arg = self.request.path.split('/quiz/')[1].replace('%20',' ')
-    self.these_proficiencies = Proficiency.gql("WHERE name = :1", proficiency_arg).fetch(1) #TODO: should use .get_by_key_name() method
+    try : 
+        proficiency_arg = self.request.path.split('/quiz/')[1].replace('%20',' ')
+        self.these_proficiencies = [Proficiency.get_by_key_name(proficiency_arg)]
+    except: self.these_proficiencies = [Proficiency.get_by_key_name(DEFAULT_QUIZ_SUBJECT)]
     proficiency_names = [str(p.name) for p in self.these_proficiencies] 
     session_token = self.get_session_token()
     

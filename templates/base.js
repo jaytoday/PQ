@@ -168,7 +168,10 @@ $(this).addClass('clicked');
 
 
 
-
+// Take a Quiz link
+$('a#take_a_quiz').click(function(){ 
+	$.getScript("/js/quiz/?autostart=True");
+});
 
 
 //end ready()

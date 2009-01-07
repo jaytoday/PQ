@@ -40,6 +40,7 @@ def url_routes(map):
 	map.connect('quiz_complete', controller = 'quiztaker.views:QuizComplete')
 	map.connect('quiz_frame', controller = 'quiztaker.views:QuizFrame')
 
+	map.connect('js/quiz', controller = 'widget.handler:QuizJS') # no argument
 	map.connect('js/quiz/:quiz_topic', controller = 'widget.handler:QuizJS')
 	map.connect('css/quiz', controller = 'widget.handler:QuizCSS')
 		

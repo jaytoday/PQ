@@ -33,7 +33,7 @@ var session_setup = function($)
                         {url: '/intro/?page=intro&subject={{ proficiencies }}', item_type:'intro', answers: ['Take This Quiz'], noSkip: true, vendor: "Plopquiz"},
                         {url: '/intro/?page=instructions', item_type:'instructions', answers: [ 'dog ate', 'web made' ], noSkip: true},
                         {url: '/intro/?page=instructions2', item_type:'instructions2', answers: [ 'oil', 'battery' ], timed: "instructions2", timeout: 'reset'},
-      /* TODO: We're merging this with the first frame */ {url: '/intro/?page=begin_quiz', item_type:'begin_quiz', answers: [ 'Begin Quiz' ], noSkip: true}
+                        {url: '/intro/?page=begin_quiz', item_type:'begin_quiz', answers: [ 'Begin Quiz' ], noSkip: true}
                 ],
                 quizitemList: Array(),
                 currentItem: 0, // use to skip intros
@@ -79,8 +79,7 @@ var session_setup = function($)
         	
 //load css
 $.plopquiz.loadStyles();                
-                
-     
+
       
 // preload the quiz frame for quick start, ajax puts it into script element
 $.ajax({
@@ -109,6 +108,8 @@ if(jsonpcallback)
 		$("#pqwidget").append( $("<a href=\"http://www.plopquiz.com\">Take This Quiz At PlopQuiz.Com</a>").hide().fadeIn())
 		}, 6000);
 
+
+$.plopquiz.settings.initDone = true;
 
         }; 
 
@@ -161,14 +162,11 @@ $('#pqwidget #subject_1').s3Slider({ timeOut: 8300  });
 				$.plopquiz.answer_container = $("#quiz_inner #quiz_answers"); // just answers and buttons
 				$.plopquiz.answers = $.plopquiz.answer_container.find('div');
                 
-                
-                // if quiz is loaded from widget
-                if(!$.plopquiz.settings.autoStart) $.plopquiz.widget_wrapper.find('button').hide().end().find('.widget_load').show();
                  
                 // if the click handler is setup before the frame loads, wait for it
                 if($.pq_wrapper.length > 0)
-                        
-                        $.plopquiz.loadItem();
+                        // start the quiz now -- This seems to be working, but isn't it in the wrong place? 
+					$.event.trigger('quizstarting');
                 else
                         return setTimeout($.plopquiz.start, 100);
                         
@@ -201,7 +199,6 @@ $('head').append(style);
 
 $.plopquiz.loadItem = function(quizItem)
 {
-
 // this could use some clean up, the transistions between hard code and real quizItem is a bit funky
 var quizItem = $.plopquiz.quizItem = ((quizItem && quizItem.answers) ? quizItem : $.plopquiz.fetchNextItem());
 
@@ -290,7 +287,7 @@ function pqLoad()
 
 
 // do we have jQuery on the page already?
-if(window.jQuery)
+if(window.jQuery && !$.plopquiz)
 { pqLoad(); }
 else
 { {% include "../static/scripts/jquery/jquery.js" %}    pqLoad(); }

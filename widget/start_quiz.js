@@ -15,6 +15,7 @@ $("body").append(html);
 function drawOverlay(){
 $("#quiz_overlay").css("height", $(document).height());
 }
+
 drawOverlay();
 $(window).resize(drawOverlay);
 
@@ -23,10 +24,24 @@ $(window).resize(drawOverlay);
 $("#pq_wrapper")
 .bind("quizstarting", function()
 {
-	$('#widget_wrapper').fadeOut();
-	$(this).show();
-	// TODO: Show loader from widget location, instead of immediate fadeout.
+
+	// if quiz is loaded from widget, show loading icon on widget. otherwise, immediately show overlay
+	if(!$.plopquiz.settings.autoStart) $.plopquiz.widget_wrapper.find('button').hide().end().find('.widget_load').show();
+	else { $.event.trigger("displayQuiz");  $('#quiz_inner').hide();  $('#quiz_init').show();  }
+	
+	// load first item
+	$.plopquiz.loadItem();
+	
+	
+	
 })
+.bind("displayQuiz", function()
+{
+
+	$('#widget_wrapper').fadeOut(); $(this).show();
+	
+})
+
 .bind("quizclosing", function()
 {
 	$(this).hide();
