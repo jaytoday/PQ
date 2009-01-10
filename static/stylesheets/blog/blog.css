@@ -8,8 +8,10 @@
 
     
     blockquote, ol, p, ul {
-      margin: 0 0 1.5em;
-      padding: 0;
+line-height:1.4em;
+margin:0pt 0pt 1.5em -3.2em;
+padding:1pt;
+width:43em;
     }
     
     ol, ul {
@@ -18,11 +20,12 @@
     }
     
     blockquote {
-      border-left: 2px solid {color:Title};
-      font-style: italic;
-      line-height:1.6em;
-      margin-left: 1em;
-      padding: 0 2em 0 1em;
+border-left:6px solid #CCCCCC;
+line-height:1.8em;
+font-size:0.8em;
+margin-left:1em;
+padding:0pt 2em 0pt 1.3em;
+width:35em;
     }
     
     h1, h2, h3, h4, h5, h6 {
@@ -48,16 +51,20 @@
     
     h2 {
       color: {color:Description};
-      font-size:2em !important;
+      font-size:2.4em !important;
 margin:0.4em !important;
 text-indent:0 !important;
+width: 355px !important;
     }
     
     h3 {
-font-size:1.5em;
-margin:10px 0 40px;
+font-size:1.8em;
+letter-spacing:0.02em;
+margin:10px 0pt 50px -60px;
     }
-    
+    a:hover{
+	   color: #000040;
+   }
     
     /* Content container */
     #content {
@@ -66,16 +73,37 @@ margin:10px 0 40px;
       width: 35em;
     }
     
+    div#right_corner{
+  margin:2px 0 0 895px !important;
+    }
+    
     
     /* Metadata */
     #meta {
-      list-style: none;
-float:right;
-margin:-170px 60px;
+font-size:1.3em;
+list-style-image:none;
+list-style-position:outside;
+list-style-type:none;
+margin:-182px 50px 0 0;
 padding:0;
-text-align:right;
+float: right;
+text-align:left;
+width:230px;
     }
     
+    img#rss{
+float:left;
+margin: -3px 6px -3px 6px;
+}
+
+div#blog_description{
+width: 226px; 
+height:43px; 
+float:right; 
+margin: -150px 10px;
+}
+
+
     #meta li {
       display: inline;
     }
@@ -130,6 +158,7 @@ padding:2em 2em 1em 0;
     .post .photo, .post .video, .post .audio {
       margin-left: 7em;
       padding: 0;
+      font-size: 1.1em;
     }
     
     .post .photo .caption, .post .video .caption,

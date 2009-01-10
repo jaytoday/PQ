@@ -388,6 +388,7 @@ z-index: 99;
 float:left;
 margin:-145px 50px;
 top:40%;
+height:38px;
 width:250px;
 z-index:99;
 }
@@ -697,7 +698,7 @@ z-index:100;
 
 
 .quiz_wrap div#quiz_category {
-font-size:0.8em;
+font-size:0.9em;
 margin:3px 0 0 -10px;
 width:155px;
 }
@@ -807,7 +808,7 @@ margin:0 0 0 212px;
 }
 
 .quiz_wrap div.intro_frame_content{
-height:240px;
+height:255px;
 left:13px;
 position:absolute;
 top:140px;
@@ -1483,7 +1484,7 @@ color: #444 !important;
 }
 
 .quiz_wrap button.intro_quiz{
-bottom:7px !important;
+bottom:2px !important;
 left:20px !important;
 position:absolute !important;
 }
@@ -1528,8 +1529,8 @@ position:absolute;
 }
 
 .quiz_wrap div.take_test{
-bottom:12px;
-left:560px;
+bottom:0px;
+left:340px;
 position:absolute;
 }
 
@@ -1647,9 +1648,9 @@ width:300px !important;
 
 
 .quiz_wrap div.subject_preview{
-height:230px !important;
 position:relative !important;
-margin:-5px !important;
+height:240px !important;
+margin:-2px -5px !important;
 width:320px !important;
 float:left !important;
 cursor:pointer !important; 
@@ -1657,7 +1658,7 @@ cursor:pointer !important;
 
 
 .quiz_wrap div.subject_stats{
-margin: 10px 0px;
+margin: 6px 0px;
 }
 
 .quiz_wrap div.subject_stat{
@@ -1675,6 +1676,37 @@ width:130px;
 margin:0 0 0 8px;
 }
 
+
+.quiz_wrap div.share_quiz{
+
+}
+.quiz_wrap div.share_quiz .quiz_code {
+-moz-border-radius: 12px;
+-webkit-border-radius: 12px;
+background:#DDDDDD none repeat scroll 0 0;
+border:2px solid #DDDDDD;
+color:#000040;
+float:left;
+height:7px;
+line-height:1em;
+margin:3px 0 0 8px;
+padding:1px 1px 7px;
+text-transform:none;
+width:284px;
+}
+
+.quiz_wrap div.share_quiz .quiz_code .share_quiz_text{
+float: left; font-size: 0.6em; font-weight: bold;
+margin: 0px 0px 0px 15px;
+ }
+ 
+.quiz_wrap div.share_quiz .quiz_code input{ 
+width:150px; 
+float:right;
+font-size:0.6em;
+/* height:18px; */
+margin:-3px 10px 0 0;
+}
 
 
 .quiz_wrap div.statometer{
@@ -1727,7 +1759,7 @@ text-align: center;
 
 .quiz_wrap div.subject_description.summary{ height:146px; margin-top:4px !important; }
 
-.quiz_wrap div.subject_description.study_guide{ height: 190px; }
+.quiz_wrap div.subject_description.study_guide{ height: 200px; }
 
 
 .quiz_wrap div.study_header{
@@ -1740,7 +1772,7 @@ cursor:pointer;
 .quiz_wrap div.links_header{left: 100px; }
 .quiz_wrap div.videos_header{left: 160px; }
 
-.quiz_wrap div.study_content{position: absolute; top: 20px; width:280px;}
+.quiz_wrap div.study_content{position: absolute; top: 20px; left: 13px; width:280px;}
 
 
 .quiz_wrap div.study_header.selected {color:#AAAAAA !important;}

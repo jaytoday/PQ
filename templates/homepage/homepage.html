@@ -52,11 +52,18 @@
 <div class="mc">C. Earn Awards and Sponsorships</div>
 <div class="mc">D. Upgrade Your Resume</div>
 <div class="mc mc_correct">E. All of the Above</div>
+
+<!--
+
 <div class="intro_item_header" style="margin-top: 28px;">Businesses</div>
 <div class="intro_item">Show Responsibility. <br/> Connect with Motivated Students.<br/><a>Be a Sponsor.</a></div>
 
 <div class="intro_item_header">Parents and Mentors</div>
 <div class="intro_item">Support Achievement.<br/><a>Be a Sponsor.</a></div>
+
+
+-->
+
 
 </div>  
 
@@ -75,9 +82,22 @@
 <div id="featured_quiz_header" class="frame_box">featured quiz</div>
 {# This is where the featured quiz loads #}
 
+<script src="{{ http_host }}/js/quiz/{{ featured_quiz }}" type="text/javascript"></script>  
 
+<div id="quiz_list">
+<ul>
+<li>
+<div class="quiz_header frame_box">smart grid</div>
+</li>
+<li>
+<div class="quiz_header frame_box">cars 2.0</div>
+</li>
+<li>
+<div class="quiz_header frame_box">energy efficiency</div>
+</li>
+</ul>
+</div>
 
-<script src="http://localhost:8080/js/quiz/{{ featured_quiz }}" type="text/javascript" rel="javascript"></script> <div class="featured_quiz" id="pqwidget"></div> 
 
 <!--
 <h1>Take an <span id="et">Energy Tech</span> <span id="q">Quiz</span></h1>

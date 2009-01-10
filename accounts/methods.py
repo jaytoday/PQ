@@ -77,10 +77,10 @@ class Awards():
 
      # Eventually, a quiztaker attribute will have to mark whether its been processed.
 
-	EXCELLENCE_PROFICIENCY_THRESHOLD = 0.1
+	EXCELLENCE_PROFICIENCY_THRESHOLD = .10
 	FLUENCY_PROFICIENCY_THRESHOLD = .55	
-	EXCELLENCE_TOPIC_THRESHOLD = 10 #90
-	FLUENCY_TOPIC_THRESHOLD = 15  #55
+	EXCELLENCE_TOPIC_THRESHOLD = 90 
+	FLUENCY_TOPIC_THRESHOLD = 55
 	
 	def check_all(self, qt=False): # specify qt for a single person
 		self.save_awards = [] # for batch datastore trip
@@ -110,10 +110,10 @@ class Awards():
 
 	def add_topic_fluency(self, level):
 		# topic_level should be replaced by percentile	
-	  if level.topic_level > self.FLUENCY_TOPIC_THRESHOLD: 
+	 if level.topic_level > self.FLUENCY_TOPIC_THRESHOLD: 
 	      self.fluency[level.topic.proficiency.key()].append({level.topic.key() : level.topic_level}) 
 	      return True
-	  else: return False	
+	 else: return False	
 
 
 	def add_topic_excellence(self, level):	

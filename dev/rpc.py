@@ -126,16 +126,62 @@ remote callers access to private/protected "_*" methods.
 
 
   def working(self, *args):
-  	return
+  	from model.quiz import ItemScore
   	from model.proficiency import Proficiency
+  	this_proficiency = Proficiency.get_by_key_name("Smart Grid")
+  	scores = ItemScore.all().fetch(1000)
+  	for s in scores: 
+  	    s.quiz_item.topic.proficiency = s.quiz_item.proficiency
+  	    db.put(s.quiz_item.topic)
+  	    
+
+  	
+
+  def make_scores(self, *args):
+  	SCORE_NUM = 10
+  	self.correct_scores = 0
+  	if len(args) < 2: return "Specify A Proficiency, and Correct Ratio"
+  	from utils.appengine_utilities.sessions import Session
+  	self.session = Session()
+  	self.correct_prob = args[1]
+  	
+  	if not self.session['user']: return "Not Logged In"
   	import random
-  	ps = Proficiency.all().fetch(1000)
-  	save = []
-  	for p in ps:
-  		p.popularity = random.randint(60,100)
-  		p.difficulty = random.randint(60,100)
-  		save.append(p)
-  	db.put(save)	
+  	from model.quiz import QuizItem
+  	from model.proficiency import Proficiency
+  	this_proficiency = Proficiency.get_by_key_name(args[0])
+  	items = QuizItem.gql("WHERE proficiency = :1", this_proficiency).fetch(1000)
+  	items = random.sample(items, SCORE_NUM)
+  	self.save = []
+  	for i in items: 
+  	    self.make_score(i) 
+  	print "saved ", len(self.save), " scores. ", self.correct_scores, " were correct." 
+  	db.put(self.save)
+  	
+
+  def make_score(self, i): 
+	from model.quiz import QuizTaker
+	from model.quiz import ItemScore
+	import random
+	this_user = QuizTaker.get_by_key_name(self.session['user'].unique_identifier)
+	picked_answer = ''
+	if random.randint(1,100) > self.correct_prob: #wrong answer -- could also just use normal distribution of correct probability
+		while picked_answer == i.index: picked_answer = i.answers.pop()
+	else:  picked_answer = i.index
+	score = ItemScore(quiz_item = i,
+						  quiz_taker = this_user,
+						  correct_answer = i.index,
+						  picked_answer = picked_answer,
+						  type = "stub")	
+	if score.picked_answer == score.correct_answer: 
+		this_score = int(random.normalvariate(self.correct_prob, 15))
+		if this_score > 100: this_score == 100
+		score.score = this_score
+		self.correct_scores += 1
+	else: score.score = 0
+	self.save.append(score)
+  	
+
   	
 
 

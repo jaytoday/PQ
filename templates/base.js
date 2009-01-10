@@ -72,26 +72,30 @@ $('div#quick_links a#about_dialog').click(function(){
 $("div#about_dialog_content").dialog({ 
 		modal: true,
 		resizable: false,
-		draggable: false,
+		draggable: true,
 		dialogClass: 'about_dialog',
-		height: 300,
-		width: 450,
+		height: 370,
+		width: 560,
 		overlay: { 
 		opacity: 0.5, 
 		background: "black" 
 		},
 buttons: { 
-"Introduction": function() { 
+"Intro": function() { 
 		$(this).find('div').hide();
 		$(this).find('div.about_introduction').show();
 },
 "Profiles": function() { 
 		$(this).find('div').hide();
-		$(this).find('div.about_profiles').show();
+		$(this).find('div.about_how_we_grade').show();
 },
 "Sponsers": function() { 
 		$(this).find('div').hide();
 		$(this).find('div.about_sponsors').show();
+},
+"Volunteers": function() { 
+		$(this).find('div').hide();
+		$(this).find('div.about_how_we_grade').show();
 },
 "How We Grade": function() { 
 		$(this).find('div').hide();
@@ -113,7 +117,7 @@ $(this).addClass('clicked');
 
 $('div#quick_links a#contact_dialog').click(function(){ $("div#contact_dialog_content").dialog({ 
 		modal: true,
-		draggable: false,
+		draggable: true,
 		resizable: false,
 		dialogClass: 'contact_dialog',
 		height: 300,

@@ -76,7 +76,7 @@ line-height: 0;
 body, html {
 margin: 0;
 padding: 0;
-height: 100%;
+height: 105%;
 }
 
 /* Liquid Sitelet Box */
@@ -255,8 +255,11 @@ letter-spacing:0.06em;
         -webkit-border-radius: 5px;
 }
 
+/* make sure subjects fill the whole box */
 
+.sliderImage img, .bigsliderImage img { min-width: 101%; min-height: 101%; }
 
+ol.sliderContent, ol.sliderContent li{ height: 100%; width: 100%; }
 
 
 div.input_float{
@@ -293,7 +296,9 @@ display:none; /* temporary? */
 }
 
 div#right_corner{
-height: 0px; float: right; margin:0 5px;
+height:0;
+margin:-13px 0 0 893px;
+position:absolute;
 }
 div#right_corner img{
 cursor: pointer;
@@ -369,6 +374,13 @@ border:5px solid #F7CA75;
 padding:10px;
 }
 
+.pq_note{
+-moz-border-radius:5px;
+-webkit-border-radius: 5px;
+background-color:#FFDFFF;
+border:5px solid #BE6FFF;
+padding:10px;
+}
 
 h2.info_header{
 line-height:1.1em; font-size:1.1em
@@ -548,3 +560,12 @@ float:right;
 font-weight:bold; 
 margin:18px 4px;
 }
+
+
+.ui-dialog-content span.content.sponsors{
+margin-left: 120px;
+width: 460px;
+}
+
+
+div.ui-dialog.about_dialog .ui-dialog-buttonpane button{ margin-left:0.85em; }

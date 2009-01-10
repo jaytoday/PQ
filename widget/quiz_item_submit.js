@@ -129,7 +129,7 @@ break;
 
 case "quiz_complete":
  $.event.trigger('quizclosing');
-  window.location = "{{http_host}}/redirect/from_quiz/" + $.plopquiz.settings.sessionToken;
+  window.location = "{{ http_host }}/redirect/from_quiz/" + $.plopquiz.settings.sessionToken;
   
 break;
 

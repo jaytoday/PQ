@@ -44,7 +44,7 @@ var session_setup = function($)
                         initDone: false,
                         startTime: (new Date()),
                         sliderDuration: 5300, // used for subject preview image sliders
-                        timeoutDuration: 240000, // time to answer question
+                        timeoutDuration: 24000, // time to answer question
                         sessionToken: "", // provided by server to load and answer questions
                         instructions: // track progress through instruction
                         {
@@ -124,9 +124,9 @@ $.plopquiz.widget_html = "{% spaceless %}{{ widget_html }}{% endspaceless %}";
 
                 // TODO: visible error if no <body> in document
                 $("script", $("body")).each(function() {
-                if(this.src.indexOf('{{ http_host }}/quiz') > -1) 
-                $(this).after('<div id="pqwidget"><a href="{{ http_host }}/quiz/" class="widget_footer">Take This Quiz at PlopQuiz.Com</a></div>"'); } );
-                        
+                if(this.src.indexOf('{{ http_host }}/js/quiz') > -1) 
+                 $(this).after('<div id="pqwidget"><a href="{{ http_host }}/quiz/" class="widget_footer">Take This Quiz at PlopQuiz.Com</a></div>'); } );
+                      
                         
 // add widget HTML
 $.plopquiz.widget_wrapper = $("#pqwidget");
@@ -162,7 +162,7 @@ $('#pqwidget #subject_1').s3Slider({ timeOut: 8300  });
 				$.plopquiz.answer_container = $("#quiz_inner #quiz_answers"); // just answers and buttons
 				$.plopquiz.answers = $.plopquiz.answer_container.find('div');
                 
-                 
+                 console.log('starting');
                 // if the click handler is setup before the frame loads, wait for it
                 if($.pq_wrapper.length > 0)
                         // start the quiz now -- This seems to be working, but isn't it in the wrong place? 
@@ -280,14 +280,15 @@ function pqLoad()
 
         // force ready jQuery because page load is (likely?) done
         // jQuery.isReady = true; -- this was breaking some javascript
-        // load plopquiz (modified) from within closure
-        session_setup(jQuery); 
+        // load plopquiz (modified) from within closure. if it's already loaded, open quiz frame.
+       if (!$.plopquiz) session_setup(jQuery);
+       else  $.plopquiz.start();
 }
 
 
 
-// do we have jQuery on the page already?
-if(window.jQuery && !$.plopquiz)
+// do we have jQuery
+if(window.jQuery )
 { pqLoad(); }
 else
 { {% include "../static/scripts/jquery/jquery.js" %}    pqLoad(); }

@@ -47,7 +47,7 @@
 
 
 <div id="summary"  class="profile-panel">
-<span class="gray_box_header">Academic Awards</span>
+<span class="gray_box_header" style="margin-top:-37px;">Academic Trophies</span>
 <div class="panel_content " id="award_content" > 
 <div class="gray_box awards_box" id="award_container">
 <div id="award_scroll">
@@ -104,7 +104,9 @@
 {% if profile_owner %}	
 <div class="info_note sponsor_user" id="sponsor_owner"> <a>Get Sponsors Now!</a> </div>
 {% else %}
+<!--
 <div class="info_note sponsor_user" id="sponsor_not_owner"> <a href="{{ http_host }}/sponsor/{{ user.profile_path }}">Sponsor {{ user.fullname }} Now!</a> </div>
+-->
 {% endif %}
 
 
@@ -159,7 +161,7 @@ by taking <a>quizzes</a>.
 {% endif %}
 {% for tl in top_levels %}                
 		<div class="panel_content report_card_panel" {% if forloop.last %} style="border-style:none;" {% endif %}>
-		<div class="proficiency_name"><h3>{{ tl.topic.name }} </h3></div>
+		<div class="proficiency_name"><span class="subject_name">{{ tl.topic.proficiency.name }} </span> <span class="topic_name">{{ tl.topic.name }} </span></div>
 		  <h4 class="percentile"><span>{{ tl.topic_level }}</span>th percentile</h4>
 		<div class="scoreometer"><img src="http://chart.apis.google.com/chart?chs=90x45&cht=gom&chd=t:{{ tl.topic_level }}&chco=F7F5F4,00ea00&chf=bg,s,F7F5F4"/></div>
 		</div>

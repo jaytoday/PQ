@@ -55,7 +55,7 @@ class QuizItem(db.Model):
   def get_theme(self, url):
 		#todo: fill this up 
 		# eventually, store this in external json. 
-		themes= [("wikipedia.org", "wiki"), ("knol.google.com", "knol")]
+		themes= [("wikipedia.org", "wiki"), ("knol.google.com", "knol"), ("change.gov", "whitehouse")]
 		for theme in themes:
 			if theme[0] in url: return theme[1]
 			else: return "default"

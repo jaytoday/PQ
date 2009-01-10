@@ -224,6 +224,34 @@ position:absolute;
 width:100px;
 }
 
+
+
+div#quiz_list {
+margin:50px 0px 0px 240px;
+position:absolute;
+
+}
+
+
+div#quiz_list ul {}
+
+div#quiz_list ul li{ margin:20px 0; }
+
+div#quiz_list ul li{}
+
+
+div.quiz_header{
+border:medium none;
+font-size:1.2em;
+margin:-2px 120px;
+padding:1px 8px;
+position:relative;
+width:100px;
+background:#F7F5F4 none repeat scroll 0 0 !important;
+}
+
+div.quiz_header:hover{ font-weight:bold; }
+
 div.upgrade span.mag{
 color:#555555;
 font-size:1.1em;
@@ -325,8 +353,11 @@ margin:4px 10px;
 .is_subject{
 float:right;
 width:120px;
-margin:-102px 10px;
+margin:-83px 10px;
+height:80px;
+overflow:hidden;
 }
+
 
 .is_recipient{
 margin:4px 15px;
@@ -334,7 +365,7 @@ margin:4px 15px;
 
 .is_sponsor{
 float:right;
-margin:-75px 18px;
+margin:-85px 18px;
 }
 
 span.action_type{
@@ -352,9 +383,11 @@ background: #FFF;
 
 span.action_date{
 display:block;
-float:left;
+
 font-size:0.7em;
-margin:10px 49px;
+/* margin:10px 49px; float:left; */
+margin:0 0 0 179px;
+/* position:absolute; */
 }
 span.sponsored_by{
 margin-left: 135px;
@@ -486,3 +519,20 @@ margin:0 -4px;
 .sliderImage {
     position:relative;
 }
+
+
+/* modify quiz css - maybe this shoudl go in base */
+
+div#take_quiz .quiz_wrap div.selection_box.subject_preview {
+margin:5px -5px !important;
+}
+
+#pqwidget {position:absolute; }
+
+
+.widget_load {
+float:left !important;
+margin-top:-20px !important;
+}
+
+div#take_quiz button.widget_button{ margin-top: 100px !important; }

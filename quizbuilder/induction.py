@@ -159,7 +159,13 @@ class BuildItemsFromPage():
 	#in case we need to meet 100k limit, truncate page.
 	soup_url = SEMANTICPROXY_URL +  str(page.url)    # + TRUNCATE URL + 
 	# timeout for fetch_page (and all fetch pages)
-	fetch_page = urlfetch.fetch(soup_url)              # perform semantic analysis
+	try: 
+	    logging.debug('Fetching calais response')
+	    fetch_page = urlfetch.fetch(soup_url)              # perform semantic analysis
+	except:
+		logging.debug('Unable to fetch calais response')
+		return False 
+	
 	soup = BeautifulSoup(fetch_page.content) #whole page
 	try: # look for error
 		exception = soup.findAll('exception')[0].contents[0]
@@ -200,6 +206,7 @@ class BuildItemsFromPage():
     tag = tag.replace(' ','%20') #urlencode tag
     tilde_request = str(TILDE_BASE_URL) + "?format=xml&topic_limit=" + str(TILDE_TOPIC_LIMIT) + "&type_limit=" + str(TILDE_TYPE_LIMIT) + "&exclude=" + str(TILDE_EXCLUDE) + "&request=" + str(tag)
     try:
+        logging.debug('Fetching tilde response')
         tilde_response = urlfetch.fetch(tilde_request)
     except:
         logging.debug('Unable to fetch tilde response')

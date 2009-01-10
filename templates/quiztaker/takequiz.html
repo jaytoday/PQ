@@ -24,7 +24,7 @@ $(function(){
  {% block login %} {% endblock login %}
 {% block main %}
 
-<script src="http://localhost:8080/js/quiz/{{ quiz_subject }}?autostart=True" type="text/javascript" rel="javascript"></script>
+<script src="{{ http_host }}/js/quiz/{{ quiz_subject }}?autostart=True" type="text/javascript" rel="javascript"></script>
 
 
 {% endblock %}

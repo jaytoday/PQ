@@ -63,7 +63,7 @@ remote callers access to private/protected "_*" methods.
   def RetrieveProficiencies(self, *args):   # todo: should be nested list of proficiencies and topics.
       return_proficiencies = []
       #proficiencies = Proficiency.all()
-      proficiencies = Proficiency.gql("WHERE name in :1", ["Oil", "Misconceptions", "Solar Energy","Energy Finance","Biofuels","Electricity", "Energy Efficiency", "Law and Policy"])  # remove after refactoring quiztaker
+      proficiencies = Proficiency.gql("WHERE name in :1", ["Smart Grid", "Energy Efficiency", "Recovery and Reinvestment"])  # remove after refactoring quiztaker
       return encode(proficiencies.fetch(1000, offset=0)) # temporary offset
 
 
@@ -75,7 +75,7 @@ remote callers access to private/protected "_*" methods.
       except: return simplejson.dumps([])
 
   def GetRawItemsForProficiency(self, *args):  
-      this_proficiency = Proficiency.gql("WHERE name = :1 ORDER BY date DESC", args[0]) # try get_or_insert if Proficiency is key
+      this_proficiency = Proficiency.get_by_key_name(args[0]) # try get_or_insert if Proficiency is key
       prof_pages = this_proficiency.get().pages.fetch(10)
       raw_items = []
       for p in prof_pages:

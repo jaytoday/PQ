@@ -133,7 +133,7 @@ class Build():
 									   type="pq")
 			save_images.append(new_image)
 		db.put(save_images)
-		print "saved %d new profile images" % len(save_images)
+		#print "saved %d new profile images" % len(save_images)
 		logging.info("saved %d new profile images", len(save_images))
 
 									
@@ -163,7 +163,7 @@ class Build():
 		for p in proficiencies:
 			p_path = ROOT_PATH + "/data/img/subject/" + str(p.name) + "/"
 			save_images = []
-			for n in range(3):
+			for n in range(4):
 				try: image_file = open(p_path + str(n) + ".png")
 				except: continue
 				image = image_file.read()
@@ -293,7 +293,7 @@ class DataMethods():
 				         print "proficiency ", entity['proficiency']['name'], " not found when inserting topic ", entity['name']
 				         logging.error('proficiency %s not found for topic %s' % (entity['proficiency']['name'],  entity['name']))
 				         continue
-				save_entity = ProficiencyTopic.get_or_insert(key_name=entity['name'], name = entity['name'], proficiency = this_proficiency)
+				save_entity = ProficiencyTopic.get_or_insert(entity['proficiency']['name'] + str('_') + entity['name'], name = entity['name'], proficiency = this_proficiency)
 											   
 			if data_type == 'content_pages':
 				 this_proficiency = Proficiency.get_by_key_name(entity['proficiency']['name'])
@@ -316,23 +316,23 @@ class DataMethods():
 				    print "proficiency ", entity['proficiency']['name'], " not found when inserting quiz item"
 				    logging.error('proficiency %s not found for quiz item', entity['proficiency']['name'])
 				    continue 
-				this_topic = ProficiencyTopic.get_by_key_name(entity['topic']['name'])
+				this_topic = ProficiencyTopic.get_by_key_name(entity['proficiency']['name'] + str('_') + entity['topic']['name'])
 				if not this_topic: 
 				    print "proficiency topic ", entity['topic']['name'], " not found when inserting quiz item"
 				    logging.error('proficiency topic %s not found for quiz item', entity['topic']['name'])
-				    continue 
+				    continue
+
 				save_entity = QuizItem( content = entity['content'],
 									 theme = entity['theme'],
 									 proficiency = this_proficiency.key(),
 									 answers = entity['answers'],
 									 index = entity['index'],
 									 topic = this_topic.key())
-
-				
+				if entity['content_url']: save_entity.content_url = entity['content_url']   
 			if data_type == 'employers': 
+				save_entity = False # employers.methods used to save 
 				for e in emp.create_business_account(entity['unique_identifier'], entity['proficiencies'], batch=True):
-					entities.append(e)
-					save_entity = False
+						entities.append(e)
 			if data_type == 'mailing_list':
 				save_entity = MailingList(key_name=entity['email'], fullname = entity.get('fullname', ""), email = entity['email'], type = entity.get('type', ""))
 			if save_entity: entities.append(save_entity)

@@ -41,5 +41,21 @@
                         ], 
                         "email": "mark@smartleaf.com", 
                         "name": "smartleaf"
-                    }
+                    },
+                    {
+                        "unique_identifier": "dharma", 
+                        "proficiencies": [
+                            "Smart Grid" 
+                        ], 
+                        "email": "james+dharma@gmail.com", 
+                        "name": "dharma initiative"
+                    },
+                  {
+                        "unique_identifier": "skynet", 
+                        "proficiencies": [
+                            "Smart Grid" 
+                        ], 
+                        "email": "james+skynet@gmail.com", 
+                        "name": "skynet"
+                    }                       
                 ]

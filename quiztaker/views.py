@@ -51,7 +51,7 @@ class PQDemo(webapp.RequestHandler):
 class QuizItemTemplate(webapp.RequestHandler):
   # TODO: Error Handling, so client can display error messages, logs, etc.
   def get(self):
-    logging.info('loading quiz frame')
+    logging.info('loading quiz item')
     template_values = {}
     if self.request.get('item_key'): this_quiz_item = QuizItem.get(self.request.get('item_key'))
     if self.request.get('token'): 
@@ -65,6 +65,7 @@ class QuizItemTemplate(webapp.RequestHandler):
     quiz_item = {}
     try: quiz_item['topic_name'] = this_quiz_item.topic.name
     except: print this_quiz_item
+    if this_quiz_item.content.endswith('.'): this_quiz_item.content = this_quiz_item.content[:-1] + "<br/>" # this should be done in advance,and it should replace </span>. with </span><br/>
     quiz_item['content'] = this_quiz_item.content
     quiz_item['answers'] = this_quiz_item.answers
     quiz_item['theme'] = this_quiz_item.theme
@@ -137,10 +138,6 @@ class PQIntro(webapp.RequestHandler):
 		from model.proficiency import Proficiency
 		quiz_subjects = Proficiency.gql("WHERE status = :1", "public").fetch(50)  # TODO: WHERE type....
 		for p in quiz_subjects:
-		    if not p.images.get(): 
-		        logging.info("removing %s because it has no images ", p.name)
-		        quiz_subjects.remove(p)
-		        continue
 		    if p.name == eval(self.request.get('subject'))[0]: 
 		        quiz_subjects.remove(p)
 		        quiz_subjects.insert(0, p)

@@ -121,7 +121,8 @@ class QuizSession():
 	def get_proficiencies(self, profNames):
 		proficiencies = []
 		for p in profNames:
-		   this_p = Proficiency.get_by_key_name(p)
+		   #this_p = Proficiency.get_by_key_name(p)
+		   this_p = Proficiency.get_by_key_name("Smart Grid") # TEMPORARY
 		   if this_p: proficiencies.append(this_p.name)
 		self.session['proficiencies'] = proficiencies
 		return proficiencies
