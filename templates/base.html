@@ -36,6 +36,7 @@ If not including this breaks something, then package it with the app that uses i
 
 <script type="text/javascript" src="/js/base"></script> <!-- compile JS into one file -->
 
+{% if not dev_server %}{# NOT WORKING <script defer src="http://asset.userfly.com/users/5743/userfly.js" type="text/javascript"></script> #} {% endif %}
 {% endblock %}
 
 
@@ -115,6 +116,7 @@ If not including this breaks something, then package it with the app that uses i
   {% include "../utils/contact_us.html" %}
      
    <script defer src="http://plopquiz.uservoice.com/pages/general/widgets/tab.js?alignment=right&amp;color=69075A" type="text/javascript"></script>
+ 
      
 </body>
 </html>

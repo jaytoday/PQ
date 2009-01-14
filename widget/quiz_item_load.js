@@ -68,8 +68,7 @@ $("#skip", $.plopquiz.answer_container).hide();
 if(quizItem.item_type == "intro")
 {
 
-	
-$('#quiz_answers #confirm', $.plopquiz.answer_container).attr('class', 'answer intro_quiz').find('span.continue_button').text('Practice Quiz');
+$('#confirm', $.plopquiz.answer_container).show().attr('class', 'answer intro_quiz').find('span.continue_button').text('Take This Quiz');
 $('button span#intro_button', $.plopquiz.answer_container).show(); // todo: this is coming late 
 $('.intro_frame_content #subject_container_1').show().addClass('selected'); // show first subject
 
@@ -205,6 +204,7 @@ $("#proficiency_choices")
 
 if(quizItem.item_type == "quiz_item")
 {
+
 // reset the blank space
 $('#blank', $.plopquiz.quiz_content).empty();
 // hide the question until everything is loaded

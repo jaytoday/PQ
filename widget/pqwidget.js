@@ -161,8 +161,6 @@ $('#pqwidget #subject_1').s3Slider({ timeOut: 8300  });
 				$.plopquiz.timer = $('#timer_bar', $.plopquiz.timer_wrapper);
 				$.plopquiz.answer_container = $("#quiz_inner #quiz_answers"); // just answers and buttons
 				$.plopquiz.answers = $.plopquiz.answer_container.find('div');
-                
-                 console.log('starting');
                 // if the click handler is setup before the frame loads, wait for it
                 if($.pq_wrapper.length > 0)
                         // start the quiz now -- This seems to be working, but isn't it in the wrong place? 
@@ -175,7 +173,16 @@ $('#pqwidget #subject_1').s3Slider({ timeOut: 8300  });
 
                         
 				//widget is draggable
-				$('#quiz_outer').draggable(); 
+				$('#quiz_outer').draggable(
+				{ 
+				zIndex: 	1000, 
+				opacity: 0.8,
+				ghosting: false,
+				containment: 'document', // working?
+				//cancel: $('.quiz_scroll_container'), // we want to cancel drag when scrollbar is clicked.
+			    delay: 300, // this solves scrollbar problem, but its really annoying
+				cursor: 'pointer'
+				 }); 
 
         }; 
 

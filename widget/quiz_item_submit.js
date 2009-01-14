@@ -129,7 +129,16 @@ break;
 
 case "quiz_complete":
  $.event.trigger('quizclosing');
-  window.location = "{{ http_host }}/redirect/from_quiz/" + $.plopquiz.settings.sessionToken;
+ 
+ /* Open results in new window -- This is turned off for now out of concerns of spamineess.
+  * 
+if($.plopquiz.settings.autoStart) window.location = "{{ http_host }}/redirect/from_quiz/" + $.plopquiz.settings.sessionToken;
+else window.open("{{ http_host }}/redirect/from_quiz/" + $.plopquiz.settings.sessionToken);
+  */
+
+window.location = "{{ http_host }}/redirect/from_quiz/" + $.plopquiz.settings.sessionToken; // proceed in this window
+
+
   
 break;
 

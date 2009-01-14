@@ -137,6 +137,7 @@ if ($(this).attr("id") == "skip")
 	return;
 	
 	// hover event on span
+	$(this).addClass('hover_answer');
 	$(".answertext", this).addClass('hover');
 
 var blank_width = 15 + (12 * $(".answertext", this).text().length); //todo: multiplier may need adjustment
@@ -153,10 +154,10 @@ function()
 $("#blank").text(textHolder)
 //.css({"padding": "0px 34px"});
 	.css("width", "100px");
-	
+	 $(this).removeClass('hover_answer');
 	 $(".answertext", this).removeClass('hover');
 })
-.click(function(e)
+.click(function(e) // submit answer
 {
 
 // data("disabled") prevents double submissions
@@ -179,7 +180,7 @@ $("#quiz_content", $.pq_wrapper)
 // when the item is loaded, fade in, then trigger startTimer
 .bind("quizItemLoaded", function(e, quizItem)
 {
- 
+
 	$('#quiz_content').animate(
 	{
 			opacity: 1
@@ -189,7 +190,9 @@ $("#quiz_content", $.pq_wrapper)
 			complete: function()
 			{
 			$.event.trigger("startTimer", [ quizItem ]);
-					
+			
+            $('.hover_answer', $.pq_wrapper).trigger('hover'); // trigger hover on already hovered answer
+	
 			}
 	});
 	
