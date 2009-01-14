@@ -126,17 +126,13 @@ remote callers access to private/protected "_*" methods.
 
 
   def working(self, *args):
-  	from model.quiz import ItemScore
-  	from model.proficiency import Proficiency
-  	this_proficiency = Proficiency.get_by_key_name("Smart Grid")
-  	scores = ItemScore.all().fetch(1000)
-  	for s in scores: 
-  	    s.quiz_item.topic.proficiency = s.quiz_item.proficiency
-  	    db.put(s.quiz_item.topic)
+  	pass
+
+  	
   	    
 
   	
-
+  # this should probably go in its own file
   def make_scores(self, *args):
   	SCORE_NUM = 10
   	self.correct_scores = 0

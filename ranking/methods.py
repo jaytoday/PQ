@@ -2,7 +2,7 @@ import logging
 import cgi
 from .model.user import QuizTaker, ProficiencyLevel, TopicLevel
 from .model.quiz import ItemScore
-from decimal import Decimal, ROUND_HALF_UP
+#from decimal import Decimal, ROUND_HALF_UP
 
 
 # TODO: Much better documentation/logging!!

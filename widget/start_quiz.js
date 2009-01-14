@@ -5,7 +5,7 @@ function startQuiz(html){
 	 * Note: This is run before the quiz frame is loaded.
 	 * $.plopquiz.start runs when the quiz frame is loaded
 	 * 
-	 * TODO: Could use some refactoring.
+	 * TODO: Could use some refactoring.....we shouldn't be rebinding and defining functions with every item load
 	 */ 
 
 	// add to body to overlay is in front
@@ -180,21 +180,11 @@ $("#quiz_content", $.pq_wrapper)
 // when the item is loaded, fade in, then trigger startTimer
 .bind("quizItemLoaded", function(e, quizItem)
 {
-
-	$('#quiz_content').animate(
-	{
-			opacity: 1
-	},
-	{
-			duration: 1000,
+ $('.hover_answer', $.pq_wrapper).trigger('hover'); // trigger hover on already hovered answer
+  $.event.trigger('hover', $('.hover_answer', $.pq_wrapper)); // trigger hover on already hovered answer
+	$("#quiz_content", $.pq_wrapper).animate({opacity: 1},{ duration: 1000, // delay start of timer 
 			complete: function()
-			{
-			$.event.trigger("startTimer", [ quizItem ]);
-			
-            $('.hover_answer', $.pq_wrapper).trigger('hover'); // trigger hover on already hovered answer
-	
-			}
-	});
+			{$.event.trigger("startTimer", [ quizItem ]); } });
 	
 
 });

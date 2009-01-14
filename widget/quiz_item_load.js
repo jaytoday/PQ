@@ -8,6 +8,7 @@ $.plopquiz.quiz_content.html(html);
 // hide the answers for now
 $('.answer', $.plopquiz.answer_container).hide();
 
+// this occasionally results in things fading in twice, like the "Begin Quiz" button.
 $.plopquiz.quiz_loader.attr('class', quizItem.item_type + '_load').animate({opacity: 0}, {  duration: 0, complete: function()
 { $.plopquiz.quiz_inner_content.animate({opacity:1},{duration:200}).removeClass('disabled'); } 
 }).hide();
@@ -47,7 +48,6 @@ else
 $.plopquiz.timer_wrapper.hide();
 
 // not all items need skipping
-
 if(!quizItem.noSkip)
 $("#skip", $.plopquiz.answer_container).show();
 else
@@ -69,7 +69,7 @@ if(quizItem.item_type == "intro")
 {
 
 $('#confirm', $.plopquiz.answer_container).show().attr('class', 'answer intro_quiz').find('span.continue_button').text('Take This Quiz');
-$('button span#intro_button', $.plopquiz.answer_container).show(); // todo: this is coming late 
+$('button span#intro_button', $.plopquiz.answer_container).show(); 
 $('.intro_frame_content #subject_container_1').show().addClass('selected'); // show first subject
 
 // setup thumbnails
@@ -184,16 +184,14 @@ $.plopquiz.loadItem();
 
 if(quizItem.item_type == "begin_quiz")
 {
-		/* TEMPORARILY we are just bypassing this frame. Eventually, we want to refactor the functionality of this frame into the intro frame */
-
 var p = {};
 $('#confirm', $.plopquiz.answer_container).removeClass('intro_quiz').addClass('begin_quiz').find('span.continue_button').text('Begin Quiz');    
                 
-// this is a bit hacked together, later the proficiencies will be loaded from the server
+/* Deprecated 
 for(var i in $.plopquiz.proficiencies)
 $("#proficiency_choices")
 .append('<input type="checkbox" value="' + $.plopquiz.proficiencies[i] + '" checked /><span class="proficiency">' + $.plopquiz.proficiencies[i] + '</span><br />');
-
+*/
 
 }
 

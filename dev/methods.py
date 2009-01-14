@@ -12,10 +12,11 @@ from .model.proficiency import SubjectImage
 from model.employer import Employer
 from model.account import MailingList
 from google.appengine.api import memcache
+from model.dev import Setting
 
 DATA_TYPES = {"proficiencies": Proficiency.all(), 'proficiency_topics': ProficiencyTopic.all(), 'content_pages': ContentPage.all(), 'raw_items' : RawQuizItem.all(),
                'quiz_items': QuizItem.all(),
-               'mailing_list': MailingList.all(), 'employers': Employer.all()}
+               'mailing_list': MailingList.all(), 'employers': Employer.all(), 'settings': Setting.all()}
 
 LOAD_INCREMENT = 10 # How many entities are loaded into datastore at a time
 IMAGE_INCREMENT = 1 # How many entities are loaded into datastore at a time
@@ -33,7 +34,7 @@ def delete_data(data_type):
     data = DataMethods()
     data.delete_data(DATA_TYPES.get(data_type, False))
     deleted_count = data.execute_delete()
-    return str("deleted " + str(deleted_count) + " rows of " + data_type)
+    print str("deleted " + str(deleted_count) + " rows of " + data_type)
 
 
 def load_data(data_type):
@@ -52,6 +53,15 @@ def load_data(data_type):
     	data.execute_load() 
         memcache.set("MIN_SLICE_" + data_type, MIN_SLICE + 10, 60000) # reset min-slice
         print str("Added Data Rows " + str(MIN_SLICE) + "-" + str(MAX_SLICE) + " For " + data_type + " Data")
+
+
+# as of now, this results in print statements...not suitable for background processes.
+def load_at_once(data_type):
+    data = DataMethods()
+    data.load_json(data_type, "")
+    data_load = data.load_data(data_type)
+    data.execute_load()
+
 
  
  
@@ -333,10 +343,14 @@ class DataMethods():
 				save_entity = False # employers.methods used to save 
 				for e in emp.create_business_account(entity['unique_identifier'], entity['proficiencies'], batch=True):
 						entities.append(e)
+						
 			if data_type == 'mailing_list':
 				save_entity = MailingList(key_name=entity['email'], fullname = entity.get('fullname', ""), email = entity['email'], type = entity.get('type', ""))
+			
+			if data_type == 'settings':
+				save_entity = Setting(key_name=entity['name'], name = entity['name'], value = entity['value'])
+		
 			if save_entity: entities.append(save_entity)
-
 		try:
 			entity_num = 0
 			self.load_entities[data_type] = entities
@@ -386,3 +400,18 @@ class DataMethods():
      if data_type == 'employers': 
        emp = emp_data()
        emp.refresh_employer_images()
+
+
+
+def restore_settings(self):
+  	from model.dev import Setting
+  	save = []
+  	s = Setting(key_name="excellence_proficiency_threshold", name="excellence_proficiency_threshold", value=float(.10))
+  	save.append(s)
+  	s = Setting(key_name="fluency_proficiency_threshold", name="fluency_proficiency_threshold", value=float(.55))
+  	save.append(s) 	
+  	s = Setting(key_name="excellence_topic_threshold",name="excellence_topic_threshold", value=float(90))
+  	save.append(s)	
+  	s = Setting(key_name="fluency_topic_threshold", name="fluency_topic_threshold", value=float(55))
+  	save.append(s)
+  	db.put(save)

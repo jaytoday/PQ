@@ -73,16 +73,29 @@ def default_photo():
 
 class Awards():
 	
-	# Analyze proficiency levels and topiclevels, give awards to quiztakers. 
+	"""
+	Analyze proficiency levels and topiclevels, give awards to quiztakers. 
 
-     # Eventually, a quiztaker attribute will have to mark whether its been processed.
+    Eventually, a quiztaker attribute will have to mark whether its been processed.
+    For an award to be achieved, the topic threshold score (90) will have had to have been met
+    for at least the proficiency threshold (.10) of a given quiz subject. 
+    
+    """
 
-	EXCELLENCE_PROFICIENCY_THRESHOLD = .10
-	FLUENCY_PROFICIENCY_THRESHOLD = .55	
-	EXCELLENCE_TOPIC_THRESHOLD = 90 
-	FLUENCY_TOPIC_THRESHOLD = 55
-	
-	def check_all(self, qt=False): # specify qt for a single person
+	def load_settings(self, qt=False): # we want to make sure these reads only occur when necessary.
+		from model.dev import Setting
+		self.EXCELLENCE_PROFICIENCY_THRESHOLD = Setting.get_by_key_name("excellence_proficiency_threshold").value
+		self.FLUENCY_PROFICIENCY_THRESHOLD = Setting.get_by_key_name("fluency_proficiency_threshold").value	
+		self.EXCELLENCE_TOPIC_THRESHOLD = Setting.get_by_key_name("excellence_topic_threshold").value
+		self.FLUENCY_TOPIC_THRESHOLD = Setting.get_by_key_name("fluency_topic_threshold").value
+		
+	def check_all(self, qt=False): # optionally specify qt for a single person
+		try: self.load_settings()
+		except AttributeError: #this shouldn't happen if dev interface used to restore settings. 
+		    logging.warning('settings not restored yet. restoring now...')
+		    from dev.methods import load_at_once
+		    load_at_once('settings') #this results in print statements. Untested as background process.
+		    self.load_settings()
 		self.save_awards = [] # for batch datastore trip
 		if not qt: quiz_takers = QuizTaker.all().fetch(1000) # TODO: do more than 1000, with version check.
 		else: quiz_takers = [qt]
