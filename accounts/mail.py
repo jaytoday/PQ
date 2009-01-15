@@ -56,8 +56,10 @@ def mail_sponsor_message(sponsor, sponsee):
 	message = mail.EmailMessage()
 	message.sender = "notify@plopquiz.com"
 	message.subject = "Your PlopQuiz sponsorship has been awarded!" 
-	message.to = sponsor.email
-	
+
+	from model.employer import Employer
+	this_business = Employer.get_by_key_name(sponsor.unique_identifier)	
+	message.to = this_business.email
 	message.body = """
 
 	%s,
@@ -88,10 +90,10 @@ def mail_sponsee_message(sponsee, sponsor):
 	message.subject = "You've earned a PlopQuiz sponsorship!"
 	message.to = sponsee.email
 	from model.employer import Employer
-	this_business = Employer.get(sponsor.unique_identifier)
+	this_business = Employer.get_by_key_name(sponsor.unique_identifier)
 	sponsor_message = this_business.sponsorship_message
 	if sponsor_message is None:
-		sponsor_message = this_business.default_message
+		sponsor_message = this_business.default_message()
 	message.body = """
  
 	%s,

@@ -15,11 +15,11 @@ class DataMethods():
 	
 
 
-  def create_business_account(self, uid, proficiencies=False, batch=False):
+  def create_business_account(self, uid, email, proficiencies=False, batch=False):
 	from accounts.methods import register_account, register_user
 	import string
 	fullname = string.capwords(uid.replace("_", " "))
-	business_employer = self.register_employer(uid, fullname, proficiencies, save=False)
+	business_employer = self.register_employer(uid, fullname, email, proficiencies, save=False)
 	if not business_employer: return () # already registered
 	business_account = register_account(uid, fullname, save=False)
 	business_profile = register_user(uid, fullname, fullname, False)
@@ -29,10 +29,10 @@ class DataMethods():
 	return business_account, business_profile, business_employer 
 
 
-  def register_employer(self, business_name, fullname, proficiencies=False, save=True):
+  def register_employer(self, business_name, fullname, email, proficiencies=False, save=True):
 	  if Employer.get_by_key_name(business_name): return False
 	  print "registering employer: ", business_name
-	  new_employer = Employer.get_or_insert(key_name=business_name, unique_identifier = business_name, name = fullname)
+	  new_employer = Employer.get_or_insert(key_name=business_name, unique_identifier = business_name, name = fullname, email=email)
 	  if not new_employer.proficiencies:
 	  	if proficiencies: new_employer.proficiencies = proficiencies
 	  if save: db.put(new_employer)

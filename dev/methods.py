@@ -49,7 +49,7 @@ def load_data(data_type):
     if data_load == "Finished": 
         memcache.set("MIN_SLICE_" + data_type, None, 60000) # reset min-slice'
         return "Finished"
-    elif data_load > 0:
+    else:
     	data.execute_load() 
         memcache.set("MIN_SLICE_" + data_type, MIN_SLICE + 10, 60000) # reset min-slice
         print str("Added Data Rows " + str(MIN_SLICE) + "-" + str(MAX_SLICE) + " For " + data_type + " Data")
@@ -281,7 +281,6 @@ class DataMethods():
 		if data_type == 'employers': emp = emp_data()
 
 		newdata = memcache.get("json_" + str(data_type))
-		
 		if len(newdata[MIN_SLICE:MAX_SLICE]) == 0: 
 		                           print "Data Load Is Finished"
 		                           return "Finished"
@@ -341,7 +340,7 @@ class DataMethods():
 				if entity['content_url']: save_entity.content_url = entity['content_url']   
 			if data_type == 'employers': 
 				save_entity = False # employers.methods used to save 
-				for e in emp.create_business_account(entity['unique_identifier'], entity['proficiencies'], batch=True):
+				for e in emp.create_business_account(entity['unique_identifier'], entity.get('email', None), entity['proficiencies'], batch=True):
 						entities.append(e)
 						
 			if data_type == 'mailing_list':
@@ -380,9 +379,9 @@ class DataMethods():
      	
   def execute_load(self):
      load_list = []
-     for i in itertools.chain(*[list[1] for list in self.load_entities.items()]): load_list.append(i)
+     for i in itertools.chain(*[list[1] for list in self.load_entities.items()]): load_list.append(i) #inefficient
      db.put(load_list)
-     #db.put(itertools.chain(*[list[1] for list in self.load_entities.items()])) # still a list of lists  
+     #db.put(itertools.chain(*[list[1] for list in self.load_entities.items()])) # this doesn't work
      self.special_processes(list[0])
      for list in self.load_entities.items():
      	logging.info('executed load for %s', list[0])
