@@ -2,7 +2,7 @@
                     {
                         "unique_identifier": "better_place", 
                         "proficiencies": ["Clean Energy"], 
-                        "email": "NOTREAL@betterplace.com", 
+                        "email": "test@NOTREALbetterplace.com", 
                         "name": "Better Place"
                     }, 
                     {
@@ -18,7 +18,7 @@
                         "proficiencies": [
                             "Clean Energy"
                         ], 
-                        "email": "email@greenfuel.com", 
+                        "email": "email@NOTREALgreenfuel.com", 
                         "name": "greenfuel"
                     }, 
                     {
@@ -47,7 +47,7 @@
                         "proficiencies": [
                             "Smart Grid" 
                         ], 
-                        "email": "james+dharma@gmail.com", 
+                        "email": "thelevybreaks+dharma@gmail.com", 
                         "name": "dharma initiative"
                     },
                   {
@@ -55,7 +55,7 @@
                         "proficiencies": [
                             "Smart Grid" 
                         ], 
-                        "email": "james+skynet@gmail.com", 
+                        "email": "thelevybreaks+skynet@gmail.com", 
                         "name": "skynet"
                     }                       
                 ]

@@ -10,7 +10,14 @@ class Employer(db.Model):
     unique_identifier = db.StringProperty(required=False) # should be soon...
     email = db.EmailProperty(required=False)
     name = db.StringProperty()
-    proficiencies = db.StringListProperty() 
+    proficiencies = db.StringListProperty()
+    sponsorship_message = db.TextProperty(required=False)
+    
+    def default_message(self): """
+    
+     The %s team congratulates you on your achievement!
+     
+     """ % self.name 
 
 
 

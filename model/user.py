@@ -58,7 +58,6 @@ class Profile(db.Model):
     #gifts = TODO
 
     # Personal info 
-    name = db.StringProperty()
     occupation = db.StringProperty(required=False)
     work_status = db.StringProperty(required=False)
     location = db.StringProperty(required=False)

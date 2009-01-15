@@ -49,23 +49,27 @@ def mail_intro_message(profile):
 	
 
 
-def mail_sponsor_message(profile):
-	if not mail.is_email_valid(profile.email):
-		logging.error("%s is not valid", profile.email)
+def mail_sponsor_message(sponsor, sponsee):
+	if not mail.is_email_valid(sponsor.email):
+		logging.error("%s is not valid", sponsor.email)
 		return False
 	message = mail.EmailMessage()
 	message.sender = "notify@plopquiz.com"
 	message.subject = "Your PlopQuiz sponsorship has been awarded!" 
-	message.to = profile.email
+	message.to = sponsor.email
 	
 	message.body = """
 
-	Your sponsorship has been awarded!
+	%s,
+	
+	Your sponsorship has been earned by %s.
+	
+	You can visit this student's profile at http://www.plopquiz.com/profile/%s.
 	
 	
 
 	%s
-	""" % profile.fullname
+	""" % (sponsor.fullname, sponsee.fullname, sponsee.profile_path, mail_footer())
 
 	#message.send()
 
@@ -75,29 +79,43 @@ def mail_sponsor_message(profile):
 	
 
 
-def mail_sponsee_message(profile):
-	if not mail.is_email_valid(profile.email):
-		logging.error("%s is not valid", profile.email)
+def mail_sponsee_message(sponsee, sponsor):
+	if not mail.is_email_valid(sponsee.email):
+		logging.error("%s is not valid", sponsee.email)
 		return False
 	message = mail.EmailMessage()
 	message.sender = "notify@plopquiz.com"
-	message.subject = "You've earned a PlopQuiz sponsorship!" 
-	message.to = profile.email
-	
+	message.subject = "You've earned a PlopQuiz sponsorship!"
+	message.to = sponsee.email
+	from model.employer import Employer
+	this_business = Employer.get(sponsor.unique_identifier)
+	sponsor_message = this_business.sponsorship_message
+	if sponsor_message is None:
+		sponsor_message = this_business.default_message
 	message.body = """
-
-	You've earned a sponsorship!
+ 
+	%s,
 	
-	If this wasn't just a test sponsorship, you would be getting a friendly message from your personal or business sponsor.
+	You've earned a sponsorship from %s!
 	
-	You had to have at least a decent score to earn the sponsorship, so congratulations! 
+	-------------------------------------------------------------------
 	
-	
-
 	%s
-	""" % profile.fullname
+	
+	
+	
+	
+	
+	%s
+	
+
+	
+	""" % (sponsee.fullname, sponsor.fullname, sponsor_message, mail_footer())
 
 	message.send()
+
+
+
 
 
 
@@ -178,3 +196,17 @@ def new_years_message():
 		message.send()
 		print "sent message to ", p.email
 	
+
+
+
+
+
+
+def mail_footer():
+	footer = """
+	
+	www.plopquiz.com
+	
+	"""
+	
+	return footer 

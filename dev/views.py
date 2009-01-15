@@ -93,3 +93,14 @@ class EditSubjects(webapp.RequestHandler):
 
 
 
+
+
+class Error(webapp.RequestHandler):
+  def get(self):
+	error_type = self.request.path.split('/error/')[1]   
+	template_values = {"error_type": error_type}
+	logging.debug('loaded error page for error type %s',  error_type)
+	path = tpl_path('utils/error.html')
+	self.response.out.write(template.render(path, template_values))
+
+

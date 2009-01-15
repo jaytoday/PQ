@@ -26,9 +26,6 @@ remote callers access to private/protected "_*" methods.
 ######## MODEL METHODS ##########  
 
 
-  def extend_feed(self, *args):
-	return "<div>Suck My Butt!</div>"
-
 
 
 

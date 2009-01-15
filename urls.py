@@ -74,5 +74,9 @@ def url_routes(map):
 	map.connect('image/*img', controller = 'profiles.views:Image')
 	map.connect('js/base', controller = 'homepage.views:BaseJS')
 	map.connect('Redirect', 'redirect/*path', controller = 'accounts.views:Redirect')	
+	map.connect('error/:error_type', controller = 'dev.views:Error')  
+	
 	map.connect('404 error', '*url/:not_found', controller = 'utils.utils:NotFoundPageHandler')
-	map.connect('404 error', '*url', controller = 'utils.utils:NotFoundPageHandler')     
+	map.connect('404 error', '*url', controller = 'utils.utils:NotFoundPageHandler')
+	   
+    

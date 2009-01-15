@@ -67,7 +67,6 @@ $("#skip", $.plopquiz.answer_container).hide();
 
 if(quizItem.item_type == "intro")
 {
-
 $('#confirm', $.plopquiz.answer_container).show().attr('class', 'answer intro_quiz').find('span.continue_button').text('Take This Quiz');
 $('button span#intro_button', $.plopquiz.answer_container).show(); 
 $('.intro_frame_content #subject_container_1').show().addClass('selected'); // show first subject
@@ -88,7 +87,6 @@ $('.intro_frame_content .subject_container', $.plopquiz.quiz_content).hide('fast
 $('.intro_frame_content #subject_container_' + $(this).attr('id'), $.plopquiz.quiz_content).show('fast').addClass('selected');
 
 $('#subject_' + $(this).attr('id'), $.plopquiz.quiz_content).s3Slider({ timeOut: $.plopquiz.settings.sliderDuration }); // initiate a slider for the subject being shown.
-
 
 });
 

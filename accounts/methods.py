@@ -232,8 +232,8 @@ class Sponsorships():
 		                              award = award,
 		                              pledge = pledge )
 		self.save_sponsorships.append(new_sponsorship)
-		self.notify_sponsor(new_sponsorship.sponsor)
-		self.notify_sponsee(award.winner)
+		self.notify_sponsor(new_sponsorship.sponsor, award.winner)
+		self.notify_sponsee(award.winner, new_sponsorship.sponsor)
 		return
 
 	def give_biz_sponsorship(self, pledge, award, biz_profile):
@@ -246,20 +246,20 @@ class Sponsorships():
 		                              #pledge = pledge TODO: this refers to personal pledge
 		                              )
 		self.save_sponsorships.append(new_sponsorship)
-		self.notify_sponsor(new_sponsorship.sponsor)
-		self.notify_sponsee(award.winner)
+		self.notify_sponsor(new_sponsorship.sponsor, award.winner)
+		self.notify_sponsee(award.winner, new_sponsorship.sponsor)
 		return
 		
 
-	def notify_sponsor(self,sponsor):
+	def notify_sponsor(self,sponsor, sponsee):
 		from accounts.mail import mail_sponsor_message
-		mail_sponsor_message(sponsor)
+		mail_sponsor_message(sponsor, sponsee)
 		return
 			
 
-	def notify_sponsee(self,sponsee):
+	def notify_sponsee(self,sponsee, sponsor):
 		from accounts.mail import mail_sponsee_message
-		mail_sponsee_message(sponsee)
+		mail_sponsee_message(sponsee, sponsor)
 		return
 			
 
