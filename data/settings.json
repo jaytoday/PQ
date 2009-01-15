@@ -1,0 +1,30 @@
+[
+                    {
+                        "name": "excellence_proficiency_threshold", 
+                        "value": 0.10000000000000001, 
+                        "modified": {
+                            "ctime": "Wed Jan 14 09:32:48 2009"
+                        }
+                    }, 
+                    {
+                        "name": "excellence_topic_threshold", 
+                        "value": 90.0, 
+                        "modified": {
+                            "ctime": "Wed Jan 14 09:32:48 2009"
+                        }
+                    }, 
+                    {
+                        "name": "fluency_proficiency_threshold", 
+                        "value": 0.55000000000000004, 
+                        "modified": {
+                            "ctime": "Wed Jan 14 09:32:48 2009"
+                        }
+                    }, 
+                    {
+                        "name": "fluency_topic_threshold", 
+                        "value": 55.0, 
+                        "modified": {
+                            "ctime": "Wed Jan 14 09:32:48 2009"
+                        }
+                    }
+                ]

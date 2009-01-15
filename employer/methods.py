@@ -22,7 +22,7 @@ class DataMethods():
 	business_employer = self.register_employer(uid, fullname, email, proficiencies, save=False)
 	if not business_employer: return () # already registered
 	business_account = register_account(uid, fullname, save=False)
-	business_profile = register_user(uid, fullname, fullname, False)
+	business_profile = register_user(uid, fullname, fullname, email, False)
 	if not batch: #only one account being made
 	    db.put([business_account, business_profile, business_employer])
 	    self.refresh_employer_images([business_employer])

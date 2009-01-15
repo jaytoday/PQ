@@ -13,7 +13,8 @@ class Employer(db.Model):
     proficiencies = db.StringListProperty()
     sponsorship_message = db.TextProperty(required=False)
     
-    def default_message(self): """
+    def default_message(self): 
+      return """
     
      The %s team congratulates you on your achievement!
      

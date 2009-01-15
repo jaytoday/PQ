@@ -50,30 +50,28 @@ def mail_intro_message(profile):
 
 
 def mail_sponsor_message(sponsor, sponsee):
+	logging.debug("sending e-mail to %s", sponsor.email)
 	if not mail.is_email_valid(sponsor.email):
 		logging.error("%s is not valid", sponsor.email)
 		return False
 	message = mail.EmailMessage()
 	message.sender = "notify@plopquiz.com"
 	message.subject = "Your PlopQuiz sponsorship has been awarded!" 
-
-	from model.employer import Employer
-	this_business = Employer.get_by_key_name(sponsor.unique_identifier)	
-	message.to = this_business.email
+	message.to = sponsor.email
 	message.body = """
 
 	%s,
 	
 	Your sponsorship has been earned by %s.
 	
-	You can visit this student's profile at http://www.plopquiz.com/profile/%s.
+	You can visit this student's profile at http://www.plopquiz.com/profile/%s
 	
 	
 
 	%s
 	""" % (sponsor.fullname, sponsee.fullname, sponsee.profile_path, mail_footer())
 
-	#message.send()
+	message.send()
 
 
 	
@@ -82,6 +80,7 @@ def mail_sponsor_message(sponsor, sponsee):
 
 
 def mail_sponsee_message(sponsee, sponsor):
+	logging.debug("sending e-mail to %s", sponsee.email)
 	if not mail.is_email_valid(sponsee.email):
 		logging.error("%s is not valid", sponsee.email)
 		return False
