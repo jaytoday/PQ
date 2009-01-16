@@ -7,7 +7,7 @@ PQ
 Setup
 ------------
 
-  Run PQ through dev_appserver. Refer to App Engine docs for details. 
+  Run PQ through your local GAE SDK server. Refer to 'getting started' for details. 
   
   You can restore your datastore at /dev/admin by loading each data type, 
   from top to bottom.
@@ -28,18 +28,26 @@ Tips
   Each application is stored in an eponymous folder. Typically, each application consists of:
   
   -- views.py - renders the template for a page
+  
   -- rpc.py - XML-RPC methods
+  
   -- methods.py - shared methods, and code chunks too large for a views.py class. 
   
   
   ## Shared Files 
   
   -- Templates are in /templates/, in the folder corresponding to the application.
+  
   -- Models are defined in /models/ 
+  
   -- Libraries and utilities are in /utils/
+  
   -- Javascript is in /static/scripts/ (unless it needs to be dynamic)
+  
   -- Stylesheets are in /static/stylesheets/
+  
   -- Images are in /static/stylesheets/img/
+  
   -- Backup JSON and files that need to be opened during execution are in /data/
   
 
