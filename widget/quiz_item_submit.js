@@ -128,7 +128,8 @@ case "quiz_item":
 break;
 
 case "quiz_complete":
- $.event.trigger('quizclosing');
+
+ $.plopquiz.loadItem();  // show loading icon again...
  
  /* Open results in new window -- This is turned off for now out of concerns of spamineess.
   * 
@@ -137,7 +138,6 @@ else window.open("{{ http_host }}/redirect/from_quiz/" + $.plopquiz.settings.ses
   */
 
 window.location = "{{ http_host }}/redirect/from_quiz/" + $.plopquiz.settings.sessionToken; // proceed in this window
-
 
   
 break;

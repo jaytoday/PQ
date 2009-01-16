@@ -1,28 +1,14 @@
 {% extends "../base.html" %}
 
-
-{% block head %}
-<style type="text/css" media="screen">
-
-	#pqwidget{ margin: 200px 0px 0px 400px; }
-
-</style>
-
-<script type="text/javascript" >
-
-$(function(){
-	
-	console.log($('#"take_quiz'));
-	$('#"take_quiz').click().hide();
-	
-});
-
-</script> 
-
-{% endblock %}
-
+{% block head %} {% endblock %}
+{% block title %}Take a Quiz on {{ quiz_subject }}{% endblock %}
  {% block login %} {% endblock login %}
 {% block main %}
+
+<h1 style="display:none;">Take a Quiz on {{ quiz_subject }}</h1>
+
+{# this opens when quiz closes #} <div id="on_quiz_close" style="display:none;"></div>
+
 
 <script src="{{ http_host }}/js/quiz/{{ quiz_subject }}?autostart=True" type="text/javascript" rel="javascript"></script>
 

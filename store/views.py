@@ -155,7 +155,7 @@ class Sponsorship(webapp.RequestHandler):
 	def get(self):
 		if not self.get_profile(): return 
 		self.get_proficiencies()
-		template_values = {'page_title': 'Sponsorship', 'no_load': True, 'sponsor': getattr(self.session['user'], 'unique_identifier', False), 'profile': self.profile, 'proficiencies': self.proficiencies}
+		template_values = {'no_load': True, 'sponsor': getattr(self.session['user'], 'unique_identifier', False), 'profile': self.profile, 'proficiencies': self.proficiencies}
 		path = tpl_path(STORE_PATH + 'sponsorship.html')
 		self.response.out.write(template.render(path, template_values))
 

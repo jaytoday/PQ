@@ -47,8 +47,10 @@ $("#pq_wrapper")
 	$(this).hide();
 	$('#widget_wrapper').fadeIn().find('button').css('display', 'inline').end().find('.widget_load').hide();
   console.log($('#widget_wrapper').find('button'));
-	// reset to start of quiz, TODO: this should handle skipping instructions;
+	// reset to start of quiz, unless quiz items have begun. TODO: this should handle skipping instructions;
 	$.plopquiz.currentItem = 0;
+    // if we want to redirect to the PQ site
+    // if($.plopquiz.settings.autoStart) window.location = "{{ http_host }}/login";
 });
 
 // close button

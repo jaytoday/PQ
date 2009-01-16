@@ -32,10 +32,9 @@ class Login(webapp.RequestHandler):
         template_values['pre_test'] = "True"
         self.session['continue'] = '/test/' + self.request.get('test')    
     if self.session['user']: 
-        if self.session['continue']: 
-            self.redirect(self.session['continue'])
-            del self.session['continue']
-        else: self.redirect('/')
+		if not self.session['continue']: self.session['continue'] = '/profile/' + self.session['user'].profile_path 
+		self.redirect(self.session['continue'])
+		self.session['continue'] = False
     if self.session['continue']: template_values['login_context'] = self.session['continue'].split('/')
     self.session['post_quiz'] = False
     if self.request.get('error') == "true":
@@ -67,7 +66,7 @@ class LoginResponse(webapp.RequestHandler):
 		  self.session['user'] = registered(json['profile']['identifier'])
 		  if self.session['user'] is False: return self.register_user(json) 
 		  else: 
-		        if not self.session['continue']: self.session['continue'] = '/profile/' + self.session['user'].profile_path #DEFAULT_LANDING_PAGE
+		        if not self.session['continue']: self.session['continue'] = '/profile/' + self.session['user'].profile_path 
 		        self.redirect(self.session['continue'])
 		        self.session['continue'] = False
 		return
