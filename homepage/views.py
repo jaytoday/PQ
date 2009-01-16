@@ -9,6 +9,18 @@ from utils.webapp import util
 from .utils.utils import tpl_path, memoize, Debug
 
 HOMEPAGE_PATH = 'homepage/'           
+DEMO_PATH = 'demo/'
+
+
+
+class TeaserHomepage(webapp.RequestHandler):
+  def get(self):
+    self.response.clear()
+    template_values = {}
+    path = tpl_path(DEMO_PATH + 'homepage.html')
+    self.response.out.write(template.render(path, template_values))
+    
+
               
 
 

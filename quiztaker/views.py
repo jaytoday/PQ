@@ -26,20 +26,11 @@ DEMO_PATH = 'demo/'
 
 
 
-class PQHome(webapp.RequestHandler):
-  #Load Plopquiz Homepage -- Just for Teaser Homepage
-  def get(self):
-    self.response.clear()
-    template_values = {}
-    path = tpl_path(DEMO_PATH + 'homepage.html')
-    self.response.out.write(template.render(path, template_values))
-    
 
 
 
 
-
-class PQDemo(webapp.RequestHandler):
+class PQDemo(webapp.RequestHandler):   # This is just for the demo
   #Load Ad Embed Preview Page
   def get(self):
     template_values = {}
@@ -247,7 +238,7 @@ class ViewSnaptalentQuiz(webapp.RequestHandler): # most work should go into its 
         
 
 
-class ViewNone(webapp.RequestHandler):
+class ViewNone(webapp.RequestHandler): # Deprecated
 
    def get(self):
        pass

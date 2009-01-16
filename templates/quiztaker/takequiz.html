@@ -1,11 +1,11 @@
 {% extends "../base.html" %}
 
 {% block head %} {% endblock %}
-{% block title %}Take a Quiz on {{ quiz_subject }}{% endblock %}
+{% block title %}Take a {{ quiz_subject }} Quiz{% endblock %}
  {% block login %} {% endblock login %}
 {% block main %}
 
-<h1 style="display:none;">Take a Quiz on {{ quiz_subject }}</h1>
+<h1 style="display:none;">Take a {{ quiz_subject }} Quiz</h1>
 
 {# this opens when quiz closes #} <div id="on_quiz_close" style="display:none;"></div>
 

@@ -1,7 +1,7 @@
 def url_routes(map):
 	
 	#Hompeage
-	map.connect('', controller = 'quiztaker.views:PQHome')
+	map.connect('', controller = 'homepage.views:TeaserHomepage')
 	map.connect('preview/homepage', controller = 'homepage.views:ViewHomepage')
 	map.connect('preview', controller = 'homepage.views:ExitPage')
 
@@ -19,7 +19,11 @@ def url_routes(map):
 	#Store
 	map.connect('preview/proficiency', controller = 'store.views:ChooseProficiency')
 	map.connect('sponsor/*user', controller = 'store.views:Sponsorship')
-	
+
+	#Sponsors
+	map.connect('sponsors', controller = 'store.views:CommunitySponsor') # business sponsors
+	map.connect('sponsor/*user', controller = 'store.views:Sponsorship') # personal sponsors
+		
 	#Preview
 	map.connect('preview/profile', controller = 'profiles.views:PreviewViewProfile')
 	map.connect('preview/employer/profile', controller = 'profiles.views:ViewEmployerProfile')

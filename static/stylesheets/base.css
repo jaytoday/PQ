@@ -395,7 +395,7 @@ padding:10px;
 }
 
 .gray_box{
-background:#FCFCFC url(/images/modules/header/header_bg.png) repeat-x scroll 0 100%;
+background:#FCFCFC repeat-x scroll 0 100%;
 border:5px solid #DDDDDD;
 float:left;
 margin:4px;
@@ -405,7 +405,7 @@ width:95px;
 }
 
 .gray_square_box{
-background:#FCFCFC url(/images/modules/header/header_bg.png) repeat-x scroll 0 100%;
+background:#FCFCFC repeat-x scroll 0 100%;
 border:5px solid #DDDDDD;
 -moz-border-radius:8px;
 -webkit-border-radius: 8px;
@@ -560,6 +560,8 @@ float:right;
 font-weight:bold; 
 margin:18px 4px;
 }
+
+.continue_button.thin{ margin:1px 4px; }
 
 
 .ui-dialog-content span.content.sponsors{

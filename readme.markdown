@@ -23,24 +23,24 @@ Tips
 
   URL patterns are defined in /urls.py.
   
-  ## Applications ##
+  ## Applications 
   
   Each application is stored in an eponymous folder. Typically, each application consists of:
   
-  # views.py - renders the template for a page
-  # rpc.py - XML-RPC methods
-  # methods.py - shared methods, and code chunks too large for a views.py class. 
+  -- views.py - renders the template for a page
+  -- rpc.py - XML-RPC methods
+  -- methods.py - shared methods, and code chunks too large for a views.py class. 
   
   
-  ## Shared Files ##
+  ## Shared Files 
   
-  # Templates are in /templates/, in the folder corresponding to the application.
-  # Models are defined in /models/ 
-  # Libraries and utilities are in /utils/
-  # Javascript is in /static/scripts/ (unless it needs to be dynamic)
-  # Stylesheets are in /static/stylesheets/
-  # Images are in /static/stylesheets/img/
-  # Backup JSON and files that need to be opened during execution are in /data/
+  -- Templates are in /templates/, in the folder corresponding to the application.
+  -- Models are defined in /models/ 
+  -- Libraries and utilities are in /utils/
+  -- Javascript is in /static/scripts/ (unless it needs to be dynamic)
+  -- Stylesheets are in /static/stylesheets/
+  -- Images are in /static/stylesheets/img/
+  -- Backup JSON and files that need to be opened during execution are in /data/
   
 
 

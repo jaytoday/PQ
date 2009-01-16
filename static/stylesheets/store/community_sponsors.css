@@ -1,0 +1,252 @@
+div#left{ 
+float:left;
+padding:40px 0 0 10px;
+width:460px;
+}
+
+div#right{
+float:right;
+padding:30px 10px 0 0;
+width:460px;
+}
+
+div#cs_intro{
+height:410px;
+}
+
+div#recent_sponsorships{ height:300px;}
+
+
+div#sponsor_apply{ height:140px;}
+
+
+
+div#cs_intro h1{
+font-size: 1.6em;
+}
+
+div#cs_intro p{
+font-size:1.2em;
+margin:15px 3px;
+line-height:1.02em;
+}
+
+div#cs_intro p.big{
+font-size:1.6em;
+}
+
+
+
+
+div#cs_intro ul{
+
+}
+
+
+div#cs_intro ul li{
+list-style:disc;
+font-size:1.2em;
+line-height:1.1em;
+margin:10px 35px 0;
+}
+
+
+.error{
+color:red;
+display:none;
+}
+
+
+
+
+
+
+
+
+
+/* action feed */
+
+
+.action_item{
+height:100px;
+margin:10px 0;
+padding:5px 0 15px;
+width:440px;
+}
+
+
+.is_winner{
+margin:4px 10px;
+}
+
+.is_subject{
+float:right;
+width:120px;
+margin:-83px 10px;
+height:80px;
+overflow:hidden;
+}
+
+
+.is_recipient{
+margin:4px 15px;
+}
+
+.is_sponsor{
+float:right;
+margin:-99px 18px;
+}
+
+span.action_type{
+display:block;
+font-size:1.5em;
+line-height:1.3em;
+margin:5px 0px 0px 120px;
+text-align:center;
+width:160px;
+background: #FFF;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        padding: 3px;
+}
+
+span.action_date{
+display:block;
+
+font-size:0.7em;
+/* margin:10px 49px; float:left; */
+margin:0 0 0 179px;
+/* position:absolute; */
+}
+span.sponsored_by{
+margin-left: 135px;
+}
+
+
+div.mc{
+font-size:1.5em;
+margin:13px 0 0 16px;
+}
+
+div.mc_correct{
+font-weight: bold;
+}
+
+
+div.intro_item_header{
+font-size:1.2em;
+margin:10px 8px 0px;
+}
+
+div.intro_item{
+line-height:1.2em;
+margin:3px 15px;
+}
+
+div.intro_item a{ font-weight: bold; }
+
+
+
+/* cut out what isnt needed, and share more between stylesheets */
+
+.gray_square_box, .selection_box{
+cursor:pointer;
+}
+.gray_square_box span{
+	font: 12px Arial, Helvetica, sans-serif;
+	font-variant:small-caps;
+	padding:3px 11px;
+	position:absolute;
+	width:73px;
+	background-color: #000;
+	filter: alpha(opacity=85);
+	-moz-opacity: 0.85;
+	-khtml-opacity: 0.85;
+	opacity: 0.85;
+	color: #fff;
+}
+
+.sliderImage span{
+	font: 11px Arial, Helvetica, sans-serif;
+	font-variant:small-caps;
+	padding:1px 8px 3px;
+	position:absolute;
+	width:105px;
+	background-color: #000;
+	filter: alpha(opacity=70);
+	-moz-opacity: 0.7;
+	-khtml-opacity: 0.7;
+	opacity: 0.7;
+	color: #fff;
+	/* display: none; if this is re-instated, then the show() function 
+	needs to be used when the slider isn't used  */ 
+}
+
+
+.sliderImage span.img_top{
+-webkit-border-bottom-right-radius: 10px;
+-moz-border-radius-bottomright:10px;
+-webkit-border-bottom-left-radius: 10px;
+-moz-border-radius-bottomleft:10px;
+}
+
+.sliderImage span.img_bottom{
+-webkit-border-top-right-radius: 10px;
+-moz-border-radius-topright:10px;
+-webkit-border-top-left-radius: 10px;
+-moz-border-radius-topleft:10px;
+}
+
+
+.gray_square_box span.img_top{
+-webkit-border-bottom-right-radius: 10px;
+-moz-border-radius-bottomright:10px;
+-webkit-border-bottom-left-radius: 10px;
+-moz-border-radius-bottomleft:10px;
+}
+
+.gray_square_box span.img_bottom{
+-webkit-border-top-right-radius: 10px;
+-moz-border-radius-topright:10px;
+-webkit-border-top-left-radius: 10px;
+-moz-border-radius-topleft:10px;
+}
+
+
+
+.clear {
+	clear: both;
+}
+.sliderImage span strong, .gray_square_box span strong {
+font-size:14px;
+font-variant:normal;
+letter-spacing:-0.03em;
+margin:0 -4px;
+}
+.img_top {
+	top: 0;
+	left: 0;
+}
+.img_bottom {
+	bottom: 0;
+    left: 0;
+}
+.img_left {
+	top: 0;
+    left: 0;
+	width: 110px !important;
+	height: 280px;
+}
+.img_right {
+	right: 0;
+	bottom: 0;
+	width: 90px !important;
+	height: 290px;
+}
+
+
+.sliderImage {
+    position:relative;
+}
+
+

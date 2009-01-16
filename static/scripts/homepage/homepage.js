@@ -96,7 +96,9 @@ function FeedScroll(){
 	
 var scroll_feed = setTimeout(function()
 		{
-		$("#action_feed > div:first").animate({opacity: 0, height: 0 }, {duration:800, complete:function(){ $(this).remove(); $("#action_feed").append($(this).animate({opacity: 1, height: 100 }));    }});
+		$("#action_feed > div:first").animate({opacity: 0, height: 0 }, {duration:800, complete:function(){ 
+			$(this).remove(); $("#action_feed").append($(this).animate({opacity: 1, height: 100 }));    
+			}});
 		
 		FeedScroll();
 		}, 6000);

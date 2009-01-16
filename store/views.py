@@ -127,7 +127,7 @@ class TakeTest(webapp.RequestHandler):
 	         
 	    account.put()
 	test = self.get_test()
-	template_values = {'no_load': True, 'pass_count': pass_count}
+	template_values = {'pass_count': pass_count}
 	path = tpl_path(STORE_PATH +'take_test.html')
 	self.response.out.write(template.render(path, template_values))
 
@@ -155,7 +155,7 @@ class Sponsorship(webapp.RequestHandler):
 	def get(self):
 		if not self.get_profile(): return 
 		self.get_proficiencies()
-		template_values = {'no_load': True, 'sponsor': getattr(self.session['user'], 'unique_identifier', False), 'profile': self.profile, 'proficiencies': self.proficiencies}
+		template_values = {'sponsor': getattr(self.session['user'], 'unique_identifier', False), 'profile': self.profile, 'proficiencies': self.proficiencies}
 		path = tpl_path(STORE_PATH + 'sponsorship.html')
 		self.response.out.write(template.render(path, template_values))
 
@@ -181,3 +181,22 @@ class Sponsorship(webapp.RequestHandler):
 	        self.proficiencies.append({'name': pl.proficiency.name, 'key': pl.proficiency.key()})
 	     
 	    
+
+
+class CommunitySponsor(webapp.RequestHandler):
+
+	def get(self):
+		template_values = {'recent_sponsorships': self.load_recent_sponsorships()}
+		path = tpl_path(STORE_PATH + 'community_sponsors.html')
+		self.response.out.write(template.render(path, template_values))
+
+
+
+
+	def load_recent_sponsorships(self):
+		ACTION_THRESHOLD = 20 # too much? do testing on laptops.
+		from model.account import Sponsorship
+		recent_sponsorships = Sponsorship.all().order('date').fetch(ACTION_THRESHOLD)
+		return recent_sponsorships
+
+		
