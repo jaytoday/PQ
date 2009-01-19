@@ -77,6 +77,9 @@ def refresh_subject_images(this_subject=False):
 	proficiencies = memcache.get("subject_image_queue")
 	if not proficiencies: proficiencies = Proficiency.all().fetch(1000)
 
+	if proficiencies is None: 
+	    print "No Proficiencies Found"
+	    return 
 	# Get the next proficiency in sequence 
 	next_proficiency = proficiencies.pop()
 	build = Build()

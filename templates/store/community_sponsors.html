@@ -49,19 +49,20 @@
 
 <div id="right">
 <div id="recent_sponsorships">
-<button id="recent_sponsorships"><span class="continue_button thin">Recent Sponsorships </span></button>
+<button class="noclick" id="recent_sponsorships"><span class="continue_button thin">Recent Sponsorships </span></button>
 <div id="action_feed">
 {% for action in recent_sponsorships %}
 
 {% include "sponsorship_feed_item.html" %}
-</div>
 
 {% endfor %}
 </div>
 
 
+</div>
+
 <div id="sponsor_apply">
-<button onClick="return false;"><span class="continue_button thin">Apply to Be a Community Sponsor</span> </button>
+<button class="noclick"><span class="continue_button thin">Apply to Be a Community Sponsor</span> </button>
 <form name="sponsor_apply">
    <fieldset>  
      <label for="name" id="name_label">Organization Name</label>  
@@ -77,11 +78,12 @@
      <label class="error" for="phone" id="phone_error">This field is required.</label>  
        -->
      <br />  
-<button id="sponsor_apply" onClick="return false;"><span class="continue_button thin">Submit</span></button>
 
    </fieldset>  
 
 </form>
+<button id="sponsor_submit"><span class="continue_button thin">Submit</span></button>
+
 </div>
      
     </div>

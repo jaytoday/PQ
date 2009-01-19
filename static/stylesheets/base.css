@@ -555,13 +555,15 @@ margin:20px -120px;
 cursor:pointer;
 }
 
-.continue_button{
+button .continue_button{
 float:right; 
 font-weight:bold; 
 margin:18px 4px;
 }
 
-.continue_button.thin{ margin:1px 4px; }
+button .thin{ margin:1px 4px; }
+
+button.noclick{ cursor:default; }
 
 
 .ui-dialog-content span.content.sponsors{

@@ -1,6 +1,8 @@
   $(function() {
     $('.error').hide();  
-    $("button#sponsor_apply").click(function() {
+    console.log($("button#sponsor_submit"));
+    
+    $("button#sponsor_submit").click(function() {
 
       // validate and process form here
       
@@ -28,7 +30,7 @@
       }
       */
       
-      
+      return false;
     });
     
     

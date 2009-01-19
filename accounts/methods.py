@@ -16,7 +16,7 @@ def registered(user_key):
 
 
 
-def register_user(user_key, nickname, fullname, email, save=True):
+def register_user(user_key, nickname, fullname, email, is_sponsor=False, save=True):
     profile_path = nickname.lower()
     profile_path = profile_path.replace(' ','_')
     
@@ -24,7 +24,8 @@ def register_user(user_key, nickname, fullname, email, save=True):
                           unique_identifier = user_key, # redundancy
                           nickname = nickname,
                           fullname = fullname,
-                          profile_path = profile_path
+                          profile_path = profile_path,
+                          sponsor = is_sponsor
                           )
                           
     if email: new_user.email = email

@@ -63,9 +63,11 @@ Tips
 
 * Offline Development
 
-  For convenience while developing offline, you can click "convenience" at the login screen. 
+  For convenience while developing offline, you can click "convenience" at the login screen to bypass proxy authentication. 
 
   You can then enter your UID as an argument, like __"http://localhost:8080/dev/admin?shortcut=login&uid=myusername"__ 
+  
+  This method can also be used to login to any existing user account. 
 
     
 Utilities

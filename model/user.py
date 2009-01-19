@@ -69,6 +69,8 @@ class Profile(db.Model):
     photo = db.ReferenceProperty(ProfilePicture,
                                     collection_name='profile')  # One Quiz Taker Can Have Many Filters
     
+    is_sponsor=db.BooleanProperty(default=False) # avoid lookup to check if this is sponsor
+    
     # When Signed Up
     date = db.DateTimeProperty(auto_now_add=True)
     

@@ -14,10 +14,10 @@ div#cs_intro{
 height:410px;
 }
 
-div#recent_sponsorships{ height:300px;}
+div#recent_sponsorships{ height:200px;}
 
 
-div#sponsor_apply{ height:140px;}
+div#sponsor_apply{ height:240px;}
 
 
 
@@ -66,6 +66,11 @@ display:none;
 
 /* action feed */
 
+
+div#action_feed{
+height:140px;
+overflow:hidden;
+}
 
 .action_item{
 height:100px;

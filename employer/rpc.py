@@ -44,14 +44,12 @@ class RPCHandler(webapp.RequestHandler):
     
 
 
+
+
 class RPCMethods(webapp.RequestHandler):
   """ Defines AJAX methods.
   NOTE: Do not allow remote callers access to private/protected "_*" methods.
   """
-
-
-
-
 
 
   def get_scores(self, *args):
@@ -67,3 +65,21 @@ class RPCMethods(webapp.RequestHandler):
 
   	
   	
+
+
+class SponsorPost(webapp.RequestHandler): 
+  def post(self):
+  	if self.request.get('action') == 'settings': self.response.out.write(simplejson.dumps(  self.sponsor_settings()  ))  
+  	
+
+
+  def sponsor_settings(self): 	
+    # get employer
+	this_employer = Employer.get_by_key_name(self.request.get('sponsor'))
+	# save message
+	this_employer.sponsorship_message = self.request.get('sponsorship_message')
+	#save quiz subjects
+	this_employer.quiz_subjects = [ self.request.get('quiz_subject') ]
+	# save sponsor account
+	this_employer.put()
+	return "OK"

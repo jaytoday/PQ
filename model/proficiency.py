@@ -39,10 +39,11 @@ class Proficiency(db.Model):
   date = db.DateTimeProperty(auto_now_add=True)
   modified = db.DateTimeProperty(auto_now=True)
   status = db.StringProperty(required=False)
-  #subject material
   blurb = db.TextProperty(required=False)
+  # study guide material
   link_html = db.TextProperty()
   video_html = db.TextProperty()
+  # statistics
   popularity = db.IntegerProperty()
   difficulty = db.IntegerProperty() 
  

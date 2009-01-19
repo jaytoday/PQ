@@ -25,7 +25,7 @@ class ViewProfile(webapp.RequestHandler):
   def get(self):
     template_values = self.get_profile()
     if not template_values: return
-    template_values['load'] = 2000
+    template_values['load'] = 2000 # give 2 seconds to load 
     path = tpl_path(PROFILE_PATH +'profile_template.html')
     self.response.out.write(template.render(path, template_values))
     
@@ -37,6 +37,7 @@ class ViewProfile(webapp.RequestHandler):
 		user = Profile.gql('WHERE profile_path = :1', urllib.unquote(profile_stub))
 		try:
 			user = user.get()
+			if user.is_sponsor == True: self.redirect('/sponsors/' + user.profile_path) # go to sponsor profile
 			logging.info('loading profile of %s for user %s' % (user.profile_path, getattr(self.session['user'], 'profile_path', "?")))
 			this_user = user.unique_identifier
 		except:
@@ -123,44 +124,64 @@ class EditProfile(webapp.RequestHandler):
 
 
   
+
+class EditSponsorSettings(webapp.RequestHandler):
+  @login_required
+  def get(self):
+    if self.session['create_profile'] == True:
+        edit_type = "Create"
+        self.session['create_profile'] = False
+    else: edit_type = 'Edit'
+    from model.employer import Employer
+    this_employer = Employer.get_by_key_name(self.session['user'].unique_identifier)
+    from model.proficiency import Proficiency
+    subjects = Proficiency.all().fetch(1000)
+    template_values = {'user': self.session['user'], 'edit_type': edit_type, 'this_employer': this_employer,
+                        'subjects': subjects }
+    path = tpl_path(PROFILE_PATH +'sponsor_settings.html')
+    self.response.out.write(template.render(path, template_values))
+
       
 
-class ViewEmployerProfile(webapp.RequestHandler):
+
+
+
+
+
+class ViewSponsorProfile(webapp.RequestHandler):
+
   def get(self):
-    template_values = {}
-    path = tpl_path(PROFILE_PATH +'employer_prototype.html')
+    template_values = self.get_sponsor_profile()
+    if not template_values: return
+    template_values['load'] = 2000 # give 2 seconds to load 
+    path = tpl_path(PROFILE_PATH +'sponsor_template.html')
     self.response.out.write(template.render(path, template_values))
     
 
+  def get_sponsor_profile(self):
+		profile_stub = self.request.path.split('/sponsors/')[1].lower()
+		profile_path = profile_stub.replace(' ','_')
+		import urllib
+		user = Profile.gql('WHERE profile_path = :1', urllib.unquote(profile_stub))
+		try:
+			user = user.get()
+			if user.is_sponsor == False: self.redirect('/profile/' + user.profile_path) # go to sponsor profile
+			logging.info('loading profile of %s for user %s' % (user.profile_path, getattr(self.session['user'], 'profile_path', "?")))
+			this_user = user.unique_identifier
+		except:
+		    logging.debug('no sponsors profile of %s found for user %s' % (profile_path, getattr(self.session['user'], 'profile_path', "?")))
+		    self.redirect('/sponsor_not_found/') # if no user is found
+		    return False
+		is_profile_owner = False
+		if self.session['user']:
+		    if user.unique_identifier == self.session['user'].unique_identifier: is_profile_owner = True
+		else: set_flash('anon_viewer')
+		# get sponsor stuff 
+		# get awards and sponsorships
+		from model.account import Award, Sponsorship
 
-class BrowseProfiles(webapp.RequestHandler):
-  def get(self):
-    template_values = {}
-    path = tpl_path(PROFILE_PATH +'browse_profiles.html')
-    self.response.out.write(template.render(path, template_values))
-    
+		return { 'user': user, 'profile_owner': is_profile_owner, 'is_sponsor': True}
 
-
-class LoadUserProfile(webapp.RequestHandler):
-  def get(self):
-    if not self.request.get('user'): return False
-    template_values = {}
-    path = tpl_path(PROFILE_PATH + self.request.get('user') + '.html')
-    self.response.out.write(template.render(path, template_values))
-    
-
-
-
-
-
-
-
-class PreviewViewProfile(webapp.RequestHandler):
-  def get(self):
-
-    template_values = {}
-    path = tpl_path(PROFILE_PATH +'prototype.html')
-    self.response.out.write(template.render(path, template_values))
 
 
 
@@ -219,3 +240,49 @@ class Image (webapp.RequestHandler):  # TODO: Move this to somewhere more approp
       expires = datetime.datetime.now() + self.FILE_CACHE_TIME 
       self.response.headers['Cache-Control'] = self.FILE_CACHE_CONTROL
       self.response.headers['Expires'] = expires.strftime('%a, %d %b %Y %H:%M:%S GMT')
+
+
+
+
+
+
+
+
+
+
+
+
+
+class ViewEmployerProfile(webapp.RequestHandler):  # deprecated
+  def get(self):
+    template_values = {}
+    path = tpl_path(PROFILE_PATH +'employer_prototype.html')
+    self.response.out.write(template.render(path, template_values))
+    
+
+
+class BrowseProfiles(webapp.RequestHandler):  # deprecated -- use this for sponsors
+  def get(self):
+    template_values = {}
+    path = tpl_path(PROFILE_PATH +'browse_profiles.html')
+    self.response.out.write(template.render(path, template_values))
+    
+
+
+class LoadUserProfile(webapp.RequestHandler):  # deprecated! 
+  def get(self):
+    if not self.request.get('user'): return False
+    template_values = {}
+    path = tpl_path(PROFILE_PATH + self.request.get('user') + '.html')
+    self.response.out.write(template.render(path, template_values))
+    
+
+
+
+class PreviewViewProfile(webapp.RequestHandler): #deprecated 
+  def get(self):
+
+    template_values = {}
+    path = tpl_path(PROFILE_PATH +'prototype.html')
+    self.response.out.write(template.render(path, template_values))
+

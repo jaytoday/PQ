@@ -74,7 +74,7 @@
 	
 		<div class="profile">
           
-           <div class="change_picture"> 
+           <div class="change_picture"> {# This div should not contain the preview and submit buttons!! #}
        <form action="/profile/{{user.profile_path}}" class="picture" name="picture" onSubmit="return false;" enctype="multipart/form-data" method="get"> 
        <div class="panel_box pic_box" id="cycle_img" >Cycle Pictures</div> 
        <div id="change_img" >Upload Picture</div>

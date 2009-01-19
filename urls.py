@@ -14,15 +14,17 @@ def url_routes(map):
 	#Profiles
 	map.connect('profile/*username', controller = 'profiles.views:ViewProfile')
 	map.connect('edit_profile', controller = 'profiles.views:EditProfile')
+	map.connect('edit_sponsor_settings', controller = 'profiles.views:EditSponsorSettings')
 	
 	
 	#Store
 	map.connect('preview/proficiency', controller = 'store.views:ChooseProficiency')
-	map.connect('sponsor/*user', controller = 'store.views:Sponsorship')
+	#map.connect('sponsor/*user', controller = 'store.views:Sponsorship')
 
 	#Sponsors
 	map.connect('sponsors', controller = 'store.views:CommunitySponsor') # business sponsors
-	map.connect('sponsor/*user', controller = 'store.views:Sponsorship') # personal sponsors
+	map.connect('sponsors/:sponsor', controller = 'profiles.views:ViewSponsorProfile') # business sponsors
+	map.connect('sponsor/*user', controller = 'store.views:Sponsorship') # personal sponsor signup
 		
 	#Preview
 	map.connect('preview/profile', controller = 'profiles.views:PreviewViewProfile')
@@ -58,7 +60,8 @@ def url_routes(map):
 	map.connect('quiztaker/rpc', controller = 'quiztaker.rpc:RPCHandler')
 	map.connect('quizbuilder/rpc/post', controller = 'quizbuilder.rpc:RPCPostHandler')	
 	map.connect('quizbuilder/rpc', controller = 'quizbuilder.rpc:RPCHandler')		
-	map.connect('employer/rpc', controller = 'employer.rpc:RPCHandler')		
+	map.connect('employer/rpc', controller = 'employer.rpc:RPCHandler')	
+	map.connect('employer/rpc/post', controller = 'employer.rpc:SponsorPost')		
 	map.connect('accounts/rpc', controller = 'accounts.rpc:RPCHandler')	
 	map.connect('profiles/rpc', controller = 'profiles.rpc:RPCHandler')		
 	map.connect('dev/rpc', controller = 'dev.rpc:RPCHandler')		

@@ -2,23 +2,19 @@ from google.appengine.ext import db
 from google.appengine.api import users
 import logging
 from proficiency import Proficiency
-import quiz
+
 
 
 
 class Employer(db.Model):
-    unique_identifier = db.StringProperty(required=False) # should be soon...
+    unique_identifier = db.StringProperty(required=True)
     email = db.EmailProperty(required=False)
     name = db.StringProperty()
-    proficiencies = db.StringListProperty()
+    quiz_subjects = db.StringListProperty() # use for key_name lookups
     sponsorship_message = db.TextProperty(required=False)
     
     def default_message(self): 
-      return """
-    
-     The %s team congratulates you on your achievement!
-     
-     """ % self.name 
+      return """The %s team congratulates you on your achievement!""" % self.name 
 
 
 
