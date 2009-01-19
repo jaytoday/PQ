@@ -234,7 +234,7 @@ def mail_sponsor_intro(profile):
 	
 	
 	
-	Once signed in, You can edit your profile, view your sponsorships, and configure your sponsorship settings.
+	Once signed in, you can edit your profile, view your sponsorships, and configure your sponsorship settings.
 	
 	If there's anything we can help you with, e-mail support@plopquiz.com or call us at (650) 353-2694. 
 	

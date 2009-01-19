@@ -87,16 +87,21 @@ buttons: {
 },
 "Profiles": function() { 
 		$(this).find('div').hide();
-		$(this).find('div.about_how_we_grade').show();
+		$(this).find('div.about_profiles').show();
 },
 "Sponsers": function() { 
 		$(this).find('div').hide();
 		$(this).find('div.about_sponsors').show();
 },
+
+/* TODO Volunteers 
 "Volunteers": function() { 
 		$(this).find('div').hide();
 		$(this).find('div.about_how_we_grade').show();
 },
+
+*/
+
 "How We Grade": function() { 
 		$(this).find('div').hide();
 		$(this).find('div.about_how_we_grade').show();
