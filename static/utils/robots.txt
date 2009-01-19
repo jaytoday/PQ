@@ -3,3 +3,6 @@ Disallow: /console
 Disallow: /dev
 Disallow: /preview
 Sitemap: http://www.plopquiz.com/sitemap.xml
+
+User-agent: Browsershots
+Disallow:

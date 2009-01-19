@@ -63,13 +63,15 @@ class RPCMethods(webapp.RequestHandler):
 	return 
 
 
+
   	
   	
 
 
 class SponsorPost(webapp.RequestHandler): 
   def post(self):
-  	if self.request.get('action') == 'settings': self.response.out.write(simplejson.dumps(  self.sponsor_settings()  ))  
+  	if self.request.get('action') == 'settings': self.response.out.write(simplejson.dumps(  self.sponsor_settings()  )) 
+  	if self.request.get('action') == 'apply': self.response.out.write(simplejson.dumps(  self.sponsor_apply()  ))   
   	
 
 
@@ -83,3 +85,12 @@ class SponsorPost(webapp.RequestHandler):
 	# save sponsor account
 	this_employer.put()
 	return "OK"
+
+
+  def sponsor_apply(self): 	
+	from model.employer import Sponsor_Application
+	sponsor_app = Sponsor_Application(name = self.request.get('name'),
+	                                      email = self.request.get('email') )
+	sponsor_app.put()
+	return "OK"
+

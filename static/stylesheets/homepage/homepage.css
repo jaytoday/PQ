@@ -155,9 +155,11 @@ div.right{
 }
 div.right_inner{
 font-size:0.9em;
+height:750px;
 letter-spacing:0.02em;
-margin:0px 0 0 0px;
-width:519px;
+margin:0 0 0 0;
+overflow:hidden;
+width:489px;
 }
 
 div.upgrade{

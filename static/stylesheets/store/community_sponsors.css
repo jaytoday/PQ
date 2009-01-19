@@ -14,7 +14,7 @@ div#cs_intro{
 height:410px;
 }
 
-div#recent_sponsorships{ height:200px;}
+div#recent_sponsorships{ height:190px;}
 
 
 div#sponsor_apply{ height:240px;}
@@ -26,13 +26,14 @@ font-size: 1.6em;
 }
 
 div#cs_intro p{
-font-size:1.2em;
-margin:15px 3px;
+font-size:1.5em;
 line-height:1.02em;
+margin:18px 3px;
+width:420px;
 }
 
 div#cs_intro p.big{
-font-size:1.6em;
+/* font-size:1.6em; */
 }
 
 
@@ -54,6 +55,7 @@ margin:10px 35px 0;
 .error{
 color:red;
 display:none;
+font-size: .6em;
 }
 
 
@@ -255,3 +257,34 @@ margin:0 -4px;
 }
 
 
+
+/* Application Form */
+
+div#sponsor_signup{
+margin:10px;
+}
+
+form#sponsor_apply{
+font-size:1.2em;
+margin:0 0 0 10px;
+}
+
+form#sponsor_apply fieldset{
+height:70px;
+}
+
+
+form#sponsor_apply input{
+font-size: .9em;
+padding: 2px;
+margin: 0px 3px 0px 0px;
+}
+
+
+
+
+div#submit_success{
+height:100px;
+padding:30px;
+font-size:1.2em;
+}

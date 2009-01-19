@@ -140,7 +140,7 @@ def hash_pipe(private_object):
     new_hash = md5.md5()
     new_hash.update(str(private_object))
     public_token = new_hash.hexdigest()
-    memcache.add(public_token, private_object, 6000)
+    memcache.add(public_token, private_object, 6000) # length?
     return public_token
 
 

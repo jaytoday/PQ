@@ -19,6 +19,13 @@
 <div class="login_notice warning_note">You must sign in before taking a test. </div>
 {% endif %}
 
+
+{% ifequal login_context "sponsor"%}
+<div style='margin-top: 5px;' class="login_notice warning_note">We've logged you off your sponsor account.<div style="height:7px;"></div>
+Create a student account to save your quiz score.</div>
+{% endifequal %}
+
+
 {% ifequal login_context.1 "register"%}
 <!--<div class="login_notice warning_note">You must sign in before registering. </div> -->
 {% endifequal %}

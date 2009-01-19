@@ -629,33 +629,33 @@ position:absolute; width:280px; margin: -2px -18px;
 
 /* Signup */
 
-form.signup input, form.signup textarea {
+.quiz_wrap form.signup input, form.signup textarea {
     border: solid 1px #85b1de !important;
     background: #fff url('../img/base/forms/formbg.gif') repeat-x !important;
     background-position: top !important;
     width:130px;
 }
-form.signup input:focus, form.signup textarea:focus {
+.quiz_wrap form.signup input:focus, form.signup textarea:focus {
     background-image: none;
     background-color: #ffffff !important;
     border: solid 1px #bbbbbb !important;
 }
 
 
-form.signup li{
+.quiz_wrap form.signup li{
 float:left;
 margin:5px 10px;
 }
 
 
-form.signup fieldset{
+.quiz_wrap form.signup fieldset{
 border:3px solid #DDDDDD;
 height:105px;
 margin:10px;
 overflow:hidden;
 }
 
-form.signup legend {
+.quiz_wrap form.signup legend {
 padding:2px 10px;
 }
 
@@ -1177,6 +1177,9 @@ letter-spacing:0.1em;
 margin:2px 0 15px;
 }
 
+
+/* This is all deprecated */
+
 .quiz_wrap div#choose_profs
 {
 height:210px;
@@ -1184,7 +1187,7 @@ margin:-20px 0 10px -22px !important;
 overflow:hidden;
 }
 
-#profs
+.quiz_wrap #profs
 {
 background:transparent url({{ http_host }}/static/html/img/background_250.png) repeat-x scroll center top !important;
 height:300px;
@@ -1193,18 +1196,18 @@ margin-top:-12px !important;
 width:311px;
 }
 
-form#proficiency_choices
+.quiz_wrap form#proficiency_choices
 {
         margin-left:10px !important;
         margin-top:25px !important;
 }
-form#proficiency_choices input
+.quiz_wrap form#proficiency_choices input
 {
         float: left; 
         margin-left: 50px !important;
 }
 
-form#proficiency_choices span
+.quiz_wrap form#proficiency_choices span
 {
         float:left;
         font-size:1.1em !important;
@@ -1212,7 +1215,7 @@ form#proficiency_choices span
         margin-top:-3px !important;
 }
 
-form span:hover 
+.quiz_wrap form span:hover 
 {
         color: #DDDDDD !important;
 }

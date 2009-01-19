@@ -12,7 +12,7 @@ class Employer(db.Model):
     name = db.StringProperty()
     quiz_subjects = db.StringListProperty() # use for key_name lookups
     sponsorship_message = db.TextProperty(required=False)
-    
+    modified = db.DateTimeProperty(auto_now=True)    
     def default_message(self): 
       return """The %s team congratulates you on your achievement!""" % self.name 
 
@@ -28,3 +28,13 @@ class AutoPledge(db.Model):
                                    #TODO: package?
                                     
     # Put BP down 5000 for Automotive Industry. Then give out pledges as people take tests.                             
+
+
+
+
+
+
+class Sponsor_Application(db.Model):
+    email = db.EmailProperty(required=True)
+    name = db.StringProperty(True)
+    modified = db.DateTimeProperty(auto_now=True)    

@@ -2,6 +2,9 @@
     $('.error').hide();  
     console.log($("button#sponsor_submit"));
     
+    
+    
+    // Submit Sponsor Application
     $("button#sponsor_submit").click(function() {
 
       // validate and process form here
@@ -21,18 +24,36 @@
         $("input#email").focus();
         return false;
       }
-  		/*
-  		 var phone = $("input#phone").val();
-  		if (phone == "") {
-        $("label#phone_error").show();
-        $("input#phone").focus();
+  		if (email.indexOf("@") == -1) {
+        $("label#valid_email_error").show();
+        $("input#email").focus();
         return false;
       }
-      */
-      
-      return false;
+     
+     $('div#sponsor_application').hide('slow');
+     $('div#submit_success').show('slow');
+     
+     // ajax call
+     	$.ajax({
+		type: "POST", 
+		url: '/employer/rpc/post',
+		datatype: "json",
+		data:
+			{
+					action: "apply",
+					name: name, 
+					email: email
+			},
+		success: function(response) { }
+});			
+     
     });
-    
+
+
+// Take a Quiz link
+$('a#preview_quiz').click(function(){ 
+	$.getScript("/js/quiz/?autostart=True");
+});    
     
 FeedScroll();
     

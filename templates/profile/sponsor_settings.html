@@ -46,10 +46,12 @@
 
 <fieldset id="quiz_subjects"><legend>Quiz Subjects</legend> <br/>
 <ul id="2" > 
-<span>Select a subject. This will be better later, with a preview interface. </span>
+<span>Your sponsorship will be awarded to students earning the top 10% of scores for a quiz subject of your choice.</span>
+<div style="height:10px;"></div>
+<span>Preview the subjects by <a id="preview_quiz"> taking a quiz.</a></span>
+<div style="height:10px;"></div>
 <li> 
-<br/><br/>
-<label for="quiz_subjects">Quiz Subjects</label><div style="height:6px;"></div>
+<label for="quiz_subjects">Choose a Quiz Subject</label><div style="height:6px;"></div>
   <select name="quiz_subjects" id="quiz_subjects">
   {% for subject in subjects %}
   <option {% ifequal this_employer.quiz_subjects.0 subject.name   %}selected{% endifequal  %} >{{ subject.name }}</option>

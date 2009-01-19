@@ -235,6 +235,20 @@ remote callers access to private/protected "_*" methods.
 	email = business_name + "@" + "test_" + business_name + ".com"
 	return dm.create_business_account(business_name, email, proficiencies=False, batch=False)
 
+
+
+  def accept_application(self, *args):
+	from model.employer import Sponsor_Application
+	this_sponsor = Sponsor_Application.gql("WHERE name = :1", args[0]).get()
+	from employer.methods import DataMethods
+	dm = DataMethods()
+	new_account = dm.create_business_account(this_sponsor.name, this_sponsor.email, proficiencies=False, batch=False)
+	from accounts.mail import mail_sponsor_intro
+	mail_sponsor_intro(new_account[1])
+	return "OK"
+
+	
+	
   def add_auto_pledge(self, *args):
   	if not args: return "Specify A Business Identifier, Proficiency Name, and Number of Pledges."
   	if len(args) > 3: return "Specify A Business Identifier, Proficiency Name, and Number of Pledges."

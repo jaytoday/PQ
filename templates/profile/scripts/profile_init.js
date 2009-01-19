@@ -9,7 +9,9 @@ if ("{{ forloop.first }}") has_awards = "True";
  else  $('#award_{{ forloop.counter }}').s3Slider({ timeOut: 3300 });  {# load slider for this award#} 
 {% endfor %}  
 
+{% if not user.is_sponsor %}
 if (has_awards != "True") $('#main_nav').find('a[href="#report_card"]').click();
+{% endif %}
 
 if ($('div.is_sponsor').length == 0) $('div#no_sponsorship_note').show();
 

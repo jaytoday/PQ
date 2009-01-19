@@ -203,7 +203,60 @@ def new_years_message():
 
 
 
-def mail_footer():
+
+
+
+
+
+
+def mail_sponsor_intro(profile):
+	if not mail.is_email_valid(profile.email):
+		logging.warning("%s is not a valid email", profile.email)
+		return False
+	message = mail.EmailMessage()
+	message.sender = "notify@plopquiz.com"
+	message.subject = "Your PlopQuiz Community Sponsor Application" 
+	message.to = profile.email
+	if len(profile.fullname) < 1: user_name = "PlopQuiz User"
+	else: user_name = profile.fullname
+	message.body = """
+
+	%s,
+	
+	
+	Good news! PlopQuiz has accepted your Community Sponsor application.
+	
+	Your new role as a PlopQuiz Community Sponsor is a chance to connect with motivated learners and show your support for issues of public interest.
+	
+	Members of your organization can use this private link to sign in to your account:
+	
+	%s
+	
+	
+	
+	Once signed in, You can edit your profile, view your sponsorships, and configure your sponsorship settings.
+	
+	If there's anything we can help you with, e-mail support@plopquiz.com or call us at (650) 353-2694. 
+	
+	
+	
+	Warm Regards,
+
+	James 
+	Team PlopQuiz
+
+	
+	""" % (user_name, "http://plopquiz.com/login?secret=" + str(profile.key()))
+
+
+	
+	message.send()
+
+
+
+
+
+def mail_footer(): #Todo: unsubscribe
 	footer = """
 	
 	www.plopquiz.com
@@ -211,3 +264,10 @@ def mail_footer():
 	"""
 	
 	return footer 
+
+
+
+
+
+
+

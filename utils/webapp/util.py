@@ -60,6 +60,48 @@ def login_required(handler_method):   # this should be altered.
   return check_login
 
 
+# PQ Variation that checks if a user is not a sponsor.  
+
+def quiztaker_required(handler_method):   # this should be altered. 
+  """A decorator to require that a user be logged in to access a handler.
+
+  To use it, decorate your get() or post() method like this:
+
+    @login_required
+    def get(self):
+      user = users.GetCurrentUser(self)
+      self.response.out.write('Hello, ' + user.nickname())
+
+  We will redirect to a login page if the user is not logged in. We always
+  redirect to the request URI, and Google Accounts only redirects back as a GET request,
+  so this should not be used for POSTs.
+  """
+  def check_login(self, *args):
+    if self.request.method != 'GET':
+      raise webapp.Error('The check_login decorator can only be used for GET '
+                         'requests')
+    session = Session()
+    from model.user import Profile
+    this_user = Profile.get_by_key_name(self.session['user'].unique_identifier)
+    if this_user.is_sponsor is True:
+        self.session['user'] = False
+        self.session['continue'] = self.request.path
+        self.redirect('/login/?sponsor=true')
+        return
+        
+        
+    else:
+      handler_method(self, *args)
+  return check_login
+
+
+
+
+
+
+
+
+
 def run_wsgi_app(application):
   """Runs your WSGI-compliant application object in a CGI environment.
 

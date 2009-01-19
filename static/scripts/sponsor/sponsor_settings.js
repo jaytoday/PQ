@@ -18,7 +18,10 @@ $('#quiz_subjects').change(function(){
 		
 
 
-
+// Take a Quiz link
+$('a#preview_quiz').click(function(){ 
+	$.getScript("/js/quiz/?autostart=True");
+});
 		
 		
 		});

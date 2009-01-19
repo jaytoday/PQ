@@ -9,7 +9,7 @@ from utils import webapp, simplejson
 from utils.utils import ROOT_PATH, tpl_path, Debug 
 from google.appengine.api import urlfetch
 import urllib
-from utils.webapp.util import login_required
+from utils.webapp.util import login_required, quiztaker_required
 
 from methods import registered, register_user, register_qt, register_account
 
@@ -28,6 +28,7 @@ class Login(webapp.RequestHandler):
     login_response = str('http://' + self.request._environ['HTTP_HOST'] + '/login/response')
     template_values = {'token_url': login_response }
     if self.request.get('continue'): self.session['continue'] = self.request.get('continue')
+    # TODO: test taking functionality -- ? How is this different than quizzes
     if self.request.get('test'):
         template_values['pre_test'] = "True"
         self.session['continue'] = '/test/' + self.request.get('test')    
@@ -35,14 +36,29 @@ class Login(webapp.RequestHandler):
 		if not self.session['continue']: self.session['continue'] = '/profile/' + self.session['user'].profile_path 
 		self.redirect(self.session['continue'])
 		self.session['continue'] = False
+    if self.request.get('secret'): return self.shortcut()
+    
     if self.session['continue']: template_values['login_context'] = self.session['continue'].split('/')
+    if self.request.get('sponsor'):
+        template_values['login_context'] = "sponsor"
     self.session['post_quiz'] = False
     if self.request.get('error') == "true":
         template_values['error'] = "True"
     path = tpl_path(ACCOUNTS_PATH +'login.html')
     self.response.out.write(template.render(path, template_values))
     
-     
+
+  def shortcut(self): #TODO: Ensure a database restore couldn't break these links
+    logging.info('Using Key-Based Shortcut For Key %s', self.request.get('secret'))
+    from model.user import Profile
+    try: 
+        self.session['user'] = Profile.get(self.request.get('secret'))
+        self.redirect('/login')
+        assert self.session['user'] is not False
+    except: 
+        logging.warning('unable to use key %s for login shortcut', self.request.get('secret'))
+        self.redirect('/register')
+         
     
 
 class LoginResponse(webapp.RequestHandler):
@@ -178,6 +194,7 @@ class Redirect(webapp.RequestHandler):
         
         
   @login_required
+  @quiztaker_required
   def from_quiz_redirect(self):
       # redirect after quiz
       logging.info('Redirecting From Quiz')
@@ -225,3 +242,6 @@ class Redirect(webapp.RequestHandler):
 	else: print "there was a problem"
 	#self.redirect('/profile/' + self.session['user'].profile_path) # I don't know...where else? 
   	
+
+
+
