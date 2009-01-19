@@ -1,0 +1,81 @@
+{% extends "../base.html" %}
+{% block head %}
+	<link rel="stylesheet" type="text/css" charset="utf-8" href="/static/stylesheets/profile/edit.css" />
+	<link rel="stylesheet" type="text/css" charset="utf-8" href="/static/stylesheets/profile/sponsor_settings.css" />
+	<link rel="stylesheet" type="text/css" charset="utf-8" href="/static/stylesheets/utils/form.css" />
+	<link rel="stylesheet" type="text/css" charset="utf-8" href="/static/stylesheets/profile/tabs.css" />
+	<link rel="stylesheet" type="text/css" charset="utf-8" href="/static/stylesheets/profile/profile.css" />
+	<script type="text/javascript" src="/static/scripts/jquery/jquery.magicpreview.pack.js"></script> 
+	<script type="text/javascript" src="/static/scripts/jquery/jquery.jsupload.0.1.min.js"></script> 
+  <script type="text/javascript"> profile_path = '/sponsors/{{user.profile_path}}'; this_sponsor = "{{user.unique_identifier}}" </script>
+  <script type="text/javascript" src="/static/scripts/sponsor/sponsor_settings.js"></script>  
+{% endblock %}
+
+
+{% block main %}
+
+
+
+
+<div class="frame_box" id="edit_sponsor_settings">
+
+<div class="edit_profile">
+
+
+<h2>{{ edit_type }} Sponsor Settings</h2>
+
+
+
+        <form action="#" class="signup" name="signup" enctype="multipart/form-data" onSubmit="return false;" method="get">
+        
+<fieldset id="customize_message"><legend>Customize Your Message</legend> <br/>
+
+<span>Whenever a student earns your sponsorship, they'll receive this message.</span>
+<div style="height:10px;"></div>
+<span>You can describe career opportunities with your organization, services you offer, or anything else worth a conversation. </span>
+
+<ul id="1">
+<li> <textarea  cols="15" rows="5" type="textarea" name="sponsor_message" maxlength="380" id="sponsor_message">{{ this_employer.sponsorship_message|default_if_none:this_employer.default_message }}</textarea> </li>
+
+</ul>
+
+
+
+
+</fieldset>
+
+<fieldset id="quiz_subjects"><legend>Quiz Subjects</legend> <br/>
+<ul id="2" > 
+<span>Select a subject. This will be better later, with a preview interface. </span>
+<li> 
+<br/><br/>
+<label for="quiz_subjects">Quiz Subjects</label><div style="height:6px;"></div>
+  <select name="quiz_subjects" id="quiz_subjects">
+  {% for subject in subjects %}
+  <option {% ifequal this_employer.quiz_subjects.0 subject.name   %}selected{% endifequal  %} >{{ subject.name }}</option>
+    {% endfor %}
+</select>
+  </li>
+
+</ul>
+</fieldset>
+   </form>
+  
+
+
+
+</div>
+</div>
+
+
+       
+  <div id="submit_form">
+
+   <div id="submit">
+  <button onSubmit="return false;" onClick="return false;"><img src="/static/stylesheets/img/utils/purple_next.png"/><span class="continue_button" >Save Changes</span></button>
+  </div>
+
+   <div id="cancel"><span>or Cancel</span> <div class="form_cancel" id='cancil_profile'><img src="/static/stylesheets/img/utils/cancel.png"></div></div>          
+       
+</div>
+{% endblock %}
