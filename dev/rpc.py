@@ -232,8 +232,8 @@ remote callers access to private/protected "_*" methods.
 	business_name = args[0]
 	from employer.methods import DataMethods
 	dm = DataMethods()
-	return dm.create_business_account(business_name)
-
+	email = business_name + "@" + "test_" + business_name + ".com"
+	return dm.create_business_account(business_name, email, proficiencies=False, batch=False)
 
   def add_auto_pledge(self, *args):
   	if not args: return "Specify A Business Identifier, Proficiency Name, and Number of Pledges."

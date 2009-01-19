@@ -19,15 +19,14 @@ def registered(user_key):
 def register_user(user_key, nickname, fullname, email, is_sponsor=False, save=True):
     profile_path = nickname.lower()
     profile_path = profile_path.replace(' ','_')
-    
     new_user = Profile.get_or_insert(key_name = user_key,
                           unique_identifier = user_key, # redundancy
                           nickname = nickname,
                           fullname = fullname,
-                          profile_path = profile_path,
-                          sponsor = is_sponsor
+                          profile_path = profile_path
                           )
                           
+    new_user.is_sponsor = is_sponsor
     if email: new_user.email = email
     photo = default_photo() 
     if photo: new_user.photo = photo

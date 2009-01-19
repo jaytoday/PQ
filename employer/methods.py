@@ -22,6 +22,7 @@ class DataMethods():
 	if not business_employer: return () # already registered
 	business_account = register_account(uid, fullname, save=False)
 	business_profile = register_user(uid, fullname, fullname, email, is_sponsor=True, save=False)
+	if business_profile.is_sponsor is False: return "ERROR"
 	if not batch: #only one account being made
 	    db.put([business_account, business_profile, business_employer])
 	    self.refresh_employer_images([business_employer])
@@ -32,8 +33,8 @@ class DataMethods():
 	  if Employer.get_by_key_name(business_name): return False
 	  print "registering employer: ", business_name
 	  new_employer = Employer.get_or_insert(key_name=business_name, unique_identifier = business_name, name = fullname, email=email)
-	  if not new_employer.proficiencies:
-	  	if proficiencies: new_employer.proficiencies = proficiencies
+	  if not new_employer.quiz_subjects: 
+	  	if proficiencies: new_employer.quiz_subjects = proficiencies
 	  if save: db.put(new_employer)
 	  return new_employer
 
