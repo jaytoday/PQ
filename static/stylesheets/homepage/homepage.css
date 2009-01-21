@@ -266,9 +266,21 @@ margin:100px 0 60px 10px;
 width:366px;
 }
 
+div#intro_frame_box div#business{
+background:#EEEEEE none repeat scroll 0 0;
+font-size:0.9em;
+border-color:#CCC;
+line-height:1.3em;
+margin:20px 17px;
+padding:5px;
+width:280px;
+}
+
+div#intro_frame_box div#business a{ font-weight:bold;}
+
 div#intro_frame_box h3{
-font-size:1.6em;
-margin:16px 8px;
+font-size:1.8em;
+margin:16px 8px 10px;
 }
 
 div#intro_frame_box div#claim{
@@ -374,10 +386,32 @@ margin-left: 135px;
 
 
 div.mc{
-font-size:1.5em;
-margin:13px 0 0 16px;
+font-size:2.1em;
+line-height:1.2em;
+margin:13px 0 0 27px;
 }
 
+div.mc#sixth{
+font-size:1em;
+margin-top:10px;
+}
+
+div.mc#sixth span.num{ 
+margin-top: -11px;
+}
+
+div.mc span.num {
+display:block;
+font-size:0.6em;
+font-weight:bold;
+margin:0 -35px;
+position:absolute;
+}
+
+div.mc span.num button{
+font-size: 9px;
+padding: 3px;
+}
 div.mc_correct{
 font-weight: bold;
 }

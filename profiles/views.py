@@ -92,7 +92,7 @@ class ViewProfile(webapp.RequestHandler):
 
   def set_scroll(self, user):
     # TODO: Could these extra fetches be avoided? A count would have to be created seperately, in QT. 
-	SCROLL_THRESHOLD = 3
+	SCROLL_THRESHOLD = 2
 	scroll = {}
 	if len(user.awards.fetch(1000)) > SCROLL_THRESHOLD: scroll['awards'] = True
 	if len(user.sponsorships.fetch(1000)) > SCROLL_THRESHOLD: scroll['sponsors'] = True

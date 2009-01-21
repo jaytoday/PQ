@@ -3,6 +3,7 @@ form input, form textarea {
     background: #fff url('../img/base/forms/formbg.gif') repeat-x;
     background-position: top;
     margin:2px 0;
+    padding: 2px;
 }
 form input:focus, form textarea:focus {
     background-image: none;
@@ -19,11 +20,18 @@ margin:5px 10px;
 
 form fieldset{
 border:3px solid #DDDDDD;
-margin:15px 0;
+margin:10px 0;
 overflow:hidden;
+padding:0 0 8px;
 }
 
 form legend {
 padding:2px 10px;
 }
 
+
+div.form_error {
+color: red;
+display:none;
+font-size:0.8em;
+}

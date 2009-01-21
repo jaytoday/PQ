@@ -566,18 +566,4 @@ button .thin{ margin:1px 4px; }
 button.noclick{ cursor:default; }
 
 
-.ui-dialog-content span.content.sponsors{
-margin-left: 120px;
-width: 460px;
-}
 
-
-div.ui-dialog.about_dialog .ui-dialog-buttonpane button{ 
-/* margin-left:0.85em; with volunteer button */
-margin-left: 2.45em;
- }
-
-div.ui-dialog.about_dialog div.about_profiles span.list{
-margin: 10px 30px;
-list-style: disc;
-}

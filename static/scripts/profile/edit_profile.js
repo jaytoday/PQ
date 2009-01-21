@@ -62,6 +62,13 @@
     $('div.cancel').hide();
 		
 		
+		// textarea character count for aboutme section
+		 	$('textarea.aboutme').keyup(function(){
+ 		limitChars('aboutme', 80, 'chars_left');
+ 	});
+ 	limitChars('aboutme', 80, 'chars_left');
+ 	
+		
 		
 		});
 
@@ -161,6 +168,15 @@ function getNextPicture(photo_keys){
 
 	function onEditSuccess(response){
 			//TODO make sure that response has no errors
+			
+				if (response != "OK") { // error message.
+				console.log(response);
+		$('#form_error').show()
+		  .find('a').click(
+		  function(){ $('a#contact_dialog').click(); } );
+		
+		return false; }
+		
 			$('div.loading').show();
 	$('div.main').hide();
 	window.location=profile_path;
@@ -176,3 +192,22 @@ function CyclePictures(){
 getNextPicture(photo_keys);
 
 }
+
+
+function limitChars(textid, limit, infodiv)
+{
+	var text = $('#'+textid).val();	
+	var textlength = text.length;
+	if(textlength > limit)
+	{
+		//$('#' + infodiv).html("You've reached the "+limit+" limit ");
+		$('#'+textid).val(text.substr(0,limit));
+		return false;
+	}
+	else
+	{
+		$('#' + infodiv).html((limit - textlength) +' characters left.');
+		return true;
+	}
+}
+

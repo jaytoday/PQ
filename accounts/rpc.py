@@ -73,7 +73,7 @@ class RPCMethods(webapp.RequestHandler):
 
 		
 	# add up all scores for a given quiztaker, and then rank them.
-	return str(user.key())
+	return "OK"
 
 
 

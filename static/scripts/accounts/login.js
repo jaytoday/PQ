@@ -1,7 +1,24 @@
 
  
-
+$(function(){
+	
+	$('div#pq_login_link a').click(function(){
+		if ($(this).attr('id') == "email") {
+			
+			$(this).hide('slow');
+			$(this).parent().find('a#proxy').show('slow');
+			
+		}
+		
+		if ($(this).attr('id') == "proxy"){
+			
+			$(this).hide('slow');
+			$(this).parent().find('a#email').show('slow');
+			
+		}
+});
  
+});
  
 function PrivacyPolicy() {
 	

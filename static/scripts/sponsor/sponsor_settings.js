@@ -22,7 +22,7 @@ $('#quiz_subjects').change(function(){
 $('a#preview_quiz').click(function(){ 
 	$.getScript("/js/quiz/?autostart=True");
 });
-		
+
 		
 		});
 
@@ -43,6 +43,7 @@ $('a#preview_quiz').click(function(){
 					sponsorship_message: $('textarea#sponsor_message').attr('value'),
 					quiz_subject: $('#quiz_subjects').data('subject')
 			},
+		error: function() { },
 		success: function(response) { onEditSuccess(response); }
 });			
 
@@ -54,7 +55,7 @@ $('a#preview_quiz').click(function(){
 
 function UploadError() {
 
-// notify the user of the uploading error
+// TODO: notify the user of the uploading error
 console.log('Upload Error!');
 	
 }
@@ -77,8 +78,13 @@ $('div.cancel').show();
 
 	function onEditSuccess(response){
 
-	if (eval(response) != "OK") return false;
-			//TODO error message.
+	if (eval(response) != "OK") { // error message.
+		$('div#submit_form').find('#sponsor_form_error').show()
+		  .find('a').click(
+		  function(){ $('a#contact_dialog').click(); } );
+		
+		return false; }
+			
 			
 			$('div.loading').show();
 	$('div.main').hide();

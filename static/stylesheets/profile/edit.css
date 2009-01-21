@@ -8,7 +8,7 @@ overflow:hidden;
 }
 
 div.edit_profile{
-height:370px;
+height:410px;
 width:290px;
 font-size:1.3em;
 }
@@ -170,4 +170,17 @@ margin:-42px 0 0 90px !important;
 
 .edit_photo{
 margin:-68px -15px !important;
+}
+
+
+fieldset div#chars_left
+{ 
+float:left;
+margin: 0 70px;
+color: #333;
+}
+
+div#form_error{
+margin: -6px 0px 0px -100px;
+position:absolute;
 }

@@ -54,8 +54,8 @@
   <option {% ifequal user.work_status "Student" %}selected{% endifequal %}>Student</option>
 </select>
   </li>
-  <li> <label class="aboutme" for="aboutme">About Me</label> <textarea class="signup aboutme"   cols="15" rows="2" type="textarea" name="aboutme" maxlength="80" id="aboutme">{{ user.aboutme|default_if_none:"" }}</textarea> </li>
-
+  <li> <label class="aboutme" for="aboutme">About Me</label> <textarea class="signup aboutme"   id="aboutme" cols="15" rows="3" type="textarea" name="aboutme" maxlength="80" id="aboutme">{{ user.aboutme|default_if_none:"" }}</textarea> </li>
+<div id="chars_left"><span>0</span> chars left</div>
 </ul>
 </fieldset>
    </form>
@@ -109,7 +109,9 @@
             </div><!-- end summary -->
   
    <div class="cancel_edit"><span>or Cancel</span> <div class="form_cancel" id='cancil_profile'><img src="/static/stylesheets/img/utils/cancel.png"></div></div>          
-       
+              <div class="form_error warning_note" id="form_error">
+       There was an error sending this form.<div style="height:10px;"></div>If refreshing the page doesn't work,<div style="height:10px;"></div> <a id="contact">contact us</a>. 
+       </div>
        
   
 

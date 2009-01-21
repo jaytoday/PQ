@@ -39,3 +39,10 @@ width:200px; float:right; margin: 160px 30px 0px 0px;
 div#submit_form #submit{
 margin:0px 0px 10px;
 }
+
+
+div#sponsor_form_error {
+margin:20px 0 0 -25px;
+line-height:1.2em;
+}
+

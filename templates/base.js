@@ -87,7 +87,16 @@ buttons: {
 },
 "Profiles": function() { 
 		$(this).find('div').hide();
-		$(this).find('div.about_profiles').show();
+		$(this).find('div.about_profiles').show()
+		
+		.find('button').click(function(){
+			var this_span = $(this).parent().find('span#' + $(this).attr('id'));
+			$(this).parent().find('button').removeClass('clicked');
+			$(this).addClass('clicked');
+			$(this).parent().find('span.section').hide();
+			this_span.css('display', 'block');
+		});	
+		
 },
 "Sponsers": function() { 
 		$(this).find('div').hide();

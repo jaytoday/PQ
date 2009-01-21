@@ -178,11 +178,14 @@ padding:0.4em 0.8em;
 .about_dialog button {
 margin-left:0.25em;
 margin-right:0.2em;
+cursor:pointer; 
 }
 
-.contact_dialog button {
+.about_dialog button#academic_profiles { left: 2px; }
 
-}
+.about_dialog button#awards { left: 155px; }
+
+.about_dialog button#sponsorships { left: 235px; }
 
 
 
@@ -219,3 +222,71 @@ margin-right:-40px;
 margin-top:14px;
 width:130px;
 }
+
+
+.ui-dialog-content span.content.sponsors{
+margin-left: 120px;
+width: 460px;
+}
+
+
+div.ui-dialog.about_dialog .ui-dialog-buttonpane button{ 
+/* margin-left:0.85em; with volunteer button */
+margin-left: 2.45em;
+ }
+
+div.ui-dialog.about_dialog div.about_profiles span.list{
+margin: 10px 20px;
+list-style: disc;
+}
+
+
+
+.contact_dialog span#support_types {
+font-size:1.1em; margin:4px 0 0 -10px; display:block;
+}
+.contact_dialog span#support_types span#phone{
+font-size: 0.6em; margin: -23px 10px; display:block; float:right;
+}
+
+div.ui-dialog.about_dialog span span#tagline{
+font-size:1.2em;
+margin-bottom:0;
+margin-left:-10px;
+margin-right:0;
+margin-top:60px;
+position:absolute;
+
+}
+
+div.ui-dialog.about_dialog span#academic_profiles span#tagline{
+width:200px;
+}
+
+div.ui-dialog.about_dialog span#awards span#tagline, div.ui-dialog.about_dialog span#sponsorships span#tagline{
+height:99px;
+width: 140px;
+margin:75px 0;
+}
+
+div.ui-dialog.about_dialog span span#right_box{
+display:block;
+margin:70px 0 0 230px;
+position:absolute;
+width:300px;
+}
+
+
+div.ui-dialog.about_dialog span#sponsorships span.is_sponsor{
+margin: -2px 19px;
+}
+
+div.ui-dialog.about_dialog span#awards span#tagline span.selection_box{
+margin: 0px;
+}
+
+div.ui-dialog.about_dialog span#awards span#right_box, div.ui-dialog.about_dialog span#sponsorships span#right_box{
+margin:70px 0 0 230px;
+}
+
+

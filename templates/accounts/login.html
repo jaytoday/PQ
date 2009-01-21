@@ -39,10 +39,18 @@ Create a student account to save your quiz score.</div>
 {% if dev_server %} <a href="/dev/admin?shortcut=login">convenience</a> {% else %} convenience {% endif %}
 , PlopQuiz does not require account registration. </div>
 
-<!--<h2>Login with your account on  any of these services:</h2><br/>-->
+
+<div id="proxy_login">
 <iframe src="https://plopquiz.rpxnow.com/openid/embed?token_url={{ token_url }}"
   scrolling="no" frameBorder="no" style="margin: 20px 0px 0px 20px; width:400px;height:230px;">
 </iframe>
+</div>
+
+{% include "email_login.html" %}
+
+<div id="pq_login_link" style="display:none;">
+<a id="email">Login with an E-mail and Password</a><a id="proxy" style="display:none;">Login with a Third-Party Service.</a>
+</div>
 
 <span class="note"> To access your Plopquiz account, you must always sign in with the same service.  <br/><a onClick="PrivacyPolicy();">Privacy Policy </a></span>
 
