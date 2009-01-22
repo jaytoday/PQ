@@ -22,7 +22,9 @@ class QuizJS(webapp.RequestHandler):
     if not Debug(): self.set_expire_header()
     try : 
         proficiency_arg = self.request.path.split('/quiz/')[1].replace('%20',' ')
-        self.these_proficiencies = [Proficiency.get_by_key_name(proficiency_arg)]
+        this_proficiency = Proficiency.get_by_key_name(proficiency_arg)
+        assert this_proficiency != None
+        self.these_proficiencies = [this_proficiency]
     except: self.these_proficiencies = [Proficiency.get_by_key_name(DEFAULT_QUIZ_SUBJECT)]
     proficiency_names = [str(p.name) for p in self.these_proficiencies] 
     session_token = self.get_session_token()

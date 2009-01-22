@@ -563,7 +563,7 @@ margin:18px 4px;
 
 button .thin{ margin:1px 4px; }
 
-button.noclick{ cursor:default; }
+button.noclick{ cursor:default !important; }
 
 
 
