@@ -99,7 +99,7 @@ margin: -3px 6px -3px 6px;
 
 div#blog_description{
 width: 226px; 
-height:43px; 
+height:123px; 
 float:right; 
 margin: -150px 10px;
 }
@@ -111,7 +111,7 @@ margin: -150px 10px;
 
 
 		/* Search */
-		#search { text-align: right; margin:-70px 10px; }
+		#search { text-align: right; margin:7px 10px; float:right; }
 		
 
 		/* Search Result Count */
@@ -252,6 +252,27 @@ height:auto;
 }
 
 div#posts{
-margin:7em 0 0;
+margin:4.1em 0 0;
+position:relative;
 }
 
+div#launch_note{
+position:absolute; margin:-5px 10px 0px; width:300px; font-size: .8em;
+}
+
+/* Twitter */
+
+ul#twitter_update_list{
+margin:2px -3px;
+width:233px;
+}
+
+ul#twitter_update_list li{
+font-size:0.7em;
+line-height:1.3em;
+margin:8px -3px;
+}
+
+div#header img{
+float: left; margin: -7px 3px -5px -8px;
+}

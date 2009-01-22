@@ -15,9 +15,9 @@ height: 350px; float: left;
 
 form fieldset#quiz_subjects{
 float:left;
-margin:-360px 0 auto 347px;
+height:351px;
+margin:-369px 0 auto 347px;
 width:250px;
-height:349px;
 }
 
 form fieldset span{ /* this could be used for other forms */

@@ -25,6 +25,13 @@ overflow:hidden;
 padding:0 0 8px;
 }
 
+form fieldset.no_style{
+border: none;
+margin: auto;
+overflow: auto;
+padding: auto;
+}
+
 form legend {
 padding:2px 10px;
 }

@@ -270,14 +270,14 @@ margin:0 0 0 10px;
 }
 
 form#sponsor_apply fieldset{
-height:70px;
+height:65px;
 }
 
 
 form#sponsor_apply input{
 font-size: .9em;
 padding: 2px;
-margin: 0px 3px 0px 0px;
+margin: 5px 3px 0px 0px;
 }
 
 
