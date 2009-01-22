@@ -103,7 +103,6 @@ def redirect_from_appspot(wsgi_app):
             request = webob.Request(env)
             scheme, netloc, path, query, fragment = urlparse.urlsplit(request.url)
             url = urlparse.urlunsplit([scheme, 'www.plopquiz.com', path, query, fragment])
-            print url
             start_response('301 Moved Permanently', [('Location', url)])
             return
         else:
@@ -111,6 +110,23 @@ def redirect_from_appspot(wsgi_app):
     return redirect_if_needed
     
 
+def browser_check(wsgi_app):
+    def redirect_if_needed(env, start_response):
+        if "Explorer" in env['HTTP_USER_AGENT']:
+            import webob, urlparse
+            request = webob.Request(env)
+            scheme, netloc, path, query, fragment = urlparse.urlsplit(request.url)
+            error_path = '/browser_error'
+            logging.info(path)
+            logging.info(error_path)
+            if path == error_path: return wsgi_app(env, start_response) # avoid infinite loops
+            url = urlparse.urlunsplit([scheme, netloc,  error_path, query, fragment])
+            start_response('301 Moved Permanently', [('Location', url)])
+            return
+        return wsgi_app(env, start_response)
+    return redirect_if_needed
+
+          
 # 404
 class NotFoundPageHandler(webapp.RequestHandler):
     def get(self):

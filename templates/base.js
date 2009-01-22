@@ -90,12 +90,16 @@ buttons: {
 		$(this).find('div.about_profiles').show()
 		
 		.find('button').click(function(){
-			var this_span = $(this).parent().find('span#' + $(this).attr('id'));
+			if ($(this).hasClass('clicked')) return false;
+			
 			$(this).parent().find('button').removeClass('clicked');
 			$(this).addClass('clicked');
-			$(this).parent().find('span.section').hide();
-			this_span.css('display', 'block');
-		});	
+			$(this).parent().find('span.section').hide('fast').end()
+			                .find('span#' + $(this).attr('id')).css('display', 'block');
+
+		}).end()
+		.find('button:first').addClass('clicked');
+		console.log($(this).find('button:first'));
 		
 },
 "Sponsers": function() { 

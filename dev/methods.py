@@ -134,7 +134,7 @@ class Build():
 	def refresh_profile_images(self, refresh=False):
 		if refresh: self.delete_default_profile_images() 
 		else: self.archive_default_profile_images() 
-		image_range = range(3) # change this as you add more. range() is always one int ahead.
+		image_range = range(5) # change this as you add more. range() is always one int ahead.
 		save_images = []
 		for i in image_range:
 			image_file = open(ROOT_PATH + "/data/img/profile/profile_" + str(i) + ".png")

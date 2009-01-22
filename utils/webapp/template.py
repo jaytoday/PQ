@@ -44,6 +44,7 @@ from google.appengine.api import users
 import md5
 import os
 
+# TODO
 try:
   from django import v0_96
 except ImportError:
@@ -80,12 +81,15 @@ def render(template_path, template_dict, debug=False):
 
     
   debug = get_debug_mode()
+  
+
+  	  
   t = load(template_path, debug)
   
   # PQ - Add User to Template Dict
 
   user_info = get_user_info()
-  os.environ['SERVER_SOFTWARE']
+
   template_dict['dev_server'] = debug
   template_dict['user_session'] = user_info[0]
   template_dict['login_text'] = user_info[1]
@@ -272,3 +276,4 @@ def get_debug_mode():
     HOST='google'
     debug = False
   return debug
+

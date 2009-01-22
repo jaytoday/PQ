@@ -29,6 +29,7 @@ class WSGIApplication(object):
         response = Response()
         WSGIApplication.active_instance = self
         # Match the path against registered routes.
+        #return environ['HTTP_USER_AGENT']#: redirect('browser_error')
         kargs = self.mapper.match(request.path)
         if kargs is None:
             #nf = NotFoundPageHandler()
@@ -70,7 +71,7 @@ class WSGIApplication(object):
             return ['']
         else:
             response.set_status(404)
-            #redirect('/not_found/')
+            
 
 
 class NotFoundPageHandler(webapp.RequestHandler):
