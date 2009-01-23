@@ -125,8 +125,14 @@ class Post(webapp.RequestHandler):
 
 
 
-  def reset_account(self): 	
-	return "OK"
+  def reset_account(self):
+  	from model.user import Profile
+  	this_profile = Profile.gql("WHERE email = :1", self.request.get('email')).get()
+  	if this_profile:
+  		from accounts.mail import reset_account_access
+  		reset_account_access(this_profile)
+  		return "OK"	
+	return "Profile Not Found"
 
 
 

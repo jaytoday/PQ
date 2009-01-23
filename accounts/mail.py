@@ -198,41 +198,6 @@ def new_years_message():
 		print "sent message to ", p.email
 	
 
-def mail_sponsee_message(sponsee, sponsor):
-	logging.debug("sending e-mail to %s", sponsee.email)
-	if not mail.is_email_valid(sponsee.email):
-		logging.error("%s is not valid", sponsee.email)
-		return False
-	message = mail.EmailMessage()
-	message.sender = "notify@plopquiz.com"
-	message.subject = "You've earned a PlopQuiz sponsorship!"
-	message.to = sponsee.email
-	from model.employer import Employer
-	this_business = Employer.get_by_key_name(sponsor.unique_identifier)
-	sponsor_message = this_business.sponsorship_message
-	if sponsor_message is None:
-		sponsor_message = this_business.default_message()
-	message.body = """
- 
-	%s,
-	
-	You've earned a sponsorship from %s!
-	
-	-------------------------------------------------------------------
-	
-	%s
-	
-	
-	
-	
-	
-	%s
-	
-
-	
-	""" % (sponsee.fullname, sponsor.fullname, sponsor_message, mail_footer())
-
-	message.send()
 
 
 
@@ -297,7 +262,7 @@ def mail_sponsor_intro(profile):
 
 def reset_account_access(user):
 	logging.debug("sending e-mail to %s", user.email)
-	if not mail.is_email_valid(sponsee.email):
+	if not mail.is_email_valid(user.email):
 		logging.error("%s is not valid", user.email)
 		return False
 	message = mail.EmailMessage()
@@ -309,15 +274,18 @@ def reset_account_access(user):
  
 	%s,
 	
-	Reset Account Access! Here is your link....
+	You have requested to reset access to your PlopQuiz account.
 	
+	Visit this address to link your PlopQuiz account to a listed OpenID provider.
 
 	
 	%s
 	
-
 	
-	""" % (user.fullname, mail_footer())
+	
+    %s
+	
+	""" % (user.fullname, "http://plopquiz.com/login?reset=" + str(user.key()), mail_footer())
 
 	message.send()
 	return True

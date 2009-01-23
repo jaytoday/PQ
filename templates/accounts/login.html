@@ -26,13 +26,18 @@ Create a student account to save your quiz score.</div>
 {% endifequal %}
 
 
-{% ifequal login_context.1 "register"%}
-<!--<div class="login_notice warning_note">You must sign in before registering. </div> -->
-{% endifequal %}
 
 {% ifequal login_context.2 "from_quiz"%}
 <div class="login_notice warning_note">Please sign in to save your quiz. </div>
 {% endifequal %}
+
+
+{% ifequal login_context "reset"%}
+<div style='margin-top: 5px;' class="login_notice warning_note">You are resetting your account access.<div style="height:7px;"></div>
+Choose a service to link to your PlopQuiz account</div>
+{% endifequal %}
+
+
 
 <div class="login_box frame_box">
 <div class="info_note">For your 

@@ -10,7 +10,7 @@ Setup
   Run PQ through your local GAE SDK server. Refer to 'getting started' for details. 
   
   You can restore your datastore at /dev/admin by loading each data type, 
-  from top to bottom.
+  from top to bottom. (If "Refresh Subject Images" returns an error, you are likely having a PIL problem that can be resolved by 1) making sure you have PIL installed and 2) using the command-line dev_appserver utility, not the GUI. )
   
   If you are running your SDK server for the first time, you must restore data
   before your server will properly function. 

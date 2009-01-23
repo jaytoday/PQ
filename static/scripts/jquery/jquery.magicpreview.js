@@ -20,7 +20,7 @@
 				
 				if (st !== false) 
 				{
-					st = st.replace(/\r|\n/mg, '<br />');
+					st = st.replace(/\r|\n/mg, '  '); // PQ edit st = st.replace(/\r|\n/mg, '<br />');
 					st = options.formatValue(st);
 				}
 				else

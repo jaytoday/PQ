@@ -37,6 +37,7 @@ class ProfilePicture(db.Model):
 class Profile(db.Model):
     #key_name = unique_identifier 
     unique_identifier = db.StringProperty(required=True) # redundant
+    login_identifier = db.StringProperty(required=False) # change to true
     email = db.EmailProperty(required=False)
     nickname = db.StringProperty(required=True)
     profile_path = db.StringProperty(required=True)

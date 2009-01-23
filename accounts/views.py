@@ -37,7 +37,8 @@ class Login(webapp.RequestHandler):
 		self.redirect(self.session['continue'])
 		self.session['continue'] = False
     if self.request.get('secret'): return self.shortcut()
-    
+    self.session['reset_account'] = False
+    if self.request.get('reset'): self.reset_account_access(template_values)
     if self.session['continue']: template_values['login_context'] = self.session['continue'].split('/')
     if self.request.get('sponsor'):
         template_values['login_context'] = "sponsor"
@@ -59,7 +60,17 @@ class Login(webapp.RequestHandler):
         logging.warning('unable to use key %s for login shortcut', self.request.get('secret'))
         self.redirect('/register')
          
-    
+  def reset_account_access(self, template_values):
+    from model.user import Profile
+    try: 
+        self.session['reset_account'] = Profile.get(self.request.get('reset'))
+        assert self.session['reset_account'] is not False
+        logging.info('Resetting Access for User %s', (self.session['reset_account'].email))
+        template_values['login_context'] = "reset"
+    except: 
+        logging.warning('unable to use key %s for login shortcut', self.request.get('secret'))
+        template_values['error'] = "True"
+    return template_values        
 
 class LoginResponse(webapp.RequestHandler):
 	#RPX Response Handler
@@ -79,7 +90,11 @@ class LoginResponse(webapp.RequestHandler):
 						   )
 		json = simplejson.loads(r.content)
 		if self.validate_response(json):
-		  self.session['user'] = registered(json['profile']['identifier'])
+		  if self.session['reset_account']:
+		      from accounts.methods import reset_account
+		      self.session['user'] = reset_account(self.session['reset_account'], json['profile']['identifier'])
+		      self.session['reset_account'] = False
+		  else: self.session['user'] = registered(json['profile']['identifier']) # check to see if this_user is registered
 		  if self.session['user'] is False: return self.register_user(json) 
 		  else: 
 		        if not self.session['continue']: self.session['continue'] = '/profile/' + self.session['user'].profile_path 

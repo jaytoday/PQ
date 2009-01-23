@@ -8,8 +8,8 @@ from google.appengine.ext import db
 
 def registered(user_key):
     if user_key: 
-        this_user = Profile.get_by_key_name(user_key)
-        if this_user: return this_user
+       this_user = Profile.gql("WHERE login_identifier = :1", user_key).get()
+       if this_user: return this_user
     return False
     
     
@@ -21,6 +21,7 @@ def register_user(user_key, nickname, fullname, email, is_sponsor=False, save=Tr
     profile_path = profile_path.replace(' ','_')
     new_user = Profile.get_or_insert(key_name = user_key,
                           unique_identifier = user_key, # redundancy
+                          login_identifier = user_key, # so login info can be reset
                           nickname = nickname,
                           fullname = fullname,
                           profile_path = profile_path
@@ -68,6 +69,14 @@ def default_photo():
 
 
 
+def reset_account(user, new_identifier):
+    save = []
+    this_profile = Profile.gql("WHERE login_identifier = :1", user.login_identifier).get()
+    if not this_profile: return False
+    this_profile.login_identifier = new_identifier 
+    this_profile.put()
+    return this_profile
+    
 
 
 
