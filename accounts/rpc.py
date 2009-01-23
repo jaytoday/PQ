@@ -117,3 +117,17 @@ class RPCMethods(webapp.RequestHandler):
 	same_path = Profile.gql("WHERE profile_path = :1", profile_path).fetch(1)
 	if same_path: return "not_available"
 	else: return "available"
+
+
+class Post(webapp.RequestHandler): 
+  def post(self):
+  	if self.request.get('action') == 'reset': self.response.out.write(simplejson.dumps(  self.reset_account()  )) 
+
+
+
+  def reset_account(self): 	
+	return "OK"
+
+
+
+

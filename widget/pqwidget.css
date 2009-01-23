@@ -141,6 +141,7 @@ color: #DDDDDD;
 #pqwidget{
 height:290px;
 width:380px;
+-webkit-box-shadow: 2px 2px 5px black;
 }
 
 button.widget_button{

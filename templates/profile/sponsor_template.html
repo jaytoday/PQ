@@ -45,7 +45,7 @@
 
 
 <div id="summary"  class="profile-panel">
-<span class="gray_box_header">Academic Awards</span>
+<span class="gray_box_header">Sponsored Subjects</span>
 <div class="panel_content " id="award_content" > 
 <div class="gray_box awards_box" id="award_container">
 <div id="award_scroll">
@@ -176,31 +176,17 @@ by taking <a>quizzes</a>.
 
 
 </div>  <!-- profile --> 
-{% if flash_msg %}
+
+
+
 <div class="flash_msg info_note">
-
-{% ifequal flash_msg "anon_viewer" %}
-{% include "flash/anon_viewer.html" %}
-{% endifequal %}
-
-{% ifequal flash_msg "post_quiz" %}
-{% include "flash/post_quiz.html" %}
-{% endifequal %}
-
-{% ifequal flash_msg "fresh_register" %}
-{% include "flash/post_quiz.html" %}
-{% endifequal %}
-
-{% ifequal flash_msg "new_award"  %}
-{% include "flash/new_award.html" %}
-{% endifequal %}
-
-{% ifequal flash_msg "new_sponsorship" %}
-{% include "flash/new_sponsorship.html" %}
-{% endifequal %}
-
-</div>
+{% if profile_owner %}
+{% include "flash/sponsor_owner.html" %}
+{% else %}
+{% include "flash/sponsor_viewer.html" %}
 {% endif %}
+</div>
+
 
 
 </div> 

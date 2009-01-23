@@ -20,9 +20,34 @@ text-align:center;
 width:350px;
 }
 
-div#proxy_login{
+div#proxy_login, div#reset_account{
 height: 230px;
 margin:10px 0 0;
+}
+
+div#reset_account input#email_address{
+font-size:1.5em;
+padding:5px;
+}
+
+div#reset_account div#submit_email, div#reset_account div#submit_email_success{
+height:85px;
+}
+
+
+
+div#reset_account div#error{
+color:red;
+font-size:0.8em;
+margin:-28px 0 0 100px;
+position:absolute;
+width: 370px;
+}
+
+div#reset_account div#reset_content{
+font-size:1.2em;
+line-height:1.3em;
+padding:10px 20px
 }
 
 div#pq_login_link{

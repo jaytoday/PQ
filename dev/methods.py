@@ -173,6 +173,7 @@ class Build():
 		else: 
 		    proficiencies = [this_proficiency]
 		    self.delete_subject_images(subject=this_proficiency)
+		all_images = []
 		for p in proficiencies:
 			p_path = ROOT_PATH + "/data/img/subject/" + str(p.name) + "/"
 			save_images = []
@@ -188,9 +189,10 @@ class Build():
 				                         proficiency = p
 									     )
 				save_images.append(new_image)
+				all_images.append(new_image)
 			db.put(save_images)
 			logging.info('refreshed %d subject images', len(save_images))
-			return len(save_images)
+		return len(all_images)
 					
 		
 	def delete_subject_images(self, subject=False):

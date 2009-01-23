@@ -74,8 +74,8 @@ var session_setup = function($)
  * 
  */        
        
-        $.plopquiz.init = function()
-        {
+$.plopquiz.init = function()
+{
         	
 //load css
 $.plopquiz.loadStyles();                
@@ -85,7 +85,7 @@ $.plopquiz.loadStyles();
 $.ajax({
 		url: $.plopquiz.settings.serverUrl + '/quiz_frame',
 		dataType: "jsonp",
-		// error: console.log('quiz frame error'), TODO: error handling
+		// error: console.log('quiz frame error'), silent failure - should this show error? 
 		success: function(html,status) { startQuiz(html, status); } // code in start_quiz.js
 
 });

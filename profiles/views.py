@@ -47,7 +47,6 @@ class ViewProfile(webapp.RequestHandler):
 		is_profile_owner = False
 		if self.session['user']:
 		    if user.unique_identifier == self.session['user'].unique_identifier: is_profile_owner = True
-		else: set_flash('anon_viewer')
 		# get report card scores
 		qt = QuizTaker.get_by_key_name(user.unique_identifier)
 		topic_levels = self.get_topic_levels(qt)

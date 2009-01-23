@@ -2,6 +2,69 @@
  
 $(function(){
 	
+	/* Reset Account Access */
+	
+ $('a#reset').click(function(){
+			
+			$('div.login_box div#proxy_login').hide('slow');
+			$('div.login_box div#reset_account').show('slow');
+			$('input#email_address').preserveDefaultText('your email address');
+			
+		});
+		
+		$('div.login_box div#reset_account a#login').click(function(){
+			$('div.login_box div#reset_account').hide('slow');
+			$('div.login_box div#proxy_login').show('slow');
+		});
+		
+				
+		$('div.login_box div#reset_account button#submit').click(function(){
+			
+					var error_text = $(this).parent().find('div#error');
+					error_text.hide();
+					
+				var email = $("input#email_address").val();
+				if (email == "" ) {
+				error_text.text('This value is required'); 
+				error_text.show();
+				return false;
+			  }
+				if (email.indexOf("@") == -1) {
+				error_text.text('Invalid E-mail Address'); 
+				error_text.show();
+				return false;
+			  }
+					$(this).parent().find('div#error').text('Invalid Email Address')
+					
+				
+					 // ajax call
+				$.ajax({
+				type: "POST", 
+				url: '/accounts/rpc/post',
+				datatype: "json",
+				data:
+					{
+							action: "reset",
+							email: email
+					},
+				success: function(response) { 
+
+					if (eval(response) == "OK") {
+						$('div.login_box div#reset_account div#submit_email').hide();
+						$('div.login_box div#reset_account div#submit_email_success').show();
+					}
+					else {
+					error_text.text("This E-mail Address Is Not Linked To A PlopQuiz Account."); 
+				    error_text.show();	
+					}
+				
+				}     
+				});	
+			
+							
+		});
+		
+		
 	$('div#pq_login_link a').click(function(){
 		if ($(this).attr('id') == "email") {
 			

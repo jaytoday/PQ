@@ -35,8 +35,8 @@
 <li> <label for="email">Email</label> <input class="signup email" type="text" name="email" value="{{ user.email|default_if_none:"" }}" maxlength="25" id="email"   /> </li>
 
 
-<li> <label for="student">Student</label> <input class="signup student" type="checkbox" name="student" {% if user.student %}checked{% endif %} DISABLED maxlength="25" id="student"   /> </li>
-<li> <label for="sponsor">Sponsor</label> <input class="signup sponsor" type="checkbox" name="sponsor" {% if user.sponsor %}checked{% endif %} DISABLED maxlength="25" id="sponsor"   /> </li>
+<li> <label for="student">Student</label> <input class="signup student" type="checkbox" name="student" {% if not user.is_sponsor %}checked{% endif %} DISABLED maxlength="25" id="student"   /> </li>
+<li> <label for="sponsor">Sponsor</label> <input class="signup sponsor" type="checkbox" name="sponsor" {% if user.is_sponsor %}checked{% endif %} DISABLED maxlength="25" id="sponsor"   /> </li>
 
 </ul>
 
@@ -49,13 +49,34 @@
 <ul id="2" > 
 <li> <label for="location">Location</label> <input class="signup occupation" type="text" name="location" maxlength="25" value="{{ user.location|default_if_none:"" }}" id="location"   /> </li>
 <li> <label for="webpage">Webpage</label> <input class="signup occupation" type="text" name="webpage" maxlength="25" value="{{ user.webpage|default_if_none:"" }} " id="webpage"   /> </li>
-<li> <label for="work_status">Work Status</label>
+
+  {% if user.is_sponsor %}
+  
+<li> <label for="work_status">Sponsor Type</label>
+  <select name="work_status">
+  <option {% ifequal user.work_status "Startup" %}selected{% endifequal %}>Startup</option>
+  <option {% ifequal user.work_status "Enterprise" %}selected{% endifequal %}>Enterprise</option>
+  <option {% ifequal user.work_status "Non-Profit" %}selected{% endifequal %}>Non-Profit</option>
+  <option {% ifequal user.work_status "Government" %}selected{% endifequal %}>Government</option>
+  <option {% ifequal user.work_status "Sole Proprietor" %}selected{% endifequal %}>Sole Proprietor</option>
+</select>
+  </li>
+  
+    {% else %}
+ 
+ <li> <label for="work_status">Work Status</label>
   <select name="work_status">
   <option {% ifequal user.work_status "Full-Time" %}selected{% endifequal %}>Full-Time</option>
   <option {% ifequal user.work_status "Part-Time" %}selected{% endifequal %}>Part-Time</option>
   <option {% ifequal user.work_status "Student" %}selected{% endifequal %}>Student</option>
 </select>
   </li>
+  
+     
+  {% endif %}
+  
+  
+  
   <li> <label class="aboutme" for="aboutme">About Me</label> <textarea class="signup aboutme"   id="aboutme" cols="15" rows="3" type="textarea" name="aboutme" maxlength="80" id="aboutme">{{ user.aboutme|default_if_none:"" }}</textarea> </li>
 <div id="chars_left"><span>0</span> chars left</div>
 </ul>
@@ -98,7 +119,7 @@
 				<li><strong>Email:</strong> <span id="p_email"></span></li>	
 				<li><strong>Location:</strong> <span id="p_location"></span></li>	
 			<li><strong>Webpage:</strong> <span id="p_webpage"></span></li>		
-				<li><strong>Work Status:</strong> <span id="p_work_status"></span></li>
+				<li><strong>{% if user.is_sponsor %}Sponsor Type:{% else %}Work Status:{% endif %}</strong> <span id="p_work_status"></span></li>
 	<li><strong>About Me:</strong><span id="p_aboutme"></span></li> 
 </ul>
       

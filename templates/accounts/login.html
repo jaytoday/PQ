@@ -46,13 +46,15 @@ Create a student account to save your quiz score.</div>
 </iframe>
 </div>
 
+{% include "reset_account.html" %}
+
 {% include "email_login.html" %}
 
 <div id="pq_login_link" style="display:none;">
 <a id="email">Login with an E-mail and Password</a><a id="proxy" style="display:none;">Login with a Third-Party Service.</a>
 </div>
 
-<span class="note"> To access your Plopquiz account, you must always sign in with the same service.  <br/><a onClick="PrivacyPolicy();">Privacy Policy </a></span>
+<span class="note"> To access your Plopquiz account, you must always sign in with the same service.  <br/><a onClick="PrivacyPolicy();">Privacy Policy </a> | <a id="reset">Reset Account Access</a></span>
 
 
 <div class="ui-dialog-content" style="display:none;" id="privacy_policy" title="Privacy Policy">

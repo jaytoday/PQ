@@ -66,7 +66,7 @@
 		</li>
 		
 		{% for img in award.proficiency.images %}
-		<li class="sliderImage award_{{ forloop.parentloop.counter }}Image {{ forloop.counter }}_has_subject_image">
+		<li class="sliderImage award_{{ forloop.parentloop.counter }}Image {{ forloop.parentloop.counter }}_has_subject_image">
 			<img src="/image/subject/?img_id={{ img.key }}&size=small"/>
 			<span class="img_{% cycle top,bottom %}">{{ award.type }} <br/><strong>  {{ award.proficiency.name}}</strong></span>
 		</li>
@@ -77,26 +77,6 @@
 
 </div>
 
-
-<div id="award_{{ forloop.counter }}" class="proficiency_pic selection_box award_img">
-		<ol class="sliderContent" id="award_{{ forloop.counter }}Content">
-
-		<li style="display:none;" id="{{ forloop.counter }}_default_subject_image"  class="sliderImage award_{{ forloop.parentloop.counter }}Image">
-			<img src="/image/subject/?img_id=default&size=small"/>
-			<span class="img_{% cycle top,bottom %}">{{ award.type }} <br/><strong>  {{ award.proficiency.name}}</strong></span>
-		</li>
-		
-		{% for img in award.proficiency.images %}
-		<li class="sliderImage award_{{ forloop.parentloop.counter }}Image {{ forloop.counter }}_has_subject_image">
-			<img src="/image/subject/?img_id={{ img.key }}&size=small"/>
-			<span class="img_{% cycle top,bottom %}">{{ award.type }} <br/><strong>  {{ award.proficiency.name}}</strong></span>
-		</li>
-		{% endfor %}
-
-		<div class="clear award_{{ forloop.counter }}Image"></div>
-	</ol>
-
-</div>
 
 
 {% endfor %}
@@ -126,11 +106,11 @@
 
 
 {% if profile_owner %}	
-<div class="info_note sponsor_user" id="sponsor_owner"> <a>Get Sponsors Now!</a> </div>
+{#  <div class="info_note sponsor_user" id="sponsor_owner"> <a>Get Sponsors Now!</a> </div> #}
 {% else %}
-<!--
-<div class="info_note sponsor_user" id="sponsor_not_owner"> <a href="{{ http_host }}/sponsor/{{ user.profile_path }}">Sponsor {{ user.fullname }} Now!</a> </div>
--->
+
+{# <div class="info_note sponsor_user" id="sponsor_not_owner"> <a href="{{ http_host }}/sponsor/{{ user.profile_path }}">Sponsor {{ user.fullname }} Now!</a> </div> #}
+
 {% endif %}
 
 
@@ -229,12 +209,10 @@ by taking <a>quizzes</a>.
 
 
 </div>  <!-- profile --> 
-{% if flash_msg %}
-<div class="flash_msg info_note">
 
-{% ifequal flash_msg "anon_viewer" %}
-{% include "flash/anon_viewer.html" %}
-{% endifequal %}
+<div class="flash_msg info_note">
+{% if flash_msg %}
+
 
 {% ifequal flash_msg "post_quiz" %}
 {% include "flash/post_quiz.html" %}
@@ -252,8 +230,12 @@ by taking <a>quizzes</a>.
 {% include "flash/new_sponsorship.html" %}
 {% endifequal %}
 
-</div>
+
+{% else %}
+{% include "flash/default.html" %}
 {% endif %}
+
+</div>
 
 
 </div> 
