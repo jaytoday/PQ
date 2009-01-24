@@ -142,6 +142,7 @@ class LoginResponse(webapp.RequestHandler):
     
 class Register(webapp.RequestHandler):
   def get(self):
+		
 		logging.info('Loading Registration Page')
 		self.session['user'] = registered(self.session['unique_identifier']) 
 		if self.session['user']: 
@@ -149,6 +150,9 @@ class Register(webapp.RequestHandler):
 		                       if not self.session['continue']: self.session['continue'] = '/profile/' + self.session['user'].profile_path 
 		                       self.redirect(self.session['continue'])
 		                       self.session['continue'] = False
+		if not self.session['unique_identifier']: # you should only be visiting this page after a redirect from login page
+		     self.redirect('/login')
+		     return False
 		if self.request.get('nickname'): return self.create_user()
 		nickname, email = None, None
 		if self.session['nickname']: nickname = self.session['nickname']

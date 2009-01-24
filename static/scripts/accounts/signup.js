@@ -7,7 +7,7 @@ $(function(){
 
 
 $('input#nickname').preserveDefaultText('your name');
-$('input#email').preserveDefaultText('your email address');
+$('input#email_address').preserveDefaultText('your email address');
 
 
 $('input#nickname').keydown(function(){ $('input#nickname').data('availability', 'unknown') }); // just for sneaky fast people
@@ -37,18 +37,18 @@ $('#flyer a').css('top', '50%').show().animate({left: "100%"},17000);
 function SubmitName(){
 	console.log($('input#nickname').data('availability'));
 	
-	if ($('input#nickname').val().length < 3) console.log('nickname is too short'); 
+	if ($('input#nickname').val().length < 3) console.log('nickname is too short'); //Todo error
 	
 	
 	if($('input#nickname').data('availability') == 'unknown') setTimeout(function(){ SubmitName(); }, 1000);  // still unknown
 	
 	if($('input#nickname').data('availability') != 'available') { $('#signup_reminder').show(); $('input#nickname').addClass('invalid'); return false; } //hasn't chosen a valid name yet 
 	
-	if($('input#email').val().indexOf('@') == -1) { $('#signup_reminder').show(); $('input#email').addClass('invalid'); return false; } //hasn't chosen a valid name yet 
+	if($('input#email_address').val().indexOf('@') == -1) { $('#signup_reminder').show(); $('input#email_address').addClass('invalid').focus(); return false; } //hasn't chosen a valid name yet 
 	
 	$('div.loading').show();
 	$('div.main').hide();
-	window.location="/register?nickname=" + $('input#nickname').val() + "&email=" + $('input#email').val();
+	window.location="/register?nickname=" + $('input#nickname').val() + "&email=" + $('input#email_address').val();
 	
 }
 
