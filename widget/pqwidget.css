@@ -615,17 +615,17 @@ td#choose_quiz{
 cursor:pointer;
 font-size:0.6em !important;
 height:0;
-margin:-47px 0 0 -62px;
+/* margin:-47px 0 0 -62px; */
 position:absolute;
+display:block;
 color:#666 !important;
 }
-
-/*
-.quiz_intro_text  .first_tutorial{
-height:158px; background: #EDF2F8 none repeat scroll 0 0 !important;
-position:absolute; width:280px; margin: -2px -18px;
+.quiz_intro_text #skip_tutorial.first{
+margin: -48px 0 0 240px !important
 }
-*/
+.quiz_intro_text #skip_tutorial.second{
+margin: -42px 0 0 255px !important
+}
 
 /* Signup */
 
@@ -1747,7 +1747,7 @@ position:absolute;
 }
 .quiz_wrap div.share_quiz .quiz_code {
 -moz-border-radius: 12px;
--webkit-border-radius: 12px;
+-webkit-border- radius: 12px;
 background:#DDDDDD none repeat scroll 0 0;
 border:2px solid #DDDDDD;
 color:#000040;

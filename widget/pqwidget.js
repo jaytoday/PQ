@@ -176,11 +176,11 @@ $('#pqwidget #subject_1').s3Slider({ timeOut: 8300  });
 				$('#quiz_outer').draggable(
 				{ 
 				zIndex: 	1000, 
-				opacity: 0.8,
+				//opacity: 0.8,
 				ghosting: false,
-				containment: 'document', // working?
-				//cancel: $('.quiz_scroll_container'), // we want to cancel drag when scrollbar is clicked.
-			    delay: 300, // this solves scrollbar problem, but its really annoying
+				containment: 'document', 
+				//cancel: $('.quiz_scroll_container'), // we want to cancel drag when scrollbar is clicked, and when youtube videos are used. 
+			//    delay: 300, // this solves scrollbar problem, but its really annoying
 				cursor: 'pointer'
 				 }); 
 
@@ -206,16 +206,17 @@ $('head').append(style);
 
 $.plopquiz.loadItem = function(quizItem)
 {
-		
-$.plopquiz.quiz_inner_content.addClass('disabled').animate({opacity:0},100); 
 	
-	$.plopquiz.quiz_loader.show().animate({opacity: .5 }, {duration:100, complete:function(){ 
-
 // this could use some clean up, the transistions between hard code and real quizItem is a bit funky
 var quizItem = $.plopquiz.quizItem = ((quizItem && quizItem.answers) ? quizItem : $.plopquiz.fetchNextItem());
 
 if(!quizItem)
 		return; //catch error
+		
+$.plopquiz.quiz_inner_content.addClass('disabled').animate({opacity:0},100); 
+	
+	$.plopquiz.quiz_loader.show().animate({opacity: .5 }, {duration:100, complete:function(){ 
+
 
 		// hardcoded versus server provided
 quizItem["url"] = quizItem.url ? quizItem.url : "/quiz_item/?token=" + $.plopquiz.settings.sessionToken;
