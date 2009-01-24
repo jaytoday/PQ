@@ -1562,6 +1562,7 @@ height: 64px;
 
 .quiz_wrap button.quiz_complete{
 margin:-156px 0 0 66px !important;
+position:absolute !important;
 }
 
 .quiz_wrap .continue_button{
@@ -1747,7 +1748,7 @@ position:absolute;
 }
 .quiz_wrap div.share_quiz .quiz_code {
 -moz-border-radius: 12px;
--webkit-border- radius: 12px;
+-webkit-border- radius: 12px !important;
 background:#DDDDDD none repeat scroll 0 0;
 border:2px solid #DDDDDD;
 color:#000040;
