@@ -210,6 +210,7 @@ def new_years_message():
 
 
 def mail_sponsor_intro(profile):
+	import os
 	if not mail.is_email_valid(profile.email):
 		logging.warning("%s is not a valid email", profile.email)
 		return False
@@ -246,7 +247,7 @@ def mail_sponsor_intro(profile):
 	Team PlopQuiz
 
 	
-	""" % (user_name, "http://plopquiz.com/login?secret=" + str(profile.key()))
+	""" % (user_name, "http://" + str(os.environ['HTTP_HOST']) + "/login?secret=" + str(profile.key()))
 
 
 	
@@ -261,6 +262,7 @@ def mail_sponsor_intro(profile):
 
 
 def reset_account_access(user):
+	import os
 	logging.debug("sending e-mail to %s", user.email)
 	if not mail.is_email_valid(user.email):
 		logging.error("%s is not valid", user.email)
@@ -269,6 +271,10 @@ def reset_account_access(user):
 	message.sender = "notify@plopquiz.com"
 	message.subject = "Reset Access to Your PlopQuiz Account"
 	message.to = user.email
+	
+	
+
+
 
 	message.body = """
  
@@ -285,7 +291,7 @@ def reset_account_access(user):
 	
     %s
 	
-	""" % (user.fullname, "http://plopquiz.com/login?reset=" + str(user.key()), mail_footer())
+	""" % (user.fullname, "http://" + str(os.environ['HTTP_HOST']) + "/login?reset=" + str(user.key()), mail_footer())
 
 	message.send()
 	return True

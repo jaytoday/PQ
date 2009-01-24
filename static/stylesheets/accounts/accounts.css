@@ -81,6 +81,13 @@ position:absolute;
 width:500px;
 }
 
+
+div#signup_box label{ position:absolute;}
+
+div#signup_box label#name{ margin:25px 4px; }
+
+div#signup_box label#email{ margin:7px 2px; }
+
 #submit_nickname{
 position:absolute; margin:200px 0 0 510px;
 }
@@ -114,3 +121,5 @@ h2#header{ font-size: 1.8em; }
 #signup_reminder{
 position:absolute; top:400px; left: 270px;
 }
+
+

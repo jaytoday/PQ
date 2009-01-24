@@ -15,11 +15,12 @@
 
 <h2 id="header"> Create Your Account</h2>
 
+<label id="name">name</label>
 <input type="text" name="nickname" id="nickname" value='{{nickname|default_if_none:"your name"}}' maxlength="15">
 
 <div id="notice"><span id="available" style="display:none;">Available</span><span id="not_available" style="display:none;">Not Available</span></div>
 
-
+<label id="email">e-mail</label>
 <input type="text" name="email" id="email" value='{{email|default_if_none:"your email address"}}' maxlength="30">
 
 
