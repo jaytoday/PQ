@@ -98,9 +98,14 @@ class EditSubjects(webapp.RequestHandler):
 class Error(webapp.RequestHandler):
   def get(self):
 	error_type = self.request.path.split('/error/')[1]   
+	if error_type == "browser": return self.browser_error()
 	template_values = {"error_type": error_type}
 	logging.debug('loaded error page for error type %s',  error_type)
 	path = tpl_path('utils/error.html')
 	self.response.out.write(template.render(path, template_values))
 
-
+  def browser_error(self):
+	template_values = {"browser_type": self.request.environ['HTTP_USER_AGENT']}
+	logging.debug('loaded browser error page for browser type %s',  self.request.environ['HTTP_USER_AGENT'])
+	path = tpl_path('utils/browser_error.html')
+	self.response.out.write(template.render(path, template_values))

@@ -141,7 +141,6 @@ color: #DDDDDD;
 #pqwidget{
 height:290px;
 width:380px;
--webkit-box-shadow: 2px 2px 5px black;
 }
 
 button.widget_button{
@@ -1558,6 +1557,7 @@ position:absolute !important;
 .quiz_wrap button.begin_quiz{
 float:left;
 margin:-50px 60px !important;
+height: 64px;
 }
 
 .quiz_wrap button.quiz_complete{
@@ -1784,8 +1784,9 @@ margin: 2px 0 0 10px;
 font-size: .7em;
 }
 
-.quiz_wrap .proficiency_pic{
+.quiz_wrap .widget_content{
 overflow:hidden;
+-webkit-box-shadow: 2px 2px 5px black;
 }
 
 .quiz_wrap div.subject_guide

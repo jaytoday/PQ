@@ -129,7 +129,9 @@ break;
 
 case "quiz_complete":
 
- $.plopquiz.loadItem();  // show loading icon again...
+$.plopquiz.quiz_inner_content.addClass('disabled').animate({opacity:0},100); 
+	
+$.plopquiz.quiz_loader.show().animate({opacity: .5 });
  
  /* Open results in new window -- This is turned off for now out of concerns of spamineess.
   * 

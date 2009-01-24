@@ -112,11 +112,11 @@ def redirect_from_appspot(wsgi_app):
 
 def browser_check(wsgi_app):
     def redirect_if_needed(env, start_response):
-        if "Explorer" in env['HTTP_USER_AGENT']:
+        if "Mozilla/4.0" in env['HTTP_USER_AGENT']: # MSIE - are there any others we need?
             import webob, urlparse
             request = webob.Request(env)
             scheme, netloc, path, query, fragment = urlparse.urlsplit(request.url)
-            error_path = '/browser_error'
+            error_path = '/error/browser'
             logging.info(path)
             logging.info(error_path)
             if path == error_path: return wsgi_app(env, start_response) # avoid infinite loops

@@ -206,16 +206,16 @@ $('head').append(style);
 
 $.plopquiz.loadItem = function(quizItem)
 {
-// this could use some clean up, the transistions between hard code and real quizItem is a bit funky
-var quizItem = $.plopquiz.quizItem = ((quizItem && quizItem.answers) ? quizItem : $.plopquiz.fetchNextItem());
-
-if(!quizItem)
-		return;
 		
 $.plopquiz.quiz_inner_content.addClass('disabled').animate({opacity:0},100); 
 	
 	$.plopquiz.quiz_loader.show().animate({opacity: .5 }, {duration:100, complete:function(){ 
 
+// this could use some clean up, the transistions between hard code and real quizItem is a bit funky
+var quizItem = $.plopquiz.quizItem = ((quizItem && quizItem.answers) ? quizItem : $.plopquiz.fetchNextItem());
+
+if(!quizItem)
+		return; //catch error
 
 		// hardcoded versus server provided
 quizItem["url"] = quizItem.url ? quizItem.url : "/quiz_item/?token=" + $.plopquiz.settings.sessionToken;

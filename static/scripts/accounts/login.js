@@ -6,15 +6,19 @@ $(function(){
 	
  $('a#reset').click(function(){
 			
-			$('div.login_box div#proxy_login').hide('slow');
-			$('div.login_box div#reset_account').show('slow');
+			$('div.login_box div#proxy_login').hide();
+			$('div.login_box div#reset_account').show();
 			$('input#email_address').preserveDefaultText('your email address');
-			
+			$(this).hide();
+			$(this).parent().find('a#login').css({'display': 'inline'});
 		});
 		
-		$('div.login_box div#reset_account a#login').click(function(){
-			$('div.login_box div#reset_account').hide('slow');
-			$('div.login_box div#proxy_login').show('slow');
+		$('div.login_box div#reset_account a#login, span.note #login').click(function(){
+			$('div.login_box div#reset_account').hide();
+			$('div.login_box div#proxy_login').show();
+			 $('span.note #login').hide();
+			 $('span.note a#reset').css({'display': 'inline'});
+			 
 		});
 		
 				
