@@ -7,13 +7,24 @@ PQ
 Setup
 ------------
 
-  Run PQ through your local GAE SDK server. Refer to 'getting started' for details. 
+  Run PQ through your local GAE SDK server. 
   
-  You can restore your datastore at /dev/admin by loading each data type, 
-  from top to bottom. (If "Refresh Subject Images" returns an error, you are likely having a PIL problem that can be resolved by 1) making sure you have PIL installed and 2) using the command-line dev_appserver utility, not the GUI. )
+  IMPORTANT: You will have likely have to refresh your datastore every time you restart your machine (when /tmp/ is wiped). To avoid this, manually defined a location for your datastore and history files like in this OS X .command script:
+
+  dev_appserver.py 
+  --datastore_path=/Users/james/Code/pq.datastore 
+  --history_path=/Users/james/Code/pq.datastore.history 
+  /Users/james/Code/PlopQuiz #define app location
   
-  If you are running your SDK server for the first time, you must restore data
-  before your server will properly function. 
+  see 'getting started' for details about dev_appserver.py
+
+
+Seeding Your Datastore
+------------
+  
+  You can load data into your datastore at /dev/admin by loading each data type, from top to bottom. (If "Refresh Subject Images" returns an error, you are likely having a PIL problem that can be resolved by 1) making sure you have PIL installed and 2) using the command-line dev_appserver utility, not the App Engine GUI. )
+  
+  If you are running your SDK server for the first time, you must restore data before your server will properly function. 
 
 
 Tips
@@ -63,7 +74,7 @@ Tips
 
 * Offline Development
 
-  For convenience while developing offline, you can click "convenience" at the login screen to bypass proxy authentication. 
+  For convenience while developing offline, you can click "convenience" at the login screen to bypass proxy authentication. This is also available as "Quick Login" from the admin page.
 
   You can then enter your UID as an argument, like __"http://localhost:8080/dev/admin?shortcut=login&uid=myusername"__ 
   
