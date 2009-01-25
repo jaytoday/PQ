@@ -73,10 +73,6 @@ class RawItemInduction(webapp.RequestHandler):
 			continue     
 		return saved_items 
 
-       
-                
-        #self.response.out.write(template.render(path, template_values))
-            
 
     def save_url(self, page, this_proficiency):
         saved_page = ContentPage.gql("WHERE url = :1", page)

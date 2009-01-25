@@ -63,7 +63,7 @@ remote callers access to private/protected "_*" methods.
   def RetrieveProficiencies(self, *args):   # todo: should be nested list of proficiencies and topics.
       return_proficiencies = []
       #proficiencies = Proficiency.all()
-      proficiencies = Proficiency.gql("WHERE name in :1", ["Smart Grid", "Energy Efficiency", "Recovery and Reinvestment"])  # remove after refactoring quiztaker
+      proficiencies = Proficiency.gql("WHERE name in :1", ["Smart Grid", "Energy Efficiency", "Recovery.Gov", "Cars 2.0"])  # remove after refactoring quiztaker
       return encode(proficiencies.fetch(1000, offset=0)) # temporary offset
 
 
@@ -71,25 +71,25 @@ remote callers access to private/protected "_*" methods.
       raw_quiz_items = []
       this_topic = ProficiencyTopic.gql("WHERE name = :1 ORDER BY date DESC", args[0])
       #these_items = RawQuizItem().gql("WHERE topic = :1", this_topic.get())
-      try: return dump_raw_items(this_topic.get().pages.get().raw_items.fetch(10))  # get 10 at a time...todo: lazy rpc-loader.
+      try: return encode(this_topic.get().pages.get().raw_items.fetch(10))  # get 10 at a time...todo: lazy rpc-loader.
       except: return simplejson.dumps([])
 
   def GetRawItemsForProficiency(self, *args):  
       this_proficiency = Proficiency.get_by_key_name(args[0]) # try get_or_insert if Proficiency is key
-      prof_pages = this_proficiency.get().pages.fetch(10)
+      prof_pages = this_proficiency.pages.fetch(10)
       raw_items = []
       for p in prof_pages:
           these_items = RawQuizItem.gql("WHERE page = :1 AND moderated = False", p ) # only get unmoderated items
           items = these_items.fetch(1000)
           raw_items += items
-      try: return dump_raw_items(raw_items)  # get 10 at a time...todo: lazy rpc-loader.
+      try: return encode(raw_items)  # get 10 at a time...todo: lazy rpc-loader.
       except: return simplejson.dumps([])
 
   def GetTopicsForProficiency(self, *args):  
       topics = []
       this_proficiency = Proficiency.gql("WHERE name = :1 ORDER BY date DESC", args[0]) # try get_or_insert if Proficiency is key
       topics = ProficiencyTopic.gql("WHERE proficiency = :1 ORDER BY date DESC", this_proficiency.get().key())
-      try: return dump_raw_items(topics.fetch(10))  # get 10 at a time...todo: lazy rpc-loader.
+      try: return encode(topics.fetch(10))  # get 10 at a time...todo: lazy rpc-loader.
       except: return simplejson.dumps([])
       
 
