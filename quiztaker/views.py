@@ -93,7 +93,7 @@ class TakeQuiz(webapp.RequestHandler):
     DEFAULT_QUIZ_SUBJECT = "Misconceptions"
     if len(self.request.path.split('/quiz/')[1]) > 0:
 		import string
-		this_proficiency = string.capwords(self.request.path.split('/quiz/')[1].replace("%20"," "))
+		this_proficiency = self.request.path.split('/quiz/')[1].replace("%20"," ") #TODO - instead of capwords, make all subject names lowercase
 		return [[Proficiency.get_by_key_name(this_proficiency)], ""]  # This only allows one proficiency, and no vendor. 
 		"""
     if self.request.get('proficiencies'):

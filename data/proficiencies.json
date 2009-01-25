@@ -225,7 +225,7 @@
                         "blurb": "default"
                     }, 
                     {
-                        "status": "private", 
+                        "status": "deprecated", 
                         "name": "Recovery and Reinvestment", 
                         "link_html": null, 
                         "popularity": null, 
@@ -238,6 +238,21 @@
                         }, 
                         "difficulty": null, 
                         "blurb": "Blurb about recovery and reinvestment"
+                    }, 
+                    {
+                        "status": "public", 
+                        "name": "Recovery.Gov", 
+                        "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                        "popularity": 96, 
+                        "modified": {
+                            "ctime": "Sun Jan 25 03:04:42 2009"
+                        }, 
+                        "video_html": "6864DF10667E1865", 
+                        "date": {
+                            "ctime": "Sun Jan 25 03:04:42 2009"
+                        }, 
+                        "difficulty": 40, 
+                        "blurb": "The approval of the Recovery and Reinvestment package is a chance to jumpstart the economy, but will require knowledge of the details of the spending plan and its unprecedented transparency."
                     }, 
                     {
                         "status": "private", 

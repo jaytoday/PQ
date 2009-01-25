@@ -1,377 +1,527 @@
 [
                     {
-                        "url": "http://en.wikipedia.org/w/index.php?title=List_of_common_misconceptions&printable=yes", 
+                        "url": "http://online.wsj.com/article/SB123202946622485595.html?mod=djemITP#printMode", 
                         "date": {
-                            "ctime": "Fri Dec 19 08:04:15 2008"
+                            "ctime": "Sun Jan 25 03:30:25 2009"
                         }, 
                         "proficiency": {
                             "status": "public", 
-                            "date": {
-                                "ctime": "Fri Dec 19 08:02:17 2008"
-                            }, 
-                            "name": "Misconceptions", 
-                            "blurb": "Have you been fooled by common misconceptions?", 
+                            "name": "Recovery.Gov", 
+                            "link_html": "<li><a href='http://en.wikipedia.org/wiki/List_of_common_misconceptions'>Wikipedia List of Common Misconceptions</a></li><li><a href='http://www.zyra.org.uk/miscon.htm'>Zyra.org: Popular Misconceptions</a></li><li><a href='http://www.darylscience.com/Misconceptions.htm'>Science Misconceptions</a></li>", 
+                            "popularity": 95, 
                             "modified": {
-                                "ctime": "Fri Dec 19 08:02:17 2008"
-                            }
+                                "ctime": "Sun Jan 25 11:25:08 2009"
+                            }, 
+                            "video_html": null, 
+                            "date": {
+                                "ctime": "Sun Jan 25 03:04:42 2009"
+                            }, 
+                            "difficulty": 40, 
+                            "blurb": "The approval of the Recovery and Reinvestment package is a chance to jumpstart the economy, but will require knowledge of the details of the spending plan and its unprecedented transparency."
                         }
                     }, 
                     {
-                        "url": "http://en.wikipedia.org/wiki/Popular_misconception", 
+                        "url": "http://online.wsj.com/article/SB123202946622485595.html", 
                         "date": {
-                            "ctime": "Fri Dec 19 08:06:10 2008"
+                            "ctime": "Sun Jan 25 03:31:27 2009"
                         }, 
                         "proficiency": {
                             "status": "public", 
-                            "date": {
-                                "ctime": "Fri Dec 19 08:02:17 2008"
-                            }, 
-                            "name": "Misconceptions", 
-                            "blurb": "Have you been fooled by common misconceptions?", 
+                            "name": "Cars 2.0", 
+                            "link_html": "<li><a href=\"http://earth2tech.com/2008/11/23/get-ready-for-the-car-20-era/\">Get Ready for the Car 2.0 Era</a></li><li><a href=\"\r\nhttp://green.wikia.com/wiki/Electric_car\">Electric Cars on Wikia</a></li><li><a href=\"http://venturebeat.com/2008/01/10/27-electric-cars-companies-ready-to-take-over-the-road/\">30 Electric Car Companies</a></li><li><a href=\"http://en.wikipedia.org/wiki/Vehicle_Area_Network\" >Vehicle Area Network</a></li>\r\n<li><a href=\"http://greenhome.huddler.com/wiki/introduction-to-electric-cars-and-electric-scooters\" >Greenhome Electric Cars</a></li>\r\n\r\n\r\n", 
+                            "popularity": 93, 
                             "modified": {
-                                "ctime": "Fri Dec 19 08:02:17 2008"
-                            }
+                                "ctime": "Fri Jan  9 23:41:42 2009"
+                            }, 
+                            "video_html": "1EBE7C4A0EF56AC7", 
+                            "date": {
+                                "ctime": "Fri Jan  9 05:06:10 2009"
+                            }, 
+                            "difficulty": 72, 
+                            "blurb": "The vehicles and infrastructure that will drive the future of the automotive industry.<br/><br/>\r\nThis course outlines the new market and engineering rules that define the age of Cars 2.0"
+                        }
+                    }, 
+                    {
+                        "url": "http://www.cnn.com/2009/POLITICS/01/23/obama.abortion/index.html", 
+                        "date": {
+                            "ctime": "Sun Jan 25 03:38:53 2009"
+                        }, 
+                        "proficiency": {
+                            "status": "public", 
+                            "name": "Recovery.Gov", 
+                            "link_html": "<li><a href='http://en.wikipedia.org/wiki/List_of_common_misconceptions'>Wikipedia List of Common Misconceptions</a></li><li><a href='http://www.zyra.org.uk/miscon.htm'>Zyra.org: Popular Misconceptions</a></li><li><a href='http://www.darylscience.com/Misconceptions.htm'>Science Misconceptions</a></li>", 
+                            "popularity": 95, 
+                            "modified": {
+                                "ctime": "Sun Jan 25 11:25:08 2009"
+                            }, 
+                            "video_html": null, 
+                            "date": {
+                                "ctime": "Sun Jan 25 03:04:42 2009"
+                            }, 
+                            "difficulty": 40, 
+                            "blurb": "The approval of the Recovery and Reinvestment package is a chance to jumpstart the economy, but will require knowledge of the details of the spending plan and its unprecedented transparency."
                         }
                     }, 
                     {
                         "url": "http://dev.freebaseapps.com/wiki/acre_api", 
                         "date": {
-                            "ctime": "Thu Dec 18 09:18:53 2008"
+                            "ctime": "Fri Jan  9 05:06:23 2009"
                         }, 
                         "proficiency": {
                             "status": "private", 
-                            "date": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }, 
                             "name": "Freebase", 
-                            "blurb": "default", 
+                            "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                            "popularity": 77, 
                             "modified": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }
+                                "ctime": "Fri Jan  9 23:41:42 2009"
+                            }, 
+                            "video_html": "D1CE83D8CC2DE66E", 
+                            "date": {
+                                "ctime": "Fri Jan  9 05:06:10 2009"
+                            }, 
+                            "difficulty": 92, 
+                            "blurb": "default"
                         }
                     }, 
                     {
                         "url": "http://dev.freebaseapps.com/wiki/app_editor", 
                         "date": {
-                            "ctime": "Thu Dec 18 09:18:53 2008"
+                            "ctime": "Fri Jan  9 05:06:23 2009"
                         }, 
                         "proficiency": {
                             "status": "private", 
-                            "date": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }, 
                             "name": "Freebase", 
-                            "blurb": "default", 
+                            "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                            "popularity": 77, 
                             "modified": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }
+                                "ctime": "Fri Jan  9 23:41:42 2009"
+                            }, 
+                            "video_html": "D1CE83D8CC2DE66E", 
+                            "date": {
+                                "ctime": "Fri Jan  9 05:06:10 2009"
+                            }, 
+                            "difficulty": 92, 
+                            "blurb": "default"
+                        }
+                    }, 
+                    {
+                        "url": "http://en.wikipedia.org/w/index.php?title=List_of_common_misconceptions&printable=yes", 
+                        "date": {
+                            "ctime": "Fri Jan  9 05:06:23 2009"
+                        }, 
+                        "proficiency": {
+                            "status": "private", 
+                            "name": "Misconceptions", 
+                            "link_html": "<li><a href='http://en.wikipedia.org/wiki/List_of_common_misconceptions'>Wikipedia List of Common Misconceptions</a></li><li><a href='http://www.zyra.org.uk/miscon.htm'>Zyra.org: Popular Misconceptions</a></li><li><a href='http://www.darylscience.com/Misconceptions.htm'>Science Misconceptions</a></li>", 
+                            "popularity": 70, 
+                            "modified": {
+                                "ctime": "Fri Jan  9 23:41:42 2009"
+                            }, 
+                            "video_html": "D1CE83D8CC2DE66E", 
+                            "date": {
+                                "ctime": "Fri Jan  9 05:06:10 2009"
+                            }, 
+                            "difficulty": 63, 
+                            "blurb": "Have you been fooled by common misconceptions?<br/><br/>\r\nTest your savvy of some of the most common errors in history, geography, and culture."
+                        }
+                    }, 
+                    {
+                        "url": "http://en.wikipedia.org/wiki/Popular_misconception", 
+                        "date": {
+                            "ctime": "Fri Jan  9 05:06:23 2009"
+                        }, 
+                        "proficiency": {
+                            "status": "private", 
+                            "name": "Misconceptions", 
+                            "link_html": "<li><a href='http://en.wikipedia.org/wiki/List_of_common_misconceptions'>Wikipedia List of Common Misconceptions</a></li><li><a href='http://www.zyra.org.uk/miscon.htm'>Zyra.org: Popular Misconceptions</a></li><li><a href='http://www.darylscience.com/Misconceptions.htm'>Science Misconceptions</a></li>", 
+                            "popularity": 70, 
+                            "modified": {
+                                "ctime": "Fri Jan  9 23:41:42 2009"
+                            }, 
+                            "video_html": "D1CE83D8CC2DE66E", 
+                            "date": {
+                                "ctime": "Fri Jan  9 05:06:10 2009"
+                            }, 
+                            "difficulty": 63, 
+                            "blurb": "Have you been fooled by common misconceptions?<br/><br/>\r\nTest your savvy of some of the most common errors in history, geography, and culture."
                         }
                     }, 
                     {
                         "url": "http://en.wikipedia.org/wiki/Renewable_energy", 
                         "date": {
-                            "ctime": "Thu Dec 18 09:18:53 2008"
+                            "ctime": "Fri Jan  9 05:06:23 2009"
                         }, 
                         "proficiency": {
                             "status": "public", 
-                            "date": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }, 
                             "name": "Biofuels", 
-                            "blurb": "Exciting advances in the conversion of biomass into fuel have made this environmentally-friendly production method into a Clean Tech poster child.", 
+                            "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                            "popularity": 62, 
                             "modified": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }
+                                "ctime": "Fri Jan  9 23:41:42 2009"
+                            }, 
+                            "video_html": "D1CE83D8CC2DE66E", 
+                            "date": {
+                                "ctime": "Fri Jan  9 05:06:10 2009"
+                            }, 
+                            "difficulty": 71, 
+                            "blurb": "Exciting advances in the conversion of biomass into fuel have made this environmentally-friendly production method into a Clean Tech poster child."
                         }
                     }, 
                     {
                         "url": "http://en.wikipedia.org/wiki/Smart_grid", 
                         "date": {
-                            "ctime": "Thu Dec 18 09:18:53 2008"
+                            "ctime": "Fri Jan  9 05:06:23 2009"
                         }, 
                         "proficiency": {
-                            "status": "public", 
-                            "date": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }, 
+                            "status": "private", 
                             "name": "Electricity", 
-                            "blurb": "Intelligent, distributed, and highly adaptive electrical systems aim to reduce power consumption and prevent peak hour failures.", 
+                            "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                            "popularity": 81, 
                             "modified": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }
+                                "ctime": "Fri Jan  9 23:41:42 2009"
+                            }, 
+                            "video_html": "D1CE83D8CC2DE66E", 
+                            "date": {
+                                "ctime": "Fri Jan  9 05:06:10 2009"
+                            }, 
+                            "difficulty": 90, 
+                            "blurb": "Intelligent, distributed, and highly adaptive electrical systems aim to reduce power consumption and prevent peak hour failures."
                         }
                     }, 
                     {
                         "url": "http://mjtemplate.org/", 
                         "date": {
-                            "ctime": "Thu Dec 18 09:18:53 2008"
+                            "ctime": "Fri Jan  9 05:06:23 2009"
                         }, 
                         "proficiency": {
                             "status": "private", 
-                            "date": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }, 
                             "name": "Freebase", 
-                            "blurb": "default", 
+                            "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                            "popularity": 77, 
                             "modified": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }
+                                "ctime": "Fri Jan  9 23:41:42 2009"
+                            }, 
+                            "video_html": "D1CE83D8CC2DE66E", 
+                            "date": {
+                                "ctime": "Fri Jan  9 05:06:10 2009"
+                            }, 
+                            "difficulty": 92, 
+                            "blurb": "default"
                         }
                     }, 
                     {
                         "url": "http://news.bbc.co.uk/2/hi/science/nature/7662565.stm", 
                         "date": {
-                            "ctime": "Thu Dec 18 09:18:53 2008"
+                            "ctime": "Fri Jan  9 05:06:23 2009"
                         }, 
                         "proficiency": {
                             "status": "public", 
-                            "date": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }, 
                             "name": "Biofuels", 
-                            "blurb": "Exciting advances in the conversion of biomass into fuel have made this environmentally-friendly production method into a Clean Tech poster child.", 
+                            "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                            "popularity": 62, 
                             "modified": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }
+                                "ctime": "Fri Jan  9 23:41:42 2009"
+                            }, 
+                            "video_html": "D1CE83D8CC2DE66E", 
+                            "date": {
+                                "ctime": "Fri Jan  9 05:06:10 2009"
+                            }, 
+                            "difficulty": 71, 
+                            "blurb": "Exciting advances in the conversion of biomass into fuel have made this environmentally-friendly production method into a Clean Tech poster child."
                         }
                     }, 
                     {
                         "url": "http://www.freebase.com/view/freebase/contribution_guidelines", 
                         "date": {
-                            "ctime": "Thu Dec 18 09:18:53 2008"
+                            "ctime": "Fri Jan  9 05:06:23 2009"
                         }, 
                         "proficiency": {
                             "status": "private", 
-                            "date": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }, 
                             "name": "Freebase", 
-                            "blurb": "default", 
+                            "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                            "popularity": 77, 
                             "modified": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }
+                                "ctime": "Fri Jan  9 23:41:42 2009"
+                            }, 
+                            "video_html": "D1CE83D8CC2DE66E", 
+                            "date": {
+                                "ctime": "Fri Jan  9 05:06:10 2009"
+                            }, 
+                            "difficulty": 92, 
+                            "blurb": "default"
                         }
                     }, 
                     {
                         "url": "http://www.freebase.com/view/guid/9202a8c04000641f8000000003c1b1e8", 
                         "date": {
-                            "ctime": "Thu Dec 18 09:18:53 2008"
+                            "ctime": "Fri Jan  9 05:06:23 2009"
                         }, 
                         "proficiency": {
                             "status": "private", 
-                            "date": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }, 
                             "name": "Freebase", 
-                            "blurb": "default", 
+                            "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                            "popularity": 77, 
                             "modified": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }
+                                "ctime": "Fri Jan  9 23:41:42 2009"
+                            }, 
+                            "video_html": "D1CE83D8CC2DE66E", 
+                            "date": {
+                                "ctime": "Fri Jan  9 05:06:10 2009"
+                            }, 
+                            "difficulty": 92, 
+                            "blurb": "default"
                         }
                     }, 
                     {
                         "url": "http://www.freebase.com/view/guid/9202a8c04000641f80000000041e92b0", 
                         "date": {
-                            "ctime": "Thu Dec 18 09:18:53 2008"
+                            "ctime": "Fri Jan  9 05:06:23 2009"
                         }, 
                         "proficiency": {
                             "status": "private", 
-                            "date": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }, 
                             "name": "Freebase", 
-                            "blurb": "default", 
+                            "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                            "popularity": 77, 
                             "modified": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }
+                                "ctime": "Fri Jan  9 23:41:42 2009"
+                            }, 
+                            "video_html": "D1CE83D8CC2DE66E", 
+                            "date": {
+                                "ctime": "Fri Jan  9 05:06:10 2009"
+                            }, 
+                            "difficulty": 92, 
+                            "blurb": "default"
                         }
                     }, 
                     {
                         "url": "http://www.freebase.com/view/guid/9202a8c04000641f80000000045637f3", 
                         "date": {
-                            "ctime": "Thu Dec 18 09:18:53 2008"
+                            "ctime": "Fri Jan  9 05:06:23 2009"
                         }, 
                         "proficiency": {
                             "status": "private", 
-                            "date": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }, 
                             "name": "Freebase", 
-                            "blurb": "default", 
+                            "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                            "popularity": 77, 
                             "modified": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }
+                                "ctime": "Fri Jan  9 23:41:42 2009"
+                            }, 
+                            "video_html": "D1CE83D8CC2DE66E", 
+                            "date": {
+                                "ctime": "Fri Jan  9 05:06:10 2009"
+                            }, 
+                            "difficulty": 92, 
+                            "blurb": "default"
                         }
                     }, 
                     {
                         "url": "http://www.freebase.com/view/guid/9202a8c04000641f800000000502a761", 
                         "date": {
-                            "ctime": "Thu Dec 18 09:18:53 2008"
+                            "ctime": "Fri Jan  9 05:06:23 2009"
                         }, 
                         "proficiency": {
                             "status": "private", 
-                            "date": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }, 
                             "name": "Freebase", 
-                            "blurb": "default", 
+                            "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                            "popularity": 77, 
                             "modified": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }
+                                "ctime": "Fri Jan  9 23:41:42 2009"
+                            }, 
+                            "video_html": "D1CE83D8CC2DE66E", 
+                            "date": {
+                                "ctime": "Fri Jan  9 05:06:10 2009"
+                            }, 
+                            "difficulty": 92, 
+                            "blurb": "default"
                         }
                     }, 
                     {
                         "url": "http://www.freebase.com/view/guid/9202a8c04000641f800000000544e143", 
                         "date": {
-                            "ctime": "Thu Dec 18 09:18:53 2008"
+                            "ctime": "Fri Jan  9 05:06:23 2009"
                         }, 
                         "proficiency": {
                             "status": "private", 
-                            "date": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }, 
                             "name": "Freebase", 
-                            "blurb": "default", 
+                            "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                            "popularity": 77, 
                             "modified": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }
+                                "ctime": "Fri Jan  9 23:41:42 2009"
+                            }, 
+                            "video_html": "D1CE83D8CC2DE66E", 
+                            "date": {
+                                "ctime": "Fri Jan  9 05:06:10 2009"
+                            }, 
+                            "difficulty": 92, 
+                            "blurb": "default"
                         }
                     }, 
                     {
                         "url": "http://www.freebase.com/view/guid/9202a8c04000641f80000000076223d6", 
                         "date": {
-                            "ctime": "Thu Dec 18 09:18:53 2008"
+                            "ctime": "Fri Jan  9 05:06:23 2009"
                         }, 
                         "proficiency": {
                             "status": "private", 
-                            "date": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }, 
                             "name": "Freebase", 
-                            "blurb": "default", 
+                            "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                            "popularity": 77, 
                             "modified": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }
+                                "ctime": "Fri Jan  9 23:41:42 2009"
+                            }, 
+                            "video_html": "D1CE83D8CC2DE66E", 
+                            "date": {
+                                "ctime": "Fri Jan  9 05:06:10 2009"
+                            }, 
+                            "difficulty": 92, 
+                            "blurb": "default"
                         }
                     }, 
                     {
                         "url": "http://www.freebase.com/view/guid/9202a8c04000641f8000000007de4b65", 
                         "date": {
-                            "ctime": "Thu Dec 18 09:18:53 2008"
+                            "ctime": "Fri Jan  9 05:06:23 2009"
                         }, 
                         "proficiency": {
                             "status": "private", 
-                            "date": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }, 
                             "name": "Freebase", 
-                            "blurb": "default", 
+                            "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                            "popularity": 77, 
                             "modified": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }
+                                "ctime": "Fri Jan  9 23:41:42 2009"
+                            }, 
+                            "video_html": "D1CE83D8CC2DE66E", 
+                            "date": {
+                                "ctime": "Fri Jan  9 05:06:10 2009"
+                            }, 
+                            "difficulty": 92, 
+                            "blurb": "default"
                         }
                     }, 
                     {
                         "url": "http://www.freebase.com/view/guid/9202a8c04000641f8000000007df32af", 
                         "date": {
-                            "ctime": "Thu Dec 18 09:18:53 2008"
+                            "ctime": "Fri Jan  9 05:06:23 2009"
                         }, 
                         "proficiency": {
                             "status": "private", 
-                            "date": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }, 
                             "name": "Freebase", 
-                            "blurb": "default", 
+                            "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                            "popularity": 77, 
                             "modified": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }
+                                "ctime": "Fri Jan  9 23:41:42 2009"
+                            }, 
+                            "video_html": "D1CE83D8CC2DE66E", 
+                            "date": {
+                                "ctime": "Fri Jan  9 05:06:10 2009"
+                            }, 
+                            "difficulty": 92, 
+                            "blurb": "default"
                         }
                     }, 
                     {
                         "url": "http://www.freebase.com/view/guid/9202a8c04000641f80000000081c2a7e", 
                         "date": {
-                            "ctime": "Thu Dec 18 09:18:53 2008"
+                            "ctime": "Fri Jan  9 05:06:23 2009"
                         }, 
                         "proficiency": {
                             "status": "private", 
-                            "date": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }, 
                             "name": "Freebase", 
-                            "blurb": "default", 
+                            "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                            "popularity": 77, 
                             "modified": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }
+                                "ctime": "Fri Jan  9 23:41:42 2009"
+                            }, 
+                            "video_html": "D1CE83D8CC2DE66E", 
+                            "date": {
+                                "ctime": "Fri Jan  9 05:06:10 2009"
+                            }, 
+                            "difficulty": 92, 
+                            "blurb": "default"
                         }
                     }, 
                     {
                         "url": "http://www.freebase.com/view/guid/9202a8c04000641f8000000008c0c409", 
                         "date": {
-                            "ctime": "Thu Dec 18 09:18:53 2008"
+                            "ctime": "Fri Jan  9 05:06:23 2009"
                         }, 
                         "proficiency": {
                             "status": "private", 
-                            "date": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }, 
                             "name": "Freebase", 
-                            "blurb": "default", 
+                            "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                            "popularity": 77, 
                             "modified": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }
+                                "ctime": "Fri Jan  9 23:41:42 2009"
+                            }, 
+                            "video_html": "D1CE83D8CC2DE66E", 
+                            "date": {
+                                "ctime": "Fri Jan  9 05:06:10 2009"
+                            }, 
+                            "difficulty": 92, 
+                            "blurb": "default"
                         }
                     }, 
                     {
                         "url": "http://www.freebase.com/view/guid/9202a8c04000641f8000000008c12edd", 
                         "date": {
-                            "ctime": "Thu Dec 18 09:18:53 2008"
+                            "ctime": "Fri Jan  9 05:06:23 2009"
                         }, 
                         "proficiency": {
                             "status": "private", 
-                            "date": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }, 
                             "name": "Freebase", 
-                            "blurb": "default", 
+                            "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                            "popularity": 77, 
                             "modified": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }
+                                "ctime": "Fri Jan  9 23:41:42 2009"
+                            }, 
+                            "video_html": "D1CE83D8CC2DE66E", 
+                            "date": {
+                                "ctime": "Fri Jan  9 05:06:10 2009"
+                            }, 
+                            "difficulty": 92, 
+                            "blurb": "default"
                         }
                     }, 
                     {
                         "url": "http://www.freebase.com/view/guid/9202a8c04000641f80000000092923ae", 
                         "date": {
-                            "ctime": "Thu Dec 18 09:18:53 2008"
+                            "ctime": "Fri Jan  9 05:06:23 2009"
                         }, 
                         "proficiency": {
                             "status": "private", 
-                            "date": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }, 
                             "name": "Freebase", 
-                            "blurb": "default", 
+                            "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                            "popularity": 77, 
                             "modified": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }
+                                "ctime": "Fri Jan  9 23:41:42 2009"
+                            }, 
+                            "video_html": "D1CE83D8CC2DE66E", 
+                            "date": {
+                                "ctime": "Fri Jan  9 05:06:10 2009"
+                            }, 
+                            "difficulty": 92, 
+                            "blurb": "default"
                         }
                     }, 
                     {
                         "url": "http://www.huffingtonpost.com/kate-sheppard/what-the-candidates-said_b_135147.html", 
                         "date": {
-                            "ctime": "Thu Dec 18 09:18:53 2008"
+                            "ctime": "Fri Jan  9 05:06:23 2009"
                         }, 
                         "proficiency": {
                             "status": "public", 
-                            "date": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }, 
                             "name": "Oil", 
-                            "blurb": "Petroleum makes up 40% of energy consumption, and has a worldwide impact on politics, economics, and the environment. ", 
+                            "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
+                            "popularity": 94, 
                             "modified": {
-                                "ctime": "Thu Dec 18 09:18:52 2008"
-                            }
+                                "ctime": "Fri Jan  9 23:41:42 2009"
+                            }, 
+                            "video_html": "D1CE83D8CC2DE66E", 
+                            "date": {
+                                "ctime": "Fri Jan  9 05:06:10 2009"
+                            }, 
+                            "difficulty": 73, 
+                            "blurb": "Petroleum makes up 40% of energy consumption, and has a worldwide impact on politics, economics, and the environment. "
                         }
                     }
                 ]
-

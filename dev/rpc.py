@@ -127,6 +127,14 @@ remote callers access to private/protected "_*" methods.
 
   def working(self, *args):
   	pass
+  	return
+  	from model.proficiency import Proficiency
+  	p = Proficiency.get_by_key_name("Recovery.Gov")
+  	from model.quiz import QuizItem
+  	qs = QuizItem.gql("WHERE proficiency = :1", p).fetch(1000)
+  	for q in qs:
+  	 q.content_url = "http://recovery.gov"
+  	 q.put()
 
   	
   	    

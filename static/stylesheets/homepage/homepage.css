@@ -548,4 +548,9 @@ float:left !important;
 margin-top:-20px !important;
 }
 
-div#take_quiz button.widget_button{ margin-top: 100px !important; }
+div#take_quiz button.widget_button{ 
+	filter: alpha(opacity=60);
+	-moz-opacity: 0.6;
+	-khtml-opacity: 0.6;
+	opacity: 0.6;
+	margin-top: 100px !important; }

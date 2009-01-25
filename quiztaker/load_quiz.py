@@ -30,12 +30,9 @@ class LoadQuiz():
 	quiz_items = []
 	#try: proficiencies = eval(proficiencies)  # when passed in via url
 	#except: pass
-	logging.debug('getting proficiencies...')
-	for p in proficiencies:  # TODO make these keys for easy lookup   -- these are proficiencies, not topics.
-		this_p = Proficiency.get_by_key_name(p)
-		q = QuizItem.gql("WHERE proficiency = :1", this_p)   # use topic for key
-		quiz_items.extend(q.fetch(1000))
 	logging.debug('loading items...')
+	for p in proficiencies:  # TODO make these keys for easy lookup   -- these are proficiencies, not topics.
+		quiz_items.extend(p.quizitems.fetch(1000))
 	if Debug(): # just for god_mode
 		from utils.appengine_utilities.sessions import Session
 		self.session = Session()
@@ -121,9 +118,8 @@ class QuizSession():
 	def get_proficiencies(self, profNames):
 		proficiencies = []
 		for p in profNames:
-		   #this_p = Proficiency.get_by_key_name(p)
-		   this_p = Proficiency.get_by_key_name("Smart Grid") # TEMPORARY
-		   if this_p: proficiencies.append(this_p.name)
+		   this_p = Proficiency.get_by_key_name(p)
+		   if this_p: proficiencies.append(this_p)
 		self.session['proficiencies'] = proficiencies
 		return proficiencies
 
