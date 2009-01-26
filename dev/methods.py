@@ -336,10 +336,11 @@ class DataMethods():
 				    logging.error('proficiency topic %s not found for quiz item', entity['topic']['name'])
 				    continue
 
+				import string
 				save_entity = QuizItem( content = entity['content'],
 									 theme = entity['theme'],
 									 proficiency = this_proficiency.key(),
-									 answers = entity['answers'],
+									 answers = [  ".".join( [ string.capwords(l) for l in a.split(".") ] ) for a in entity['answers']   ],
 									 index = entity['index'],
 									 topic = this_topic.key())
 				if entity['content_url']: save_entity.content_url = entity['content_url']   

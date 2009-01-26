@@ -39,12 +39,13 @@ function SubmitName(){
 	
 	if ($('input#nickname').val().length < 3) console.log('nickname is too short'); //Todo error
 	
+	$('div#signup_reminder').empty();
 	
 	if($('input#nickname').data('availability') == 'unknown') setTimeout(function(){ SubmitName(); }, 1000);  // still unknown
 	
-	if($('input#nickname').data('availability') != 'available') { $('#signup_reminder').show(); $('input#nickname').addClass('invalid'); return false; } //hasn't chosen a valid name yet 
+	if($('input#nickname').data('availability') != 'available') { $('#signup_reminder').text("The nickname you've entered isn't available.").show(); $('input#nickname').addClass('invalid'); return false; } //hasn't chosen a valid name yet 
 	
-	if($('input#email_address').val().indexOf('@') == -1) { $('#signup_reminder').show(); $('input#email_address').addClass('invalid').focus(); return false; } //hasn't chosen a valid name yet 
+	if($('input#email_address').val().indexOf('@') == -1) { $('#signup_reminder').text('Enter a valid e-mail address so you can recover your password.').show(); $('input#email_address').addClass('invalid').focus(); return false; } //hasn't chosen a valid name yet 
 	
 	$('div.loading').show();
 	$('div.main').hide();

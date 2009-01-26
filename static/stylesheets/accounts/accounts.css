@@ -39,7 +39,7 @@ padding:15px;
 div#reset_account div#error{
 color:red;
 font-size:0.8em;
-margin:-28px 0 0 100px;
+margin: /* -28px 0 0 100px */ 0;
 position:absolute;
 width: 370px;
 }

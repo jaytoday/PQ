@@ -93,12 +93,11 @@ break;
 
 case "quiz_item":
 	// ajax call to submit -- (answer, key, vendor)
-	var this_item = $.plopquiz.quizItem;
-	
+	$.plopquiz.timer.stop();
 	var timer_status = $.plopquiz.timer.width()/$.plopquiz.settings.timer_width;
+	var this_item = $.plopquiz.quizItem;
 	var vendor = "" //TODO: retrieve vendor token.
-	$(".timer_inner", self).stop();
-	$.plopquiz.timer.css('width', '100%');
+	
 	$.ajax(
 	{
 			url: $.plopquiz.settings.serverUrl + "/quiztaker/rpc",

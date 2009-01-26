@@ -8,7 +8,7 @@ $.plopquiz.quiz_content.html(html);
 // hide the answers for now
 $('.answer', $.plopquiz.answer_container).hide();
 
-// this occasionally results in things fading in twice, like the "Begin Quiz" button.
+// this occasionally results in things fading in twice...the solution is to fade in the element after a pause.
 $.plopquiz.quiz_loader.attr('class', quizItem.item_type + '_load').animate({opacity: 0}, {  duration: 0, complete: function()
 { $.plopquiz.quiz_inner_content.animate({opacity:1},{duration:200}).removeClass('disabled'); } 
 }).hide();
@@ -32,7 +32,6 @@ for ( var i in quizItem.answers )
 
 		this_answer
 		.show()
-		// reenable the button, clickity click
 		.data("disabled", false)
 		.find(".answertext")
 		.html(quizItem.answers[i]);
@@ -67,7 +66,15 @@ $("#skip", $.plopquiz.answer_container).hide();
 
 if(quizItem.item_type == "intro")
 {
-$('#confirm', $.plopquiz.answer_container).show().attr('class', 'answer intro_quiz').find('span.continue_button').text('Take This Quiz');
+$('#confirm', $.plopquiz.answer_container).data('disabled', true).attr('class', 'answer intro_quiz')
+     .find('span.continue_button').text('Take This Quiz').end()
+    .animate({ opacity:0},{ duration: 0, 
+                         complete: function(){ $(this).animate({opacity:0},{ duration: 500, 
+                                                                              complete: function(){ $(this).animate({opacity:1},{duration: 1000  });  $(this).data('disabled', false); }                       
+                                                                            });
+                                             } 
+                            });
+                            
 $('button span#intro_button', $.plopquiz.answer_container).show(); 
 $('.intro_frame_content #subject_container_1').show().addClass('selected'); // show first subject
 
@@ -75,7 +82,7 @@ $('.intro_frame_content #subject_container_1').show().addClass('selected'); // s
 $('div.subject_thumb_container > div', $.plopquiz.quiz_content).each(function(n){
 	
 	// remove default image if there are custom images (if we will never have subjects without pictures, this isn't necessary)
-	if ($(this).find('li').length > 1) { $('#subject_' + $(this).find('li:first').attr('id'), $.plopquiz.quiz_content).find('li:first').remove(); $(this).find('li:first').remove();   }//console.log($('#subject_' + $(this).attr('id'), $.plopquiz.quiz_content) );  }
+	if ($(this).find('li').length > 1) { $('#subject_' + $(this).find('li:first').attr('id'), $.plopquiz.quiz_content).find('li:first').remove(); $(this).find('li:first').remove();   }
 	 
 $('#subject_thumb_' + n, $.plopquiz.quiz_content).s3Slider({ timeOut: $.plopquiz.settings.sliderDuration });  // todo: slight offset
 });  
@@ -182,14 +189,16 @@ $.plopquiz.loadItem();
 
 if(quizItem.item_type == "begin_quiz")
 {
-var p = {};
-$('#confirm', $.plopquiz.answer_container).removeClass('intro_quiz').addClass('begin_quiz').find('span.continue_button').text('Begin Quiz');    
-                
-/* Deprecated 
-for(var i in $.plopquiz.proficiencies)
-$("#proficiency_choices")
-.append('<input type="checkbox" value="' + $.plopquiz.proficiencies[i] + '" checked /><span class="proficiency">' + $.plopquiz.proficiencies[i] + '</span><br />');
-*/
+
+$('#confirm', $.plopquiz.answer_container)
+  .removeClass('intro_quiz').addClass('begin_quiz').find('span.continue_button').text('Begin Quiz').end()
+  .animate({ opacity:0},{ duration: 0, 
+                         complete: function(){ $(this).data('disabled', true); $(this).animate({opacity:0},{ duration: 1000, 
+                                                                                                             complete: function(){ $(this).animate({opacity:1},{duration: 1000  });  $(this).data('disabled', false); }                       
+                                                                                                              }); }      
+                        });
+  
+              
 
 }
 
@@ -209,62 +218,11 @@ $.plopquiz.quiz_content.css('opacity', 0);
 
 
 
-
-
-
 if(quizItem.item_type == "quiz_complete")
 {
 //update text for Button
 $('#quiz_answers #confirm').removeClass('begin_quiz').addClass('quiz_complete').find('span.continue_button').text('See Results').show();
 
-/* DEPRECATED
-// signup binding
-$('div.form_proceed').click(function(){
-
-var current_id  = $(this).attr('id');
-var next_id  = parseInt(current_id) + 1;
-
-// last page of signup?
-if ($('form.signup').find('ul#' + next_id).length == 0)
-{
-var args = {};
-// form elements to be submited
-var aargs = Array("name", " email", " occupation", " work_status", " webpage", " loc")
-
-// this can be refined
-for(var i in aargs)
-args["arg" + i] = "\"" + $("#" + aargs[i]).val() + "\"";
-
-// submit the registration, all RPC calls should be moved to a single location
-$.ajax(
-{
-url: $.plopquiz.settings.serverUrl + "/quiztaker/rpc",
-dataType: "jsonp",
-data: $.extend(
-{
-action: "Register",
-}, args),
-success: function(obj)
-{
-console.log(obj);
-}
-});
-
-return;
-}
-
-// are there every more then one page?
-$('form.signup').find('ul#' + current_id).fadeOut(200, function()
-{
-$('form.signup').find('ul#' + next_id).fadeIn(200);
-});
-
-$(this).attr('id', next_id);
-
-
-});      
-
-*/
  }                
 
 

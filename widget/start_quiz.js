@@ -17,7 +17,7 @@ $("#quiz_overlay").css("height", $(document).height());
 }
 
 drawOverlay();
-$(window).resize(drawOverlay);
+$(window).resize(drawOverlay); // whenever window is resized, overlay will be drawn. 
 
 
 // starting and stopping quiz
@@ -46,9 +46,9 @@ $("#pq_wrapper")
 {
 	$(this).hide();
 	$('#widget_wrapper').fadeIn().find('button').css('display', 'inline').end().find('.widget_load').hide();
-  console.log($('#widget_wrapper').find('button'));
-	// reset to start of quiz, unless quiz items have begun. TODO: this should handle skipping instructions;
+	// end quiz session. TODO: this should handle skipping instructions; 
 	$.plopquiz.currentItem = 0;
+	$.plopquiz.settings.initDone = false;
     // if we want to redirect to the PQ site
     // if($.plopquiz.settings.autoStart) window.location = "{{ http_host }}/login";
 });
@@ -72,12 +72,7 @@ $("#quiz_timer")
 	// reset and start timer.
 	var reset = function()
 	{
-			// stop to prevent ghost run outs
-			$.plopquiz.timer.stop();
 			
-			// resize
-			$.plopquiz.timer
-					.css("width", "100%");
 					
 					$.plopquiz.settings.timer_width = $('.timer_bar').width(); // to calculate score
 			  
@@ -184,6 +179,9 @@ $("#quiz_content", $.pq_wrapper)
 {
  $('.hover_answer', $.pq_wrapper).trigger('hover'); // trigger hover on already hovered answer
   $.event.trigger('hover', $('.hover_answer', $.pq_wrapper)); // trigger hover on already hovered answer
+  
+   	 // redraw timer
+	$.plopquiz.timer.stop().css("width", "100%");
 	$("#quiz_content", $.pq_wrapper).animate({opacity: 1},{ duration: 1000, // delay start of timer 
 			complete: function()
 			{$.event.trigger("startTimer", [ quizItem ]); } });

@@ -3,7 +3,6 @@ def url_routes(map):
 	#Hompeage
 	map.connect('', controller = 'homepage.views:TeaserHomepage')
 	map.connect('preview/homepage', controller = 'homepage.views:ViewHomepage')
-	map.connect('preview', controller = 'homepage.views:ExitPage')
 
     #Login
 	map.connect('login', controller = 'accounts.views:Login')

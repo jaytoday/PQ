@@ -9,14 +9,14 @@ Setup
 
   Run PQ through your local GAE SDK server. 
   
-  IMPORTANT: You will have likely have to refresh your datastore every time you restart your machine (when /tmp/ is wiped). To avoid this, manually defined a location for your datastore and history files like in this OS X .command script:
+  IMPORTANT: To avoid having to refresh your datastore every time you restart your machine (when /tmp/ is wiped), manually define a location for your datastore and history files like in a saved command script:
 
-  dev_appserver.py 
+  __dev_appserver.py 
   --datastore_path=/Users/james/Code/pq.datastore 
   --history_path=/Users/james/Code/pq.datastore.history 
-  /Users/james/Code/PlopQuiz #define app location
+  /Users/james/Code/PlopQuiz__
   
-  see 'getting started' for details about dev_appserver.py
+  see 'getting started' for details about configuring dev_appserver.py.
 
 
 Seeding Your Datastore
