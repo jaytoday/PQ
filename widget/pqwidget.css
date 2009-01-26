@@ -1652,6 +1652,8 @@ display: block;
 	color: #fff !important;
 	text-transform:capitalize !important;
 	position:absolute!important;
+	text-align: left !important;
+	padding: 0 3px;
 }
 
 

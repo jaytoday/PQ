@@ -208,11 +208,10 @@ $('head').append(style);
 $.plopquiz.loadItem = function(quizItem)
 {
 	
-// this could use some clean up, the transistions between hard code and real quizItem is a bit funky
 var quizItem = $.plopquiz.quizItem = ((quizItem && quizItem.answers) ? quizItem : $.plopquiz.fetchNextItem());
 
 if(!quizItem)
-		return; //catch error
+		return; 
 	
 
 $.plopquiz.quiz_inner_content.addClass('disabled').animate({opacity:0},100); 

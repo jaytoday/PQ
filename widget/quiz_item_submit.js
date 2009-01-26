@@ -53,7 +53,8 @@ break;
 
 case "begin_quiz":
 
-	//$('#proficiency_choices input:checked', $.plopquiz.quiz_content).each(function() { $.plopquiz.settings.proficiencies.push($(this).val()); });
+	$.plopquiz.quiz_inner_content.addClass('disabled').animate({opacity:0},100); 
+	$.plopquiz.quiz_loader.show().animate({opacity: .5 }, {duration:100});
 	$.plopquiz.timer.css('width', '100%'); 
 
 	// this start the server session and retrieves the first questions
@@ -84,8 +85,7 @@ case "begin_quiz":
 
 					// instructions are done, we can skip them if the test is reset
 					$.plopquiz.settings.instructions.completed = true;
-
-					// load the first question
+					// load the first question (we already have  it from the rpc call)
 					$.plopquiz.loadItem($.extend({timed:true,"item_type":"quiz_item"}, q));
 			}
 		       // TODO: error  -- this is only for when the call itself doesn't work

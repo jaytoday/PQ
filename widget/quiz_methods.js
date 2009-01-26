@@ -139,7 +139,6 @@ if ($(this).attr("id") == "skip")
 
 var blank_width = 15 + (12 * $(".answertext", this).text().length); //todo: multiplier may need adjustment
 
-console.log($(this).data('disabled'));
 
 if ($(this).data('disabled') == false) { 
 										$("#blank", $.plopquiz.quiz_content)
