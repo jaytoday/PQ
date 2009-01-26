@@ -1,6 +1,6 @@
 
 
-function startQuiz(html){
+function loadQuizMethods(html){
 	/*
 	 * Note: This is run before the quiz frame is loaded.
 	 * $.plopquiz.start runs when the quiz frame is loaded
@@ -46,9 +46,9 @@ $("#pq_wrapper")
 {
 	$(this).hide();
 	$('#widget_wrapper').fadeIn().find('button').css('display', 'inline').end().find('.widget_load').hide();
-	// end quiz session. TODO: this should handle skipping instructions; 
+	// wipe quiz session. TODO: this should handle skipping instructions; 
 	$.plopquiz.currentItem = 0;
-	$.plopquiz.settings.initDone = false;
+	$.plopquiz.settings.instructions.completed = false;
     // if we want to redirect to the PQ site
     // if($.plopquiz.settings.autoStart) window.location = "{{ http_host }}/login";
 });
@@ -75,18 +75,16 @@ $("#quiz_timer")
 			
 					
 					$.plopquiz.settings.timer_width = $('.timer_bar').width(); // to calculate score
-			  
 			 
 
-$.plopquiz.timer.animate({opacity: 1.0}, 2000, function()
+$.plopquiz.timer.animate({opacity: 1.0}, 2000, function() //temporarily pause the timer 
 {
 $.plopquiz.answers.removeClass('disabled').data("disabled", false);
 
-													// start running the timer down
-			$.plopquiz.timer.animate(
-			{
-					width: 0
-			},
+$.plopquiz.answer_text.animate({opacity: 1}, 300);
+												
+			$.plopquiz.timer.animate( // start running the timer down
+			{ width: 0 },
 			{
 					complete: function()
 					{
@@ -132,6 +130,8 @@ $('#quiz_answers .answer', $.pq_wrapper).hover(function()
 // skip doesn't have hover
 if ($(this).attr("id") == "skip")
 	return;
+
+	 
 	
 	// hover event on span
 	$(this).addClass('hover_answer');
@@ -139,10 +139,14 @@ if ($(this).attr("id") == "skip")
 
 var blank_width = 15 + (12 * $(".answertext", this).text().length); //todo: multiplier may need adjustment
 
-$("#blank", $.plopquiz.quiz_content)
-	.html($(".answertext", this)
-	.text().replace(/\ /g, "&nbsp;"))
-	.css("cssText", "width: " + blank_width + "px !important;");                                        
+console.log($(this).data('disabled'));
+
+if ($(this).data('disabled') == false) { 
+										$("#blank", $.plopquiz.quiz_content)
+											.html($(".answertext", this)
+											.text().replace(/\ /g, "&nbsp;"))
+											.css("cssText", "width: " + blank_width + "px !important;");        
+		 }                                
 },
 function()
 {
@@ -157,21 +161,15 @@ $("#blank").text(textHolder)
 .click(function(e) // submit answer
 {
 
-// data("disabled") prevents double submissions
-if ($(this).hasClass('disabled')){ return false; }
-if($(this).data("disabled") != true){
-	$.plopquiz.submitAnswer($(this).find('div.answertext').text().replace(/\n/g,"")); 
+	// data("disabled") prevents double submissions
+	if ($(this).hasClass('disabled')){ return false; }
+	if($(this).data("disabled") != true){
+		$.plopquiz.submitAnswer($(this).find('div.answertext').text().replace(/\n/g,"")); 
 
 }
-// disable all the answers
-$.event.trigger("disableAnswers");
+
 })
-.bind("disableAnswers", function()
-{
-// reset in loadItem
-if($.plopquiz.quizItem.item_type == "quiz_item" || $.plopquiz.quizItem.item_type == "begin_quiz")
-   $.plopquiz.answers.addClass('disabled').data("disabled", true);
-});
+
 
 $("#quiz_content", $.pq_wrapper)
 // when the item is loaded, fade in, then trigger startTimer

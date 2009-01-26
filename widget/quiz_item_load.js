@@ -214,6 +214,8 @@ if(quizItem.item_type == "quiz_item")
 $('#blank', $.plopquiz.quiz_content).empty();
 // hide the question until everything is loaded
 $.plopquiz.quiz_content.css('opacity', 0);
+$.plopquiz.answer_text.animate({opacity: 0}, 0);
+$.plopquiz.answers.data('disabled', true);
 }
 
 

@@ -86,7 +86,7 @@ $.ajax({
 		url: $.plopquiz.settings.serverUrl + '/quiz_frame',
 		dataType: "jsonp",
 		// error: console.log('quiz frame error'), silent failure - should this show error? 
-		success: function(html,status) { startQuiz(html, status); } // code in start_quiz.js
+		success: function(html,status) { loadQuizMethods(html, status); } // code in start_quiz.js
 
 });
 
@@ -161,6 +161,7 @@ $('#pqwidget #subject_1').s3Slider({ timeOut: 8300  });
 				$.plopquiz.timer = $('#timer_bar', $.plopquiz.timer_wrapper);
 				$.plopquiz.answer_container = $("#quiz_inner #quiz_answers"); // just answers and buttons
 				$.plopquiz.answers = $.plopquiz.answer_container.find('div');
+				$.plopquiz.answer_text = $.plopquiz.answers.find('div.answertext:not(#skiptext)')
                 // if the click handler is setup before the frame loads, wait for it
                 if($.pq_wrapper.length > 0)
                         // start the quiz now -- This seems to be working, but isn't it in the wrong place? 
@@ -212,7 +213,8 @@ var quizItem = $.plopquiz.quizItem = ((quizItem && quizItem.answers) ? quizItem 
 
 if(!quizItem)
 		return; //catch error
-		
+	
+
 $.plopquiz.quiz_inner_content.addClass('disabled').animate({opacity:0},100); 
 	
 	$.plopquiz.quiz_loader.show().animate({opacity: .5 }, {duration:100, complete:function(){ 
@@ -311,7 +313,7 @@ else
 
 {% include "quiz_item_submit.js" %}     //plopquiz.submitAnswer    -- submitting each item type  
 
-{% include "start_quiz.js" %}  //startQuiz.    
+{% include "quiz_methods.js" %}  //startQuiz.    
 
 
 

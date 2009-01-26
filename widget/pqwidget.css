@@ -252,6 +252,11 @@ width:80px;
         
 }
 
+.quiz_wrap div.disabled td#quiz_blue_main .answertext{
+/* display:none; */
+}
+
+
 .quiz_wrap .timer_wrapper{
         background:#EEEAF8 none repeat scroll 0 0 !important;
         display:        none;

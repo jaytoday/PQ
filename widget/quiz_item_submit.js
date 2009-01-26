@@ -16,7 +16,8 @@ $.plopquiz.settings.proficiencies = Array(); // clear out proficiencies in case 
 $.plopquiz.settings.proficiencies.push(quiz_subject_choice);
 
 $('button.take_test').hide();
-$('div.go_to_site', $.plopquiz.answer_container).hide(); // temporary, while in development
+$('div#points', $.plopquiz.quiz_inner_content).hide().empty();
+
 $.plopquiz.loadItem();
 
 case "instructions":
@@ -113,7 +114,7 @@ case "quiz_item":
 			success: function(rpc)
 			{
 					var q = rpc["quiz_item"];
-                    // no more quiz items left
+                    // no moAt the end of a quiz, it should reset so that a new quiz session could be established from the same page. re quiz items left
 					if(q === false) { 
 					return $.plopquiz.loadItem({url: "/intro/?page=quiz_complete", item_type:"quiz_complete", noSkip: true, answers: [ "Submit" ]});
 					}
