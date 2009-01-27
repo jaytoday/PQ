@@ -56,6 +56,7 @@ class Profile(db.Model):
     #sponsorship_count = db.IntegerProperty(default = 0) # this is to avoid lookups for counts
     
     #sponsorships - sponsorships that have been earned
+    
     #gifts = TODO
 
     # Personal info 
@@ -70,7 +71,14 @@ class Profile(db.Model):
     photo = db.ReferenceProperty(ProfilePicture,
                                     collection_name='profile')  # One Quiz Taker Can Have Many Filters
     
+    #Sponsors Only
     is_sponsor=db.BooleanProperty(default=False) # avoid lookup to check if this is sponsor
+    quote = db.TextProperty(required=False)
+    
+    #collection: given_sponsorships
+    
+    
+    sponsored_subjects = db.ListProperty(db.Key) # ProficiencyLevel keys
     
     # When Signed Up
     date = db.DateTimeProperty(auto_now_add=True)

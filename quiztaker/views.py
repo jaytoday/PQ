@@ -77,11 +77,8 @@ class TakeQuiz(webapp.RequestHandler):
     proficiencies = load_proficiencies[0]
     vendor = load_proficiencies[1] 
     if proficiencies[0] == None:
-        return self.redirect('/quiz_not_found/')
-        logging.info('quiz not found for argument %s', load_proficiencies[0]) 
-        #all_proficiencies = Proficiency.all() # not all, just public ones. 
-        #proficiencies = [proficiency for proficiency in all_proficiencies.fetch(4)] 
-        #vendor = self.get_default_vendor()
+        logging.info('quiz not found for argument %s', load_proficiencies[0])
+        return self.redirect('/quiz_not_found/') 
     load_quiz = LoadQuiz()
     if vendor == "": vendor = self.get_default_vendor()
     template_values = {"proficiencies": proficiencies, "quiz_subject": str(proficiencies[0].name), "vendor_name": vendor.name.capitalize(), "vendor": vendor.key() }
@@ -90,7 +87,7 @@ class TakeQuiz(webapp.RequestHandler):
 
   def get_proficiencies(self):
   # Get proficiencies from path
-    DEFAULT_QUIZ_SUBJECT = "Misconceptions"
+    DEFAULT_QUIZ_SUBJECT = "Recovery.Gov"
     if len(self.request.path.split('/quiz/')[1]) > 0:
 		import string
 		this_proficiency = self.request.path.split('/quiz/')[1].replace("%20"," ") #TODO - instead of capwords, make all subject names lowercase

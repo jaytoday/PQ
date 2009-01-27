@@ -16,7 +16,7 @@ $.plopquiz.settings.proficiencies = Array(); // clear out proficiencies in case 
 $.plopquiz.settings.proficiencies.push(quiz_subject_choice);
 
 $('button.take_test').hide();
-$('div#points', $.plopquiz.quiz_inner_content).hide().empty();
+$('div#points', $.plopquiz.quiz_inner_content).hide();
 
 $.plopquiz.loadItem();
 

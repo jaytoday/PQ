@@ -60,7 +60,7 @@
 <div id="award_{{ forloop.counter }}" class="proficiency_pic selection_box award_img">
 		<ol class="sliderContent" id="award_{{ forloop.counter }}Content">
 
-		<li style="display:none;" id="{{ forloop.counter }}_default_subject_image"  class="sliderImage award_{{ forloop.parentloop.counter }}Image">
+		<li style="display:none;" id="{{ forloop.counter }}_default_subject_image"  class="sliderImage award_{{ forloop.counter }}Image">
 			<img src="/image/subject/?img_id=default&size=small"/>
 			<span class="img_{% cycle top,bottom %}">{{ award.type }} <br/><strong>  {{ award.proficiency.name}}</strong></span>
 		</li>

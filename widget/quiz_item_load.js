@@ -123,8 +123,9 @@ $('.study_header',$.plopquiz.quiz_content).click(function(){
 	
 });
 
-//temporary
+//show buttons - important in case quiz is closed and reopened
 $('button.take_test', $.plopquiz.answer_container).show();
+$('div#points', $.plopquiz.quiz_inner_content).show();
 $('div.go_to_site', $.plopquiz.answer_container).show();
 
 

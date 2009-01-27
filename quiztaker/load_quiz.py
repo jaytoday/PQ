@@ -30,9 +30,10 @@ class LoadQuiz():
 	quiz_items = []
 	#try: proficiencies = eval(proficiencies)  # when passed in via url
 	#except: pass
+	proficiencies = self.temp_filter(proficiencies)
 	logging.debug('loading items...')
 	for p in proficiencies:  # TODO make these keys for easy lookup   -- these are proficiencies, not topics.
-		quiz_items.extend(p.quizitems.fetch(1000))
+		quiz_items.extend(p.quizitems.fetch(1000)) # We need them all, since they're being shuffled. 
 	if Debug(): # just for god_mode
 		from utils.appengine_utilities.sessions import Session
 		self.session = Session()
@@ -42,9 +43,11 @@ class LoadQuiz():
 	self.load_array()
 	return self.quiz_array 
 
-
-
-    
+  def temp_filter(self, proficiencies): # TEMPORARY
+	if proficiencies[0] not in ["Smart Grid", "Energy Efficiency", "Recovery.Gov"]:
+		logging.info('temporarily loading a different quiz ', proficiencies[0])        
+		proficiencies[0] = Proficiency.get_by_key_name("Recovery.Gov")
+		return proficiencies 
 
   def load_item(self, item):
         random.shuffle(item.answers)

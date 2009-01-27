@@ -53,19 +53,20 @@
 
 
  
-{% for award in user.awards %}
+{% for subject in sponsored_subjects %} 
+
 <div id="award_{{ forloop.counter }}" class="proficiency_pic selection_box award_img">
 		<ol class="sliderContent" id="award_{{ forloop.counter }}Content">
 
-		<li style="display:none;" id="{{ forloop.counter }}_default_subject_image"  class="sliderImage award_{{ forloop.parentloop.counter }}Image">
+		<li style="display:none;" id="{{ forloop.counter }}_default_subject_image"  class="sliderImage award_{{ forloop.counter }}Image">
 			<img src="/image/subject/?img_id=default&size=small"/>
-			<span class="img_{% cycle top,bottom %}">{{ award.type }} <br/><strong>  {{ award.proficiency.name}}</strong></span>
+			<span class="img_{% cycle top,bottom %}"> sponsor <br/><strong>  {{subject.name}}</strong></span>
 		</li>
 		
-		{% for img in award.proficiency.images %}
-		<li class="sliderImage award_{{ forloop.parentloop.counter }}Image {{ forloop.counter }}_has_subject_image">
+		{% for img in subject.images %}
+		<li class="sliderImage award_{{ forloop.parentloop.counter }}Image {{ forloop.parentloop.counter }}_has_subject_image">
 			<img src="/image/subject/?img_id={{ img.key }}&size=small"/>
-			<span class="img_{% cycle top,bottom %}">{{ award.type }} <br/><strong>  {{ award.proficiency.name}}</strong></span>
+			<span class="img_{% cycle top,bottom %}"> sponsor<br/><strong>  {{ subject.name}}</strong></span>
 		</li>
 		{% endfor %}
 
@@ -73,12 +74,23 @@
 	</ol>
 
 </div>
+
+
 {% endfor %}
 
-<div id="no_award_note" class="info_note profile_info_note" style="display:none;">{% if profile_owner %}You have{% else %}{{ user.fullname }} has{% endif %}  no awards. </div>
+
+
+
+
+
+
+
+
+
+<div id="no_award_note" class="info_note profile_info_note" style="display:none;">{% if profile_owner %}You have{% else %}{{ user.fullname }} has{% endif %}  no sponsored subjects. </div>
  
- </div> {# awards #}
- </div> {# award_scroll #}
+ </div> {# subjects #}
+ </div> {# subject_scroll #}
  
   <div class="box_nav" id="award_scroll_nav" style="display:none">
 <button id="award_next" class="small_nav"><img src="/static/stylesheets/img/utils/purple_next_tiny.png"></button>

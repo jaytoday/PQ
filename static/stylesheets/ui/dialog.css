@@ -227,6 +227,7 @@ width:130px;
 .ui-dialog-content span.content.sponsors{
 margin-left: 120px;
 width: 460px;
+position:absolute;
 }
 
 
@@ -286,7 +287,7 @@ margin: 0px;
 }
 
 div.ui-dialog.about_dialog span#awards span#right_box, div.ui-dialog.about_dialog span#sponsorships span#right_box{
-margin:70px 0 0 230px;
+margin:70px 0 0 200px;
 }
 
 

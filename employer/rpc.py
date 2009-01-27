@@ -76,14 +76,20 @@ class SponsorPost(webapp.RequestHandler):
 
 
   def sponsor_settings(self): 	
-    # get employer
+	# get employer
 	this_employer = Employer.get_by_key_name(self.request.get('sponsor'))
 	# save message
 	this_employer.sponsorship_message = self.request.get('sponsorship_message')
 	#save quiz subjects
 	this_employer.quiz_subjects = [ self.request.get('quiz_subject') ]
+	# also save it in the profile_image
+	from model.user import Profile
+	this_user = Profile.get_by_key_name(this_employer.unique_identifier)
+	from model.proficiency import Proficiency
+	#this_user.sponsored_subjects.append( Proficiency.get_by_key_name(self.request.get('quiz_subject')) )  -- Multiple Entries
+	if self.request.get('quiz_subject') != "undefined": this_user.sponsored_subjects = [ Proficiency.get_by_key_name(self.request.get('quiz_subject')).key() ]
 	# save sponsor account
-	this_employer.put()
+	db.put([this_employer, this_user])
 	return "OK"
 
 
