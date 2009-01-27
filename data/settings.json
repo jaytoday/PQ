@@ -26,5 +26,12 @@
                         "modified": {
                             "ctime": "Wed Jan 14 09:32:48 2009"
                         }
+                    },
+                    {
+                        "name": "fixture_offset", 
+                        "value": 0.0, 
+                        "modified": {
+                            "ctime": "Wed Jan 14 09:32:48 2009"
+                        }
                     }
                 ]

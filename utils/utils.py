@@ -98,7 +98,7 @@ def authorized(user):
 
 def redirect_from_appspot(wsgi_app):
     def redirect_if_needed(env, start_response):
-        if env["HTTP_HOST"].startswith('plopquiz.appspot.com'):
+        if env.get('HTTP_USER_AGENT','').startswith('plopquiz.appspot.com'):
             import webob, urlparse
             request = webob.Request(env)
             scheme, netloc, path, query, fragment = urlparse.urlsplit(request.url)
@@ -112,7 +112,7 @@ def redirect_from_appspot(wsgi_app):
 
 def browser_check(wsgi_app):
     def redirect_if_needed(env, start_response):
-        if "Mozilla/4.0" in env['HTTP_USER_AGENT']: # MSIE - are there any others we need?
+        if "Mozilla/4.0" in env.get('HTTP_USER_AGENT',()): # MSIE - are there any others we need?
             import webob, urlparse
             request = webob.Request(env)
             scheme, netloc, path, query, fragment = urlparse.urlsplit(request.url)

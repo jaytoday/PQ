@@ -3,7 +3,7 @@ import itertools
 from utils.gql_encoder import GqlEncoder, encode
 from google.appengine.ext import db
 from .model.quiz import QuizItem, RawQuizItem, ProficiencyTopic, ContentPage, Proficiency
-from .utils.utils import tpl_path, ROOT_PATH
+from .utils.utils import ROOT_PATH
 from utils import simplejson
 from employer.methods import DataMethods as emp_data
 from google.appengine.api import images

@@ -11,7 +11,7 @@ from google.appengine.api import urlfetch
 import urllib
 from utils.webapp.util import login_required, quiztaker_required
 
-from methods import registered, register_user, register_qt, register_account
+from accounts.methods import registered, register_user, register_qt, register_account
 
 # Template paths
 ACCOUNTS_PATH = 'accounts/'
@@ -119,11 +119,10 @@ class LoginResponse(webapp.RequestHandler):
 		return True
 		      
 		      		  
-	def register_user(self, json):	# TODO: This should all be in transaction-esque block using db.put() 	  
+	def register_user(self, json):	
 		try: nickname = json['profile']['preferredUsername']
 		except: 
 			  try:  nickname = json['profile'].get('displayName', json['profile']['email'].split('@')[0]) # try to get a nickname, somehow! 
-			  #except: nickname = json['profile'].get('displayName', unique_identifier[-7:-1]) # TODO: whoops, your name is gibberish. 
 			  except: nickname = ''
 		email = json['profile'].get('email', '')
 		fullname = json['profile'].get('displayName', nickname)

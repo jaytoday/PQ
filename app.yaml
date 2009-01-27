@@ -26,13 +26,10 @@ handlers:
 
   
 - url: /gaeutilities/css
-
   static_dir: utils/appengine_utilities/interface/css
 
 - url: /gaeutilities/.*
-
   script: utils/appengine_utilities/interface/main.py
-
   login: admin
   
   

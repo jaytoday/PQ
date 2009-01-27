@@ -49,6 +49,7 @@ class TopicLevelData():
 		if edited_scores: quiz_taker.put()		
 		
 		# seperate topic_scores into individual topics
+		print topic_scores.items()
 		for topic_pair in topic_scores.items():
 			tl_keyname = str(quiz_taker.unique_identifier) + "_" + str(topic_pair[0])
 			topic_pair[1]['average'] = int(topic_pair[1]['average']) 

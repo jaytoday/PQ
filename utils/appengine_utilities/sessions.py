@@ -152,11 +152,11 @@ class Session(object):
                 self.sid = self.new_sid()
                 self.session = _AppEngineUtilities_Session()
                 if 'HTTP_USER_AGENT' in os.environ:
-                    self.session.ua = os.environ['HTTP_USER_AGENT']
+                    self.session.ua = os.environ.get('HTTP_USER_AGENT','')
                 else:
                     self.session.ua = None
                 if 'REMOTE_ADDR' in os.environ:
-                    self.session.ip = os.environ['REMOTE_ADDR']
+                    self.session.ip = os.environ.get('REMOTE_ADDR','')
                 else:
                     self.session.ip = None
                 self.session.sid = [self.sid]
@@ -185,7 +185,7 @@ class Session(object):
         else:
             self.sid = self.new_sid()
             self.session = _AppEngineUtilities_Session()
-            self.session.ua = os.environ['HTTP_USER_AGENT']
+            self.session.ua = os.environ.get('HTTP_USER_AGENT','')
             self.session.ip = os.environ['REMOTE_ADDR']
             self.session.sid = [self.sid]
             self.cookie[cookie_name] = self.sid

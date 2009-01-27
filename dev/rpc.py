@@ -1,6 +1,4 @@
 import logging
-# Log a message each time this module get loaded.
-logging.info('Loading %s', __name__)
 from utils import webapp
 from google.appengine.ext import db
 import string, re
@@ -138,55 +136,22 @@ remote callers access to private/protected "_*" methods.
 
   	
   	    
-
-  	
-  # this should probably go in its own file
   def make_scores(self, *args):
-  	SCORE_NUM = 10
-  	self.correct_scores = 0
   	if len(args) < 2: return "Specify A Proficiency, and Correct Ratio"
   	from utils.appengine_utilities.sessions import Session
   	self.session = Session()
-  	self.correct_prob = args[1]
-  	
-  	if not self.session['user']: return "Not Logged In"
-  	import random
-  	from model.quiz import QuizItem
   	from model.proficiency import Proficiency
   	this_proficiency = Proficiency.get_by_key_name(args[0])
-  	items = QuizItem.gql("WHERE proficiency = :1", this_proficiency).fetch(1000)
-  	items = random.sample(items, SCORE_NUM)
-  	self.save = []
-  	for i in items: 
-  	    self.make_score(i) 
-  	print "saved ", len(self.save), " scores. ", self.correct_scores, " were correct." 
-  	db.put(self.save)
+  	correct_prob = args[1]
+  	if not self.session['user']: return "Not Logged In"
+  	this_user = self.session['user']
+  	from dev.fixtures import Scores
+  	scores = Scores()
+  	save_scores = scores.make_scores(this_user, this_proficiency, correct_prob, SCORE_NUM = 10)
+  	db.put(save_scores)
+  	
   	
 
-  def make_score(self, i): 
-	from model.quiz import QuizTaker
-	from model.quiz import ItemScore
-	import random
-	this_user = QuizTaker.get_by_key_name(self.session['user'].unique_identifier)
-	picked_answer = ''
-	if random.randint(1,100) > self.correct_prob: #wrong answer -- could also just use normal distribution of correct probability
-		while picked_answer == i.index: picked_answer = i.answers.pop()
-	else:  picked_answer = i.index
-	score = ItemScore(quiz_item = i,
-						  quiz_taker = this_user,
-						  correct_answer = i.index,
-						  picked_answer = picked_answer,
-						  type = "stub")	
-	if score.picked_answer == score.correct_answer: 
-		this_score = int(random.normalvariate(self.correct_prob, 15))
-		if this_score > 100: this_score == 100
-		score.score = this_score
-		self.correct_scores += 1
-	else: score.score = 0
-	self.save.append(score)
-  	
-
-  	
 
 
 
@@ -295,7 +260,7 @@ remote callers access to private/protected "_*" methods.
 
 
 
-  def destroy_everything(self, *args):
+  def destroy_everything(self, *args): # be careful, this gets rid of unsaved user data!
   	from dev.methods import Build
   	build = Build()
   	build.destroy_everything()
@@ -303,7 +268,25 @@ remote callers access to private/protected "_*" methods.
   	 
   	 
 
-  	 
+  def load_fixture(self, *args):
+  	from dev.fixtures import Fixture
+  	fixture = Fixture()
+  	return fixture.load()
+
+
+  def update_stats(self, *args):
+  	from dev.fixtures import Fixture
+  	fixture = Fixture()
+  	return fixture.update_stats()
+
+  	  	
+
+
+  def run_cron(self, *args):
+  	return false
+  	from utils.appengine_utilities import cron
+  	c = cron.Cron()
+  	return "OK"  	 
   	 
 
 
