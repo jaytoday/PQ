@@ -134,7 +134,7 @@ class EditSponsorSettings(webapp.RequestHandler):
     from model.employer import Employer
     this_employer = Employer.get_by_key_name(self.session['user'].unique_identifier)
     from model.proficiency import Proficiency
-    subjects = Proficiency.all().fetch(1000)
+    subjects = Proficiency.gql("WHERE status = :1", "public").fetch(1000)
     template_values = {'user': self.session['user'], 'edit_type': edit_type, 'this_employer': this_employer,
                         'subjects': subjects }
     path = tpl_path(PROFILE_PATH +'sponsor_settings.html')

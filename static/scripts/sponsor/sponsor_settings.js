@@ -31,6 +31,7 @@ $('a#preview_quiz').click(function(){
 // get the different pieces of data, and submit them
 
 // TODO: We can use jQuery.serialize() for fast form serialization
+$('div.main').hide();$('div.loading').show();
 
 	$.ajax({
 		type: "POST", 
@@ -43,7 +44,7 @@ $('a#preview_quiz').click(function(){
 					sponsorship_message: $('textarea#sponsor_message').attr('value'),
 					quiz_subject: $('#quiz_subjects').data('subject')
 			},
-		error: function() { },
+		error: function() { AjaxError(); },
 		success: function(response) { onEditSuccess(response); }
 });			
 
@@ -53,21 +54,16 @@ $('a#preview_quiz').click(function(){
 	
 
 
-function UploadError() {
+function AjaxError() {
 
-// TODO: notify the user of the uploading error
-console.log('Upload Error!');
-	
+$('div.loading').hide(); $('div.main').show(); 
+		$('.form_error').show()
+		  .find('a').click(
+		  function(){ $('a#contact_dialog').click(); } );
+return false;
 }
 
-
-function RefreshImage(img_id){
-	
-$('div#photo > img').hide();
-$('div#photo').append('<img class="new" src="/image/profile/?img_id=' + img_id + '&size=large />');
-$('div#photo').data('new_image', img_id);
-$('div.cancel').show();
-} 
+ 
 
 
 
@@ -79,25 +75,11 @@ $('div.cancel').show();
 	function onEditSuccess(response){
 
 	if (eval(response) != "OK") { // error message.
-		$('div#submit_form').find('#sponsor_form_error').show()
-		  .find('a').click(
-		  function(){ $('a#contact_dialog').click(); } );
-		
-		return false; }
-			
-			
-			$('div.loading').show();
-	$('div.main').hide();
+		return AjaxError(); }
+	
 	window.location=profile_path;
 }
 function CancelSettingsEdit(){
-$('div.loading').show();
-	$('div.main').hide();	
+$('div.main').hide();$('div.loading').show();	
 window.location=profile_path;
-}
-
-function CyclePictures(){
-
-getNextPicture(photo_keys);
-
 }

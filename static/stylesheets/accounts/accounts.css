@@ -115,7 +115,11 @@ h2#header{ font-size: 1.8em; }
 
 
 #signup_reminder{
-position:absolute; top:400px; left: 270px;
+left:220px;
+position:absolute;
+text-align:center;
+top:400px;
+width:400px;
 }
 
 

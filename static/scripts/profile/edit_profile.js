@@ -64,7 +64,8 @@ InstallFunction(server, 'SubmitProfileEdits', 'accounts');
 InstallPostFunction(server, 'SubmitPicture', 'profiles');
 
  function SubmitProfileEdits() {
-// get the different pieces of data, and submit them
+
+$('div.main').hide(); $('div.loading').show();
 
 // TODO: We can use jQuery.serialize() for fast form serialization
   
@@ -88,7 +89,7 @@ InstallPostFunction(server, 'SubmitPicture', 'profiles');
 function UploadError() {
 
 // notify the user of the uploading error
-console.log('Upload Error!');
+
 	
 }
 
@@ -154,20 +155,28 @@ function getNextPicture(photo_keys){
 			//TODO make sure that response has no errors
 			
 				if (response != "OK") { // error message.
-				console.log(response);
+				return AjaxError(); 
+ }
+
+	
+	window.location=profile_path;
+}
+
+
+
+function AjaxError() {
+
+$('div.loading').hide(); $('div.main').show(); 
 		$('#form_error').show()
 		  .find('a').click(
 		  function(){ $('a#contact_dialog').click(); } );
-		
-		return false; }
-		
-			$('div.loading').show();
-	$('div.main').hide();
-	window.location=profile_path;
+return false;
 }
+
+
 function onEditCancel(){
-$('div.loading').show();
-	$('div.main').hide();	
+$('div.main').hide(); $('div.loading').show();
+	
 window.location=profile_path;
 }
 

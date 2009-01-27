@@ -120,24 +120,23 @@ margin: -150px 10px;
     
     /* Individual Posts */
     .post {
-      border-top: 1px solid {color:Description};
 font-size:1.2em;
 letter-spacing:0.01em;
 line-height:1.1em;
 padding:2em 4em 1em 0;
-border:none;
+border: none;
     }
     
     .post .date {
-      border-top: 3px solid {color:Date Border};
-      border-bottom: 1px solid {color:Date Border};
+      border-top: 3px solid #333;
+      border-bottom: 1px solid #333;
       float: left;
       padding: .25em 1em;
+      margin: 0em .5em;
       text-align: center;
     }
     
     .post .date .month, .post .date .day, .post .date .time {
-      color: {color:Description};
       display: block;
       font-weight: normal;
     }
@@ -191,7 +190,6 @@ text-align:left;
     }
     
     .post .post-footer {
-      color: {color:Post Footer};
 margin:2em 0 0 7em;
 text-align:right;
     }
@@ -217,7 +215,6 @@ text-align:right;
     }
     
     #footer {
-      border-top: 1px solid {color:Description};
       font-size: .85em;
     }
     

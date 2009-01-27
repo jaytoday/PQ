@@ -27,7 +27,6 @@ NicknameCheck();
 
 
 // flyer
-console.log($('#flyer a'));
 $('#flyer a').css('top', '50%').show().animate({left: "100%"},17000);
 
 });
@@ -35,21 +34,18 @@ $('#flyer a').css('top', '50%').show().animate({left: "100%"},17000);
 
 
 function SubmitName(){
-	console.log($('input#nickname').data('availability'));
+	var $nickname = $('input#nickname');
+	var $email = $('input#email_address');
+	var $signup_reminder = $('div#signup_reminder');
+	$signup_reminder.empty();
 	
-	if ($('input#nickname').val().length < 3) console.log('nickname is too short'); //Todo error
-	
-	$('div#signup_reminder').empty();
-	
-	if($('input#nickname').data('availability') == 'unknown') setTimeout(function(){ SubmitName(); }, 1000);  // still unknown
-	
-	if($('input#nickname').data('availability') != 'available') { $('#signup_reminder').text("The nickname you've entered isn't available.").show(); $('input#nickname').addClass('invalid'); return false; } //hasn't chosen a valid name yet 
-	
-	if($('input#email_address').val().indexOf('@') == -1) { $('#signup_reminder').text('Enter a valid e-mail address so you can recover your password.').show(); $('input#email_address').addClass('invalid').focus(); return false; } //hasn't chosen a valid name yet 
-	
+	if ($nickname.val().length < 4) { $signup_reminder.text('Your nickname must be at least 4 characters long.').show(); $nickname.addClass('invalid').focus(); return false; } //hasn't chosen a valid name yet 
+	if($nickname.data('availability') == 'unknown') setTimeout(function(){ SubmitName(); }, 1000);  // still unknown
+	if($nickname.data('availability') != 'available') { $signup_reminder.text("The nickname you've entered isn't available.").show(); $nickname.addClass('invalid'); return false; } //hasn't chosen a valid name yet 
+	if($email.val().indexOf('@') == -1) { $signup_reminder.text('Enter a valid e-mail address so you can recover your password.').show(); $email.addClass('invalid').focus(); return false; } //hasn't chosen a valid name yet 
 	$('div.loading').show();
 	$('div.main').hide();
-	window.location="/register?nickname=" + $('input#nickname').val() + "&email=" + $('input#email_address').val();
+	window.location="/register?nickname=" + $nickname.val() + "&email=" + $email.val();
 	
 }
 
@@ -69,7 +65,6 @@ $.ajax({
 			
 			var response =  eval(response);
 			
-			console.log($('div#notice > span#' + response))
 			
 			$('div#notice > span').hide();
 			$('div#notice > span#' + response).show();
@@ -77,7 +72,7 @@ $.ajax({
 			$('input#nickname').data('availability', response) 
 			
 			} 
-		// available or not 
+		
 
 });
 

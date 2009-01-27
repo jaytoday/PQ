@@ -1023,7 +1023,7 @@ width:320px !important;
 }
 
 .quiz_wrap div#begin_quiz_quiz_selection{
-height:170px;
+height:140px;
 margin:-20px 0 0 -32px !important;
 overflow:hidden;
 width:310px;
@@ -1061,6 +1061,11 @@ margin:5px 0;
         text-align:center;
         -moz-border-radius: 5px;
         -webkit-border-radius: 5px;
+}
+
+.quiz_wrap div.quiz_description#profs{
+height:161px;
+margin:-3px 0;
 }
 
 .quiz_wrap div.hover_example
@@ -1189,6 +1194,15 @@ font-size: 1em;
         width:90%;
 }
 
+.quiz_wrap div.begin_quiz#click_below{
+margin-top:0px !important;
+	filter: alpha(opacity=0);
+	-moz-opacity: 0;
+	-khtml-opacity: 0 ;
+	opacity: 0;
+
+}
+
 .quiz_wrap div.begin_quiz div#quiz_minutes
 {
 font-size:2em !important;
@@ -1197,47 +1211,6 @@ margin:2px 0 15px;
 }
 
 
-/* This is all deprecated */
-
-.quiz_wrap div#choose_profs
-{
-height:210px;
-margin:-20px 0 10px -22px !important;
-overflow:hidden;
-}
-
-.quiz_wrap #profs
-{
-background:transparent url({{ http_host }}/static/html/img/background_250.png) repeat-x scroll center top !important;
-height:300px;
-margin-left:-12px !important;
-margin-top:-12px !important;
-width:311px;
-}
-
-.quiz_wrap form#proficiency_choices
-{
-        margin-left:10px !important;
-        margin-top:25px !important;
-}
-.quiz_wrap form#proficiency_choices input
-{
-        float: left; 
-        margin-left: 50px !important;
-}
-
-.quiz_wrap form#proficiency_choices span
-{
-        float:left;
-        font-size:1.1em !important;
-        margin-left:5px !important;
-        margin-top:-3px !important;
-}
-
-.quiz_wrap form span:hover 
-{
-        color: #DDDDDD !important;
-}
 
 /* =========== */
 /* = Score = */
