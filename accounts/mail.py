@@ -247,7 +247,7 @@ def mail_sponsor_intro(profile):
 	Team PlopQuiz
 
 	
-	""" % (user_name, "http://" + str(os.environ['HTTP_HOST']) + "/login?secret=" + str(profile.key()))
+	""" % (user_name, "http://" + str(os.environ['HTTP_HOST']) + "/login?reset=" + str(profile.key()))
 
 
 	
@@ -302,7 +302,9 @@ def reset_account_access(user):
 def mail_footer(): #Todo: unsubscribe
 	footer = """
 	
-	www.plopquiz.com
+	Thanks For Using PlopQuiz! /  http://www.plopquiz.com
+
+	
 	
 	"""
 	

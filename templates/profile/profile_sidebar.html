@@ -15,7 +15,7 @@
 
 Location: <div>{{ user.location|default_if_none:"" }}</div>
 
-Webpage: <div><a>{{ user.webpage|default_if_none:"" }}</a></div>
+Webpage: <div><a target="_blank" href="{{ user.webpage }}">{{ user.webpage|default_if_none:"" }}</a></div>
 
 About Me: <div>{{ user.aboutme|default_if_none:"" }}</div>		
  </div> </div> 

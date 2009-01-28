@@ -176,7 +176,9 @@ class ViewSponsorProfile(webapp.RequestHandler):
 		    if user.unique_identifier == self.session['user'].unique_identifier: is_profile_owner = True
 		else: set_flash('anon_viewer')
 		from model.proficiency import Proficiency
-		sponsored_subjects = [ Proficiency.get(user.sponsored_subjects[0]) ]
+		if len(user.sponsored_subjects) > 0: sponsored_subjects = [ Proficiency.get(user.sponsored_subjects[0]) ]
+		else: sponsored_subjects = []
+		
 		return { 'user': user, 'sponsored_subjects': sponsored_subjects, 'profile_owner': is_profile_owner, 'is_sponsor': True}
 
 

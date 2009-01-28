@@ -231,8 +231,9 @@ remote callers access to private/protected "_*" methods.
   	if not this_employer: return "employer does not exist"
   	proficiency_name = args[1]
   	from model.proficiency import Proficiency
-  	import string
-  	this_proficiency = Proficiency.get_by_key_name(string.capwords(proficiency_name))
+  	#import string -- Capwords sucks, darnit.
+  	#this_proficiency = Proficiency.get_by_key_name(string.capwords(proficiency_name))
+  	this_proficiency = Proficiency.get_by_key_name(proficiency_name)
   	pledge_num = int(args[2])
   	from model.employer import AutoPledge
   	new_pledge = AutoPledge(employer = this_employer,
