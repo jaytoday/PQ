@@ -28,12 +28,16 @@
 
         <form action="#" class="signup" name="signup" enctype="multipart/form-data" onSubmit="return false;" method="get">
         
-<fieldset><legend>Basic Info</legend> <br/>
+<fieldset><legend>Basic Info</legend> 
 
 <ul id="1">
 <li> <label for="fullname">Full Name</label> <input class="signup fullname" type="text" name="fullname" maxlength="15" value="{{ user.fullname }}" id="fullname"   /> </li>
 <li> <label for="email">Email</label> <input class="signup email" type="text" name="email" value="{{ user.email|default_if_none:"" }}" maxlength="25" id="email"   /> </li>
 
+<!--
+<li style="margin: -5px 10px;"> <label for="student" style="font-size: 0.9em;">E-mail me occasional PlopQuiz news updates</label> <input type="checkbox" checked class="signup student" name="email_updates" maxlength="25" id="email_updates"/> </li>
+<div style="margin: 5px; float: left; height: 17px;"/>
+-->
 
 <li> <label for="student">Student</label> <input class="signup student" type="checkbox" name="student" {% if not user.is_sponsor %}checked{% endif %} DISABLED maxlength="25" id="student"   /> </li>
 <li> <label for="sponsor">Sponsor</label> <input class="signup sponsor" type="checkbox" name="sponsor" {% if user.is_sponsor %}checked{% endif %} DISABLED maxlength="25" id="sponsor"   /> </li>

@@ -145,12 +145,19 @@ width:380px;
 
 button.widget_button{
 position:absolute;
-width:216px;
-margin:90px -280px !important;
+width:265px;
+margin:100px 0 0 -300px !important;
 display:inline;
+
+	filter: alpha(opacity=60);
+	-moz-opacity: 0.6;
+	-khtml-opacity: 0.6;
+	opacity: 0.6;
 }
 
 button.widget_button span{
+font-size:1.5em !important;
+letter-spacing:0.06em;
 margin:15px 5px !important;
 }
 
@@ -628,7 +635,7 @@ td#choose_quiz{
 cursor:pointer;
 font-size:0.6em !important;
 height:0;
-/* margin:-47px 0 0 -62px; */
+width:70px;
 position:absolute;
 display:block;
 color:#666 !important;
@@ -1391,6 +1398,7 @@ letter-spacing:0.06em;
         -moz-border-right-colors:   #777 #888 #999 #aaa #bbb #ccc;
         border:10px solid #DDDDDD;
         background:#EEEAF8 none repeat scroll 0 0;
+        overflow:hidden;
         -moz-border-radius: 5px;
         -webkit-border-radius: 5px;
 }

@@ -42,7 +42,7 @@ function SubmitName(){
 	if ($nickname.val().length < 4) { $signup_reminder.text('Your nickname must be at least 4 characters long.').show(); $nickname.addClass('invalid').focus(); return false; } //hasn't chosen a valid name yet 
 	if($nickname.data('availability') == 'unknown') setTimeout(function(){ SubmitName(); }, 1000);  // still unknown
 	if($nickname.data('availability') != 'available') { $signup_reminder.text("The nickname you've entered isn't available.").show(); $nickname.addClass('invalid'); return false; } //hasn't chosen a valid name yet 
-	if($email.val().indexOf('@') == -1) { $signup_reminder.text('Enter a valid e-mail address so you can recover your password.').show(); $email.addClass('invalid').focus(); return false; } //hasn't chosen a valid name yet 
+	if($email.val().indexOf('@') == -1) { $signup_reminder.text('Enter a valid e-mail address so you can recover your account.').show(); $email.addClass('invalid').focus(); return false; } //hasn't chosen a valid name yet 
 	$('div.loading').show();
 	$('div.main').hide();
 	window.location="/register?nickname=" + $nickname.val() + "&email=" + $email.val();

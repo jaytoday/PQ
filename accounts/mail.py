@@ -1,12 +1,7 @@
 import logging
-logging.info('Loading %s', __name__)
 from .model.user import Profile
 from google.appengine.api import mail
 
-# We need to verify that email works with Facebook and Myspace users.
-
-
-# This should be used when a user logs in for the first time. 
 
 
 ### For support, use self.request.headers['User-Agent']
@@ -18,7 +13,7 @@ def mail_intro_message(profile):
 		logging.warning("%s is not a valid email", profile.email)
 		return False
 	message = mail.EmailMessage()
-	message.sender = "notify@plopquiz.com"
+	message.sender = get_sender()
 	message.subject = "Welcome to PlopQuiz!" 
 	message.to = profile.email
 	if len(profile.fullname) < 1: user_name = "PlopQuiz User"
@@ -29,17 +24,31 @@ def mail_intro_message(profile):
 	
 	Welcome to PlopQuiz!
 	
-	If you're getting this e-mail, that means you're testing our pre-beta release.
+	Your academic profile on PlopQuiz.com will help you demonstrate your knowledge about emerging subjects of public interest.
 	
-	Either that, or we've goofed. 
+	Each quiz you take is a new chance for you to add awards to your academic profile and compete for sponsorships from our community organizations.
 	
-	If that's the case, reply to this e-mail and we'll make sure to not accidently spam you.
+	
+	
+	If there's anything we can help you with, e-mail support@plopquiz.com or call us at (650) 353-2694. 
+	
+	
+	
+	Warm Regards,
+
+	James 
+	Team PlopQuiz	
+	
+	
+	
+	
+	%s
 	
 
 	
 
 	
-	""" % user_name
+	""" % (user_name, mail_footer())
 
 
 	
@@ -49,27 +58,34 @@ def mail_intro_message(profile):
 	
 
 
-def mail_sponsor_message(sponsor, sponsee):
+def mail_sponsor_message(sponsor, award):
+	sponsee = award.winner
 	logging.debug("sending e-mail to %s", sponsor.email)
 	if not mail.is_email_valid(sponsor.email):
 		logging.error("%s is not valid", sponsor.email)
 		return False
 	message = mail.EmailMessage()
-	message.sender = "notify@plopquiz.com"
+	message.sender = get_sender()
 	message.subject = "Your PlopQuiz sponsorship has been awarded!" 
 	message.to = sponsor.email
 	message.body = """
 
 	%s,
 	
-	Your sponsorship has been earned by %s.
+	Your PlopQuiz sponsorship has been earned by a student!
 	
-	You can visit this student's profile at http://www.plopquiz.com/profile/%s
+	%s has been awarded a sponsorship from your organization for exceptional performance in the %s quiz subject "
 	
+	You can visit this student's profile at %s
+	
+	You can view the sponsorship on your profile at %s
 	
 
 	%s
-	""" % (sponsor.fullname, sponsee.fullname, sponsee.profile_path, mail_footer())
+	""" % (sponsor.fullname, sponsee.fullname, upper(award.proficiency), 
+	        "http://" + str(os.environ['HTTP_HOST']) + "profile/" + sponsee.profile_path,
+	        "http://" + str(os.environ['HTTP_HOST']) + "sponsors/" + sponsor.profile_path,
+	      mail_footer())
 
 	message.send()
 
@@ -85,7 +101,7 @@ def mail_sponsee_message(sponsee, sponsor):
 		logging.error("%s is not valid", sponsee.email)
 		return False
 	message = mail.EmailMessage()
-	message.sender = "notify@plopquiz.com"
+	message.sender = get_sender()
 	message.subject = "You've earned a PlopQuiz sponsorship!"
 	message.to = sponsee.email
 	from model.employer import Employer
@@ -97,21 +113,34 @@ def mail_sponsee_message(sponsee, sponsor):
  
 	%s,
 	
-	You've earned a sponsorship from %s!
+	You've earned a PlopQuiz sponsorship from %s for the %s quiz subject!
+	
+	Here is a message from %s: 
 	
 	-------------------------------------------------------------------
 	
-	%s
-	
-	
-	
 	
 	
 	%s
 	
-
 	
-	""" % (sponsee.fullname, sponsor.fullname, sponsor_message, mail_footer())
+	
+	-------------------------------------------------------------------
+	
+	This sponsorship is now on your profile: %s 
+	
+	This sponsorship is now on the profile of %s: %s
+	
+	
+	%s
+	
+    
+	
+	""" % (sponsee.fullname, sponsor.fullname, upper(award.proficiency), sponsor.fullname, sponsor_message, 
+	       "http://" + str(os.environ['HTTP_HOST']) + "profile/" + sponsee.profile_path,
+	       sponsor.fullname,
+	       "http://" + str(os.environ['HTTP_HOST']) + "sponsors/" + sponsor.profile_path,
+	       mail_footer())
 
 	message.send()
 
@@ -133,7 +162,7 @@ def new_years_message():
 	
 	for p in peoples: 
 		message = mail.EmailMessage()
-		message.sender = "notify@plopquiz.com"
+		message.sender = get_sender()
 		message.subject = "A Holiday Greeting from PlopQuiz!" 
 		message.to = p.email
 		
@@ -215,7 +244,7 @@ def mail_sponsor_intro(profile):
 		logging.warning("%s is not a valid email", profile.email)
 		return False
 	message = mail.EmailMessage()
-	message.sender = "notify@plopquiz.com"
+	message.sender = get_sender()
 	message.subject = "Your PlopQuiz Community Sponsor Application" 
 	message.to = profile.email
 	if len(profile.fullname) < 1: user_name = "PlopQuiz User"
@@ -245,9 +274,14 @@ def mail_sponsor_intro(profile):
 
 	James 
 	Team PlopQuiz
+	
+	
+	%s
 
 	
-	""" % (user_name, "http://" + str(os.environ['HTTP_HOST']) + "/login?reset=" + str(profile.key()))
+	""" % (user_name, 
+	"http://" + str(os.environ['HTTP_HOST']) + "/login?reset=" + str(profile.key()),
+	 mail_footer())
 
 
 	
@@ -268,7 +302,7 @@ def reset_account_access(user):
 		logging.error("%s is not valid", user.email)
 		return False
 	message = mail.EmailMessage()
-	message.sender = "notify@plopquiz.com"
+	message.sender = get_sender()
 	message.subject = "Reset Access to Your PlopQuiz Account"
 	message.to = user.email
 	
@@ -291,7 +325,9 @@ def reset_account_access(user):
 	
     %s
 	
-	""" % (user.fullname, "http://" + str(os.environ['HTTP_HOST']) + "/login?reset=" + str(user.key()), mail_footer())
+	""" % (user.fullname, 
+	"http://" + str(os.environ['HTTP_HOST']) + "/login?reset=" + str(user.key()), 
+	mail_footer())
 
 	message.send()
 	return True
@@ -301,6 +337,7 @@ def reset_account_access(user):
 
 def mail_footer(): #Todo: unsubscribe
 	footer = """
+	-------------------------------------------------------------------
 	
 	Thanks For Using PlopQuiz! /  http://www.plopquiz.com
 
@@ -316,3 +353,5 @@ def mail_footer(): #Todo: unsubscribe
 
 
 
+def get_sender():
+	return "plopquiz@plopquiz.com"
