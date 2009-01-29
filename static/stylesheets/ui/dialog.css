@@ -306,7 +306,7 @@ position:absolute;
 width:180px;
 }
 
-div.ui-dialog.about_dialog div.about_sponsors p#apply {
+div.ui-dialog.about_dialog div.about_sponsors span#apply_text {
 float:left;
 }
 
