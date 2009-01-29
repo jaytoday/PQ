@@ -295,3 +295,18 @@ div.ui-dialog.about_dialog div.about_introduction { margin-top: -20px; }
 
 
 div.ui-dialog.about_dialog div.about_introduction span.content#how { margin-top: -10px; }
+
+
+div.ui-dialog.about_dialog div.about_sponsors p#message {
+margin-bottom:0;
+margin-left:225px;
+margin-right:0;
+margin-top:10px;
+position:absolute;
+width:180px;
+}
+
+div.ui-dialog.about_dialog div.about_sponsors p#apply {
+margin-top: 192px;
+position:absolute;
+}

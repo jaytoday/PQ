@@ -9,7 +9,7 @@
     <span class="img_bottom">{{ action.winner.nickname }}</span></div>
 
 <span class="action_type">Earned An Award For</span>
-<span class="action_date info_note">{{ action.date|date:"F jS" }}</span>
+<span id="subject" class="action_date info_note">{{ action.date|date:"F jS" }}</span>
 
   <div class="selection_box is_subject sliderImage">
 <img src="{{ http_host}}/image/subject/?img_id={{ action.proficiency.images.1.key }}&size=small"/>
