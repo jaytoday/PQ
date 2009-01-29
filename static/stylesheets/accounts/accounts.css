@@ -27,13 +27,19 @@ margin:10px 0 0;
 
 
 div#reset_account div#submit_email, div#reset_account div#submit_email_success{
-height:85px;
+height:55px;
+padding-top:20px;
 }
+
+div#reset_account div#submit_email button#submit{
+margin: -5px 3px;
+}
+
 
 div#reset_account div#submit_email_success div{
 font-size:1.5em;
 line-height:1.2em;
-padding:15px;
+margin: -10px 10px;
 }
 
 div#reset_account div#error{
