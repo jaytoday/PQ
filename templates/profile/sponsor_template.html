@@ -1,5 +1,5 @@
 {% extends "../base.html" %}
-{% block title %}{{ user.fullname }}{% endblock %}
+{% block title %}Sponsors / {{ user.fullname }}{% endblock %}
 
 {% block head %}
 <link rel="stylesheet" href="/static/stylesheets/ui/app_screen.css" type="text/css" media="screen">
@@ -110,15 +110,6 @@
 <div class="gray_box sponsors_box" id="sponsor_container">
 <div id="sponsor_scroll">
 
-<!--
-{% if profile_owner %}	
-<div class="info_note sponsor_user" id="sponsor_owner"> <a>Get Sponsors Now!</a> </div>
-{% else %}
-
-<div class="info_note sponsor_user" id="sponsor_not_owner"> <a href="{{ http_host }}/sponsor/{{ user.profile_path }}">Sponsor {{ user.fullname }} Now!</a> </div>
-
-{% endif %}
--->
 
 <div id="sponsors">
 {% for sponsorship in user.given_sponsorships %} 
@@ -128,7 +119,7 @@
 <span class="img_bottom">{{ sponsorship.recipient.fullname }}</span></div>
 {% endfor %}
 
-<div id="no_sponsorship_note" class="info_note profile_info_note" style="display:none;">{% if profile_owner %}You{% else %}{{ user.fullname }}{% endif %} have awarded no sponsorships. </div>
+<div id="no_sponsorship_note" class="info_note profile_info_note" style="display:none;">{% if profile_owner %}You have{% else %}{{ user.fullname }} has{% endif %} awarded no sponsorships. </div>
 
 </div> {# sponsors #}
 </div> {# sponsor_scroll #}

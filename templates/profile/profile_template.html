@@ -1,5 +1,5 @@
 {% extends "../base.html" %}
-{% block title %}{{ user.fullname }}{% endblock %}
+{% block title %}Profile / {{ user.fullname }}{% endblock %}
 
 {% block head %}
 <link rel="stylesheet" href="/static/stylesheets/ui/app_screen.css" type="text/css" media="screen">
@@ -230,7 +230,9 @@ by taking <a>quizzes</a>.
 {% include "flash/new_sponsorship.html" %}
 {% endifequal %}
 
-debugging {{ flash_msg }}
+{% ifequal flash_msg "anon_viewer" %}
+{% include "flash/default.html" %}
+{% endifequal %}
 
 {% else %}
 {% include "flash/default.html" %}

@@ -70,7 +70,6 @@ For business (one-to-many) sponsorships, see model.employer.AutoPledge
 
 
 class Sponsorship(db.Model):
-    # There needs to be a sponsorship generator, for when the sponsorship is for a class of people. 
     sponsor = db.ReferenceProperty(Profile,
                                     required=True,
                                     collection_name='given_sponsorships')

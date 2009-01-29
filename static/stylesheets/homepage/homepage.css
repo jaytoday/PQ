@@ -344,7 +344,7 @@ margin:4px 10px;
 .is_subject{
 float:right;
 width:120px;
-margin:-83px 10px;
+margin:-112px 10px;
 height:80px;
 overflow:hidden;
 }
@@ -356,7 +356,7 @@ margin:4px 15px;
 
 .is_sponsor{
 float:right;
-margin:-85px 18px;
+margin:-115px 18px;
 }
 
 span.action_type{
@@ -373,13 +373,15 @@ background: #FFF;
 }
 
 span.action_date{
+border-width:3px;
 display:block;
-
 font-size:0.7em;
-/* margin:10px 49px; float:left; */
-margin:0 0 0 179px;
-/* position:absolute; */
+margin:14px 0 0 159px;
+padding:5px;
+text-align:center;
+width:90px;
 }
+
 span.sponsored_by{
 margin-left: 135px;
 }
