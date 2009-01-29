@@ -308,5 +308,5 @@ width:180px;
 
 div.ui-dialog.about_dialog div.about_sponsors p#apply {
 margin-top: 192px;
-position:absolute;
+float:left;
 }
