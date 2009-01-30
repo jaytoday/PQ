@@ -219,6 +219,7 @@ $('#blank', $.plopquiz.quiz_content).empty();
 // hide the question until everything is loaded
 $.plopquiz.quiz_content.css('opacity', 0);
 $.plopquiz.answer_text.animate({opacity: 0}, 0);
+$.plopquiz.answer_load_icons.animate({opacity: 1}, 300).each(function(){console.log(this);});
 $.plopquiz.answers.data('disabled', true);
 }
 

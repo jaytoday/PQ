@@ -28,10 +28,7 @@ class LoadQuiz():
 	self.proficiencies = {}
 	# Create random list of three quiz items.
 	quiz_items = []
-	#try: proficiencies = eval(proficiencies)  # when passed in via url
-	#except: pass
 	proficiencies = self.temp_filter(proficiencies)
-	logging.debug('loading items...')
 	for p in proficiencies:  # TODO make these keys for easy lookup   -- these are proficiencies, not topics.
 		quiz_items.extend(p.quizitems.fetch(1000)) # We need them all, since they're being shuffled. 
 	if Debug(): # just for god_mode

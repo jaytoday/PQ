@@ -73,13 +73,15 @@ $("#quiz_timer")
 	var reset = function()
 	{
 			
-					
-					$.plopquiz.settings.timer_width = $('.timer_bar').width(); // to calculate score
+$.plopquiz.settings.timer_width = $('.timer_bar').width(); // to calculate score
 			 
+
 
 $.plopquiz.timer.animate({opacity: 1.0}, 2000, function() //temporarily pause the timer 
 {
 $.plopquiz.answers.removeClass('disabled').data("disabled", false);
+
+$.plopquiz.answer_load_icons.animate({opacity: 0}, 300);
 
 $.plopquiz.answer_text.animate({opacity: 1}, 300);
 												
