@@ -38,8 +38,6 @@ class Admin(webapp.RequestHandler):
 	self.session['unique_identifier'] = self.request.get('uid')
 	self.redirect('/register')
 
-    
-
 
 
 class LoadTopics(webapp.RequestHandler):

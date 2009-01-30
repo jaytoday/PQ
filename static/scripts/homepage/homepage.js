@@ -13,7 +13,7 @@
  */ 
 
 
-$(document).ready(function()
+$(function()
 {
 
 $('div#right_corner').hide();
