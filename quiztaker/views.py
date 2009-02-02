@@ -124,7 +124,7 @@ class PQIntro(webapp.RequestHandler):
 
   def get_quiz_subjects(self):
 		from model.proficiency import Proficiency
-		quiz_subjects = Proficiency.gql("WHERE status = :1", "public").fetch(50)  # TODO: WHERE type....
+		quiz_subjects = Proficiency.gql("WHERE status = 'public' ORDER BY name DESC" ).fetch(6)
 		for p in quiz_subjects:
 		    if p.name == eval(self.request.get('subject'))[0]: 
 		        quiz_subjects.remove(p)

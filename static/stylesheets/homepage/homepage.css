@@ -554,3 +554,7 @@ float:left !important;
 margin-top:-20px !important;
 }
 
+div#take_quiz .quiz_wrap #widget_loading {
+padding:10px 0 0;
+height: 25px !important;
+}

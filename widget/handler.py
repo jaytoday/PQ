@@ -18,7 +18,7 @@ def widget_path(template_file_name):
 class QuizJS(webapp.RequestHandler):
   @memoize('quiz_js')
   def get(self):
-    DEFAULT_QUIZ_SUBJECT = "Misconceptions"
+    DEFAULT_QUIZ_SUBJECT = "Recovery.Gov"
     if not Debug(): self.set_expire_header()
     try : 
         proficiency_arg = self.request.path.split('/quiz/')[1].replace('%20',' ')

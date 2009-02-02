@@ -4,6 +4,10 @@
 // Include utility scripts 
 
 {% spaceless %}
+{% include "../static/scripts/jquery/ui.core.min.js" %}
+{% include "../static/scripts/jquery/ui.dialog.min.js" %}
+{% include "../static/scripts/jquery/ui.draggable.min.js" %}
+{% include "../static/scripts/jquery/ui.tabs.min.js" %}
 {% include "../static/scripts/utils/parallax.js" %}
 {% include "../static/scripts/utils/rpc.js" %}
 {% include "../static/scripts/utils/preserve_default_text.js" %}

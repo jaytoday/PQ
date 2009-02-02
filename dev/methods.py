@@ -95,7 +95,7 @@ def refresh_subject_images(this_subject=False):
 	   
 
 
-# Full Datastore Refresh
+# Full Datastore Refresh -- Deprecated!
 def restore_backup():
 	build = Build()
 	build.refresh_profile_images(refresh=True)
@@ -105,7 +105,7 @@ def restore_backup():
 		data.delete_data(query)
 	data.execute_delete()
 	for data_type in DATA_TYPES.keys():
-		data.load_data(data_type, "/backup/")
+		data.load_data(data_type, "/backup/") # Deprecated!!
 		data.special_processes(data_type)
 		data.execute_load()
 	build.refresh_subject_images()

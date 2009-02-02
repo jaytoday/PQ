@@ -182,7 +182,7 @@ $('#pqwidget #subject_1').s3Slider({ timeOut: 8300  });
 				ghosting: false,
 				containment: 'document', 
 				//cancel: $('.quiz_scroll_container'), // we want to cancel drag when scrollbar is clicked, and when youtube videos are used. 
-			//    delay: 300, // this solves scrollbar problem, but its really annoying
+			 distance: 90, // this solves scrollbar problem, but its really annoying
 				cursor: 'pointer'
 				 }); 
 
@@ -235,7 +235,7 @@ $.ajax({
 		success: function(html,s){ quizItemLoad(quizItem, html, s)}, // code in quiz_item_load.js
 		error: function(xhr,s)
 		{
-				console.log("Ajax error: ", xhr,s);
+				//console.log("Ajax error: ", xhr,s);
 		}
 });
 
@@ -285,7 +285,9 @@ function pqLoad()
 
         {% include "../static/scripts/utils/s3slider.js" %} // this is causing an error when run from the site.
         
-        if (!jQuery.ui) { {% include "../static/scripts/jquery/jquery.ui.js" %}  /* this would have to be an addscript to actually work... */ }
+        var load_core = true;
+        if (jQuery.ui) { if (jQuery.ui.draggable) { load_core = false; } }
+          if (load_core) { {% include "../static/scripts/jquery/ui.core.min.js" %}  {% include "../static/scripts/jquery/ui.draggable.min.js" %}   }
                         
 
         // force ready jQuery because page load is (likely?) done
@@ -301,7 +303,7 @@ function pqLoad()
 if(window.jQuery )
 { pqLoad(); }
 else
-{ {% include "../static/scripts/jquery/jquery.js" %}    pqLoad(); }
+{ {% include "../static/scripts/jquery/jquery-1.3.1.min.js" %}    pqLoad(); }
 
 
 

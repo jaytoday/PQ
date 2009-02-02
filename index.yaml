@@ -23,8 +23,24 @@ indexes:
   - name: date
     direction: desc
 
+
+- kind: Proficiency
+  properties:
+  - name: status
+  - name: name
+    direction: desc
+
+
 - kind: ProficiencyTopic
   properties:
   - name: proficiency
   - name: date
     direction: desc
+
+
+- kind: Sponsorship
+  properties:
+  - name: sponsor
+  - name: date
+
+

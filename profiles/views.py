@@ -10,7 +10,7 @@ from google.appengine.ext import db
 from utils import webapp
 from utils.utils import ROOT_PATH, tpl_path, memoize, get_flash, set_flash
 from utils.random import sort_by_attr
-from .model.user import Profile, QuizTaker, ProfilePicture
+from model.user import Profile, QuizTaker, ProfilePicture
 
 
 
@@ -150,6 +150,7 @@ class EditSponsorSettings(webapp.RequestHandler):
 class ViewSponsorProfile(webapp.RequestHandler):
 
   def get(self):
+    from model.account import Sponsorship, Award
     template_values = self.get_sponsor_profile()
     if not template_values: return
     template_values['load'] = 2000 # give 2 seconds to load 
@@ -178,7 +179,6 @@ class ViewSponsorProfile(webapp.RequestHandler):
 		from model.proficiency import Proficiency
 		if len(user.sponsored_subjects) > 0: sponsored_subjects = [ Proficiency.get(user.sponsored_subjects[0]) ]
 		else: sponsored_subjects = []
-		
 		return { 'user': user, 'sponsored_subjects': sponsored_subjects, 'profile_owner': is_profile_owner, 'is_sponsor': True}
 
 

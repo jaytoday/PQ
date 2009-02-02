@@ -53,7 +53,7 @@ function runRestore(data_types, data_type, response){
 		if (data_type == undefined) {
 			$.ajax( {url:  "/dev/rpc",data: { action: "refresh_profile_images" },  success: function(response_html){
 				
-				response.append("<br/> <br/> restore process is complete! ");
+				response.append("<br/><br/><br/> <br/> <b>restore process is complete!</b> ");
 				
 				}  });
                                         

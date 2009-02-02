@@ -126,7 +126,7 @@ class Scores():
 						  type = "stub")	
 	if score.picked_answer == score.correct_answer: 
 		this_score = int(random.normalvariate(self.correct_prob, 15))
-		if this_score > 99: this_score = 99
+		if this_score > 100: this_score == 100
 		score.score = this_score
 		self.correct_scores += 1
 	else: score.score = 0
