@@ -213,7 +213,8 @@ remote callers access to private/protected "_*" methods.
     if len(args) < 1: return "mail type needed!" 
     from dev.mail import Mail
     m = Mail()
-    return m.send_message(args[0])
+    print m.send_message(args[0])
+    return
 
 
 

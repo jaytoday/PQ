@@ -110,9 +110,11 @@ $('button',$.plopquiz.quiz_content).focus(function(){$(this).blur();}).click(fun
 		var this_subject = $('div#subject_container_' + $(this).attr('id'), $.plopquiz.quiz_content)
 		$('div.subject_panel', this_subject).hide();
 		$('div#' + $(this).attr('class') + '_' + $(this).attr('id'), this_subject).show();
-		$(this).parent().find('button').removeClass('clicked'); $(this).addClass('clicked'); // change styles
+		$(this).parent().find('button').removeClass('clicked'); $(this).addClass('clicked'); // change button styles
 });
 
+// links all open new windows
+$('div.study_guide', $.plopquiz.quiz_content).find('a').attr('target', '_blank');
 
 // in study guide, switch between links and videos
 $('.study_header',$.plopquiz.quiz_content).click(function(){
