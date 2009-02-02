@@ -156,7 +156,7 @@ class Register(webapp.RequestHandler):
 		nickname, email = None, None
 		if self.session['nickname']: nickname = self.session['nickname']
 		if self.session['email']: email = self.session['email']
-		template_values = {'nickname': nickname, 'email': email}
+		template_values = {'nickname': nickname, 'email': email, 'no_quizlink': True}
 		path = tpl_path(ACCOUNTS_PATH +'signup.html')
 		self.response.out.write(template.render(path, template_values))
 		return
@@ -242,7 +242,7 @@ class Redirect(webapp.RequestHandler):
       from accounts.methods import Sponsorships
       sponsorships = Sponsorships()
       # check for new sponsorships, both personal and business
-      new_sponsorships = sponsorships.check_all(qt)
+      new_sponsorships = sponsorships.check_user(self.session['user'])
       if new_sponsorships > 0: self.set_flash('new_sponsorship')
       
 

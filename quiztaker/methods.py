@@ -76,7 +76,7 @@ class DataMethods():
 class ProficiencyLevels():
 
 
-	def set(self):
+	def set_all(self): # Set levels for all users
 		from ranking.methods import TopicLevelData, ProficiencyLevelData
 		quiz_takers = QuizTaker.all().fetch(1000)        # this can only do a thousand at a time
 		ptl = TopicLevelData()

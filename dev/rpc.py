@@ -170,21 +170,33 @@ remote callers access to private/protected "_*" methods.
   	return self.session['god_mode']
 
 ############ Account Updates #######################
+  # These are just for the logged-in user.
   	
   def set_levels(self, *args):
+	from utils.appengine_utilities.sessions import Session
+  	self.session = Session()
+  	if not self.session['user']: return "Not Logged In"
   	from quiztaker.methods import ProficiencyLevels
+  	from model.user import QuizTaker
   	pl = ProficiencyLevels()
-  	pl.set()
-
+  	return pl.set_for_user( QuizTaker.get_by_key_name(self.session['user'].unique_identifier) )
+  	
   def set_awards(self, *args):
+	from utils.appengine_utilities.sessions import Session
+  	self.session = Session()
+  	if not self.session['user']: return "Not Logged In"
   	from accounts.methods import Awards
+  	from model.user import QuizTaker
   	awards = Awards()
-  	return awards.check_all()  
+  	return awards.check_all( QuizTaker.get_by_key_name(self.session['user'].unique_identifier) )
   	
   def set_sponsorships(self, *args):
+	from utils.appengine_utilities.sessions import Session
+  	self.session = Session()
+  	if not self.session['user']: return "Not Logged In"
   	from accounts.methods import Sponsorships
   	sponsorships = Sponsorships()
-  	return sponsorships.check_all()  
+  	return sponsorships.check_user(self.session['user'])
   
   def refresh_mailing_list(self, *args):
     from model.account import MailingList

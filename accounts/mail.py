@@ -1,7 +1,7 @@
 import logging
 from .model.user import Profile
 from google.appengine.api import mail
-
+import os
 
 
 ### For support, use self.request.headers['User-Agent']
@@ -82,7 +82,7 @@ def mail_sponsor_message(sponsor, award):
 	
 
 	%s
-	""" % (sponsor.fullname, sponsee.fullname, upper(award.proficiency), 
+	""" % (sponsor.fullname, sponsee.fullname, award.proficiency.name.upper(), 
 	        "http://" + str(os.environ['HTTP_HOST']) + "profile/" + sponsee.profile_path,
 	        "http://" + str(os.environ['HTTP_HOST']) + "sponsors/" + sponsor.profile_path,
 	      mail_footer())
@@ -95,7 +95,8 @@ def mail_sponsor_message(sponsor, award):
 	
 
 
-def mail_sponsee_message(sponsee, sponsor):
+def mail_sponsee_message(award, sponsor):
+	sponsee = award.winner
 	logging.debug("sending e-mail to %s", sponsee.email)
 	if not mail.is_email_valid(sponsee.email):
 		logging.error("%s is not valid", sponsee.email)
@@ -136,7 +137,7 @@ def mail_sponsee_message(sponsee, sponsor):
 	
     
 	
-	""" % (sponsee.fullname, sponsor.fullname, upper(award.proficiency), sponsor.fullname, sponsor_message, 
+	""" % (sponsee.fullname, sponsor.fullname, award.proficiency.name.upper(), sponsor.fullname, sponsor_message, 
 	       "http://" + str(os.environ['HTTP_HOST']) + "profile/" + sponsee.profile_path,
 	       sponsor.fullname,
 	       "http://" + str(os.environ['HTTP_HOST']) + "sponsors/" + sponsor.profile_path,

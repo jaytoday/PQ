@@ -190,14 +190,21 @@ class Awards():
 class Sponsorships():
 
 
-	def check_all(self, qt=False):
+	def check_all(self): # start from awards, checks for all users. 
 		self.save_sponsorships = [] # for batch datastore trip
-		awards = Award.all().fetch(1000)
+		awards = Award.all().fetch(1000) # TODO: should only get unactivated awards. Award.sponsorships is reference collection. 
 		for award in awards:
 			self.check_award(award)
 		db.put(self.save_sponsorships)
 		return len(self.save_sponsorships)
-			
+
+	def check_user(self, profile): # only for one user
+		self.save_sponsorships = [] # for batch datastore trip
+		for award in profile.awards:
+			self.check_award(award)
+		db.put(self.save_sponsorships)
+		return len(self.save_sponsorships)
+					
 	def check_award(self,award):
 		give_sponsorship = {}
 		# check for targetted sponsorships
@@ -256,7 +263,7 @@ class Sponsorships():
 		                              )
 		self.save_sponsorships.append(new_sponsorship)
 		self.notify_sponsor(new_sponsorship.sponsor, award)
-		self.notify_sponsee(award.winner, new_sponsorship.sponsor)
+		self.notify_sponsee(award, new_sponsorship.sponsor)
 		return
 		
 
@@ -266,9 +273,9 @@ class Sponsorships():
 		return
 			
 
-	def notify_sponsee(self,sponsee, sponsor):
+	def notify_sponsee(self, award, sponsor):
 		from accounts.mail import mail_sponsee_message
-		mail_sponsee_message(sponsee, sponsor)
+		mail_sponsee_message(award, sponsor)
 		return
 			
 
