@@ -41,7 +41,7 @@ class ViewProfile(webapp.RequestHandler):
 			logging.info('loading profile of %s for user %s' % (user.profile_path, getattr(self.session['user'], 'profile_path', "?")))
 			this_user = user.unique_identifier
 		except:
-		    logging.debug('no profile of %s found for user %s' % (profile_path, getattr(self.session['user'], 'profile_path', "?")))
+		    logging.info('no profile of %s found for user %s' % (profile_path, getattr(self.session['user'], 'profile_path', "?")))
 		    self.redirect('/profile_not_found/') # if no user is found
 		    return
 		is_profile_owner = False

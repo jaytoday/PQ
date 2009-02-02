@@ -66,6 +66,13 @@ else window.location="/dev/admin";
 });
 
 
+$('a#mailout').click(function(){
+
+var mail_type = prompt("What Mail Type?"); 
+
+MailOut(mail_type);
+
+});
 
 
 }); // end of onLoad
@@ -89,14 +96,39 @@ function LoadData(this_link){
 	
 	this_link.parent().find('div.response').append(response.split('Status')[0]);    
 	
-//	console.log(response.substr(0, 8));
 	if (response.indexOf("Data Load Is Finished") != -1)  { 
-	//	console.log("finished!");
 		return;
 	
 	}
-	  //   console.log(response.split('Status')[0]);   
 	      LoadData(this_link);    // Cycle is not completed yet     
+	
+	}
+});
+
+}
+
+
+
+function MailOut(mail_type){
+
+	$.ajax(
+                                {
+                                        url:  "/dev/rpc",
+                                        data:
+                                        {
+                                                action: "mailout",
+                                                arg0: '"' + mail_type + '"'
+                                        },
+                                        success: function(response)
+                                        {
+	
+	$('a#mailout').parent().find('div.response').append(response.split('Status')[0]);    
+	
+	if (response.indexOf("Mailout Is Finished") != -1)  { 
+		return;
+	
+	}
+	      MailOut(mail_type);    // Cycle is not completed yet     
 	
 	}
 });

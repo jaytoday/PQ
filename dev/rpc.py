@@ -207,10 +207,13 @@ remote callers access to private/protected "_*" methods.
     data.load_data("mailing_list", "")
     return self.dump_mailing_list()
     
-    
-  def dump_mailing_list(self, *args):
-    from model.account import MailingList
-    print encode(MailingList.all().fetch(1000))
+
+
+  def mailout(self, *args):
+    if len(args) < 1: return "mail type needed!" 
+    from dev.mail import Mail
+    m = Mail()
+    return m.send_message(args[0])
 
 
 
