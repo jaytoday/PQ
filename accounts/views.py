@@ -213,7 +213,7 @@ class Redirect(webapp.RequestHandler):
         
   @login_required
   @quiztaker_required
-  def from_quiz_redirect(self):
+  def from_quiz_redirect(self):      # These occasionally time out. Try/Except solution for re-trying update. 
       # redirect after quiz
       logging.info('Redirecting From Quiz')
       token = self.request.path.split('/from_quiz/')[1]
@@ -224,7 +224,8 @@ class Redirect(webapp.RequestHandler):
       quiz_session = QuizSession()
       quiz_session.update_scores(token, self.session['user'].unique_identifier) # re-assigns token scores to this user
       self.response.out.write('<b>Please wait while we save your quiz results.....</b>') # this doesn't work right now
-      self.update_user_stats()
+      try: self.update_user_stats()
+      except: logging.error('ERROR UPDATING USER STATS')
       self.redirect('/profile/' + self.session['user'].profile_path)
 
   def update_user_stats(self):

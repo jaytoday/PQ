@@ -37,12 +37,33 @@
  <div class="subject_description summary">{{ p.blurb }}</div>
  
  <div class="subject_stats">
- <div class="subject_stat popularity"><h3>Popularity: </h3>  <div class="statometer" ><img src="http://chart.apis.google.com/chart?chs=50x25&cht=gom&chd=t:{{ p.popularity }}&chco=DDDDDD,00ea00&chf=bg,s,DDDDDD"/> </div> </div>
- <div class="subject_stat difficulty"><h3>Difficulty: </h3>  <div class="statometer" ><img src="http://chart.apis.google.com/chart?chs=50x25&cht=gom&chd=t:{{ p.difficulty }}&chco=DDDDDD,00ea00&chf=bg,s,DDDDDD"/> </div></div>
+ <div class="subject_stat popularity"><h3>Popularity: </h3>  <div class="statometer" ><img src="http://chart.apis.google.com/chart?chs=45x20&cht=gom&chd=t:{{ p.popularity }}&chco=DDDDDD,00ea00&chf=bg,s,DDDDDD"/> </div> </div>
+ <div class="subject_stat difficulty"><h3>Difficulty: </h3>  <div class="statometer" ><img src="http://chart.apis.google.com/chart?chs=45x20&cht=gom&chd=t:{{ p.difficulty }}&chco=DDDDDD,00ea00&chf=bg,s,DDDDDD"/> </div></div>
  </div>
  
   <div class="share_quiz">
-  <div class="quiz_code"><div class="share_quiz_text">share this quiz</div><input type="text" value="<script src=&quot;{{ http_host }}/js/quiz/{{ p.name }}&quot; type=&quot;text/javascript&quot;></script>" onClick="$(this).select();" name="score_embed"/></div>
+  <div class="quiz_code">
+  <div class="share_quiz_text">share this quiz</div>
+ <div class="share_options">
+  <a target="_blank" href="http://www.facebook.com/sharer.php?u={{ http_host }}/quiz/{{ p.name }}"><button id="facebook"  title="facebook"><img width=16 height=16 src="{{ http_host }}/static/stylesheets/img/accounts/facebook.gif"/></button></a>   
+   <a target="_blank" href="http://twitthis.com/twit?url={{ http_host }}/quiz/{{ p.name }}"><button id="twitter"   title="twitter"><img width=16 height=16 src="{{ http_host }}/static/stylesheets/img/accounts/twitter.png"/></button>  </a>
+   <button title="link" id="link">link</button> 
+   <button title="embed" id="embed">embed</button>
+  </div>
+  </div> {# end share_quiz #}
+
+ 
+ <div class="share_popup">
+ 
+ <div class="embed" style="display:none;">
+ <span>embed this quiz</span> <input type="text" value="<script src=&quot;{{ http_host }}/js/quiz/{{ p.name }}&quot; type=&quot;text/javascript&quot;></script>" onClick="$(this).select();" name="embed"/>
+ </div>
+  <div class="link" style="display:none;">
+ <span>link to this quiz</span> <input type="text" value="{{ http_host }}/quiz/{{ p.name }}" onClick="$(this).select();" name="link"/>
+ </div>
+ 
+ </div> {# end share_popup #}
+ 
  </div>
  </div>   {# end summary #}
  

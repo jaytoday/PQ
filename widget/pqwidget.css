@@ -1755,12 +1755,12 @@ background:#DDDDDD none repeat scroll 0 0;
 border:2px solid #DDDDDD;
 color:#000040;
 float:left;
-height:20px;
+height:15px;
 line-height:1em;
-padding:3px;
+margin:0 0 0 8px;
+padding:0 3px 3px;
 text-transform:none;
 width:130px;
-margin:0 0 0 8px;
 }
 
 .quiz_wrap div.subject_stat h3{
@@ -1779,31 +1779,80 @@ background:#DDDDDD none repeat scroll 0 0;
 border:2px solid #DDDDDD;
 color:#000040;
 float:left;
-height:10px;
+height:15px;
 line-height:1em;
-margin:3px 0 0 8px;
+margin:5px 0 0 8px;
 padding:1px 1px 7px;
 text-transform:none;
 width:284px;
 }
 
+
+
+/*** SHARE QUIZ ***/
+
 .quiz_wrap div.share_quiz .quiz_code .share_quiz_text{
-float: left; font-size: 0.6em; font-weight: bold;
-margin: 0px 0px 0px 15px;
+float: left; font-size: 0.8em; font-weight: bold;
+margin: 3px 0px 0px 15px;
+position:absolute;
  }
  
-.quiz_wrap div.share_quiz .quiz_code input{ 
-float:right;
-font-size:9px;
-/* height:12px; */
-margin:-1px 10px 0 0;
-width:150px;
+ 
+.quiz_wrap div.share_quiz .quiz_code .share_options button{
+font-size: .9em; 
+height: 20px;
+padding: 0 3px;
+margin: 0;
+position:absolute;
+}
+
+.quiz_wrap div.share_quiz .quiz_code .share_options {
+margin: 1px 0pt 0pt 130px; position: absolute;
+}
+.quiz_wrap div.share_quiz .quiz_code .share_options  img{ cursor:pointer; }
+
+.quiz_wrap div.share_quiz .quiz_code .share_options #facebook{ margin-left: -5px; padding: 0 1px; }
+.quiz_wrap div.share_quiz .quiz_code .share_options #twitter{ margin-left: 23px; padding: 0 1px; }
+.quiz_wrap div.share_quiz .quiz_code .share_options #embed{ margin-left:52px; }
+.quiz_wrap div.share_quiz .quiz_code .share_options #link{ margin-left:116px; }
+
+
+.quiz_wrap div.share_popup{
+position:absolute; 
+-moz-border-radius: 12px;
+-webkit-border-radius: 12px;
+background:#DDDDDD none repeat scroll 0 0;
+border:2px solid #DDDDDD;
+color:#000040;
+float:left;
+height:18px;
+line-height:1em;
+margin:-1px 0 0 8px;
+padding:0 3px 3px;
+text-transform:none;
+width:285px;
+opacity: 0 ;
+filter: alpha(opacity=0);
+-moz-opacity: 0;
+-khtml-opacity: 0;
 }
 
 
+.quiz_wrap div.share_quiz div.share_popup input{ 
+float:right;
+font-size:9px;
+/* height:12px; */
+margin:1px 3px 0 0;
+width:175px;
+}
+
+.quiz_wrap div.share_quiz div.share_popup span{
+font-size:.6em; font-weight:bold; margin: 3px 5px; display:block; position:absolute;
+}
+
 .quiz_wrap div.statometer{
 float:right;
-margin:-4px 0px 0;
+margin:-1px 3px 0;
 }
 
 .quiz_wrap div.subject_stat h3{
