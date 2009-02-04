@@ -71,6 +71,7 @@ def url_routes(map):
 	
 	# Induction & Building Quizzes
 	map.connect('dev/admin', controller = 'dev.views:Admin')
+	map.connect('ubiquity/quizbuilder', controller = 'dev.ubiquity:QuizBuilder')
 	map.connect('dev/filter', controller = 'ranking.views:Filter')
 	map.connect('ranking/graph', controller = 'ranking.views:Graph')		
 	map.connect('debug', controller = 'dev.views:Debug')

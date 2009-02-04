@@ -1,16 +1,11 @@
 import logging
-# Log a message each time this module get loaded.
-logging.info('Loading %s', __name__)
 import cgi
 import wsgiref.handlers
-import datetime, time
 from utils import webapp
 from utils.webapp import template
 from google.appengine.ext import db
-from google.appengine.api import users
 from utils.utils import ROOT_PATH, tpl_path, admin_only
-from utils.gql_encoder import GqlEncoder, encode
-from google.appengine.ext.db import djangoforms
+from utils.gql_encoder import encode
 
 # Template paths
 QUIZTAKER_PATH = 'quiztaker/'
