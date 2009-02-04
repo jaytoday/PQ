@@ -21,7 +21,7 @@ class Mail():
 		else: logging.warning('no message specified!')
 		logging.info('sent %s message to %s' % (mail_type, next_recipient.fullname) )
 		memcache.set(self.mail_type, mail_queue)
-		print "sent ", mail_type, " message to ", next_recipient.fullname
+		#print "sent ", mail_type, " message to ", next_recipient.fullname - REDUNDANT?
 		return str("sent " + mail_type + " message to " +  next_recipient.fullname)
 		
 

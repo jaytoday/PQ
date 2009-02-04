@@ -292,12 +292,15 @@ class DataMethods():
 		for entity in newdata[MIN_SLICE:MAX_SLICE]: # Could this be more efficient? 
 			
 			if data_type == 'proficiencies':
-				save_entity = Proficiency.get_or_insert(key_name=entity['name'], name = entity['name'], 
-				status = entity.get("status", ""), link_html = entity.get("link_html", ""), 
-				video_html = entity.get("video_html", ""), blurb = entity.get("blurb", ""), 
-				popularity = entity.get("popularity", 50), difficulty = entity.get("difficulty", 50),
-				status = entity.get('status', None), blurb = entity.get('blurb', None))
-				# temporary upgrades
+				this_entity = Proficiency.get_by_key_name(entity['name'])
+				if this_entity: save_entity = this_entity #if this exists, modify it
+				else: save_entity = Proficiency(key_name=entity['name'], name = entity['name'])
+				save_entity.name = entity['name']
+				save_entity.status = entity.get("status", "")
+				save_entity.link_html = entity.get("link_html", "")
+				save_entity.video_html = entity.get("video_html", "") 
+				save_entity.status = entity.get('status', None)
+				save_entity.blurb = entity.get('blurb', None)
 				save_entity.popularity = entity.get("popularity", 50) 
 				save_entity.difficulty = entity.get("difficulty", 50)
 
@@ -307,7 +310,11 @@ class DataMethods():
 				         print "proficiency ", entity['proficiency']['name'], " not found when inserting topic ", entity['name']
 				         logging.error('proficiency %s not found for topic %s' % (entity['proficiency']['name'],  entity['name']))
 				         continue
-				save_entity = ProficiencyTopic.get_or_insert(entity['proficiency']['name'] + str('_') + entity['name'], name = entity['name'], proficiency = this_proficiency)
+				this_entity = ProficiencyTopic.get_by_key_name(entity['proficiency']['name'] + str('_') + entity['name'])
+				if this_entity: save_entity = this_entity #if this exists, modify it
+				else: save_entity = ProficiencyTopic(key_name=entity['proficiency']['name'] + str('_') + entity['name'], name = entity['name'])
+				save_entity.name = entity['name']
+				save_entity.proficiency = this_proficiency
 											   
 			if data_type == 'content_pages':
 				 this_proficiency = Proficiency.get_by_key_name(entity['proficiency']['name'])

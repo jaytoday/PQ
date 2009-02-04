@@ -84,6 +84,11 @@ $.plopquiz.answers.removeClass('disabled').data("disabled", false);
 $.plopquiz.answer_load_icons.animate({opacity: 0}, 300);
 
 $.plopquiz.answer_text.animate({opacity: 1}, 300);
+
+// TODO: Fire initial hover event.
+$('#quiz_answers .hover_answer', $.pq_wrapper).hover();
+ $('.hover_answer', $.pq_wrapper).trigger('hover'); // trigger hover on already hovered answer
+  $.event.trigger('hover', $('.hover_answer', $.pq_wrapper)); // trigger hover on already hovered answer
 												
 			$.plopquiz.timer.animate( // start running the timer down
 			{ width: 0 },
@@ -139,10 +144,10 @@ if ($(this).attr("id") == "skip")
 	$(this).addClass('hover_answer');
 	$(".answertext", this).addClass('hover');
 
-var blank_width = 15 + (12 * $(".answertext", this).text().length); //todo: multiplier may need adjustment
-
 
 if ($(this).data('disabled') == false) { 
+	
+										var blank_width = 15 + (12 * $(".answertext", this).text().length); //todo: multiplier may need adjustment
 										$("#blank", $.plopquiz.quiz_content)
 											.html($(".answertext", this)
 											.text().replace(/\ /g, "&nbsp;"))
@@ -176,8 +181,6 @@ $("#quiz_content", $.pq_wrapper)
 // when the item is loaded, fade in, then trigger startTimer
 .bind("quizItemLoaded", function(e, quizItem)
 {
- $('.hover_answer', $.pq_wrapper).trigger('hover'); // trigger hover on already hovered answer
-  $.event.trigger('hover', $('.hover_answer', $.pq_wrapper)); // trigger hover on already hovered answer
   
    	 // redraw timer
 	$.plopquiz.timer.stop().css("width", "100%");

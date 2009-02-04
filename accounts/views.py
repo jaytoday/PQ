@@ -26,7 +26,7 @@ class Login(webapp.RequestHandler):
   def get(self):
     logging.info('Loading Login Page')
     login_response = str('http://' + self.request._environ['HTTP_HOST'] + '/login/response')
-    template_values = {'token_url': login_response }
+    template_values = {'token_url': login_response, 'no_quizlink': True}
     if self.request.get('continue'): self.session['continue'] = self.request.get('continue')
     # TODO: test taking functionality -- ? How is this different than quizzes
     if self.request.get('test'):
@@ -228,20 +228,22 @@ class Redirect(webapp.RequestHandler):
       self.redirect('/profile/' + self.session['user'].profile_path)
 
   def update_user_stats(self):
-      logging.info('Updating User Stats for User %s', self.session['user'].unique_identifier)
       from quiztaker.methods import ProficiencyLevels
       pl = ProficiencyLevels()
       from model.quiz import QuizTaker
       qt = QuizTaker.get_by_key_name(self.session['user'].unique_identifier)
+      logging.info('Updating Level Stats for User %s', self.session['user'].unique_identifier)
       pl.set_for_user(qt)
       from accounts.methods import Awards
       awards = Awards()
       # check for new awards
+      logging.info('Updating Awards for User %s', self.session['user'].unique_identifier)
       new_awards = awards.check_all(qt)
       if new_awards > 0: self.set_flash('new_award') 
       from accounts.methods import Sponsorships
       sponsorships = Sponsorships()
       # check for new sponsorships, both personal and business
+      logging.info('Updating Sponsorships for User %s', self.session['user'].unique_identifier)
       new_sponsorships = sponsorships.check_user(self.session['user'])
       if new_sponsorships > 0: self.set_flash('new_sponsorship')
       

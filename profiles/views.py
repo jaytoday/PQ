@@ -18,7 +18,7 @@ from model.user import Profile, QuizTaker, ProfilePicture
 PROFILE_PATH = 'profile/'
 REPORT_CARD_LIMIT = 5
 CLOUD_LIMIT = 9
-TOPIC_LEVEL_MIN = 50
+TOPIC_LEVEL_MIN = -1
 
 class ViewProfile(webapp.RequestHandler):
   #View a profile

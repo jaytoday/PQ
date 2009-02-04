@@ -62,8 +62,8 @@ var session_setup = function($)
                         	$("#example_3", $.plopquiz.quiz_content).show();
                         }
                 },
-                quizItem: Object(),
-                proficiencies: {{ proficiencies }} // proficiencies loaded from widget/handler.py 
+                quizItem: Object()
+                
         };
 
         // this function setups event handlers and ensure everything is setup properly,
@@ -181,7 +181,7 @@ $('#pqwidget #subject_1').s3Slider({ timeOut: 8300  });
 				//opacity: 0.8,
 				ghosting: false,
 				containment: 'document', 
-				//cancel: $('.quiz_scroll_container'), // we want to cancel drag when scrollbar is clicked, and when youtube videos are used. 
+				cancel: $('div.study_videos', $.plopquiz.quiz_content), // Youtube causes drag lock on Firefox, and isn't enabled on Safari. 
 			 distance: 90, // this solves scrollbar problem, but its really annoying
 				cursor: 'pointer'
 				 }); 
@@ -294,7 +294,7 @@ function pqLoad()
         // jQuery.isReady = true; -- this was breaking some javascript
         // load plopquiz (modified) from within closure. if it's already loaded, open quiz frame.
        if (!$.plopquiz) session_setup(jQuery);
-       else  $.plopquiz.start();
+       else $.plopquiz.start(); 
 }
 
 

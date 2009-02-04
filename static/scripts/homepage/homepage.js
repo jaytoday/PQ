@@ -32,6 +32,13 @@ $('input#employer_name').preserveDefaultText("what's the name of your business?"
 
 
 
+$('div#quiz_list > ul').find('div').click(function(){ 
+                                                    // $.getScript("/js/quiz/" + $(this).attr('id') + "?autostart=True");
+                                                     window.location="/quiz/" + $(this).attr('id');
+									                 });
+
+
+
 MottoAnimation();
 	
 FeedScroll();	

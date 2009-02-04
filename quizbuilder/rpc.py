@@ -123,6 +123,7 @@ remote callers access to private/protected "_*" methods.
 		new_quiz_item.content =  new_quiz_item.content.replace('</div><div class="post_content">', '')
 		new_quiz_item.content =  new_quiz_item.content.replace('<div class="pre_content">', '')
 		new_quiz_item.content =  new_quiz_item.content.replace('<div class="content">', '')
+		new_quiz_item.content =  new_quiz_item.content.replace('\n', ' ')
 		new_quiz_item.content =  new_quiz_item.content.rstrip('</div>')
 
 		new_quiz_item.difficulty = 0 # Default?

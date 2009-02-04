@@ -144,6 +144,7 @@ else { $('#quiz_init').hide();   $('#quiz_inner').show();  }
 
 if(quizItem.item_type == "instructions")
 {
+	
 //special handler for instructions 1 hovering
 var i1mouseOverCount = 0;
 var i1mouseOver = function()
@@ -165,6 +166,7 @@ $("#skip_tutorial", $.plopquiz.quiz_content).click(function()
 $.plopquiz.currentItem = 3;
 $.plopquiz.loadItem();
 });
+
 
 $(".answer", $.plopquiz.answer_container).mouseover(i1mouseOver);
 }
@@ -203,8 +205,8 @@ $('#confirm', $.plopquiz.answer_container)
                          }}); 
 						 }});        
 
-  
-              
+                
+$.plopquiz.settings.instructions.completed = true;
 
 }
 

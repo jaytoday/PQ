@@ -281,6 +281,17 @@ remote callers access to private/protected "_*" methods.
   	 return request()
 
 
+  def datastore(self, *args):
+  	 from model.quiz import QuizItem
+  	 qs = QuizItem.all().fetch(1000)
+  	 save = []
+  	 for q in qs:
+  	 	q.content = q.content.replace('\n', ' ')
+  	 	save.append(q)
+  	 db.put(save) 
+
+
+
 
   def destroy_everything(self, *args): # be careful, this gets rid of unsaved user data!
   	from dev.methods import Build
@@ -302,7 +313,6 @@ remote callers access to private/protected "_*" methods.
   	return fixture.update_stats()
 
   	  	
-
 
   def run_cron(self, *args):
   	return false

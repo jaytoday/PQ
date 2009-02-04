@@ -254,7 +254,7 @@ def reset_account_access(user):
 
 def mail_footer(): #Todo: unsubscribe
 	footer = """
-	-------------------------------------------------------------------
+	-----------------------------------------------------------------------------
 	
 	Thanks For Using PlopQuiz! /  http://www.plopquiz.com
 

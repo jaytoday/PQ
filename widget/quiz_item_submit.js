@@ -18,7 +18,16 @@ $.plopquiz.settings.proficiencies.push(quiz_subject_choice);
 $('button.take_test').hide();
 $('div#points', $.plopquiz.quiz_inner_content).hide();
 
+
+$.plopquiz.settings.instructions.i1complete = false; // repeat the tutorial if re-opened
+
+//console.log('completed?', $.plopquiz.settings.instructions.completed);
+
+//if ($.plopquiz.settings.instructions.completed) $.plopquiz.currentItem = 3; // skips tutorial already completed
+	 
 $.plopquiz.loadItem();
+
+
 
 case "instructions":
 	

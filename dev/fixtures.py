@@ -11,21 +11,21 @@ class Fixture():
 		
 	# first job
 	def load(self):
+		FIXTURE_PROFICIENCY = "Smart Grid"
 		save = []
 		logging.info('loading fixture')
 		self.fixture_offset = Setting.get_by_key_name('fixture_offset')  
-		this_account, this_user, this_quiz_taker = self.get_fixture()
 		if self.fixture_offset.status == "update_stats": 
 			logging.warning('Load Fixtures Cron Job Hit Twice In a Row')
 			print "error -- current status: ", self.fixture_offset.status
 			return False
+		this_account, this_user, this_quiz_taker = self.get_fixture()
 		scores = Scores()
 		correct_prob = random.randint(80,95)
 		from model.proficiency import Proficiency
-		#this_proficiency = random.sample(Proficiency.gql("WHERE status = :1", "public").fetch(10), 1)[0]
-		this_proficiency = Proficiency.get_by_key_name("Smart Grid")
+		this_proficiency = Proficiency.get_by_key_name(FIXTURE_PROFICIENCY)
 		save_scores = scores.make_scores(this_user, this_proficiency, correct_prob, SCORE_NUM = 20) 
-		memcache.set('current_fixture', ( this_account, this_user, this_quiz_taker ), 60000)
+		memcache.set('current_fixture', ( this_account, this_user, this_quiz_taker ), 600000)
 		self.fixture_offset.status = "update_stats"
 		print this_user.nickname
 		save.append(self.fixture_offset)
@@ -83,7 +83,7 @@ class Fixture():
 	  from accounts.methods import Sponsorships
 	  sponsorships = Sponsorships()
 	  # check for new sponsorships, both personal and business
-	  new_sponsorships = sponsorships.check_all(this_quiz_taker)
+	  new_sponsorships = sponsorships.check_user(this_user)
 	  self.fixture_offset.value += 1
 	  self.fixture_offset.status = "create_account"
 	  save.append(self.fixture_offset)

@@ -76,7 +76,8 @@ class DataMethods():
 class ProficiencyLevels():
 
 
-	def set_all(self): # Set levels for all users
+	def set_all(self): # Set levels for all users -- this can't *actually*  be used. 
+		return # Deprecated
 		from ranking.methods import TopicLevelData, ProficiencyLevelData
 		quiz_takers = QuizTaker.all().fetch(1000)        # this can only do a thousand at a time
 		ptl = TopicLevelData()
@@ -88,11 +89,14 @@ class ProficiencyLevels():
 	  
 		  
 	def set_for_user(self, qt):
+		save = []
 		from ranking.methods import TopicLevelData, ProficiencyLevelData
 		ptl = TopicLevelData()
-		ptl.set(qt)
+		save.extend( ptl.set(qt) )
 		pl = ProficiencyLevelData()
-		pl.set(qt) 
+		save.extend( pl.set(qt) ) 
+		db.put(save)
+		return save 
 		# TODO: return value so it is known whether award check should be done. 
   
       

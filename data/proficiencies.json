@@ -27,7 +27,7 @@
                             "ctime": "Fri Jan 30 10:35:17 2009"
                         }, 
                         "difficulty": 71, 
-                        "blurb": "Exciting advances in the conversion of biomass into fuel have made this environmentally-friendly production method into a Clean Tech poster child."
+                        "blurb": "<div style=\"height:25px;\"/> Exciting advances in the conversion of biomass into fuel have made this environmentally-friendly production method into a Clean Tech poster child."
                     }, 
                     {
                         "status": "private", 
@@ -62,7 +62,7 @@
                     {
                         "status": "public", 
                         "name": "Cars 2.0", 
-                        "link_html": "<li><a href=\"http://earth2tech.com/2008/11/23/get-ready-for-the-car-20-era/\">Get Ready for the Car 2.0 Era</a></li><li><a href=\"\r\nhttp://green.wikia.com/wiki/Electric_car\">Electric Cars on Wikia</a></li><li><a href=\"http://venturebeat.com/2008/01/10/27-electric-cars-companies-ready-to-take-over-the-road/\">30 Electric Car Companies</a></li><li><a href=\"http://en.wikipedia.org/wiki/Vehicle_Area_Network\" >Vehicle Area Network</a></li>\r\n<li><a href=\"http://greenhome.huddler.com/wiki/introduction-to-electric-cars-and-electric-scooters\" >Greenhome Electric Cars</a></li>\r\n\r\n\r\n", 
+                        "link_html": "\r\n<li><a href=\"http://www.portfolio.com/views/columns/dual-perspectives/2009/02/02/Future-of-the-Car\">Portfolio.com: The Future of the Car</a></li>\r\n\r\n<li><a href=\"http://earth2tech.com/2008/11/23/get-ready-for-the-car-20-era/\">Get Ready for the Car 2.0 Era</a></li><li><a href=\"\r\nhttp://green.wikia.com/wiki/Electric_car\">Electric Cars on Wikia</a></li><li><a href=\"http://venturebeat.com/2008/01/10/27-electric-cars-companies-ready-to-take-over-the-road/\">30 Electric Car Companies</a></li><li><a href=\"http://en.wikipedia.org/wiki/Vehicle_Area_Network\" >Vehicle Area Network</a></li>\r\n<li><a href=\"http://greenhome.huddler.com/wiki/introduction-to-electric-cars-and-electric-scooters\" >Greenhome Electric Cars</a></li>\r\n\r\n\r\n", 
                         "popularity": 93, 
                         "modified": {
                             "ctime": "Mon Feb  2 07:20:26 2009"
@@ -147,7 +147,7 @@
                             "ctime": "Fri Jan 30 10:35:17 2009"
                         }, 
                         "difficulty": 79, 
-                        "blurb": "The cheapest and most available source of new energy is the energy we waste. To save money and lower greenhouse gas levels, organizations are increasingly seeking ways to reduce their energy consumption. "
+                        "blurb": "<div style=\"height:15px;\"/> The cheapest and most available source of new energy is the energy we waste. To save money and lower greenhouse gas levels, organizations are increasingly seeking ways to reduce their energy consumption. "
                     }, 
                     {
                         "status": "private", 
@@ -242,7 +242,7 @@
                     {
                         "status": "public", 
                         "name": "Recovery.Gov", 
-                        "link_html": "\n  \t<li><a href=\"http://recovery.gov\">Recovery.Gov</a></li>\n  \t<li><a href=\"www.whitehouse.gov/assets/Documents/recovery_plan_metrics_report.pdf - \">Recovery Plan Metrics Report</a></li>\n  \t<li><a href=\"http://www.nytimes.com/2009/02/01/magazine/01Economy-t.html?_r=1\">The Big Fix (NYT Sunday Magazine)</a></li>\n  \t<li><a href=\"http://republicanwhip.house.gov/Jobs/\">Republican Whip Recovery Site</a></li>\n  \t", 
+                        "link_html": "  \t<li><a href=\"http://recovery.gov\">Recovery.Gov</a></li>\r\n  \t<li><a href=\"http://www.whitehouse.gov/assets/Documents/recovery_plan_metrics_report.pdf\">Recovery Plan Metrics Report</a></li>\r\n<li><a href=\"http://www.stimuluswatch.org/\">StimulusWatch.Org</a></li>\r\n<li><a href=\"http://www.nytimes.com/2009/02/01/magazine/01Economy-t.html?_r=1\">The Big Fix (NYT Sunday Magazine)</a></li>\r\n  \t<li><a href=\"http://republicanwhip.house.gov/Jobs/\">Republican Whip Recovery Site</a></li>\r\n  \t", 
                         "popularity": 96, 
                         "modified": {
                             "ctime": "Mon Feb  2 07:20:43 2009"

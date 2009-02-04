@@ -55,7 +55,7 @@ LoadData($(this));
 
 $('a#restore_all_data').click(function(){
 	
-var check = confirm("do you want to restore backup data? Existing data may be deleted!");
+var check = confirm("Do you want to restore backup data? Existing data may be deleted!");
 
 if (check) {
 	$.getScript("/static/scripts/dev/restore.js");

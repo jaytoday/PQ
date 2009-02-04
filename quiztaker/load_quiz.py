@@ -42,7 +42,7 @@ class LoadQuiz():
 
   def temp_filter(self, proficiencies): # TEMPORARY
 	if proficiencies[0] not in ["Smart Grid", "Energy Efficiency", "Recovery.Gov"]:
-		logging.info('temporarily loading a different quiz ', proficiencies[0])        
+		logging.info('temporarily loading a different quiz instead of %s', proficiencies[0])        
 		proficiencies[0] = Proficiency.get_by_key_name("Recovery.Gov")
 		return proficiencies 
 

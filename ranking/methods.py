@@ -10,40 +10,31 @@ from google.appengine.ext import db
 
 class TopicLevelData():               
     def get(self, quiz_taker):
-    	print quiz_taker.topic_levels
+    	return quiz_taker.topic_levels
 
                                                             
 
 
-    def set(self, quiz_taker):
+    def set(self, quiz_taker, save=False):
+		logging.info('setting topic level data for %s', quiz_taker.unique_identifier)
 		save = []
 		topic_scores = {}
 		edited_scores = False
-		for score in quiz_taker.itemscores:
-			this_score = ItemScore.get(score.key())
-			if not this_score:
-				logging.error("score not found. deleting key")
-				edited_scores = True
-				quiz_taker.scores.remove(score)  # remove key from list
-			else:
-				pass
-			# TODO: could this be rewritten with .get()?
+		for this_score in quiz_taker.itemscores:
 			try: 
 				
 				current_average = topic_scores[this_score.quiz_item.topic.key()]['average']
 				current_count = topic_scores[this_score.quiz_item.topic.key()]['count']
 				current_sum = current_average * current_count
-				logging.info('current topicelevelsum: %d * %d = %d' % ( int(current_average), int(current_count), int(current_sum) ) )
+				#logging.info('current topicelevelsum: %d * %d = %d' % ( int(current_average), int(current_count), int(current_sum) ) )
 				new_sum = current_sum + this_score.score
 				if this_score.score > 99: 
 					logging.warning('perfect score warning! score: %d', this_score.score)
 					this_score.score = 99
-				logging.info('new topicelevelsum: %d + %d = %d' % ( int(current_sum) , int(this_score.score), int(new_sum) ) )
+				#logging.info('new topicelevelsum: %d + %d = %d' % ( int(current_sum) , int(this_score.score), int(new_sum) ) )
 				new_count = current_count + 1
 				new_average = new_sum / new_count
 
-#				new_average = Decimal(new_sum) / Decimal(new_count)                This would only be necessary for division
-#				new_average = new_average.quantize(Decimal("0.001"), ROUND_HALF_UP)
 			except:# no current average
 				try: topic_scores[this_score.quiz_item.topic.key()] = {}
 				except: continue # Reference Property error for old scores. 
@@ -52,27 +43,21 @@ class TopicLevelData():
 				
 			topic_scores[this_score.quiz_item.topic.key()]['count'] = new_count
 			topic_scores[this_score.quiz_item.topic.key()]['average'] = new_average
-			logging.info('new topiclevel average: %d', new_average)
-			
-			
-			
-		if edited_scores: quiz_taker.put()		# this may be deprecated.
-		
-		# seperate topic_scores into individual topics
-		print topic_scores.items()
+			#logging.info('new topiclevel average for topic %s: %d' % (this_score.quiz_item.topic.name, new_average) )
+
 		for topic_pair in topic_scores.items():
 			tl_keyname = str(quiz_taker.unique_identifier) + "_" + str(topic_pair[0])
 			topic_pair[1]['average'] = int(topic_pair[1]['average'])
-			if TopicLevel.get_by_key_name(tl_keyname):
-				topic_level = TopicLevel.get_by_key_name(tl_keyname)
-				topic_level.topic_level = topic_pair[1]['average']
-			else:
+			topic_level = TopicLevel.get_by_key_name(tl_keyname)
+			if not topic_level: 
 			    topic_level = TopicLevel(key_name = tl_keyname,
 										topic = topic_pair[0],
-										quiz_taker = quiz_taker,
-										topic_level = topic_pair[1]['average'])
+										quiz_taker = quiz_taker)
+										
+			topic_level.topic_level = topic_pair[1]['average']
 			save.append(topic_level)
-		db.put(save)
+		if save: db.put(save)
+		return save
 			
 			 
 			
@@ -84,14 +69,14 @@ class TopicLevelData():
         	
 class ProficiencyLevelData():               
     def get(self, quiz_taker):
-    	print quiz_taker.proficiency_levels
+    	return quiz_taker.proficiency_levels
 
                                                             
 
 
-    def set(self, quiz_taker):
+    def set(self, quiz_taker, save=False):
+		logging.info('setting proficiency level data for %s', quiz_taker.unique_identifier)
 		save = []
-		
 		pro_scores = {}
 		for tl in quiz_taker.topic_levels.fetch(1000):
 			try: 
@@ -120,4 +105,5 @@ class ProficiencyLevelData():
 															quiz_taker = quiz_taker,
 															proficiency_level = pro_pair[1]['average'])
 				save.append(proficiency_level)
-		db.put(save)
+		if save: db.put(save)
+		return save

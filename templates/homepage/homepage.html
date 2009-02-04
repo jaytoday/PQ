@@ -56,7 +56,7 @@
 <div class="mc" {# id="sixth" #}><span class="num"><button>6.</button></span>Share a Quiz on Your Site </div>
 
 <div id="business" class="frame_box">Until March 31st 2009, we will be accepting <a href="/sponsors/">community sponsorship applications</a>.</div>
-<!--
+{% comment %}
 
 <div class="intro_item_header" style="margin-top: 28px;">Businesses</div>
 <div class="intro_item">Show Responsibility. <br/> Connect with Motivated Students.<br/><a>Be a Sponsor.</a></div>
@@ -65,7 +65,7 @@
 <div class="intro_item">Support Achievement.<br/><a>Be a Sponsor.</a></div>
 
 
--->
+{% endcomment %}
 
 
 </div>  
@@ -89,15 +89,16 @@
 
 <div id="quiz_list">
 <ul>
-<li>
-<div class="quiz_header frame_box">smart grid</div>
+<li> {# id used to get quiz script #}
+<div id="Smart Grid" class="quiz_header frame_box">smart grid</div>
 </li>
 <li>
-<div class="quiz_header frame_box">cars 2.0</div>
+<div id="Cars 2.0" class="quiz_header frame_box">cars 2.0</div>
 </li>
 <li>
-<div class="quiz_header frame_box">energy efficiency</div>
+<div id="Energy Efficiency" class="quiz_header frame_box">energy efficiency</div>
 </li>
+
 </ul>
 </div>
 

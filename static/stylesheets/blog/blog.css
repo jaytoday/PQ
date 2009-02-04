@@ -50,11 +50,10 @@ width:35em;
     }
     
     h2 {
-      color: {color:Description};
-      font-size:2.4em !important;
-margin:0.4em !important;
-text-indent:0 !important;
-width: 355px !important;
+font-size:2.4em;
+margin:93px 0 0 16px;
+position:absolute;
+width:326px;
     }
     
     h3 {
@@ -85,9 +84,9 @@ font-size:1.3em;
 list-style-image:none;
 list-style-position:outside;
 list-style-type:none;
-margin:-182px 50px 0 0;
+margin:-49px 0 0 660px;
 padding:0;
-float: right;
+position:absolute;
 text-align:left;
 width:230px;
     }
@@ -98,11 +97,11 @@ margin: -3px 6px -3px 6px;
 }
 
 div#blog_description{
-width: 226px; 
-height:123px; 
-float:right; 
-margin: -150px 10px;
+height:123px;
+margin:-20px 0 0 680px;
 overflow:hidden;
+position:absolute;
+width:226px;
 }
 
 
@@ -112,7 +111,9 @@ overflow:hidden;
 
 
 		/* Search */
-		#search { text-align: right; margin:7px 10px; float:right; }
+		#search { float:right;
+margin:137px 10px 0 0;
+text-align:right; }
 		
 
 		/* Search Result Count */
@@ -246,13 +247,16 @@ display:none;
 }
 
 .sitelet .middle .main_wrapper .main {
-
 height:auto;
+}
 
+div.header_logo{
+margin: 4px;
+position:absolute;
 }
 
 div#posts{
-margin:4.1em 0 0;
+margin:190px 0 0;
 position:relative;
 }
 

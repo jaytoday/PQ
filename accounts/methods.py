@@ -190,7 +190,7 @@ class Awards():
 class Sponsorships():
 
 
-	def check_all(self): # start from awards, checks for all users. 
+	def check_all(self, awards): # start from awards, checks for all users. 
 		self.save_sponsorships = [] # for batch datastore trip
 		awards = Award.all().fetch(1000) # TODO: should only get unactivated awards. Award.sponsorships is reference collection. 
 		for award in awards:
@@ -200,6 +200,7 @@ class Sponsorships():
 
 	def check_user(self, profile): # only for one user
 		self.save_sponsorships = [] # for batch datastore trip
+		from model.account import Award
 		for award in profile.awards:
 			self.check_award(award)
 		db.put(self.save_sponsorships)
