@@ -11,7 +11,6 @@ class Fixture():
 		
 	# first job
 	def load(self):
-		FIXTURE_PROFICIENCY = "Smart Grid"
 		save = []
 		logging.info('loading fixture')
 		self.fixture_offset = Setting.get_by_key_name('fixture_offset')  
@@ -23,6 +22,7 @@ class Fixture():
 		scores = Scores()
 		correct_prob = random.randint(80,95)
 		from model.proficiency import Proficiency
+		FIXTURE_PROFICIENCY = "Smart Grid"
 		this_proficiency = Proficiency.get_by_key_name(FIXTURE_PROFICIENCY)
 		save_scores = scores.make_scores(this_user, this_proficiency, correct_prob, SCORE_NUM = 20) 
 		memcache.set('current_fixture', ( this_account, this_user, this_quiz_taker ), 600000)

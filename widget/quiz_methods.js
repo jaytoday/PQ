@@ -41,7 +41,11 @@ $("#pq_wrapper")
 	$('#widget_wrapper').fadeOut(); $(this).show();
 	
 })
-
+.bind("answerhover", function()
+{
+//Fire initial hover event.
+if ( $('#quiz_answers .hover_answer', $.pq_wrapper).length > 0 ){ onAnswerHover($('#quiz_answers .hover_answer', $.pq_wrapper)[0]);  }
+})
 .bind("quizclosing", function()
 {
 	$(this).hide();
@@ -85,10 +89,7 @@ $.plopquiz.answer_load_icons.animate({opacity: 0}, 300);
 
 $.plopquiz.answer_text.animate({opacity: 1}, 300);
 
-// TODO: Fire initial hover event.
-$('#quiz_answers .hover_answer', $.pq_wrapper).hover();
- $('.hover_answer', $.pq_wrapper).trigger('hover'); // trigger hover on already hovered answer
-  $.event.trigger('hover', $('.hover_answer', $.pq_wrapper)); // trigger hover on already hovered answer
+$.event.trigger("answerhover");
 												
 			$.plopquiz.timer.animate( // start running the timer down
 			{ width: 0 },
@@ -130,40 +131,9 @@ $('#quiz_answers .hover_answer', $.pq_wrapper).hover();
 	$.plopquiz.timer.stop();
 });
 
-var textHolder = '     ';
-
-$('#quiz_answers .answer', $.pq_wrapper).hover(function()
-{
-// skip doesn't have hover
-if ($(this).attr("id") == "skip")
-	return;
-
-	 
-	
-	// hover event on span
-	$(this).addClass('hover_answer');
-	$(".answertext", this).addClass('hover');
-
-
-if ($(this).data('disabled') == false) { 
-	
-										var blank_width = 15 + (12 * $(".answertext", this).text().length); //todo: multiplier may need adjustment
-										$("#blank", $.plopquiz.quiz_content)
-											.html($(".answertext", this)
-											.text().replace(/\ /g, "&nbsp;"))
-											.css("cssText", "width: " + blank_width + "px !important;");        
-		 }                                
-},
-function()
-{
-
-// replace blank space
-$("#blank").text(textHolder)
-//.css({"padding": "0px 34px"});
-	.css("width", "100px");
-	 $(this).removeClass('hover_answer');
-	 $(".answertext", this).removeClass('hover');
-})
+$('#quiz_answers .answer', $.pq_wrapper).hover(
+		function(){ onAnswerHover(this); },
+		function() { offAnswerHover(this); }  )
 .click(function(e) // submit answer
 {
 
@@ -187,6 +157,8 @@ $("#quiz_content", $.pq_wrapper)
 	$("#quiz_content", $.pq_wrapper).animate({opacity: 1},{ duration: 1000, // delay start of timer 
 			complete: function()
 			{$.event.trigger("startTimer", [ quizItem ]); } });
+			
+	$.event.trigger("answerhover");		
 	
 
 });
@@ -205,5 +177,41 @@ $('body').data('pq','True');
 
 
 
+
+
+
 } // end of startQuiz
 
+
+function onAnswerHover(answer) // when answer is hovered
+{
+	
+// skip doesn't have hover
+if ($(answer).attr("id") == "skip")
+	return;
+
+	// hover event on span
+	$(answer).addClass('hover_answer');
+	$(".answertext", answer).addClass('hover');
+
+
+if ($(answer).data('disabled') == false) { 
+	
+										var blank_width = 15 + (12 * $(".answertext", answer).text().length); //todo: multiplier may need adjustment
+										$("#blank", $.plopquiz.quiz_content)
+											.html($(".answertext", answer)
+											.text().replace(/\ /g, "&nbsp;"))
+											.css("cssText", "width: " + blank_width + "px !important;");        
+		                                  } 
+		                                  
+}
+
+
+function offAnswerHover(answer) {
+var textHolder = '     ';
+// replace blank space
+$("#blank").text(textHolder)
+	.css("width", "105px");
+	 $(answer).removeClass('hover_answer');
+	 $(".answertext", answer).removeClass('hover');
+}

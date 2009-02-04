@@ -76,7 +76,7 @@ class LoadQuiz():
   def god_mode(self, item, item_answers): # check if god mode is enabled
   	if self.session['god_mode']: 
 		try: item_answers[item_answers.index(item.index)] = str(item.index) + "!"
-		except: logging.debug('unable to run god mode process')
+		except: logging.warning('unable to run god mode process')
 	return item_answers
 
 

@@ -25,13 +25,11 @@ class TopicLevelData():
 				
 				current_average = topic_scores[this_score.quiz_item.topic.key()]['average']
 				current_count = topic_scores[this_score.quiz_item.topic.key()]['count']
-				current_sum = current_average * current_count
-				#logging.info('current topicelevelsum: %d * %d = %d' % ( int(current_average), int(current_count), int(current_sum) ) )
-				new_sum = current_sum + this_score.score
+				current_product = current_average * current_count
+				new_sum = current_product + this_score.score
 				if this_score.score > 99: 
 					logging.warning('perfect score warning! score: %d', this_score.score)
 					this_score.score = 99
-				#logging.info('new topicelevelsum: %d + %d = %d' % ( int(current_sum) , int(this_score.score), int(new_sum) ) )
 				new_count = current_count + 1
 				new_average = new_sum / new_count
 
@@ -54,7 +52,7 @@ class TopicLevelData():
 										topic = topic_pair[0],
 										quiz_taker = quiz_taker)
 										
-			topic_level.topic_level = topic_pair[1]['average']
+			topic_level.topic_level = topiccurrent_sum_pair[1]['average']
 			save.append(topic_level)
 		if save: db.put(save)
 		return save
@@ -82,8 +80,8 @@ class ProficiencyLevelData():
 			try: 
 				current_average = pro_scores[tl.topic.proficiency.key()]['average']
 				current_count = pro_scores[tl.topic.proficiency.key()]['count']
-				current_sum = current_average * current_count
-				new_sum = current_sum + tl.topic_level
+				current_product = current_average * current_count
+				new_sum = current_product + tl.topic_level
 				new_count = current_count + 1
 				new_average = new_sum / new_count				
 			except: # no current average
