@@ -28,24 +28,21 @@ function ShareProfile() {
     resizable: false,
     draggable: true,
     height: 380,
-    width: 515,
+    width: 545,
     overlay: { 
         opacity: 0.5, 
         background: "black" 
     },
         buttons: { 
-                "Upgrade Your Resume": function() { 
-            
+ 
+ /*      	
+                "Share Your Profile": function() { 
+            return false; 
             $(this).find('div').hide();
             $(this).find('div.sponsors').show();
-        },
-        "Earn Sponsorships" : function() { 
-            
-            $(this).find('div').hide();
-            $(this).find('div.employers').show();
         }
-
-    } 
+*/
+   } 
      
 }).show();
 

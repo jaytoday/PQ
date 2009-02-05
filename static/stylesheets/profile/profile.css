@@ -616,8 +616,29 @@ margin:0 2px;
 div.share_container{
 float: right;
 }
+.ui-dialog-content div.sponsors .share_blurb{
+position:absolute; margin:-20px -24px; line-height:2em; font-size: .8em; text-align:center; width:520px;
+}
 
+.ui-dialog-content div.sponsors .share_type{
+height:47px;
+padding:1px;
+position:absolute;
+width:420px;
+margin: 0 17px;
+}
 
+.ui-dialog-content div.sponsors .share_type#link{
+margin-top: 55px;
+}
+
+.ui-dialog-content div.sponsors .share_type#facebook{
+margin-top: 120px;
+}
+
+.ui-dialog-content div.sponsors .share_type#twitter{
+margin-top: 185px;
+}
 
 a#toggle{
 height:0;
@@ -761,10 +782,10 @@ margin:0 -4px;
 
 textarea.share{
 font-size:0.8em;
-height:30px;
-margin:5px -5px;
+height:15px;
+margin:11px 95px;
 padding:3px;
-width:400px;
+width:310px;
 }
 
 
