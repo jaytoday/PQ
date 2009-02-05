@@ -1,9 +1,15 @@
 {% extends "../base.html" %}
 
-{% block head %} 
+{% block head %}  {% endblock %}
 
-{% endblock %}
 {% block title %}Take a {{ quiz_subject }} Quiz{% endblock %}
+{% block description %}Take a {{ quiz_subject }} Quiz at PlopQuiz!{% endblock %}
+{% block thumbnail %} {# TODO: This Quiz #}
+<link rel="image_src" href="{{ http_host }}/static/stylesheets/img/utils/plopquiz_icon.png" type="image/png" data-width="157" data-height="157" />
+{% endblock %}
+
+
+
  {% block login %} {% endblock login %}
 {% block main %}
 

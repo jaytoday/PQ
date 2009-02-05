@@ -30,9 +30,7 @@ def mail_intro_message(profile):
 	Each quiz you take is a new chance for you to add awards to your academic profile and compete for sponsorships from our community organizations.
 	
 	
-	
-	If there's anything we can help you with, e-mail support@plopquiz.com or call us at (650) 353-2694. 
-	
+		
 	
 	
 	Warm Regards,
@@ -183,9 +181,7 @@ def mail_sponsor_intro(profile):
 	
 	Once signed in, you can edit your profile, view your sponsorships, and configure your sponsorship settings.
 	
-	If there's anything we can help you with, e-mail support@plopquiz.com or call us at (650) 353-2694. 
-	
-	
+
 	
 	Warm Regards,
 
@@ -257,7 +253,9 @@ def mail_footer(): #Todo: unsubscribe
 	-----------------------------------------------------------------------------
 	
 	Thanks For Using PlopQuiz! /  http://www.plopquiz.com
-
+	
+    e-mail PlopQuiz: contact@plopquiz.com
+	call PlopQuiz: (650) 353-2694. 
 	
 	
 	"""

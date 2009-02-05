@@ -213,15 +213,14 @@ margin:0 60px 15px 0;
 }
 
 
-.dialog_blurb{
-float:right;
+.ui-dialog-content .dialog_blurb{
+position:absolute;
 font-size:1.1em;
-margin-bottom:0;
-margin-left:-20px;
-margin-right:-40px;
-margin-top:14px;
+margin:20px 0px 0 230px;
 width:130px;
 }
+
+
 
 
 .ui-dialog-content span.content.sponsors{
@@ -242,12 +241,14 @@ list-style: disc;
 }
 
 
-
 .contact_dialog span#support_types {
-font-size:1.1em; margin:4px 0 0 -10px; display:block;
+font-size:1.1em; margin:-64px 0 0px -17px; display:block;
 }
 .contact_dialog span#support_types span#phone{
-font-size: 0.6em; margin: -23px 10px; display:block; float:right;
+display:block;
+font-size:0.6em;
+margin:-23px 0 0 250px;
+position:absolute;
 }
 
 div.ui-dialog.about_dialog span span#tagline{

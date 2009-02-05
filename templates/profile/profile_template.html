@@ -1,6 +1,6 @@
 {% extends "../base.html" %}
-{% block title %}Profile / {{ user.fullname }}{% endblock %}
-
+{% block title %}Academic Profile / {{ user.fullname }}{% endblock %}
+{% block description %}This PlopQuiz Academic Profile belongs to {{ user.fullname }}. Visit this profile at {{ http_host }}/profile/{{ user.profile_path }}{% endblock %}
 {% block head %}
 <link rel="stylesheet" href="/static/stylesheets/ui/app_screen.css" type="text/css" media="screen">
 <link rel="stylesheet" href="/static/stylesheets/profile/tabs.css" type="text/css" media="screen">
@@ -21,6 +21,9 @@
 
 
 {% endblock %}
+
+
+
 
 
 {% block main %}
