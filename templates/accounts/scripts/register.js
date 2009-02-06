@@ -1,5 +1,8 @@
 
  
+ {% include "../../../static/scripts/utils/typewatch.js" %} 
+ 
+
 
 $(function(){
 	

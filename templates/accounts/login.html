@@ -3,8 +3,9 @@
 {% block head %}
 <!-- This should only be loaded when Privacy Policy is clicked -->
 
-	<link rel="stylesheet" type="text/css" charset="utf-8" href="/static/stylesheets/accounts/accounts.css" />
-	<script type="text/javascript" src="/static/scripts/accounts/login.js"></script>
+<style type="text/css"> {% include "../../static/stylesheets/accounts/accounts.css" %} </style> 
+
+	<script type="text/javascript"> {{ login_js }} </script>
 	
 {% endblock %}
 

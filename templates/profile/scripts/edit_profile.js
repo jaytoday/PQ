@@ -13,6 +13,16 @@
  */ 
 
 
+profile_path = '/profile/{{user.profile_path}}'; 
+
+photo_keys = {{ photo_keys }}; 
+
+{% include "../../../static/scripts/jquery/jquery.magicpreview.js" %}
+{% include "../../../static/scripts/jquery/jquery.jsupload.0.1.min.js" %}
+ 
+	
+
+
 		$(function () {
 
   

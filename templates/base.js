@@ -3,7 +3,15 @@
 
 // Include utility scripts 
 
-{% spaceless %}
+
+{% if dev_server %}
+{% include "../static/scripts/jquery/jquery-1.3.1.min.js" %}
+{% else %}
+$.getScript("http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"); // should we always load local jQuery?
+{% endif %}
+
+
+{% include "../static/scripts/jquery/ui.core.min.js" %}
 {% include "../static/scripts/jquery/ui.core.min.js" %}
 {% include "../static/scripts/jquery/ui.dialog.min.js" %}
 {% include "../static/scripts/jquery/ui.draggable.min.js" %}
@@ -12,11 +20,14 @@
 {% include "../static/scripts/utils/rpc.js" %}
 {% include "../static/scripts/utils/preserve_default_text.js" %}
 {% include "../static/scripts/utils/console.js" %}
-{% endspaceless %}
 
  
 $(document).ready(function()
 {
+	
+	//$('div.main').removeClass('hide');
+	
+	
 	jqViewport = $('#viewport');
 	    /**
      * Recalculate dimensions of layers for parallax effect
@@ -202,3 +213,28 @@ $('a#take_a_quiz').click(function(){
 
 //end ready()
 });
+
+
+
+
+function Loading(duration){
+$('div.loading').show();
+	$('div.main').hide();
+		  $('div.loading').animate({opacity: 1.0}, duration, function(){
+$('div.loading').hide();
+$('div.main').show();
+	});
+}
+
+$('div.loading').hide();
+
+
+function LoadInit() {
+
+
+if ('{{ load|default:"false" }}' == "false"){ return; } else { Loading({{ load }});}
+
+}
+
+LoadInit(); 
+

@@ -5,7 +5,7 @@
 	/*resets*/margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none; font-size: 100%; list-style: none;
 	font-family: Georgia, Lucida Grande, Lucida Sans, Arial, sans-serif;
 	font-size: 1.3em;
-	background: #f3f3f3 url(../img/ui/f3f3f3_40x100_textures_01_flat_0.png) 0 0 repeat-x;
+	background: #f3f3f3 url(/static/stylesheets/img/ui/f3f3f3_40x100_textures_01_flat_0.png) 0 0 repeat-x;
 	color: #362b36;
 	border: 4px solid #dddddd;
 	position: relative;
@@ -54,7 +54,7 @@ body .ui-resizable-autohide .ui-resizable-handle { display: none; } /* use 'body
 	height: 13px; 
 	right: 0px; 
 	bottom: 0px; 
-	background: url(../img/ui/222222_11x11_icon_resize_se.gif) no-repeat 0 0;
+	background: url(/static/stylesheets/img/ui/222222_11x11_icon_resize_se.gif) no-repeat 0 0;
 }
 .ui-resizable-sw { 
 	cursor: sw-resize; 
@@ -83,7 +83,7 @@ body .ui-resizable-autohide .ui-resizable-handle { display: none; } /* use 'body
 	/*resets*/margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none; font-size: 100%; list-style: none;
 	padding: .5em 1.5em .5em 1em;
 	color: #444444;
-	background: #e0e0e0 url(../img/ui/e0e0e0_40x100_textures_02_glass_80.png) 0 50% repeat-x;
+	background: #e0e0e0 url(/static/stylesheets/img/ui/e0e0e0_40x100_textures_02_glass_80.png) 0 50% repeat-x;
 	border-bottom: 1px solid #cccccc;
 	font-size: 1em;
 	font-weight: normal;
@@ -91,7 +91,7 @@ body .ui-resizable-autohide .ui-resizable-handle { display: none; } /* use 'body
 }
 .ui-dialog-title {}
 .ui-dialog-titlebar-close {
-background:transparent url(../img/quiz_closebox.png) repeat scroll 0 0;
+background:transparent url(/static/stylesheets/img/quiz_closebox.png) repeat scroll 0 0;
 cursor:pointer;
 height:27px;
 position:absolute;
@@ -146,29 +146,6 @@ font-weight: bold;
 	color: #000000;
 }
 
-/*
-.ui-dialog-buttonpane button {
-	margin: .5em 0 .5em 8px;
-	color: #444444;
-	background: #e0e0e0 url(../img/ui/e0e0e0_40x100_textures_02_glass_80.png) 0 50% repeat-x;
-	font-size: 1em;
-	border: 1px solid #cccccc;
-	cursor: pointer;
-	padding: .2em .6em .3em .6em;
-	line-height: 1.4em;
-}
-.ui-dialog-buttonpane button:hover {
-	color: #111111;
-	background: #d8d8d8 url(../img/ui/d8d8d8_40x100_textures_02_glass_90.png) 0 50% repeat-x;
-	border: 1px solid #000040;
-}
-.ui-dialog-buttonpane button:active {
-	color: #000000;
-	background: #5acaf6 url(../img/ui/5acaf6_40x100_textures_02_glass_50.png) 0 50% repeat-x;
-	border: 1px solid #700d78;
-}
-
-*/
 
 .ui-dialog-buttonpane button {
 margin:0.5em 0.5em 0.5em 0.8em;

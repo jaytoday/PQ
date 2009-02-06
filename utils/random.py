@@ -16,7 +16,7 @@ def jsonp(callback, html):
 
 def minify(js):
 		from StringIO import StringIO
-		from js.javascript import JavascriptMinify
+		from js.jsmin import JavascriptMinify
 		ins = StringIO(js)
 		outs = StringIO()
 		JavascriptMinify().minify(ins, outs)   

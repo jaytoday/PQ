@@ -1,16 +1,9 @@
 {% extends "../base.html" %}
 {% block head %}
 
-<link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/homepage/homepage.css"/>
+<style type="text/css"> {% include "../../static/stylesheets/homepage/homepage.css" %} </style>
+<script type="text/javascript">{{ homepage_js }}</script>
 
-<script type="text/javascript" src="/static/scripts/homepage/homepage.js"></script>
-
-<!-- freebase 
-<script type="text/javascript" src="/static/scripts/freebase-suggest/freebase.suggest.js"></script>
-<link type="text/css" rel="stylesheet" href="/static/scripts/freebase-suggest/dist/css/freebase-controls.css" />
-  <style type="text/css"> 
-  .fbs-li-types { display:none; }   /* if you want to hide the type info in the suggest popup */
- </style>  -->
 
 {% endblock %}
 

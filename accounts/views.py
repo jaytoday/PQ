@@ -6,7 +6,7 @@ from utils.webapp import template
 from google.appengine.ext import db
 from google.appengine.api import users
 from utils import webapp, simplejson
-from utils.utils import ROOT_PATH, tpl_path, Debug 
+from utils.utils import memoize, ROOT_PATH, tpl_path, Debug 
 from google.appengine.api import urlfetch
 import urllib
 from utils.webapp.util import login_required, quiztaker_required
@@ -45,6 +45,7 @@ class Login(webapp.RequestHandler):
     self.session['post_quiz'] = False
     if self.request.get('error') == "true":
         template_values['error'] = "True"
+    template_values['login_js'] = login_js(template_values)
     path = tpl_path(ACCOUNTS_PATH +'login.html')
     self.response.out.write(template.render(path, template_values))
     
@@ -157,6 +158,7 @@ class Register(webapp.RequestHandler):
 		if self.session['nickname']: nickname = self.session['nickname']
 		if self.session['email']: email = self.session['email']
 		template_values = {'nickname': nickname, 'email': email, 'no_quizlink': True}
+		template_values['register_js'] = register_js(template_values)
 		path = tpl_path(ACCOUNTS_PATH +'signup.html')
 		self.response.out.write(template.render(path, template_values))
 		return
@@ -265,4 +267,18 @@ class Redirect(webapp.RequestHandler):
   	
 
 
+
+@memoize('login_js')
+def login_js(template_values):
+        path = tpl_path(ACCOUNTS_PATH   + 'scripts/login.js')
+        from utils.random import minify 
+        return minify( template.render(path, template_values) )
+
+
+
+@memoize('register_js')
+def register_js(template_values):
+        path = tpl_path(ACCOUNTS_PATH  + 'scripts/register.js')
+        from utils.random import minify 
+        return minify( template.render(path, template_values) )
 

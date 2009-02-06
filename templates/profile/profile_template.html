@@ -2,21 +2,15 @@
 {% block title %}Academic Profile / {{ user.fullname }}{% endblock %}
 {% block description %}This PlopQuiz Academic Profile belongs to {{ user.fullname }}. Visit this profile at {{ http_host }}/profile/{{ user.profile_path }}{% endblock %}
 {% block head %}
-<link rel="stylesheet" href="/static/stylesheets/ui/app_screen.css" type="text/css" media="screen">
-<link rel="stylesheet" href="/static/stylesheets/profile/tabs.css" type="text/css" media="screen">
-<link rel="stylesheet" href="/static/stylesheets/profile/profile.css" type="text/css" media="screen">
-<script src="/static/scripts/utils/s3slider.js"></script> 
-<script src="/static/scripts/profile/tagcloud.js"></script>
-<script src="/static/scripts/profile/profile.js"></script>
-<script type="text/javascript"> {% include "scripts/profile_init.js" %}</script>
 
-{% if scroll %}
-<script type="text/javascript">{% include "scripts/profile_scroll.js" %}</script>
-{% endif %}
+<style type="text/css"> 
+{% include "../../static/stylesheets/ui/app_screen.css" %} 
+{% include "../../static/stylesheets/profile/tabs.css" %} 
+{% include "../../static/stylesheets/profile/profile.css" %} 
+</style> 
 
-{% if profile_owner %}
-<script src="/static/scripts/profile/profile_owner.js"></script>
-{% endif %}
+
+<script type="text/javascript"> {{ profile_js }} </script>
 
 
 

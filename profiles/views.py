@@ -26,6 +26,7 @@ class ViewProfile(webapp.RequestHandler):
     template_values = self.get_profile()
     if not template_values: return
     template_values['load'] = 2000 # give 2 seconds to load 
+    template_values['profile_js'] = profile_js(template_values)
     path = tpl_path(PROFILE_PATH +'profile_template.html')
     self.response.out.write(template.render(path, template_values))
     
@@ -111,6 +112,8 @@ class EditProfile(webapp.RequestHandler):
     else: edit_type = 'Edit'
     template_values = {'user': self.session['user'], 'edit_type': edit_type, 
                        'photo_keys': public_photos}
+                       
+    template_values['edit_profile_js'] = edit_profile_js(template_values)
     path = tpl_path(PROFILE_PATH +'edit.html')
     self.response.out.write(template.render(path, template_values))
 
@@ -154,6 +157,7 @@ class ViewSponsorProfile(webapp.RequestHandler):
     template_values = self.get_sponsor_profile()
     if not template_values: return
     template_values['load'] = 2000 # give 2 seconds to load 
+    template_values['profile_js'] = profile_js(template_values)
     path = tpl_path(PROFILE_PATH +'sponsor_template.html')
     self.response.out.write(template.render(path, template_values))
     
@@ -286,3 +290,22 @@ class PreviewViewProfile(webapp.RequestHandler): #deprecated
     path = tpl_path(PROFILE_PATH +'prototype.html')
     self.response.out.write(template.render(path, template_values))
 
+
+
+
+
+
+@memoize('profile_js')
+def profile_js(template_values):
+        path = tpl_path(PROFILE_PATH + 'scripts/profile_template.js')
+        from utils.random import minify 
+        return minify( template.render(path, template_values) )
+
+         
+
+@memoize('edit_profile_js')
+def edit_profile_js(template_values):
+        path = tpl_path(PROFILE_PATH + 'scripts/edit_profile.js')
+        from utils.random import minify 
+        return minify( template.render(path, template_values) )        
+        

@@ -1,14 +1,11 @@
 {% extends "../base.html" %}
 {% block head %}
-	<link rel="stylesheet" type="text/css" charset="utf-8" href="/static/stylesheets/profile/edit.css" />
-	<link rel="stylesheet" type="text/css" charset="utf-8" href="/static/stylesheets/utils/form.css" />
-	<link rel="stylesheet" type="text/css" charset="utf-8" href="/static/stylesheets/profile/tabs.css" />
-	<link rel="stylesheet" type="text/css" charset="utf-8" href="/static/stylesheets/profile/profile.css" />
-	<script type="text/javascript" src="/static/scripts/jquery/jquery.magicpreview.js"></script> 
-	<script type="text/javascript" src="/static/scripts/jquery/jquery.jsupload.0.1.min.js"></script> 
-	<script type="text/javascript"> profile_path = '/profile/{{user.profile_path}}'; photo_keys = {{ photo_keys }}; </script>
-	<script type="text/javascript" src="/static/scripts/jquery/jquery.MultiFile.pack.js"></script> 
-	<script type="text/javascript" src="/static/scripts/profile/edit_profile.js"></script>
+<style type="text/css"> {% include "../../static/stylesheets/profile/edit.css" %} </style>
+<style type="text/css"> {% include "../../static/stylesheets/utils/form.css" %} </style>
+<style type="text/css"> {% include "../../static/stylesheets/profile/tabs.css" %} </style>
+<style type="text/css"> {% include "../../static/stylesheets/profile/profile.css" %} </style>
+
+	<script type="text/javascript"> {{ edit_profile_js }}</script>
 {% endblock %}
 
 

@@ -98,8 +98,6 @@ def render(template_path, template_dict, debug=False):
   return t.render(Context(template_dict))
   #var no_load = ['/preview/homepage','/preview/homepage/', '/preview/', '/register', '/login', '/login/response' ]
   
-  #var no_load = ['/preview/homepage','/preview/homepage/', '/preview/', '/register', '/login', '/login/response' ]
- 
 
 template_cache = {}
 def load(path, debug):

@@ -1,6 +1,6 @@
 form input, form textarea {
     border: solid 1px #85b1de;
-    background: #fff url('../img/base/forms/formbg.gif') repeat-x;
+    background: #fff url('/static/stylesheets/img/base/forms/formbg.gif') repeat-x;
     background-position: top;
     margin:2px 0;
     padding: 2px;

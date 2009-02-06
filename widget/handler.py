@@ -73,19 +73,3 @@ class QuizJS(webapp.RequestHandler):
   	return "false"
 	
 
-
-# this might be deprecated since we're loading the css inline with the JS 
-class QuizCSS(webapp.RequestHandler):
-  @memoize('quiz_css')
-  def get(self):
-    self.response.headers['Content-Type'] = 'text/css'
-    if not Debug(): self.set_expire_header()
-    template_values = { } 
-    path = widget_path('pqwidget.css')
-    self.response.out.write(template.render(path, template_values))
-    
-  def set_expire_header(self):
-      expires = datetime.datetime.now() + FILE_CACHE_TIME 
-      self.response.headers['Cache-Control'] = FILE_CACHE_CONTROL
-      self.response.headers['Expires'] = expires.strftime('%a, %d %b %Y %H:%M:%S GMT') # TODO: is this working? 
-      

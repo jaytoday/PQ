@@ -1,4 +1,4 @@
-{% ifequal http_host "www.plopquiz.com" %}
+{% if not dev_server %}
 <script type="text/javascript">
 <!-- analytics -->
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
@@ -9,37 +9,7 @@ try {
 var pageTracker = _gat._getTracker("UA-6298311-1");
 pageTracker._trackPageview();
 } catch(err) {}
-</script> {% else %} <!-- Running Development Server -->
-{% endifequal %}
+</script> 
+<script defer src="http://plopquiz.uservoice.com/pages/general/widgets/tab.js?alignment=right&amp;color=69075A" type="text/javascript"></script>
+{% endif %}
 
-<script type="text/javascript">
-function Loading(duration){
-$('div.loading').show();
-	$('div.main').hide();
-		  $('div.loading').animate({opacity: 1.0}, duration, function(){
-$('div.loading').hide();
-$('div.main').show();
-	});
-}
-
-$('div.loading').hide();
-
-
-function LoadInit() {
-
-
-if ('{{ load|default:"false" }}' == "false"){ return; } else { Loading({{ load }});}
-
-}
-
-LoadInit(); 
-
-$(document).ready(function(){
-
-
-
-$('div.main').removeClass('hide');
-
-});
-
-</script>

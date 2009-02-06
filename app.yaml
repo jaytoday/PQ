@@ -1,5 +1,5 @@
 application: plopquiz
-version: 2
+version: 3
 runtime: python
 api_version: 1
 
@@ -46,6 +46,9 @@ handlers:
 - url: /static/stylesheets/
   static_dir: static/stylesheets/
 
+- url: /static/stylesheets/img/
+  static_dir: static/stylesheets/img/
+  
 - url: /static/stylesheets/
   static_dir: static/files/
 

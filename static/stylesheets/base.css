@@ -85,14 +85,14 @@ height: 105%;
 .sitelet .right { float: right; width:509px; }
 .sitelet .top, .sitelet .bottom { position: relative; }
 
-.sitelet .top .liquid { background:url(img/base/sitelet-top.png) repeat-x; }
-.sitelet .bottom .liquid { background:url(img/base/sitelet-bottom.png) repeat-x; }
-.sitelet .middle .wrap1 { background: url(img/base/sitelet-left.png) repeat-y top left; }
-.sitelet .middle .wrap2 { background: url(img/base/sitelet-right.png) repeat-y top right; }
+.sitelet .top .liquid { background:url(/static/stylesheets/img/base/sitelet-top.png) repeat-x; }
+.sitelet .bottom .liquid { background:url(/static/stylesheets/img/base/sitelet-bottom.png) repeat-x; }
+.sitelet .middle .wrap1 { background: url(/static/stylesheets/img/base/sitelet-left.png) repeat-y top left; }
+.sitelet .middle .wrap2 { background: url(/static/stylesheets/img/base/sitelet-right.png) repeat-y top right; }
 .sitelet .corner {
 width: 11px;
 height: 11px;
-background: url(img/base/sitelet-corners.png) no-repeat;
+background: url(/static/stylesheets/img/base/sitelet-corners.png) no-repeat;
 }
 .sitelet .top {	
 height: 11px; 
@@ -144,7 +144,7 @@ height:480px;
 #flyer a {
 	width: 60px;
 	height: 45px;
-	background: url(img/base/plane.png) no-repeat;
+	background: url(/static/stylesheets/img/base/plane.png) no-repeat;
 	position: absolute;
 	text-decoration:none; 
 	display: block;
@@ -160,15 +160,15 @@ visibility:hidden;
 
 
 body {
-/* background: #9ed5ff url(img/base/bg.png) bottom left repeat-x;   */
-background:transparent url(img/base/bg_repeat.png) repeat scroll left bottom;
+/* background: #9ed5ff url(/static/stylesheets/img/base/bg.png) bottom left repeat-x;   */
+background:transparent url(/static/stylesheets/img/base/bg_repeat.png) repeat scroll left bottom;
  font-family: Georgia, "Times New Roman", Times, serif; 
 /* font-family:"HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;   --mstcorefonts not required */
 font-size:100%;
 }
 
 body.repeat{
-background:transparent url(img/base/bg_repeat.png) repeat scroll left bottom;
+background:transparent url(/static/stylesheets/img/base/bg_repeat.png) repeat scroll left bottom;
 }
 
 
@@ -177,6 +177,12 @@ width: 100%;
 height: 100%;
 position: fixed;
 }
+
+#land, #clouds-far, #clouds-near {
+background-position: 0px 0px;
+}
+
+
 #clouds-near, #clouds-far {
 position: absolute;
 top: 15%;
@@ -185,12 +191,12 @@ width: 100%;
 height: 100%;
 }
 #clouds-far {
-background:url(img/base/clouds-far.png) repeat-x;
+background:url(/static/stylesheets/img/base/clouds-far.png) repeat-x;
 z-index: 10;
 top: 12%;
 }
 #clouds-near {
-background:url(img/base/clouds-near.png) repeat-x;
+background:url(/static/stylesheets/img/base/clouds-near.png) repeat-x;
 z-index: 20;
 }
 #land {
@@ -199,7 +205,7 @@ width: 100%;
 height: 92px;
 left:0px;
 bottom: -14px;
-background:url(img/base/land.png) repeat-x;
+background:url(/static/stylesheets/img/base/land.png) repeat-x;
 z-index: 15;
 }
 #cutoff {
@@ -497,7 +503,7 @@ margin:0 0 0 233px;
 /* forms */
 
 input.button, button {
-	background:#E0E0E0 url(./img/ui/e0e0e0_40x100_textures_02_glass_80.png) repeat-x scroll 0 50%;
+	background:#E0E0E0 url(/static/stylesheets/img/ui/e0e0e0_40x100_textures_02_glass_80.png) repeat-x scroll 0 50%;
 	border-color:#CCC #999 #999 #CCC;
 	border-style: solid;
 	border-width: 1px;
