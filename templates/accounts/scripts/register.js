@@ -37,13 +37,14 @@ $('#flyer a').css('top', '50%').show().animate({left: "100%"},17000);
 
 
 function SubmitName(){
+
 	var $nickname = $('input#nickname');
 	var $email = $('input#email_address');
 	var $signup_reminder = $('div#signup_reminder');
-	$signup_reminder.empty();
 	
-	if ($nickname.val().length < 4) { $signup_reminder.text('Your nickname must be at least 4 characters long.').show(); $nickname.addClass('invalid').focus(); return false; } //hasn't chosen a valid name yet 
 	if($nickname.data('availability') == 'unknown') return setTimeout(function(){ SubmitName(); }, 1000);  // still unknown
+	$signup_reminder.empty();
+	if ($nickname.val().length < 4) { $signup_reminder.text('Your nickname must be at least 4 characters long.').show(); $nickname.addClass('invalid').focus(); return false; } //hasn't chosen a valid name yet 
 	if($nickname.data('availability') != 'available') { $signup_reminder.text("The nickname you've entered isn't available.").show(); $nickname.addClass('invalid'); return false; } //hasn't chosen a valid name yet 
 	if($email.val().indexOf('@') == -1) { $signup_reminder.text('Enter a valid e-mail address so you can recover your account.').show(); $email.addClass('invalid').focus(); return false; } //hasn't chosen a valid name yet 
 	$('div.loading').show();
