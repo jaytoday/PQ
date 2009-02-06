@@ -183,7 +183,7 @@ class ViewSponsorProfile(webapp.RequestHandler):
 
 
 
-
+ # TODO: Images don't load sometimes.
 
 
 class Image (webapp.RequestHandler):  # TODO: Move this to somewhere more appropriate?
@@ -217,13 +217,14 @@ class Image (webapp.RequestHandler):  # TODO: Move this to somewhere more approp
         self.redirect('/picture_not_found')
         return
     if self.request.get("img_id") == "default": return self.default_subject_image()
+    self.response.headers['Content-Type'] = "image/png"
+    pic = SubjectImage.get(self.request.get("img_id"))
     try: 
-        pic = SubjectImage.get(self.request.get("img_id"))
-        self.response.headers['Content-Type'] = "image/png"
         if self.request.get("size") == "large": self.response.out.write(pic.large_image)
         else: self.response.out.write(pic.small_image)
     except: 
         self.redirect('/picture_not_found')
+        logging.warning( 'picture not found: %s', self.request.get("img_id") )
         return
     
 

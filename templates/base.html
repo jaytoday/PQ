@@ -7,18 +7,15 @@
 <title>PlopQuiz / {% block title %}Show What You Know{% endblock %}</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 {% block thumbnail %}<link rel="image_src" href="{{ http_host }}/static/stylesheets/img/utils/plopquiz_icon.png" type="image/png" data-width="157" data-height="157" />{% endblock %}
-
- <meta id="description" name="Description" content="{% block description %} PlopQuiz - Show What You Know About Subjects of Public Interest{% endblock %}" /><meta id="keywords" name="Keywords" content="Certification Energy Cleantech Greentech Reinvestment Recovery.Gov Recovery Plan Resume Education OER" />
+<meta id="description" name="Description" content="{% block description %} PlopQuiz - Show What You Know About Subjects of Public Interest{% endblock %}" /><meta id="keywords" name="Keywords" content="Certification Energy Cleantech Greentech Reinvestment Recovery.Gov Recovery Plan Resume Education OER" />
 <link rel="stylesheet" type="text/css" charset="utf-8" href="/static/stylesheets/base.css" />
 <link rel="stylesheet" href="/static/stylesheets/ui/dialog.css" type="text/css" media="screen">
-
 <link rel="icon" href="/static/stylesheets/img/favicon.ico" type="image/x-icon"> 
-<!--[if lte IE 6]>
-<link href="ie6styles.css" rel="stylesheet" type="text/css" />
-<![endif]-->
+
+
 <style type="text/css">
 #land, #clouds-far, #clouds-near {
-	background-position: 0px 0px;
+background-position: 0px 0px;
 }
 </style>
 <!-- utilities -->
@@ -34,11 +31,7 @@
 {% endif %}
 
 
-<!-- deprecation warning
-If not including this breaks something, then package it with the app that uses it. 
-<script type="text/javascript" src="/static/scripts/jquery/jquery.timers.js"></script>  -->
-
-<script type="text/javascript" src="/js/base"></script> <!-- compile JS into one file -->
+<script type="text/javascript" src="/js/base"></script> 
 
 {% if not dev_server %}{# NOT WORKING <script defer src="http://asset.userfly.com/users/5743/userfly.js" type="text/javascript"></script> #} {% endif %}
 {% endblock %}
@@ -48,79 +41,78 @@ If not including this breaks something, then package it with the app that uses i
 </head>
 
 <body>
-	<div id="viewport">
-		<div class="mid layer">
-			<div id="clouds-far"></div>
-		</div>
-		<div class="far layer">
-			<div id="land"></div>
-		</div>
-		<div class="near layer">
-			<div id="clouds-near"></div>
-		</div>
-	</div>
-	<div id="cutoff">
-		<div id="flyer"><a style="display:none;"><span></span></a></div>
-	</div>
-	<div class="sitelet" id="sitelet-home">
-		<div class="top">
-			<div class="left corner"></div>
-			<div class="right corner"></div>
-			<div class="liquid"></div>
-		</div>
-		<div class="middle">
-			<div class="wrap1"><div class="wrap2">
-			
-			
-			
-			<div class="main_wrapper">
-			
-			
-	{% include "../utils/nav_bar.html" %}
-			<div id="right_corner">{# DEPRECATED <span class="page_title">{{ page_title }}</span>#}<img src="/static/stylesheets/img/base/pq_logo_thumb.png"/  alt="PlopQuiz Homepage" title="PlopQuiz Homepage"> </div>
-		
-			<div class="loading" style="display:none;"><img src="/static/stylesheets/img/ajax-loader.gif"/><span class="loading">Loading...</span><img src="/static/stylesheets/img/ajax-loader.gif"/></div>
+<div id="viewport">
+<div class="mid layer">
+<div id="clouds-far"></div>
+</div>
+<div class="far layer">
+<div id="land"></div>
+</div>
+<div class="near layer">
+<div id="clouds-near"></div>
+</div>
+</div>
+<div id="cutoff">
+<div id="flyer"><a style="display:none;"><span></span></a></div>
+</div>
+<div class="sitelet" id="sitelet-home">
+<div class="top">
+<div class="left corner"></div>
+<div class="right corner"></div>
+<div class="liquid"></div>
+</div>
+<div class="middle">
+<div class="wrap1"><div class="wrap2">
 
-					<div class="main">		
-				
+
+
+<div class="main_wrapper">
+
+
+{% include "../utils/nav_bar.html" %}
+<div id="right_corner">{# DEPRECATED <span class="page_title">{{ page_title }}</span>#}<img src="/static/stylesheets/img/base/pq_logo_thumb.png"/  alt="PlopQuiz Homepage" title="PlopQuiz Homepage"> </div>
+
+<div class="loading" style="display:none;"><img src="/static/stylesheets/img/ajax-loader.gif"/><span class="loading">Loading...</span><img src="/static/stylesheets/img/ajax-loader.gif"/></div>
+
+<div class="main">		
+
 {% block main %}				
 {% endblock %}
 
-				</div>
-				
-				<div id="quick_links" class="quick_links">
-				<!-- Links <a target="_blank" href="/about">About</a> | <a target="_blank" href="/contact">Contact Us</a> | <a target="_blank" href="http://blog.plopquiz.com">Blog</a>  -->
-				<a  id="about_dialog" title="About PlopQuiz" class="about_dialog">About</a> | <a id="contact_dialog" title="Contact PlopQuiz" class="contact_dialog">Contact Us</a> | <a target="_blank" title="The PlopQuiz Blog" href="http://blog.plopquiz.com">Blog</a> 
-				</div>
-				
-				</div>
-				
-			</div>
-			
-			
-			</div>
-			<div class="clear">
-			</div>
-		</div>
-		<div class="bottom">
-			<div class="left corner"></div>
-			<div class="right corner"></div>
-			<div class="liquid"></div>
-		</div>
-	</div>
-	<div id="sitelet">
+</div>
 
-	</div>
-	
-	
+<div id="quick_links" class="quick_links">
+<a  id="about_dialog" title="About PlopQuiz" class="about_dialog">About</a> | <a id="contact_dialog" title="Contact PlopQuiz" class="contact_dialog">Contact Us</a> | <a target="_blank" title="The PlopQuiz Blog" href="http://blog.plopquiz.com">Blog</a> 
+</div>
 
- {% include "../utils/base_script.html" %}
-      
-  {% include "../utils/about.html" %}
-  {% include "../utils/contact_us.html" %}
-     
-   <script defer src="http://plopquiz.uservoice.com/pages/general/widgets/tab.js?alignment=right&amp;color=69075A" type="text/javascript"></script>
- 
-     
+</div>
+
+</div>
+
+
+</div>
+<div class="clear">
+</div>
+</div>
+<div class="bottom">
+<div class="left corner"></div>
+<div class="right corner"></div>
+<div class="liquid"></div>
+</div>
+</div>
+<div id="sitelet">
+
+</div>
+
+
+
+{% include "../utils/base_script.html" %}
+
+{% include "../utils/about.html" %}
+{% include "../utils/contact_us.html" %}
+
+<script defer src="http://plopquiz.uservoice.com/pages/general/widgets/tab.js?alignment=right&amp;color=69075A" type="text/javascript"></script>
+
+
 </body>
 </html>

@@ -39,8 +39,11 @@ class QuizJS(webapp.RequestHandler):
     }
      
     path = widget_path('pqwidget.js')
-    self.response.out.write(template.render(path, template_values))
-    
+    from utils.random import minify
+    self.response.out.write(  minify(template.render(path, template_values))  )
+
+        
+            
   def set_expire_header(self):
       expires = datetime.datetime.now() + FILE_CACHE_TIME 
       self.response.headers['Cache-Control'] = FILE_CACHE_CONTROL

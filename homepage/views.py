@@ -23,7 +23,6 @@ class TeaserHomepage(webapp.RequestHandler):
 
               
 
-
 class ViewHomepage(webapp.RequestHandler):
 
     def get(self):
@@ -60,14 +59,6 @@ class ExitPage(webapp.RequestHandler):
         if self.request.get('o'): path = tpl_path(HOMEPAGE_PATH + 'old_exit.html')  #for demo, and old time's sake.
         self.response.out.write(template.render(path, template_values))
 
-"""
-class AboutUs(webapp.RequestHandler):
-
-    def get(self):
-        template_values = {'no_load': True}
-        path = tpl_path(HOMEPAGE_PATH + 'about.html')
-        self.response.out.write(template.render(path, template_values))
-"""        
 
 
 FILE_CACHE_CONTROL = 'private, max-age=86400'
@@ -78,10 +69,15 @@ class BaseJS(webapp.RequestHandler):
     @memoize('base_js')
     def get(self):
         if not Debug(): self.set_expire_header()
-        template_values = {} # this could be used for compiling JS into one file from several apps
+        template_values = {}
         path = tpl_path('base.js')
-        self.response.out.write(template.render(path, template_values))
+        from utils.random import minify 
+        self.response.out.write( minify(template.render(path, template_values)) )
 
+
+
+    
+    
     def set_expire_header(self):
       expires = datetime.datetime.now() + FILE_CACHE_TIME 
       self.response.headers['Cache-Control'] = FILE_CACHE_CONTROL

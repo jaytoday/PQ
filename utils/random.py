@@ -14,3 +14,13 @@ def jsonp(callback, html):
 
     
 
+def minify(js):
+		from StringIO import StringIO
+		from js.javascript import JavascriptMinify
+		ins = StringIO(js)
+		outs = StringIO()
+		JavascriptMinify().minify(ins, outs)   
+		str = outs.getvalue()
+		if len(str) > 0 and str[0] == '\n':
+			str = str[1:]
+		return str
