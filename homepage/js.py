@@ -23,4 +23,4 @@ class BaseJS(webapp.RequestHandler):
 def set_expire_header(request):
   expires = datetime.datetime.now() + FILE_CACHE_TIME 
   request.response.headers['Cache-Control'] = FILE_CACHE_CONTROL
-  request.response.headers['Expires'] = expires.strftime('%a, %d %b %Y %H:%M:%S GMT')
+  request.response.headers['Expires'] = "EXPIRE_TEST" #expires.strftime('%a, %d %b %Y %H:%M:%S GMT')
