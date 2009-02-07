@@ -10,6 +10,7 @@ def registered(user_key):
     if user_key: 
        this_user = Profile.gql("WHERE login_identifier = :1", user_key).get()
        if this_user: return this_user
+       # should these last two lines be kept?
        this_user = Profile.gql("WHERE unique_identifier = :1", user_key).get() # for users with no login ID
        if this_user: return this_user
     return False

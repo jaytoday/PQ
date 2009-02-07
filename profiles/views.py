@@ -138,6 +138,7 @@ class EditSponsorSettings(webapp.RequestHandler):
     subjects = Proficiency.gql("WHERE status = :1", "public").fetch(1000)
     template_values = {'user': self.session['user'], 'edit_type': edit_type, 'this_employer': this_employer,
                         'subjects': subjects }
+    template_values['sponsor_settings_js'] = sponsor_settings_js(template_values)
     path = tpl_path(PROFILE_PATH +'sponsor_settings.html')
     self.response.out.write(template.render(path, template_values))
 
@@ -313,3 +314,11 @@ def edit_profile_js(template_values):
         from utils.random import minify 
         return minify( template.render(path, template_values) )        
         
+
+@memoize('sponsor_settings_js')
+def sponsor_settings_js(template_values):
+        path = tpl_path(PROFILE_PATH + 'scripts/sponsor_settings.js')
+        from utils.random import minify 
+        return minify( template.render(path, template_values) )        
+        
+

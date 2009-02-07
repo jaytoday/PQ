@@ -30,7 +30,7 @@ class Admin(webapp.RequestHandler):
 	if not self.request.get('uid'):
 		self.response.out.write('please enter a uid')
 		return
-	self.session['login_identifier'] = self.request.get('uid')
+	self.session['unique_identifier'] = self.request.get('uid')
 	self.redirect('/register')
 
 

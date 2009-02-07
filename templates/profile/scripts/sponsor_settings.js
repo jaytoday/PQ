@@ -1,3 +1,6 @@
+{% include "../../../static/scripts/jquery/jquery.magicpreview.js" %}
+{% include "../../../static/scripts/jquery/jquery.jsupload.0.1.min.js" %}
+
 
 		$(function () {
 

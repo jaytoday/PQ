@@ -1,13 +1,22 @@
 {% extends "../base.html" %}
 {% block head %}
-	<link rel="stylesheet" type="text/css" charset="utf-8" href="/static/stylesheets/profile/edit.css" />
-	<link rel="stylesheet" type="text/css" charset="utf-8" href="/static/stylesheets/profile/sponsor_settings.css" />
-	<link rel="stylesheet" type="text/css" charset="utf-8" href="/static/stylesheets/utils/form.css" />
-	<link rel="stylesheet" type="text/css" charset="utf-8" href="/static/stylesheets/profile/tabs.css" />
-	<link rel="stylesheet" type="text/css" charset="utf-8" href="/static/stylesheets/profile/profile.css" />
-	<script type="text/javascript" src="/static/scripts/jquery/jquery.magicpreview.pack.js"></script> 
-	<script type="text/javascript" src="/static/scripts/jquery/jquery.jsupload.0.1.min.js"></script> 
-  <script type="text/javascript"> profile_path = '/sponsors/{{user.profile_path}}'; this_sponsor = "{{user.unique_identifier}}" </script>
+
+<style type="text/css"> 
+{% include "../../static/stylesheets/ui/app_screen.css" %} 
+{% include "../../static/stylesheets/profile/tabs.css" %} 
+{% include "../../static/stylesheets/profile/profile.css" %} 
+{% include "../../static/stylesheets/profile/edit.css" %} 
+{% include "../../static/stylesheets/profile/sponsor_settings.css" %} 
+{% include "../../static/stylesheets/utils/form.css" %} 
+</style> 
+
+ <script type="text/javascript"> profile_path = '/sponsors/{{user.profile_path}}'; this_sponsor = "{{user.unique_identifier}}" </script>
+ 
+
+<script type="text/javascript"> {{ sponsor_settings_js }}</script>
+ 
+
+ 
   <script type="text/javascript" src="/static/scripts/sponsor/sponsor_settings.js"></script>  
 {% endblock %}
 

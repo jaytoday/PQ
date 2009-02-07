@@ -9,17 +9,24 @@
 <link href="ie6styles.css" rel="stylesheet" type="text/css" />
 <![endif]-->
 <style type="text/css">
+{% include "homepage.css" %}
+
+
 #land, #clouds-far, #clouds-near {
 	background-position: 0px 0px;
 }
 </style>
 
-<script type="text/javascript" src="/static/scripts/jquery/jquery-1.2.6.min.js"></script>
-<script type="text/javascript" src="/static/scripts/jquery/jquery.timers.js"></script>
-<script type="text/javascript" src="/static/scripts/utils/parallax.js"></script>
-<script type="text/javascript" src="/static/scripts/utils/json2min.js"></script>
-<script type="text/javascript" src="/static/scripts/utils/rpc.js"></script>
-<script type="text/javascript" src="/static/scripts/demo/homepage.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.js"></script> 
+
+<script type="text/javascript"> 
+{% include "../../static/scripts/jquery/jquery.timers.js" %} 
+{% include "../../static/scripts/utils/parallax.js" %} 
+{% include "../../static/scripts/utils/json2min.js" %} 
+{% include "../..//static/scripts/utils/rpc.js" %} 
+{% include "../../static/scripts/demo/homepage.js" %} 
+</script>
+
 
 </head>
 
