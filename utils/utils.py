@@ -96,9 +96,9 @@ def authorized(user):
 
 
 
-def redirect_from_appspot(wsgi_app):
+def redirect_from_appspot(wsgi_app): #Turned off for now
     def redirect_if_needed(env, start_response):
-        if env.get('HTTP_USER_AGENT','').startswith('plopquiz.appspot.com'):
+        if env.get('HTTP_HOST','').startswith('plopquiz.appspot.com'):
             import webob, urlparse
             request = webob.Request(env)
             scheme, netloc, path, query, fragment = urlparse.urlsplit(request.url)
@@ -163,14 +163,14 @@ def hash_pipe(private_object):
 
 #### MEMCACHE
 
-def memoize(key, time=10000):
+def memoize(key, time=100000):
     """Decorator to memoize functions using memcache."""
     
     def decorator(fxn):
         def wrapper(*args, **kwargs):
             from google.appengine.api import memcache
             data = memcache.get(key)
-            if Debug(): return fxn(*args, **kwargs) # not active in dev mode 
+            if Debug(): return fxn(*args, **kwargs) # not active in dev mode - could this be cause of production expires problem?
             if data is not None:
                 return data
             data = fxn(*args, **kwargs)

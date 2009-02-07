@@ -1,6 +1,4 @@
 import logging
-# Log a message each time this module get loaded.
-logging.info('Loading %s', __name__)
 import cgi
 import wsgiref.handlers
 import datetime, time
@@ -194,12 +192,18 @@ class Image (webapp.RequestHandler):  # TODO: Move this to somewhere more approp
   # File caching controls
   FILE_CACHE_CONTROL = 'private, max-age=86400'
   FILE_CACHE_TIME = datetime.timedelta(days=20)
+  
   @memoize('image_object')
   def get(self):
     self.set_expire_header()
     image_type = self.request.path.split('/image/')[1].lower().replace('/','')
-    if image_type == 'profile': return self.profile_image()
-    if image_type == 'subject': return self.subject_image()
+    try:
+      if image_type == 'profile': return self.profile_image()
+      if image_type == 'subject': return self.subject_image()
+    except TransactionFailedError: 
+        logging.warning('transaction failure on image load')
+        self.redirect(self.request.path)
+      
 
   def profile_image(self):      
     if not self.request.get("img_id"): 
@@ -243,7 +247,7 @@ class Image (webapp.RequestHandler):  # TODO: Move this to somewhere more approp
   def set_expire_header(self):
       expires = datetime.datetime.now() + self.FILE_CACHE_TIME 
       self.response.headers['Cache-Control'] = self.FILE_CACHE_CONTROL
-      self.response.headers['Expires'] = expires.strftime('%a, %d %b %Y %H:%M:%S GMT')
+      self.response.headers['Expires'] = str( expires.strftime('%a, %d %b %Y %H:%M:%S GMT') )
 
 
 

@@ -40,17 +40,15 @@ handlers:
   
   # resource handlers
 
-- url: /static/scripts.*              
-  script: utils/js/javascript.py
+#- url: /static/scripts.*              
+#  script: utils/js/javascript.py
 
-- url: /static/stylesheets/
-  static_dir: static/stylesheets/
+#- url: /static/stylesheets/
+#  static_dir: static/stylesheets/
 
 - url: /static/stylesheets/img/
   static_dir: static/stylesheets/img/
   
-- url: /static/stylesheets/
-  static_dir: static/files/
 
 
 - url: /static/beehold/

@@ -7,7 +7,8 @@
 {% if dev_server %}
 {% include "../static/scripts/jquery/jquery-1.3.1.min.js" %}
 {% else %}
-$.getScript("http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"); // should we always load local jQuery?
+{% include "../static/scripts/jquery/jquery-1.3.1.min.js" %}
+// $.getScript("http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"); // should we always load local jQuery?
 {% endif %}
 
 
