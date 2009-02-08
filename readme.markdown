@@ -53,13 +53,15 @@ Tips
   
   -- Libraries and utilities are in /utils/
   
-  -- Javascript is in /static/scripts/ (unless it needs to be dynamic)
+  -- Javascript is in /static/scripts/, and sometimes in /templates/ (this is confusing and will be refactored soon) 
   
   -- Stylesheets are in /static/stylesheets/
   
   -- Images are in /static/stylesheets/img/
   
   -- Backup JSON and files that need to be opened during execution are in /data/
+  
+  -- Note: Only files in /static/ that are not designated as static in the app.yaml are actually static. Static files cannot be accessed from a server-side script (including templates).
   
 
 

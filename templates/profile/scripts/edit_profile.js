@@ -21,7 +21,6 @@
 
 		$(function () {
 
-  
 			// Example 1
 			$('form.signup input:text').magicpreview('mp_');
 			// Example 2
@@ -164,8 +163,7 @@ function getNextPicture(photo_keys){
 				return AjaxError(); 
  }
 
-	
-	window.location=profile_path;
+	window.location=redirect_path;
 }
 
 

@@ -5,7 +5,19 @@
 <style type="text/css"> {% include "../../static/stylesheets/profile/tabs.css" %} </style>
 <style type="text/css"> {% include "../../static/stylesheets/profile/profile.css" %} </style>
 
-	<script type="text/javascript">profile_path = '/profile/{{user.profile_path}}';  photo_keys = {{ photo_keys }};  </script> 
+
+
+	<script type="text/javascript">
+	 photo_keys = {{ photo_keys }};  
+
+	 // by default, redirect to profile
+	 
+	 redirect_path = '/profile/{{user.profile_path}}'; 
+	 
+	 // if user is sponsor and hasn't chosen settings, redirect to settings page
+	 {% if user.is_sponsor %}  if ("{{ edit_type }}" == "Create")  redirect_path = '/edit_sponsor_settings';   {% endif %}
+	 
+	</script> 
 
 	<script type="text/javascript"> {{ edit_profile_js }}</script>
 {% endblock %}

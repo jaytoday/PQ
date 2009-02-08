@@ -24,15 +24,16 @@ DEFAULT_LANDING_PAGE = '/preview/homepage'
 
 class Login(webapp.RequestHandler):
   def get(self):
-    logging.info('Loading Login Page')
     login_response = str('http://' + self.request._environ['HTTP_HOST'] + '/login/response')
     template_values = {'token_url': login_response, 'no_quizlink': True}
     if self.request.get('continue'): self.session['continue'] = self.request.get('continue')
-    # TODO: test taking functionality -- ? How is this different than quizzes
+    """ TODO: test taking functionality -- not yet implemented. 
     if self.request.get('test'):
         template_values['pre_test'] = "True"
         self.session['continue'] = '/test/' + self.request.get('test')    
+    """
     if self.session['user']: 
+		if self.session['user'].has_edited is False: return self.redirect('/edit_profile') # create profile if its first time logging in. 
 		if not self.session['continue']: self.session['continue'] = '/profile/' + self.session['user'].profile_path 
 		self.redirect(self.session['continue'])
 		self.session['continue'] = False
@@ -174,16 +175,10 @@ class Register(webapp.RequestHandler):
 		self.session['account'] = register_account(self.session['unique_identifier'], self.session['nickname'])
 		self.session['user'] = register_user(self.session['unique_identifier'], self.session['nickname'], self.session['fullname'], self.session['email'])
 		self.session['quiz_taker'] = register_qt(self.session['unique_identifier'], self.session['nickname'])
-		self.session['create_profile'] == True
 		from accounts.mail import mail_intro_message
 		mail_intro_message(self.session['user'])
-	
-    
-    
-		if self.session['continue']:
-			self.redirect(self.session['continue'])
-			del self.session['continue']
-		else: self.redirect('/edit_profile')
+		self.redirect('/login')
+
 	  
     
     

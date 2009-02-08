@@ -30,8 +30,10 @@ class Admin(webapp.RequestHandler):
 	if not self.request.get('uid'):
 		self.response.out.write('please enter a uid')
 		return
-	self.session['unique_identifier'] = self.request.get('uid')
-	self.redirect('/register')
+	from accounts.methods import registered
+	self.session['user'] = False
+	self.session['user'] = registered( self.request.get('uid') )
+	self.redirect('/login')
 
 
 

@@ -39,12 +39,14 @@ handlers:
   
   
   # resource handlers
+### Temporarily, unstatic files are being kept in the static folder ###
 
 #- url: /static/scripts.*              
 #  script: utils/js/javascript.py
 
 #- url: /static/stylesheets/
 #  static_dir: static/stylesheets/
+
 
 - url: /static/stylesheets/img/
   static_dir: static/stylesheets/img/
@@ -58,9 +60,6 @@ handlers:
   static_dir: static/html/
 
 
-
-#### MAIN HANDLER ###
-
 - url: /favicon.ico
   static_files: static/stylesheets/img/favicon.ico
   upload: static/stylesheets/img/favicon.ico
@@ -73,9 +72,12 @@ handlers:
 - url: /sitemap.xml
   static_files: static/utils/sitemap.xml
   upload: static/utils/sitemap.xml
-  
-  
-  
+
+
+
+
+#### MAIN HANDLER ###
+    
 - url: /.*
   script: main.py
 

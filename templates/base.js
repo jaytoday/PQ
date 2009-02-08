@@ -1,8 +1,9 @@
 
 
+{# Initialize variables from template tags (these will be cached and used for all users!) #}
+http_host = "{{http_host}}";
 
 // Include utility scripts 
-
 
 {% if dev_server %}
 {% include "../static/scripts/jquery/jquery-1.3.1.min.js" %}

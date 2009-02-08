@@ -24,3 +24,12 @@ def minify(js):
 		if len(str) > 0 and str[0] == '\n':
 			str = str[1:]
 		return str
+
+
+
+
+def css_minify(css):
+		return css.replace("\n", "")
+		
+
+

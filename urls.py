@@ -1,4 +1,8 @@
 def url_routes(map):
+	"""
+	Can caching be controlled from here? 
+	
+	"""
 	
 	#Hompeage
 	map.connect('', controller = 'homepage.views:TeaserHomepage')
@@ -76,9 +80,7 @@ def url_routes(map):
 	map.connect('ranking/graph', controller = 'ranking.views:Graph')		
 	map.connect('debug', controller = 'dev.views:Debug')
 	
-	
-	#Javascript
-	map.connect('js/base', controller = 'homepage.js:BaseJS')	   										
+	map.connect('headers', controller = 'dev.headers:RequestHandler')									
 																														 
 	#Utils
 	map.connect('image/*img', controller = 'profiles.views:Image')

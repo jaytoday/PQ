@@ -104,9 +104,7 @@ class EditProfile(webapp.RequestHandler):
   @login_required
   def get(self):
     public_photos = self.public_photos()
-    if self.session['create_profile'] == True:
-        edit_type = "Create"
-        self.session['create_profile'] = False
+    if self.session['user'].has_edited is False: edit_type = "Create"
     else: edit_type = 'Edit'
     template_values = {'user': self.session['user'], 'edit_type': edit_type, 
                        'photo_keys': public_photos}

@@ -76,6 +76,7 @@ class SponsorPost(webapp.RequestHandler):
 
 
   def sponsor_settings(self): 	
+	PLEDGE_NUM = 500 
 	# get employer
 	this_employer = Employer.get_by_key_name(self.request.get('sponsor'))
 	# save message
@@ -86,12 +87,20 @@ class SponsorPost(webapp.RequestHandler):
 	from model.user import Profile
 	this_user = Profile.get_by_key_name(this_employer.unique_identifier)
 	from model.proficiency import Proficiency
+	this_proficiency = Proficiency.get_by_key_name(self.request.get('quiz_subject'))
+	
 	#this_user.sponsored_subjects.append( Proficiency.get_by_key_name(self.request.get('quiz_subject')) )  -- Multiple Entries
-	if self.request.get('quiz_subject') != "undefined": this_user.sponsored_subjects = [ Proficiency.get_by_key_name(self.request.get('quiz_subject')).key() ]
+	if self.request.get('quiz_subject') != "undefined": this_user.sponsored_subjects = [ this_proficiency.key() ]
+	# create auto_pledge
+	from model.employer import AutoPledge
 	# save sponsor account
+  	new_pledge = AutoPledge(employer = this_employer,
+  	                        proficiency = this_proficiency,
+  	                        count = PLEDGE_NUM)
+
 	db.put([this_employer, this_user])
 	return "OK"
-
+  	
 
   def sponsor_apply(self): 	
 	from model.employer import Sponsor_Application

@@ -163,7 +163,7 @@ def hash_pipe(private_object):
 
 #### MEMCACHE
 
-def memoize(key, time=100000):
+def memoize(key, time=1000000):
     """Decorator to memoize functions using memcache."""
     
     def decorator(fxn):

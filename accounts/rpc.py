@@ -54,6 +54,7 @@ class RPCMethods(webapp.RequestHandler):
   def SubmitProfileEdits(self, *args):
   	session = Session()
   	user = session['user']    
+  	user.has_edited = True
   	user.fullname = args[0]
   	if len(args[1]) > 5:  user.email = args[1]
   	user.location = args[2]
@@ -69,7 +70,7 @@ class RPCMethods(webapp.RequestHandler):
   		from .model.user import ProfilePicture
   		user.photo = ProfilePicture.get(args[6])
   	user.put()
-  	session['user'] = user
+  	session['user'] = user # update profile info cached for session
 
 		
 	# add up all scores for a given quiztaker, and then rank them.

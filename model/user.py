@@ -43,6 +43,7 @@ class Profile(db.Model):
     profile_path = db.StringProperty(required=True)
     fullname = db.StringProperty(required=False)
     modified = db.DateTimeProperty(auto_now=True)
+    has_edited=db.BooleanProperty(default=False)
     
     #scores = db.ListProperty(db.Key) # ItemScore keys
     #levels = db.ListProperty(db.Key) # ProficiencyLevel keys    
