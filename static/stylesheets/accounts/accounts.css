@@ -110,11 +110,14 @@ width:273px;
 div#notice{
 font-size:1em;
 margin:-55px 5px 0;
+height:15px;
 }
 
 span#available{ color:green; }
-span#not_available{ color:red; }
+span#not_available, span#too_short{ color:red; }
 
+span#checking { font-size:0.8em; }
+span#checking img{ margin: 0 10px 0 0; }
 
 
 h2#header{ font-size: 1.8em; }

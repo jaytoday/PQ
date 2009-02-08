@@ -210,6 +210,8 @@ $(this).addClass('clicked');
 // Take a Quiz link
 $('a#take_a_quiz').click(function(){ 
 	$.getScript("/js/quiz/?autostart=True");
+	$('div#pq_quiz_overlay').show().bind("displayQuiz", function()
+                                      { $(this).hide();         }) ;
 });
 
 

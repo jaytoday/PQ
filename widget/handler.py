@@ -65,7 +65,8 @@ class QuizJS(webapp.RequestHandler):
   def get_widget_css(self):
     template_values = {} 
     path = widget_path('pqwidget.css')
-    return template.render(path, template_values)
+    from utils.random import css_minify
+    return css_minify( template.render(path, template_values) )
     
   def get_auto_start(self):
   	if self.request.get('autostart') == "True":

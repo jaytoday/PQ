@@ -8,6 +8,7 @@ $(function(){
 	
 //TODO: Check for invalid chars, like $ and <, etc.
 
+var notice = $('div#notice');
 
 $('input#nickname').preserveDefaultText('your name');
 $('input#email_address').preserveDefaultText('your email address');
@@ -17,7 +18,7 @@ $('input#nickname').keydown(function(){ $('input#nickname').data('availability',
 
 $('input#nickname').typeWatch( 
  {
-    callback:function(){ NicknameCheck(); },
+    callback:function(){ NicknameCheck(notice); },
     wait:300,          // milliseconds
     highlight:true
 }
@@ -26,7 +27,7 @@ $('input#nickname').typeWatch(
 
 $('div#submit_nickname').click(function(){ SubmitName(); });
 
-NicknameCheck();
+NicknameCheck(notice);
 
 
 // flyer
@@ -53,10 +54,12 @@ function SubmitName(){
 	
 }
 
-function NicknameCheck(){
+function NicknameCheck(notice){
 	
-	
+	notice.find('span').hide().end().find('span#checking').show();
 	var nickname = $('input#nickname').val();
+	
+	if (nickname.length < 4) { notice.find('span#checking').hide().end().find('span#too_short').show();  return false; }
 	
 $.ajax({
 		url: http_host + '/accounts/rpc?',
@@ -68,10 +71,8 @@ $.ajax({
 		success: function(response) { 
 			
 			var response =  eval(response);
-			
-			
-			$('div#notice > span').hide();
-			$('div#notice > span#' + response).show();
+
+			notice.find('span#checking').hide().end().find('span#' + response).show();
 			
 			$('input#nickname').data('availability', response) 
 			

@@ -58,7 +58,7 @@ $('a#restore_all_data').click(function(){
 var check = confirm("Do you want to restore backup data? Existing data may be deleted!");
 
 if (check) {
-	$.getScript("/static/scripts/dev/restore.js");
+	RestoreInit();
 }
 else window.location="/dev/admin";
 
@@ -134,3 +134,6 @@ function MailOut(mail_type){
 });
 
 }
+
+
+{% include "../../static/scripts/dev/restore.js" %}

@@ -4,7 +4,7 @@
  *
  */  
 
-$(function(){
+function RestoreInit(){
 	
 	if ($('a#restore_all_data').length > 1) return false;
 	
@@ -27,7 +27,7 @@ $(function(){
 	
 
 
-} );
+}
 
 
 

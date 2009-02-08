@@ -4,7 +4,7 @@ import wsgiref.handlers
 from utils import webapp
 from utils.webapp import template
 from google.appengine.ext import db
-from utils.utils import ROOT_PATH, tpl_path, admin_only
+from utils.utils import ROOT_PATH, tpl_path, admin_only, memoize
 from utils.gql_encoder import encode
 
 # Template paths
@@ -15,14 +15,20 @@ DEV_PATH = 'dev/'
 
 
 class Admin(webapp.RequestHandler):
+
   #Load admin page
   @admin_only
   def get(self):
     if self.request.get('shortcut') == 'login':
         return self.dev_login()
+    else: self.response.out.write(self.admin_options() )
+    
+  
+  @memoize('admin_options')
+  def admin_options(self):    
     template_values = {}
     path = tpl_path(DEV_PATH +'admin.html')
-    self.response.out.write(template.render(path, template_values))
+    return template.render(path, template_values)
     
 
 
@@ -33,7 +39,10 @@ class Admin(webapp.RequestHandler):
 	from accounts.methods import registered
 	self.session['user'] = False
 	self.session['user'] = registered( self.request.get('uid') )
-	self.redirect('/login')
+	if self.session['user'] is False: 
+	    self.session['unique_identifier'] = self.request.get('uid')
+	    return self.redirect('/register')
+	return self.redirect('/login')
 
 
 
