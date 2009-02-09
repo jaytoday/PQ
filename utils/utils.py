@@ -115,10 +115,9 @@ def browser_check(wsgi_app):
         if "Mozilla/4.0" in env.get('HTTP_USER_AGENT',()): # MSIE - are there any others we need?
             import webob, urlparse
             request = webob.Request(env)
+            if '/js/' in request.url: pass # doesn't apply to script handlers
             scheme, netloc, path, query, fragment = urlparse.urlsplit(request.url)
             error_path = '/error/browser'
-            logging.info(path)
-            logging.info(error_path)
             if path == error_path: return wsgi_app(env, start_response) # avoid infinite loops
             url = urlparse.urlunsplit([scheme, netloc,  error_path, query, fragment])
             start_response('301 Moved Permanently', [('Location', url)])

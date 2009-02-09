@@ -5,7 +5,8 @@ def url_routes(map):
 	"""
 	
 	#Hompeage
-	map.connect('', controller = 'homepage.views:TeaserHomepage')
+	#map.connect('', controller = 'homepage.views:TeaserHomepage')
+	map.connect('', controller = 'homepage.views:ViewHomepage')
 	map.connect('preview/homepage', controller = 'homepage.views:ViewHomepage')
 
     #Login
