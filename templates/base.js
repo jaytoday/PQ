@@ -229,16 +229,24 @@ $('a#take_a_quiz').click(function(){
 
 
 
-function Loading(duration){
-$('div.loading').show();
-	$('div.main').hide();
-		  $('div.loading').animate({opacity: 1.0}, duration, function(){
-$('div.loading').hide();
-$('div.main').show();
-	});
-}
+function Loading(load_duration){
+	
+	$(function(){
+		
+var $loader = $('div.loading', 'div.main_wrapper');
+var $main = $('div.main', 'div.main_wrapper');
+$loader.show();
+$main.hide();
+$loader.animate({opacity:1}, { duration:0 }).animate({opacity: 1 }, {duration:load_duration , complete:function(){ 
+																									$loader.hide();
+																									$main.show();
+																							}});
 
-$('div.loading').hide();
+
+});
+
+
+}
 
 
 

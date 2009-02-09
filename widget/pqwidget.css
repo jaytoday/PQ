@@ -1062,7 +1062,7 @@ width:310px;
 
 .quiz_wrap div#quiz_complete_quiz_selection{
 height:265px;
-margin:2px 0 20px -20px !important;
+margin:2px 0 5px -20px !important;
 padding:5px;
 width:355px;
 }
@@ -1586,7 +1586,7 @@ height: 64px;
 }
 
 .quiz_wrap button.quiz_complete{
-margin:-156px 0 0 66px !important;
+margin:-140px 0 0 56px !important;
 position:absolute !important;
 }
 

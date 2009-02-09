@@ -17,6 +17,7 @@ PROFILE_PATH = 'profile/'
 REPORT_CARD_LIMIT = 5
 CLOUD_LIMIT = 9
 TOPIC_LEVEL_MIN = 10
+PROFILE_LOAD_DURATION = 5000
 
 class ViewProfile(webapp.RequestHandler):
   #View a profile
@@ -24,6 +25,7 @@ class ViewProfile(webapp.RequestHandler):
     template_values = self.get_profile()
     if not template_values: return
     template_values['profile_js'] = profile_js(template_values)
+    template_values['load'] = PROFILE_LOAD_DURATION 
     path = tpl_path(PROFILE_PATH +'profile_template.html')
     self.response.out.write(template.render(path, template_values))
     
@@ -152,7 +154,7 @@ class ViewSponsorProfile(webapp.RequestHandler):
     from model.account import Sponsorship, Award
     template_values = self.get_sponsor_profile()
     if not template_values: return
-    template_values['load'] = 2000 # give 2 seconds to load 
+    template_values['load'] = PROFILE_LOAD_DURATION
     template_values['profile_js'] = profile_js(template_values)
     path = tpl_path(PROFILE_PATH +'sponsor_template.html')
     self.response.out.write(template.render(path, template_values))
