@@ -18,7 +18,7 @@ ACCOUNTS_PATH = 'accounts/'
 if Debug(): RPX_API_KEY = '081f35f427b90c6ed3415256e8d934ed8d01b11e'
 else: RPX_API_KEY = 'a36dbaa685c9356086c69b9923a637ecf33369bc'
 RPX_API_KEY = 'a36dbaa685c9356086c69b9923a637ecf33369bc'  #### TODO: dev key doesn't work. ('data not found' error)
-DEFAULT_LANDING_PAGE = '/preview/homepage'
+DEFAULT_LANDING_PAGE = ''
 
 
 

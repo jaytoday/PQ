@@ -27,7 +27,7 @@ http_host = "{{http_host}}";
 $(document).ready(function()
 {
 	
-	//$('div.main').removeClass('hide');
+	$('div.main').removeClass('hide');
 	
 	
 	jqViewport = $('#viewport');

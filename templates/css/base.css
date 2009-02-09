@@ -145,6 +145,7 @@ overflow:hidden;
 height:480px;
 }
 
+.sitelet .middle .main_wrapper .main.hide{ display:none; }
 /* Flyer */
 
 
