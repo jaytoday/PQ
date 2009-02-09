@@ -173,7 +173,17 @@ def mail_sponsor_intro(profile):
 	
 	Your new role as a PlopQuiz Community Sponsor is a chance to connect with motivated learners and show your support for issues of public interest.
 	
-	Members of your organization can use this private link to sign in to your account:
+	Members of your orvybreaks,
+       
+       Welcome to PlopQuiz!
+       
+       Your academic profile on PlopQuiz.com will help you demonstrate your knowledge about emerging subjects of public interest.
+       
+       Each quiz you take is a new chance for you to add awards to your academic profile and compete for sponsorships from our community organizations.
+       
+       
+               
+       ganization can use this private link to sign in to your account:
 	
 	%s
 	
@@ -252,10 +262,10 @@ def mail_footer(): #Todo: unsubscribe
 	footer = """
 	-----------------------------------------------------------------------------
 	
-	Thanks For Using PlopQuiz! /  http://www.plopquiz.com
+	Visit PlopQuiz at http://www.plopquiz.com
 	
     e-mail PlopQuiz: contact@plopquiz.com
-	call PlopQuiz: (650) 353-2694. 
+	call PlopQuiz: (650) 353-2694
 	
 	
 	"""

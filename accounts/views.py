@@ -27,6 +27,10 @@ class Login(webapp.RequestHandler):
     login_response = str('http://' + self.request._environ['HTTP_HOST'] + '/login/response')
     template_values = {'token_url': login_response, 'no_quizlink': True}
     if self.request.get('continue'): self.session['continue'] = self.request.get('continue')
+    if self.request.get('reset'): 
+        self.session['user'] = False # log current user out, if logged in
+        template_values = self.reset_account_access(template_values)
+    
     """ TODO: test taking functionality -- not yet implemented. 
     if self.request.get('test'):
         template_values['pre_test'] = "True"
@@ -37,9 +41,7 @@ class Login(webapp.RequestHandler):
 		if not self.session['continue']: self.session['continue'] = '/profile/' + self.session['user'].profile_path 
 		self.redirect(self.session['continue'])
 		self.session['continue'] = False
-    if self.request.get('secret'): return self.shortcut()
     self.session['reset_account'] = False
-    if self.request.get('reset'): self.reset_account_access(template_values)
     if self.session['continue']: template_values['login_context'] = self.session['continue'].split('/')
     if self.request.get('sponsor'):
         template_values['login_context'] = "sponsor"
@@ -49,18 +51,7 @@ class Login(webapp.RequestHandler):
     template_values['login_js'] = login_js(template_values)
     path = tpl_path(ACCOUNTS_PATH +'login.html')
     self.response.out.write(template.render(path, template_values))
-    
 
-  def shortcut(self): #TODO: Ensure a database restore couldn't break these links
-    logging.info('Using Key-Based Shortcut For Key %s', self.request.get('secret'))
-    from model.user import Profile
-    try: 
-        self.session['user'] = Profile.get(self.request.get('secret'))
-        self.redirect('/login')
-        assert self.session['user'] is not False
-    except: 
-        logging.warning('unable to use key %s for login shortcut', self.request.get('secret'))
-        self.redirect('/register')
          
   def reset_account_access(self, template_values):
     from model.user import Profile

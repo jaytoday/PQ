@@ -229,7 +229,7 @@ class Session(object):
         """
         Create a new session id.
         """
-        sid = str(self.session.key()) + md5.new(repr(time.time()) + \
+        sid = md5.new(repr(time.time()) + \
 		os.environ['REMOTE_ADDR'] + \
                 str(random.random())).hexdigest()
         return sid
