@@ -159,8 +159,8 @@ class QuizSession():
 			this_score = int(round(timer_status * 100))
 		else:
 			
-			if picked_clean == "skip": this_score = SKIP_SCORE * (2 - (1 - (timer_status/2) ) ) #skipped
-			else: this_score = WRONG_SCORE * (2 - (1 - (timer_status/2) ) )
+			if picked_clean == "skip": this_score = int( SKIP_SCORE * (2 - (1 - (timer_status/2) ) ) ) #skipped
+			else: this_score = int( WRONG_SCORE * (2 - (1 - (timer_status/2) ) ) )
 			
 
 							 
