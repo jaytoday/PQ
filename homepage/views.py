@@ -22,7 +22,7 @@ class TeaserHomepage(webapp.RequestHandler):
 
 class ViewHomepage(webapp.RequestHandler):
 
-    @memoize('homepage', 30000)
+    
     def get(self):
         from homepage.methods import load_action_feed
         template_values = {'page_title': 'Plopquiz', 'recent_actions': load_action_feed(), 'featured_quiz': 'Recovery.Gov'}
@@ -34,6 +34,7 @@ class ViewHomepage(webapp.RequestHandler):
 
 	
 
+	@memoize('homepage_feed', 50000)
 	def load_action_feed():
 		ACTION_THRESHOLD = 20 # too much? do testing on laptops.
 		action_feed = []

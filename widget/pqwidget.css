@@ -1929,6 +1929,8 @@ text-align: center;
 
 .quiz_wrap div.subject_description.summary{ padding: 10px 8px 20px !important; height:144px; margin-top:4px !important; }
 
+.quiz_wrap div.subject_description.summary .note{  font-style: italic; font-size: 0.7em; line-height: 1.5em; }
+
 .quiz_wrap div.subject_description.study_guide{ height: 200px; }
 
 

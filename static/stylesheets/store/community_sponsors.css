@@ -69,7 +69,9 @@ font-size: .6em;
 /* Application Form */
 
 div#sponsor_signup{
-margin:10px;
+margin:10px 0;
+height: 50px;
+width: 435px;
 }
 
 form#sponsor_apply{

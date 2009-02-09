@@ -144,6 +144,7 @@ class QuizSession():
 
 	def add_score(self, picked_answer, timer_status, token, vendor):
 		SKIP_SCORE = 20
+		WRONG_SCORE = 10 
 		logging.info('Posting the Score')  
 		self.session = self.get_quiz_session(token)
 		this_item = QuizItem.get(self.session['current_item']['key']) 
@@ -157,10 +158,11 @@ class QuizSession():
 			timer_status = float(timer_status)
 			this_score = int(round(timer_status * 100))
 		else:
-			if picked_clean == "skip": this_score = SKIP_SCORE
-			this_score = 0
+			
+			if picked_clean == "skip": this_score = SKIP_SCORE * (2 - (1 - (timer_status/2) ) ) #skipped
+			else: this_score = WRONG_SCORE * (2 - (1 - (timer_status/2) ) )
+			
 
-		# Need Better Temp Storing 
 							 
 		score = ItemScore(quiz_item = this_item.key(),
 						  score = this_score,
