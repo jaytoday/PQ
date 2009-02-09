@@ -181,7 +181,7 @@ return false;
 function onEditCancel(){
 $('div.main').hide(); $('div.loading').show();
 	
-window.location=profile_path;
+window.location=redirect_path;
 }
 
 function CyclePictures(){

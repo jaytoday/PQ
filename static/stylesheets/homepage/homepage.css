@@ -268,15 +268,17 @@ width:366px;
 
 div#intro_frame_box div#business{
 background:#EEEEEE none repeat scroll 0 0;
-font-size:0.9em;
-border-color:#CCC;
-line-height:1.3em;
-margin:10px 17px;
+border-color:#CCCCCC;
+font-size:0.8em;
+line-height:1.7em;
+margin:10px 20px;
 padding:5px;
-width:280px;
+text-align:center;
+width:300px;
 }
 
-div#intro_frame_box div#business a{ font-weight:bold;}
+div#intro_frame_box div#business a{ font-size:1.4em;
+font-weight:bold;}
 
 div#intro_frame_box h3{
 font-size:1.8em;
@@ -393,7 +395,7 @@ margin-left: 135px;
 
 div.mc{
 font-size:2.1em;
-line-height:1.2em;
+line-height:1.15em;
 margin:13px 0 0 27px;
 }
 

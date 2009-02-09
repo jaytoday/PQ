@@ -5,18 +5,17 @@ $(function(){
 	/* Reset Account Access */
 	
  $('a#reset').click(function(){
-			
 			$('div.login_box div#proxy_login').hide();
 			$('div.login_box div#reset_account').show();
 			$('input#email_address').preserveDefaultText('your email address');
 			$(this).hide();
-			$(this).parent().find('a#login').css({'display': 'inline'});
+			$(this).parent().find('a#login_options').css({'display': 'inline'});
 		});
 		
-		$('div.login_box div#reset_account a#login, span.note #login').click(function(){
+		$('div.login_box').find('#login_options').click(function(){
 			$('div.login_box div#reset_account').hide();
 			$('div.login_box div#proxy_login').show();
-			 $('span.note #login').hide();
+			 $('span.note').find('#login_options').hide();
 			 $('span.note a#reset').css({'display': 'inline'});
 			 
 		});
@@ -24,12 +23,15 @@ $(function(){
 				
 		$('div.login_box div#reset_account button#submit').click(function(){
 			
+			var submit_button = $(this);
+			
+					var checking = $(this).parent().find('div#checking');
 					var error_text = $(this).parent().find('div#error');
 					error_text.hide();
 					
 				var email = $("input#email_address").val();
 				if (email == "" ) {
-				error_text.text('This value is required'); 
+				error_text.text('Enter Your Registered E-mail Address'); 
 				error_text.show();
 				return false;
 			  }
@@ -38,10 +40,12 @@ $(function(){
 				error_text.show();
 				return false;
 			  }
-					$(this).parent().find('div#error').text('Invalid Email Address')
+
 					
 				
-					 // ajax call
+				submit_button.attr('disabled', true);
+				checking.show();
+				// ajax call
 				$.ajax({
 				type: "POST", 
 				url: '/accounts/rpc/post',
@@ -53,12 +57,15 @@ $(function(){
 					},
 				success: function(response) { 
 
+					submit_button.attr('disabled', false);
+					checking.hide();
+					
 					if (eval(response) == "OK") {
 						$('div.login_box div#reset_account div#submit_email').hide();
 						$('div.login_box div#reset_account div#submit_email_success').show();
 					}
 					else {
-					error_text.text("This E-mail Address Is Not Linked To A PlopQuiz Account."); 
+					error_text.text("This E-mail Address Is Not Linked To A PlopQuiz Account"); 
 				    error_text.show();	
 					}
 				

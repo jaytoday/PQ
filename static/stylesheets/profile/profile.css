@@ -288,12 +288,12 @@ width:120px;
 }
 
 div.facebook{
-background-image:url(../img/accounts/facebook.gif);
+background-image:url(/static/stylesheets/img/accounts/facebook.gif);
 background-position:left top;
 background-repeat:no-repeat;
 }
 div.linkedin{
-background-image:url(../img/accounts/linkedin.gif);
+background-image:url(/static/stylesheets/img/accounts/linkedin.gif);
 background-position:left top;
 background-repeat:no-repeat;
 }
@@ -804,10 +804,14 @@ text-align:center;
 width:103%;
 }
 div.flash_msg ul li{
-font-size:0.8em;
-margin:20px -1px;
-width:180px;
+background-image:url(/static/stylesheets/img/utils/purple_next_tiny.png);
+background-position:0 1px;
+background-repeat:no-repeat;
+font-size:0.9em;
 line-height:1.4em;
+margin:20px -1px;
+text-indent:20px;
+width:180px;
 }
 
 

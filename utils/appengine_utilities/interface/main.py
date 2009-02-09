@@ -17,7 +17,7 @@ from google.appengine.ext import webapp
 from google.appengine.api import memcache
 from google.appengine.ext import db
 
-from utils.appengine_utilities import cron
+from appengine_utilities import cron
 
 class MainPage(webapp.RequestHandler):
     def get(self):

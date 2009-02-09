@@ -30,10 +30,11 @@ import os
 import time
 import datetime
 import random
-import sha
+import md5
 import Cookie
 import pickle
 import __main__
+from time import strftime
 
 # google appengine imports
 from google.appengine.ext import db
@@ -42,22 +43,24 @@ from google.appengine.api import memcache
 #django simplejson import, used for flash
 from django.utils import simplejson
 
+from rotmodel import ROTModel
 
 # settings, if you have these set elsewhere, such as your django settings file,
 # you'll need to adjust the values to pull from there.
 
-COOKIE_NAME = 'session-sid'
+COOKIE_NAME = 'appengine-utilities-session-sid' # session token
 DEFAULT_COOKIE_PATH = '/'
-SESSION_EXPIRE_TIME = 600000 # sessions are valid for 7200 seconds (2 hours)
-CLEAN_CHECK_PERCENT = 15 # 15% of all requests will clean the database
+SESSION_EXPIRE_TIME = 7200 # sessions are valid for 7200 seconds (2 hours)
+CLEAN_CHECK_PERCENT = 50 # By default, 50% of all requests will clean the database
 INTEGRATE_FLASH = True # integrate functionality from flash module?
 CHECK_IP = True # validate sessions by IP
 CHECK_USER_AGENT = True # validate sessions by user agent
 SET_COOKIE_EXPIRES = True # Set to True to add expiration field to cookie
-SESSION_TOKEN_TTL = 15 # Number of seconds a session token is valid for.
+SESSION_TOKEN_TTL = 5 # Number of seconds a session token is valid for.
+UPDATE_LAST_ACTIVITY = 60 # Number of seconds that may pass before
+                          # last_activity is updated
 
-
-class _AppEngineUtilities_Session(db.Model):
+class _AppEngineUtilities_Session(ROTModel):
     """
     Model for the sessions in the datastore. This contains the identifier and
     validation information for the session.
@@ -69,7 +72,7 @@ class _AppEngineUtilities_Session(db.Model):
     last_activity = db.DateTimeProperty(auto_now=True)
 
 
-class _AppEngineUtilities_SessionData(db.Model):
+class _AppEngineUtilities_SessionData(ROTModel):
     """
     Model for the session data in the datastore.
     """
@@ -98,12 +101,14 @@ class Session(object):
     """
 
     def __init__(self, cookie_path=DEFAULT_COOKIE_PATH,
-            cookie_name=COOKIE_NAME, session_expire_time=SESSION_EXPIRE_TIME,
+            cookie_name=COOKIE_NAME,
+            session_expire_time=SESSION_EXPIRE_TIME,
             clean_check_percent=CLEAN_CHECK_PERCENT,
             integrate_flash=INTEGRATE_FLASH, check_ip=CHECK_IP,
             check_user_agent=CHECK_USER_AGENT,
             set_cookie_expires=SET_COOKIE_EXPIRES,
-            session_token_ttl=SESSION_TOKEN_TTL):
+            session_token_ttl=SESSION_TOKEN_TTL,
+            last_activity_update=UPDATE_LAST_ACTIVITY):
         """
         Initializer
 
@@ -127,79 +132,88 @@ class Session(object):
         self.cookie_path = cookie_path
         self.cookie_name = cookie_name
         self.session_expire_time = session_expire_time
-        self.clean_check_percent = clean_check_percent
         self.integrate_flash = integrate_flash
         self.check_user_agent = check_user_agent
         self.check_ip = check_ip
         self.set_cookie_expires = set_cookie_expires
         self.session_token_ttl = session_token_ttl
+        self.last_activity_update = last_activity_update
 
-        """
-        Check the cookie and, if necessary, create a new one.
-        """
+        # make sure the page is not cached in the browser
+        self.no_cache_headers()
+        # Check the cookie and, if necessary, create a new one.
         self.cache = {}
         self.sid = None
         string_cookie = os.environ.get('HTTP_COOKIE', '')
         self.cookie = Cookie.SimpleCookie()
+        self.output_cookie = Cookie.SimpleCookie()
         self.cookie.load(string_cookie)
+
+        new_session = True
+
+        # do_put is used to determine if a datastore write should
+        # happen on this request.
+        do_put = False
+
         # check for existing cookie
         if self.cookie.get(cookie_name):
             self.sid = self.cookie[cookie_name].value
-            # If there isn't a valid session for the cookie sid,
-            # start a new session.
-            self.session = self._get_session()
-            if self.session is None:
-                self.sid = self.new_sid()
-                self.session = _AppEngineUtilities_Session()
-                if 'HTTP_USER_AGENT' in os.environ:
-                    self.session.ua = os.environ.get('HTTP_USER_AGENT','')
-                else:
-                    self.session.ua = None
-                if 'REMOTE_ADDR' in os.environ:
-                    self.session.ip = os.environ.get('REMOTE_ADDR','')
-                else:
-                    self.session.ip = None
-                self.session.sid = [self.sid]
-                self.cookie[cookie_name] = self.sid
-                self.cookie[cookie_name]['path'] = cookie_path
-                if set_cookie_expires:
-                    self.cookie[cookie_name]['expires'] = \
-                        self.session_expire_time
-            else:
-                # check the age of the token to determine if a new one
-                # is required
-                duration = datetime.timedelta(seconds=self.session_token_ttl)
-                session_age_limit = datetime.datetime.now() - duration
-                if self.session.last_activity < session_age_limit:
-                    self.sid = self.new_sid()
-                    if len(self.session.sid) > 2:
-                        self.session.sid.remove(self.session.sid[0])
-                    self.session.sid.append(self.sid)
-                else:
-                    self.sid = self.session.sid[-1]
-                self.cookie[cookie_name] = self.sid
-                self.cookie[cookie_name]['path'] = cookie_path
-                if set_cookie_expires:
-                    self.cookie[cookie_name]['expires'] = \
-                        self.session_expire_time
+            self.session = self._get_session() # will return None if
+                                               # sid expired
+            if self.session:
+                new_session = False
         else:
+            # create and put a new session to get the key initialized
+            self.session = _AppEngineUtilities_Session()
+            self.session.put()
+            self.sid = self.new_sid()
+
+        if new_session:
+            # start a new session
             self.sid = self.new_sid()
             self.session = _AppEngineUtilities_Session()
-            self.session.ua = os.environ.get('HTTP_USER_AGENT','')
-            self.session.ip = os.environ['REMOTE_ADDR']
+            if 'HTTP_USER_AGENT' in os.environ:
+                self.session.ua = os.environ['HTTP_USER_AGENT']
+            else:
+                self.session.ua = None
+            if 'REMOTE_ADDR' in os.environ:
+                self.session.ip = os.environ['REMOTE_ADDR']
+            else:
+                self.session.ip = None
             self.session.sid = [self.sid]
-            self.cookie[cookie_name] = self.sid
-            self.cookie[cookie_name]['path'] = cookie_path
-            if set_cookie_expires:
-                self.cookie[cookie_name]['expires'] = self.session_expire_time
+            # do put() here to get the session key
+            key = self.session.put()
+        else:
+            # check the age of the token to determine if a new one
+            # is required
+            duration = datetime.timedelta(seconds=self.session_token_ttl)
+            session_age_limit = datetime.datetime.now() - duration
+            if self.session.last_activity < session_age_limit:
+                self.sid = self.new_sid()
+                if len(self.session.sid) > 2:
+                    self.session.sid.remove(self.session.sid[0])
+                self.session.sid.append(self.sid)
+                do_put = True
+            else:
+                self.sid = self.session.sid[-1]
+                # check if last_activity needs updated
+                ula = datetime.timedelta(seconds=self.last_activity_update)
+                if datetime.datetime.now() > self.session.last_activity + ula:
+                    do_put = True
+
+        self.output_cookie[cookie_name] = self.sid
+        self.output_cookie[cookie_name]['path'] = cookie_path
+        if set_cookie_expires:
+            self.output_cookie[cookie_name]['expires'] = \
+                self.session_expire_time
 
         self.cache['sid'] = pickle.dumps(self.sid)
 
-        # update the last_activity field in the datastore every time that
-        # the session is accessed. This also handles the write for all
-        # session data above.
-        self.session.put()
-        print self.cookie
+        if do_put:
+            self.session.put()
+
+        #self.cookie.output()
+        print self.output_cookie.output()
 
         # fire up a Flash object if integration is enabled
         if self.integrate_flash:
@@ -208,14 +222,15 @@ class Session(object):
 
         # randomly delete old stale sessions in the datastore (see
         # CLEAN_CHECK_PERCENT variable)
-        if random.randint(1, 100) < CLEAN_CHECK_PERCENT:
-            self._clean_old_sessions()
+        if random.randint(1, 100) < clean_check_percent:
+            self._clean_old_sessions() 
 
     def new_sid(self):
         """
         Create a new session id.
         """
-        sid = sha.new(repr(time.time()) + os.environ['REMOTE_ADDR'] + \
+        sid = str(self.session.key()) + md5.new(repr(time.time()) + \
+		os.environ['REMOTE_ADDR'] + \
                 str(random.random())).hexdigest()
         return sid
 
@@ -323,7 +338,8 @@ class Session(object):
         """
         self._delete_session()
 
-    def delete_all_sessions(self):
+    @classmethod
+    def delete_all_sessions(cls):
         """
         Deletes all sessions and session data from the data store and memcache.
         """
@@ -332,16 +348,17 @@ class Session(object):
 
         while not all_sessions_deleted:
             query = _AppEngineUtilities_Session.all()
-            results = query.fetch(1000)
+            results = query.fetch(75)
             if len(results) is 0:
                 all_sessions_deleted = True
             else:
                 for result in results:
+#                    memcache.delete('sid-'+str(result.key())
                     result.delete()
 
         while not all_data_deleted:
             query = _AppEngineUtilities_SessionData.all()
-            results = query.fetch(1000)
+            results = query.fetch(75)
             if len(results) is 0:
                 all_data_deleted = True
             else:
@@ -359,10 +376,10 @@ class Session(object):
         session_age = datetime.datetime.now() - duration
         query = _AppEngineUtilities_Session.all()
         query.filter('last_activity <', session_age)
-        results = query.fetch(1000)
+        results = query.fetch(50)
         for result in results:
             data_query = _AppEngineUtilities_SessionData.all()
-            query.filter('session', result)
+            data_query.filter('session', result)
             data_results = data_query.fetch(1000)
             for data_result in data_results:
                 data_result.delete()
@@ -394,7 +411,7 @@ class Session(object):
             return pickle.loads(data.content)
         else:
             #raise KeyError(str(keyname))
-            return False
+            return False # PlopQuiz patch -- just return False if key does not exist
 
     def __setitem__(self, keyname, value):
         """
@@ -442,7 +459,10 @@ class Session(object):
         if mc is not None:
             return len(mc)
         results = self._get()
-        return len(results)
+        if results is not None:
+            return len(results)
+        else:
+            return 0
 
     def __contains__(self, keyname):
         """
@@ -474,7 +494,10 @@ class Session(object):
         """
         Return string representation.
         """
-        return ', '.join(['("%s" = "%s")' % (k, self[k]) for k in self])
+        if self._get():
+            return ', '.join(['("%s" = "%s")' % (k, self[k]) for k in self])
+        else:
+            return []
 
     def _set_memcache(self):
         """
@@ -493,19 +516,107 @@ class Session(object):
             self.session_expire_time)
 
     def cycle_key(self):
+        """
+        Changes the session id.
+        """
         self.sid = self.new_sid()
         if len(self.session.sid) > 2:
             self.session.sid.remove(self.session.sid[0])
         self.session.sid.append(self.sid)
 
     def flush(self):
+        """
+        Delete's the current session, creating a new one.
+        """
         self._delete_session()
         self.__init__()
-        
-        
-    def logged_in(self):
-		try:
-			user = self['user']
-			return user
-		except: return False
-     
+
+    def no_cache_headers(self):
+        """
+        Adds headers, avoiding any page caching in the browser. Useful for highly
+        dynamic sites.
+        """
+        print "Expires: Tue, 03 Jul 2001 06:00:00 GMT"
+        print strftime("Last-Modified: %a, %d %b %y %H:%M:%S %Z")
+        print "Cache-Control: no-store, no-cache, must-revalidate, max-age=0"
+        print "Cache-Control: post-check=0, pre-check=0"
+        print "Pragma: no-cache"
+
+    def clear(self):
+        """
+        Remove all items
+        """
+        sessiondata = self._get()
+        # delete from datastore
+        if sessiondata is not None:
+            for sd in sessiondata:
+                sd.delete()
+        # delete from memcache
+        memcache.delete('sid-'+str(self.session.key()))
+
+    def has_key(self, keyname):
+        """
+        Equivalent to k in a, use that form in new code
+        """
+        return self.__contains__(keyname)
+
+    def items(self):
+        """
+        A copy of list of (key, value) pairs
+        """
+        return self._get()
+
+    def keys(self):
+        """
+        List of keys.
+        """
+        l = []
+        sessiondata = self._get()
+        if sessiondata is not None:
+            for sd in sessiondata:
+                l.append(sd)
+        return l
+
+    def update(*dicts):
+        """
+        Updates with key/value pairs from b, overwriting existing keys, returns None
+        """
+        for dict in dicts:
+            for k in dict:
+                self._put(k, dict[k])
+        return None
+
+    def values(self):
+        """
+        A copy list of values.
+        """
+        v = []
+        sessiondata = self._get()
+        if sessiondata is not None:
+            for sd in sessiondata:
+                v.append(sessiondata[sd])
+        return v
+
+    def get(self, keyname, default = None):
+        """
+        a[k] if k in a, else x
+        """
+        try:
+            return self.__getitem__(keyname)
+        except KeyError:
+            if default is not None:
+                return default
+            return None
+
+    def setdefault(self, keyname, default = None):
+        """
+        a[k] if k in a, else x (also setting it)
+        """
+        try:
+            return self.__getitem__(keyname)
+        except KeyError:
+            if default is not None:
+                self.__setitem__(keyname, default)
+                return default
+            return None
+

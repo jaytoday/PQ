@@ -37,8 +37,8 @@ from google.appengine.api import memcache
 
 # settings
 DEFAULT_TIMEOUT = 3600 # cache expires after one hour (3600 sec)
-CLEAN_CHECK_PERCENT = 15 # 15% of all requests will clean the database
-MAX_HITS_TO_CLEAN = 1000 # the maximum number of cache hits to clean on attempt
+CLEAN_CHECK_PERCENT = 50 # 15% of all requests will clean the database
+MAX_HITS_TO_CLEAN = 100 # the maximum number of cache hits to clean on attempt
 
 
 class _AppEngineUtilities_Cache(db.Model):
@@ -179,12 +179,11 @@ class Cache(object):
         results = query.fetch(1)
         if len(results) is 0:
             return None
-        return results[0]
-
         if 'AEU_Events' in __main__.__dict__:
             __main__.AEU_Events.fire_event('cacheReadFromDatastore')
         if 'AEU_Events' in __main__.__dict__:
             __main__.AEU_Events.fire_event('cacheRead')
+        return results[0]
 
     def delete(self, key = None):
         """

@@ -44,11 +44,17 @@ margin: -10px 10px;
 
 div#reset_account div#error{
 color:red;
-font-size:0.8em;
+font-size:0.8em; 
 margin: /* -28px 0 0 100px */ 0;
 position:absolute;
 width: 370px;
 }
+
+div#reset_account div#checking{ font-size:0.8em; }
+
+
+div#reset_account div#checking img { margin: 0pt 10px 0pt 0pt; }
+
 
 div#reset_account div#reset_content{
 font-size:1.2em;
@@ -70,11 +76,13 @@ width:490px;
 
 span.note{
 float:left;
-font-size:0.8em;
-line-height:1.5em;
-margin:30px 0;
+font-size:0.7em;
+line-height:1.8em;
+margin:30px 3px;
+text-align:center;
+width:460px;
 }
-
+span.note a{ font-size: 1.1em; }
 
 div#signup_box{
 height:240px;
