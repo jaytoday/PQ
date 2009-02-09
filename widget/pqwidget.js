@@ -163,6 +163,7 @@ $('#pqwidget #subject_1').s3Slider({ timeOut: 8300  });
 				$.plopquiz.answers = $.plopquiz.answer_container.find('div');
 				$.plopquiz.answer_text = $.plopquiz.answers.find('div.answertext:not(#skiptext)');
 				$.plopquiz.answer_load_icons = $.plopquiz.answer_container.find("div.mini_loader");
+				$.plopquiz.textHolder = '     ';
                 // if the click handler is setup before the frame loads, wait for it
                 if($.pq_wrapper.length > 0)
                         // start the quiz now -- This seems to be working, but isn't it in the wrong place? 

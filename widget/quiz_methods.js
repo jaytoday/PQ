@@ -154,6 +154,8 @@ $("#quiz_content", $.pq_wrapper)
   
    	 // redraw timer
 	$.plopquiz.timer.stop().css("width", "100%");
+	//Reset the size of blank fields
+    $("#blank", $.plopquiz.quiz_content).text($.plopquiz.textHolder).css("cssText", "width: 105px !important;");  
 	$("#quiz_content", $.pq_wrapper).animate({opacity: 1},{ duration: 1000, // delay start of timer 
 			complete: function()
 			{$.event.trigger("startTimer", [ quizItem ]); } });
@@ -197,6 +199,7 @@ if ($(answer).attr("id") == "skip")
 
 if ($(answer).data('disabled') == false) { 
 	
+										console.log('replacing width');
 										var blank_width = 15 + (12 * $(".answertext", answer).text().length); //todo: multiplier may need adjustment
 										$("#blank", $.plopquiz.quiz_content)
 											.html($(".answertext", answer)
@@ -208,10 +211,10 @@ if ($(answer).data('disabled') == false) {
 
 
 function offAnswerHover(answer) {
-var textHolder = '     ';
+
 // replace blank space
-$("#blank").text(textHolder)
-	.css("width", "105px");
+$("#blank").text($.plopquiz.textHolder)
+	.css("cssText", "width: 105px !important;");  
 	 $(answer).removeClass('hover_answer');
 	 $(".answertext", answer).removeClass('hover');
 }

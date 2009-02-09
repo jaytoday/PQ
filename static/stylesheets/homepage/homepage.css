@@ -1,10 +1,13 @@
 
-/* @import url('proficiency.css');
-@import url('profile/profile.css');  maybe after some shared css refactoring */
-
-/* vertical scroll */
+/* no scroll */
 .sitelet .middle .main_wrapper .main {
-height: auto !important;
+height: 800px !important;
+}
+
+
+
+.sitelet .left, .sitelet .right{
+height: 800px;
 }
 
 /* Get rid of corner logo */
@@ -264,6 +267,7 @@ div#intro_frame_box{
 height:380px;
 margin:100px 0 60px 10px;
 width:366px;
+position:absolute;
 }
 
 div#intro_frame_box div#business{
@@ -329,6 +333,7 @@ cursor:pointer;
 .action_feed{
 height:420px;
 overflow:hidden;
+position:absolute;
 }
 
 .action_item{

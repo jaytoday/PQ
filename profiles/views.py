@@ -23,7 +23,6 @@ class ViewProfile(webapp.RequestHandler):
   def get(self):
     template_values = self.get_profile()
     if not template_values: return
-    template_values['load'] = 2000 # give 2 seconds to load 
     template_values['profile_js'] = profile_js(template_values)
     path = tpl_path(PROFILE_PATH +'profile_template.html')
     self.response.out.write(template.render(path, template_values))

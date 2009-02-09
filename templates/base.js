@@ -1,6 +1,6 @@
 
 
-{# Initialize variables from template tags (these will be cached and used for all users!) #}
+{# Initialize variables from template tags (these will be cached and used for all users, across all pages!) #}
 http_host = "{{http_host}}";
 
 // Include utility scripts 
@@ -209,7 +209,15 @@ $(this).addClass('clicked');
 
 // Take a Quiz link
 $('a#take_a_quiz').click(function(){ 
-	$.getScript("/js/quiz/?autostart=True");
+	
+	$.getScript("/js/quiz/?autostart=True"); 
+			// resize overlay to document not window
+		function drawOverlay(){
+		$('div#pq_quiz_overlay').css("height", $(document).height());
+		}
+		$(window).resize(drawOverlay); // whenever window is resized, overlay will be drawn. 
+
+
 	$('div#pq_quiz_overlay').show().bind("displayQuiz", function()
                                       { $(this).hide();         }) ;
 });
@@ -233,12 +241,5 @@ $('div.main').show();
 $('div.loading').hide();
 
 
-function LoadInit() {
 
-
-if ('{{ load|default:"false" }}' == "false"){ return; } else { Loading({{ load }});}
-
-}
-
-LoadInit(); 
 

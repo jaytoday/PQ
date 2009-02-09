@@ -54,6 +54,8 @@ $("#skip", $.plopquiz.answer_container).hide();
 
 
 
+
+
 /*
  * 
  * 
@@ -132,7 +134,7 @@ if(quizItem.item_type == "begin_quiz")
 {
 
 $('#confirm', $.plopquiz.answer_container)
-  .removeClass('intro_quiz').addClass('begin_quiz').find('span.continue_button').text('Begin Quiz').end()
+  .removeClass('intro_quiz').addClass('begin_quiz').find('span.continue_button').removeClass('intro_button').addClass('begin_button').text('Start the Quiz').end()
   .animate({ opacity:0},{duration: 0, 
                         complete: function(){  var $button = $('#confirm', $.plopquiz.answer_container); $button.data('disabled', true);  $("div#begin_quiz_quiz_selection", $.plopquiz.quiz_content).animate({height:170},{ duration: 1000, 
                         complete: function(){  $("#click_below", $.plopquiz.quiz_content).animate({opacity:1},{ duration: 1000,     
