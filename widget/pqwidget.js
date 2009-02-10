@@ -287,7 +287,7 @@ function pqLoad()
         {% include "../static/scripts/utils/s3slider.js" %} // this is causing an error when run from the site.
         
         var load_core = true;
-        if (jQuery.ui) { if (jQuery.ui.draggable) { load_core = false; } }
+   // Having problems on other sites (with other jQuerys)     if (jQuery.ui) { if (jQuery.ui.draggable) { load_core = false; } }
           if (load_core) { {% include "../static/scripts/jquery/ui.core.min.js" %}  {% include "../static/scripts/jquery/ui.draggable.min.js" %}   }
                         
 

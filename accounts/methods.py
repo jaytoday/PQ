@@ -56,6 +56,7 @@ def register_account(user_key, nickname, save=True):
     if save: new_account.put()
     return new_account                                   
     
+
         
 
 def default_photo():
@@ -243,11 +244,11 @@ class Sponsorships():
 		
 
 	def give_sponsorship(self, pledge, award):
-		logging.info('saving new sponsorship')
+		logging.info('saving new sponsorship') # more info!
 		new_sponsorship = Sponsorship(sponsor = pledge.sponsor,
 		                              recipient = award.winner,
 		                              package = pledge.package,
-		                              sponsor_type = pledge.sponsor_type, # this could be hardcoded as "personal"
+		                              sponsor_type = pledge.sponsor_type, 
 		                              award_type = award.type,
 		                              award = award,
 		                              pledge = pledge )
@@ -257,7 +258,7 @@ class Sponsorships():
 		return
 
 	def give_biz_sponsorship(self, pledge, award, biz_profile):
-		logging.info('saving new business sponsorship')
+		logging.info('saving new business sponsorship') # more info!
 		new_sponsorship = Sponsorship(sponsor = biz_profile,
 		                              recipient = award.winner,
 		                              sponsor_type = "business",

@@ -33,5 +33,13 @@
                         "modified": {
                             "ctime": "Wed Jan 14 09:32:48 2009"
                         }
+                    },
+                   {
+                        "name": "fixture_subject", 
+                        "value": 0.0, 
+                        "status": "Recovery.gov", 
+                        "modified": {
+                            "ctime": "Wed Jan 14 09:32:48 2009"
+                        }
                     }
                 ]

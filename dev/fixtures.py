@@ -7,6 +7,7 @@ import random
 from model.dev import Setting
 from google.appengine.api import memcache
 
+
 class Fixture():
 		
 	# first job
@@ -21,10 +22,8 @@ class Fixture():
 		this_account, this_user, this_quiz_taker = self.get_fixture()
 		scores = Scores()
 		correct_prob = random.randint(80,95)
-		from model.proficiency import Proficiency
-		FIXTURE_PROFICIENCY = "Smart Grid"
-		this_proficiency = Proficiency.get_by_key_name(FIXTURE_PROFICIENCY)
-		save_scores = scores.make_scores(this_user, this_proficiency, correct_prob, SCORE_NUM = 20) 
+		FIXTURE_PROFICIENCY = self.get_fixture_subject()
+		this_proficiency = 		save_scores = scores.make_scores(this_user, this_proficiency, correct_prob, SCORE_NUM = 20) 
 		memcache.set('current_fixture', ( this_account, this_user, this_quiz_taker ), 600000)
 		self.fixture_offset.status = "update_stats"
 		print this_user.nickname
@@ -34,7 +33,19 @@ class Fixture():
 		# open fixture.xml, go to offset.
 		# load one name, email pair. register. 
 
+		FIXTURE_PROFICIENCY = self.get_fixture_subject()
+		
 
+	def get_fixture_subject(self):
+		try:
+			fixture_subject = Setting.get_by_key_name('fixture_subject').status
+			from model.proficiency import Proficiency
+			return Proficiency.get_by_key_name(fixture_subject)
+		except:
+			DEFAULT_SUBJECT = "Smart Grid"
+			logging.error('unable to load fixture subject - returning default: %s', DEFAULT_SUBJECT)
+			return DEFAULT_SUBJECT
+	
 	def get_fixture(self):
 		fixture_file = open(ROOT_PATH + "/data/fixtures.xml")
 		fixtures = BeautifulStoneSoup(fixture_file.read())

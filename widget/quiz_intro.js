@@ -36,7 +36,10 @@ intro_button_text.text('Take a ' + $(this).text() + ' Quiz');
 
 
 $('#subject_1 li:first', $.plopquiz.quiz_content).show();
-intro_button_text.text('Take a ' + $('#subject_1 li:first', $.plopquiz.quiz_content).text() + ' Quiz');
+intro_button_text
+                .text('Take a ' + $('#subject_1 li:first', $.plopquiz.quiz_content)
+                .text() + ' Quiz')
+                .attr('class', 'continue_button intro_button');
 
 intro_button_text.show(); 
 
