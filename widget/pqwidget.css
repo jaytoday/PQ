@@ -1596,7 +1596,7 @@ position:absolute !important;
 float:right; font-weight:bold; 
 }
 
-.quiz_wrap button#confirm img { float: left; }
+.quiz_wrap button#confirm img{ float: left; }
 
 /* DISABLED FOR TESTING NEW BUTTON
 .quiz_wrap span.intro_button{
