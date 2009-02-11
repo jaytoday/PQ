@@ -287,7 +287,7 @@ function pqLoad()
         {% include "../static/scripts/utils/s3slider.js" %} // this is causing an error when run from the site.
         
         var load_core = true;
-   // Having problems on other sites (with other jQuerys)     if (jQuery.ui) { if (jQuery.ui.draggable) { load_core = false; } }
+    if (jQuery.ui) { if (jQuery.ui.draggable) { load_core = false; } }
           if (load_core) { {% include "../static/scripts/jquery/ui.core.min.js" %}  {% include "../static/scripts/jquery/ui.draggable.min.js" %}   }
                         
 
@@ -300,11 +300,33 @@ function pqLoad()
 
 
 
-// do we have jQuery
-if(window.jQuery )
-{ pqLoad(); }
-else
-{ {% include "../static/scripts/jquery/jquery-1.3.1.min.js" %}    pqLoad(); }
+var load_jquery = true;
+// do we have jQuery - can we overwrite older versions? 
+if(window.jQuery){
+	if (jQuery.fn.jquery == '{{ jquery_version }}') load_jquery = false;
+             }
+             
+if (load_jquery == true)
+    { 
+
+          {# Dynamically insert the version?  {% include "../static/scripts/jquery/jquery-{{ jquery_version }}.min.js" %} #}
+              {% include "../static/scripts/jquery/jquery-1.3.1.min.js" %}
+          
+
+    	{% comment %}
+    	
+    	This uses jQuery, but otherwise we have to include jQuery redundantly - if not compile it - for quizzes taken at PlopQuiz.com) 
+    	
+    	$.getScript("http://ajax.googleapis.com/ajax/libs/jquery/{{ jquery_version }}/jquery.min.js", 
+    	function(){
+					pqLoad();
+				});
+				
+		{% endcomment %}
+	  
+	}
+	
+pqLoad();  
 
 
 

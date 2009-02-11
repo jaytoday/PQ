@@ -25,6 +25,7 @@ class QuizJS(webapp.RequestHandler):
     	
   @memoize('quiz_js') # will this cache incorrectly? 
   def load_quiz_js(self):
+    JQUERY_VERSION = '1.3.1'
     DEFAULT_QUIZ_SUBJECT = "Recovery.Gov"
     try : 
         proficiency_arg = self.request.path.split('/quiz/')[1].replace('%20',' ')
@@ -41,6 +42,8 @@ class QuizJS(webapp.RequestHandler):
     'css': self.get_widget_css().replace('\n','').replace("'",'"'),
     'widget_html': self.get_widget_html(), 
     'widget_subject': self.these_proficiencies[0].key(),
+    'jquery_version' : JQUERY_VERSION,
+    'jquery_location': JQUERY_VERSION,
     'auto_start': self.get_auto_start() 
     }
      
