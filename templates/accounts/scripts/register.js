@@ -14,7 +14,7 @@ $('input#nickname').preserveDefaultText('your name');
 $('input#email_address').preserveDefaultText('your email address');
 
 
-$('input#nickname').keydown(function(){ $('input#nickname').data('availability', 'unknown') }); // just for sneaky fast people
+$('input#nickname').keydown(function(){ $('input#nickname').data('availability', 'unknown');  }); // just for sneaky fast people
 
 $('input#nickname').typeWatch( 
  {
@@ -43,7 +43,10 @@ function SubmitName(){
 	var $email = $('input#email_address');
 	var $signup_reminder = $('div#signup_reminder');
 	
-	if($nickname.data('availability') == 'unknown') return setTimeout(function(){ SubmitName(); }, 1000);  // still unknown
+	if($nickname.data('availability') == 'unknown') {
+				NicknameCheck($('div#notice'));
+				return setTimeout(function(){ SubmitName(); }, 1000);  // still unknown
+	}
 	$signup_reminder.empty();
 	if ($nickname.val().length < 4) { $signup_reminder.text('Your nickname must be at least 4 characters long.').show(); $nickname.addClass('invalid').focus(); return false; } //hasn't chosen a valid name yet 
 	if($nickname.data('availability') != 'available') { $signup_reminder.text("The nickname you've entered isn't available.").show(); $nickname.addClass('invalid'); return false; } //hasn't chosen a valid name yet 

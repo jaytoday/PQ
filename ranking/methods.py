@@ -52,7 +52,7 @@ class TopicLevelData():
 										topic = topic_pair[0],
 										quiz_taker = quiz_taker)
 										
-			topic_level.topic_level = topiccurrent_sum_pair[1]['average']
+			topic_level.topic_level = topic_pair[1]['average']
 			save.append(topic_level)
 		if save: db.put(save)
 		return save
