@@ -434,11 +434,11 @@ filter: alpha(opacity=80) !important;
 
 .quiz_wrap #widget_loading  {
 float:left;
-margin:-145px 50px;
-top:40%;
 height:38px;
-padding: 5px 0 0 !important;
-width:250px;
+margin:-155px 43px;
+padding:15px 0 3px 10px !important;
+top:40%;
+width:255px;
 z-index:99;
 opacity: .8 !important;
 filter: alpha(opacity=80) !important;
