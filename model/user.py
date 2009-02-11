@@ -39,9 +39,9 @@ class Profile(db.Model):
     unique_identifier = db.StringProperty(required=True) # redundant
     login_identifier = db.StringProperty(required=False) # change to true
     email = db.EmailProperty(required=False)
-    nickname = db.StringProperty(required=True)
     profile_path = db.StringProperty(required=True)
     fullname = db.StringProperty(required=False)
+    #nickname = db.StringProperty(required=False)
     modified = db.DateTimeProperty(auto_now=True)
     has_edited=db.BooleanProperty(default=False)
     
@@ -84,7 +84,9 @@ class Profile(db.Model):
     # When Signed Up
     date = db.DateTimeProperty(auto_now_add=True)
     
-    
+    @property
+    def nickname(self):   # Get proficiency_levels for user 
+        return self.fullname   
 
 class ProficiencyLevel(db.Model):
   proficiency = db.ReferenceProperty(Proficiency,required=True,collection_name='pro_levels') # Proficiency Tag (startup_financing)
