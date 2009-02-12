@@ -151,7 +151,7 @@ class Post(webapp.RequestHandler):
       from model.quiz import QuizTaker
       qt = QuizTaker.get_by_key_name(self.session['user'].unique_identifier)
       logging.info('Updating Level Stats for User %s', self.session['user'].unique_identifier)
-      pl.set_for_user(qt)
+      db.put( pl.set_for_user(qt) )
       print "OK"
       return "OK"
       

@@ -43,6 +43,8 @@ class TopicLevelData():
 			topic_scores[this_score.quiz_item.topic.key()]['average'] = new_average
 			#logging.info('new topiclevel average for topic %s: %d' % (this_score.quiz_item.topic.name, new_average) )
 
+		logging.info('processing %d item scores for user %s' % ( len(topic_scores.items()), quiz_taker.unique_identifier )  )
+		
 		for topic_pair in topic_scores.items():
 			tl_keyname = str(quiz_taker.unique_identifier) + "_" + str(topic_pair[0])
 			topic_pair[1]['average'] = int(topic_pair[1]['average'])
@@ -53,7 +55,7 @@ class TopicLevelData():
 										quiz_taker = quiz_taker)
 										
 			topic_level.topic_level = topic_pair[1]['average']
-			logging.info('new topic level for user %s is %s' % (topic_level.quiz_taker, topic_level.topic_level )  )
+			logging.info('new topic level for user %s is %s' % (topic_level.quiz_taker.unique_identifier, topic_level.topic_level )  )
 			save.append(topic_level)
 		if save: db.put(save)
 		return save
