@@ -34,7 +34,7 @@ def delete_data(data_type):
     data = DataMethods()
     data.delete_data(DATA_TYPES.get(data_type, False))
     deleted_count = data.execute_delete()
-    print str("deleted " + str(deleted_count) + " rows of " + data_type)
+    logging.info("deleted %s rows of %s entities" % ( str(deleted_count), data_type) )
 
 
 def load_data(data_type):
@@ -46,9 +46,9 @@ def load_data(data_type):
         data.load_json(data_type, "")
     MAX_SLICE = MIN_SLICE + LOAD_INCREMENT
     data_load = data.load_data(data_type, MIN_SLICE, MAX_SLICE)
-    if data_load == "Finished": 
+    if data_load == "Data Load Is Finished": 
         memcache.set("MIN_SLICE_" + data_type, None, 60000) # reset min-slice'
-        return "Finished"
+        return "Data Load Is Finished"
     else:
     	data.execute_load() 
         memcache.set("MIN_SLICE_" + data_type, MIN_SLICE + 10, 60000) # reset min-slice
@@ -78,20 +78,19 @@ def refresh_subject_images(this_subject=False):
 	if not proficiencies: proficiencies = Proficiency.all().fetch(1000)
 
 	if proficiencies is None: 
-	    print "No Proficiencies Found"
-	    return 
+	    return "No Proficiencies Found"
+	    
 	# Get the next proficiency in sequence 
 	next_proficiency = proficiencies.pop()
 	build = Build()
 	data_load = build.refresh_subject_images(next_proficiency)
 	memcache.set("subject_image_queue", proficiencies, 60000) # reset min-slice
-	print "Added ", data_load, " Subject Images for Proficiency ", next_proficiency.name
 	print len(proficiencies), " subjects left"	
 	if len(proficiencies) == 0: 
 	    memcache.set("subject_image_queue", None, 60000) # reset min-slice'
 	    build.refresh_default_subject_image() # refresh default
-	    print "Data Load Is Finished"
-	    return		  	
+	    return "Data Load Is Finished"
+	    		  	
 	   
 
 
@@ -216,9 +215,8 @@ class Build():
 		default_image = DefaultSubjectImage(small_image = small_image,
 									 large_image = large_image)
 		default_image.put()
-		print ""
 		logging.info('saved default image: %s', default_image)
-		print "saved default image: ", default_image							     
+		return "saved default image: ", default_image							     
 								
 
 
@@ -258,9 +256,6 @@ class DataMethods():
     
   def load_json(self, data_type, path):
 		logging.info('loading json for data type %s', data_type)
-		print ""
-		print 'loading JSON data type: ', data_type
-		print ""
 		json_file = open(ROOT_PATH + "/data/" + path + str(data_type) + ".json")
 		json_str = json_file.read()
 		json_data = simplejson.loads(json_str) # Load JSON file as object
@@ -276,9 +271,6 @@ class DataMethods():
     
   def load_data(self, data_type, MIN_SLICE = None, MAX_SLICE = None):
 		logging.info('loading data type %s from %s to %s' % (data_type, str(MIN_SLICE), str(MAX_SLICE)))
-		print ""
-		print 'loading data type: ', data_type, " from ", MIN_SLICE, " to ", MAX_SLICE
-		print ""
 
 
 		entities = []
@@ -287,8 +279,7 @@ class DataMethods():
 
 		newdata = memcache.get("json_" + str(data_type))
 		if len(newdata[MIN_SLICE:MAX_SLICE]) == 0: 
-		                           print "Data Load Is Finished"
-		                           return "Finished"
+		                           return "Data Load Is Finished"
 		for entity in newdata[MIN_SLICE:MAX_SLICE]: # Could this be more efficient? 
 			
 			if data_type == 'proficiencies':
@@ -368,11 +359,10 @@ class DataMethods():
 			self.load_entities[data_type] = entities
 			for entity in entities: entity_num += 1
 			logging.info('finished preparing data load for %d %s' % (len(entities), data_type))
-			print 'finished preparing data load for' , len(entities), data_type
 			return len(entities)
 		except:
 			logging.error('Unable to save %s at number %d' % (data_type, entity_num))
-			print 'Unable to save', data_type, "at number ", entity_num
+			return False
 
 
 
@@ -395,10 +385,10 @@ class DataMethods():
      for i in itertools.chain(*[list[1] for list in self.load_entities.items()]): load_list.append(i) #inefficient
      db.put(load_list)
      #db.put(itertools.chain(*[list[1] for list in self.load_entities.items()])) # this doesn't work
-     self.special_processes(list[0])
+     
      for list in self.load_entities.items():
+     	self.special_processes(list[0])
      	logging.info('executed load for %s', list[0])
-     	print "executed load for ", len(list[1]), " rows of ", list[0]
      self.load_entities = {}
 
 

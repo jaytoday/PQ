@@ -67,7 +67,7 @@ class ViewProfile(webapp.RequestHandler):
 
   @memoize('plopquiz_profile')
   def get_plopquiz_profile(self):
-      return Profile.get_by_key_name("plopquiz")
+      return Profile.get_by_key_name("PlopQuiz")
       
   def get_topic_levels(self, qt):
       try: all_topic_levels = qt.topic_levels.fetch(100)
@@ -195,7 +195,7 @@ class Image (webapp.RequestHandler):  # TODO: Move this to somewhere more approp
   FILE_CACHE_CONTROL = 'private, max-age=86400'
   FILE_CACHE_TIME = datetime.timedelta(days=20)
   
-  @memoize('image_object')
+  
   def get(self):
     self.set_expire_header()
     image_type = self.request.path.split('/image/')[1].lower().replace('/','')
@@ -207,6 +207,7 @@ class Image (webapp.RequestHandler):  # TODO: Move this to somewhere more approp
         self.redirect(self.request.path)
       
 
+  @memoize('image_object')
   def profile_image(self):      
     if not self.request.get("img_id"): 
         self.redirect('/picture_not_found')

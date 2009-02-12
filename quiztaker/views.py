@@ -126,10 +126,7 @@ class PQIntro(webapp.RequestHandler):
 		from model.proficiency import Proficiency
 		quiz_subjects = Proficiency.gql("WHERE status = 'public' ORDER BY name DESC" ).fetch(6)
 		for p in quiz_subjects:
-		    logging.error(self.request.get('subject'))
-		    logging.error(p.name)
 		    if p.name == eval(self.request.get('subject'))[0]: 
-		        logging.error("====")
 		        quiz_subjects.remove(p)
 		        quiz_subjects.insert(0, p)
 		        continue

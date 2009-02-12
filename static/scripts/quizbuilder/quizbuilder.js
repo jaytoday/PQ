@@ -18,7 +18,6 @@
 
 jQuery(function($) {
 
-	console.log('clicled');
 
 // Setup RPC methods
 var server = {};
@@ -34,9 +33,6 @@ InstallFunction(server, 'GetTopicsForProficiency', 'quizbuilder');
 
 wrong_answers = [];
 answer_in_array = [];
-
-console.log('clicleda');
-
 
 $('.proficiency_name').preserveDefaultText('proficiency');
 $('.url_name').preserveDefaultText('url');
