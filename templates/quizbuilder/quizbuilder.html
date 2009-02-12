@@ -4,32 +4,24 @@
 {% block head %}
 
 
-<link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/quizbuilder.css"/>
+<style type="text/css"> 
+{% include "../../static/stylesheets/quizbuilder.css" %} 
+</style> 
 
-<script type="text/javascript" src="/static/scripts/utils/parseJSON.js"></script>
-<script type="text/javascript" src="/static/scripts/jquery/jquery.field.min.js"></script>
-
-
-<!-- scroll -->
-<script src="/static/scripts/scroll/jquery.scrollTo-min.js" type="text/javascript"></script>
-<script src="/static/scripts/scroll/jquery.localscroll-1.2.5.js" type="text/javascript" charset="utf-8"></script>
-<script src="/static/scripts/scroll/jquery.serialScroll-1.2.1.js" type="text/javascript" charset="utf-8"></script>
-<script src="/static/scripts/quizbuilder/item-slider.js" type="text/javascript" charset="utf-8"></script>
-<script src="/static/scripts/quizbuilder/answers-slider.js" type="text/javascript" charset="utf-8"></script>
-
-<!-- edit content -->
-<script src="/static/scripts/quizbuilder/jeditable/jquery.jeditable.min.js" type="text/javascript"></script>
-<script src="/static/scripts/quizbuilder/jeditable/jquery.jeditable.autogrow.js" type="text/javascript"></script>
-<script src="/static/scripts/jquery/jquery.autogrow.js" type="text/javascript"></script>
-
-
-<!--<script type="text/javascript" src="/static/scripts/freebase-suggest/dist/freebase.suggest.js"></script> 
- <link type="text/css" rel="stylesheet" href="/static/scripts/freebase-suggest/dist/css/freebase-controls.css" /> -->
- 
-
-<script type="text/javascript" src="/static/scripts/quizbuilder/edit_quiz.js"></script>
-<script type="text/javascript" src="/static/scripts/quizbuilder/quizbuilder.js"></script>
-
+<script type="text/javascript">
+{% include "../../static/scripts/utils/parseJSON.js" %} 
+{% include "../../static/scripts/jquery/jquery.field.min.js" %} 
+{% include "../../static/scripts/scroll/jquery.scrollTo-min.js" %} 
+{% include "../../static/scripts/scroll/jquery.localscroll-1.2.5.js" %} 
+{% include "../../static/scripts/scroll/jquery.serialScroll-1.2.1.js" %} 
+{% include "../../static/scripts/quizbuilder/item-slider.js" %} 
+{% include "../../static/scripts/quizbuilder/jeditable/jquery.jeditable.min.js" %}
+{% include "../../static/scripts/quizbuilder/jeditable/jquery.jeditable.autogrow.js" %} 
+</script>
+<script type="text/javascript">
+{% include "../../static/scripts/quizbuilder/quizbuilder.js" %} 
+{% include "../../static/scripts/quizbuilder/edit_quiz.js" %} 
+</script>
 
 <title>Plopquiz - Quizbuilder</title>
 

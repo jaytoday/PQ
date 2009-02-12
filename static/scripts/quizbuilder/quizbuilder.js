@@ -18,7 +18,8 @@
 
 jQuery(function($) {
 
-	
+	console.log('clicled');
+
 // Setup RPC methods
 var server = {};
 var item_count = 0;
@@ -34,7 +35,7 @@ InstallFunction(server, 'GetTopicsForProficiency', 'quizbuilder');
 wrong_answers = [];
 answer_in_array = [];
 
-
+console.log('clicleda');
 
 
 $('.proficiency_name').preserveDefaultText('proficiency');
@@ -48,36 +49,35 @@ function AfterRetrieveProficiencies(response){
 
 var proficiencies = parseJSON(response);
 
- $.each(proficiencies, function(p, proficiency){
- 
- // Add proficiency to list -- todo: nested list organized by proficiencies
- 	
-$('div#proficiencies').append('<div class="input_float"><input type="checkbox" id="' + p + '" name="proficiency" value="' + proficiency.name + '" unchecked ><span class="checkbox">' + proficiency.name + '</span><br/></div>')
 
-.find('input[@name="proficiency"]').click(function(){
-$('input[@name="proficiency"]').setValue($(this).attr("value"));    });
+ $.each(proficiencies, function(p, proficiency){
+
+ // Add proficiency to list -- todo: nested list organized by proficiencies
+
+$('div#proficiencies').append('<div class="input_float"><input type="checkbox" id="' + p + '" name="proficiency" value="' + proficiency + '" unchecked ><span class="checkbox">' + proficiency + '</span><br/></div>')
+
+
+.find('input[name="proficiency"]').click(function(){
+	
+	$('div#proficiencies').data('subject', $(this).attr("value")); 
+   });
+
+
 
 proficiency_sum = p + 1;
 return proficiency_sum;
 });
 
-$('input[@name="proficiency"]').setValue(proficiencies[0].name);  // select first option as default
+
+$('div#proficiencies').data('subject', proficiencies[0]);  // select first option as default
 
 
 $('#submit_proficiency').click(function () {
 
-        for (j = 0; j < proficiency_sum; j++) {
-if (eval('document.select_proficiency.proficiency[' + j + '].checked') == true) {
-    var proficiency = eval('document.select_proficiency.proficiency[' + j + '].value'); }}
-  // yikes. i think jQuery's .val() could be useful here...
 
-   // The topics are retrieved now. This is silly, because you actually want to retrieve the topics 
-   // each time you make a quiz item (and possibly make a new topic).
-   // TODO: Re-factor this. 
-   
-    server.GetTopicsForProficiency(proficiency, function(response){ 
+    server.GetTopicsForProficiency($('div#proficiencies').data('subject'), function(response){ 
     	var topics = response;
-    	server.GetRawItemsForProficiency(proficiency, function(response){  
+    	server.GetRawItemsForProficiency($('div#proficiencies').data('subject'), function(response){  
     		
     		BuildQuizEditor(response, topics); });
 		});

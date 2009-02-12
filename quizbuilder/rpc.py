@@ -63,8 +63,8 @@ remote callers access to private/protected "_*" methods.
   def RetrieveProficiencies(self, *args):   # todo: should be nested list of proficiencies and topics.
       return_proficiencies = []
       #proficiencies = Proficiency.all()
-      proficiencies = Proficiency.gql("WHERE name in :1", ["Smart Grid", "Energy Efficiency", "Recovery.Gov", "Cars 2.0"])  # remove after refactoring quiztaker
-      return encode(proficiencies.fetch(1000, offset=0)) # temporary offset
+      proficiencies = Proficiency.gql("WHERE name IN :1", ["Smart Grid", "Energy Efficiency", "Recovery.Gov", "Cars 2.0"]).fetch(1000)  # remove after refactoring quiztaker
+      return encode([proficiency.name for proficiency in proficiencies]) # temporary offset
 
 
   def GetRawItemsForTopic(self, *args):  

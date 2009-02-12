@@ -136,20 +136,25 @@ position:absolute;
 }
 
 span#two{
-margin:-25px 0 0 210px;
+float:right;
+margin:-25px 22px;
 }
 
 #blinder
 {
 background:#F7F5F4 none repeat scroll 0 0;
-font-size:1.9em;
+font-size:2.2em;
 height:29px;
 letter-spacing:0.05em;
-margin:-5px 102px;
+margin:-8px 102px;
 position:absolute;
 text-align:center;
 width:200px;
 }
+
+#blinder span{ width: 40px; display: inline-block; }
+
+
 /* spaces the blank */
 .smart_span_holder
 {
