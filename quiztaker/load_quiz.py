@@ -22,7 +22,7 @@ class LoadQuiz():
   quiz_array = []
   all_quiz_items = []
   proficiencies = {}
-  QUIZ_ITEM_PER_PROFICIENCY = 2
+  QUIZ_ITEM_PER_PROFICIENCY = 4
     
   def get(self, proficiencies):
 	self.proficiencies = {}
@@ -59,7 +59,7 @@ class LoadQuiz():
 
   def load_array(self):
         self.quiz_array = []
-        if len(self.proficiencies) == 1: self.QUIZ_ITEM_PER_PROFICIENCY = 10  # in case there is only one proficiency
+       # if len(self.proficiencies) == 1: self.QUIZ_ITEM_PER_PROFICIENCY = 10  # in case there is only one proficiency
         for prof_type in self.proficiencies:
             try: proficiency = random.sample(self.proficiencies[prof_type],
                                   self.QUIZ_ITEM_PER_PROFICIENCY)
@@ -156,12 +156,11 @@ class QuizSession():
 
 		if picked_clean == correct_clean:
 			timer_status = float(timer_status)
-			this_score = int(round(timer_status * 100))
+			this_score = int(round( 80 + ( (timer_status * 100) / 5 ) ) )
 		else:
 			
 			if picked_clean == "skip": this_score = int( SKIP_SCORE * (2 - (1 - (timer_status/2) ) ) ) #skipped
 			else: this_score = int( WRONG_SCORE * (2 - (1 - (timer_status/2) ) ) )
-			
 
 							 
 		score = ItemScore(quiz_item = this_item.key(),

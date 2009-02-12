@@ -33,8 +33,13 @@ class ViewProfile(webapp.RequestHandler):
   def get_profile(self):
 		profile_stub = self.request.path.split('/profile/')[1].lower()
 		profile_path = profile_stub.replace(' ','_')
+		is_profile_owner = False
+		if self.session['user']:
+		    if profile_path == self.session['user'].profile_path: is_profile_owner = True
+		if is_profile_owner:
+		    if self.session['user'].has_edited is False: return self.redirect('/edit_profile') # create profile if its first time logging in. 
 		import urllib
-		user = Profile.gql('WHERE profile_path = :1', urllib.unquote(profile_stub))
+		user = Profile.gql('WHERE profile_path = :1', urllib.unquote(profile_stub)) #inefficient
 		try:
 			user = user.get()
 			if user.is_sponsor == True: self.redirect('/sponsors/' + user.profile_path) # go to sponsor profile
@@ -44,9 +49,6 @@ class ViewProfile(webapp.RequestHandler):
 		    logging.info('no profile of %s found for user %s' % (profile_path, getattr(self.session['user'], 'profile_path', "?")))
 		    self.redirect('/profile_not_found/') # if no user is found
 		    return
-		is_profile_owner = False
-		if self.session['user']:
-		    if user.unique_identifier == self.session['user'].unique_identifier: is_profile_owner = True
 		# get report card scores
 		qt = QuizTaker.get_by_key_name(user.unique_identifier)
 		topic_levels = self.get_topic_levels(qt)

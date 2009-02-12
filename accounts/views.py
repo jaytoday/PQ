@@ -18,7 +18,7 @@ ACCOUNTS_PATH = 'accounts/'
 if Debug(): RPX_API_KEY = '081f35f427b90c6ed3415256e8d934ed8d01b11e'
 else: RPX_API_KEY = 'a36dbaa685c9356086c69b9923a637ecf33369bc'
 RPX_API_KEY = 'a36dbaa685c9356086c69b9923a637ecf33369bc'  #### TODO: dev key doesn't work. ('data not found' error)
-DEFAULT_LANDING_PAGE = ''
+DEFAULT_LANDING_PAGE = '/'
 
 
 
@@ -38,7 +38,6 @@ class Login(webapp.RequestHandler):
         self.session['continue'] = '/test/' + self.request.get('test')    
     """
     if self.session['user']: 
-		if self.session['user'].has_edited is False: return self.redirect('/edit_profile') # create profile if its first time logging in. 
 		if not self.session['continue']: self.session['continue'] = '/profile/' + self.session['user'].profile_path 
 		self.redirect(self.session['continue'])
 		self.session['continue'] = False
@@ -188,7 +187,7 @@ class Logout(webapp.RequestHandler):
     if self.request.get('continue'):
       self.redirect(self.request.get('continue'))
     else:
-        self.redirect('/preview/homepage')
+        self.redirect(DEFAULT_LANDING_PAGE)
         
 
 
