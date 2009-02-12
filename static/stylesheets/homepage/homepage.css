@@ -14,11 +14,12 @@ height: 800px;
 #right_corner{ display:none; }
 
 #sitelet-home #logo {
-float:left;
 margin:120px 0 20px 10px;
+position:absolute;
 }
 #sitelet-home #intro {
-clear: both;
+margin:240px 0 0;
+position:absolute;
 }
 #sitelet-home h2 {
 background: transparent url(img/base/pq_mantra.png) repeat scroll 0 0;
@@ -123,9 +124,7 @@ margin-left:15px;
 
 }
 
-#motto{
-margin-top:60px;
-}
+
 
 #smart
 {
@@ -137,7 +136,7 @@ position:absolute;
 
 span#two{
 float:right;
-margin:-25px 22px;
+margin:-25px 0 0 118px;
 }
 
 #blinder
@@ -279,7 +278,7 @@ width:300px;
 
 div#intro_frame_box{
 height:380px;
-margin:100px 0 60px 10px;
+margin:358px 0 60px 10px;
 width:366px;
 position:absolute;
 }
