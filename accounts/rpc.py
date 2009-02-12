@@ -122,7 +122,12 @@ class RPCMethods(webapp.RequestHandler):
 
 class Post(webapp.RequestHandler): 
   def post(self):
-  	if self.request.get('action') == 'reset': self.response.out.write(simplejson.dumps(  self.reset_account()  )) 
+  	from utils.appengine_utilities.sessions import Session
+  	self.session = Session()
+  	if self.request.get('action') == 'reset': self.response.out.write(simplejson.dumps(  self.reset_account()  ))
+  	if self.request.get('action') == 'update_user_stats': self.response.out.write(simplejson.dumps(  self.update_user_stats()  ))  
+  	if self.request.get('action') == 'update_user_awards': self.response.out.write(simplejson.dumps(  self.update_user_awards()  ))
+  	if self.request.get('action') == 'update_user_sponsorships': self.response.out.write(simplejson.dumps(  self.update_user_sponsorships()  ))    
 
 
 
@@ -138,3 +143,35 @@ class Post(webapp.RequestHandler):
 
 
 
+  def update_user_stats(self):
+      from quiztaker.methods import ProficiencyLevels
+      pl = ProficiencyLevels()
+      from model.quiz import QuizTaker
+      qt = QuizTaker.get_by_key_name(self.session['user'].unique_identifier)
+      logging.info('Updating Level Stats for User %s', self.session['user'].unique_identifier)
+      pl.set_for_user(qt)
+      print "OK"
+      return "OK"
+      
+  def update_user_awards(self):      
+      from accounts.methods import Awards
+      awards = Awards()
+      # check for new awards
+      logging.info('Updating Awards for User %s', self.session['user'].unique_identifier)
+      from model.quiz import QuizTaker
+      qt = QuizTaker.get_by_key_name(self.session['user'].unique_identifier)
+      new_awards = awards.check_all(qt)
+      if new_awards > 0: self.session['flash_msg'] = 'new_award'
+      print "OK"
+      return "OK"
+      
+      
+  def update_user_sponsorships(self):          
+      from accounts.methods import Sponsorships
+      sponsorships = Sponsorships()
+      # check for new sponsorships, both personal and business
+      logging.info('Updating Sponsorships for User %s', self.session['user'].unique_identifier)
+      new_sponsorships = sponsorships.check_user(self.session['user'])
+      if new_sponsorships > 0: self.session['flash_msg'] = 'new_sponsorship'
+      print "OK"
+      return "OK"

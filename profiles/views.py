@@ -204,9 +204,7 @@ class Image (webapp.RequestHandler):  # TODO: Move this to somewhere more approp
     try:
       if image_type == 'profile': return self.profile_image()
       if image_type == 'subject': return self.subject_image()
-    except TransactionFailedError: 
-        logging.warning('transaction failure on image load')
-        self.redirect(self.request.path)
+    except: self.redirect(self.request.path)
       
 
   @memoize('image_object')
@@ -220,14 +218,14 @@ class Image (webapp.RequestHandler):  # TODO: Move this to somewhere more approp
         if self.request.get("size") == "large": self.response.out.write(pic.large_image)
         else: self.response.out.write(pic.small_image)
     except: 
-        self.redirect('/picture_not_found')
-        return
+        logging.warning( 'picture not found: %s', self.request.get("img_id") )
+        return self.default_subject_image()
     
           
   def subject_image(self):      
     from model.proficiency import SubjectImage
     if not self.request.get("img_id"): 
-        self.redirect('/picture_not_found')
+        return self.default_subject_image()
         return
     if self.request.get("img_id") == "default": return self.default_subject_image()
     self.response.headers['Content-Type'] = "image/png"
@@ -236,9 +234,8 @@ class Image (webapp.RequestHandler):  # TODO: Move this to somewhere more approp
         if self.request.get("size") == "large": self.response.out.write(pic.large_image)
         else: self.response.out.write(pic.small_image)
     except: 
-        self.redirect('/picture_not_found')
         logging.warning( 'picture not found: %s', self.request.get("img_id") )
-        return
+        return self.default_subject_image()
     
 
   def default_subject_image(self):

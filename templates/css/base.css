@@ -181,8 +181,7 @@ visibility:hidden;
 
 
 body {
-/* background: #9ed5ff url(/static/stylesheets/img/base/bg.png) bottom left repeat-x;   */
-background:transparent url(/static/stylesheets/img/base/bg_repeat.png) repeat scroll left bottom;
+background:#BFDAFF url(/static/stylesheets/img/base/bg_repeat.png) repeat scroll left bottom;
  font-family: Georgia, "Times New Roman", Times, serif; 
 /* font-family:"HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;   --mstcorefonts not required */
 font-size:100%;

@@ -37,6 +37,7 @@ function runRestore(data_types, data_type, response){
 
 	$.ajax(
                                 {
+                                        type: "POST", 
                                         url:  "/dev/rpc",
                                         data:
                                         {

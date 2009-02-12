@@ -207,41 +207,22 @@ class Redirect(webapp.RequestHandler):
   @login_required
   @quiztaker_required
   def from_quiz_redirect(self):      # These occasionally time out. Try/Except solution for re-trying update. 
-      # redirect after quiz
-      logging.info('Redirecting From Quiz')
-      token = self.request.path.split('/from_quiz/')[1]
-      from utils.utils import set_flash
-      self.set_flash = set_flash
-      self.set_flash('post_quiz')
-      from quiztaker.load_quiz import QuizSession
-      quiz_session = QuizSession()
-      quiz_session.update_scores(token, self.session['user'].unique_identifier) # re-assigns token scores to this user
-      self.response.out.write('<b>Please wait while we save your quiz results.....</b>') # this doesn't work right now
-      try: self.update_user_stats()
-      except: logging.error('ERROR UPDATING USER STATS')
-      self.redirect('/profile/' + self.session['user'].profile_path)
+	# redirect after quiz
+	logging.info('Redirecting From Quiz')
+	token = self.request.path.split('/from_quiz/')[1]
+	from utils.utils import set_flash
+	self.set_flash = set_flash
+	self.set_flash('post_quiz')
+	from quiztaker.load_quiz import QuizSession
+	quiz_session = QuizSession()
+	quiz_session.update_scores(token, self.session['user'].unique_identifier) # re-assigns token scores to this user
+	template_values = {'redirect_path': '/profile/' + self.session['user'].profile_path}
+	path = tpl_path(ACCOUNTS_PATH +'post_quiz.html')
+	self.response.out.write(template.render(path, template_values))      
 
-  def update_user_stats(self):
-      from quiztaker.methods import ProficiencyLevels
-      pl = ProficiencyLevels()
-      from model.quiz import QuizTaker
-      qt = QuizTaker.get_by_key_name(self.session['user'].unique_identifier)
-      logging.info('Updating Level Stats for User %s', self.session['user'].unique_identifier)
-      pl.set_for_user(qt)
-      from accounts.methods import Awards
-      awards = Awards()
-      # check for new awards
-      logging.info('Updating Awards for User %s', self.session['user'].unique_identifier)
-      new_awards = awards.check_all(qt)
-      if new_awards > 0: self.set_flash('new_award') 
-      from accounts.methods import Sponsorships
-      sponsorships = Sponsorships()
-      # check for new sponsorships, both personal and business
-      logging.info('Updating Sponsorships for User %s', self.session['user'].unique_identifier)
-      new_sponsorships = sponsorships.check_user(self.session['user'])
-      if new_sponsorships > 0: self.set_flash('new_sponsorship')
+
+
       
-
 
 
   @login_required
