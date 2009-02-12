@@ -53,6 +53,7 @@ class TopicLevelData():
 										quiz_taker = quiz_taker)
 										
 			topic_level.topic_level = topic_pair[1]['average']
+			logging.info('new topic level for user %s is %s' % (topic_level.quiz_taker, topic_level.topic_level )  )
 			save.append(topic_level)
 		if save: db.put(save)
 		return save

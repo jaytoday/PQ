@@ -221,7 +221,7 @@ class Sponsorships():
 			existing_sponsorships = pledge.sponsorships.fetch(1000)
 			if existing_sponsorships: 
 			    if award.winner in existing_sponsorships: give_sponsorship[pledge] = False 
-			if give_sponsorship[pledge] == True: self.give_sponsorship(pledge, award)
+			if give_sponsorship[pledge] == True: self.give_sponsorship(pledge, award) # not using these yet! Personal sponsorships. 
 			
 		# check for business sponsorship	
 		from model.employer import AutoPledge
@@ -234,6 +234,7 @@ class Sponsorships():
 			if not biz_profile: continue #old references were causing Attribute Error
 			if biz_profile.unique_identifier in already_biz_sponsors: continue # don't let business sponsor user twice 
 			if biz_profile.unique_identifier in biz_sponsor_profiles: continue # catch unsaved business sponsors
+			if biz_profile.fullname.lower() == "plopquiz": continue # plopquiz shouldn't sponsor a student twice. TODO: better solution
 			self.give_biz_sponsorship(pledge, award, biz_profile)
 			biz_sponsor_profiles.append(biz_profile.unique_identifier)
 			pledge.count -= 1  

@@ -1,6 +1,4 @@
 import logging
-# Log a message each time this module get loaded.
-logging.info('Loading %s', __name__)
 from utils import webapp, simplejson
 from google.appengine.ext import db
 from .utils.utils import tpl_path, ROOT_PATH
@@ -122,12 +120,16 @@ class RPCMethods(webapp.RequestHandler):
 
 class Post(webapp.RequestHandler): 
   def post(self):
-  	from utils.appengine_utilities.sessions import Session
-  	self.session = Session()
-  	if self.request.get('action') == 'reset': self.response.out.write(simplejson.dumps(  self.reset_account()  ))
-  	if self.request.get('action') == 'update_user_stats': self.response.out.write(simplejson.dumps(  self.update_user_stats()  ))  
-  	if self.request.get('action') == 'update_user_awards': self.response.out.write(simplejson.dumps(  self.update_user_awards()  ))
-  	if self.request.get('action') == 'update_user_sponsorships': self.response.out.write(simplejson.dumps(  self.update_user_sponsorships()  ))    
+  	try:
+		from utils.appengine_utilities.sessions import Session
+		self.session = Session()
+		if self.request.get('action') == 'reset': self.response.out.write(simplejson.dumps(  self.reset_account()  ))
+		if self.request.get('action') == 'update_user_stats': self.response.out.write(simplejson.dumps(  self.update_user_stats()  ))  
+		if self.request.get('action') == 'update_user_awards': self.response.out.write(simplejson.dumps(  self.update_user_awards()  ))
+		if self.request.get('action') == 'update_user_sponsorships': self.response.out.write(simplejson.dumps(  self.update_user_sponsorships()  ))   
+  	except:
+  		print "Error"
+  		return False 
 
 
 
