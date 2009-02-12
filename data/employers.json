@@ -10,7 +10,7 @@
                         "proficiencies": [
                             "Freebase"
                         ], 
-                        "email": "freebase@plopquiz.com", 
+                        "email": "freebase@PlopQuiz.com", 
                         "name": "freebase"
                     }, 
                     {
@@ -22,15 +22,15 @@
                         "name": "greenfuel"
                     }, 
                     {
-                        "unique_identifier": "plopquiz", 
+                        "unique_identifier": "PlopQuiz", 
                         "proficiencies": [
                             "Clean Energy", 
                             "Collective Intelligence", 
                             "Building Webapps", 
                             "Startup Financing"
                         ], 
-                        "email": "james@plopquiz.com", 
-                        "name": "plopquiz"
+                        "email": "james@PlopQuiz.com", 
+                        "name": "PlopQuiz"
                     }, 
                     {
                         "unique_identifier": "smartleaf", 
