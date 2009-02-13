@@ -188,12 +188,13 @@ class QuizSession():
 
 	# save temporary scores
 	def update_scores(self, token, unique_identifier):
-		logging.info('Transferring Score')  
 		this_user = QuizTaker.get_by_key_name(unique_identifier)
 		save_items = []
 		these_items = ItemScore.gql("WHERE type = :1", token).fetch(1000)
+		logging.info('Transferring %d Scores to User %s' % ( len(these_items ), unique_identifier ))  
 		for i in these_items:
 			i.quiz_taker = this_user
+			i.type = unique_identifier
 			save_items.append(i)
 		from google.appengine.ext import db
 		db.put(save_items)

@@ -11,7 +11,6 @@ from google.appengine.ext import db
 class TopicLevelData():               
     def get(self, quiz_taker):
     	return quiz_taker.topic_levels
-
                                                             
 
 

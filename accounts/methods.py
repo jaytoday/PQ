@@ -245,7 +245,6 @@ class Sponsorships():
 		
 
 	def give_sponsorship(self, pledge, award):
-		logging.info('saving new sponsorship') # more info!
 		new_sponsorship = Sponsorship(sponsor = pledge.sponsor,
 		                              recipient = award.winner,
 		                              package = pledge.package,
@@ -254,20 +253,22 @@ class Sponsorships():
 		                              award = award,
 		                              pledge = pledge )
 		self.save_sponsorships.append(new_sponsorship)
+		logging.info('saving new sponsorship for user %s from sponsor %s for subject %s' % (award.winner.unique_identifier , pledge.sponsor.unique_identifier, award.proficiency.name  ))
 		self.notify_sponsor(new_sponsorship.sponsor, award)
 		self.notify_sponsee(award.winner, new_sponsorship.sponsor)
 		return
 
+
 	def give_biz_sponsorship(self, pledge, award, biz_profile):
-		logging.info('saving new business sponsorship') # more info!
 		new_sponsorship = Sponsorship(sponsor = biz_profile,
-		                              recipient = award.winner,
-		                              sponsor_type = "business",
-		                              award_type = award.type,
-		                              award = award,
-		                              #pledge = pledge TODO: this refers to personal pledge
-		                              )
+									  recipient = award.winner,
+									  sponsor_type = "business",
+									  award_type = award.type,
+									  award = award,
+									  #pledge = pledge TODO: this refers to personal pledge
+										)
 		self.save_sponsorships.append(new_sponsorship)
+		logging.info('saving new sponsorship for user %s from sponsor %s for subject %s' % (award.winner.unique_identifier , pledge.sponsor.unique_identifier, award.proficiency.name  ))
 		self.notify_sponsor(new_sponsorship.sponsor, award)
 		self.notify_sponsee(award, new_sponsorship.sponsor)
 		return
