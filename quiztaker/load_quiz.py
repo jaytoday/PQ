@@ -181,8 +181,8 @@ class QuizSession():
 		"""
 		if len(vendor) > 0: score.vendor = Employer.get(vendor)
 		score.put()
-		logging.info('Score entered by user %s with score %s, picked: %s, correct: %s'
-					% (score.quiz_taker, score.score, score.picked_answer, score.correct_answer))
+		logging.info('Score entered by user %s with score %s, picked: %s, correct: %s, quiz_session: %s'
+					% (score.quiz_taker, score.score, score.picked_answer, score.correct_answer, token))
 		
 
 
@@ -191,7 +191,7 @@ class QuizSession():
 		this_user = QuizTaker.get_by_key_name(unique_identifier)
 		save_items = []
 		these_items = ItemScore.gql("WHERE type = :1", token).fetch(1000)
-		logging.info('Transferring %d Scores to User %s' % ( len(these_items ), unique_identifier ))  
+		logging.info('Transferring %d Scores From Quiz Session %s to User %s' % ( len(these_items), token, unique_identifier ))  
 		for i in these_items:
 			i.quiz_taker = this_user
 			i.type = unique_identifier

@@ -15,11 +15,12 @@ class TopicLevelData():
 
 
     def set(self, quiz_taker, save=False):
-		logging.info('setting topic level data for %s', quiz_taker.unique_identifier)
 		save = []
 		topic_scores = {}
 		edited_scores = False
+		total_scores = 0
 		for this_score in quiz_taker.itemscores:
+			total_scores += 1
 			try: 
 				
 				current_average = topic_scores[this_score.quiz_item.topic.key()]['average']
@@ -34,15 +35,16 @@ class TopicLevelData():
 
 			except:# no current average
 				try: topic_scores[this_score.quiz_item.topic.key()] = {}
-				except: continue # Reference Property error for old scores. 
+				except: 
+				    logging.warning('no topic for quiz item: %s', this_score.quiz_item.key())
+				    continue # Reference Property error for old scores. 
 				new_count = 1
 				new_average = this_score.score
 				
 			topic_scores[this_score.quiz_item.topic.key()]['count'] = new_count
 			topic_scores[this_score.quiz_item.topic.key()]['average'] = new_average
-			#logging.info('new topiclevel average for topic %s: %d' % (this_score.quiz_item.topic.name, new_average) )
-
-		logging.info('processing %d item scores for user %s' % ( len(topic_scores.items()), quiz_taker.unique_identifier )  )
+		
+		logging.info('processing %d item scores for user %s' % ( total_scores, quiz_taker.unique_identifier )  )
 		
 		for topic_pair in topic_scores.items():
 			tl_keyname = str(quiz_taker.unique_identifier) + "_" + str(topic_pair[0])

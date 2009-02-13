@@ -120,16 +120,13 @@ class RPCMethods(webapp.RequestHandler):
 
 class Post(webapp.RequestHandler): 
   def post(self):
-  	try:
 		from utils.appengine_utilities.sessions import Session
 		self.session = Session()
 		if self.request.get('action') == 'reset': self.response.out.write(simplejson.dumps(  self.reset_account()  ))
 		if self.request.get('action') == 'update_user_stats': self.response.out.write(simplejson.dumps(  self.update_user_stats()  ))  
 		if self.request.get('action') == 'update_user_awards': self.response.out.write(simplejson.dumps(  self.update_user_awards()  ))
 		if self.request.get('action') == 'update_user_sponsorships': self.response.out.write(simplejson.dumps(  self.update_user_sponsorships()  ))   
-  	except:
-  		print "Error"
-  		return False 
+
 
 
 
@@ -150,8 +147,10 @@ class Post(webapp.RequestHandler):
       pl = ProficiencyLevels()
       from model.quiz import QuizTaker
       qt = QuizTaker.get_by_key_name(self.session['user'].unique_identifier)
-      logging.info('Updating Level Stats for User %s', self.session['user'].unique_identifier)
-      pl.set_for_user(qt) 
+      logging.info('Updating Level Stats for User %s', qt.unique_identifier)
+      saved_stats = pl.set_for_user(qt)
+      logging.info(len(saved_stats)) 
+      if len(saved_stats) < 2: return False
       print "OK"
       return "OK"
       
