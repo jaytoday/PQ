@@ -89,17 +89,13 @@ class ProficiencyLevels():
 	  
 		  
 	def set_for_user(self, qt):
-		logging.info('setting milestone 1')
 		save = []
 		from ranking.methods import TopicLevelData, ProficiencyLevelData
 		ptl = TopicLevelData()
-		logging.info('setting milestone 2')
 		save.extend( ptl.set(qt) )
-		logging.info('setting milestone 3')
 		pl = ProficiencyLevelData()
 		save.extend( pl.set(qt) ) 
 		db.put(save)
-		logging.info('setting milestone 5')
 		return save 
 		# TODO: return value so it is known whether award check should be done. 
   
