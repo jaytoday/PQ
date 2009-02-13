@@ -155,7 +155,6 @@ $.plopquiz.settings.instructions.completed = true;
 
 if(quizItem.item_type == "quiz_item")
 {
-
 // reset the blank space
 $('#blank', $.plopquiz.quiz_content).empty();
 // hide the question until everything is loaded

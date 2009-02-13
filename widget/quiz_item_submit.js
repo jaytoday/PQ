@@ -99,6 +99,9 @@ case "begin_quiz":
 break;
 
 case "quiz_item":
+	if ($.plopquiz.answers.data('disabled') != false) return false; 
+	
+	
 	// ajax call to submit -- (answer, key, vendor)
 	$.plopquiz.timer.stop();
 	var timer_status = $.plopquiz.timer.width()/$.plopquiz.settings.timer_width;

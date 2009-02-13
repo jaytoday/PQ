@@ -1569,10 +1569,11 @@ color: #444 !important;
 }
 
 .quiz_wrap button.intro_quiz{
-bottom:2px !important;
+bottom:3px !important;
+height:64px !important;
 left:5px !important;
 position:absolute !important;
-width: 470px !important;
+width:470px !important;
 }
 
 .quiz_wrap button.take_test{
@@ -1606,7 +1607,7 @@ margin:16px 2px 0 5px !important;
 .quiz_wrap button span.intro_button{
 display:block;
 font-size:1.8em;
-margin:11px 0 0 45px !important;
+margin:11px 0 0 40px !important;
 position:absolute;
 text-align:center;
 width:420px;

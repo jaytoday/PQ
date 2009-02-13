@@ -1,14 +1,19 @@
 // Quiz Intro
 
-$('#confirm', $.plopquiz.answer_container).data('disabled', true).attr('class', 'answer intro_quiz')
-     .find('span.continue_button').text('Take This Quiz').end()
-    .animate({ opacity:0},{ duration: 0, 
-                         complete: function(){ $(this).animate({opacity:0},{ duration: 500, 
+var intro_button_text = $('button span#intro_button', $.plopquiz.answer_container);   
+$('#confirm', $.plopquiz.answer_container).attr('class', 'answer intro_quiz')
+   
+/*  .data('disabled', true)  .animate({ opacity:0},{ duration: 0, 
+                         complete: function(){ intro_button_text.text('Take a ' + $(this).text() + ' Quiz');     $(this).animate({opacity:0},{ duration: 500, 
                                                                               complete: function(){ $(this).animate({opacity:1},{duration: 1000  });  $(this).data('disabled', false); }                       
                                                                             });
                                              } 
-                            });
-var intro_button_text = $('button span#intro_button', $.plopquiz.answer_container);                            
+                            }) */
+                            ;
+                        
+                            
+
+                     
 
 $('.intro_frame_content #subject_container_1').show().addClass('selected'); // show first subject
 
@@ -29,7 +34,7 @@ $('.intro_frame_content #subject_container_' + $(this).attr('id'), $.plopquiz.qu
 
 $('#subject_' + $(this).attr('id'), $.plopquiz.quiz_content).s3Slider({ timeOut: $.plopquiz.settings.sliderDuration }); // initiate a slider for the subject being shown.
 
-intro_button_text.text('Take a ' + $(this).text() + ' Quiz');
+intro_button_text.text('Take a ' + $(this).text() + ' Quiz');    
 
 
 });
