@@ -102,10 +102,10 @@ width:15px;
 
 
 div.form_proceed{
-float:right;
-left:30px;
-margin:-105px 370px;
-width:200px;
+    left:880px;
+    position:absolute;
+    top:320px;
+    width:200px;
 }
 
 label.aboutme{
