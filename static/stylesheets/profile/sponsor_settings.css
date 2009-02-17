@@ -46,3 +46,8 @@ margin:20px 0 0 -25px;
 line-height:1.2em;
 }
 
+div#sponsor_form_cancel{
+margin: -15px 0px 0px 63px;
+position: absolute;
+width: 15px;
+}

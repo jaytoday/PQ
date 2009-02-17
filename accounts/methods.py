@@ -225,10 +225,11 @@ class Sponsorships():
 			
 		# check for business sponsorship	
 		from model.employer import AutoPledge
-		auto_pledges = AutoPledge.gql("WHERE proficiency = :1", award.proficiency).fetch(3)#untargetted sponsorships
+		auto_pledges = AutoPledge.gql("WHERE proficiency = :1", award.proficiency).fetch(1000)#untargetted sponsorships
 		# maybe randomize sponsor selection
 		already_biz_sponsors = [s.sponsor.unique_identifier for s in award.winner.sponsorships]
 		biz_sponsor_profiles = []
+		# TODO: Make sure that users aren't getting sponsored twice for one award, on subsequent sessions
 		for pledge in auto_pledges:
 			biz_profile = Profile.get_by_key_name(pledge.employer.unique_identifier)
 			if not biz_profile: continue #old references were causing Attribute Error
@@ -239,7 +240,8 @@ class Sponsorships():
 			biz_sponsor_profiles.append(biz_profile.unique_identifier)
 			pledge.count -= 1  
 			if pledge.count == 0: pledge.delete()
-			else: pledge.put()
+			else: self.save_sponsorships.append(pledge)
+			break # only give one sponsorship per award
 		return
 		
 		

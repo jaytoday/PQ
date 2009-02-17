@@ -15,7 +15,7 @@ $('#quiz_subjects').change(function(){
 
 						$('div#submit_form div#submit').click(function(){  SubmitSettingsEdit();   });
 			
-			$('div#submit_form div#cancel').click(function(){
+			$('div#submit_form div#sponsor_form_cancel').click(function(){
 			CancelSettingsEdit();
 		});
 		
