@@ -80,9 +80,12 @@ margin:0 0 0 10px;
 }
 
 form#sponsor_apply fieldset{
-height:65px;
+height:85px;
 }
 
+button#sponsor_submit{
+margin:-15px 30px;
+}
 
 form#sponsor_apply input{
 font-size: .9em;

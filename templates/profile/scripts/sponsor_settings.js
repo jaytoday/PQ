@@ -4,12 +4,11 @@
 
 		$(function () {
 
-
 $('#quiz_subjects').change(function(){
 
             $(this).data('subject', $(this).find('option').filter(':selected').text())
 
-        });
+        }).data('subject', $(this).find('option').filter(':selected').text());; // initialize subject data
 
 
 

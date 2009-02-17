@@ -139,7 +139,9 @@ class EditSponsorSettings(webapp.RequestHandler):
     from model.employer import Employer
     this_employer = Employer.get_by_key_name(self.session['user'].unique_identifier)
     from model.proficiency import Proficiency
+    import random
     subjects = Proficiency.gql("WHERE status = :1", "public").fetch(1000)
+    random.shuffle( subjects )
     template_values = {'user': self.session['user'], 'edit_type': edit_type, 'this_employer': this_employer,
                         'subjects': subjects }
     template_values['sponsor_settings_js'] = sponsor_settings_js(template_values)
