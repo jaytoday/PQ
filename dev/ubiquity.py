@@ -1,5 +1,4 @@
 import logging
-import cgi
 import wsgiref.handlers
 from utils import webapp
 from utils.webapp import template
@@ -15,7 +14,7 @@ DEV_PATH = 'dev/'
 class QuizBuilder(webapp.RequestHandler):
 
   def get(self):
-    template_values = {}
+    template_values = {'text': self.request.get('text')}
     path = tpl_path(DEV_PATH +'ubiquity_builder.html')
     self.response.out.write(template.render(path, template_values))
     
