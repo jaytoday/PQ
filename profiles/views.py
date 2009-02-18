@@ -132,6 +132,7 @@ class EditProfile(webapp.RequestHandler):
 class EditSponsorSettings(webapp.RequestHandler):
   @login_required
   def get(self):
+    if self.session['user'].is_sponsor == False: return self.redirect('/profile/' + user.profile_path)
     if self.session['create_profile'] == True:
         edit_type = "Create"
         self.session['create_profile'] = False

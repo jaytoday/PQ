@@ -194,6 +194,7 @@ class Awards():
 class Sponsorships():
 
 
+	#DEPRECATED
 	def check_all(self, awards): # start from awards, checks for all users. 
 		self.save_sponsorships = [] # for batch datastore trip
 		awards = Award.all().fetch(1000) # TODO: should only get unactivated awards. Award.sponsorships is reference collection. 
@@ -203,16 +204,18 @@ class Sponsorships():
 		return len(self.save_sponsorships)
 
 	def check_user(self, profile): # only for one user
+		self.new_sponsorships = 0
 		self.save_sponsorships = [] # for batch datastore trip
 		from model.account import Award
 		for award in profile.awards:
-			self.check_award(award)
+			self.check_award(award, profile)
 		db.put(self.save_sponsorships)
-		return len(self.save_sponsorships)
+		return self.new_sponsorships
 					
-	def check_award(self,award):
+	def check_award(self,award, profile):
 		give_sponsorship = {}
-		# check for targetted sponsorships
+		# check for targetted sponsorships - not in use right now 
+		"""
 		for pledge in award.winner.sponsorships_pledged_to_me: 
 			# eventually allow for corporate sponsor checks.    # This should use zip().
 			if award.winner.unique_identifier == pledge.sponsor.unique_identifier: continue #can't sponsor yourself. TODO: this should be done before now!
@@ -222,10 +225,11 @@ class Sponsorships():
 			if existing_sponsorships: 
 			    if award.winner in existing_sponsorships: give_sponsorship[pledge] = False 
 			if give_sponsorship[pledge] == True: self.give_sponsorship(pledge, award) # not using these yet! Personal sponsorships. 
-			
+		"""	
 		# check for business sponsorship	
 		from model.employer import AutoPledge
-		auto_pledges = AutoPledge.gql("WHERE proficiency = :1", award.proficiency).fetch(1000)#untargetted sponsorships
+		auto_pledges = AutoPledge.gql("WHERE proficiency = :1", award.proficiency).fetch(1000) #untargetted sponsorships
+		logging.info('checking %d sponsor autopledges for quiz subject %s awarded to user %s' % ( len(auto_pledges), award.proficiency.name, profile.unique_identifier))
 		# maybe randomize sponsor selection
 		already_biz_sponsors = [s.sponsor.unique_identifier for s in award.winner.sponsorships]
 		biz_sponsor_profiles = []
@@ -255,6 +259,7 @@ class Sponsorships():
 		                              award = award,
 		                              pledge = pledge )
 		self.save_sponsorships.append(new_sponsorship)
+		self.new_sponsorships += 1
 		logging.info('saving new sponsorship for user %s from sponsor %s for subject %s' % (award.winner.unique_identifier , pledge.sponsor.unique_identifier, award.proficiency.name  ))
 		self.notify_sponsor(new_sponsorship.sponsor, award)
 		self.notify_sponsee(award.winner, new_sponsorship.sponsor)
@@ -270,7 +275,8 @@ class Sponsorships():
 									  #pledge = pledge TODO: this refers to personal pledge
 										)
 		self.save_sponsorships.append(new_sponsorship)
-		logging.info('saving new sponsorship for user %s from sponsor %s for subject %s' % (award.winner.unique_identifier , pledge.sponsor.unique_identifier, award.proficiency.name  ))
+		logging.info('saving new sponsorship for user %s from sponsor %s for subject %s' % (award.winner.unique_identifier , pledge.employer.unique_identifier, award.proficiency.name  ))
+		self.new_sponsorships += 1
 		self.notify_sponsor(new_sponsorship.sponsor, award)
 		self.notify_sponsee(award, new_sponsorship.sponsor)
 		return

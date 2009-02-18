@@ -90,7 +90,7 @@ class SponsorPost(webapp.RequestHandler):
 	this_proficiency = Proficiency.get_by_key_name(self.request.get('quiz_subject'))
 	
 	#this_user.sponsored_subjects.append( Proficiency.get_by_key_name(self.request.get('quiz_subject')) )  -- Multiple Entries
-	if self.request.get('quiz_subject') != "undefined": this_user.sponsored_subjects = [ this_proficiency.key() ]
+	this_user.sponsored_subjects = [ this_proficiency.key() ]
 	# create auto_pledge
 	from model.employer import AutoPledge
 	# save sponsor account
@@ -98,7 +98,7 @@ class SponsorPost(webapp.RequestHandler):
   	                        proficiency = this_proficiency,
   	                        count = PLEDGE_NUM)
 
-	db.put([this_employer, this_user])
+	db.put([this_employer, this_user, new_pledge])
 	return "OK"
   	
 
