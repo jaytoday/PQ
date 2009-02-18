@@ -74,12 +74,13 @@ def default_photo():
 
 
 def reset_account(user, new_identifier):
-    save = []
-    this_profile = Profile.gql("WHERE login_identifier = :1", user.login_identifier).get()
-    if not this_profile: return False
-    this_profile.login_identifier = new_identifier 
-    this_profile.put()
-    return this_profile
+    logging.info('Resetting account for user %s. Old login_id was %s, new login_id is %s'
+                 % (user.unique_identifier, user.login_identifier, new_identifier) )
+    #this_profile = Profile.gql("WHERE login_identifier = :1", user.login_identifier).get()
+    #if not this_profile: return False
+    user.login_identifier = new_identifier 
+    db.put(user)
+    return user
     
 
 

@@ -232,14 +232,17 @@ remote callers access to private/protected "_*" methods.
 
 
   def accept_application(self, *args):
-	from model.employer import Sponsor_Application
-	this_sponsor = Sponsor_Application.gql("WHERE name = :1", args[0]).get()
-	from employer.methods import DataMethods
-	dm = DataMethods()
-	new_account = dm.create_business_account(this_sponsor.name, this_sponsor.email, proficiencies=False, batch=False)
-	from accounts.mail import mail_sponsor_intro
-	mail_sponsor_intro(new_account[1])
-	return "OK"
+    if not args: return "specify sponsor name (case sensitive)"
+    from model.employer import Sponsor_Application
+    this_sponsor = Sponsor_Application.gql("WHERE name = :1", args[0]).get()
+    from employer.methods import DataMethods
+    dm = DataMethods()
+    if this_sponsor is None: return "application not found"
+    new_account = dm.create_business_account(this_sponsor.name, this_sponsor.email, proficiencies=False, batch=False)
+    from accounts.mail import mail_sponsor_intro
+    if len(new_account) > 1: mail_sponsor_intro(new_account[1])
+    else: return "not mailing intro - it appears that this application has already been accepted"
+    return "OK"
 
 	
 	

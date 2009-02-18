@@ -42,7 +42,7 @@ class ViewProfile(webapp.RequestHandler):
 		user = Profile.gql('WHERE profile_path = :1', urllib.unquote(profile_stub)) #inefficient
 		try:
 			user = user.get()
-			if user.is_sponsor == True: self.redirect('/sponsors/' + user.profile_path) # go to sponsor profile
+			if user.is_sponsor == True: return self.redirect('/sponsors/' + user.profile_path) # go to sponsor profile
 			logging.info('loading profile of %s for user %s' % (user.profile_path, getattr(self.session['user'], 'profile_path', "?")))
 			this_user = user.unique_identifier
 		except:

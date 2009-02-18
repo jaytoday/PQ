@@ -41,7 +41,7 @@ class Login(webapp.RequestHandler):
 		if not self.session['continue']: self.session['continue'] = '/profile/' + self.session['user'].profile_path 
 		self.redirect(self.session['continue'])
 		self.session['continue'] = False
-    self.session['reset_account'] = False
+    #self.session['reset_account'] = False -- Why was this here? 
     if self.session['continue']: template_values['login_context'] = self.session['continue'].split('/')
     if self.request.get('sponsor'):
         template_values['login_context'] = "sponsor"
@@ -58,11 +58,11 @@ class Login(webapp.RequestHandler):
     try: 
         self.session['reset_account'] = Profile.get(self.request.get('reset'))
         assert self.session['reset_account'] is not False
-        logging.info('Resetting Access for User %s', (self.session['reset_account'].email))
+        logging.info('Presenting Reset Account Options for User %s', (self.session['reset_account'].email))
         template_values['login_context'] = "reset"
     except: 
         logging.warning('unable to use key %s for login shortcut', self.request.get('secret'))
-        template_values['error'] = "True"
+        template_values['error'] = "True" # TODO change text of error?
     return template_values        
 
 class LoginResponse(webapp.RequestHandler):

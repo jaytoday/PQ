@@ -88,13 +88,17 @@ class SponsorPost(webapp.RequestHandler):
 	this_user = Profile.get_by_key_name(this_employer.unique_identifier)
 	from model.proficiency import Proficiency
 	this_proficiency = Proficiency.get_by_key_name(self.request.get('quiz_subject'))
-	
+
+    # TODO: Should changing your sponsored subject cancel out your existing auto pledges? 
+    # old_pledges = AutoPledge.gql("WHERE employer = :1 AND proficiency != :2", % (this_employer, this_proficiency))
+    	
 	#this_user.sponsored_subjects.append( Proficiency.get_by_key_name(self.request.get('quiz_subject')) )  -- Multiple Entries
 	this_user.sponsored_subjects = [ this_proficiency.key() ]
 	# create auto_pledge
 	from model.employer import AutoPledge
 	# save sponsor account
-  	new_pledge = AutoPledge(employer = this_employer,
+  	new_pledge = AutoPledge(key_name = this_employer.unique_identifier + "_" + this_proficiency.name,
+  	                        employer = this_employer,
   	                        proficiency = this_proficiency,
   	                        count = PLEDGE_NUM)
 
