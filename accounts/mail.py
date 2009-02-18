@@ -82,8 +82,8 @@ def mail_sponsor_message(sponsor, award):
 
 	%s
 	""" % (sponsor.fullname, sponsee.fullname, award.proficiency.name.upper(), 
-	        "http://" + str(os.environ['HTTP_HOST']) + "profile/" + sponsee.profile_path,
-	        "http://" + str(os.environ['HTTP_HOST']) + "sponsors/" + sponsor.profile_path,
+	        "http://" + str(os.environ['HTTP_HOST']) + "/profile/" + sponsee.profile_path,
+	        "http://" + str(os.environ['HTTP_HOST']) + "/sponsors/" + sponsor.profile_path,
 	      mail_footer())
 
 	message.send()
@@ -137,9 +137,9 @@ def mail_sponsee_message(award, sponsor):
     
 	
 	""" % (sponsee.fullname, sponsor.fullname, award.proficiency.name.upper(), sponsor.fullname, sponsor_message, 
-	       "http://" + str(os.environ['HTTP_HOST']) + "profile/" + sponsee.profile_path,
+	       "http://" + str(os.environ['HTTP_HOST']) + "/profile/" + sponsee.profile_path,
 	       sponsor.fullname,
-	       "http://" + str(os.environ['HTTP_HOST']) + "sponsors/" + sponsor.profile_path,
+	       "http://" + str(os.environ['HTTP_HOST']) + "/sponsors/" + sponsor.profile_path,
 	       mail_footer())
 
 	message.send()
