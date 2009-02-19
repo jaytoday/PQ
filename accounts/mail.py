@@ -73,7 +73,7 @@ def mail_sponsor_message(sponsor, award):
 	
 	Your PlopQuiz sponsorship has been earned by a student!
 	
-	%s has been awarded a sponsorship from your organization for exceptional performance in the %s quiz subject "
+	%s has been awarded a sponsorship from your organization for exceptional performance in the %s quiz subject
 	
 	You can visit this student's profile at %s
 	

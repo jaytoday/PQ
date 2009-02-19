@@ -1,5 +1,8 @@
-<div style="
-width: 600px; min-height: 400px;
+
+
+
+<div class="ubiquity_quizbuilder" style="
+width: 600px; height: 420px;
 color: white; background-color: #555;
 padding: 5px;
 border: 5px solid #444;
@@ -11,25 +14,79 @@ position: fixed; left: 100px; top: 100px; z-index: 9999999999
 	Quiz Creator
 </div>
 
-<p><em>Your quiz statement is shown below. Select the 'correct answer' from the statement and then click the set button.</em></p>                 
+<p style="position:absolute; margin: -5px 0pt; font-size: 11px;"><em>
+<b>Edit the Quiz Item Text</b> by double-clicking it. 
+<div style="height:5px;"></div>
+<b>Choose the Correct Answer</b> by selecting it in the Quiz Item Text and pressing <b>Set Correct Answer</b> 
+<div style="height:5px;"></div>
+<b>Choose Wrong Answers</b> by selecting them from the <b>Answer Suggestions</b> or writing custom answers.
+</em></p>
 
-<b>Quiz Item Text: </b><div class='statement'>{{ text }}</div><br/>
-
-<b>Correct Answer:</b>
-<div class='answer'>&nbsp;</div><br/>
 
 
-	<div class='suggestions' style='display:none;'>
-	<b>Suggested Wrong Answers:</b><br/>
+
+<div class="quiz_text_container" style="width: 600px; height: 155px; position:absolute; margin: 50px 0;" >
+<div style="font-size: 1.5em; margin: 10px 0;">Quiz Item Text: </div>
+<div class='statement' style=" height: 120px; width: 590px; padding:10px; position:absolute;">{{ text }}</div>
+<input type='text' style="top: 35px; left: 10px; padding: 5px; width: 500px; height: 100px; position:absolute;
+                          
+                          display:none;">
+<button class="submit_edit" style="top: 75px; left: 535px; position:absolute; font-size: 1.6em;  
+                                  -webkit-border-radius: 5px; -moz-border-radius: 5px;
+                                  display:none;">OK</button>
+<div style="height:135px;"></div>
+
+	
+	</div>
+
+
+
+	<div class='suggestions' style='display:none; position:absolute; margin:218px 0px;'>
+	<div style="font-size:1.3em;">Suggested Wrong Answers:</div>
+	<div style="height:10px;"></div>
+	
+	<div class="items" style="height: 140px; width: 250px; overflow-y:auto;"></div>
 		<div class='loading'>
-			<div style='padding:5px;'>
+			<div style='padding:5px;'> 
 			Loading...
 			<img style='padding-left:10px;' src='http://localhost:8080/static/stylesheets/img/utils/mini_loader.gif'></div>
 		</div>
-	</div>
-
-	<p><button class='set'>Set Correct Answer</button> </p>
+		
 </div>
 
 
+<div class='selected_answers' style='top:255px; left: 320px; position: absolute; width: 300px; height: 220px;'>
+	<div style="font-size: 1.3em; font-weight:bold; ">Selected Answers</div>
+	<div style="height:5px;"></div>
+				
+<div style="height:30px;">
+<b>Correct Answer:</b> 
+    <div class="correct_answer" style="position:absolute; width: 200px; margin:-17px 110px 0px; font-size: 1.4em">
+	<i>none selected</i>
+	</div>
+<button style="margin: -2px -144px; position: absolute;" class='set_correct_answer'>Set</button>
+</div>
 
+<div style="height:20px; margin: 10px 0;" class="selected_answer wrong_answer">
+<b>Wrong Answer:</b><span style="margin: -14px 110px; position: absolute; font-size: 1.1em; display: block;"></span>
+<div class="edit" style="display:none;  position:absolute; margin:-18px 100px; width: 200px;"><input type="text" style="width:145px;"><button>OK</button></div>
+<div class="answer_options"></div>
+</div>
+
+<div style="height:20px; margin: 10px 0;" class="selected_answer wrong_answer">
+<b>Wrong Answer:</b><span style="margin: -14px 110px; position: absolute; font-size: 1.1em; display: block;"></span>
+<div class="edit" style="display:none;  position:absolute; margin:-18px 100px; width: 200px;"><input type="text" style="width:145px;"><button>OK</button></div>
+<div class="answer_options"></div>
+</div>
+
+			
+ </div>
+		
+	
+	
+
+	</div>
+	
+		
+	
+</div>

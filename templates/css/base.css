@@ -29,7 +29,6 @@ blockquote, q {
 	quotes: none;
 }
 
-/* remember to define focus styles! */
 :focus {
 	outline: 0;
 }
