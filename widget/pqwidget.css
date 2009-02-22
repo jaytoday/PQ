@@ -1963,7 +1963,7 @@ cursor:pointer;
 .quiz_wrap div.links_header{left: 100px; }
 .quiz_wrap div.videos_header{left: 160px; }
 
-.quiz_wrap div.study_content{position: absolute; top: 20px; left: 13px; width:280px;}
+.quiz_wrap div.study_content{position: absolute; top: 20px; left: 13px; width:280px; overflow-y: auto; height:200px;}
 
 
 .quiz_wrap div.study_header.selected {color:#AAAAAA !important;}
