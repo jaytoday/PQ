@@ -1,28 +1,14 @@
 [
-                    {
-                        "status": "private", 
-                        "name": "Bananas", 
-                        "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
-                        "popularity": 90, 
-                        "modified": {
-                            "ctime": "Mon Feb 16 10:04:57 2009"
-                        }, 
-                        "video_html": "D1CE83D8CC2DE66E", 
-                        "date": {
-                            "ctime": "Mon Feb 16 10:04:57 2009"
-                        }, 
-                        "difficulty": 95, 
-                        "blurb": "This is a test blurb"
-                    }, 
+
                     {
                         "status": "public", 
                         "name": "Biofuels", 
-                        "link_html": "<li><a>Link 1</a></li><li><a>Link 2</a></li><li><a>Link 3</a></li><li><a>Link 4</a></li>", 
-                        "popularity": 62, 
+                        "link_html": "<li><a href=\"http://www.bioenergywiki.net\">BioEnergyWiki</a></li><li><a href=\"http://www.completebiogas.com/toc.html\">The Complete BioMass Handbook</a></li><li><a href=\"http://www1.eere.energy.gov/biomass/\">U.S Department of Energy BioMass Site</a></li><li><a href=\"http://en.phyco.org/wiki/Main_Page\">Phyco.org Biofuel Wiki</a></li>", 
+                        "popularity": 32, 
                         "modified": {
                             "ctime": "Mon Feb 16 10:04:57 2009"
                         }, 
-                        "video_html": "D1CE83D8CC2DE66E", 
+                        "video_html": "25D85E3142DDC058", 
                         "date": {
                             "ctime": "Mon Feb 16 10:04:57 2009"
                         }, 
@@ -63,7 +49,7 @@
                         "status": "public", 
                         "name": "Cars 2.0", 
                         "link_html": "<li><a href=\"http://www.portfolio.com/views/columns/dual-perspectives/2009/02/02/Future-of-the-Car\">Portfolio.com: The Future of the Car</a></li>\r\n\r\n<li><a href=\"http://earth2tech.com/2008/11/23/get-ready-for-the-car-20-era/\">Get Ready for the Car 2.0 Era</a></li><li><a href=\"\r\nhttp://green.wikia.com/wiki/Electric_car\">Electric Cars on Wikia</a></li><li><a href=\"http://venturebeat.com/2008/01/10/27-electric-cars-companies-ready-to-take-over-the-road/\">30 Electric Car Companies</a></li><li><a href=\"http://en.wikipedia.org/wiki/Vehicle_Area_Network\" >Vehicle Area Network</a></li>\r\n<li><a href=\"http://greenhome.huddler.com/wiki/introduction-to-electric-cars-and-electric-scooters\" >Greenhome Electric Cars</a></li>\r\n\r\n\r\n", 
-                        "popularity": 93, 
+                        "popularity": 63, 
                         "modified": {
                             "ctime": "Mon Feb 16 10:04:57 2009"
                         }, 
@@ -138,7 +124,7 @@
                         "status": "public", 
                         "name": "Energy Efficiency", 
                         "link_html": "<li><a href=\"http://www.energy.gov/energyefficiency/index.htm\">US Department of Energy</a></li><li><a href=\"http://www.business.gov/guides/environment/energy-efficiency/\">Business.gov - Energy Efficiency for Businesses</a></li><li><a href=\"http://www.nrel.gov/learning/\">National Renewable Energy Laboratory</a></li><li><a href=\"http://www.energystar.gov/\">Energy STAR</a></li>", 
-                        "popularity": 84, 
+                        "popularity": 79, 
                         "modified": {
                             "ctime": "Mon Feb 16 10:04:57 2009"
                         }, 
@@ -272,7 +258,7 @@
                     {
                         "status": "public", 
                         "name": "Smart Grid", 
-                        "link_html": "<li><a href=\"http://www.oe.energy.gov/smartgrid.htm\">Department of Energy</a></li><li><a href=\"http://knol.google.com/k/jeffery-greenblatt/clean-energy-2030/15x31uzlqeo5n/1#\">Google: Clean Energy 2030</a></li><li><a href=\"https://knol.google.com/k/jesse-berst/smart-grid/detbsi9zgnm3/12#\">Smart Grid by Jesse Berst</a></li><li><a href=\"http://www.ibm.com/ibm/ideasfromibm/us/smartplanet/topics/utilities/20081124/index.shtml\">IBM Smart Grid Proposal</a></li>\r\n<li><a href=\"http://scienceinsociety.northwestern.edu/content/articles/2008/kiesling/smart-savings\">Science in Society Article</a></li>\r\n", 
+                        "link_html": "<li><a href=\"http://www.oe.energy.gov/smartgrid.htm\">Department of Energy</a></li><li><a href=\"http://knol.google.com/k/jeffery-greenblatt/clean-energy-2030/15x31uzlqeo5n/1#\">Google: Clean Energy 2030</a></li><li><a href=\"https://knol.google.com/k/jesse-berst/smart-grid/detbsi9zgnm3/12#\">Smart Grid by Jesse Berst</a></li><li><a href=\"http://www.ibm.com/ibm/ideasfromibm/us/smartplanet/topics/utilities/20081124/index.shtml\">IBM Smart Grid Proposal</a></li>\r\n<li><a href=\"http://scienceinsociety.northwestern.edu/content/articles/2008/kiesling/smart-savings\">Science in Society: Smart Savings</a></li>\r\n", 
                         "popularity": 92, 
                         "modified": {
                             "ctime": "Mon Feb 16 10:04:58 2009"

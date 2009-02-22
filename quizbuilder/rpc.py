@@ -132,7 +132,35 @@ remote callers access to private/protected "_*" methods.
 		new_quiz_item.put()
 		return str(new_quiz_item.key())
       
-      
+  def NewQuizItem(self, *args): # Just for ubiquity, for now.
+      		save = []
+      		new_quiz_item = QuizItem()
+      		new_quiz_item.content =  args[0]
+      		# lowering everything right now....TODO: Case convention! 
+      		new_quiz_item.index = string.lower(args[1])
+      		all_answers = [string.lower(answer) for answer in eval(args[2])]
+      		all_answers.append(new_quiz_item.index)
+      		new_quiz_item.answers = all_answers
+      		# TODO: Can a new quiz subject be made here? Yay or nay?
+      		this_proficiency = Proficiency.get_by_key_name(args[3])
+      		# topic key_names usually are proficiency_topic -- are these going to be tags instead?
+      		this_topic = ProficiencyTopic.get_by_key_name(args[3] + "_" + args[4])
+      		if this_topic is None: 
+      		    logging.info('creating new topic %s in quiz subject %s' % (args[4], args[3]) )
+      		    this_topic = ProficiencyTopic(key_name = args[3] + "_" + args[4], name=args[4], proficiency=this_proficiency)
+      		    save.append(this_topic)
+      		new_quiz_item.topic = this_topic
+      		new_quiz_item.proficiency = this_proficiency
+      		new_quiz_item.content_url = args[5]
+      		new_quiz_item.theme = new_quiz_item.get_theme(args[5])
+      		save.append(new_quiz_item)
+      		logging.info('making new quiz item with content: %s, answers: %s, quiz subject: %s, topic: %s, and url: %s' %
+      		            (new_quiz_item.content, new_quiz_item.answers, new_quiz_item.proficiency.name, new_quiz_item.topic.name,
+      		             new_quiz_item.content_url))
+      		return save
+      		db.put(save)
+      		return str(new_quiz_item.key())
+      		      
 
 
 

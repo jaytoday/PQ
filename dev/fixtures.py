@@ -21,9 +21,12 @@ class Fixture():
 			return False
 		this_account, this_user, this_quiz_taker = self.get_fixture()
 		scores = Scores()
+		import random
 		correct_prob = random.randint(80,95)
 		FIXTURE_PROFICIENCY = self.get_fixture_subject()
-		this_proficiency = 		save_scores = scores.make_scores(this_user, this_proficiency, correct_prob, SCORE_NUM = 20) 
+		from model.proficiency import Proficiency 
+		this_proficiency = random.sample( Proficiency.gql("WHERE status = 'public'").fetch(1000), 1 )[0]
+		save_scores = scores.make_scores(this_user, this_proficiency, correct_prob, SCORE_NUM = 10) 
 		memcache.set('current_fixture', ( this_account, this_user, this_quiz_taker ), 600000)
 		self.fixture_offset.status = "update_stats"
 		print this_user.nickname
