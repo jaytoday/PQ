@@ -154,6 +154,7 @@ $('#pqwidget #subject_1').s3Slider({ timeOut: 8300  });
                        
 				 // Setup commonly used selectors
 				$.pq_wrapper = $("#pq_wrapper");  // the entire interface, including bg and overlay.
+				$.plopquiz.quiz_outer = $('div#quiz_outer', $.pq_wrapper);
 				$.plopquiz.quiz_inner_content = $('#quiz_inner > div'); // both content and answers
 				$.plopquiz.quiz_content = $('#quiz_inner  #quiz_content'); // content loaded from server
 				$.plopquiz.quiz_loader = $('#quiz_inner #quiz_loading');
@@ -181,7 +182,7 @@ $('#pqwidget #subject_1').s3Slider({ timeOut: 8300  });
 				//opacity: 0.8,
 				ghosting: false,
 				containment: 'document', 
-				cancel: 'embed', // Youtube still doesn't work on Safari. 
+				cancel: 'embed', // Youtube still doesn't work on Safari. quiz_scroll_container also.
 			 distance: 90, // this solves scrollbar problem, but it requires 90 pixel drag before draggable() activates.
 				cursor: 'pointer'
 				 }); 

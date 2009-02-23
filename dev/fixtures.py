@@ -15,7 +15,7 @@ class Fixture():
 		save = []
 		logging.info('loading fixture')
 		self.fixture_offset = Setting.get_by_key_name('fixture_offset')  
-		if self.fixture_offset.status == "update_stats": 
+		if self.fixture_offset.status == "update_stats": #instead of 'create_account'
 			logging.warning('Load Fixtures Cron Job Hit Twice In a Row')
 			print "error -- current status: ", self.fixture_offset.status
 			return False

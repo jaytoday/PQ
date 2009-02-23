@@ -5,6 +5,8 @@ function quizItemLoad(quizItem, html, s)
 
 // set the quiz content -- it can be seen
 $.plopquiz.quiz_content.html(html);
+
+
 // hide the answers for now
 $('.answer', $.plopquiz.answer_container).hide();
 
@@ -20,6 +22,15 @@ $.plopquiz.quiz_content.attr('class', quizItem.item_type + '_content');
 $.plopquiz.answer_container.attr('class', quizItem.item_type + '_answers');
 $('#quiz_inner', $.pq_wrapper ).attr('class', quizItem.item_type + '_quiz_inner');
 $('.quiz_selection', $.plopquiz.quiz_content).attr('id', quizItem.item_type + '_quiz_selection');
+
+
+/* Margins should be negative 1/2 of the current width and height This is also where animation should be.*/ 
+
+	var margin_left = ( parseInt($.plopquiz.quiz_content.css('width')) / 2 ) + 30; 
+	var margin_top = ( parseInt($.plopquiz.quiz_content.css('height')) / 2 ) + 30;
+    $.plopquiz.quiz_outer.css({'margin-left': -margin_left, 'margin-top': -margin_top }); /* TODO: Animation */
+
+
 		
 for ( var i in quizItem.answers )
 {

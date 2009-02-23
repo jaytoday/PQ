@@ -156,7 +156,7 @@ $("#quiz_content", $.pq_wrapper)
 			{$.event.trigger("startTimer", [ quizItem ]); } });
 			
 	$.event.trigger("answerhover");		
-	
+    
 
 });
 

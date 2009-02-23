@@ -37,10 +37,10 @@
 background-color: #333;
 height: 100%;
 left: 0;
-opacity: .8 !important;
-filter: alpha(opacity=80) !important;
--moz-opacity: 0.8 !important;
--khtml-opacity: 0.8 !important;
+opacity: .9 !important;
+filter: alpha(opacity=90) !important;
+-moz-opacity: 0.9 !important;
+-khtml-opacity: 0.9 !important;
 position:absolute;
 top: 0;
 width: 100%;
@@ -393,11 +393,12 @@ td#quiz_pink_right {
 
 .quiz_wrap div#quiz_outer  {
 background:transparent none repeat scroll 0 0 !important;
-left:30%;
+left:50%;
 overflow:visible;
 padding:18px 18px 58px;
 position:fixed;/* position:absolute; */
-top:10%;
+top:50%;
+/* negative margins for half of height and width */
 z-index:90;
 }
 
