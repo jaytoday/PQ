@@ -1,65 +1,15 @@
-<style type="text/css">
-/* Style resets */
-.ubiquity-injected-data div, .ubiquity-injected-data span, .ubiquity-injected-data applet, .ubiquity-injected-data object, .ubiquity-injected-data iframe,
-h1, .ubiquity-injected-data h2, .ubiquity-injected-data h3, .ubiquity-injected-data h4, .ubiquity-injected-data h5, .ubiquity-injected-data h6, .ubiquity-injected-data p, .ubiquity-injected-data blockquote, .ubiquity-injected-data pre,
-a, .ubiquity-injected-data abbr, .ubiquity-injected-data acronym, .ubiquity-injected-data address, .ubiquity-injected-data big, .ubiquity-injected-data cite, .ubiquity-injected-data code,
-del, .ubiquity-injected-data dfn, .ubiquity-injected-data em, .ubiquity-injected-data font, .ubiquity-injected-data img, .ubiquity-injected-data ins, .ubiquity-injected-data kbd, .ubiquity-injected-data q, .ubiquity-injected-data s, .ubiquity-injected-data samp,
-small, .ubiquity-injected-data strike, .ubiquity-injected-data strong, .ubiquity-injected-data sub, .ubiquity-injected-data sup, .ubiquity-injected-data tt, .ubiquity-injected-data var,
-b, .ubiquity-injected-data u, .ubiquity-injected-data i, .ubiquity-injected-data center,
-dl, .ubiquity-injected-data dt, .ubiquity-injected-data dd, .ubiquity-injected-data ol, .ubiquity-injected-data ul, .ubiquity-injected-data li,
-fieldset, .ubiquity-injected-data form, .ubiquity-injected-data label, .ubiquity-injected-data legend,
-table, .ubiquity-injected-data caption, .ubiquity-injected-data tbody, .ubiquity-injected-data tfoot, .ubiquity-injected-data thead, .ubiquity-injected-data tr, .ubiquity-injected-data th, .ubiquity-injected-data td {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	outline: 0;
-	font-size: 100%;
-	vertical-align: baseline;
-	background: transparent;
-}
-.ubiquity-injected-data {
-	line-height: 1;
-}
-.ubiquity-injected-data ol, .ubiquity-injected-data ul {
-	list-style: none;
-}
-.ubiquity-injected-data blockquote, .ubiquity-injected-data q {
-	quotes: none;
-}
-.ubiquity-injected-data blockquote:before, .ubiquity-injected-data blockquote:after,
-q:before, .ubiquity-injected-data q:after {
-	content: '';
-	content: none;
-}
 
-/* remember to define focus styles! */
-.ubiquity-injected-data :focus {
-	outline: 0;
-}
 
-/* tables still need 'cellspacing="0"' in the markup */
-.ubiquity-injected-data table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-</style>
+<div class="ubiquity_quizbuilder">
 
-<div class="ubiquity_quizbuilder" style="
-width: 600px; height: 480px;
-color: white; background-color: #555;
-padding: 5px;
-border: 5px solid #444;
-position: fixed; left: 100px; top: 10px; z-index: 9999999999
-">
-
-<div class='header' style='color: white; font-face: verdana;  padding-bottom: 10px;'>
-	<img style='float: right; cursor: pointer;' class='close' src='{{ http_host }}/static/stylesheets/img/quiz_closebox.png' alt='[X] Close'/>
-	<img src="{{ http_host }}/static/stylesheets/img/utils/plopquiz_dbl_icon.png" style="position:absolute; margin:-1px 13px;" />
-	<div style="position: absolute; font-size: 23px; top: 55px; left: 4px;">Quiz Builder</div>
+<div class='header'>
+	<img class='close' src='{{ http_host }}/static/stylesheets/img/quiz_closebox.png' alt='[X] Close'/>
+	<img src="{{ http_host }}/static/stylesheets/img/utils/plopquiz_dbl_icon.png" class="icon" />
+	<div>Quiz Builder</div>
 </div>
 
-<div style="margin: -10px 100pt; padding: 5px; -moz-border-radius: 5px; background: #aaa; border-color: #aaa; width: 420px; position: absolute; font-size: 10px; color: black;">
-<span style="font-size: 1.2em;">Instructions</span><div style="height: 10px;"/>
+<div class="instructions">
+<div style="font-size: 1.2em;">Instructions</div><div style="height: 10px;"/>
 
 <b>Edit the Quiz Item Text</b> by double-clicking it. 
 <div style="height: 10px;"/>
@@ -72,15 +22,11 @@ position: fixed; left: 100px; top: 10px; z-index: 9999999999
 
 
 
-<div class="quiz_text_container" style="width: 600px; height: 155px; position:absolute; margin: 100px 0;" >
-<div style="font-size: 1.5em; margin: 10px 0;">Quiz Item Text: </div>
-<div class='statement' style=" height: 120px; width: 580px; padding:10px; position:absolute;">{{ text }}</div>
-<input type='text' style="top: 35px; left: 10px; padding: 5px; width: 500px; height: 100px; position:absolute;
-                          
-                          display:none;">
-<button class="submit_edit" style="top: 75px; left: 535px; position:absolute; font-size: 1.6em;  
-                                  -moz-border-radius: 5px;
-                                  display:none;">OK</button>
+<div class="quiz_text_container" >
+<div class="quiz_item_text">Quiz Item Text: </div>
+<div class='statement'>{{ text }}</div>
+<input type='text' style="display:none;">
+<button class="submit_edit" style="display:none;">OK</button>
 <div style="height:135px;"></div>
 
 	
@@ -88,73 +34,70 @@ position: fixed; left: 100px; top: 10px; z-index: 9999999999
 
 
 
-	<div class='suggestions' style='display:none; position:absolute; margin:260px 0px;'>
+	<div class='suggestions' style='display:none;'>
 	<div style="font-size:1.3em;">Suggested Wrong Answers:</div>
 	<div style="height:10px;"></div>
 	
-	<div class="items" style="height: 180px; width: 250px; overflow-y:auto;"></div>
-		<div class='loading'  style="margin: -120px 50px; position: absolute;">
-			<div style='padding:5px;'> 
+	<div class="items"></div>
+		<div class='loading'>
 			Loading...
-			<img style='padding-left:10px;' src='http://localhost:8080/static/stylesheets/img/utils/mini_loader.gif'></div>
+			<img src='http://localhost:8080/static/stylesheets/img/utils/mini_loader.gif'>
 		</div>
 		
 </div>
 
 
-<div class='selected_answers' style='padding: 0pt 0pt 0pt 50px; overflow: hidden; top: 276px; left: 270px; position: absolute; width: 285px; height: 125px;'>
-	<div style="font-size: 1.3em; font-weight:bold; ">Selected Answers</div>
+<div class='selected_answers'>
+	<div id="title">Selected Answers</div>
 	<div style="height:5px;"></div>
 				
 <div style="height:30px;">
 <b>Correct Answer:</b> 
-    <div class="correct_answer" style="position:absolute; width: 180px; margin:-17px 110px 0px; font-size: 1.4em">
+    <div class="correct_answer">
 	
 	</div>
-<button style="margin: -2px -144px; position: absolute;" class='set_correct_answer'>Set</button>
+<button class='set_correct_answer'>Set</button>
 </div>
 
-<div style="height:20px; margin: 10px 0;" class="selected_answer wrong_answer">
-<b>Wrong Answer:</b><span style="margin: -14px 110px; width: 180px; position: absolute; font-size: 1.1em; display: block;"></span>
-<div class="edit" style="display:none;  position:absolute; margin:-18px 100px; width: 200px;"><input type="text" style="width:145px;"><button>OK</button></div>
-<div class="answer_options"></div>
+<div class="selected_answer wrong_answer">
+<b>Wrong Answer:</b><span></span>
+<div class="edit" style="display:none;"><input type="text"><button>OK</button></div>
 </div>
 
-<div style="height:20px; margin: 10px 0;" class="selected_answer wrong_answer">
-<b>Wrong Answer:</b><span style="margin: -14px 110px; width: 180px; position: absolute; font-size: 1.1em; display: block;"></span>
-<div class="edit" style="display:none;  position:absolute; margin:-18px 100px; width: 200px;"><input type="text" style="width:145px;"><button>OK</button></div>
-<div class="answer_options"></div>
+<div class="selected_answer wrong_answer">
+<b>Wrong Answer:</b><span></span>
+<div class="edit" style="display:none;"><input type="text"><button>OK</button></div>
 </div>
 
 			
  </div>
 
-	<div style="position:absolute; top:400px; left: 320px;" class="submit_item">
-		<div style="" class="subject">Subject 
-			<select style="margin: 0 20px;">
+	<div class="submit_item">
+		<div class="subject">Subject 
+			<select >
 				<option selected>Choose a Subject</option>
 				<option id="new">-- Create New Subject --</option>
 				{% for subject in subjects %}
 				<option>{{ subject.name }}</option>
 				{% endfor %}
 				</select>
-				<input  style="display:none;margin: 0 25px;" type="text" />
-				<button class="cancel_input" style="position:absolute; margin: 0 -20px; display:none;">Cancel</button>
+				<input  style="display:none;" type="text" />
+				<button class="cancel_input" style="display:none;">Cancel</button>
 				</div>
 				
 		<div style="margin:5px 0 8px;" class="topic">Topic 
-			<select style="margin: 0 20px;">
+			<select>
 				<option selected>Choose a Topic</option>
 				<option id="new">-- Create New Topic --</option>
 				{% for subject in subjects %}
 				<option>{{ subject.name }}</option>
 				{% endfor %}
 				</select>
-				<input  style="display:none;margin: 0 25px;" type="text" />
-					<button class="cancel_input" style="position:absolute; margin: 0 -20px; display:none;">Cancel</button>
+				<input  style="display:none;" type="text" />
+				<button class="cancel_input" style="display:none;">Cancel</button>
 						</div> 
-		<button id="submit_item" style="height:30px; margin: 0px 0px 2px -15px; width: 200px; font-size: 1.2em; border: 3px; -moz-border-radius: 5px;"><img style='float:left; margin: -1px;' src='http://localhost:8080/static/stylesheets/img/utils/purple_next_small.png' /><div style="margin:3px 0;">Submit This Item</div></button>
-<div class="submit_error" style="color: red; text-align: center; float:right; width: 80px; height: 22px; margin: -33px 5px; font-size:.8em; -moz-border-radius:5px;	background-color:#EBCFEB;	border:2px solid #FF7F81;padding:5px; display:none;"></div>
+		<button id="submit_item"><img src='http://localhost:8080/static/stylesheets/img/utils/purple_next_small.png' /><div>Submit This Item</div></button>
+<div class="submit_error" style="display:none;"></div>
 		</div>	
 	
 	

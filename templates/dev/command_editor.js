@@ -145,7 +145,7 @@ jQuery(this).data('ready', true);
      });
  
 
-// show that subject is ready on change(). Check for 'create new' choice.
+// show that topic is ready on change(). Check for 'create new' choice.
 select('topic').change(function(){
   if (jQuery(this).find("option:selected").attr('id') == "new")
   { jQuery(this).find('select').hide().end().find('input').show().end().find('button').show();
@@ -158,7 +158,10 @@ select('cancel_input').click(function(){ jQuery(this).hide().parent()
                       .data('ready', false).find('input').hide().end().find('select').show() });
 
 var submit_error = select('submit_error');
-//Submit Item
+
+
+////     Submit Item    /////
+
 select('submit_item').find('button#submit_item').click(function(){
 
 submit_error.hide().text('');
@@ -185,25 +188,11 @@ wrong_answers.push("'" + jQuery(this).text() + "'");
 // subject
 var subject = select('subject').find('select').attr('value');
 if (select('subject').data('ready') != true) {
-    if (select('subject').data('ready') == 'input') {  
-  var subject = select('subject').find('input').val();
-if (subject.length < 5) { submit_error.show().text('Subject Name is Too Short'); return false; }
-
+  submit_error.show().text('Choose a Subject');
+  return false;
 }
-  else {   submit_error.show().text('Choose a Subject');
-  return false; }
-
-}
-// topic - more specific than subject
-var topic = select('topic').find('select').attr('value');
-if (select('topic').data('ready') != true) {
-  if (select('topic').data('ready') == 'input') {
-  var topic = select('topic').find('input').val();
-  if (topic.length < 5) { submit_error.show().text('Topic Name is Too Short'); return false; }
-}
-  else { submit_error.show().text('Choose a Topic');
-return false; }
-}
+// tags
+var tags = select('tags').find('input').text();
 // location of current page
 var this_url = CmdUtils.getWindow().location.href;
 
@@ -221,7 +210,7 @@ jQuery.ajax({
               ')"&arg3="'
                     + subject +  
               '"&arg4="'
-                    + topic +  
+                    + tags +  
               '"&arg5="'
                     + this_url +
               '"',
@@ -253,8 +242,9 @@ jQuery.ajax({
             //jQuery.getScript(serverUrl + "/ubiquity/?get=js", function(){ });
             // Run javascript
           // appending to the head doesn't work
-          jQuery(doc.head).append(
-'<link rel="stylesheet" type="text/css"  href="' + serverUrl + '"static/html/quizbuilder/ubiquity.css" />');
+          
+          jQuery('head', doc).append(
+'<link rel="stylesheet" type="text/css"  href="' + serverUrl + '/static/html/quizbuilder/ubiquity.css" />');
             runCode();
         }
 
