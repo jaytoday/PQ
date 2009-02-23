@@ -38,7 +38,8 @@ width: 600px; height: 480px;
 color: white; background-color: #555;
 padding: 5px;
 border: 5px solid #444;
-position: fixed; left: 100px; top: 10px; z-index: 9999999999
+z-index: 999;
+left: 100; top: 100; /* TODO: These get read as "auto" in the js */
 }
 
 
