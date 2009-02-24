@@ -157,7 +157,8 @@ class EditSubjects(webapp.RequestHandler):
         subjects = []
         for group in self.session['user'].quiz_groups:
             subjects.extend([Proficiency.get(p) for p in group.subjects])
-        template_values = { 'subjects' : subjects}
+        template_values = { 'subjects' : subjects, 'user': self.session['user']}
+        template_values['subjects_js'] = subjects_js(template_values)
         path = tpl_path(PROFILE_PATH +'my_subjects.html')
         self.response.out.write(template.render(path, template_values))
 
@@ -314,7 +315,7 @@ class PreviewViewProfile(webapp.RequestHandler): #deprecated
 
 
 
-
+# These take template vals but they're also cached? 
 
 @memoize('profile_js')
 def profile_js(template_values):
@@ -337,4 +338,8 @@ def sponsor_settings_js(template_values):
         from utils.random import minify 
         return minify( template.render(path, template_values) )        
         
-
+@memoize('subjects_js')
+def subjects_js(template_values):
+        path = tpl_path(PROFILE_PATH + 'scripts/subjects.js')
+        from utils.random import minify 
+        return minify( template.render(path, template_values) )

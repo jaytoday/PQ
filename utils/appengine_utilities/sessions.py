@@ -50,14 +50,14 @@ from rotmodel import ROTModel
 
 COOKIE_NAME = 'appengine-utilities-session-sid' # session token
 DEFAULT_COOKIE_PATH = '/'
-SESSION_EXPIRE_TIME = 7200 # sessions are valid for 7200 seconds (2 hours)
-CLEAN_CHECK_PERCENT = 50 # By default, 50% of all requests will clean the database
+SESSION_EXPIRE_TIME = 172800 # sessions are valid for 2 days
+CLEAN_CHECK_PERCENT = 0 # By default, 50% of all requests will clean the database
 INTEGRATE_FLASH = True # integrate functionality from flash module?
 CHECK_IP = True # validate sessions by IP
 CHECK_USER_AGENT = True # validate sessions by user agent
 SET_COOKIE_EXPIRES = True # Set to True to add expiration field to cookie
-SESSION_TOKEN_TTL = 5 # Number of seconds a session token is valid for.
-UPDATE_LAST_ACTIVITY = 60 # Number of seconds that may pass before
+SESSION_TOKEN_TTL = 25 # Number of seconds a session token is valid for.
+UPDATE_LAST_ACTIVITY = 360 # Number of seconds that may pass before
                           # last_activity is updated
 
 class _AppEngineUtilities_Session(ROTModel):
