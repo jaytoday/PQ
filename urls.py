@@ -17,6 +17,7 @@ def url_routes(map):
 	
 	#Profiles
 	map.connect('profile/*username', controller = 'profiles.views:ViewProfile')
+	map.connect('my_subjects', controller = 'profiles.views:EditSubjects')
 	map.connect('edit_profile', controller = 'profiles.views:EditProfile')
 	map.connect('edit_sponsor_settings', controller = 'profiles.views:EditSponsorSettings')
 	

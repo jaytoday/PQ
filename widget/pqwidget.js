@@ -180,9 +180,10 @@ $('#pqwidget #subject_1').s3Slider({ timeOut: 8300  });
 				$('#quiz_outer').draggable({ 
 				zIndex: 	1000, 
 				//opacity: 0.8,
+				addClasses: false,
 				ghosting: false,
 				containment: 'document', 
-				cancel: 'embed', // Youtube still doesn't work on Safari. quiz_scroll_container also.
+				cancel: '.no_drag', // Youtube still doesn't work on Safari. quiz_scroll_container also.
 			 distance: 90, // this solves scrollbar problem, but it requires 90 pixel drag before draggable() activates.
 				cursor: 'pointer'
 				 }); 

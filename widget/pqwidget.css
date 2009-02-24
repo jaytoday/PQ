@@ -74,44 +74,60 @@ line-height:1.4em;
 /* Quiz Content Styles */
 
 .quiz_wrap .intro_content{
-height:430px;
+height:510px;
 width:700px;
 }
 
 .quiz_wrap .instructions_content{
-height: 370px;
+height: 440px;
+width:355px;
 }
 
 .quiz_wrap .instructions2_content{
-height: 394px;
+height: 460px;
 width:369px;
 }
 
 .quiz_wrap .begin_quiz_content{
-height:365px;
+height:375px;
+width:350px;
 }
 
 .quiz_wrap .quiz_item_content{
-height: 335px;
+height: 390px;
 width:515px;
 }
 
 .quiz_wrap .quiz_complete_content{
 width: 395px;
+height:380px;
 }
 
 
+.quiz_wrap #quiz_answers{
+position:absolute;
+}
+
 .quiz_wrap .instructions_answers{
-margin:0 0 0 25px;
+    margin:-54px 0 0 25px;
+}
+
+.quiz_wrap .instructions2_answers{
+    margin:-55px 0 0;  
 }
 
 .quiz_wrap .intro_answers{
-height:0;
-margin:20px -10px 50px;
+    height:30px;
+    margin:-35px 10px 0;
+    width:680px;
 }
 
 .quiz_wrap .begin_quiz_answers{
 margin: -10px 0 0 -10px;
+}
+
+.quiz_wrap .quiz_item_answers{
+margin: -52px 0 0 0;
 }
 
 .quiz_wrap .quiz_complete_answers{
@@ -272,7 +288,7 @@ width:80px;
         background:#EEEAF8 none repeat scroll 0 0 !important;
         display:        none;
         height:10px;
-        margin:-10px 0 10px;
+        float:left;
         padding: 4px;
         -moz-border-bottom-colors:  #777 #888 #999 #aaa #bbb #ccc;
         -moz-border-top-colors:     #777 #888 #999 #aaa #bbb #ccc;
@@ -280,6 +296,17 @@ width:80px;
         -moz-border-right-colors:   #777 #888 #999 #aaa #bbb #ccc;
         -moz-border-radius: 15px;
         -webkit-border-radius: 15px;
+}
+
+
+.quiz_wrap .timer_wrapper#instructions2{
+width: 360px;
+margin:-75px 0 10px;
+}
+
+.quiz_wrap .timer_wrapper#quiz_item{
+width: 500px;
+margin: -71px 0 10px;
 }
 
 .quiz_wrap .timer_inner
@@ -412,11 +439,11 @@ color:black;
 }
 
 .quiz_wrap div#quiz_inner.instructions_quiz_inner{
-width:355px;
+/* width:355px; */
 }
 
 .quiz_wrap div#quiz_inner.instructions2_quiz_inner{
-width:368px;
+/* width:368px; */
 }
 
 
@@ -1590,14 +1617,17 @@ position:absolute !important;
 }
 
 .quiz_wrap button.begin_quiz{
-float:left;
-margin:-50px 44px !important;
-height: 64px;
+
+    height:64px;
+    margin:-58px 43px  !important;
+    position:absolute;
+    width:280px;
 }
 
 .quiz_wrap button.quiz_complete{
 margin:-140px 0 0 56px !important;
 position:absolute !important;
+width: 280px;
 }
 
 .quiz_wrap .continue_button{

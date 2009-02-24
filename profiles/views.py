@@ -150,6 +150,17 @@ class EditSponsorSettings(webapp.RequestHandler):
     self.response.out.write(template.render(path, template_values))
 
       
+class EditSubjects(webapp.RequestHandler):
+      @login_required
+      def get(self):
+        from model.proficiency import Proficiency
+        subjects = []
+        for group in self.session['user'].quiz_groups:
+            subjects.extend([Proficiency.get(p) for p in group.subjects])
+        template_values = { 'subjects' : subjects}
+        path = tpl_path(PROFILE_PATH +'my_subjects.html')
+        self.response.out.write(template.render(path, template_values))
+
 
 
 

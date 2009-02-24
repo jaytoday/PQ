@@ -22,7 +22,7 @@ $.plopquiz.quiz_content.attr('class', quizItem.item_type + '_content');
 $.plopquiz.answer_container.attr('class', quizItem.item_type + '_answers');
 $('#quiz_inner', $.pq_wrapper ).attr('class', quizItem.item_type + '_quiz_inner');
 $('.quiz_selection', $.plopquiz.quiz_content).attr('id', quizItem.item_type + '_quiz_selection');
-
+$.plopquiz.timer_wrapper.attr('id', quizItem.item_type);
 
 /* Margins should be negative 1/2 of the current width and height This is also where animation should be.*/ 
 

@@ -88,6 +88,18 @@ class Profile(db.Model):
     def nickname(self):   # Get proficiency_levels for user 
         return self.fullname   
 
+
+
+class QuizGroup(db.Model):  # A group of subjects administered by a user. 
+    small_image = db.BlobProperty(required=True)
+    owner = db.ReferenceProperty(Profile, collection_name='quiz_groups') # Proficiency Tag (startup_financing) # This could be multiple as well
+    subjects= db.ListProperty(db.Key) # list of proficiencies
+    #logo - Blob
+    created = db.DateTimeProperty(auto_now=True)    
+    modified = db.DateTimeProperty(auto_now=True)   
+
+
+
 class ProficiencyLevel(db.Model):
   proficiency = db.ReferenceProperty(Proficiency,required=True,collection_name='pro_levels') # Proficiency Tag (startup_financing)
   quiz_taker = db.ReferenceProperty(QuizTaker,required=True, collection_name='proficiency_levels')
