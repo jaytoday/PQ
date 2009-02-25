@@ -94,6 +94,10 @@ var runCode = function(){
         var lookupUrl = "http://www.freebase.com/api/service/search?limit=6&query=" + encodeURI(answer);
         jQuery.getJSON(lookupUrl, function(data){
             var alternatives = new Array();
+            if(!data.result) {
+            	alert(data.messages.message);
+            	return;
+            }
             for (var result in data.result) {
                 var suggestion = data.result[result].name;
                 if (suggestion.toLowerCase() == answer.toLowerCase()) 
@@ -255,6 +259,7 @@ var runCode = function(){
             this_url +
             '"',
             error: function(data){
+            	alert(data);
             },
             success: function(data){
             }
