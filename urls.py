@@ -1,8 +1,5 @@
 def url_routes(map):
-	"""
-	Can caching be controlled from here? 
-	
-	"""
+
 	
 	#Hompeage
 	#map.connect('', controller = 'homepage.views:TeaserHomepage')
@@ -57,6 +54,7 @@ def url_routes(map):
 		
 
 	# Induction & Building Quizzes
+	map.connect('edit/:subject', controller = 'quizbuilder.views:QuizEditor')
 	map.connect('quizbuilder', controller = 'quizbuilder.views:QuizBuilder')
 	map.connect('quizbuilder/induction', controller = 'quizbuilder.views:InductionInterface')		
 	map.connect('quizbuilder/item', controller = 'quizbuilder.views:RawItemTemplate')
@@ -69,7 +67,8 @@ def url_routes(map):
 	map.connect('employer/rpc/post', controller = 'employer.rpc:SponsorPost')		
 	map.connect('accounts/rpc', controller = 'accounts.rpc:RPCHandler')	
 	map.connect('accounts/rpc/post', controller = 'accounts.rpc:Post')	
-	map.connect('profiles/rpc', controller = 'profiles.rpc:RPCHandler')		
+	map.connect('profiles/rpc', controller = 'profiles.rpc:RPCHandler')
+	map.connect('profiles/rpc/post*data', controller = 'profiles.rpc:ProfilePost')			
 	map.connect('dev/rpc', controller = 'dev.rpc:RPCHandler')		
 	map.connect('homepage/rpc', controller = 'homepage.rpc:RPCHandler')		
 	map.connect('profiles/picture_upload', controller = 'profiles.rpc:PictureUpload')	

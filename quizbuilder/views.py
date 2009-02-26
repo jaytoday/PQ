@@ -3,8 +3,10 @@ from utils.webapp import template
 from google.appengine.ext import db
 from google.appengine.api import users
 from utils import webapp
-from utils.webapp import util
+from utils.webapp.util import login_required
 from .utils.utils import tpl_path, admin_only
+from model.proficiency import Proficiency
+from model.quiz import QuizItem
 
 QUIZBUILDER_PATH = 'quizbuilder/'           
               
@@ -27,6 +29,24 @@ class RawItemTemplate(webapp.RequestHandler):
 
 
 
+class QuizEditor(webapp.RequestHandler):
+    @login_required
+    def get(self):
+        try: this_subject = self.get_subject()
+        except: return #self.redirect('/error/subject_not_found')
+        template_values = {'subject': this_subject}
+        template_values['ANSWERCOUNT'] = range(1,3)
+        path = tpl_path(QUIZBUILDER_PATH + 'quiz_editor.html')
+        self.response.out.write(template.render(path, template_values))
+        
+    def get_subject(self):
+        # Get subject from path
+      		import string #string.capwords() 
+      		subject_name = self.request.path.split('/edit/')[1].replace("%20"," ")  #TODO - instead of capwords, make all subject names lowercase
+      		this_subject = Proficiency.get_by_key_name(subject_name)
+      		assert this_subject is not None
+      		return this_subject       
+                
 
 
 

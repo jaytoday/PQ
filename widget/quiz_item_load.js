@@ -16,22 +16,35 @@ $.plopquiz.quiz_loader.attr('class', quizItem.item_type + '_load').animate({opac
 }).hide();
 
 
-// this supports any number of answers.
-// Specify custom CSS settings, and delegate answer elements.
-$.plopquiz.quiz_content.attr('class', quizItem.item_type + '_content');
+/* 
+TODO: Quiz Frame Animation
+
+Frame is re-positioned and given new dimensions. jQuery.animate() should be used to ease these.
+
+Since the height and width is defined by classes in stylesheets, this may take a little bit of refactoring...
+
+*/ 
+
+// apply new class for quiz content for item_type - specified in pqwidget.css
+$.plopquiz.quiz_content.attr('class', quizItem.item_type + '_content'); 
 $.plopquiz.answer_container.attr('class', quizItem.item_type + '_answers');
 $('#quiz_inner', $.pq_wrapper ).attr('class', quizItem.item_type + '_quiz_inner');
 $('.quiz_selection', $.plopquiz.quiz_content).attr('id', quizItem.item_type + '_quiz_selection');
 $.plopquiz.timer_wrapper.attr('id', quizItem.item_type);
 
-/* Margins should be negative 1/2 of the current width and height This is also where animation should be.*/ 
+// set new quiz frame position
+var margin_left = ( parseInt($.plopquiz.quiz_content.css('width')) / 2 ) + 15; 
+var margin_top = ( parseInt($.plopquiz.quiz_content.css('height')) / 2 ) + 15;
+$.plopquiz.quiz_outer.css({'margin-left': -margin_left, 'margin-top': -margin_top }); 
 
-	var margin_left = ( parseInt($.plopquiz.quiz_content.css('width')) / 2 ) + 30; 
-	var margin_top = ( parseInt($.plopquiz.quiz_content.css('height')) / 2 ) + 30;
-    $.plopquiz.quiz_outer.css({'margin-left': -margin_left, 'margin-top': -margin_top }); /* TODO: Animation */
+
+/*
+ *
+ *  Initialize Answers
+ *
+ */
 
 
-		
 for ( var i in quizItem.answers )
 {
 

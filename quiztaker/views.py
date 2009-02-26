@@ -95,11 +95,6 @@ class TakeQuiz(webapp.RequestHandler):
 		import string
 		this_proficiency = self.request.path.split('/quiz/')[1].replace("%20"," ") #TODO - instead of capwords, make all subject names lowercase
 		return [[Proficiency.get_by_key_name(this_proficiency)], ""]  # This only allows one proficiency, and no vendor. 
-		"""
-    if self.request.get('proficiencies'):
-        proficiencies = self.request.get('proficiencies')
-        return [eval(proficiencies,{"__builtins__":None},{}), self.get_default_vendor()] 
-        """ 
     # if no quiz argument, return newest Quiz Subject
     return [[Proficiency.get_by_key_name(DEFAULT_QUIZ_SUBJECT)], ""]	   
          
@@ -235,69 +230,4 @@ class ViewSnaptalentQuiz(webapp.RequestHandler): # most work should go into its 
         random.shuffle(self.quiz_array)
         return self.quiz_array
         
-        
-
-
-class ViewNone(webapp.RequestHandler): # Deprecated
-
-   def get(self):
-       pass
-
-
-
-
-
-
-
-            
-"""
-class ViewScore(webapp.RequestHandler):
-  # View Score Report.
-   def get(self):
-	logging.debug('Loading Score')
-	template_values = {}
-	try:
-	  latest_scores = TempItemScore.gql("WHERE quiz_taker = :quiz_taker ORDER BY date DESC",
-								quiz_taker="quiz_taker")   
-	  logging.info('Loading all score items') 
-	except:
-	  raise_error('Error Retrieving Data From Score Model')
-
-	try:
-	  correct_item = TempItemScore.gql("WHERE score > :score AND quiz_taker = :quiz_taker ORDER BY score DESC, date DESC",
-							 quiz_taker="quiz_taker", score=0 )
-	  logging.info('Loading correct Score items from user')
-	except:
-	  raise_error('Error Retrieving Data From Score Model')    
-		
-	logging.info(latest_scores.count())
-	totalscore = correct_item.count()
-	totalitems = latest_scores.count()
-	logging.info("totalitems:" + str(totalitems))
-	logging.info("totalscore:" + str(totalscore))
-
-	percentage = 0
-	if totalitems > 0:
-	  percentage = float(totalscore) / float(totalitems) * 100
-	  percentage = int(percentage)
-
-	if percentage > 99:
-	   passed = True
-	else:
-	   passed = False
-
-	template_values["scores"] = latest_scores
-	template_values["totalscore"] = totalscore
-	template_values["totalitems"] = totalitems
-	template_values["percentage"] = percentage
-	template_values["passed"] = passed
-
-
-	path = tpl_path(QUIZTAKER_PATH + 'score.html')
-	if self.request.get("callback"):
-			response = jsonp(self.request.get("callback"), template.render(path, template_values))
-			self.response.out.write(response);
-	else:
-			self.response.out.write(template.render(path, template_values))
-
-"""
+    

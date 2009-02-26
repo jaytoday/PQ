@@ -152,12 +152,12 @@ class Build():
 									
 	def delete_default_profile_images(self): # delete images, since all profiles are being refreshed.
 		pics =  ProfilePicture.all().fetch(1000)
-		logging.info("deleting %d profiles images", pics)
+		logging.info("deleting %d profiles images", len(pics))
 		db.delete(pics)	
 
 	def archive_default_profile_images(self): # image types are re-assigned, since deleting would cause a ReferenceError.
 		pics = ProfilePicture.gql("WHERE type = :1", "pq").fetch(1000)
-		logging.info("archiving %d profiles images", pics)
+		logging.info("archiving %d profiles images", len(pics))
 		for p in pics: p.type = "pq_old"
 		db.put(pics)
 		
@@ -181,6 +181,7 @@ class Build():
 				try: image_file = open(p_path + str(n) + ".png")
 				except: continue
 				image = image_file.read()
+				"""
 				small_image = images.resize(image, 120, 80)
 				large_image = images.resize(image, 360, 240)
 				new_image = SubjectImage(key_name = str(p.name + "_" + str(n)), #unique keyname
@@ -188,7 +189,8 @@ class Build():
 				                         large_image = large_image,
 				                         proficiency = p
 									     )
-				save_images.append(new_image)
+				"""
+				save_images.append(p.new_image(image))
 				all_images.append(new_image)
 			db.put(save_images)
 			logging.info('refreshed %d subject images', len(save_images))

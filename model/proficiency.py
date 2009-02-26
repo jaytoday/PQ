@@ -50,12 +50,26 @@ class Proficiency(db.Model):
   
   def tag(self): # for views
   	tag = self.name.replace(' ', '_')
+  	tag = tag.replace('.', '_')
   	return tag
   	
   #images - RefProperty
   #quizitems -- QuizItem reference
   ## pages  
-
+  
+  def new_image(self, image): # for views=
+	from google.appengine.api import images
+	small_image = images.resize(image, 120, 80)
+	large_image = images.resize(image, 360, 240)
+	
+	new_image = SubjectImage(
+	                         small_image = small_image,
+	                         large_image = large_image,
+	                         proficiency = self
+						     )
+	return new_image # requires put() to save!
+						     
+						     
   def default_image(self): 
       return DefaultSubjectImage.get()
 

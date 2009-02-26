@@ -155,8 +155,8 @@ class EditSubjects(webapp.RequestHandler):
       def get(self):
         from model.proficiency import Proficiency
         subjects = []
-        for group in self.session['user'].quiz_groups:
-            subjects.extend([Proficiency.get(p) for p in group.subjects])
+        for sm in self.session['user'].member_subjects:
+            subjects.append(sm.subject)
         template_values = { 'subjects' : subjects, 'user': self.session['user']}
         template_values['subjects_js'] = subjects_js(template_values)
         path = tpl_path(PROFILE_PATH +'my_subjects.html')

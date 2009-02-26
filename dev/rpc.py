@@ -120,7 +120,8 @@ remote callers access to private/protected "_*" methods.
   def refresh_profile_images(self, *args):
   	from methods import Build
   	build = Build()
-  	build.refresh_profile_images()		
+  	build.refresh_profile_images()
+  	return "OK"		
 
 
   def working(self, *args):
@@ -323,5 +324,16 @@ remote callers access to private/protected "_*" methods.
   	c = cron.Cron()
   	return "OK"  	 
   	 
+
+  def pqmember(self, *args):
+    	from model.user import Profile
+    	pq = Profile.get_by_key_name("PlopQuiz")
+    	from model.proficiency import Proficiency
+    	ps = Proficiency.gql("WHERE status = 'public'").fetch(1000)
+    	from model.user import SubjectMember
+    	for p in ps: 
+    	   db.put(SubjectMember(key_name = pq.unique_identifier + "_" + p.name, user = pq, subject = p ))
+    	      	 
+
 
 

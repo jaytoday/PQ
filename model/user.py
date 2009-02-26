@@ -99,6 +99,17 @@ class QuizGroup(db.Model):  # A group of subjects administered by a user.
 
 
 
+class SubjectMember(db.Model):  # Compound value between user and subject
+    user = db.ReferenceProperty(Profile, collection_name='member_subjects') # Proficiency Tag (startup_financing) # This could be multiple as well
+    subject = db.ReferenceProperty(Proficiency, collection_name='members')   
+    created = db.DateTimeProperty(auto_now=True)    
+    modified = db.DateTimeProperty(auto_now=True)   
+
+
+
+
+
+
 class ProficiencyLevel(db.Model):
   proficiency = db.ReferenceProperty(Proficiency,required=True,collection_name='pro_levels') # Proficiency Tag (startup_financing)
   quiz_taker = db.ReferenceProperty(QuizTaker,required=True, collection_name='proficiency_levels')

@@ -1,0 +1,53 @@
+
+{# Template for each item #}
+
+
+<div class="quiz_item"  id="{{ forloop.counter }}" ><form id="quiz_data_" name="quiz_data_">
+
+<div class="quiz_item_content" id="quiz_item_content_"><div class="item_inner"> 
+<div class="content" > {{ item.content|escape }} </div>
+</div></div> 
+
+
+<div class="answers_container" id="answers_container_" ><div class="answers_scroll">
+	
+	<div class="answer_candidates" id="answers_">
+		{# answer template #}
+	 <div id ="" class="ac_unselected"><div id ="'" class="answer_candidate" >answer</div></div>
+	
+</div>
+
+</div></div>  
+
+
+
+<div id="answer_choice_previews_" class="answer_choice_previews">
+
+<div class="answer_preview" ><div class="correct">Correct Answer</div><span class="selection" id="correct">{{ item.index }}</span><div id="new_index" style="display:none;"><input type="text" name="new_index" class="new_index" value="{{ item.index }}" /><input type="submit" name="submit_new_index" class="submit_new_index" onClick="return false;" value="ok" /></div></div>
+
+{# item.page.url is webpage #}
+
+{% for n in ANSWERCOUNT %}
+ 	 
+<div class="answer_preview"><div class="wrong">Wrong Answer #{{ n }}</div><span class="selection" id="selection{{ n }}">No Selection</span></div>
+
+{% endfor %}
+
+</div> {# endpreviews #}
+
+
+
+<div class="new_answer" id="" ><input type="text" name="new_answer" class="new_answer" value="write a custom answer" /><input type="submit" name="submit_new_answer" class="submit_new_answer" onClick="return false;" value="ok" /> </div>  
+
+<div class="select_topic" id="select_topic_"><select name="item_topic" class="item_topic">
+	<option>Pick a Topic</option>
+	{# topic loop #}
+	<option>Topic Name</option>
+	</select><input type="text" name="new_item_topic" maxlength="15" class="new_item_topic" style="display:none;"  value="write a new topic" /></div>
+
+<input type="submit" name="submit_item" class="submit_item" onClick="return false;" value="submit item" />  
+<input type="submit" name="skip_item" class="skip_item" onClick="return false;" value="skip item" />  
+
+
+</form></div>
+

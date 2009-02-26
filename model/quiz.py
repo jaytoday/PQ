@@ -41,8 +41,9 @@ class QuizItem(db.Model):
   content = db.TextProperty()  # Content of Quiz Item
   index = db.StringProperty() # Correct Answer 
   answers = db.StringListProperty() # List of Answers
-  proficiency = db.ReferenceProperty(Proficiency,
-                                    collection_name='quizitems') # Proficiency Tag (startup_financing)
+  proficiency = db.ReferenceProperty(Proficiency, collection_name='quizitems') # Proficiency Tag (startup_financing)
+  pending_proficiency = db.ReferenceProperty(Proficiency, collection_name='pending_items', required=False) # for pending items
+  active = db.BooleanProperty(required=False)
   topic = db.ReferenceProperty(ProficiencyTopic,
                                     required=False, collection_name='quizitems') # Proficiency Tag (startup_financing)                                  
   difficulty = db.IntegerProperty(default=0)  # 0-10000

@@ -1,146 +1,41 @@
+
+$(function(){
+    
+ var quiz_count = parseInt( $('div.quiz_item:last').attr('id') );
+ var scroll_width = 950 * quiz_count;
+ $('div#quiz_items').css('width', scroll_width);
+ 
+ $('.new_answer').preserveDefaultText('write a custom answer');
+ $('.item_topic').preserveDefaultText('        topic');
+ 
+ $("select").change(function() {
+            if ($('div#select_topic_' + i).find("select option:selected").text() == "New Topic") { $(this).hide(); $(this).parent().find('input.new_item_topic').show().preserveDefaultText('write a new topic'); } 
+          });
+          
+
+
+          item_sliderInit();
+          
+
+
+ //$('ul.item_navigation').append('<li class="index"><a href="#' + i + '" onClick="return false;">' + item.index + '</a></li>');   // href="#' + i + '" -- for navigation. 
+
+
+// EditQuizItem(i, item, answers); // Run function after the above code is evaluated.
+
+
+ 
+ 
+    
+});
+
 /*
- * 
- * This code is badly in need of a tune-up. It needs more efficient use of:
- * 
- *  selector context,
- * selectors and events in loops, 
- * ID selectors instead of CLASS selectors, wherever possible
- * chaining,
- * no DOM manipulation just for data
- * everything wrapped in a single element for DOM insertion
- * for SEO-important sections, add in unimportant markup in JS
- *
- */ 
-
-
-
-ANSWER_LIMIT = 2; 
-
-
-
 function BuildQuizEditor(response, topics){
-var raw_quiz_items = parseJSON(response);
-
-//errors
-if (raw_quiz_items.length == 0) { $('div#loading_items').html('no quiz items returned -- <a href="">try again?</a>'); return false;}  // no items returned
-if (raw_quiz_items[0] == "error") { $('div#loading_items').html('error: ' + raw_quiz_items[1]); return false; }  // error
-
-
-var scroll_width = 950 * raw_quiz_items.length;
-$('div#quiz_items').css('width', scroll_width);
-
-//$('div#quiz_items').append('<div class="quiz_item"></div>');
-
- $.each(raw_quiz_items, function(i,item){
-
-
-$('ul.item_navigation').append('<li class="index"><a href="#' + i + '" onClick="return false;">' + item.index + '</a></li>');   // href="#' + i + '" -- for navigation. 
-	
- 	
-/*
- * 
- * TODO....make it stop.
- * 
- */
- 	
-var html = '<div class="quiz_item"  id="' + i + '" ><form id="quiz_data_' + i + '" name="quiz_data_' + i + '">';
-
-html += '<div class="quiz_item_content" id="quiz_item_content_' + i + '"><div class="item_inner">'; // start quiz item content
-
-html += '<div class="pre_content">' + item.pre_content + '</div>';
-
-html += '<div class="content" >' + item.content + '</div>';
-
-html += '<div class="post_content">' + item.post_content + '</div>';
-
-html += '</div></div>'; //end quiz item content
-
-html += '<div class="answers_container" id="answers_container_' + i + '" ><div class="answers_scroll"><div class="answer_candidates" id="answers_' + i + '"></div></div></div>';  // Expand answer candidates
-
-html += '<div id="answer_choice_previews_' + i + '" class="answer_choice_previews">';
-
-html += '<div class="answer_preview" ><div class="correct">Correct Answer</div><span class="selection" id="correct">' + item.index + '</span><div id="new_index" style="display:none;"><input type="text" name="new_index" class="new_index" value="' + item.index + '" /><input type="submit" name="submit_new_index" class="submit_new_index" onClick="return false;" value="ok" /></div></div>';
-
-// item.page.url is webpage
-
-for (w = 0; w < ANSWER_LIMIT; w++){
- 	 
-html += '<div class="answer_preview"><div class="wrong">Wrong Answer #' + (w + 1) + '</div><span class="selection" id="selection_' + w + '">No Selection</span></div>';
-
-}
-
-html += '<div class="new_answer" id="' + i + '" ><input type="text" name="new_answer" class="new_answer" value="write a custom answer" /><input type="submit" name="submit_new_answer" class="submit_new_answer" onClick="return false;" value="ok" /> </div>';  // User submitted answer
-
-
-html += '<div class="select_topic" id="select_topic_' + i + '"><select name="item_topic" class="item_topic"><option>Pick a Topic</option></select><input type="text" name="new_item_topic" maxlength="15" class="new_item_topic" style="display:none;"  value="write a new topic" /></div>';
-
-html += '<input type="submit" name="submit_item" class="submit_item" onClick="return false;" value="submit item" />';  // Submit Item
-html += '<input type="submit" name="skip_item" class="skip_item" onClick="return false;" value="skip item" />';  // skip Item
-
-
-html += '</form></div>';
 
 
 
 
-
-
-// load items
-$('div#quiz_items').append(html);
-//$('div#quiz_items').find('.popup').load('/static/html/quizbuilder/popup.html');
-
-
-
-
-
-$('.new_answer').preserveDefaultText('write a custom answer');
-//$('.item_topic').preserveDefaultText('        topic');
-// when something is written in this field, a submit button should appear below
-
-
-
-
-
-answers =  eval(item.answer_candidates); //item.answer_candidates
-
- $.each(answers, function(n, answer){
- 	
-answer_html = '<div id ="' + n + '" class="ac_unselected"><div id ="' + n + '" class="answer_candidate" >' + answer + '</div></div>';
-
-$('div#answers_' + i).append(answer_html);
-
-});
-
-$.each(eval(topics), function(t, topic){
-
-topic_option = '<option>' + topic.name + '</option>';	
-
-$('div#select_topic_' + i).find('select.item_topic').append(topic_option);
-
-});
-
-$('div#select_topic_' + i).find('select.item_topic').append('<option>New Topic</option>');
-
-$("select").change(function() {
-          if ($('div#select_topic_' + i).find("select option:selected").text() == "New Topic") { $(this).hide(); $(this).parent().find('input.new_item_topic').show().preserveDefaultText('write a new topic'); } 
-        })
-
-
-
-
-
-EditQuizItem(i, item, answers); // Run function after the above code is evaluated.
-
-
-
-}); // finished with item loop 
-
-
-
-// PopUpBubble(); //should be done once and apply to all 
-
-
-item_sliderInit();   
+   
 
 
 $('ul.item_navigation').show();
@@ -152,8 +47,19 @@ $('div#loading_items').remove();
 
 
 
+*/
 
 
+
+
+
+
+
+
+
+
+
+/*
 
 function EditQuizItem(i, item, answers) {
 
@@ -347,7 +253,7 @@ answers_sliderInit(i);
 
 } // end of EditQuizItem()
 
-
+*/
 
 
 			
@@ -424,74 +330,4 @@ function PreviewAnswer(i) {
 
 
 
-
-
-// Pop-up Bubble -- Not using right now 
-
-function PopUpBubble() {
-  $('.answers_container').each(function () {
-  	
-    // options
-    var distance = 10;
-    var time = 250;
-    var hideDelay = 200;
-
-    var hideDelayTimer = null;
-
-    // tracker
-    var beingShown = false;
-    var shown = false;
-    
-    var trigger = $('.answer_candidates', this);
-    var popup = $('.popup').css('opacity', 0);
-
-    // set the mouseover and mouseout on both element
-    $([trigger.get(0), popup.get(0)]).mouseover(function () {
-    	
-      // stops the hide event if we move from the trigger to the popup element
-      if (hideDelayTimer) clearTimeout(hideDelayTimer);
-
-      // don't trigger the animation again if we're being shown, or already visible
-      if (beingShown || shown) {
-        return;
-      } else {
-        beingShown = true;
-
-        // reset position of popup box
-        popup.css({
-          top: 380,
-          left: 183,
-          display: 'block' // brings the popup back in to view
-        })
-
-        // (we're using chaining on the popup) now animate it's opacity and position
-        .animate({
-          top: '-=' + distance + 'px',
-          opacity: 1
-        }, time, 'swing', function() {
-          // once the animation is complete, set the tracker variables
-          beingShown = false;
-          shown = true;
-        });
-      }
-    }).mouseout(function () {
-      // reset the timer if we get fired again - avoids double animations
-      if (hideDelayTimer) clearTimeout(hideDelayTimer);
-      
-      // store the timer so that it can be cleared in the mouseover if required
-      hideDelayTimer = setTimeout(function () {
-        hideDelayTimer = null;
-        popup.animate({
-          top: '-=' + distance + 'px',
-          opacity: 0
-        }, time, 'swing', function () {
-          // once the animate is complete, set the tracker variables
-          shown = false;
-          // hide the popup entirely after the effect (opacity alone doesn't do the job)
-          popup.css('display', 'none');
-        });
-      }, hideDelay);
-    });
-  });
-}
 

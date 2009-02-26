@@ -1,0 +1,136 @@
+div#edit_subjects{
+width:610px;
+height:420px;
+float:left;
+margin:30px 0 0 50px;
+font-size:1.3em;
+overflow:hidden;
+}
+
+form fieldset{
+margin-bottom: 5px !important;
+}
+
+form fieldset#customize_message{
+height: 350px; float: left;
+}
+
+form fieldset#quiz_subjects{
+float:left;
+height:351px;
+margin:-369px 0 auto 347px;
+width:250px;
+}
+
+form fieldset span{ /* this could be used for other forms */
+ margin: 0px 10px; line-height:1.2em; display:block;
+}
+
+textarea#sponsor_message{
+padding: 10px;
+width:290px;
+height:212px;
+}
+
+
+
+div#submit_form{
+width:200px; float:right; margin: 160px 30px 0px 0px;
+}
+
+div#submit_form #submit{
+margin:0px 0px 10px;
+}
+
+
+div#sponsor_form_error {
+margin:20px 0 0 -25px;
+line-height:1.2em;
+}
+
+div#sponsor_form_cancel{
+margin: -15px 0px 0px 63px;
+position: absolute;
+width: 15px;
+}
+
+/* Quiz Subjects */
+
+div#subject_frame_container{
+    position:absolute;
+    margin: 100px 0;
+}
+div#subject_frame_container .subject_frame{
+height:210px;
+width:300px;
+position:absolute;
+}
+
+.bigsliderImage span.slider{
+	font: 25px Arial, Helvetica, sans-serif;
+	padding:1px 8px 3px;
+	width:285px;
+}
+
+.blurb{
+    -moz-border-radius: 12px;
+	-webkit-border-radius: 12px;
+	background:#DDDDDD none repeat scroll 0 0;
+	border:2px solid #DDDDDD;
+	overflow:hidden;
+	color:#000040;
+	
+    position:absolute; top:0px; left: 330px; width:280px; height:290px;
+}
+
+
+div.upload_picture {
+background:#DDDDDD none repeat scroll 0 0;
+border:2px solid #DDDDDD;
+-moz-border-radius: 12px;
+-webkit-border-radius: 12px;
+margin: 240px 0 0 10px;
+width: 140px;
+position:absolute;
+}
+
+div.upload_picture button{
+    margin: 2px;
+    
+}
+.blurb .header{
+    text-align:center;
+}
+.blurb .blurb_text{
+    position:absolute;
+    overflow:hidden;
+width:240px; 
+padding: 10px 20px;
+height:180px; 
+text-align:center;
+line-height: 1.2em;
+font-size: .9em;
+}
+
+.blurb textarea{
+position:absolute;
+width:220px; 
+margin: 5px 6px;
+font-size: .7em;
+line-height: 1.2em;
+padding: 10px 20px;
+height:155px; 
+text-align:center;
+}
+
+.blurb div.limit{
+    position:absolute;
+    margin: 190px 0 0 15px;
+    font-size: .6em;
+}
+div.footer{
+    position:absolute; margin:199px 0 0 60px;
+}
+.blurb div.footer button img{
+    margin: 0pt 10px 0pt 0px;
+}
