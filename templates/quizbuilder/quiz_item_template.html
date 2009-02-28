@@ -2,9 +2,9 @@
 {# Template for each item #}
 
 
-<div class="quiz_item"  id="{{ forloop.counter }}" ><form id="quiz_data_" name="quiz_data_">
+<div class="quiz_item"  id="{{ forloop.counter }}" >
 
-<div class="quiz_item_content" id="quiz_item_content_"><div class="item_inner"> 
+<div class="quiz_item_content" ><div class="item_inner"> 
 <div class="content" > {{ item.content|escape }} </div>
 </div></div> 
 
@@ -13,41 +13,57 @@
 	
 	<div class="answer_candidates" id="answers_">
 		{# answer template #}
-	 <div id ="" class="ac_unselected"><div id ="'" class="answer_candidate" >answer</div></div>
+	 <div class ="ac_wrapper" ><div id ="'" class="answer_candidate" >answer</div></div>
 	
 </div>
 
 </div></div>  
+{% comment %}
 
 
 
-<div id="answer_choice_previews_" class="answer_choice_previews">
+Sidebar
 
-<div class="answer_preview" ><div class="correct">Correct Answer</div><span class="selection" id="correct">{{ item.index }}</span><div id="new_index" style="display:none;"><input type="text" name="new_index" class="new_index" value="{{ item.index }}" /><input type="submit" name="submit_new_index" class="submit_new_index" onClick="return false;" value="ok" /></div></div>
+
+
+{% endcomment %}
+<div class="item_sidebar">
+<div class="sidebar_header">Quiz Item Settings</div>
+<div class="item_subject" >
+	<span class="header">Subject</span>
+	<div class="subject_name">{{ subject.name }}</div>
+	</div>
+	
+<div class="item_topic" id="{{ subject.name }}">
+	
+	{% include "item_topic.html" %}
+	
+</div>
+
+<div class="answer_choice_previews">
+
+<div class="answer_preview" >
+<div class="correct">Correct Answer</div><span class="selection correct">{{ item.index }}</span>
+<span class="edit">edit</span><div class="edit_answer" style="display:none;"><input class="new_answer" type="text"><button>OK</button></div>
+</div>
 
 {# item.page.url is webpage #}
 
 {% for n in ANSWERCOUNT %}
- 	 
-<div class="answer_preview"><div class="wrong">Wrong Answer #{{ n }}</div><span class="selection" id="selection{{ n }}">No Selection</span></div>
+<div class="answer_preview">
+<div class="wrong">Wrong Answer #{{ n }}</div><span class="wrong selection" id="{{ n }}"></span>
+<span class="edit">edit</span><div class="edit_answer" style="display:none;"><input class="new_answer" type="text"><button>OK</button></div>
+</div>
 
 {% endfor %}
 
 </div> {# endpreviews #}
 
 
-
-<div class="new_answer" id="" ><input type="text" name="new_answer" class="new_answer" value="write a custom answer" /><input type="submit" name="submit_new_answer" class="submit_new_answer" onClick="return false;" value="ok" /> </div>  
-
-<div class="select_topic" id="select_topic_"><select name="item_topic" class="item_topic">
-	<option>Pick a Topic</option>
-	{# topic loop #}
-	<option>Topic Name</option>
-	</select><input type="text" name="new_item_topic" maxlength="15" class="new_item_topic" style="display:none;"  value="write a new topic" /></div>
-
-<input type="submit" name="submit_item" class="submit_item" onClick="return false;" value="submit item" />  
-<input type="submit" name="skip_item" class="skip_item" onClick="return false;" value="skip item" />  
+<button  name="submit_item" class="submit_item" value="submit item" /> submit item</button> 
+{# <button  name="skip_item" class="skip_item" value="skip item" />skip</button>  #}
 
 
-</form></div>
+</div>
+</div>
 

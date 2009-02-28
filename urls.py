@@ -60,6 +60,7 @@ def url_routes(map):
 	map.connect('quizbuilder/item', controller = 'quizbuilder.views:RawItemTemplate')
 
 	# RPC Handlers
+	map.connect('quizeditor/rpc/post', controller = 'quizbuilder.rpc:QuizEditorPost')	
 	map.connect('quiztaker/rpc', controller = 'quiztaker.rpc:RPCHandler')
 	map.connect('quizbuilder/rpc/post', controller = 'quizbuilder.rpc:RPCPostHandler')	
 	map.connect('quizbuilder/rpc', controller = 'quizbuilder.rpc:RPCHandler')		

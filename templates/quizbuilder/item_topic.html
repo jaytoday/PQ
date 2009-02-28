@@ -1,0 +1,17 @@
+<span class="header">Topic</span>
+
+<select name="item_topic" class="item_topic">
+<option>Pick a Topic</option>
+<option>New Topic</option>
+
+{% for topic in subject.topics %}
+
+<option>{{ topic.name }}</option>
+
+{% endfor %}
+
+</select>
+
+<div class="edit_topic" style="display:none;"><input class="new_item_topic" type="text"><button>OK</button></div>
+
+<div class="loading" style="display:none;">LOADING</div>

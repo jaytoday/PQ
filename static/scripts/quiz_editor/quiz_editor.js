@@ -1,205 +1,141 @@
+{% include "../../static/scripts/quizbuilder/jeditable/jquery.jeditable.min.js" %}
+{% include "../../static/scripts/jquery/jquery.autogrow.js" %}
+{% include "../../static/scripts/quizbuilder/jeditable/jquery.jeditable.autogrow.js" %}
 
 $(function(){
     
  var quiz_count = parseInt( $('div.quiz_item:last').attr('id') );
  var scroll_width = 950 * quiz_count;
  $('div#quiz_items').css('width', scroll_width);
- 
- $('.new_answer').preserveDefaultText('write a custom answer');
- $('.item_topic').preserveDefaultText('        topic');
- 
- $("select").change(function() {
-            if ($('div#select_topic_' + i).find("select option:selected").text() == "New Topic") { $(this).hide(); $(this).parent().find('input.new_item_topic').show().preserveDefaultText('write a new topic'); } 
-          });
-          
+ var DEFAULT_ANSWER_TEXT = 'No Selection';
+ var DEFAULT_ANSWER_INPUT_TEXT = 'write a custom answer';
+ var DEFAULT_TOPIC_TEXT = 'write a new topic';
+ $('input.new_answer').preserveDefaultText(DEFAULT_ANSWER_INPUT_TEXT);
 
+ $('div.item_topic').change(function() {
+            var $item_topic = $(this);
+            if ($(this).find("option:selected").text() == "New Topic")  {
+            $(this).find("select").hide().end()
+                   .find('div.edit_topic').show().find('input').preserveDefaultText(DEFAULT_TOPIC_TEXT).end()
+                                                 .find('button').click(function(){ return RefreshTopics($item_topic); }); 
+          } 
+          });
+         
+         
+      		//submit_new_answer
+      		$('input.new_answer').keydown(function(event){	
+      	$(this).parent().find('input.submit_new_answer').show(); });
+// Initialize Each Item
+
+$('.quiz_item').each(function(){ initiateItem( $(this) )  });
+function initiateItem(item){    
+    
+       var wrong_answers = item.find('span.wrong', 'div.answer_preview').text(DEFAULT_ANSWER_TEXT);
+       var answer_candidates = item.find('div.ac_wrapper');
+       
+        answer_candidates.click(function(){ 
+        this_answer = $(this);
+        wrong_answers.find('button').click();
+        /*
+        *
+        * Check if answer has already been chosen
+        *
+        */ 
+
+         if ( this_answer.data('selected') == true ){   
+        // if answer text is already there, remove it 
+                                              this_answer.removeClass('selected').data('selected', false); 
+                                              var preview_index = this_answer.data('preview_index');
+                                              if (preview_index < 0) return false; // link has been cancelled
+                                              // $( wrong_answers[preview_index] ).text(''); 
+                                                     // next step - for every answer between the answer preview and answerpreview.length, 
+                                                     // move it back one
+                                               for (a=(preview_index + 1);a = (wrong_answers.length - 1); a++){
+                                                    $( wrong_answers[a - 1] ).text( $(wrong_answers[a]).text() )
+                                                                             .data('answer_link', $(wrong_answers[a]).data('answer_link') ); 
+                                                  $($( wrong_answers[a - 1] ).data('answer_link'))
+                                                                             .data('preview_index', parseInt(a - 1));
+                                                    $(wrong_answers[a]).text(DEFAULT_ANSWER_TEXT).data('answer_link', false);
+                                                    return;                          
+                                                               } //endfor  */
+        return false; } //endif
+        
+        /*
+        *
+        * Proceed with adding item
+        *
+        */
+        
+        answer_candidates.removeClass('selected').data('selected', false); 
+        // push existing answers   
+        // TODO: This doesn't work yet  
+       for (a = (wrong_answers.length - 1); a = 0; a = (a - 1) ){ 
+           console.log('pushing answer: ', $(wrong_answers[a - 1]).text());
+          $( wrong_answers[a] ).text( $(wrong_answers[a - 1]).text() ).data('answer_link', $(wrong_answers[a - 1]).data('answer_link') ); 
+          $($( wrong_answers[a] ).data('answer_link'))
+                                   .data('preview_index', a).addClass("selected").data('selected', true); 
+                                                        return; }  
+        // add new answer to previews
+       $(wrong_answers[0]).text(this_answer.text()).data('answer_link', $(this));
+        // highlight chosen answer  button
+        $(this).addClass("selected").data('selected', true).data('preview_index', 0 );
+        return;
+        
+    	});
+
+                       
+                 
+                 }  // end initiateItem			
+        			
 
           item_sliderInit();
-          
-
-
- //$('ul.item_navigation').append('<li class="index"><a href="#' + i + '" onClick="return false;">' + item.index + '</a></li>');   // href="#' + i + '" -- for navigation. 
-
-
-// EditQuizItem(i, item, answers); // Run function after the above code is evaluated.
-
-
- 
- 
-    
-});
-
-/*
-function BuildQuizEditor(response, topics){
-
-
-
-
    
+   
+   $('.answer_preview').find('span').click(function(){
+    // edit answer value
+    var this_answer_span = $(this).parent().find('span.selection'); 
+    var this_input = $(this).parent().find('input'); 
+    var these_spans = $(this).parent().find('span');
+    var edit_div = $(this).parent().find('div.edit_answer');
+    var current_answer = this_answer_span.text();
+    if (current_answer != DEFAULT_ANSWER_TEXT) { this_input.val(this_answer_span.text()); }
+    these_spans.hide();
+    edit_div.show(); this_input.focus().keypress(function(evt){ if (evt.keyCode == 13) edit_div.find('button').click(); });
+    edit_div.find('button').click(function(){
+            // new answer value is submitted
+            var new_answer = this_input.val();
+            if (new_answer == DEFAULT_ANSWER_INPUT_TEXT || new_answer == '') { var new_value = DEFAULT_ANSWER_TEXT; }
+            else { var new_value = new_answer; }
+            if (new_value != current_answer) { $(this_answer_span.data('answer_link')).data('preview_index', -1); } //unlink from answer candidate
+            $(this).parent().hide();
+            this_answer_span.text(new_value); these_spans.show();
+                                                       });          
+            });
 
 
-$('ul.item_navigation').show();
-$('div#quiz_items').show();
 
-$('div#loading_items').remove();
-
-} // end of  BuildQuizEditor()
-
-
-
-*/
-
-
-
-
-
+        	$('div.item_inner > div').editable(function(value, id){ UpdateContent(value, $(this));} , {
+        		//loadurl : "/quizbuilder/rpc?action=Jeditable&arg0=" + $(this),
+        		type      : "autogrow",
+        		autogrow : { lineHeight : 22 },
+        		// submit    : "OK",
+        		indicator : "<img src='/static/stylesheets/img/ajax-loader.gif'>",
+        		onblur    : "submit",
+        		// cancel    : "Cancel",
+        		tooltip   : "Click to edit...",
+        		width     : '600px',
+        		cssclass : "editable"
+        		}); // this can be rpc call 
 
 
 
-
-
+          
+}); // end of onReady
 
 /*
 
-function EditQuizItem(i, item, answers) {
 
-// setup for ajax call     
-var server = {};
-InstallPostFunction(server, 'SubmitQuizItem', 'quizbuilder');  // POST Request
-InstallFunction(server, 'SetItemModStatus', 'quizbuilder'); // are we still using this? 
-
-// setup arrays
-wrong_answers[i] = [];
-answer_in_array[i] = [];   
-
-
-
- 
-
- $.each(answers, function(n, answer){
- 	
- answer_in_array[i][n] = "False"; 
- 
-});
-
-
- 
- //$('div#' + i + ' > div#quiz_item_content').jScrollPane();
-
-// $('div#answers_' + i).jScrollPane();
- 
-
-$('#quiz_data_' + i + ' > input[@name="proficiency"]').click(function(){
-$('#quiz_data_' + i + ' > input[@name="proficiency"]').setValue($(this).attr("value"));
-});
-
-
-    
-$('div#answers_' + i + ' > div').click(function(){
-			
-//    If answer is selected, remove it if it's already in array. 
-//    If not, add it to the array, if the limit hasn't been reached. 
-
-answer_text = $(this).text();
-
-n = $(this).attr("id");
-
-for (var a = 0, loopCnt = wrong_answers[i].length; a < loopCnt; a++) {
-
-
-if (answer_text == wrong_answers[i][a][0]){   // if answer text is already there
-
-
-wrong_answers[i].splice(a, 1);
-UpdatePreviews(wrong_answers, ANSWER_LIMIT, i);
-
-answer_in_array[i][n] = "False"; // answer not in array anymore
-
-$(this).removeClass("ac_selected");
-$(this).addClass("ac_unselected");
-
-
-return;
-
-
-}
-
-}
-
-if (answer_in_array[i][n] == "False") {
-
-if (wrong_answers[i].length > (ANSWER_LIMIT - 1)) { console.log("Only 2 Wrong Answers, Please!"); $("div.answers_container").fadeTo(50, 0.5).fadeTo(50, 1); return false; }  // If there are already two answers
-
-var answer_pair = [answer_text, n];
-wrong_answers[i].splice(wrong_answers[i].length, 0, answer_pair);   // add answer to array
-UpdatePreviews(wrong_answers, ANSWER_LIMIT, i);
-
-answer_in_array[i][n] == "True"; // this isn't needed.
-
-$(this).removeClass("ac_unselected");
-$(this).addClass("ac_selected");
-
-  console.log('added answer:',wrong_answers[i]);
-  return;
-  
-}
-
-			});
-			
-			
-		//submit_new_answer
-		$('form#quiz_data_' + i).find('input[@name="new_answer"]').keydown(function(event){	
-	$('form#quiz_data_' + i).find('input[@name="submit_new_answer"]').show(); });
-	//move answer to array
-			$('form#quiz_data_' + i).find('input[@name="submit_new_answer"]').click(function(){
-				if (wrong_answers[i].length > (ANSWER_LIMIT - 1)) { console.log("Only 2 Wrong Answers, Please!"); return false; }  // If there are already two answers
-var answer_pair = [$('form#quiz_data_' + i).find('input[@name="new_answer"]').attr('value'), 0];
-wrong_answers[i].splice(wrong_answers[i].length, 0, answer_pair);   // add answer to array
-UpdatePreviews(wrong_answers, ANSWER_LIMIT, i);
-$('form#quiz_data_' + i).find('input[@name="submit_new_answer"]').hide();
-$('form#quiz_data_' + i).find('input[@name="new_answer"]').attr('value', 'write a custom answer');
-
-			});
-			
-			
-			
 		
-// Update index value (correct answer)
-$('#answer_choice_previews_' + i).find('span#correct').click(function(){ 
-	$(this).hide();
-	$('#answer_choice_previews_' + i).find('div#new_index').show();
-	$('input.new_index').preserveDefaultText($(this).text());
-});
-
-// Update index display (correct answer)			
-$('#answer_choice_previews_' + i).find('input[@name="submit_new_index"]').click(function(e){
-	 item.index = $('#answer_choice_previews_' + i).find('input[@name="new_index"]').attr('value');
-	$('#answer_choice_previews_' + i).find('div#new_index').hide();
-	$('#answer_choice_previews_' + i).find('span#correct').text(item.index).show();
-});
-	
-
-
-
-
-	// Clicking answer span preview
-
-for (w=0; w < ANSWER_LIMIT; w++){ $('#answer_choice_previews_' + i).find('span#selection_' + w).click(function(){
-
-for (a=0; a < wrong_answers[i].length; a++){ if ($(this).text() == wrong_answers[i][a][0]){ 
-	  
-	  ac_index = parseInt(wrong_answers[i][a][1]) + 1; 
-	  $('div#answers_' + i + ' > div:nth-child(' + ac_index  + ')').removeClass("ac_selected").addClass("ac_unselected");  //remove highlight from answer choice
-	 wrong_answers[i].splice(a, 1); // remove answer in array that matches $(this).text()
-	 } 
-	  }
-
-	 UpdatePreviews(wrong_answers, ANSWER_LIMIT, i);
-    }); }
-    
-
-
-PreviewAnswer(i);
 
 EditItemContent(i);
 
@@ -274,33 +210,23 @@ else{  $('div#answer_choice_previews_' + i).find('span#selection_' + w).html('No
 
 
 
-function UpdateContent(value,i,el){ 
-
+function UpdateContent(value,el){ 
+/*
 	stripped_value = value.split(' ').join('');
 	stripped_value = stripped_value.split('\n').join('');
 	if (stripped_value.length > 0){ el.html(value); }
 	else { el.remove(); }
+*/
+  // PreviewAnswer(i);
 
-   PreviewAnswer(i);
+el.html(value);
 
-return(value); }
+return(value); 
+
+}
 
 function EditItemContent(i) { 
 	$('#quiz_item_content_' + i + ' > div.item_inner > div').click(function(){  $(this).html().replace('style="opacity: 1;"', ''); });
-	$('#quiz_item_content_' + i + ' > div.item_inner > div').editable(function(value, id){UpdateContent(value,i, $(this));}, {
-		//loadurl : "/quizbuilder/rpc?action=Jeditable&arg0=" + $(this),
-		type      : "autogrow",
-		autogrow : {
-		  lineHeight : 22
-		 },
-		// submit    : "OK",
-		indicator : "<img src='/static/stylesheets/img/ajax-loader.gif'>",
-		onblur    : "submit",
-		// cancel    : "Cancel",
-		tooltip   : "Click to edit...",
-		width     : '600px',
-		cssclass : "editable"
-		}); // this can be rpc call 
 
 }
 
@@ -308,7 +234,7 @@ function EditItemContent(i) {
 
 
 
-function PreviewAnswer(i) {
+function PreviewAnswer(i) { // TODO: Make this work again 
 	
 	// On a hover over an answer, preview its text in the item content.
 
@@ -328,6 +254,31 @@ function PreviewAnswer(i) {
 }
 
 
-
+function RefreshTopics(item_topic){
+  if (item_topic.data('busy') == true) return false;
+  var new_topic = item_topic.find('input').val();
+  if (new_topic.length < 1) return false;
+  
+  item_topic.find('div.edit_topic').hide('fast').end()
+  .find('div.loading').show('fast').end()
+            .data('busy', true);
+            
+    	$.ajax({
+                    
+                    type: "POST",
+                    url:  "/quizeditor/rpc/post",
+                    data:
+                    {
+                            action: "NewTopic",
+                            subject_name: item_topic.attr('id'),
+                            topic_name: new_topic
+                    },
+                    success: function(response)
+                    { 	$('div.item_topic').html(response); item_topic.data('busy', false);	}
+               });
+               
+               return; 
+    
+}
 
 

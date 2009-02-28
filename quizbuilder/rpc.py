@@ -93,6 +93,7 @@ remote callers access to private/protected "_*" methods.
       except: return simplejson.dumps([])
       
 
+
   def SetItemModStatus(self, *args):   # set moderation status for raw item
       this_item = db.get(args[0])
       if args[1] == "false": this_item.moderated = False
@@ -252,4 +253,26 @@ class RPCPostHandler(webapp.RequestHandler):
 
     result = func(*args)
     self.response.out.write(simplejson.dumps(result))
+        
+
+
+
+
+class QuizEditorPost(webapp.RequestHandler): 
+    
+    def post(self):    
+      	if self.request.get('action') == "NewTopic": return self.response.out.write( self.NewTopic() )
+
+	
+
+    def NewTopic(self):   # set moderation status for raw item
+        this_subject = Proficiency.gql("WHERE name = :1", self.request.get('subject_name')).get()
+        new_topic = ProficiencyTopic(name = self.request.get('topic_name'), proficiency = this_subject)
+        db.put(new_topic)
+        from utils.webapp import template
+        from utils.utils import tpl_path
+        template_values = {"subject": this_subject}
+        path = tpl_path('quizbuilder/item_topic.html')
+        return template.render(path, template_values)
+
         
