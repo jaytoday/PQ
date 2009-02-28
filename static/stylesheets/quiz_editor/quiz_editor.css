@@ -1,5 +1,5 @@
 .sitelet .middle .main_wrapper .main {
-    height: 750px;
+    height: 550px;
 }
 
 /* SELECT PROFICIENCIES */
@@ -59,7 +59,7 @@ width:950px;
 
 div.item_sidebar{
     position:absolute;
-   margin:-401px 0 0 720px;
+   margin:-30px 0 0 740px;
 }
 
 div.sidebar_header{
@@ -73,13 +73,20 @@ div#loading_items img{
 margin:-5px 40px;
 }
 
+div.answers_container div.loading{
+margin: 22px 0 0 150px;
+}
+
+div.answers_container div.loading span{
+margin: 0 30px;
+}
+
 span.loading{
 font-size: 2em;
 }
 
 div.quiz_items{
-/* width:700px; */
-margin:70px 0 0 50px
+margin:70px 0 0 55px
 }
 
 .quiz_items div.quiz_item {
@@ -160,7 +167,7 @@ position:relative;
 }
 
 div.answers_container{
-position: relative;
+float:left;
 background:#FFFFFF none repeat scroll 0 0;
 width:   700px; 
 clear:both;
@@ -408,11 +415,11 @@ display:inline;
 }
 
 .scrollButtons.answer_prev {
-  margin: -4px -20px;
+  margin: 2px -20px;
 }
 
 .scrollButtons.answer_next {
-  margin: -4px 700px;
+  margin: -4px 705px;
    
 }
 

@@ -262,7 +262,7 @@ class QuizEditorPost(webapp.RequestHandler):
     
     def post(self):    
       	if self.request.get('action') == "NewTopic": return self.response.out.write( self.NewTopic() )
-
+      	if self.request.get('action') == "LoadAnswers": return self.response.out.write( self.LoadAnswers() )
 	
 
     def NewTopic(self):   # set moderation status for raw item
@@ -275,4 +275,14 @@ class QuizEditorPost(webapp.RequestHandler):
         path = tpl_path('quizbuilder/item_topic.html')
         return template.render(path, template_values)
 
-        
+    def LoadAnswers(self):   
+        #self.request.get('correct_answer')
+        #self.request.get('item_text')
+        from utils.webapp import template
+        from utils.utils import tpl_path        
+        answers = list(self.request.get('correct_answer') * 3)
+        template_values = {"answers": answers}
+        path = tpl_path('quizbuilder/answer_template.html')
+        return template.render(path, template_values)
+
+                

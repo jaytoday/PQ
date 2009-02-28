@@ -53,18 +53,22 @@ function item_sliderInit(wrong_answers) {
     
     // use: $(container).trigger( 'next' );
     
-    function trigger(data) {
-    
-       // $('.item_navigation').animate({marginLeft:"-=.6em"}); //-- don't need this with display:none; 
-        	
-        var el = $('.item_navigation').find('a[href="#' + data.id + '"]');
-        selectNav.call(el);
-        
-  
-         if (data.id == 0){ return; } // -- only if submitting after all items have been edited. 
+function trigger(item) {
+if ( $(item).data('triggered') == true) return false;
+$(item).data('triggered', true);
+console.log($(item));
+var el = $('.item_navigation').find('a[href="#' + item.id + '"]');
+selectNav.call(el);
+/*
+ * 
+ * Load Answers
+ * 
+ */
+loadAnswers($(item));
 
-  
-    }
+
+return; 
+  }
 
     if (window.location.hash) {
         trigger({ id : window.location.hash.substr(1) });

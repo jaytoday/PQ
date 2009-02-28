@@ -1,15 +1,22 @@
-{% include "../../static/scripts/quizbuilder/jeditable/jquery.jeditable.min.js" %}
-{% include "../../static/scripts/jquery/jquery.autogrow.js" %}
-{% include "../../static/scripts/quizbuilder/jeditable/jquery.jeditable.autogrow.js" %}
+
+/*
+ * 
+ * Global Settings
+ * 
+ */
+  
+ var DEFAULT_ANSWER_TEXT = 'No Selection';
+ var DEFAULT_ANSWER_INPUT_TEXT = 'write a custom answer';
+ var DEFAULT_TOPIC_TEXT = 'write a new topic';
+ 
+ 
 
 $(function(){
     
  var quiz_count = parseInt( $('div.quiz_item:last').attr('id') );
  var scroll_width = 950 * quiz_count;
  $('div#quiz_items').css('width', scroll_width);
- var DEFAULT_ANSWER_TEXT = 'No Selection';
- var DEFAULT_ANSWER_INPUT_TEXT = 'write a custom answer';
- var DEFAULT_TOPIC_TEXT = 'write a new topic';
+
  $('input.new_answer').preserveDefaultText(DEFAULT_ANSWER_INPUT_TEXT);
 
  $('div.item_topic').change(function() {
@@ -26,67 +33,7 @@ $(function(){
       		$('input.new_answer').keydown(function(event){	
       	$(this).parent().find('input.submit_new_answer').show(); });
 // Initialize Each Item
-
-$('.quiz_item').each(function(){ initiateItem( $(this) )  });
-function initiateItem(item){    
-    
-       var wrong_answers = item.find('span.wrong', 'div.answer_preview').text(DEFAULT_ANSWER_TEXT);
-       var answer_candidates = item.find('div.ac_wrapper');
-       
-        answer_candidates.click(function(){ 
-        this_answer = $(this);
-        wrong_answers.find('button').click();
-        /*
-        *
-        * Check if answer has already been chosen
-        *
-        */ 
-
-         if ( this_answer.data('selected') == true ){   
-        // if answer text is already there, remove it 
-                                              this_answer.removeClass('selected').data('selected', false); 
-                                              var preview_index = this_answer.data('preview_index');
-                                              if (preview_index < 0) return false; // link has been cancelled
-                                              // $( wrong_answers[preview_index] ).text(''); 
-                                                     // next step - for every answer between the answer preview and answerpreview.length, 
-                                                     // move it back one
-                                               for (a=(preview_index + 1);a = (wrong_answers.length - 1); a++){
-                                                    $( wrong_answers[a - 1] ).text( $(wrong_answers[a]).text() )
-                                                                             .data('answer_link', $(wrong_answers[a]).data('answer_link') ); 
-                                                  $($( wrong_answers[a - 1] ).data('answer_link'))
-                                                                             .data('preview_index', parseInt(a - 1));
-                                                    $(wrong_answers[a]).text(DEFAULT_ANSWER_TEXT).data('answer_link', false);
-                                                    return;                          
-                                                               } //endfor  */
-        return false; } //endif
-        
-        /*
-        *
-        * Proceed with adding item
-        *
-        */
-        
-        answer_candidates.removeClass('selected').data('selected', false); 
-        // push existing answers   
-        // TODO: This doesn't work yet  
-       for (a = (wrong_answers.length - 1); a = 0; a = (a - 1) ){ 
-           console.log('pushing answer: ', $(wrong_answers[a - 1]).text());
-          $( wrong_answers[a] ).text( $(wrong_answers[a - 1]).text() ).data('answer_link', $(wrong_answers[a - 1]).data('answer_link') ); 
-          $($( wrong_answers[a] ).data('answer_link'))
-                                   .data('preview_index', a).addClass("selected").data('selected', true); 
-                                                        return; }  
-        // add new answer to previews
-       $(wrong_answers[0]).text(this_answer.text()).data('answer_link', $(this));
-        // highlight chosen answer  button
-        $(this).addClass("selected").data('selected', true).data('preview_index', 0 );
-        return;
-        
-    	});
-
-                       
-                 
-                 }  // end initiateItem			
-        			
+ $('.quiz_item').bind("initiate", function(){ initiateItem( $(this) )  });
 
           item_sliderInit();
    
@@ -184,12 +131,76 @@ $.get('/debug/?quiz_item=' + response);
 
 var scroll_width = 140 * answers.length;
 $('#answers_container_' + i).find('.answer_candidates').css('width', scroll_width);   
-answers_sliderInit(i);     
+ 
 
 
 } // end of EditQuizItem()
 
 */
+
+
+
+
+function initiateItem(item){    
+       var wrong_answers = item.find('span.wrong', 'div.answer_preview').text(DEFAULT_ANSWER_TEXT);
+       var answer_candidates = item.find('div.ac_wrapper');
+       
+        answer_candidates.click(function(){ 
+        this_answer = $(this);
+        wrong_answers.find('button').click();
+        /*
+        *
+        * Check if answer has already been chosen
+        *
+        */ 
+
+         if ( this_answer.data('selected') == true ){   
+        // if answer text is already there, remove it 
+                                              this_answer.removeClass('selected').data('selected', false); 
+                                              var preview_index = this_answer.data('preview_index');
+                                              if (preview_index < 0) return false; // link has been cancelled
+                                              // $( wrong_answers[preview_index] ).text(''); 
+                                                     // next step - for every answer between the answer preview and answerpreview.length, 
+                                                     // move it back one
+                                               for (a=(preview_index + 1);a = (wrong_answers.length - 1); a++){
+                                                    $( wrong_answers[a - 1] ).text( $(wrong_answers[a]).text() )
+                                                                             .data('answer_link', $(wrong_answers[a]).data('answer_link') ); 
+                                                  $($( wrong_answers[a - 1] ).data('answer_link'))
+                                                                             .data('preview_index', parseInt(a - 1));
+                                                    $(wrong_answers[a]).text(DEFAULT_ANSWER_TEXT).data('answer_link', false);
+                                                    return;                          
+                                                               } //endfor  */
+        return false; } //endif
+        
+        /*
+        *
+        * Proceed with adding item
+        *
+        */
+        
+        answer_candidates.removeClass('selected').data('selected', false); 
+        // push existing answers   
+        // TODO: This doesn't work yet  
+       for (a = (wrong_answers.length - 1); a = 0; a = (a - 1) ){ 
+           console.log('pushing answer: ', $(wrong_answers[a - 1]).text());
+          $( wrong_answers[a] ).text( $(wrong_answers[a - 1]).text() ).data('answer_link', $(wrong_answers[a - 1]).data('answer_link') ); 
+          $($( wrong_answers[a] ).data('answer_link'))
+                                   .data('preview_index', a).addClass("selected").data('selected', true); 
+                                                        return; }  
+        // add new answer to previews
+       $(wrong_answers[0]).text(this_answer.text()).data('answer_link', $(this));
+        // highlight chosen answer  button
+        $(this).addClass("selected").data('selected', true).data('preview_index', 0 );
+        return;
+        
+    	});
+
+
+         
+                 }  // end initiateItem			
+        			
+
+
 
 
 			
@@ -256,6 +267,7 @@ function PreviewAnswer(i) { // TODO: Make this work again
 
 function RefreshTopics(item_topic){
   if (item_topic.data('busy') == true) return false;
+  //validate input
   var new_topic = item_topic.find('input').val();
   if (new_topic.length < 1) return false;
   

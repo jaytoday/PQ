@@ -9,15 +9,13 @@
 </div></div> 
 
 
-<div class="answers_container" id="answers_container_" ><div class="answers_scroll">
-	
-	<div class="answer_candidates" id="answers_">
-		{# answer template #}
-	 <div class ="ac_wrapper" ><div id ="'" class="answer_candidate" >answer</div></div>
-	
+<div class="answers_container" id="{{ forloop.counter }}">
+
+{% include "answer_template.html" %}
+
 </div>
 
-</div></div>  
+  
 {% comment %}
 
 
