@@ -10,8 +10,7 @@
 </style> 
 
 <script type="text/javascript">
-{# {% include "../../static/scripts/utils/parseJSON.js" %} #}
-{# {% include "../../static/scripts/jquery/jquery.field.min.js" %} #}
+
 {% include "../../static/scripts/scroll/jquery.scrollTo-min.js" %} 
 {% include "../../static/scripts/scroll/jquery.localscroll-1.2.5.js" %} 
 {% include "../../static/scripts/scroll/jquery.serialScroll-1.2.1.js" %} 
@@ -21,8 +20,11 @@
 {% include "../../static/scripts/quiz_editor/jeditable/jquery.jeditable.autogrow.js" %}
 </script>
 <script type="text/javascript">
+
+
 {% include "../../static/scripts/quiz_editor/load_answers.js" %}
-{% include "../../static/scripts/quiz_editor/quiz_editor.js" %} 
+{% include "../../static/scripts/quiz_editor/quiz_editor.js" %}
+ 
 </script>
 
 
@@ -38,6 +40,7 @@
 
 
    <div class="nav_wrap"><ul class="item_navigation">
+	<li><a href="#new">Make New Item</a></li>
 	{% for item in subject.quizitems %}
 	<li><a  href="#{{ forloop.counter }}" {# id="{{ forloop.counter }}" #}>{{ forloop.counter }}</a></li>
 	{% endfor %}
@@ -46,13 +49,12 @@
      
 <div class="scroller"><div class="quiz_items" id="quiz_items" >
 	
-	{# Template for new item #}
-
-	{% for item in subject.quizitems %}
 
 {% include "quiz_item_template.html" %} 
 
-
+	
+	{% for item in subject.quizitems %}
+{% include "quiz_item_template.html" %} 
 	{% endfor %}
 	
 	</div></div>

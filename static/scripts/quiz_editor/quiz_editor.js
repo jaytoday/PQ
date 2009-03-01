@@ -8,7 +8,7 @@
  var DEFAULT_ANSWER_TEXT = 'No Selection';
  var DEFAULT_ANSWER_INPUT_TEXT = 'write a custom answer';
  var DEFAULT_TOPIC_TEXT = 'write a new topic';
- 
+ var DEFAULT_QUIZ_ITEM_TEXT = 'Click here to write quiz item text...';
  
 
 $(function(){
@@ -17,7 +17,7 @@ $(function(){
  var scroll_width = 950 * quiz_count;
  $('div#quiz_items').css('width', scroll_width);
 
- $('input.new_answer').preserveDefaultText(DEFAULT_ANSWER_INPUT_TEXT);
+
 
  $('div.item_topic').change(function() {
             var $item_topic = $(this);
@@ -35,6 +35,7 @@ $(function(){
 // Initialize Each Item
  $('.quiz_item').bind("initiate", function(){ initiateItem( $(this) )  });
 
+          // Initiate Item Slider
           item_sliderInit();
    
    
@@ -44,35 +45,22 @@ $(function(){
     var this_input = $(this).parent().find('input'); 
     var these_spans = $(this).parent().find('span');
     var edit_div = $(this).parent().find('div.edit_answer');
-    var current_answer = this_answer_span.text();
-    if (current_answer != DEFAULT_ANSWER_TEXT) { this_input.val(this_answer_span.text()); }
+    if (this_answer_span.text() != DEFAULT_ANSWER_TEXT) { this_input.val(this_answer_span.text()); }
     these_spans.hide();
     edit_div.show(); this_input.focus().keypress(function(evt){ if (evt.keyCode == 13) edit_div.find('button').click(); });
     edit_div.find('button').click(function(){
             // new answer value is submitted
             var new_answer = this_input.val();
             if (new_answer == DEFAULT_ANSWER_INPUT_TEXT || new_answer == '') { var new_value = DEFAULT_ANSWER_TEXT; }
-            else { var new_value = new_answer; }
-            if (new_value != current_answer) { $(this_answer_span.data('answer_link')).data('preview_index', -1); } //unlink from answer candidate
+            else { var new_value = new_answer; } 
+            if (new_value != this_answer_span.text()) { $(this_answer_span.data('answer_link')).data('preview_index', -10); } //unlink from answer candidate
             $(this).parent().hide();
             this_answer_span.text(new_value); these_spans.show();
-                                                       });          
-            });
+                                              return;         });          
+          return;  });
 
 
 
-        	$('div.item_inner > div').editable(function(value, id){ UpdateContent(value, $(this));} , {
-        		//loadurl : "/quizbuilder/rpc?action=Jeditable&arg0=" + $(this),
-        		type      : "autogrow",
-        		autogrow : { lineHeight : 22 },
-        		// submit    : "OK",
-        		indicator : "<img src='/static/stylesheets/img/ajax-loader.gif'>",
-        		onblur    : "submit",
-        		// cancel    : "Cancel",
-        		tooltip   : "Click to edit...",
-        		width     : '600px',
-        		cssclass : "editable"
-        		}); // this can be rpc call 
 
 
 
@@ -85,21 +73,19 @@ $(function(){
 		
 
 EditItemContent(i);
-
-$('form#quiz_data_' + i).find('input[@name="skip_item"]').click(function() { $('.quizbuilder_wrapper .scroller').trigger('next'); }); // skip item   moderated=ignore
-	            
+            
 $('form#quiz_data_' + i).find('input[@name="submit_item"]').click(function() {         //moderated=true
 	var topic_value = eval('document.quiz_data_' + i + '.item_topic.value');
 	if (topic_value == 'Pick a Topic'){ console.info('Pick a Topic!'); return false; }
 	if (topic_value == 'New Topic'){ topic_value = eval('document.quiz_data_' + i + '.new_item_topic.value'); }
 
 
-var submit_wrong_answers = [];
-for (w=0; w < wrong_answers[i].length; w++){
-submit_wrong_answers.splice(wrong_answers[i].length, 0, wrong_answers[i][w][0]); 
+var submit_answer_previews = [];
+for (w=0; w < answer_previews[i].length; w++){
+submit_answer_previews.splice(answer_previews[i].length, 0, answer_previews[i][w][0]); 
 }
 
-if (submit_wrong_answers.length < 2){ console.info('not enough answers!'); return false;  }
+if (submit_answer_previews.length < 2){ console.info('not enough answers!'); return false;  }
 
 if ($('div#quiz_item_content_' + i + ' > div.item_inner').html().length > 500){ console.info('quiz item is too long!'); return false; }
 
@@ -109,7 +95,7 @@ $('.quizbuilder_wrapper .scroller').trigger('next');
 
 
   //                                                           correct          all answers                            topic value                                     HTML                                                              url         proficiency
- server.SetItemModStatus(item.key, "true", function(response){ server.SubmitQuizItem(item.index, submit_wrong_answers.concat(item.index),  topic_value , $('div#quiz_item_content_' + i + ' > div.item_inner').html(), item.page.url, item.page.proficiency.name, onItemAddSuccess); });
+ server.SetItemModStatus(item.key, "true", function(response){ server.SubmitQuizItem(item.index, submit_answer_previews.concat(item.index),  topic_value , $('div#quiz_item_content_' + i + ' > div.item_inner').html(), item.page.url, item.page.proficiency.name, onItemAddSuccess); });
 
 });
  
@@ -129,10 +115,6 @@ $.get('/debug/?quiz_item=' + response);
 
 
 
-var scroll_width = 140 * answers.length;
-$('#answers_container_' + i).find('.answer_candidates').css('width', scroll_width);   
- 
-
 
 } // end of EditQuizItem()
 
@@ -141,36 +123,76 @@ $('#answers_container_' + i).find('.answer_candidates').css('width', scroll_widt
 
 
 
-function initiateItem(item){    
-       var wrong_answers = item.find('span.wrong', 'div.answer_preview').text(DEFAULT_ANSWER_TEXT);
+function initiateItem(item){   
+	 
+       var answer_previews = item.find('span.wrong', 'div.answer_preview');
+       answer_previews.each(function(){ 
+       	  var this_input = $(this).parent().find('input');
+       	  if ($(this).text().length < 1) { $(this).text(DEFAULT_ANSWER_TEXT); this_input.preserveDefaultText(DEFAULT_ANSWER_TEXT); }
+       	  else {  this_input.val($(this).text()); }
+	   });
+
+        var correct_answer = item.find('span.correct', 'div.answer_preview');
+         correct_answer.each(function(){ 
+       	  var this_input = $(this).parent().find('input');
+       	  if ($(this).text().length < 1) { $(this).text(DEFAULT_ANSWER_TEXT); this_input.preserveDefaultText(DEFAULT_ANSWER_TEXT); }
+       	  else {  this_input.val($(this).text()); }
+	   });
+	   
+
+       var content = item.find('div.content', 'div.quiz_item_content')
+       if (content.text().length < 1) content.text(DEFAULT_QUIZ_ITEM_TEXT);
+
+       	content.editable(function(value, id){ UpdateContent(value, $(this));} , {
+        		//loadurl : "/quizbuilder/rpc?action=Jeditable&arg0=" + $(this),
+        		type      : "autogrow",
+        		autogrow : { lineHeight : 22 },
+        		// submit    : "OK",
+        		indicator : "<img src='/static/stylesheets/img/ajax-loader.gif'>",
+        		onblur    : "submit",
+        		// cancel    : "Cancel",
+        		tooltip   : "Click to edit...",
+        		width     : '600px',
+        		cssclass : "editable"
+        		}); // this can be rpc call 
+    //   	if ($(this).text() == DEFAULT_QUIZ_ITEM_TEXT) $(this).text('');
+          
+          
+          
+          
+// wait until answers are loaded
+item.bind("initiateAnswers", function() {
+       		
+       		
        var answer_candidates = item.find('div.ac_wrapper');
        
         answer_candidates.click(function(){ 
         this_answer = $(this);
-        wrong_answers.find('button').click();
-        /*
-        *
-        * Check if answer has already been chosen
-        *
-        */ 
+        answer_previews.find('button').click();
+/*
+*
+* Check if answer has already been chosen
+*
+*/ 
 
-         if ( this_answer.data('selected') == true ){   
-        // if answer text is already there, remove it 
-                                              this_answer.removeClass('selected').data('selected', false); 
-                                              var preview_index = this_answer.data('preview_index');
-                                              if (preview_index < 0) return false; // link has been cancelled
-                                              // $( wrong_answers[preview_index] ).text(''); 
-                                                     // next step - for every answer between the answer preview and answerpreview.length, 
-                                                     // move it back one
-                                               for (a=(preview_index + 1);a = (wrong_answers.length - 1); a++){
-                                                    $( wrong_answers[a - 1] ).text( $(wrong_answers[a]).text() )
-                                                                             .data('answer_link', $(wrong_answers[a]).data('answer_link') ); 
-                                                  $($( wrong_answers[a - 1] ).data('answer_link'))
-                                                                             .data('preview_index', parseInt(a - 1));
-                                                    $(wrong_answers[a]).text(DEFAULT_ANSWER_TEXT).data('answer_link', false);
-                                                    return;                          
-                                                               } //endfor  */
-        return false; } //endif
+if ( this_answer.data('selected') == true ){   
+		// if answer text is already there, remove it 
+		this_answer.removeClass('selected').data('selected', false); 
+		var preview_index = this_answer.data('preview_index');
+		if (preview_index < 0) return false; // link has been cancelled
+
+
+		 $( answer_previews[preview_index] ).text(DEFAULT_ANSWER_TEXT).data('answer_link', false);
+		 // next step - for every answer between the answer preview and answerpreview.length, 
+		 // move it back one
+		for (a=(preview_index + 1); a < answer_previews.length; a++){
+			$( answer_previews[a - 1] ).text( $(answer_previews[a]).text() )
+									 .data('answer_link', $(answer_previews[a]).data('answer_link') ); 
+			$($( answer_previews[a - 1] ).data('answer_link'))
+									 .data('preview_index', parseInt(a - 1));
+			$(answer_previews[a]).text(DEFAULT_ANSWER_TEXT).data('answer_link', false);
+		continue;  } //endfor  */
+  return false; } //endif
         
         /*
         *
@@ -178,46 +200,38 @@ function initiateItem(item){
         *
         */
         
-        answer_candidates.removeClass('selected').data('selected', false); 
-        // push existing answers   
-        // TODO: This doesn't work yet  
-       for (a = (wrong_answers.length - 1); a = 0; a = (a - 1) ){ 
-           console.log('pushing answer: ', $(wrong_answers[a - 1]).text());
-          $( wrong_answers[a] ).text( $(wrong_answers[a - 1]).text() ).data('answer_link', $(wrong_answers[a - 1]).data('answer_link') ); 
-          $($( wrong_answers[a] ).data('answer_link'))
+        answer_candidates.removeClass('selected').data('selected', false).data('preview_index', -1 ); 
+
+       for (a = (answer_previews.length - 1); a > 0; a-- ){ 
+
+           if ( $(answer_previews[a - 1]).text() == DEFAULT_ANSWER_TEXT) continue;
+          $( answer_previews[a] ).text( $(answer_previews[a - 1]).text() ).data('answer_link', $(answer_previews[a - 1]).data('answer_link') ); 
+          $($( answer_previews[a] ).data('answer_link'))
                                    .data('preview_index', a).addClass("selected").data('selected', true); 
-                                                        return; }  
+                     
+           continue;  }  
         // add new answer to previews
-       $(wrong_answers[0]).text(this_answer.text()).data('answer_link', $(this));
+       $(answer_previews[0]).text(this_answer.text()).data('answer_link', $(this));
         // highlight chosen answer  button
         $(this).addClass("selected").data('selected', true).data('preview_index', 0 );
+        
+        
         return;
         
     	});
 
 
-         
+
+}); // end initiateAnswers		
+
+
+
+$('button.submit_item', item).click(function(){  SubmitItem(item); });
+
                  }  // end initiateItem			
         			
 
 
-
-
-			
-function UpdatePreviews(wrong_answers, ANSWER_LIMIT, i) {
-for (w=0; w < ANSWER_LIMIT; w++){
-if (wrong_answers[i][w]){
-	// replace preview html with answer
-	  $('div#answer_choice_previews_' + i).find('span#selection_' + w)
-	  .html(wrong_answers[i][w][0]).append('<img class="remove_answer" src="/static/stylesheets/img/quiz_closebox_small.png">'); 
-	  // add x close icon
-	  
-}
-else{  $('div#answer_choice_previews_' + i).find('span#selection_' + w).html('No Selection'); }
-
-}
-	
-}
 
 
 
@@ -230,17 +244,13 @@ function UpdateContent(value,el){
 */
   // PreviewAnswer(i);
 
-el.html(value);
+
+if (value.length < 1) el.html(DEFAULT_QUIZ_ITEM_TEXT)
+else el.html(value);
 
 return(value); 
 
 }
-
-function EditItemContent(i) { 
-	$('#quiz_item_content_' + i + ' > div.item_inner > div').click(function(){  $(this).html().replace('style="opacity: 1;"', ''); });
-
-}
-
 
 
 
@@ -294,3 +304,41 @@ function RefreshTopics(item_topic){
 }
 
 
+function SubmitItem(item){
+  if (item.data('submitting') == true) return false;
+  item.data('submitting', true);
+  var this_button = $('button.submit_item', item).attr('disabled', true); 
+  	
+	var subject_name = $('div.subject_name', item).text();
+	var topic_name = $('div.item_topic', item).find("option:selected").text();
+	var correct_answer = $('span.correct', item).text(); 
+	var answers = Array();
+	$('span.wrong', item).each(function(){ answers.push($(this).text()); });
+	$('span.correct', item).each(function(){ answers.push($(this).text()); });
+	var item_text = item.find('div.content', 'div.quiz_item_content').text();
+	var item_key = this_button.attr('id');
+	
+  // do we also want to collect the answer suggestions, or do we let them float away like tears in the rain?
+
+    	$.ajax({
+                    
+                    type: "POST",
+                    url:  "/quizeditor/rpc/post",
+                    data:
+                    {
+                            action: "SubmitItem",
+                            subject_name: subject_name,
+                            topic_name: topic_name,
+                            correct_answer: correct_answer,
+                            answers: answers,
+                            item_text: item_text,
+                            item_key: item_key
+                    },
+                    success: function(response)
+                    { 	item.html(response).data('submitting', false);
+                        this_button.attr('disabled', false);	}
+               });
+               
+               return; 
+    
+}

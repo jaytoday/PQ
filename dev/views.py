@@ -19,9 +19,9 @@ class Admin(webapp.RequestHandler):
   #Load admin page
   @admin_only
   def get(self):
-    if self.request.get('shortcut') == 'login':
-        return self.dev_login()
-    else: self.response.out.write(self.admin_options() )
+    if self.request.get('shortcut') == 'login': return self.dev_login()
+    if self.request.get('shortcut') == 'sets': return self.sets()
+    return self.response.out.write(self.admin_options() )
     
   
   @memoize('admin_options')
@@ -43,6 +43,18 @@ class Admin(webapp.RequestHandler):
 	    self.session['unique_identifier'] = self.request.get('uid')
 	    return self.redirect('/register')
 	return self.redirect('/login')
+
+
+
+  def sets(self):
+	from utils.BeautifulSoup import BeautifulSoup
+	from google.appengine.api import urlfetch
+	SETS_URL = "http://labs.google.com/sets"
+	query = ["chicken", "dog", "cat"] 
+	fetch_page = urlfetch.fetch(SETS_URL + "?q1=" + query[0] + "&q2=" + query[1] + "&q3=" + query[2]) # is there a way to format these?
+	soup = BeautifulSoup(fetch_page.content)
+	link_list = [a.contents[0] for a in soup.findAll('table')[1].contents[1].findAll('table')[0].findAll('a')]
+	for a in link_list: print a
 
 
 

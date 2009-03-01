@@ -263,7 +263,7 @@ class QuizEditorPost(webapp.RequestHandler):
     def post(self):    
       	if self.request.get('action') == "NewTopic": return self.response.out.write( self.NewTopic() )
       	if self.request.get('action') == "LoadAnswers": return self.response.out.write( self.LoadAnswers() )
-	
+      	if self.request.get('action') == "SubmitItem": return self.response.out.write( self.SubmitItem() )	
 
     def NewTopic(self):   # set moderation status for raw item
         this_subject = Proficiency.gql("WHERE name = :1", self.request.get('subject_name')).get()
@@ -283,6 +283,28 @@ class QuizEditorPost(webapp.RequestHandler):
         answers = list(self.request.get('correct_answer') * 3)
         template_values = {"answers": answers}
         path = tpl_path('quizbuilder/answer_template.html')
+        return template.render(path, template_values)
+
+                
+    def SubmitItem(self):   
+        if len( self.request.get('item_key') ) < 1:
+        	this_item = QuizItem()
+        else: 
+            this_item = QuizItem.get(self.request.get('item_key'))
+        from model.proficiency import Proficiency, ProficiencyTopic
+        this_proficiency = Proficiency.gql("WHERE name = :1", self.request.get('subject_name') ).get()
+        # Approval
+        this_item.pending_proficiency = this_proficiency
+        this_item.topic = ProficiencyTopic.gql("WHERE name = :1 AND proficiency = :2", self.request.get('topic_name'), this_proficiency).get()
+        this_item.index = self.request.get('correct_answer')
+        this_item.answers = list(self.request.get('answers'))
+        this_item.content = self.request.get('item_text')
+        db.put(this_item)
+        logging.info('saving new quiz item with subject %s and index %s' % (self.request.get('subject_name'), self.request.get('correct_answer') ))
+        from utils.webapp import template
+        from utils.utils import tpl_path        
+        template_values = {"subject": this_proficiency}
+        path = tpl_path('quizbuilder/quiz_item_template.html')
         return template.render(path, template_values)
 
                 

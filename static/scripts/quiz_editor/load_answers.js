@@ -5,11 +5,12 @@
  * 
  */
 
+
 function loadAnswers(item) {
-	console.log('loading answers...');
-	var these_answers = $('div.answer_candidates', item);
-	var answers_container = these_answers.parents('.answers_container:first');
-	if (these_answers.data('busy') == true) return false;
+	var wrong_answers = $('div.answer_candidates', item);
+	var answers_container = wrong_answers.parents('.answers_container:first');
+	// var answers_container = ('.answers_container', item);
+	if (wrong_answers.data('busy') == true) return false;
 	answers_container.data('busy', true)
 	                 .find('div.answers_scroll').hide('fast').end()
 	                 .find('div.loading').show('fast');
@@ -18,20 +19,20 @@ function loadAnswers(item) {
                     
                     type: "POST",
                     url:  "/quizeditor/rpc/post",
-                    data:
-                    {
+                    dataType: "html",
+                    data: {
                             action: "LoadAnswers",
                             correct_answer: $('span.correct', item).text(),
                             item_text: $('div.quiz_item.content', item).text()
                     },
-                    success: function(response)
-                    {  
-                    	
+                    success: function(response) { 
                     	answers_container.html(response).data('busy', false);
-                       
-                       item.trigger("initiate");
-                       answerSliderInit(these_answers, answers_container);	
-                       }
+                    }, 
+                    complete: function(data){ 
+                    	wrong_answers = $('div.answer_candidates', item);
+                        item.trigger("initiateAnswers"); 
+                        answerSliderInit(wrong_answers, answers_container); 
+                        }
                });
 	
 	
@@ -52,11 +53,15 @@ function answerSliderInit(wrong_answers, answers_container) {
 	 
 
     var $panels = $(wrong_answers).find('div.ac_wrapper');
+    
+    if ($panels.length < 1) { console.log('problem dr jones!');
+    return; setTimeout(function() { answerSliderInit(wrong_answers, answers_container); },
+           40); }
+    	
+    	
     var scroll_width = 160 * $panels.length; wrong_answers.css('width', scroll_width);  
     var $container = answers_container;
     var $index = $container.attr('id');
-
-console.log(wrong_answers, $panels,  $container);
 
     // if false, we'll float all the panels left and fix the width 
     // of the container
@@ -77,10 +82,11 @@ console.log(wrong_answers, $panels,  $container);
 
     // apply our left + right buttons
     $scroll
-        .before('<img class="scrollButtons answer_prev answer_prev' + $index + '" src="/static/stylesheets/img/utils/scroll_left.png" />')
-        .after('<img class="scrollButtons answer_next answer_next' + $index + '" src="/static/stylesheets/img/utils/scroll_right.png" />');
+        .prepend('<img class="scrollButtons answer_prev answer_prev' + $index + '" src="/static/stylesheets/img/utils/scroll_left.png" />')
+        .append('<img class="scrollButtons answer_next answer_next' + $index + '" src="/static/stylesheets/img/utils/scroll_right.png" />');
 
-
+	 var $prev = 'img.answer_prev' + $index; 
+	 var $next = 'img.answer_next' + $index;
 
    // $('#slider .navigation').find('a').click(selectNav);
 
@@ -89,8 +95,6 @@ console.log(wrong_answers, $panels,  $container);
  
     }
 
-console.log('prev ', $('img.answer_prev' + $index));
-
     var scrollOptions = {
         target: $scroll, // the element that has the overflow
 
@@ -98,8 +102,8 @@ console.log('prev ', $('img.answer_prev' + $index));
         items: $panels,
 
         // selectors are NOT relative to document, i.e. make sure they're unique
-        prev: 'img.answer_prev' + $index, 
-        next: 'img.answer_next' + $index,
+        prev: $prev, 
+        next: $next,
 
         // allow the scroll effect to run both directions
         axis: 'x',

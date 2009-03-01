@@ -2,14 +2,14 @@
 {# Template for each item #}
 
 
-<div class="quiz_item"  id="{{ forloop.counter }}" >
+<div class="quiz_item"  id='{{ forloop.counter|default:"new" }}' >
 
 <div class="quiz_item_content" ><div class="item_inner"> 
-<div class="content" > {{ item.content|escape }} </div>
+<div class="content" >{{ item.content|escape }}</div>
 </div></div> 
 
 
-<div class="answers_container" id="{{ forloop.counter }}">
+<div class="answers_container" id='{{ forloop.counter|default:"new" }}'>
 
 {% include "answer_template.html" %}
 
@@ -26,7 +26,7 @@ Sidebar
 
 {% endcomment %}
 <div class="item_sidebar">
-<div class="sidebar_header">Quiz Item Settings</div>
+<div class="sidebar_header note">Quiz Item Settings</div>
 <div class="item_subject" >
 	<span class="header">Subject</span>
 	<div class="subject_name">{{ subject.name }}</div>
@@ -40,25 +40,43 @@ Sidebar
 
 <div class="answer_choice_previews">
 
-<div class="answer_preview" >
+<div class="answer_preview correct" >
 <div class="correct">Correct Answer</div><span class="selection correct">{{ item.index }}</span>
 <span class="edit">edit</span><div class="edit_answer" style="display:none;"><input class="new_answer" type="text"><button>OK</button></div>
 </div>
 
 {# item.page.url is webpage #}
 
+
+{% if item.answers %}
+{% for answer in item.answers  %} {# Load Every Item For Answer That Is Not The Correct Answer #}
+
+{% ifnotequal answer.lower item.index.lower  %}
+<div class="answer_preview wrong"> 
+<div class="wrong">Wrong Answer #{{ forloop.counter }}</div>
+<span class="wrong selection" id="{{ forloop.counter }}">{{ answer }} </span>
+<span class="edit">edit</span><div class="edit_answer" style="display:none;"><input class="new_answer" type="text"><button>OK</button></div>
+</div>
+{% endifnotequal %}
+
+{% endfor %}
+{% else %} {# New Item #}
+
 {% for n in ANSWERCOUNT %}
-<div class="answer_preview">
+<div class="answer_preview wrong"> 
 <div class="wrong">Wrong Answer #{{ n }}</div><span class="wrong selection" id="{{ n }}"></span>
 <span class="edit">edit</span><div class="edit_answer" style="display:none;"><input class="new_answer" type="text"><button>OK</button></div>
 </div>
-
 {% endfor %}
+
+
+{% endif %}
+
 
 </div> {# endpreviews #}
 
 
-<button  name="submit_item" class="submit_item" value="submit item" /> submit item</button> 
+<button  name="submit_item" class="submit_item" value="submit item" id="{{ item.key }}" /> submit item</button> 
 {# <button  name="skip_item" class="skip_item" value="skip item" />skip</button>  #}
 
 

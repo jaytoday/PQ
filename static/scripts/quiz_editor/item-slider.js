@@ -25,12 +25,6 @@ function item_sliderInit(wrong_answers) {
     // to remove the default scrollbars that will appear
     var $scroll = $('.quizbuilder_wrapper .scroller').css('overflow', 'hidden');
 
-    // apply our left + right buttons
-    //$scroll
-      //  .before('<img class="scrollButtons left" src="/static/stylesheets/img/scroll_left.png" />')
-      //  .after('<img class="scrollButtons right" src="/static/stylesheets/img/scroll_right.png" />');
-
-
     
     // handle nav selection
     function selectNav() {
@@ -54,35 +48,22 @@ function item_sliderInit(wrong_answers) {
     // use: $(container).trigger( 'next' );
     
 function trigger(item) {
-if ( $(item).data('triggered') == true) return false;
-$(item).data('triggered', true);
-console.log($(item));
 var el = $('.item_navigation').find('a[href="#' + item.id + '"]');
 selectNav.call(el);
+if ( $(item).data('triggered') == true) return false;
+$(item).data('triggered', true);
 /*
  * 
  * Load Answers
  * 
  */
+
+$(item).trigger("initiate"); 
 loadAnswers($(item));
-
-
-return; 
+return;
+ 
   }
 
-    if (window.location.hash) {
-        trigger({ id : window.location.hash.substr(1) });
-    } else {
-      //  $('.item_navigation a:first').click();
-    }
-
-    // offset is used to move to *exactly* the right place, since I'm using
-    // padding on my example, I need to subtract the amount of padding to
-    // the offset.  Try removing this to get a good idea of the effect
-    var offset = parseInt((horizontal ? 
-        $container.css('paddingTop') : 
-        $container.css('paddingLeft')) 
-        || 0) * -1;
                      
 
     var scrollOptions = {
@@ -106,8 +87,6 @@ return;
         onAfter: trigger, // our final callback
         
         force: true,
-        
-
 
         offset: -50,//offset,
 
@@ -132,8 +111,8 @@ return;
     // setting the duration to 1 because I don't want it to scroll in the
     // very first page load.  We don't always need this, but it ensures
     // the positioning is absolutely spot on when the pages loads.
-    scrollOptions.duration = 1;
-    $.localScroll.hash(scrollOptions);
+  //  scrollOptions.duration = 1;
+  //  $.localScroll.hash(scrollOptions);
 
 
  
