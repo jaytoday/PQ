@@ -71,22 +71,46 @@ var runCode = function(){
     }
     initText();
     
+	var limitChars = function(element, limit, infodiv)
+	{
+		var text = element.val();	
+		var textlength = text.length;
+		if(textlength > limit)
+		{
+			infodiv.html('No characters left.');
+			element.val(text.substr(0,limit));
+			return false;
+		}
+		else
+		{
+			infodiv.html((limit - textlength) +' characters left.');
+			return true;
+		}
+	}
+	
+    select('answer_editor').keypress(function(){
+		limitChars(jQuery(this), 400, select('limit_info'));
+    }); 
+    
+    
     select('statement').bind("dblclick", function(){
         var edit_text = jQuery(this).text();
-        if (edit_text == default_text) 
-            edit_text = '';
-        jQuery(this).hide().parent().find('input').show().val(edit_text).focus().keypress(function(evt){
-            if (evt.keyCode == 13) 
-                select('submit_edit').click();
-        }).end().find('button').show();
+        if (edit_text == default_text) edit_text = '';
+        
+        jQuery(this).hide();
+        select('limit_info').show();
+        select('submit_edit').show();
+        select('answer_editor').show().val(edit_text).focus();
+        limitChars(select('answer_editor'), 400, select('limit_info'));
     });
     
     // Submit edit of quiz item text
     select('submit_edit').bind("click", function(){
-        var new_text = jQuery(this).parent().find('input').attr('value');
-        jQuery(this).parent().find('input').hide().end() // hide input
-			.find('.statement').show().html(new_text).end().end() //update text
-			.hide(); // hide button
+        var new_text = select('answer_editor').val();
+        select('answer_editor').hide();
+		select('statement').show().html(new_text);
+		jQuery(this).hide(); // hide button
+		select('limit_info').hide();
         initText();
     });
     
@@ -116,6 +140,8 @@ var runCode = function(){
     select('correct_answer').text(default_correct_answer_text);
     
     // Set correct answer
+    // TODO: This also gets called on DBLClick, so we lookup answers 
+    // when turning the text into a textbox. Needs to be fixed
     select('statement').mouseup(function(){
         var answer = CmdUtils.getSelection();
         if (answer.length < 1) 
@@ -126,7 +152,7 @@ var runCode = function(){
             select('loading').hide();
             var markup = new Array();
             for (var alt in alternatives) {
-                markup.push("<div style='height: 13px; margin: 10px 0; cursor:pointer;'><button " +
+                markup.push("<div style='height: 13px; margin: 10px 0; cursor:pointer; clear: left;'><button " +
                 "style='float:left; cursor:pointer; margin: -4px 4px 0px 0;'><img src='" +
                 serverUrl +
                 "/static/stylesheets/img/utils/purple_next_tiny.png" +
