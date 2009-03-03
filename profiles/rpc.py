@@ -107,9 +107,9 @@ class RPCMethods(webapp.RequestHandler):
 
 class ProfilePost(webapp.RequestHandler): 
   def post(self):    
-  	if len(self.request.path.split('/subject_img/')) > 0: return self.response.out.write(self.subject_img() )
+  	if len(self.request.path.split('/subject_img/')) > 1: return self.response.out.write(self.subject_img() )
   	if self.request.get('action') == 'subject_blurb': return self.response.out.write(simplejson.dumps(  self.subject_blurb()  )) 
-
+  	if self.request.get('action') == 'change_rights': return self.response.out.write(self.change_rights() ) 
 
 
   def subject_blurb(self):
@@ -135,4 +135,30 @@ class ProfilePost(webapp.RequestHandler):
       template_values = {'p': this_subject}
       return template.render(path, template_values)
            
+      
+
+  def change_rights(self):
+	from model.proficiency import Proficiency
+	from model.user import Profile, SubjectMember
+	subject_name = self.request.get('subject')
+	this_subject = Proficiency.get_by_key_name(subject_name) 
+	user = Profile.get_by_key_name(self.request.get('user'))
+	this_change = self.request.get('rights_action')
+	this_membership = SubjectMember.gql("WHERE subject = :1 AND user = :2", this_subject, user).get()
+	if this_change == "make_admin":
+		logging.info('make admin')
+		this_membership.is_admin = True
+	if this_change == "remove_admin":
+		this_membership.is_admin = False
+	db.put(this_membership)
+	logging.info('user %s has had admin status set to %s for subject %s' % (user.unique_identifier, str(this_membership.is_admin), this_subject.name))
+	from utils.webapp import template
+	path = tpl_path(PROFILE_PATH +'/subject/admin_rights.html')
+	template_values = {'p': this_subject}
+	return template.render(path, template_values)	
+			
+		
+		
+
+		   
       

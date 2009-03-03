@@ -14,7 +14,8 @@ $('div#subject_thumb_container > div').each(function(n){
     
 	$(this).click(function(){
 
-       $('.subject').hide(); this_subject.show(); this_frame.s3Slider({ timeOut: SLIDER_TIMEOUT }); 
+      $('div#subject_thumb_container > div').removeClass('selected');
+      $(this).addClass('selected'); $('.subject').hide(); this_subject.show(); this_frame.s3Slider({ timeOut: SLIDER_TIMEOUT }); 
  	});
   	
 	// remove default image if there are custom images (if we will never have subjects without pictures, this isn't necessary)
@@ -55,6 +56,7 @@ $('div.blurb_text').bind('dblclick', function() { $(this).parent().find('button.
 });
 
 
+// Upload New Image
 $('.upload_picture').find('button').each(function(){ 
 var subject_name = $(this).parent().attr('id');
 var subject_frame = $(this).parent().parent().find('div.subject_frame');
@@ -74,15 +76,26 @@ $(this).jsupload({
     onComplete: function(result){
       //Result is what we got from server script
       if (result == "error"){ console.log('error uploading image!'); return; }
-      console.log(result);
       subject_frame.parent().find('.loading').hide('fast');
       subject_frame.html(result).find('li:first').remove().end()
                    .show().s3Slider({ timeOut: SLIDER_TIMEOUT });
     }
     }); }); 
 
+
+
+$('ul.subject_nav').tabs();
+
+$('div.footer').find('button.save').hide();
+
+
+
+
+SetupAdminRights();
+
+
 		
-		});
+		}); //end onReady
 
 
  function SubmitSettingsEdit() {
@@ -113,7 +126,9 @@ $('div.main').hide();$('div.loading').show();
 
 
 function AjaxError() {
-
+console.log('ajax error!');
+return;
+// TODO...
 $('div.loading').hide(); $('div.main').show(); 
 		$('.form_error').show()
 		  .find('a').click(
@@ -181,4 +196,41 @@ function SaveBlurb(blurb_text, this_subject_name)
 	});
     
     
+}
+
+function SetupAdminRights() {
+	$('div.lower_level').find('button.rights').click(function(){ ChangeRights( $(this) ); });
+}
+
+function ChangeRights(button){
+
+	var this_choice = button.parent().find("option:selected");
+	if (this_choice.length < 1) return alert("Please select a user"); 
+	var user = this_choice.attr('id');
+	
+	var rights_action = button.attr("id");
+	
+	// Todo: loading...
+
+	var container = button.parents(".admin_rights:first");
+	var subject_name = container.attr('id');
+
+
+	$.ajax({
+		type: "POST", 
+		url: '/profiles/rpc/post',
+		datatype: "json",
+		data:
+			{
+					action: "change_rights",
+					rights_action: rights_action, 
+					user: user,
+					subject: subject_name,
+			},
+		error: function() { AjaxError(); },
+		success: function(response) { container.html(response);  },
+		complete: function() { SetupAdminRights(); } 
+	});	
+
+	
 }

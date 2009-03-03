@@ -1,0 +1,21 @@
+		<div class="current_admins"> Administrators
+		<select size="7">
+		{% for member in p.members %}
+		{% if member.is_admin %}
+		 <option id="{{ member.user.unique_identifier }}">{{ member.user.fullname }}</option>
+		{% endif %}		
+		 {% endfor %}
+		</select>
+		<button id="remove_admin" class="rights"> - admin -></button>
+		</div>
+		
+		<div class="current_contributors">Contributors
+		<select size="7">
+		{% for member in p.members %}
+		{% if not member.is_admin%}
+		 <option id="{{ member.user.unique_identifier }}">{{ member.user.fullname }}</option>
+		{% endif %}
+		 {% endfor %}
+		</select>
+		<button id="make_admin" class="rights"><- + admin</button>
+		</div>

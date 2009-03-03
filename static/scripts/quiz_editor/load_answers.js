@@ -7,36 +7,37 @@
 
 
 function loadAnswers(item) {
-	var wrong_answers = $('div.answer_candidates', item);
-	var answers_container = wrong_answers.parents('.answers_container:first');
-	// var answers_container = ('.answers_container', item);
-	if (wrong_answers.data('busy') == true) return false;
-	answers_container.data('busy', true)
-	                 .find('div.answers_scroll').hide('fast').end()
-	                 .find('div.loading').show('fast');
+var wrong_answers = $('div.answer_candidates', item);
+var answers_container = wrong_answers.parents('.answers_container:first');
+// var answers_container = ('.answers_container', item);
+if (answers_container.data('busy') == true) return false;
+answers_container.data('busy', true)
+	             .find('div.answers_scroll').hide('fast').end()
+	             .find('div.loading').show('fast');
+
+$.ajax({
 	
-	    	$.ajax({
-                    
-                    type: "POST",
-                    url:  "/quizeditor/rpc/post",
-                    dataType: "html",
-                    data: {
-                            action: "LoadAnswers",
-                            correct_answer: $('span.correct', item).text(),
-                            item_text: $('div.quiz_item.content', item).text()
-                    },
-                    success: function(response) { 
-                    	answers_container.html(response).data('busy', false);
-                    }, 
-                    complete: function(data){ 
-                    	wrong_answers = $('div.answer_candidates', item);
-                        item.trigger("initiateAnswers"); 
-                        answerSliderInit(wrong_answers, answers_container); 
-                        }
-               });
-	
-	
-	
+	type: "POST",
+	url:  "/quizeditor/rpc/post",
+	dataType: "html",
+	data: {
+			action: "LoadAnswers",
+			correct_answer: $('span.correct', item).text(),
+			item_text: $('div.quiz_item.content', item).text()
+	},
+	success: function(response) { 
+		// TODO catch errors
+		answers_container.html(response).data('busy', false);
+	}, 
+	complete: function(data){ 
+		wrong_answers = $('div.answer_candidates', item);
+		item.trigger("initiateAnswers"); 
+		answerSliderInit(wrong_answers, answers_container); 
+		}
+});
+
+
+
 	
 	
 }
@@ -88,7 +89,6 @@ function answerSliderInit(wrong_answers, answers_container) {
 	 var $prev = 'img.answer_prev' + $index; 
 	 var $next = 'img.answer_next' + $index;
 
-   // $('#slider .navigation').find('a').click(selectNav);
 
     // go find the navigation link that has this target and select the nav
     function trigger(data) {
@@ -117,27 +117,16 @@ function answerSliderInit(wrong_answers, answers_container) {
         // offset: 0,
 
         // duration of the sliding effect
-        duration: 500,
+        duration: 500
 
         // easing - can be used with the easing plugin: 
         // http://gsgd.co.uk/sandbox/jquery/easing/
-        easing: 'swing'
+        // easing: 'swing'
     };
 
     // apply serialScroll to the slider - we chose this plugin because it 
     // supports// the indexed next and previous scroll along with hooking 
     // in to our navigation.
     $container.serialScroll(scrollOptions);
-
-    // now apply localScroll to hook any other arbitrary links to trigger 
-    // the effect
-  //  $.localScroll(scrollOptions);
-
-    // finally, if the URL has a hash, move the slider in to position, 
-    // setting the duration to 1 because I don't want it to scroll in the
-    // very first page load.  We don't always need this, but it ensures
-    // the positioning is absolutely spot on when the pages loads.
-   // scrollOptions.duration = 1;
-   // $.localScroll.hash(scrollOptions);
 
 }

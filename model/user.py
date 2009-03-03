@@ -89,19 +89,20 @@ class Profile(db.Model):
         return self.fullname   
 
 
-
+"""
 class QuizGroup(db.Model):  # A group of subjects administered by a user. 
     owner = db.ReferenceProperty(Profile, collection_name='quiz_groups') # Proficiency Tag (startup_financing) # This could be multiple as well
     subjects= db.ListProperty(db.Key) # list of proficiencies
     logo = db.BlobProperty(required=False)
     created = db.DateTimeProperty(auto_now=True)    
     modified = db.DateTimeProperty(auto_now=True)   
-
+"""
 
 
 class SubjectMember(db.Model):  # Compound value between user and subject
     user = db.ReferenceProperty(Profile, collection_name='member_subjects') # Proficiency Tag (startup_financing) # This could be multiple as well
     subject = db.ReferenceProperty(Proficiency, collection_name='members')   
+    is_admin = db.BooleanProperty(default=False) # avoid lookup to check if this is sponsor
     created = db.DateTimeProperty(auto_now=True)    
     modified = db.DateTimeProperty(auto_now=True)   
 

@@ -27,25 +27,20 @@ function item_sliderInit(wrong_answers) {
 
     
     // handle nav selection
-    function selectNav() {
-        $(this)
-            .parents('ul:first')
-                .find('a')
-                    .removeClass('selected')
-                .end()
-            .end()
-            .removeClass('queue')
-            .addClass('selected')
-            //.nextAll().slice(0,2).addClass('queue');  add queue class to the next few in the queue
-            
+function selectNav() {
+	$(this)
+	.parents('ul:first')
+		.find('a')
+			.removeClass('selected')
+		.end()
+	.end()
+	.removeClass('queue')
+	.addClass('selected');
 
     }
 
     $('.quizbuilder_wrapper > .item_navigation').find('a').click(selectNav);
 
-    // go find the navigation link that has this target and select the nav
-    
-    // use: $(container).trigger( 'next' );
     
 function trigger(item) {
 var el = $('.item_navigation').find('a[href="#' + item.id + '"]');
@@ -58,8 +53,8 @@ $(item).data('triggered', true);
  * 
  */
 
-$(item).trigger("initiate"); 
-loadAnswers($(item));
+$(item).trigger("initiate");
+ 
 return;
  
   }
@@ -77,10 +72,6 @@ return;
         cycle: 'false',
         lazy: 'true', // for dynamic content
 
-        // selectors are NOT relative to document, i.e. make sure they're unique
-     //   prev: 'img.left', 
-     //   next: 'input[@name="submit_item"]',
-
         // allow the scroll effect to run both directions
         axis: 'x',
 
@@ -93,9 +84,6 @@ return;
         // duration of the sliding effect
         duration: 500,
 
-        // easing - can be used with the easing plugin: 
-        // http://gsgd.co.uk/sandbox/jquery/easing/
-        //easing: 'swing'
     };
 
     // apply serialScroll to the slider - we chose this plugin because it 
@@ -107,12 +95,6 @@ return;
     // the effect
     $.localScroll(scrollOptions);
 
-    // finally, if the URL has a hash, move the slider in to position, 
-    // setting the duration to 1 because I don't want it to scroll in the
-    // very first page load.  We don't always need this, but it ensures
-    // the positioning is absolutely spot on when the pages loads.
-  //  scrollOptions.duration = 1;
-  //  $.localScroll.hash(scrollOptions);
 
 
  

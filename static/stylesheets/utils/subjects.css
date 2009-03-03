@@ -10,6 +10,11 @@ display: block;
 
 
 
+div.subject_thumb.selected span.slider{
+	color:Orange;
+}
+
+
 span.slider{
 	background-color: #000;
 	filter: alpha(opacity=70);
@@ -22,7 +27,6 @@ span.slider{
 	text-align: left;
 	padding: 0 3px;
 }
-
 
 
 .bigsliderImage span.img_top{
@@ -314,13 +318,6 @@ div.study_links a:hover{
 color: #DDD;
 }
 
-
-div.subject_thumb_container{
-height:70px;
-margin:4px 0 0 30px;
-width:640px;
-position:relative;
-}
 
 
 div.subject_thumb{

@@ -1,60 +1,38 @@
+/*
+*
+* Layout
+*
+*/
+
+.sitelet .middle .main_wrapper .main {
+height:860px;
+}
+
 div#edit_subjects{
-width:610px;
-height:420px;
+width:810px;
+height:780px;
 float:left;
 margin:30px 0 0 50px;
 font-size:1.3em;
 overflow:hidden;
 }
 
-form fieldset{
-margin-bottom: 5px !important;
+div.subject_options{
+float:right;margin:-10px 10px
 }
 
-form fieldset#customize_message{
-height: 350px; float: left;
+div.subject_thumb_container{
+height:70px;
+margin:4px 0 0 30px;
+width:640px;
+position:relative;
 }
 
-form fieldset#quiz_subjects{
-float:left;
-height:351px;
-margin:-369px 0 auto 347px;
-width:250px;
-}
-
-form fieldset span{ /* this could be used for other forms */
- margin: 0px 10px; line-height:1.2em; display:block;
-}
-
-textarea#sponsor_message{
-padding: 10px;
-width:290px;
-height:212px;
-}
-
-
-
-div#submit_form{
-width:200px; float:right; margin: 160px 30px 0px 0px;
-}
-
-div#submit_form #submit{
-margin:0px 0px 10px;
-}
-
-
-div#sponsor_form_error {
-margin:20px 0 0 -25px;
-line-height:1.2em;
-}
-
-div#sponsor_form_cancel{
-margin: -15px 0px 0px 63px;
-position: absolute;
-width: 15px;
-}
-
-/* Quiz Subjects */
+/*
+*
+* Quiz Subjects 
+*
+*/
 
 div#subject_frame_container{
     position:absolute;
@@ -72,26 +50,57 @@ position:absolute;
 	width:285px;
 }
 
-.blurb{
-    -moz-border-radius: 12px;
-	-webkit-border-radius: 12px;
-	background:#DDDDDD none repeat scroll 0 0;
-	border:2px solid #DDDDDD;
-	overflow:hidden;
-	color:#000040;
-	
-    position:absolute; top:0px; left: 330px; width:280px; height:290px;
+
+
+div#subject_frame_container ul.subject_nav{  margin: 0 350px;
+position:absolute;
+width:300px; }
+
+div#subject_frame_container .ui-tabs-nav-item {margin: 1px 3px 0; }
+
+div#subject_frame_container .ui-tabs-nav-item.description{}
+
+div#subject_frame_container .ui-tabs-nav-item a { padding:5px 10px; line-height:1.1em; font-size:0.9em; }
+
+
+/*
+*
+* Top Level
+*
+*/
+
+
+div#subject_frame_container div.top_level {
+height:330px;
+position:absolute;
+width:820px;
 }
 
 
-div.upload_picture {
-background:#DDDDDD none repeat scroll 0 0;
-border:2px solid #DDDDDD;
--moz-border-radius: 12px;
--webkit-border-radius: 12px;
-margin: 240px 0 0 10px;
-width: 140px;
+
+div#subject_frame_container .blurb{
+    -moz-border-radius: 12px;
+	-webkit-border-radius: 12px;
+	background:#F3F3F3 url(/static/stylesheets/img/ui/f3f3f3_40x100_textures_01_flat_0.png) repeat-x scroll 0 0;
+	border:2px solid #DDDDDD;
+	overflow:hidden;
+	color:#000040;
+}
+
+div#subject_frame_container .blurb.middle{
+    position:absolute; top:30px; left: 330px; width:280px; height:290px;
+}
+
+div#subject_frame_container .blurb.side{
+height:263px;
+margin:35px 625px;
+padding:10px;
 position:absolute;
+width:160px;
+}
+
+div#subject_frame_container div.upload_picture {
+position:absolute; width:310px; margin: 240px 0;
 }
 
 div.upload_picture button{
@@ -133,4 +142,82 @@ div.footer{
 }
 .blurb div.footer button img{
     margin: 0pt 10px 0pt 0px;
+}
+
+.blurb div.footer button.save{ display:none; }
+
+
+
+
+/*
+*
+* Middle Level
+*
+*/
+
+div#subject_frame_container div.middle_level {
+margin-top: 330px;
+position:absolute;
+width:820px;
+height: 150px;
+}
+
+
+div#subject_frame_container div.quiz_count {
+font-size:4em;
+height:110px;
+margin:20px 0;
+padding:0 10px;
+position:absolute;
+width:140px;
+text-align:center;
+}
+
+div#subject_frame_container div.quiz_count span{
+font-size: .4em;
+}
+
+div#subject_frame_container button.quiz_items{
+font-size:1.3em;
+height:100px;
+margin:30px 325px;
+position:absolute;
+width:480px;
+}
+
+/*
+*
+* Lower Level
+*
+*/
+
+
+div#subject_frame_container div.lower_level {
+height:140px;
+margin-top:485px;
+position:absolute;
+width:820px;
+}
+
+div.lower_level  div.current_admins, div.lower_level  div.current_contributors, div.lower_level div.invite_contributors{
+height:100%;
+width:160px;
+float: left;
+}
+
+div.lower_level div.invite_contributors{
+height:175px;
+margin:2px;
+width:480px;
+}
+
+
+
+div.lower_level  select{
+width: 150px;
+}
+
+
+div.lower_level{
+text-align: center;
 }

@@ -24,6 +24,8 @@ border-color: white !important;
 text-align: left !important;
 }
 
+button{ cursor:pointer; }
+
 div.ubiquity_quizbuilder div.subject, div.ubiquity_quizbuilder div.topic {
 	height: 30px; 
 }
@@ -47,7 +49,7 @@ outline: 0 !important;
 
 
 div.ubiquity_quizbuilder{
-width: 600px !important; height: 480px !important;
+width: 600px !important; height: 490px !important;
 color: white !important; background-color: #555 !important;
 padding: 5px !important;
 border: 5px solid #444 !important;
@@ -150,7 +152,7 @@ div.ubiquity_quizbuilder div.submit_item select{
 margin: 0 20px !important;
 }
 div.ubiquity_quizbuilder div.submit_item input{
-margin: 0 25px !important; width:150px !important;
+margin: 0 25px 0 15px !important; width:150px !important;
 }
 
 div.ubiquity_quizbuilder div.submit_item button.cancel_input{
@@ -158,14 +160,15 @@ position:absolute !important; margin: 0 -20px !important;
 }
 
 div.ubiquity_quizbuilder div.submit_item button#submit_item{
-height:30px !important; margin: 0px 0px 2px -15px !important; width: 200px !important; font-size: 1.2em !important; border: 3px !important; -moz-border-radius: 5px !important;  
+height:30px !important; margin: 5px 0 2px -15px !important; width: 200px !important; font-size: 1.2em !important; border: 3px !important; -moz-border-radius: 5px !important;  
 }
 div.ubiquity_quizbuilder div.submit_item button#submit_item img{
 float:left !important; margin: -1px !important;  
 }
 
 div.ubiquity_quizbuilder div.submit_item button#submit_item div{
-margin:3px 0 !important;
+margin:6px 35px !important;
+position:absolute !important;
 }
 
 div.ubiquity_quizbuilder div.submit_error{

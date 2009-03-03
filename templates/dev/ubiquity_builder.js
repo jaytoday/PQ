@@ -83,7 +83,7 @@ var runCode = function(){
 		}
 		else
 		{
-			infodiv.html((limit - textlength) +' characters left.');
+			infodiv.html((limit - textlength) +' characters left');
 			return true;
 		}
 	}

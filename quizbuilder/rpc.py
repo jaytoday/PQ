@@ -259,7 +259,11 @@ class RPCPostHandler(webapp.RequestHandler):
 
 
 class QuizEditorPost(webapp.RequestHandler): 
-    
+
+    def get(self):    
+      	if self.request.get('action') == "LoadAnswers": return self.response.out.write( self.LoadAnswers() )
+      	
+      	    
     def post(self):    
       	if self.request.get('action') == "NewTopic": return self.response.out.write( self.NewTopic() )
       	if self.request.get('action') == "LoadAnswers": return self.response.out.write( self.LoadAnswers() )
@@ -271,19 +275,24 @@ class QuizEditorPost(webapp.RequestHandler):
         db.put(new_topic)
         from utils.webapp import template
         from utils.utils import tpl_path
-        template_values = {"subject": this_subject}
+        template_values = {"subject": this_subject, "new_topic":new_topic}
         path = tpl_path('quizbuilder/item_topic.html')
         return template.render(path, template_values)
 
-    def LoadAnswers(self):   
-        #self.request.get('correct_answer')
-        #self.request.get('item_text')
-        from utils.webapp import template
-        from utils.utils import tpl_path        
-        answers = list(self.request.get('correct_answer') * 3)
-        template_values = {"answers": answers}
-        path = tpl_path('quizbuilder/answer_template.html')
-        return template.render(path, template_values)
+    def LoadAnswers(self):     
+		correct_answer = self.request.get('correct_answer')
+		item_text = self.request.get('item_text')
+		from quizbuilder.answers import Answers
+		answers = Answers()
+		from utils.webapp import template
+		from utils.utils import tpl_path        
+		template_values = {"answers": answers.load(correct_answer, item_text)}
+		path = tpl_path('quizbuilder/answer_template.html')
+		return template.render(path, template_values)
+
+
+
+
 
                 
     def SubmitItem(self):   
@@ -297,7 +306,8 @@ class QuizEditorPost(webapp.RequestHandler):
         this_item.pending_proficiency = this_proficiency
         this_item.topic = ProficiencyTopic.gql("WHERE name = :1 AND proficiency = :2", self.request.get('topic_name'), this_proficiency).get()
         this_item.index = self.request.get('correct_answer')
-        this_item.answers = list(self.request.get('answers'))
+        this_item.answers = self.request.get('answers').split(",") 
+        logging.info(this_item.answers)
         this_item.content = self.request.get('item_text')
         db.put(this_item)
         logging.info('saving new quiz item with subject %s and index %s' % (self.request.get('subject_name'), self.request.get('correct_answer') ))

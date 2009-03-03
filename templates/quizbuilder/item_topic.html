@@ -1,12 +1,13 @@
 <span class="header">Topic</span>
 
 <select name="item_topic" class="item_topic">
-<option>Pick a Topic</option>
+<option></option>
 <option>New Topic</option>
 
 {% for topic in subject.topics %}
 
-<option>{{ topic.name }}</option>
+<option {% ifequal topic.name item.topic.name %}selected{% endifequal %} {% ifequal topic.name new_topic.name %}selected{% endifequal %}>
+{{ topic.name }}</option>
 
 {% endfor %}
 

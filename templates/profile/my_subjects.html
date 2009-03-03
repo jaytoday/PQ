@@ -3,7 +3,7 @@
 
 <style type="text/css"> 
 {% include "../../static/stylesheets/ui/app_screen.css" %} 
-{% include "../../static/stylesheets/profile/tabs.css" %} 
+{% include "../../static/stylesheets/ui/tabs.css" %} 
 {% include "../../static/stylesheets/profile/edit_subjects.css" %} 
 {% include "../../static/stylesheets/utils/form.css" %}
 {% include "../../static/stylesheets/utils/subjects.css" %}
@@ -30,12 +30,16 @@
 	<div id="quiz_subjects" style="background: #EDF2F8; width:800px; border: 3px solid #E0E0E0; height:80px; float:left; padding: 0 10px; margin:8px -15px;">
 		<div id="subject_thumb_container"  style="margin: 6px -10px;">
 		{% for p in subjects %} 
-
+	 
 		{% include "utils/subject_thumb.html" %}
 
 		{% endfor %}		
 
 		</div>
+		<div class="subject_options"><button>Find More Subjects</button><br/>
+<button>Create New Subject</button>
+</div>
+
 	</div>
 
 
@@ -43,6 +47,14 @@
 	{% for p in subjects %} 
 
 	 <div class="subject"  style="display:none;" id="{{ p.tag }}">
+	 
+	 
+	 
+	 
+	 
+	 <div class="top_level">
+	 
+	 
 		<div id="subject_{{ p.tag }}" class="proficiency_pic selection_box subject_frame">
 				{% include "utils/subject_frame.html" %}
 				</div>
@@ -51,8 +63,15 @@
 			
 			<div class="upload_picture" id="{{ p.name }}"><button id="button_{{ p.name }}">Upload a Picture</button></div>
 
- <div class="blurb">
-	<div class="header note">{{ p.name }}</div>
+
+	<ul class="subject_nav">
+		<li class="ui-tabs-nav-item" id="profile_nav"><a href="#description_{{ forloop.counter }}">Description</a></li>
+		 <li class="ui-tabs-nav-item"><a href="#links_{{ forloop.counter }}">Links</a></li> 
+		 <li class="ui-tabs-nav-item"><a href="#video_{{ forloop.counter }}">Video</a></li> 
+	</ul>
+
+
+ <div id="description_{{ forloop.counter }}" class="blurb middle">
 	<div class="blurb_text" >{{ p.blurb|escape }}</div>
 	<textarea style="display:none;" wrap=SOFT maxlength="450" cols="15" rows="16" name="description_{{ forloop.counter }}" id="description_{{ forloop.counter }}"></textarea>
 	<div class="limit" style="display:none" id="limit_{{ forloop.counter }}"></div>
@@ -63,7 +82,72 @@
 		 </div>
 	</div> {# endblurb #}
 
-			</div>
+
+ <div id="links_{{ forloop.counter }}" class="blurb middle">
+	<div class="blurb_text" >Links</div>
+	<textarea style="display:none;" wrap=SOFT maxlength="450" cols="15" rows="16" name="description_{{ forloop.counter }}" id="description_{{ forloop.counter }}"></textarea>
+	<div class="limit" style="display:none" id="limit_{{ forloop.counter }}"></div>
+
+	<div class="footer" >
+		<button class="edit"><img src="/static/stylesheets/img/utils/purple_next_tiny.png" />Edit Description</button>
+		<button class="save" id="{{ p.name }}" style="display:none;"><img src="/static/stylesheets/img/utils/purple_next_tiny.png" />Save Changes</button>
+		 </div>
+	</div> {# endblurb #}
+
+
+ <div id="video_{{ forloop.counter }}" class="blurb middle">
+	<div class="blurb_text" >Video</div>
+	<textarea style="display:none;" wrap=SOFT maxlength="450" cols="15" rows="16" name="description_{{ forloop.counter }}" id="description_{{ forloop.counter }}"></textarea>
+	<div class="limit" style="display:none" id="limit_{{ forloop.counter }}"></div>
+
+	<div class="footer" >
+		<button class="edit"><img src="/static/stylesheets/img/utils/purple_next_tiny.png" />Edit Description</button>
+		<button class="save" id="{{ p.name }}" style="display:none;"><img src="/static/stylesheets/img/utils/purple_next_tiny.png" />Save Changes</button>
+		 </div>
+	</div> {# endblurb #}	
+	
+
+<div class="blurb side"> Put stats and take quiz button here.  </div>
+
+		</div> {# end toplevel #}
+		
+		
+		
+		
+		
+		<div class="middle_level">
+		
+		
+		<div class="quiz_count blurb">20 <span>quiz items</span></div> <button class="quiz_items">View {{ p.name }} Quiz Items</button>
+		
+		
+		
+		</div>{# end middlelevel #}
+		
+		
+		
+		<div class="lower_level"> 
+		
+		<div class="admin_rights" id="{{ p.name }}">
+		
+		{% include "subject/admin_rights.html" %}
+
+       </div>
+
+
+		<div class="invite_contributors blurb"> Invite Contributors 
+		E-mail invite (social hooks) 
+		</div>
+		
+				
+		
+		</div>{# end lowerlevel #}
+		
+		
+		
+		
+		
+			</div> {# end subject #}
 	
 	{% endfor %}
 
@@ -76,7 +160,7 @@
 
 
 
-       
+       {% comment %}
   <div id="submit_form">
 
    <div id="submit">
@@ -88,4 +172,5 @@
      There was an error sending this form.<div style="height:7px;"></div>If refreshing the page doesn't work,<div style="height:1px;"></div> <a id="contact">contact us</a>. 
      </div>
 </div>
+{% endcomment %}
 {% endblock %}

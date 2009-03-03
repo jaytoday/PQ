@@ -56,8 +56,8 @@ INTEGRATE_FLASH = True # integrate functionality from flash module?
 CHECK_IP = True # validate sessions by IP
 CHECK_USER_AGENT = True # validate sessions by user agent
 SET_COOKIE_EXPIRES = True # Set to True to add expiration field to cookie
-SESSION_TOKEN_TTL = 25 # Number of seconds a session token is valid for.
-UPDATE_LAST_ACTIVITY = 360 # Number of seconds that may pass before
+SESSION_TOKEN_TTL = 35 # Number of seconds a session token is valid for.
+UPDATE_LAST_ACTIVITY = 36000 # Number of seconds that may pass before
                           # last_activity is updated
 
 class _AppEngineUtilities_Session(ROTModel):

@@ -2,8 +2,6 @@
 {# Template for each item #}
 
 
-<div class="quiz_item"  id='{{ forloop.counter|default:"new" }}' >
-
 <div class="quiz_item_content" ><div class="item_inner"> 
 <div class="content" >{{ item.content|escape }}</div>
 </div></div> 
@@ -76,10 +74,11 @@ Sidebar
 </div> {# endpreviews #}
 
 
-<button  name="submit_item" class="submit_item" value="submit item" id="{{ item.key }}" /> submit item</button> 
-{# <button  name="skip_item" class="skip_item" value="skip item" />skip</button>  #}
+<button  name="submit_item" class="submit_item" value="submit item" id="{{ item.key }}"> submit item</button> 
+
 
 
 </div>
-</div>
+
+
 

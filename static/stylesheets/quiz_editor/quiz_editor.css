@@ -65,7 +65,7 @@ div.item_sidebar{
 }
 
 div.sidebar_header{
-margin:-10px 0 15px -5px;
+margin:-10px 0 15px 5px;
 padding:5px;
 text-align:center;
 }
@@ -222,6 +222,10 @@ button.submit_item{
         -webkit-border-radius: 15px;
 }
 
+button.submit_item.disabled{
+color: #999;
+}
+
 button.skip_item{
     cursor:pointer;
     font-size:0.8em;
@@ -244,9 +248,10 @@ div.edit_topic button{
 }
 
 select.item_topic{
-font-size:1.3em;
-height:30px;
+font-size:1em;
+height:25px;
 margin-top:20px;
+position:absolute;
 width:150px;
 }
 
@@ -387,7 +392,9 @@ z-index:60;
 ul.item_navigation li { float:left; margin: 0 5px; }
 
 ul.item_navigation li a.selected{ color:orange; }
-        
+
+ul.item_navigation li.new a{ float:left; margin: -15px 0 0 -20px; }
+       
 li.index{
 display:inline;
 float:left;

@@ -1669,7 +1669,7 @@ position:absolute;
 }
 
 .quiz_wrap div.take_test{
-bottom:0px;
+bottom:5px;
 left:480px;
 position:absolute;
 }
@@ -1679,7 +1679,7 @@ background-color:transparent;
 background-image:url({{ http_host }}/static/stylesheets/img/utils/purple_next_tiny.png); 
 background-position:0 2px !important;
 background-repeat:no-repeat;
-font-size:0.7em !important;
+font-size:0.6em !important;
 line-height:2em;
 list-style-image:none;
 list-style-position:outside;

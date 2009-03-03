@@ -154,9 +154,17 @@ class EditSubjects(webapp.RequestHandler):
       @login_required
       def get(self):
         from model.proficiency import Proficiency
+        from model.user import SubjectMember
+        from model.user import Profile
         subjects = []
         for sm in self.session['user'].member_subjects:
-            subjects.append(sm.subject)
+			sm.subject.contributors = []
+			sm.subject.admins = []
+			for p in sm.subject.members.fetch(1000):
+				if p.is_admin is True: sm.subject.admins.append(p.user)
+				else: sm.subject.contributors.append(p.user)
+
+			subjects.append(sm.subject)
         template_values = { 'subjects' : subjects, 'user': self.session['user']}
         template_values['subjects_js'] = subjects_js(template_values)
         path = tpl_path(PROFILE_PATH +'my_subjects.html')

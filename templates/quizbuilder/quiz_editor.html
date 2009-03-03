@@ -40,7 +40,7 @@
 
 
    <div class="nav_wrap"><ul class="item_navigation">
-	<li><a href="#new">Make New Item</a></li>
+	<li class="new"><a href="#new" ><button>Make New Item</button></a></li>
 	{% for item in subject.quizitems %}
 	<li><a  href="#{{ forloop.counter }}" {# id="{{ forloop.counter }}" #}>{{ forloop.counter }}</a></li>
 	{% endfor %}
@@ -49,13 +49,17 @@
      
 <div class="scroller"><div class="quiz_items" id="quiz_items" >
 	
-
-{% include "quiz_item_template.html" %} 
-
 	
-	{% for item in subject.quizitems %}
+{# This should be identical to forloop tag #}	
+<div class="quiz_item"  id='{{ forloop.counter|default:"new" }}' >
 {% include "quiz_item_template.html" %} 
-	{% endfor %}
+</div>
+	
+{% for item in subject.quizitems %}
+<div class="quiz_item"  id='{{ forloop.counter|default:"new" }}' >
+{% include "quiz_item_template.html" %} 
+</div>
+{% endfor %}
 	
 	</div></div>
 

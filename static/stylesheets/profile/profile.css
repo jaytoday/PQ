@@ -228,6 +228,12 @@ margin:-260px 0 !important;
 }
 
 
+.ui-tabs-panel {
+	padding: 1.5em 1.7em;	
+	font-size: 1.3em;
+	line-height: 1.3;
+}
+
 ul#personal_nav .ui-tabs-nav-item a {
 height:9px;
 }
