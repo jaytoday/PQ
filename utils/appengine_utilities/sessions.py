@@ -50,7 +50,7 @@ from rotmodel import ROTModel
 
 COOKIE_NAME = 'appengine-utilities-session-sid' # session token
 DEFAULT_COOKIE_PATH = '/'
-SESSION_EXPIRE_TIME = 172800 # sessions are valid for 2 days
+SESSION_EXPIRE_TIME = 800800 # sessions are valid for 14 days
 CLEAN_CHECK_PERCENT = 0 # By default, 50% of all requests will clean the database
 INTEGRATE_FLASH = True # integrate functionality from flash module?
 CHECK_IP = True # validate sessions by IP

@@ -1,44 +1,11 @@
 .sitelet .middle .main_wrapper .main {
-    height: 550px;
+    height: 625px;
 }
 
-/* SELECT PROFICIENCIES */
 
-form#select_proficiency, form#content_url{
-font-size:1.2em;
-line-height:1.6em;
-margin:80px 0 0 260px;
-padding-left:80px;
-width:300px;
-}
+/* EDITOR LAYOUT */
 
-span#choose_proficiencies{
-margin-left:0px;
-font-size:1.2em;
-line-height:1.1em;
-}
-
-div#proficiencies, div#url_proficiencies{
-height:110px;
-margin-left:-60px;
-margin-top:30px;
-width:370px;
-}
-
-input.url_name{
-margin:10px 0 10px -45px;
-width:250px;
-}
-
-input.submit_proficiency, input.submit_url{
-font-size:1.4em;
-margin:-50px 0 30px 25px;
-padding:8px;
-}
-
-/* QUIZ ITEM LAYOUT */
-
-.quizbuilder_wrapper{
+#editor_container{
 margin:10px -120px;
 position:relative;
 width:950px;
@@ -48,7 +15,7 @@ width:950px;
 /* background:#FFFFFF url(images/content_pane-gradient.gif) repeat-x scroll left bottom; */
 clear:left;
 float:left;
-height:490px;
+height:565px;
 margin:2px 0 0 90px;
 overflow-x:hidden;
 overflow-y:auto;
@@ -120,11 +87,14 @@ margin: 10px 0px;
 }
 
 div.quiz_item_content div.content{
-font-size:1.4em;
-line-height:1.5em;
+font-size:1.8em;
+line-height:1.3em;
 margin:10px 0;
 min-height: 150px;
+cursor:pointer;
 }
+
+
 
 div.quiz_item_content{
 background-color:#EDF2F8;
@@ -132,7 +102,7 @@ border:5px solid #DDDDDD;
 -moz-border-radius: 10px;
 -webkit-border-radius: 10px;
 position:absolute;
-height:285px;
+height:355px;
 overflow:auto;
 width:700px;
 margin-bottom:5px;
@@ -150,13 +120,16 @@ border:1px solid #E2C922;
 font-weight:bold;
 margin:0 5px;
 padding:0 5px;
+display:inline-block;
 }
 
+div.content span#blank.no_hover{ /* dep */
+width: 100px;
+}
 .editable textarea{
-font-size:0.8em;
-line-height:1.3em;
-width:10px;
-padding:20px;
+font-size:.9em;
+line-height:1.2em;
+padding:15px;
 margin-left:5px;
 }
 
@@ -172,7 +145,7 @@ position:relative;
 
 div.answers_container{
 float:left;
-margin: 310px 0 0;
+margin: 380px 0 0;
 width:   700px; 
 clear:both;
 }
@@ -193,7 +166,7 @@ div.new_answer{
 }
 
 div.item_subject{
-    height:65px;   
+    height:50px;   
 }
 div.item_topic{
     height:50px;
@@ -201,9 +174,11 @@ div.item_topic{
 
 
 div.item_subject .subject_name{
-margin:19px 0 0 10px; background: #DDD; padding: 8px; font-size: 1.3em; position:absolute;     
+margin:19px 0 0 -5px; background: #DDD; padding: 3px 10px; font-size: 1.2em; position:absolute;     
 -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
+    text-align:center;
+width:100%;
 }
 
 div.item_topic .header, div.item_subject .header{
@@ -215,7 +190,7 @@ button.submit_item{
     cursor:pointer;
     font-size:1.3em;
     height:55px;
-    margin:193px 0 0;
+    margin:280px 0 0;
     position:absolute;
     width:135px;
     -moz-border-radius: 15px;
@@ -252,7 +227,7 @@ font-size:1em;
 height:25px;
 margin-top:20px;
 position:absolute;
-width:150px;
+width:170px;
 }
 
 
@@ -299,12 +274,33 @@ display:none;
 }
 
 
+
+/* Item Details */
+
+div.details{
+height: 80px; margin-top: 22px; width: 160px; position: absolute;
+}
+
+
+div.details div.author_name{
+padding: 7px; font-size: 0.8em; font-variant: small-caps;
+}
+
+div.details select{
+margin: 5px; display: block; font-size: 0.7em; padding: 0 3px;
+}
+
+
 /* Answer Previews */
+
+
+
+
 
 div.answer_choice_previews{
 position:absolute;
 font-size:0.8em;
-margin:20px 0 0 -10px;
+margin:115px 0 0 -10px;
 overflow:hidden;
 width:210px;
 height:170px;
@@ -316,7 +312,7 @@ width:200px;
 }
 
 div.answer_preview.correct{
-height:60px;
+height:50px;
 width:200px;
 }
 
@@ -385,8 +381,47 @@ list-style-position:outside;
 list-style-type:none;
 margin:75px 0 0 45px;
 position:absolute;
-width:3200px;
+width:680px;
 z-index:60;
+}
+
+ul.item_navigation div.list { display:none; }
+
+ul.item_navigation div.nav_header{
+background:#DDDDDD none repeat scroll 0 0;
+cursor:pointer;
+font-size:0.7em;
+margin:-34px 0 0;
+-moz-border-radius: 10px;
+-webkit-border-radius: 10px;
+padding:6px 8px 4px;
+position:absolute;
+text-align:center;
+width:120px;
+}
+
+ul.item_navigation div.nav_header.selected{ font-weight: bold; }
+
+ul.item_navigation div.nav_header#my_items{
+margin-left: 135px;
+}
+
+ul.item_navigation div.nav_header#unapproved_items{
+margin-left: 275px;
+}
+
+ul.item_navigation div.nav_header#approved_items{
+margin-left: 415px;
+}
+
+
+ul.item_navigation div.my_items, ul.item_navigation div.unapproved_items, ul.item_navigation div.approved_items{
+height:40px;
+line-height:1.4em;
+margin:-12px 0 0 130px;
+overflow-y:auto;
+position:absolute;
+width:550px;
 }
 
 ul.item_navigation li { float:left; margin: 0 5px; }
@@ -429,7 +464,7 @@ display:inline;
 
 .scrollButtons {
 position:absolute;
-top:355px;
+top:425px;
 cursor: pointer;
 z-index:99;
 }
@@ -445,52 +480,6 @@ left:707px;
 
 
 
-/* POPUP */
-
-
-.popup{
-position:absolute;
-z-index: 50;
-border-collapse: collapse;
-}
-
-.popup td.corner {
-height: 15px;
-width: 19px;
-}
-
-
-.popup td#topleft { background-image: url(http://jqueryfordesigners.com/demo/images/coda/bubble-1.png); }
-.popup td.top { background-image: url(http://jqueryfordesigners.com/demo/images/coda/bubble-2.png); }
-.popup td#topright { background-image: url(http://jqueryfordesigners.com/demo/images/coda/bubble-3.png); }
-.popup td.left { background-image: url(http://jqueryfordesigners.com/demo/images/coda/bubble-4.png); }
-.popup td.right { background-image: url(http://jqueryfordesigners.com/demo/images/coda/bubble-5.png); }
-.popup td#bottomleft { background-image: url(http://jqueryfordesigners.com/demo/images/coda/bubble-6.png); }
-.popup td.bottom { background-image: url(http://jqueryfordesigners.com/demo/images/coda/bubble-7.png); text-align: center;}
-.popup td.bottom img { display: block; margin: 0 auto; }
-.popup td#bottomright { background-image: url(http://jqueryfordesigners.com/demo/images/coda/bubble-8.png); }
-
-.popup table.popup-contents {
-font-size: 12px;
-line-height: 1.2em;
-background-color: #fff;
-color: #666;
-font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
-}
-
-table.popup-contents th {
-text-align: right;
-text-transform: lowercase;
-}
-
-table.popup-contents td {
-text-align: left;
-}
-
-div.popup_message{
-width:90px;
-height:auto;
-}
 
 span#answers_left{
 font-size:1.4em;

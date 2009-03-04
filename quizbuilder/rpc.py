@@ -133,7 +133,7 @@ remote callers access to private/protected "_*" methods.
 		new_quiz_item.put()
 		return str(new_quiz_item.key())
       
-  def NewQuizItem(self, *args): # Just for ubiquity, for now.
+  def NewQuizItem(self, *args): # Just for ubiquity, for now. TODO: Combine with POST method below!!!
       		save = []
       		new_quiz_item = QuizItem()
       		new_quiz_item.content =  args[0]
@@ -295,26 +295,38 @@ class QuizEditorPost(webapp.RequestHandler):
 
 
                 
+    # see if it can access self.user['user'] and if its a new item, save author
     def SubmitItem(self):   
-        if len( self.request.get('item_key') ) < 1:
-        	this_item = QuizItem()
-        else: 
-            this_item = QuizItem.get(self.request.get('item_key'))
-        from model.proficiency import Proficiency, ProficiencyTopic
-        this_proficiency = Proficiency.gql("WHERE name = :1", self.request.get('subject_name') ).get()
-        # Approval
-        this_item.pending_proficiency = this_proficiency
-        this_item.topic = ProficiencyTopic.gql("WHERE name = :1 AND proficiency = :2", self.request.get('topic_name'), this_proficiency).get()
-        this_item.index = self.request.get('correct_answer')
-        this_item.answers = self.request.get('answers').split(",") 
-        logging.info(this_item.answers)
-        this_item.content = self.request.get('item_text')
-        db.put(this_item)
-        logging.info('saving new quiz item with subject %s and index %s' % (self.request.get('subject_name'), self.request.get('correct_answer') ))
-        from utils.webapp import template
-        from utils.utils import tpl_path        
-        template_values = {"subject": this_proficiency}
-        path = tpl_path('quizbuilder/quiz_item_template.html')
-        return template.render(path, template_values)
+		from model.proficiency import Proficiency, ProficiencyTopic
+		this_proficiency = Proficiency.gql("WHERE name = :1", self.request.get('subject_name') ).get()
+		logging.info('submitting item')
+		from utils.appengine_utilities.sessions import Session
+		session = Session()
+		if len( self.request.get('item_key') ) < 1:
+			this_item = QuizItem(pending_proficiency = this_proficiency, author=session['user'])
+		else: 
+			this_item = QuizItem.get(self.request.get('item_key'))         	
+		if self.request.get('item_status') == "approved":
+			this_item.active = True
+			this_item.pending_proficiency = None
+			this_item.proficiency = this_proficiency        	
+		if self.request.get('item_status') == "not_approved":
+			this_item.active = False
+			this_item.pending_proficiency = this_proficiency  
+			this_item.proficiency = None        		
+		this_item.topic = ProficiencyTopic.get( self.request.get('topic_key') )
+		this_item.index = self.request.get('correct_answer')
+		this_item.answers = self.request.get('answers').split(",") 
+		this_item.content = self.request.get('item_text')
+		db.put( [ this_item, session['user'] ] )
+		logging.info('saving new quiz item %s with subject %s and index %s' % (this_item.__dict__, self.request.get('subject_name'), self.request.get('correct_answer') ))
+		from utils.webapp import template
+		from utils.utils import tpl_path        
+		from quizbuilder.methods import get_membership, get_user_items		
+		template_values = {"subject": this_proficiency, 
+		                   'subject_membership': get_membership(session['user'], this_proficiency),
+		                   'user_items': get_user_items(session['user'], this_proficiency), }
+		path = tpl_path('quizbuilder/quiz_editor_template.html')
+		return template.render(path, template_values)
 
                 

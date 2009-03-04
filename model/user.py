@@ -14,7 +14,6 @@ class QuizTaker(db.Model):
 
     levels = db.ListProperty(db.Key) # ProficiencyLevel keys
     modified = db.DateTimeProperty(auto_now=True)
-
     #itemscores  -- ItemScore reference
     #proficiency_levels -- ProficiencyLevel reference         TODO: Rank from top to bottom? 
     #topic_levels - Topic Level reference

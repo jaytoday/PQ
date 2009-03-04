@@ -31,7 +31,7 @@ $.ajax({
 	}, 
 	complete: function(data){ 
 		wrong_answers = $('div.answer_candidates', item);
-		item.trigger("initiateAnswers"); 
+		item.trigger("initiateAnswers").trigger("refresh_blanks"); 
 		answerSliderInit(wrong_answers, answers_container); 
 		}
 });

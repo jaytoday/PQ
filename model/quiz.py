@@ -1,6 +1,6 @@
 from google.appengine.ext import db
 from model.proficiency import Proficiency, ProficiencyTopic
-from model.user import QuizTaker
+from model.user import QuizTaker, Profile
 from model.employer import Employer
 
 
@@ -35,17 +35,16 @@ class RawQuizItem(db.Model):
 
 class QuizItem(db.Model):
   
-  
   #slug = db.StringListProperty()  #Unique name ["wiki", "bayesian"] - [0] is source and [1] item is url path, like /science/cs/algorithm 
   #category = db.StringProperty()
   content = db.TextProperty()  # Content of Quiz Item
   index = db.StringProperty() # Correct Answer 
   answers = db.StringListProperty() # List of Answers
-  proficiency = db.ReferenceProperty(Proficiency, collection_name='quizitems') # Proficiency Tag (startup_financing)
+  proficiency = db.ReferenceProperty(Proficiency, collection_name='quizitems', required=False) # Proficiency Tag (startup_financing)
   pending_proficiency = db.ReferenceProperty(Proficiency, collection_name='pending_items', required=False) # for pending items
-  active = db.BooleanProperty(required=False)
-  topic = db.ReferenceProperty(ProficiencyTopic,
-                                    required=False, collection_name='quizitems') # Proficiency Tag (startup_financing)                                  
+  author = db.ReferenceProperty(Profile, collection_name='authored_items', required=False)  
+  active = db.BooleanProperty(required=False, default=False)  # should there be seperate "approved" property?
+  topic = db.ReferenceProperty(ProficiencyTopic, required=False, collection_name='quizitems') # Proficiency Tag (startup_financing)                                  
   difficulty = db.IntegerProperty(default=0)  # 0-10000
   content_url = db.LinkProperty(required=False)    # Where quiz material is from - wikipedia.org/en/neuroscience/
   theme = db.StringProperty(required=False, default="default")
@@ -61,6 +60,9 @@ class QuizItem(db.Model):
 			if theme[0] in url: return theme[1]
 			else: return "default"
 
+  def uid(self):
+		return str(self.key())[-5:]
+			
   """      
   @property
   def get_takers(self):   # Get all QuizTakers who have taken items

@@ -3,9 +3,9 @@
 // when the DOM is ready...
 function item_sliderInit(wrong_answers) {
     
-    var $panels = $('.quizbuilder_wrapper .quiz_items > div');
+    var $panels = $('#editor_container .quiz_items > div');
 
-    var $container = $('.quizbuilder_wrapper .quiz_items');
+    var $container = $('#editor_container .quiz_items');
 
     // if false, we'll float all the panels left and fix the width 
     // of the container
@@ -23,7 +23,7 @@ function item_sliderInit(wrong_answers) {
 
     // collect the scroll object, at the same time apply the hidden overflow
     // to remove the default scrollbars that will appear
-    var $scroll = $('.quizbuilder_wrapper .scroller').css('overflow', 'hidden');
+    var $scroll = $('#editor_container .scroller').css('overflow', 'hidden');
 
     
     // handle nav selection
@@ -39,7 +39,7 @@ function selectNav() {
 
     }
 
-    $('.quizbuilder_wrapper > .item_navigation').find('a').click(selectNav);
+    $('#editor_container > .item_navigation').find('a').click(selectNav);
 
     
 function trigger(item) {
@@ -69,7 +69,7 @@ return;
 
         navigation: '.item_navigation a',
         
-        cycle: 'false',
+        cycle: 'true',
         lazy: 'true', // for dynamic content
 
         // allow the scroll effect to run both directions
@@ -89,7 +89,7 @@ return;
     // apply serialScroll to the slider - we chose this plugin because it 
     // supports// the indexed next and previous scroll along with hooking 
     // in to our navigation.
-    $('.quizbuilder_wrapper').serialScroll(scrollOptions);
+    $('#editor_container').serialScroll(scrollOptions);
 
     // now apply localScroll to hook any other arbitrary links to trigger 
     // the effect

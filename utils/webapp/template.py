@@ -251,7 +251,7 @@ def get_user_info():
 	# Construct Login/Logout Text.
 	session = Session()
 	if session['user']:
-		login_user = {'user' : session['user'], 'nickname': session['user'].nickname, 'profile_path': session['user'].profile_path, 'email':session['user'].email }
+		login_user = session['user']#{'user' : session['user'], 'nickname': session['user'].nickname, 'profile_path': session['user'].profile_path, 'email':session['user'].email }
 		login_text = 'Sign Out'
 		login_url = str('/logout')
 	else:

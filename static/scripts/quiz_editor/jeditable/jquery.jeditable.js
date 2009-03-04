@@ -181,6 +181,10 @@
                 /* set input content via POST, GET, given data or existing value */
                 var input_content;
                 
+                
+               // PQ Changes
+                self.revert = self.revert.split('<br>').join('\n');
+                
                 if (settings.loadurl) {
                     var t = setTimeout(function() {
                         input.disabled = true;
@@ -206,7 +210,7 @@
                        }
                     });
                 } else if (settings.data) {
-                    input_content = settings.data;
+                    input_content = settings.data;                   
                     if ($.isFunction(settings.data)) {
                         input_content = settings.data.apply(self, [self.revert, settings]);
                     }
@@ -216,6 +220,8 @@
                 content.apply(form, [input_content, settings, self]);
 
                 input.attr('name', settings.name);
+        
+               
         
                 /* add buttons to the form */
                 buttons.apply(form, [settings, self]);

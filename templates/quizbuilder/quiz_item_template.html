@@ -7,7 +7,7 @@
 </div></div> 
 
 
-<div class="answers_container" id='{{ forloop.counter|default:"new" }}'>
+<div class="answers_container" id='{{ item.uid|default:"new" }}'>
 
 {% include "answer_template.html" %}
 
@@ -35,6 +35,21 @@ Sidebar
 	{% include "item_topic.html" %}
 	
 </div>
+
+
+<div class="details">
+Author
+<div class="author_name">{{ item.author.fullname|default:"No Author" }}
+{% ifequal user_session.unique_identifier item.author.unique_identifier %}(You) {% endifequal %} 
+</div>
+Status
+<select {% if not subject_membership.is_admin %} disabled="true" {% endif %}>
+<option value="not_approved">Not Yet Approved</option>
+<option {% if item.active %} selected {% endif %} value="approved">Approved</option>
+</select>
+</div>
+
+
 
 <div class="answer_choice_previews">
 
