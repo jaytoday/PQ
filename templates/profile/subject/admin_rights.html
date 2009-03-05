@@ -1,6 +1,7 @@
-		<div class="current_admins"> Administrators
+
+		<div class="current_admins" id="{{ user_session.unique_identifier }}"> Administrators
 		<select size="7">
-		{% for member in p.members %}
+		{% for member in s.subject.members %}
 		{% if member.is_admin %}
 		 <option id="{{ member.user.unique_identifier }}">{{ member.user.fullname }}</option>
 		{% endif %}		
@@ -11,7 +12,7 @@
 		
 		<div class="current_contributors">Contributors
 		<select size="7">
-		{% for member in p.members %}
+		{% for member in s.subject.members %}
 		{% if not member.is_admin%}
 		 <option id="{{ member.user.unique_identifier }}">{{ member.user.fullname }}</option>
 		{% endif %}

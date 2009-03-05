@@ -336,6 +336,7 @@ $.ajax({
 	{ 	$('div#editor_container').html(response).trigger("refresh");	}
 });
 
+// $.get('/debug/?quiz_item=' + item_key); -- Debug quiz item with key
 return; 
     
 }

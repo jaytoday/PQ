@@ -1,0 +1,31 @@
+
+		<div class="middle_level">
+		
+		
+		<div id="total" class="item_count blurb">{{ s.subject.quiz_item_count }}<span>active items</span></div>
+		<div id="pending" class="item_count blurb">{{ s.subject.pending_item_count }}<span>pending items</span></div>
+		 <button class="quiz_items">Manage {{ s.subject.name }} Quiz Items</button>
+		
+		
+		
+		</div>{# end middlelevel #}
+		
+		
+		
+		<div class="lower_level"> 
+		
+		<div class="admin_rights" id="{{ s.subject.name }}">
+		
+		{% include "subject/admin_rights.html" %}
+
+       </div>
+
+
+		<div class="invite_contributors blurb"> Invite Contributors 
+		E-mail invite (social hooks) 
+		</div>
+		
+				
+		
+		</div>{# end lowerlevel #}
+		

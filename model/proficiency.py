@@ -35,7 +35,7 @@ if not movie.is_saved():
 """
 
 class Proficiency(db.Model):
-  name = db.StringProperty(required=True)  # Proficiency Tag (startup_financing)
+  name = db.StringProperty(required=True)  # max_length is 17
   date = db.DateTimeProperty(auto_now_add=True)
   modified = db.DateTimeProperty(auto_now=True)
   status = db.StringProperty(required=False)
@@ -46,7 +46,8 @@ class Proficiency(db.Model):
   # statistics
   popularity = db.IntegerProperty()
   difficulty = db.IntegerProperty() 
- 
+  #quizitems -- QuizItem reference
+  #pendingitems - pending QuizItem reference (not yet active)
   
   def tag(self): # for views
   	tag = self.name.replace(' ', '_')
@@ -54,7 +55,7 @@ class Proficiency(db.Model):
   	return tag
   	
   #images - RefProperty
-  #quizitems -- QuizItem reference
+  
   ## pages  
   
   def new_image(self, image): # for views=
@@ -73,10 +74,17 @@ class Proficiency(db.Model):
   def default_image(self): 
       return DefaultSubjectImage.get()
 
+  def quiz_item_count(self):
+  	from model.quiz import QuizItem
+  	return len(self.quizitems.fetch(1000))
 
+  def pending_item_count(self): 
+  	from model.quiz import QuizItem
+  	return len(self.pending_items.fetch(1000))
+  	
       
 class ProficiencyTopic(db.Model):  # sub-topics within proficiencies - These map to content URLs.
-  name = db.StringProperty(required=True)
+  name = db.StringProperty(required=True)  # max_length is 15
   proficiency = db.ReferenceProperty(Proficiency, collection_name='topics') # Proficiency Tag (startup_financing)
   date = db.DateTimeProperty(auto_now=True)    
   #freebase_guid ?

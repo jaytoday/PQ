@@ -1,0 +1,68 @@
+	 
+		<div id="subject_{{ s.subject.tag }}" class="proficiency_pic selection_box subject_frame">
+				{% include "utils/subject_frame.html" %}
+				</div>
+				
+				<div class="loading" style="display:none"> LOADING... </div>
+			
+			<div class="upload_picture" id="{{ s.subject.name }}"><button id="button_{{ s.subject.name }}">Upload a Picture</button></div>
+
+
+	<ul class="subject_nav">
+		<li class="ui-tabs-nav-item" id="profile_nav"><a href="#description_{{ forloop.counter }}">Description</a></li>
+		 <li class="ui-tabs-nav-item"><a href="#links_{{ forloop.counter }}">Links</a></li> 
+		 <li class="ui-tabs-nav-item"><a href="#video_{{ forloop.counter }}">Video</a></li> 
+	</ul>
+
+
+ <div id="description_{{ forloop.counter }}" class="blurb middle">
+	<div class="blurb_text" >
+	{{ s.subject.blurb|escape }}
+	</div>
+	<textarea style="display:none;" wrap=SOFT maxlength="450" cols="15" rows="16" name="description_{{ forloop.counter }}" id="description_{{ forloop.counter }}"></textarea>
+	<div class="limit" style="display:none" id="limit_{{ forloop.counter }}"></div>
+
+	<div class="footer" >
+		<button class="edit"><img src="/static/stylesheets/img/utils/purple_next_tiny.png" />Edit Description</button>
+		<button class="save" id="{{ s.subject.name }}" style="display:none;"><img src="/static/stylesheets/img/utils/purple_next_tiny.png" />Save Changes</button>
+		 </div>
+	</div> {# endblurb #}
+
+
+ <div id="links_{{ forloop.counter }}" class="blurb middle">
+	<div class="blurb_text" >
+	{{ s.subject.link_html }}
+	</div>
+	<textarea style="display:none;" wrap=SOFT maxlength="450" cols="15" rows="16" name="description_{{ forloop.counter }}" id="description_{{ forloop.counter }}"></textarea>
+	<div class="limit" style="display:none" id="limit_{{ forloop.counter }}"></div>
+
+	<div class="footer" >
+		<button class="edit"><img src="/static/stylesheets/img/utils/purple_next_tiny.png" />Edit Links</button>
+		<button class="save" id="{{ s.subject.name }}" style="display:none;"><img src="/static/stylesheets/img/utils/purple_next_tiny.png" />Save Changes</button>
+		 </div>
+	</div> {# endblurb #}
+
+
+ <div id="video_{{ forloop.counter }}" class="blurb middle">
+	<div class="blurb_text video" >
+	<object width="280" height="195"><param name="allowFullScreen" value="true"></param><param name="movie" value="http://www.youtube.com/p/{{ s.subject.video_html }}&hl=en&fs=1&color1=0x2b405b&color2=0x6b8ab6&border=0"></param><embed class="no_drag" src="http://www.youtube.com/p/{{ s.subject.video_html }}&hl=en&fs=1&color1=0x2b405b&color2=0x6b8ab6&border=03" allowfullscreen="true" type="application/x-shockwave-flash" width="280" height="195"></embed></object>
+
+	</div>
+	<textarea style="display:none;" wrap=SOFT maxlength="450" cols="15" rows="16" name="description_{{ forloop.counter }}" id="description_{{ forloop.counter }}"></textarea>
+	<div class="limit" style="display:none" id="limit_{{ forloop.counter }}"></div>
+
+	<div class="footer" >
+		<button class="edit"><img src="/static/stylesheets/img/utils/purple_next_tiny.png" />Edit Description</button>
+		<button class="save" id="{{ s.subject.name }}" style="display:none;"><img src="/static/stylesheets/img/utils/purple_next_tiny.png" />Save Changes</button>
+		 </div>
+	</div> {# endblurb #}	
+	
+
+<div class="blurb side"> 
+ <div class="subject_stats">
+ <div class="subject_stat popularity"><h3>Popularity</h3>  <div class="statometer" ><img src="http://chart.apis.google.com/chart?chs=85x55&cht=gom&chd=t:{{ s.subject.popularity }}&chco=DDDDDD,00ea00&chf=bg,s,DDDDDD"/> </div> </div>
+ <div class="subject_stat difficulty"><h3>Difficulty</h3>  <div class="statometer" ><img src="http://chart.apis.google.com/chart?chs=85x55&cht=gom&chd=t:{{ s.subject.difficulty }}&chco=DDDDDD,00ea00&chf=bg,s,DDDDDD"/> </div></div>
+ </div>  </div>
+ 
+ 
+ 

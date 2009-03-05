@@ -46,9 +46,9 @@ $(function(){
         	                   frameDuration: 40, //save CPU
                                takeoverFactor: 0.68, //time to decay (0-1)
                                takeoverThresh: 0.002 //time to begin (0-1)       
-                             },
+                             }, 
                              
-                        /* TODO - get animations to be slower      
+                        {} /* TODO - get animations to be slower      
                              { xtravel: 0.8,ytravel: 0.5 }, // Layer
                              { xtravel: 0.6, ytravel: 0.8 }, // Layer
                              { xtravel: 0.8, ytravel: 0.6 } */

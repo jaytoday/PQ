@@ -149,6 +149,8 @@ class EditSponsorSettings(webapp.RequestHandler):
     path = tpl_path(PROFILE_PATH +'sponsor_settings.html')
     self.response.out.write(template.render(path, template_values))
 
+
+
       
 class EditSubjects(webapp.RequestHandler):
       @login_required
@@ -156,16 +158,11 @@ class EditSubjects(webapp.RequestHandler):
         from model.proficiency import Proficiency
         from model.user import SubjectMember
         from model.user import Profile
-        subjects = []
-        for sm in self.session['user'].member_subjects:
-			sm.subject.contributors = []
-			sm.subject.admins = []
-			for p in sm.subject.members.fetch(1000):
-				if p.is_admin is True: sm.subject.admins.append(p.user)
-				else: sm.subject.contributors.append(p.user)
-
-			subjects.append(sm.subject)
-        template_values = { 'subjects' : subjects, 'user': self.session['user']}
+        memberships = self.session['user'].member_subjects.fetch(1000)           
+        member_subjects = []
+        for m in memberships: member_subjects.append(m.subject)
+        from profiles.methods import get_subjects         
+        template_values = { 'subjects' : get_subjects(member_subjects, memberships)}
         template_values['subjects_js'] = subjects_js(template_values)
         path = tpl_path(PROFILE_PATH +'my_subjects.html')
         self.response.out.write(template.render(path, template_values))

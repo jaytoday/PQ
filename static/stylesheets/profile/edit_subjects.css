@@ -5,16 +5,26 @@
 */
 
 .sitelet .middle .main_wrapper .main {
-height:860px;
+height:880px;
 }
 
 div#edit_subjects{
 width:810px;
-height:780px;
+height:800px;
 float:left;
 margin:30px 0 0 50px;
 font-size:1.3em;
 overflow:hidden;
+}
+
+
+div#edit_subjects div.frame_header h2{ font-size: 1.5em; }
+
+div#edit_subjects div.frame_header span{
+font-size: .5em; display:block; position:absolute; margin: -16px 0 0 196px;
+ }
+div#edit_subjects div.frame_header h2#subject_selection{ 
+ font-size: 1.5em; position:absolute;margin: -27px 0 0 216px;
 }
 
 div.subject_options{
@@ -93,7 +103,7 @@ div#subject_frame_container .blurb.middle{
 
 div#subject_frame_container .blurb.side{
 height:263px;
-margin:35px 625px;
+margin:35px 630px;
 padding:10px;
 position:absolute;
 width:160px;
@@ -120,6 +130,8 @@ text-align:center;
 line-height: 1.2em;
 font-size: .9em;
 }
+
+.blurb .blurb_text.video{ padding: 10px 5px; }
 
 .blurb textarea{
 position:absolute;
@@ -148,6 +160,31 @@ div.footer{
 
 
 
+/* Stats - Share with QT widget */
+
+div.subject_stat{
+height:65px;
+margin-left: 9px;
+}
+
+div.subject_stat.difficulty{
+margin-top:100px;
+}
+
+div.subject_stats{
+margin: 4px 0px;
+}
+
+div.subject_stat h3{
+margin:45px 0 0 10px;
+}
+
+div.statometer{
+float:right;
+margin:-14px 20px 0;
+}
+
+
 
 /*
 *
@@ -163,18 +200,23 @@ height: 150px;
 }
 
 
-div#subject_frame_container div.quiz_count {
+div#subject_frame_container div.item_count {
 font-size:4em;
 height:110px;
-margin:20px 0;
 padding:0 10px;
 position:absolute;
-width:140px;
+width:120px;
 text-align:center;
+margin-top:20px;
 }
 
-div#subject_frame_container div.quiz_count span{
-font-size: .4em;
+div#subject_frame_container div.item_count#total { margin-left:10px; }
+div#subject_frame_container div.item_count#pending { color: Crimson; margin-left:170px; }
+
+div#subject_frame_container div.item_count span{
+font-size:20px;
+margin:5px -20px;
+display:block;
 }
 
 div#subject_frame_container button.quiz_items{

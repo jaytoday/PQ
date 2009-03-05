@@ -14,6 +14,7 @@ $('div#subject_thumb_container > div').each(function(n){
     
 	$(this).click(function(){
 
+      $('h2#subject_selection').text( $(this).text());
       $('div#subject_thumb_container > div').removeClass('selected');
       $(this).addClass('selected'); $('.subject').hide(); this_subject.show(); this_frame.s3Slider({ timeOut: SLIDER_TIMEOUT }); 
  	});
@@ -207,11 +208,11 @@ function ChangeRights(button){
 	var this_choice = button.parent().find("option:selected");
 	if (this_choice.length < 1) return alert("Please select a user"); 
 	var user = this_choice.attr('id');
-	
 	var rights_action = button.attr("id");
-	
+    if (rights_action == "remove_admin") {
+	if (user ==  this_choice.parents(".current_admins:first").attr('id')) return alert("E-mail support@plopquiz.com to remove your own administrator status");
+    }
 	// Todo: loading...
-
 	var container = button.parents(".admin_rights:first");
 	var subject_name = container.attr('id');
 
