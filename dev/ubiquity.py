@@ -11,7 +11,7 @@ DEV_PATH = 'dev/'
 
 
 
-class QuizBuilder(webapp.RequestHandler):
+class QuizEditor(webapp.RequestHandler):
 
   def get(self):
       if self.request.get('get') == "html": return self.get_html()

@@ -534,7 +534,7 @@ margin:0 0 0 233px;
 /* forms */
 
 input.button, button {
-	background:#E0E0E0 url(/static/stylesheets/img/ui/e0e0e0_40x100_textures_02_glass_80.png) repeat-x scroll 0 50%;
+	background:#E0E0E0 url(/static/stylesheets/img/ui/gray_texture.png) repeat-x scroll 0 50%;
 	border-color:#CCC #999 #999 #CCC;
 	border-style: solid;
 	border-width: 1px;

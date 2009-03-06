@@ -14,10 +14,12 @@ def url_routes(map):
 	
 	#Profiles
 	map.connect('profile/*username', controller = 'profiles.views:ViewProfile')
-	map.connect('my_subjects', controller = 'profiles.views:EditSubjects')
 	map.connect('edit_profile', controller = 'profiles.views:EditProfile')
 	map.connect('edit_sponsor_settings', controller = 'profiles.views:EditSponsorSettings')
 	
+	#Subjects
+	map.connect('subjects/*subjects', controller = 'editor.views:EditSubjects')
+	map.connect('subjects', controller = 'editor.views:EditSubjects')
 	
 	#Store
 	map.connect('preview/proficiency', controller = 'store.views:ChooseProficiency')
@@ -42,6 +44,7 @@ def url_routes(map):
 	
 	# Taking Quizzes
 	map.connect('quiz/*quiz', controller = 'quiztaker.views:TakeQuiz')
+	map.connect('quiz', controller = 'quiztaker.views:TakeQuiz') # Can these two be combined with ?
 	map.connect('widget', controller = 'quiztaker.views:Widget')	
 	map.connect('quiz_item', controller = 'quiztaker.views:QuizItemTemplate')		
 	map.connect('intro', controller = 'quiztaker.views:PQIntro')
@@ -54,16 +57,16 @@ def url_routes(map):
 		
 
 	# Induction & Building Quizzes
-	map.connect('edit/:subject', controller = 'quizbuilder.views:QuizEditor')
-	map.connect('quizbuilder', controller = 'quizbuilder.views:QuizBuilder')
-	map.connect('quizbuilder/induction', controller = 'quizbuilder.views:InductionInterface')		
-	map.connect('quizbuilder/item', controller = 'quizbuilder.views:RawItemTemplate')
+	map.connect('edit/:subject', controller = 'editor.views:QuizEditor')
+	map.connect('editor', controller = 'editor.views:Editor')
+	map.connect('editor/induction', controller = 'editor.views:InductionInterface')		
+	map.connect('editor/item', controller = 'editor.views:RawItemTemplate')
 
 	# RPC Handlers
-	map.connect('quizeditor/rpc/post', controller = 'quizbuilder.rpc:QuizEditorPost')	
+	map.connect('editor/rpc/post', controller = 'editor.rpc:EditorPost')	
 	map.connect('quiztaker/rpc', controller = 'quiztaker.rpc:RPCHandler')
-	map.connect('quizbuilder/rpc/post', controller = 'quizbuilder.rpc:RPCPostHandler')	
-	map.connect('quizbuilder/rpc', controller = 'quizbuilder.rpc:RPCHandler')		
+	map.connect('editor/rpc/post', controller = 'editor.rpc:RPCPostHandler')	
+	map.connect('editor/rpc', controller = 'editor.rpc:RPCHandler')		
 	map.connect('employer/rpc', controller = 'employer.rpc:RPCHandler')	
 	map.connect('employer/rpc/post', controller = 'employer.rpc:SponsorPost')		
 	map.connect('accounts/rpc', controller = 'accounts.rpc:RPCHandler')	
@@ -77,7 +80,7 @@ def url_routes(map):
 	
 	# Induction & Building Quizzes
 	map.connect('dev/admin', controller = 'dev.views:Admin')
-	map.connect('ubiquity', controller = 'dev.ubiquity:QuizBuilder')
+	map.connect('ubiquity', controller = 'dev.ubiquity:QuizEditor')
 	map.connect('dev/filter', controller = 'ranking.views:Filter')
 	map.connect('ranking/graph', controller = 'ranking.views:Graph')		
 	map.connect('debug', controller = 'dev.views:Debug')

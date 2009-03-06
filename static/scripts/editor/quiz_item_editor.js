@@ -265,7 +265,7 @@ function RefreshTopics(item_topic){
 $.ajax({
 
 	type: "POST",
-	url:  "/quizeditor/rpc/post",
+	url:  "/editor/rpc/post",
 	data:
 	{
 			action: "NewTopic",
@@ -320,7 +320,7 @@ if (ready_to_send == false) return false;
 
 $.ajax({
 	type: "POST",
-	url:  "/quizeditor/rpc/post",
+	url:  "/editor/rpc/post",
 	data:
 	{
 			action: "SubmitItem",

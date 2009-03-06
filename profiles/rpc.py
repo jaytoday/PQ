@@ -106,59 +106,8 @@ class RPCMethods(webapp.RequestHandler):
   	
 
 class ProfilePost(webapp.RequestHandler): 
-  def post(self):    
-  	if len(self.request.path.split('/subject_img/')) > 1: return self.response.out.write(self.subject_img() )
-  	if self.request.get('action') == 'subject_blurb': return self.response.out.write(simplejson.dumps(  self.subject_blurb()  )) 
-  	if self.request.get('action') == 'change_rights': return self.response.out.write(self.change_rights() ) 
+  def post(self):
+  	return    
 
 
-  def subject_blurb(self):
-      from model.proficiency import Proficiency
-      subject_name = self.request.get('subject_name')
-      this_subject = Proficiency.get_by_key_name(subject_name)
-      if this_subject is None: 
-          logging.error('no subject found when saving blurb for subject_name %s ', subject_name)
-          return "no subject found"
-      this_subject.blurb = self.request.get('new_blurb')
-      this_subject.put()
-      return "OK"
-      
-  def subject_img(self):
-      subject_name = self.request.path.split('/subject_img/')[1].replace('%20',' ')
-      from model.proficiency import Proficiency
-      this_subject = Proficiency.get_by_key_name(subject_name)
-      new_image = this_subject.new_image(self.request.get('subject_img'))
-      db.put(new_image)
-      logging.info('saved new image for subject %s' % (this_subject.name))
-      from utils.webapp import template
-      path = tpl_path(PROFILE_PATH +'/utils/subject_frame.html')
-      template_values = {'p': this_subject}
-      return template.render(path, template_values)
-           
-      
-
-  def change_rights(self):
-	from model.proficiency import Proficiency
-	from model.user import Profile, SubjectMember
-	subject_name = self.request.get('subject')
-	this_subject = Proficiency.get_by_key_name(subject_name) 
-	user = Profile.get_by_key_name(self.request.get('user'))
-	this_change = self.request.get('rights_action')
-	this_membership = SubjectMember.gql("WHERE subject = :1 AND user = :2", this_subject, user).get()
-	if this_change == "make_admin":
-		logging.info('make admin')
-		this_membership.is_admin = True
-	if this_change == "remove_admin":
-		this_membership.is_admin = False
-	db.put(this_membership)
-	logging.info('user %s has had admin status set to %s for subject %s' % (user.unique_identifier, str(this_membership.is_admin), this_subject.name))
-	from utils.webapp import template
-	path = tpl_path(PROFILE_PATH +'/subject/admin_rights.html')
-	template_values = {'p': this_subject}
-	return template.render(path, template_values)	
-			
-		
-		
-
-		   
       

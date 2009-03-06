@@ -6,7 +6,7 @@
 
 
 <style type="text/css"> 
-{% include "../../static/stylesheets/quiz_editor/quiz_editor.css" %} 
+{% include "../../static/stylesheets/editor/quiz_item_editor.css" %} 
 </style> 
 
 <script type="text/javascript">
@@ -14,16 +14,16 @@
 {% include "../../static/scripts/scroll/jquery.scrollTo-min.js" %} 
 {% include "../../static/scripts/scroll/jquery.localscroll-1.2.5.js" %} 
 {% include "../../static/scripts/scroll/jquery.serialScroll-1.2.1.js" %} 
-{% include "../../static/scripts/quiz_editor/item-slider.js" %} 
-{% include "../../static/scripts/quiz_editor/jeditable/jquery.jeditable.min.js" %}
+{% include "../../static/scripts/editor/item-slider.js" %} 
+{% include "../../static/scripts/editor/jeditable/jquery.jeditable.min.js" %}
 {% include "../../static/scripts/jquery/jquery.autogrow.js" %}
-{% include "../../static/scripts/quiz_editor/jeditable/jquery.jeditable.autogrow.js" %}
+{% include "../../static/scripts/editor/jeditable/jquery.jeditable.autogrow.js" %}
 </script>
 <script type="text/javascript">
 
 
-{% include "../../static/scripts/quiz_editor/load_answers.js" %}
-{% include "../../static/scripts/quiz_editor/quiz_editor.js" %}
+{% include "../../static/scripts/editor/load_answers.js" %}
+{% include "../../static/scripts/editor/quiz_item_editor.js" %}
  
 </script>
 
@@ -39,7 +39,7 @@
 <div id="editor_container">
 
 
-{% include "quiz_editor_template.html" %}
+{% include "quiz_item_editor_template.html" %}
 
 
 </div>

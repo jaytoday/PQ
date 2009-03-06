@@ -162,24 +162,24 @@ div.footer{
 
 /* Stats - Share with QT widget */
 
-div.subject_stat{
+div#subject_frame_container div.subject_stat{
 height:65px;
 margin-left: 9px;
 }
 
-div.subject_stat.difficulty{
+div#subject_frame_container div.subject_stat.difficulty{
 margin-top:100px;
 }
 
-div.subject_stats{
+div#subject_frame_container div.subject_stats{
 margin: 4px 0px;
 }
 
-div.subject_stat h3{
+div#subject_frame_container div.subject_stat h3{
 margin:45px 0 0 10px;
 }
 
-div.statometer{
+div#subject_frame_container div.statometer{
 float:right;
 margin:-14px 20px 0;
 }

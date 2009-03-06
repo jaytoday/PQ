@@ -393,11 +393,11 @@ td#quiz_pink_right {
 
 .quiz_wrap div#quiz_outer  {
 background:transparent none repeat scroll 0 0 !important;
-left:30%;
+left:50%; top:50%; /* these are 50 and margins are negative half of height/width of frame */
 overflow:visible;
 padding:18px 18px 58px;
 position:fixed;/* position:absolute; */
-top:10%;
+
 z-index:90;
 }
 
@@ -735,8 +735,8 @@ margin:-25px 20px;
 {
 -webkit-border-top-right-radius: 18px;
 -moz-border-radius-topright:18px;
-background-color:#CDCDCD !important;
-border-right:1px solid #CDCDCD;
+background-color: #C2C2C2;
+border-right:1px solid #C2C2C2;
 bottom:1px;
 font-variant:small-caps;
 font-weight:bold;
@@ -750,6 +750,11 @@ width:130px;
 z-index:100;
 }
 
+.quiz_wrap div.tab.webkit
+{
+background-color: #b5b5b5 !important;
+border-right:1px solid #b5b5b5 !important;
+}
 
 .quiz_wrap div#quiz_category {
 font-size:0.9em;
@@ -1083,7 +1088,7 @@ width:355px;
 .quiz_wrap div.quiz_description
 {
         background:#523871 none repeat scroll 0 0; 
-        /* background: url({{ http_host }}/static/html/img/background.png) repeat-x scroll center top; */
+        /* background: url({{ http_host }}/static/stylesheets/img/quiztaker/background.png) repeat-x scroll center top; */
         border:2px solid #CDCDCD;
         color:#EAF2F8;
         overflow:hidden;
@@ -1258,7 +1263,7 @@ margin:2px 0 15px;
         -webkit-border-radius:12px;
         -moz-border-right-colors:#DDDDDD;
         -moz-border-top-colors:#EDF2F8 #FFFFFF;
-        background: url({{ http_host }}/static/html/img/background_250.png) repeat-x scroll center top;
+        background: url({{ http_host }}/static/stylesheets/img/quiztaker/background_250.png) repeat-x scroll center top;
         border-color:#DDDDDD;
         border-style:solid;
         border-width:12px 8px;
@@ -1536,7 +1541,7 @@ padding:10px;
 -webkit-border-radius: 5px;
 -moz-border-right-colors:#777777 #888888 #999999 #AAAAAA #BBBBBB #CCCCCC;
 -moz-border-top-colors:#777777 #888888 #999999 #AAAAAA #BBBBBB #CCCCCC;
-background:transparent url(/static/html/img/background_250.png) repeat scroll center top;
+background:transparent url({{ http_host }}/static/stylesheets/img/quiztaker/background_250.png) repeat scroll center top;
 border:10px solid #DDDDDD;
 color:#EAF2F8;
 }
@@ -1545,7 +1550,7 @@ color:#EAF2F8;
 /* forms */
 
 .quiz_wrap input.button,.quiz_wrap button {
-	background:#E0E0E0 url({{ http_host }}/static/stylesheets/img/ui/e0e0e0_40x100_textures_02_glass_80.png) repeat-x scroll 0 50%;
+	background:#E0E0E0 url({{ http_host }}/static/stylesheets/img/ui/gray_texture.png) repeat-x scroll 0 50%;
 	border-color:#CCC #999 #999 #CCC;
 	border-style: solid;
 	border-width: 1px;

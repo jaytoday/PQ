@@ -1,6 +1,9 @@
 
 
 
+/* TODO - this needs to be synced with quiz widget or else there will be interference */
+
+
 .bigsliderImage{
 }
 
@@ -111,7 +114,7 @@ cursor:pointer;
 
 
 
-div.subject_stat{
+div.main div.subject_stat{
 -moz-border-radius: 12px;
 -webkit-border-radius: 12px;
 background:#DDDDDD none repeat scroll 0 0;
@@ -142,7 +145,8 @@ font-size:1.1em;
 div.share_quiz{
 
 }
-div.share_quiz .quiz_code {
+
+div.main div.share_quiz .quiz_code {
 -moz-border-radius: 12px;
 -webkit-border-radius: 12px;
 background:#DDDDDD none repeat scroll 0 0;

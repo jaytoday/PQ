@@ -18,7 +18,7 @@ answers_container.data('busy', true)
 $.ajax({
 	
 	type: "POST",
-	url:  "/quizeditor/rpc/post",
+	url:  "/editor/rpc/post",
 	dataType: "html",
 	data: {
 			action: "LoadAnswers",

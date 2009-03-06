@@ -53,7 +53,7 @@ remote callers access to private/protected "_*" methods.
 
 
 
-######## QUIZBUILDER METHODS ##########  
+######## EDITOR METHODS ##########  
 
   def RetrieveTopics(self, *args):   # todo: should be nested list of proficiencies and topics.
       return_topics = []
@@ -258,45 +258,113 @@ class RPCPostHandler(webapp.RequestHandler):
 
 
 
-class QuizEditorPost(webapp.RequestHandler): 
+class EditorPost(webapp.RequestHandler): 
 
-    def get(self):    
-      	if self.request.get('action') == "LoadAnswers": return self.response.out.write( self.LoadAnswers() )
-      	
-      	    
-    def post(self):    
-      	if self.request.get('action') == "NewTopic": return self.response.out.write( self.NewTopic() )
-      	if self.request.get('action') == "LoadAnswers": return self.response.out.write( self.LoadAnswers() )
-      	if self.request.get('action') == "SubmitItem": return self.response.out.write( self.SubmitItem() )	
+	def get(self):    
+		if self.request.get('action') == "LoadAnswers": return self.response.out.write( self.LoadAnswers() )
+		
+			
+	def post(self): 
 
-    def NewTopic(self):   # set moderation status for raw item
-        this_subject = Proficiency.gql("WHERE name = :1", self.request.get('subject_name')).get()
-        new_topic = ProficiencyTopic(name = self.request.get('topic_name'), proficiency = this_subject)
-        db.put(new_topic)
-        from utils.webapp import template
-        from utils.utils import tpl_path
-        template_values = {"subject": this_subject, "new_topic":new_topic}
-        path = tpl_path('quizbuilder/item_topic.html')
-        return template.render(path, template_values)
+		# editing subjects
+		if len(self.request.path.split('/subject_img/')) > 1: return self.response.out.write(self.subject_img() )
+		if self.request.get('action') == 'subject_blurb': return self.response.out.write(simplejson.dumps(  self.subject_blurb()  )) 
+		if self.request.get('action') == 'change_rights': return self.response.out.write(self.change_rights() ) 
+		   
+		# editing quiz items
+		if self.request.get('action') == "NewTopic": return self.response.out.write( self.NewTopic() )
+		if self.request.get('action') == "LoadAnswers": return self.response.out.write( self.LoadAnswers() )
+		if self.request.get('action') == "SubmitItem": return self.response.out.write( self.SubmitItem() )	
 
-    def LoadAnswers(self):     
+
+
+
+	######################
+
+	#Editing Subjects
+
+	#####################
+
+
+	def subject_blurb(self):
+	  from model.proficiency import Proficiency
+	  subject_name = self.request.get('subject_name')
+	  this_subject = Proficiency.get_by_key_name(subject_name)
+	  if this_subject is None: 
+		  logging.error('no subject found when saving blurb for subject_name %s ', subject_name)
+		  return "no subject found"
+	  this_subject.blurb = self.request.get('new_blurb')
+	  this_subject.put()
+	  return "OK"
+	  
+	def subject_img(self):
+	  subject_name = self.request.path.split('/subject_img/')[1].replace('%20',' ')
+	  from model.proficiency import Proficiency
+	  this_subject = Proficiency.get_by_key_name(subject_name)
+	  new_image = this_subject.new_image(self.request.get('subject_img'))
+	  db.put(new_image)
+	  logging.info('saved new image for subject %s' % (this_subject.name))
+	  from utils.webapp import template
+	  path = tpl_path(PROFILE_PATH +'/utils/subject_frame.html')
+	  template_values = {'p': this_subject}
+	  return template.render(path, template_values)
+		   
+	  
+
+	def change_rights(self):
+		from model.proficiency import Proficiency
+		from model.user import Profile, SubjectMember
+		subject_name = self.request.get('subject')
+		this_subject = Proficiency.get_by_key_name(subject_name) 
+		user = Profile.get_by_key_name(self.request.get('user'))
+		this_change = self.request.get('rights_action')
+		this_membership = SubjectMember.gql("WHERE subject = :1 AND user = :2", this_subject, user).get()
+		if this_change == "make_admin":
+			logging.info('make admin')
+			this_membership.is_admin = True
+		if this_change == "remove_admin":
+			this_membership.is_admin = False
+		db.put(this_membership)
+		logging.info('user %s has had admin status set to %s for subject %s' % (user.unique_identifier, str(this_membership.is_admin), this_subject.name))
+		from utils.webapp import template
+		path = tpl_path(PROFILE_PATH +'/subject/admin_rights.html')
+		template_values = {'p': this_subject}
+		return template.render(path, template_values)	
+				
+
+
+	######################
+
+	#Editing Quiz Items 
+
+	#####################
+
+	def NewTopic(self):   # set moderation status for raw item
+		this_subject = Proficiency.gql("WHERE name = :1", self.request.get('subject_name')).get()
+		new_topic = ProficiencyTopic(name = self.request.get('topic_name'), proficiency = this_subject)
+		db.put(new_topic)
+		from utils.webapp import template
+		from utils.utils import tpl_path
+		template_values = {"subject": this_subject, "new_topic":new_topic}
+		path = tpl_path('editor/item_topic.html')
+		return template.render(path, template_values)
+
+	def LoadAnswers(self):     
 		correct_answer = self.request.get('correct_answer')
 		item_text = self.request.get('item_text')
-		from quizbuilder.answers import Answers
+		from editor.answers import Answers
 		answers = Answers()
 		from utils.webapp import template
 		from utils.utils import tpl_path        
 		template_values = {"answers": answers.load(correct_answer, item_text)}
-		path = tpl_path('quizbuilder/answer_template.html')
+		path = tpl_path('editor/answer_template.html')
 		return template.render(path, template_values)
 
 
 
-
-
-                
-    # see if it can access self.user['user'] and if its a new item, save author
-    def SubmitItem(self):   
+				
+	# see if it can access self.user['user'] and if its a new item, save author
+	def SubmitItem(self):   
 		from model.proficiency import Proficiency, ProficiencyTopic
 		this_proficiency = Proficiency.gql("WHERE name = :1", self.request.get('subject_name') ).get()
 		logging.info('submitting item')
@@ -322,11 +390,19 @@ class QuizEditorPost(webapp.RequestHandler):
 		logging.info('saving new quiz item %s with subject %s and index %s' % (this_item.__dict__, self.request.get('subject_name'), self.request.get('correct_answer') ))
 		from utils.webapp import template
 		from utils.utils import tpl_path        
-		from quizbuilder.methods import get_membership, get_user_items		
+		from editor.methods import get_membership, get_user_items		
 		template_values = {"subject": this_proficiency, 
-		                   'subject_membership': get_membership(session['user'], this_proficiency),
-		                   'user_items': get_user_items(session['user'], this_proficiency), }
-		path = tpl_path('quizbuilder/quiz_editor_template.html')
+						   'subject_membership': get_membership(session['user'], this_proficiency),
+						   'user_items': get_user_items(session['user'], this_proficiency), }
+		path = tpl_path('editor/quiz_item_editor_template.html')
 		return template.render(path, template_values)
 
-                
+				
+
+
+
+
+
+
+
+

@@ -5,7 +5,7 @@
 
 
 <style type="text/css"> 
-{% include "../../static/stylesheets/quizbuilder.css" %} 
+{% include "../../static/stylesheets/editor.css" %} 
 </style> 
 
 <script type="text/javascript">
@@ -14,13 +14,13 @@
 {% include "../../static/scripts/scroll/jquery.scrollTo-min.js" %} 
 {% include "../../static/scripts/scroll/jquery.localscroll-1.2.5.js" %} 
 {% include "../../static/scripts/scroll/jquery.serialScroll-1.2.1.js" %} 
-{% include "../../static/scripts/quizbuilder/item-slider.js" %} 
-{% include "../../static/scripts/quizbuilder/jeditable/jquery.jeditable.min.js" %}
-{% include "../../static/scripts/quizbuilder/jeditable/jquery.jeditable.autogrow.js" %} 
+{% include "../../static/scripts/editor/item-slider.js" %} 
+{% include "../../static/scripts/editor/jeditable/jquery.jeditable.min.js" %}
+{% include "../../static/scripts/editor/jeditable/jquery.jeditable.autogrow.js" %} 
 </script>
 <script type="text/javascript">
-{% include "../../static/scripts/quizbuilder/quizbuilder.js" %} 
-{% include "../../static/scripts/quizbuilder/edit_quiz.js" %} 
+{% include "../../static/scripts/editor/editor.js" %} 
+{% include "../../static/scripts/editor/edit_quiz.js" %} 
 </script>
 
 <title>Plopquiz - Quizbuilder</title>
@@ -49,7 +49,7 @@
 <div id="loading_items" style="display:none;"><img src="/static/stylesheets/img/ajax-loader.gif"/><span class="loading">Loading...</span><img src="/static/stylesheets/img/ajax-loader.gif"/></div>
 <br/>
 
-<div class="quizbuilder_wrapper">
+<div class="editor_wrapper">
    <div class="nav_wrap"><ul class="item_navigation"> </ul></div>  <!--navigation headers-->
      
 <div class="scroller"><div class="quiz_items" id="quiz_items" style="display:none;"><!--quiz items--></div></div>

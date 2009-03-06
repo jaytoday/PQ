@@ -49,14 +49,3 @@ def register_qt(user_key, nickname):
     
 
 
-
-def get_subjects(subjects, memberships):
-	subject_list = []
-	for s in subjects:
-		is_member = False
-		for m in memberships:
-			if m.subject == s:
-				if m.is_admin: is_member = "admin"
-				else: is_member = "contributor"
-		subject_list.append({"subject": s, "is_member": is_member})
-	return subject_list 
