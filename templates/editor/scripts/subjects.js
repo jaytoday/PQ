@@ -3,7 +3,7 @@
 {% include "../../../static/scripts/jquery/jquery.jsupload.0.1.min.js" %}
 
 SLIDER_TIMEOUT = 5000;
-
+DEFAULT_NEW_SUBJECT_TEXT = "Enter a Subject Name";
 		$(function () {
 
 
@@ -94,6 +94,11 @@ $('div.footer').find('button.save').hide();
 
 SetupAdminRights();
 
+
+
+
+//create_new_subject
+$('button.create_new_subject').click(function(){ CreateNewSubject(); });
 
 		
 		}); //end onReady
@@ -213,4 +218,32 @@ function ChangeRights(button){
 	});	
 
 	
+}
+
+
+
+function CreateNewSubject() {
+
+        	$("div#create_new_subject").dialog({ 
+    modal: true,
+    resizable: false,
+    draggable: true, 
+    height: 320,
+	width: 665,
+    overlay: { 
+        opacity: 0.8, 
+        background: "black" 
+    },
+        buttons: { 
+        "Create This Subject": function() { 
+                        var subject_name = $(this).find('input').val();
+            console.log(subject_name);
+            if (subject_name == DEFAULT_NEW_SUBJECT_TEXT || subject_name == '') console.log('no subject name!'); 
+            $(this).dialog("close"); 
+        }
+    } 
+     
+}).find('input').preserveDefaultText(DEFAULT_NEW_SUBJECT_TEXT).end()
+  .show();  // show() is to show hidden dialog 
+
 }

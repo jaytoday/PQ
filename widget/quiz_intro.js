@@ -17,8 +17,8 @@ $('#subject_thumb_' + n, $.plopquiz.quiz_content).s3Slider({ timeOut: $.plopquiz
 // bind thumbnail clicks - clicking on a thumbnail changes the currently selected quiz
 $('div.subject_thumb_container li', $.plopquiz.quiz_content).click(function(){ //TODO: Slider/Coverflow (low priority)
 $('div.subject_thumb_container li', $.plopquiz.quiz_content).removeClass('selected_thumb'); $(this).addClass('selected_thumb');
-$('.intro_frame_content .subject_container', $.plopquiz.quiz_content).hide('fast').removeClass('selected');
-$('.intro_frame_content #subject_container_' + $(this).attr('id'), $.plopquiz.quiz_content).show('fast').addClass('selected');
+$('.intro_frame_content .subject_container', $.plopquiz.quiz_content).css("cssText", "display: none !important;").removeClass('selected');
+$('.intro_frame_content #subject_container_' + $(this).attr('id'), $.plopquiz.quiz_content).css("cssText", "display: block !important;").addClass('selected');
 
 $('#subject_' + $(this).attr('id'), $.plopquiz.quiz_content).s3Slider({ timeOut: $.plopquiz.settings.sliderDuration }); // initiate a slider for the subject being shown.
 

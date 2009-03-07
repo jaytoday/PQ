@@ -31,14 +31,17 @@
 
  <div id="links_{{ forloop.counter }}" class="blurb middle">
 	<div class="blurb_text" >
-	{{ s.subject.link_html }}
+	
+	
+	{% for link in s.subject.links %} 
+	<li><a target="_blank">{{ link }}</a> {% ifequal s.is_member "admin" %}<button class="remove"><img  src="/static/stylesheets/img/ui/remove.gif"/></button>{% endifequal %}         </li> 
+    {% endfor %} 
 	</div>
-	<textarea style="display:none;" wrap=SOFT maxlength="450" cols="15" rows="16" name="description_{{ forloop.counter }}" id="description_{{ forloop.counter }}"></textarea>
-	<div class="limit" style="display:none" id="limit_{{ forloop.counter }}"></div>
 
 	<div class="footer" >
-		<button class="edit"><img src="/static/stylesheets/img/utils/purple_next_tiny.png" />Edit Links</button>
-		<button class="save" id="{{ s.subject.name }}" style="display:none;"><img src="/static/stylesheets/img/utils/purple_next_tiny.png" />Save Changes</button>
+		<button class="edit"><img src="/static/stylesheets/img/ui/add.gif" />Add New Link</button>
+		<input type="text">
+		<button class="save" id="{{ s.subject.name }}" style="display:none;"><img src="/static/stylesheets/img/utils/purple_next_tiny.png" />OK</button>
 		 </div>
 	</div> {# endblurb #}
 

@@ -289,7 +289,7 @@ function pqLoad()
         
         var load_core = true;
     if (jQuery.ui) { if (jQuery.ui.draggable) { load_core = false; } }
-          if (load_core) { {% include "../static/scripts/jquery/ui.core.min.js" %}  {% include "../static/scripts/jquery/ui.draggable.min.js" %}   }
+          if (load_core) { {% include "../static/scripts/jquery/ui.core.js" %}  {% include "../static/scripts/jquery/ui.draggable.js" %}   }
                         
 
         // force ready jQuery because page load is (likely?) done
@@ -310,9 +310,8 @@ if(window.jQuery){
 if (load_jquery == true)
     { 
 
-          {# Dynamically insert the jQuery version  {% include "../static/scripts/jquery/jquery-{{ jquery_version }}.min.js" %} #}
-              {% include "../static/scripts/jquery/jquery-1.3.1.min.js" %}
-          
+          {# Dynamically insert the jQuery version  {% include "../static/scripts/jquery/jquery-{{ jquery_version }}.js" %} #}
+
 
     	{% comment %}
     	

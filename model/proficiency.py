@@ -42,6 +42,7 @@ class Proficiency(db.Model):
   blurb = db.TextProperty(required=False)
   # study guide material
   link_html = db.TextProperty()
+  links = db.ListProperty(db.Link)
   video_html = db.TextProperty()
   # statistics
   popularity = db.IntegerProperty()

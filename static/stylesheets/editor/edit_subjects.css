@@ -263,3 +263,22 @@ width: 150px;
 div.lower_level{
 text-align: center;
 }
+
+
+
+/* Create New Subject */
+
+div#create_new_subject input{
+
+font-size:3em;
+padding:5px;
+width:580px;
+
+}
+
+
+div.dialog_container button{
+
+margin-left: 35%;
+}
+

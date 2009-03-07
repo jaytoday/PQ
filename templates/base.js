@@ -6,18 +6,17 @@ http_host = "{{http_host}}";
 // Include utility scripts 
 
 {% if dev_server %}
-{% include "../static/scripts/jquery/jquery-1.3.1.min.js" %}
+{% include "../static/scripts/jquery/jquery-1.3.2.js" %}
 {% else %}
-{% include "../static/scripts/jquery/jquery-1.3.1.min.js" %}
-// $.getScript("http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"); // should we always load local jQuery?
+{% include "../static/scripts/jquery/jquery-1.3.2.js" %}
+// $.getScript("http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"); // should we always load local jQuery?
 {% endif %}
 
 
-{% include "../static/scripts/jquery/ui.core.min.js" %}
-{% include "../static/scripts/jquery/ui.core.min.js" %}
-{% include "../static/scripts/jquery/ui.dialog.min.js" %}
-{% include "../static/scripts/jquery/ui.draggable.min.js" %}
-{% include "../static/scripts/jquery/ui.tabs.min.js" %}
+{% include "../static/scripts/jquery/ui.core.js" %}
+{% include "../static/scripts/jquery/ui.dialog.js" %}
+{% include "../static/scripts/jquery/ui.draggable.js" %}
+{% include "../static/scripts/jquery/ui.tabs.js" %}
 {% include "../static/scripts/utils/parallax.js" %}
 {% include "../static/scripts/utils/rpc.js" %}
 {% include "../static/scripts/utils/preserve_default_text.js" %}
