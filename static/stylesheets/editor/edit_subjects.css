@@ -98,7 +98,7 @@ div#subject_frame_container .blurb{
 }
 
 div#subject_frame_container .blurb.middle{
-    position:absolute; top:30px; left: 330px; width:280px; height:290px;
+    position:absolute; top:30px; left: 330px; width:290px; height:290px;
 }
 
 div#subject_frame_container .blurb.side{
