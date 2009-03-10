@@ -5,7 +5,7 @@ import string, re
 from google.appengine.api import urlfetch
 import urllib
 from utils import simplejson
-from utils.utils import ROOT_PATH
+from utils.utils import ROOT_PATH, tpl_path
 from utils.gql_encoder import GqlEncoder, encode
 from .model.quiz import QuizItem, RawQuizItem,  ContentPage
 from .model.proficiency import ProficiencyTopic, Proficiency
@@ -13,6 +13,8 @@ import views
 from induction import RawItemInduction
 from dev.methods import dump_data
 
+
+EDITOR_PATH = "editor/"
 
 class RPCMethods(webapp.RequestHandler):
   """ Defines AJAX methods.
@@ -263,14 +265,30 @@ class EditorPost(webapp.RequestHandler):
 	def get(self):    
 		if self.request.get('action') == "LoadAnswers": return self.response.out.write( self.LoadAnswers() )
 		
-			
-	def post(self): 
-
+		#TEMP
 		# editing subjects
 		if len(self.request.path.split('/subject_img/')) > 1: return self.response.out.write(self.subject_img() )
 		if self.request.get('action') == 'subject_blurb': return self.response.out.write(simplejson.dumps(  self.subject_blurb()  )) 
 		if self.request.get('action') == 'change_rights': return self.response.out.write(self.change_rights() ) 
-		   
+		if self.request.get('action') == 'add_link': return self.response.out.write(self.add_link() ) 
+		if self.request.get('action') == 'remove_link': return self.response.out.write(self.remove_link() ) 
+		if self.request.get('action') == 'change_video': return self.response.out.write(self.change_video() )
+		if self.request.get('action') == 'delete_subject_image': return self.response.out.write(self.delete_subject_image() ) 						   
+		# editing quiz items
+		if self.request.get('action') == "NewTopic": return self.response.out.write( self.NewTopic() )
+		if self.request.get('action') == "LoadAnswers": return self.response.out.write( self.LoadAnswers() )
+		if self.request.get('action') == "SubmitItem": return self.response.out.write( self.SubmitItem() )	
+					
+	def post(self): 
+	
+		# editing subjects
+		if len(self.request.path.split('/subject_img/')) > 1: return self.response.out.write(self.subject_img() )
+		if self.request.get('action') == 'subject_blurb': return self.response.out.write(simplejson.dumps(  self.subject_blurb()  )) 
+		if self.request.get('action') == 'change_rights': return self.response.out.write(self.change_rights() ) 
+		if self.request.get('action') == 'add_link': return self.response.out.write(self.add_link() ) 
+		if self.request.get('action') == 'remove_link': return self.response.out.write(self.remove_link() ) 
+		if self.request.get('action') == 'change_video': return self.response.out.write(self.change_video() )
+		if self.request.get('action') == 'delete_subject_image': return self.response.out.write(self.delete_subject_image() ) 						   
 		# editing quiz items
 		if self.request.get('action') == "NewTopic": return self.response.out.write( self.NewTopic() )
 		if self.request.get('action') == "LoadAnswers": return self.response.out.write( self.LoadAnswers() )
@@ -305,16 +323,27 @@ class EditorPost(webapp.RequestHandler):
 	  db.put(new_image)
 	  logging.info('saved new image for subject %s' % (this_subject.name))
 	  from utils.webapp import template
-	  path = tpl_path(PROFILE_PATH +'/utils/subject_frame.html')
-	  template_values = {'p': this_subject}
+	  path = tpl_path(EDITOR_PATH +'load_subject_images.html')
+	  template_values = {'s': {"subject": this_subject} }
 	  return template.render(path, template_values)
 		   
 	  
-
+	def delete_subject_image(self):
+		from model.proficiency import Proficiency, SubjectImage
+		subject_name = self.request.get('subject_name')
+		this_subject = Proficiency.get_by_key_name(subject_name) 
+		this_img = SubjectImage.get( self.request.get('img_key') )
+		logging.info('removed img for subject %s', this_subject.name )
+		db.delete(this_img)		
+		from utils.webapp import template
+		path = tpl_path(EDITOR_PATH +'load_subject_images.html')
+		template_values = {'s': {"subject": this_subject, "is_member": "admin" }} # Only admins can edit links, for now. 
+		return template.render(path, template_values)	
+		
 	def change_rights(self):
 		from model.proficiency import Proficiency
 		from model.user import Profile, SubjectMember
-		subject_name = self.request.get('subject')
+		subject_name = self.request.get('subject_name')
 		this_subject = Proficiency.get_by_key_name(subject_name) 
 		user = Profile.get_by_key_name(self.request.get('user'))
 		this_change = self.request.get('rights_action')
@@ -327,11 +356,56 @@ class EditorPost(webapp.RequestHandler):
 		db.put(this_membership)
 		logging.info('user %s has had admin status set to %s for subject %s' % (user.unique_identifier, str(this_membership.is_admin), this_subject.name))
 		from utils.webapp import template
-		path = tpl_path(PROFILE_PATH +'/subject/admin_rights.html')
-		template_values = {'p': this_subject}
+		path = tpl_path(EDITOR_PATH +'subject/admin_rights.html')
+		template_values = {'s': {"subject": this_subject}}
 		return template.render(path, template_values)	
 				
 
+
+	def add_link(self):
+		from model.proficiency import Proficiency, Link 
+		subject_name = self.request.get('subject_name')
+		this_subject = Proficiency.get_by_key_name(subject_name) 
+		try: new_link = Link( url = self.request.get('link_url'), 
+		                 title = self.request.get('link_title'), 
+		                 subject = this_subject )
+		except BadValueError: return "error"
+		db.put(new_link)
+		logging.info('new link with url %s and title %s for subject %s' % (this_subject.name, str(new_link.url), new_link.title ) )
+		from utils.webapp import template
+		path = tpl_path(EDITOR_PATH +'subject/links_list.html')
+		template_values = {'s': {"subject": this_subject, "is_member": "admin" }} # Only admins can edit links, for now. 
+		return template.render(path, template_values)	
+				
+	def remove_link(self):
+		from model.proficiency import Proficiency, Link 
+		subject_name = self.request.get('subject_name')
+		this_subject = Proficiency.get_by_key_name(subject_name) 
+		this_link = Link.get( self.request.get('link_key') )
+		logging.info('removed link: %s', this_link.url )
+		db.delete(this_link)		
+		from utils.webapp import template
+		path = tpl_path(EDITOR_PATH +'subject/links_list.html')
+		template_values = {'s': {"subject": this_subject, "is_member": "admin" }} # Only admins can edit links, for now. 
+		return template.render(path, template_values)	
+				
+
+	def change_video(self):
+		from model.proficiency import Proficiency
+		subject_name = self.request.get('subject_name')
+		this_subject = Proficiency.get_by_key_name(subject_name) 
+		if "p=" not in self.request.get('new_video_url'):
+			logging.info('video url %s is not recognizable as video playlist link', self.request.get('new_video_url'))
+			return "error"
+		video_code = self.request.get('new_video_url').split("p=")[1]
+		this_subject.video_html = video_code
+		logging.info('changed video for subject %s to %s' % (this_subject.name,video_code) )
+		db.put(this_subject)		
+		from utils.webapp import template
+		path = tpl_path(EDITOR_PATH +'subject/video_object.html')
+		template_values = {'s': {"subject": this_subject, "is_member": "admin" }} # Only admins can edit links, for now. 
+		return template.render(path, template_values)	
+										
 
 	######################
 
@@ -346,7 +420,7 @@ class EditorPost(webapp.RequestHandler):
 		from utils.webapp import template
 		from utils.utils import tpl_path
 		template_values = {"subject": this_subject, "new_topic":new_topic}
-		path = tpl_path('editor/item_topic.html')
+		path = tpl_path(EDITOR_PATH + 'item_topic.html')
 		return template.render(path, template_values)
 
 	def LoadAnswers(self):     
@@ -357,7 +431,7 @@ class EditorPost(webapp.RequestHandler):
 		from utils.webapp import template
 		from utils.utils import tpl_path        
 		template_values = {"answers": answers.load(correct_answer, item_text)}
-		path = tpl_path('editor/answer_template.html')
+		path = tpl_path(EDITOR_PATH + 'answer_template.html')
 		return template.render(path, template_values)
 
 
@@ -394,7 +468,7 @@ class EditorPost(webapp.RequestHandler):
 		template_values = {"subject": this_proficiency, 
 						   'subject_membership': get_membership(session['user'], this_proficiency),
 						   'user_items': get_user_items(session['user'], this_proficiency), }
-		path = tpl_path('editor/quiz_item_editor_template.html')
+		path = tpl_path(EDITOR_PATH + 'quiz_item_editor_template.html')
 		return template.render(path, template_values)
 
 				

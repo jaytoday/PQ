@@ -6,7 +6,10 @@ from model.employer import Employer
 
 
 
-class ContentPage(db.Model):
+    
+
+
+class ContentPage(db.Model): # Deprecated
     url = db.LinkProperty()    # Where quiz material is from - wikipedia.org/en/neuroscience/
     date = db.DateTimeProperty(auto_now_add=True)
     proficiency = db.ReferenceProperty(Proficiency,

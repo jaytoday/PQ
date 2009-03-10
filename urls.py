@@ -64,6 +64,7 @@ def url_routes(map):
 
 	# RPC Handlers
 	map.connect('editor/rpc/post', controller = 'editor.rpc:EditorPost')	
+	map.connect('editor/rpc/post*data', controller = 'editor.rpc:EditorPost')	
 	map.connect('quiztaker/rpc', controller = 'quiztaker.rpc:RPCHandler')
 	map.connect('editor/rpc/post', controller = 'editor.rpc:RPCPostHandler')	
 	map.connect('editor/rpc', controller = 'editor.rpc:RPCHandler')		
@@ -72,7 +73,6 @@ def url_routes(map):
 	map.connect('accounts/rpc', controller = 'accounts.rpc:RPCHandler')	
 	map.connect('accounts/rpc/post', controller = 'accounts.rpc:Post')	
 	map.connect('profiles/rpc', controller = 'profiles.rpc:RPCHandler')
-	map.connect('profiles/rpc/post*data', controller = 'profiles.rpc:ProfilePost')			
 	map.connect('dev/rpc', controller = 'dev.rpc:RPCHandler')		
 	map.connect('homepage/rpc', controller = 'homepage.rpc:RPCHandler')		
 	map.connect('profiles/picture_upload', controller = 'profiles.rpc:PictureUpload')	

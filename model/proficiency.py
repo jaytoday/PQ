@@ -42,7 +42,7 @@ class Proficiency(db.Model):
   blurb = db.TextProperty(required=False)
   # study guide material
   link_html = db.TextProperty()
-  links = db.ListProperty(db.Link)
+  #links = db.ListProperty(db.Link)
   video_html = db.TextProperty()
   # statistics
   popularity = db.IntegerProperty()
@@ -90,6 +90,17 @@ class ProficiencyTopic(db.Model):  # sub-topics within proficiencies - These map
   date = db.DateTimeProperty(auto_now=True)    
   #freebase_guid ?
   
+
+
+
+class  Link(db.Model):
+    url = db.LinkProperty(required=True)    # Links added and URLS where quiz material is from - wikipedia.org/en/neuroscience/
+    title = db.StringProperty(required=True)
+    date = db.DateTimeProperty(auto_now_add=True)
+    subject = db.ReferenceProperty(Proficiency, collection_name='links') # Proficiency Tag (startup_financing) # SHOULD THIS BE A STRING? 
+                                    
+
+
   
 
 class SubjectImage(db.Model):
@@ -103,3 +114,11 @@ class SubjectImage(db.Model):
 class DefaultSubjectImage(db.Model):
     small_image = db.BlobProperty(required=True)
     large_image = db.BlobProperty(required=True)
+
+
+
+
+
+
+
+
