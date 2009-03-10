@@ -4,7 +4,7 @@
 		
 		<div id="total" class="item_count blurb">{{ s.subject.quiz_item_count }}<span>active items</span></div>
 		<div id="pending" class="item_count blurb">{{ s.subject.pending_item_count }}<span>pending items</span></div>
-		 <button class="quiz_items">Manage {{ s.subject.name }} Quiz Items</button>
+		<a href="/edit/{{ s.subject.name }}"> <button class="quiz_items">Manage {{ s.subject.name }} Quiz Items</button></a>
 		
 		
 		

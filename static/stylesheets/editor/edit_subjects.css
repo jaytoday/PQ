@@ -8,6 +8,10 @@
 height:940px;
 }
 
+div#quiz_subjects{
+background: #EDF2F8; width:800px; border: 3px solid #E0E0E0; height:80px; float:left; padding: 0 10px; margin:8px -15px;
+}
+
 div#edit_subjects{
 width:810px;
 height:800px;
@@ -28,7 +32,10 @@ div#edit_subjects div.frame_header h2#subject_selection{
 }
 
 div.subject_options{
-float:right;margin:-10px 10px
+margin:7px 640px;
+position:absolute;
+width:200px;
+z-index:99;
 }
 
 div.subject_thumb_container{
@@ -53,6 +60,27 @@ height:210px;
 width:300px;
 position:absolute;
 }
+
+button.quiz_button{
+position:absolute;
+width:210px;
+margin:85px 0 0 50px;
+filter: alpha(opacity=60);
+-moz-opacity: 0.6;
+-khtml-opacity: 0.6;
+opacity: 0.6;
+}
+
+button.quiz_button span{
+font-size:1.2em;
+letter-spacing:0.06em;
+margin:15px 5px;
+}
+
+button.quiz_button img{
+float:left; margin:18px 0 0 3px
+}
+
 
 .bigsliderImage span.slider{
 	font: 25px Arial, Helvetica, sans-serif;
@@ -387,11 +415,12 @@ margin:0 -26px;
 }
 /* Create New Subject */
 
-div#create_new_subject input{
+div#new_subject input{
 
 font-size:3em;
 padding:5px;
-width:580px;
+margin:10px -10px;
+width:600px;
 
 }
 

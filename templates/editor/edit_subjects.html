@@ -31,57 +31,18 @@
 <h2 id="subject_selection"></h2>
 </div>
 
-
-	<div id="quiz_subjects" style="background: #EDF2F8; width:800px; border: 3px solid #E0E0E0; height:80px; float:left; padding: 0 10px; margin:8px -15px;">
-		<div id="subject_thumb_container"  style="margin: 6px -10px;">
-		{% for s in subjects %} 
-	 
-		{% include "utils/subject_thumb.html" %}
-
-		{% endfor %}		
-
-		</div>
-		<div class="subject_options"><button>Find More Subjects</button><br/>
-<button class="create_new_subject">Create New Subject</button>
+		<div class="subject_options">
+		<button id="find_more_subjects">Find More Subjects</button><br/>
+<button id="create_new_subject">Create New Subject</button>
 </div>
 
-	</div>
+<div id="subjects_container">
 
 
-<div id="subject_frame_container">
-	{% for s in subjects %} 
+{% include "subject_template.html" %} {# Use RefreshSubjects XML-RPC to Refresh this Block #}
 
-	 <div class="subject"  style="display:none;" id="{{ s.subject.tag }}">
-	 
-	 
-	 
-	 
-	 
-	 <div class="top_level" id="{{ s.subject.name }}">
-
-{% include "subject/top_level.html" %}	 
-
-		</div> {# end toplevel #}
-		
-		
-		
-		<div class="member_section">
-		
-		{% if s.is_member %}
-		{% include "subject/member_section.html" %}
-		{% else %}
-		Na na na.  You're not a member. 
-		{% endif %}
-		
-		</div>{# end member section #}
-		
-		
-			</div> {# end subject #}
-	
-	{% endfor %}
 
 </div>
-
 
 
 	</div>
