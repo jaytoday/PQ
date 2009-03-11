@@ -7,20 +7,7 @@
  	this_subject.name = this_subject.find('div.top_level').attr('id');
 
 
-/* Quiz Button */
 
-this_subject.find('button.quiz_button').click(function(){
-		$.getScript("/js/quiz/" + this_subject.name + "?autostart=True"); 
-			// resize overlay to document not window
-		function drawOverlay(){
-		$('div#pq_quiz_overlay').css("height", $(document).height());
-		}
-		$(window).resize(drawOverlay); // whenever window is resized, overlay will be drawn. 
-
-
-	$('div#pq_quiz_overlay').show().bind("displayQuiz", function()
-                                      { $(this).hide();         }) ;
-});
 
  	 
 /* Edit Description (re-use when possible) */
@@ -131,6 +118,22 @@ this_subject.delete_pictures = this_subject.find('div.delete_pictures > div').cl
 var this_frame = $('.subject_frame', this_subject);
 if (this_frame.find('li').length > 1) { $(this).find('li:first').remove();  }
 this_frame.s3Slider({ timeOut: SLIDER_TIMEOUT });
+
+
+/* Initiate Quiz Button */
+
+this_subject.find('button.quiz_button').click(function(){
+		$.getScript("/js/quiz/" + this_subject.name + "?autostart=True"); 
+			// resize overlay to document not window
+		function drawOverlay(){
+		$('div#pq_quiz_overlay').css("height", $(document).height());
+		}
+		$(window).resize(drawOverlay); // whenever window is resized, overlay will be drawn. 
+
+
+	$('div#pq_quiz_overlay').show().bind("displayQuiz", function()
+                                      { $(this).hide();         }) ;
+});
 
 
 }).trigger("initiate_images");

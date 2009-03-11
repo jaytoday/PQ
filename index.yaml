@@ -24,11 +24,26 @@ indexes:
     direction: desc
 
 
+
+- kind: Proficiency
+  properties:
+  - name: name
+  - name: status
+  - name: modified
+    direction: desc
+
+- kind: Proficiency
+  properties:
+  - name: status
+  - name: modified
+    direction: desc
+
 - kind: Proficiency
   properties:
   - name: status
   - name: name
     direction: desc
+
 
 
 - kind: ProficiencyTopic

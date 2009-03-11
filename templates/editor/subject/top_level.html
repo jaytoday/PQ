@@ -22,7 +22,7 @@
 	<div class="limit" style="display:none" id="limit_{{ forloop.counter }}"></div>
 
 {% ifequal s.is_member "admin" %}
-	<div class="footer" >
+	<div class="description_footer" >
 		<button class="edit"><img src="/static/stylesheets/img/utils/purple_next_tiny.png" />Edit Description</button>
 		<button class="save hide" id="{{ s.subject.name }}" style="display:none;"><img src="/static/stylesheets/img/utils/purple_next_tiny.png" />Save Changes</button>
 		 </div>
@@ -63,7 +63,7 @@
 	<div class="limit" style="display:none" id="limit_{{ forloop.counter }}"></div>
 
 {% ifequal s.is_member "admin" %}
-	<div class="footer" >
+	<div class="video_footer" >
 		<button class="change_playlist"><img src="/static/stylesheets/img/utils/purple_next_tiny.png" />Edit Playlist URL</button>
 		<div class="change_playlist hide" style="display:none;">
 		<input type="text" class="playlist" value="http://www.youtube.com/view_play_list?p={{ s.subject.video_html }}">

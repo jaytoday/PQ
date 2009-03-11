@@ -272,9 +272,9 @@ class EditorPost(webapp.RequestHandler):
 	
 		#TEMP
 		# editing subjects
-		if len(self.request.path.split('/subject_img/')) > 1: return self.response.out.write(self.subject_img() )
+		if len(self.request.path.split('/subject_img/')) > 1: return self.response.out.write(self.upload_subject_img() )
 		if self.request.get('action') == 'refresh_subjects': return self.response.out.write( self.refresh_subjects()  ) 		
-		if self.request.get('action') == 'subject_blurb': return self.response.out.write(simplejson.dumps(  self.subject_blurb()  )) 
+		if self.request.get('action') == 'subject_blurb': return self.response.out.write(simplejson.dumps(  self.update_subject_blurb()  )) 
 		if self.request.get('action') == 'change_rights': return self.response.out.write(self.change_rights() ) 
 		if self.request.get('action') == 'add_link': return self.response.out.write(self.add_link() ) 
 		if self.request.get('action') == 'remove_link': return self.response.out.write(self.remove_link() ) 
@@ -308,7 +308,7 @@ class EditorPost(webapp.RequestHandler):
 		template_values = { 'subjects' : get_subjects_for_user(self.session['user'])}
 		return template.render(path, template_values)	
 		
-	def subject_blurb(self):
+	def update_subject_blurb(self):
 	  from model.proficiency import Proficiency
 	  subject_name = self.request.get('subject_name')
 	  this_subject = Proficiency.get_by_key_name(subject_name)
@@ -319,7 +319,7 @@ class EditorPost(webapp.RequestHandler):
 	  db.put(this_subject)
 	  return "OK"
 	  
-	def subject_img(self):
+	def upload_subject_img(self):
 	  subject_name = self.request.path.split('/subject_img/')[1].replace('%20',' ')
 	  from model.proficiency import Proficiency
 	  this_subject = Proficiency.get_by_key_name(subject_name)
@@ -328,7 +328,7 @@ class EditorPost(webapp.RequestHandler):
 	  logging.info('saved new image for subject %s' % (this_subject.name))
 	  from utils.webapp import template
 	  path = tpl_path(EDITOR_PATH +'load_subject_images.html')
-	  template_values = {'s': {"subject": this_subject} }
+	  template_values = {'s': {"subject": this_subject, "is_member": "admin" }} # Only admins can upload photos, for now. 
 	  return template.render(path, template_values)
 		   
 	  
@@ -425,11 +425,17 @@ class EditorPost(webapp.RequestHandler):
 		    logging.warning("user %s attempted to create duplicate subject with name %s" %(self.session['user'], self.request.get('subject_name')) )
 		    return "exists"
 		this_subject = Proficiency(key_name = self.request.get('subject_name'), name = self.request.get('subject_name'))
-		this_membership = SubjectMember(keyname = self.session['user'].unique_identifier + "_" + this_subject.name, user = self.session['user'], subject = this_subject, is_admin = True)
+		from model.user import SubjectMember
+		this_membership = SubjectMember(keyname = self.session['user'].unique_identifier + "_" + this_subject.name, 
+		                                user = self.session['user'], 
+		                                subject = this_subject, 
+		                                status = "public",
+		                                is_admin = True)
+		                                
 		logging.info('user %s created subject %s'% (self.session['user'], this_subject.name) )
 		db.put([this_subject, this_membership])		
 		from utils.webapp import template
-		path = tpl_path(EDITOR_PATH +'subject_template.html')
+		path = tpl_path(EDITOR_PATH +'subject_container.html')
 		from editor.methods import get_subjects_for_user     
 		template_values = { 'subjects' : get_subjects_for_user(self.session['user'])}
 		return template.render(path, template_values)	

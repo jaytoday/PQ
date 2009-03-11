@@ -195,25 +195,36 @@ font-size: .9em;
 
 .blurb .blurb_text.video{ padding: 10px 5px; }
 
-.blurb textarea{
+.blurb textarea.description{
+font-size:0.8em;
+height:195px;
+line-height:1.2em;
+margin:5px 6px;
+padding:10px;
 position:absolute;
-width:220px; 
-margin: 5px 6px;
-font-size: .7em;
-line-height: 1.2em;
-padding: 10px 20px;
-height:155px; 
 text-align:center;
+width:250px;
 }
 
 .blurb div.limit{
     position:absolute;
-    margin: 190px 0 0 15px;
+    margin: 230px 0 0 15px;
     font-size: .6em;
 }
-div.footer{
+div.video_footer{
     position:absolute; margin:199px 0 0 60px;
 }
+
+div.description_footer{
+    position:absolute; margin:243px 0 0 60px;
+}
+
+
+div.description_footer button.edit, button.change_playlist{
+    width:160px;
+}
+
+
 .blurb div.footer button img{
     margin: 0pt 10px 0pt 0px;
 }
