@@ -43,6 +43,8 @@ class Fixture():
 		try:
 			fixture_subject = Setting.get_by_key_name('fixture_subject').status
 			from model.proficiency import Proficiency
+			this_subject = Proficiency.get_by_key_name(fixture_subject)
+			assert this_subject is not None
 			return Proficiency.get_by_key_name(fixture_subject)
 		except:
 			DEFAULT_SUBJECT = "Smart Grid"

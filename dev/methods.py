@@ -8,14 +8,14 @@ from utils import simplejson
 from employer.methods import DataMethods as emp_data
 from google.appengine.api import images
 from .model.user import ProfilePicture	
-from .model.proficiency import SubjectImage
+from .model.proficiency import SubjectImage, Link
 from model.employer import Employer
 from model.account import MailingList
 from google.appengine.api import memcache
 from model.dev import Setting
 
-DATA_TYPES = {"proficiencies": Proficiency.all(), 'proficiency_topics': ProficiencyTopic.all(), 'content_pages': ContentPage.all(), 'raw_items' : RawQuizItem.all(),
-               'quiz_items': QuizItem.all(),
+DATA_TYPES = {"proficiencies": Proficiency.all(), 'proficiency_topics': ProficiencyTopic.all(), 'links': Link.all(), 'content_pages': ContentPage.all(), 'raw_items' : RawQuizItem.all(),
+               'quiz_items': QuizItem.all(), 
                'mailing_list': MailingList.all(), 'employers': Employer.all(), 'settings': Setting.all()}
 
 LOAD_INCREMENT = 10 # How many entities are loaded into datastore at a time
@@ -118,6 +118,9 @@ def restore_backup():
 
 # Display data in JSON format, for backups
 def dump_data(data_type):
+	query = DATA_TYPES[data_type]
+	objects = query.fetch(1000)
+	return encode(objects)
 	try:
 		query = DATA_TYPES[data_type]
 		objects = query.fetch(1000)
@@ -291,7 +294,7 @@ class DataMethods():
 				else: save_entity = Proficiency(key_name=entity['name'], name = entity['name'])
 				save_entity.name = entity['name']
 				save_entity.status = entity.get("status", "")
-				save_entity.link_html = entity.get("link_html", "")
+				save_entity.links = entity.get("links", [])
 				save_entity.video_html = entity.get("video_html", "") 
 				save_entity.status = entity.get('status', None)
 				save_entity.blurb = entity.get('blurb', None)
@@ -313,7 +316,12 @@ class DataMethods():
 			if data_type == 'content_pages':
 				 this_proficiency = Proficiency.get_by_key_name(entity['proficiency']['name'])
 				 save_entity = ContentPage(key_name=entity['url'], url = entity['url'], proficiency = this_proficiency) 
-				 
+
+			if data_type == 'links':
+				 this_subject = Proficiency.get_by_key_name(entity['subject']['name'])
+				 this_link = Link.get_by_key_name(entity['subject']['name'] + "_" + entity['url'])
+				 if not this_link: save_entity = Link(key_name=entity['subject']['name'] + "_" + entity['url'], title = entity['title'], url = entity['url'], subject = this_subject) 
+				 				 
 			if data_type == 'raw_items':
 				this_url = ContentPage.get_by_key_name(entity['page']['url'])
 				save_entity = RawQuizItem(#key_name?

@@ -75,7 +75,9 @@
  
  <div id="links" class="study_header links_header">Links</div>
  <div class="study_content study_links no_drag">
-{{ p.link_html }}
+{% for link in p.links %}
+<li><a target="_blank" href="{{ link.url }}">{{ link.title }}</a> 
+{% endfor %}
 </div>
 <div id="videos" class="study_header videos_header">Videos</div> 
  <div class="study_content study_videos no_drag" style="display:none;">

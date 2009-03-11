@@ -5,8 +5,8 @@ ACTION_THRESHOLD = 20
 def load_action_feed():
 	action_feed = []
 	from model.account import Sponsorship, Award
-	recent_sponsorships = Sponsorship.all().order('date').fetch(ACTION_THRESHOLD)
-	recent_awards = Award.all().order('date').fetch(ACTION_THRESHOLD)
+	recent_sponsorships = Sponsorship.all().order('-date').fetch(ACTION_THRESHOLD)
+	recent_awards = Award.all().order('-date').fetch(ACTION_THRESHOLD)
 	action_feed.extend(recent_sponsorships)
 	action_feed.extend(recent_awards)
 	from operator import attrgetter

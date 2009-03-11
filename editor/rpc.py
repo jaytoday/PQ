@@ -372,7 +372,8 @@ class EditorPost(webapp.RequestHandler):
 		from model.proficiency import Proficiency, Link 
 		subject_name = self.request.get('subject_name')
 		this_subject = Proficiency.get_by_key_name(subject_name) 
-		try: new_link = Link( url = self.request.get('link_url'), 
+		try: new_link = Link(key_name = subject_name + "_" + self.request.get('link_url'),
+		                  url = self.request.get('link_url'), 
 		                 title = self.request.get('link_title'), 
 		                 subject = this_subject )
 		except BadValueError: return "error"
@@ -446,7 +447,7 @@ class EditorPost(webapp.RequestHandler):
 		db.put([this_membership])		
 		from utils.webapp import template
 		path = tpl_path(EDITOR_PATH +'load_member_section.html')
-		template_values = {'s': {"subject": this_subject, "is_member": "admin" }} # Only admins can edit links, for now. 
+		template_values = {'s': {"subject": this_subject, "is_member": "contributor" }} # Only admins can edit links, for now. 
 		return template.render(path, template_values)	
 														
 

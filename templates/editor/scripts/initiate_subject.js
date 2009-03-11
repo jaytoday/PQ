@@ -46,7 +46,7 @@ $('div.blurb_text', this_subject).bind('dblclick', function() { $(this).parent()
 	// textarea character count for aboutme section
 	 	this_subject.find('textarea.description').keyup(function(){
 	 	    var limit_id = $(this).parent().find('.limit').show().attr('id');
-	limitChars($(this).attr('id'), 250, limit_id);
+	limitChars($(this).attr('id'), 450, limit_id);
 });
 /* End Description */
 
