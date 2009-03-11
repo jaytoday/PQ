@@ -281,7 +281,9 @@ class EditorPost(webapp.RequestHandler):
 		if self.request.get('action') == 'change_video': return self.response.out.write(self.change_video() )
 		if self.request.get('action') == 'delete_subject_image': return self.response.out.write(self.delete_subject_image() ) 						   
 		if self.request.get('action') == 'create_new_subject': return self.response.out.write(self.create_new_subject() ) 	
+		if self.request.get('action') == 'join_subject': return self.response.out.write(self.join_subject() ) 	
 		
+				
 		# editing quiz items
 		if self.request.get('action') == "NewTopic": return self.response.out.write( self.NewTopic() )
 		if self.request.get('action') == "LoadAnswers": return self.response.out.write( self.LoadAnswers() )
@@ -301,7 +303,7 @@ class EditorPost(webapp.RequestHandler):
 		from utils.appengine_utilities.sessions import Session
 		self.session = Session()	
 		from utils.webapp import template
-		path = tpl_path(EDITOR_PATH +'subject_template.html')
+		path = tpl_path(EDITOR_PATH +'subject_container.html')
 		from editor.methods import get_subjects_for_user     
 		template_values = { 'subjects' : get_subjects_for_user(self.session['user'])}
 		return template.render(path, template_values)	
@@ -416,14 +418,13 @@ class EditorPost(webapp.RequestHandler):
 	def create_new_subject(self):
 		from utils.appengine_utilities.sessions import Session
 		self.session = Session()	
-		from model.proficiency import Proficiency
-		from model.user import SubjectMember
+		from model.proficiency import Proficiency		
 		existing_subject = Proficiency.gql("WHERE name = :1", self.request.get('subject_name') ).get()
 		if existing_subject is not None: 
 		    logging.warning("user %s attempted to create duplicate subject with name %s" %(self.session['user'], self.request.get('subject_name')) )
 		    return "exists"
 		this_subject = Proficiency(key_name = self.request.get('subject_name'), name = self.request.get('subject_name'))
-		this_membership = SubjectMember(user = self.session['user'], subject = this_subject, is_admin = True)
+		this_membership = SubjectMember(keyname = self.session['user'].unique_identifier + "_" + this_subject.name, user = self.session['user'], subject = this_subject, is_admin = True)
 		logging.info('user %s created subject %s'% (self.session['user'], this_subject.name) )
 		db.put([this_subject, this_membership])		
 		from utils.webapp import template
@@ -432,7 +433,22 @@ class EditorPost(webapp.RequestHandler):
 		template_values = { 'subjects' : get_subjects_for_user(self.session['user'])}
 		return template.render(path, template_values)	
 		
-												
+
+
+	def join_subject(self):
+		from utils.appengine_utilities.sessions import Session
+		self.session = Session()	
+		from model.proficiency import Proficiency	
+		this_subject = Proficiency.gql("WHERE name = :1", self.request.get('subject_name') ).get()
+		from model.user import SubjectMember
+		this_membership = SubjectMember(keyname = self.session['user'].unique_identifier + "_" + this_subject.name, user = self.session['user'], subject = this_subject, is_admin = False)
+		logging.info('user %s joined subject %s'% (self.session['user'], this_subject.name) )
+		db.put([this_membership])		
+		from utils.webapp import template
+		path = tpl_path(EDITOR_PATH +'load_member_section.html')
+		template_values = {'s': {"subject": this_subject, "is_member": "admin" }} # Only admins can edit links, for now. 
+		return template.render(path, template_values)	
+														
 
 	######################
 

@@ -4,7 +4,7 @@
 				<button class='quiz_button'><span class='continue_button'>Take This Quiz</span> <img src='{{ http_host }}/static/stylesheets/img/utils/purple_next_tiny.png'/></button>
 
 				
-				
+				{% ifequal s.is_member "admin" %}
 				<div class="delete_pictures">
 				 {% for img in s.subject.images %}
 				 	<div class="proficiency_pic selection_box" id="{{ img.key }}">
@@ -13,6 +13,7 @@
 				 	</div>
 				  {% endfor %}
 			</div>
+			{% endifequal %}
 			
 				<div class="mini_loading" style="display:none;"><img width="11" height="11" src="/static/stylesheets/img/utils/mini_loader.gif"/><span>Loading...</span></div>
 				

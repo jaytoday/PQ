@@ -122,7 +122,6 @@ buttons: {
 
 		}).end()
 		.find('button:first').addClass('clicked');
-		console.log($(this).find('button:first'));
 		
 },
 "Sponsers": function() { 
@@ -229,6 +228,14 @@ $('a#take_a_quiz').click(function(){
 	$('div#pq_quiz_overlay').show().bind("displayQuiz", function()
                                       { $(this).hide();         }) ;
 });
+
+// Hide Flash Objects When Dialog/Widget Is Open
+
+$(".ui-dialog-content").bind("dialogopen", function(){ $('.main').find('object').hide(); });
+
+$("div.ui-dialog-content").bind("dialogclose", function(){ $('.main').find('object').show(); });
+
+
 
 
 //end ready()

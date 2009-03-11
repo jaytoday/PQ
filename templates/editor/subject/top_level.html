@@ -2,7 +2,9 @@
 	   {% include "subject/subject_images.html" %}
 	 </div>
 
-			<div class="upload_picture" id="{{ s.subject.name }}"><button id="button_{{ s.subject.name }}">Upload a Picture</button></div>
+		{% ifequal s.is_member "admin" %}
+		<div class="upload_picture" id="{{ s.subject.name }}"><button id="button_{{ s.subject.name }}">Upload a Picture</button></div>
+		{% endifequal %}
 
 
 	<ul class="subject_nav">
@@ -16,15 +18,17 @@
 	<div class="blurb_text" >
 	{{ s.subject.blurb|escape }}
 	</div>
-	<textarea class="description" style="display:none" wrap="SOFT" maxlength="450" cols="15" rows="16" name="description_{{ forloop.counter }}" id="description_text_{{ forloop.counter }}"></textarea>
+	<textarea class="description" style="display:none" wrap="SOFT" maxlength="250" cols="15" rows="16" name="description_{{ forloop.counter }}" id="description_text_{{ forloop.counter }}"></textarea>
 	<div class="limit" style="display:none" id="limit_{{ forloop.counter }}"></div>
 
+{% ifequal s.is_member "admin" %}
 	<div class="footer" >
 		<button class="edit"><img src="/static/stylesheets/img/utils/purple_next_tiny.png" />Edit Description</button>
 		<button class="save hide" id="{{ s.subject.name }}" style="display:none;"><img src="/static/stylesheets/img/utils/purple_next_tiny.png" />Save Changes</button>
 		 </div>
+{% endifequal %}
 	</div> {# end description blurb #}
-
+	
 
  <div id="links_{{ forloop.counter }}" class="blurb middle" >
  
@@ -34,7 +38,7 @@
  
  </div>
 
-
+{% ifequal s.is_member "admin" %}
 <div class="link_footer" >
 		<button class="add_link"><img src="/static/stylesheets/img/ui/add.gif" />Add New Link</button>
 		<div class="new_link hide">
@@ -43,7 +47,7 @@
 		<button class="save_link" ><img src="/static/stylesheets/img/utils/purple_next_tiny.png" />OK</button>
 		 </div>
 </div>
-		 
+{% endifequal %} 
 
 </div> {# end links blurb #}
 
@@ -55,7 +59,7 @@
 	 
 	</div>
 	
-	<textarea style="display:none;" wrap=SOFT maxlength="450" cols="15" rows="16" name="description_{{ forloop.counter }}" id="description_{{ forloop.counter }}"></textarea>
+	<textarea style="display:none;" wrap=SOFT maxlength="250" cols="15" rows="16" name="description_{{ forloop.counter }}" id="description_{{ forloop.counter }}"></textarea>
 	<div class="limit" style="display:none" id="limit_{{ forloop.counter }}"></div>
 
 	<div class="footer" >
@@ -73,6 +77,8 @@
  <div class="subject_stats">
  <div class="subject_stat popularity"><h3>Popularity</h3>  <div class="statometer" ><img src="http://chart.apis.google.com/chart?chs=85x55&cht=gom&chd=t:{{ s.subject.popularity }}&chco=DDDDDD,00ea00&chf=bg,s,DDDDDD"/> </div> </div>
  <div class="subject_stat difficulty"><h3>Difficulty</h3>  <div class="statometer" ><img src="http://chart.apis.google.com/chart?chs=85x55&cht=gom&chd=t:{{ s.subject.difficulty }}&chco=DDDDDD,00ea00&chf=bg,s,DDDDDD"/> </div></div>
+ 
+ {# Maybe this could be a little feed module of people who have most recently taken this quiz? #}
  </div>  </div>
  
  

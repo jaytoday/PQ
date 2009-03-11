@@ -24,6 +24,9 @@ $(window).resize(drawOverlay); // whenever window is resized, overlay will be dr
 $("#pq_wrapper")
 .bind("quizstarting", function()
 {
+	
+$('object').hide().addClass('hidden'); 
+$("div.ui-dialog-content").bind("dialogclose", function(){ $('.main').find('object').show(); });
 
 	// if quiz is loaded from widget, show loading icon on widget. otherwise, immediately show overlay
 	if(!$.plopquiz.settings.autoStart) $.plopquiz.widget_wrapper.find('button').hide().end().find('.widget_load').show();
@@ -49,6 +52,7 @@ if ( $('#quiz_answers .hover_answer', $.pq_wrapper).length > 0 ){ onAnswerHover(
 .bind("quizclosing", function()
 {
 	$(this).hide();
+	$('object.hidden').removeClass('hidden').show(); 
 	$('#widget_wrapper').fadeIn().find('button').css('display', 'inline').end().find('.widget_load').hide();
 	// wipe quiz session. TODO: this should handle skipping instructions; 
 	$.plopquiz.currentItem = 0;

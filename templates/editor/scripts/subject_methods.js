@@ -73,7 +73,7 @@ function limitChars(textid, limit, infodiv)
 }
 
 
-function SaveBlurb(blurb_text, this_subject )
+function SaveBlurb(blurb_text, this_subject)
 {
 
 
@@ -280,6 +280,26 @@ var new_subject_dialog = $("div#new_subject");
     } 
      
 }).dialog("open").show()
-  .find('input').val(DEFAULT_NEW_SUBJECT_TEXT).preserveDefaultText(DEFAULT_NEW_SUBJECT_TEXT);  // show() is to show hidden dialog 
+  .find('input').val(DEFAULT_NEW_SUBJECT_TEXT).preserveDefaultText(DEFAULT_NEW_SUBJECT_TEXT).focus();  // show() is to show hidden dialog 
 
+}
+
+
+
+function JoinSubject(this_subject)
+{
+
+
+	$.ajax({
+		type: "POST", 
+		url: '/editor/rpc/post',
+		datatype: "json",
+		data:
+			{
+					action: "join_subject",
+					subject_name: this_subject.name
+			},
+		error: function() { AjaxError(); },
+		success: function(response) { this_subject.find('div.member_section').html(response); }
+	});  
 }

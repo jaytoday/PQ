@@ -430,3 +430,18 @@ margin-left:200px;
 }
 
 
+/* Join Subject */
+
+div.join_subject{
+
+margin: 320px 0; text-align: center; height: 350px; width: 800px; position: absolute;
+}
+
+
+div.join_subject button.join{
+margin: 80px 80px 20px; width: 600px; font-size: 2.2em; height: 160px;
+}
+
+div.join_subject div.note{
+height: 60px;
+}

@@ -46,7 +46,7 @@ $('div.blurb_text', this_subject).bind('dblclick', function() { $(this).parent()
 	// textarea character count for aboutme section
 	 	this_subject.find('textarea.description').keyup(function(){
 	 	    var limit_id = $(this).parent().find('.limit').show().attr('id');
-	limitChars($(this).attr('id'), 450, limit_id);
+	limitChars($(this).attr('id'), 250, limit_id);
 });
 /* End Description */
 
@@ -136,8 +136,15 @@ this_frame.s3Slider({ timeOut: SLIDER_TIMEOUT });
 }).trigger("initiate_images");
 
 
-
-
+//Join New Subjects
+$('button.join', this_subject).click(function(){ 
+	if ($(this).data('busy') == true) return false;
+	 $(this).data('busy', true);
+	 return JoinSubject(this_subject);	 
+	 });
+	 
+	 
+	 
 $('ul.subject_nav', this_subject).tabs();
 
 $('div.footer', this_subject).find('button.save').hide();
@@ -147,6 +154,7 @@ SetupAdminRights(this_subject);
 
 
 $('.hide', this_subject).hide();
+
 
 
 }); }); // end subject initiate
