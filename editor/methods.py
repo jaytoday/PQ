@@ -41,7 +41,7 @@ def get_subjects_for_user(this_user, offset=0): # Can this be refactored?
 	memberships = this_user.member_subjects.fetch(1000) 
 	member_subjects = []
 	for m in memberships: member_subjects.append(m.subject.name)
-	these_subjects = Proficiency.gql("WHERE name IN  :1 AND status != 'private' ORDER BY status, modified DESC", member_subjects).fetch(1000)[offset:offset+5] 
+	these_subjects = Proficiency.gql("WHERE name IN  :1 AND status = 'public' ORDER BY status, modified DESC", member_subjects).fetch(1000)[offset:offset+5] 
 	# In case there aren't enough member subjects, add more
 	if len(these_subjects) < MIN_SUBJECT_LENGTH: these_subjects = extra_subjects(member_subjects, these_subjects)
 	subject_list = []

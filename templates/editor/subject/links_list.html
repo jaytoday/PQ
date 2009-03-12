@@ -1,9 +1,9 @@
 
 	{% for link in s.subject.links %} 
 	<li><a target="_blank" href="{{ link.url }}">{{ link.title }}</a> 
-	{% ifequal s.is_member "admin" %}{% endifequal %}
+	{% ifequal s.is_member "admin" %}
 	<button id="{{ link.key }}" class="remove"><img  src="/static/stylesheets/img/ui/remove.gif"/></button>
-	{% ifequal s.is_member "admin" %}{% endifequal %}
+	{% endifequal %}
 	</li> 
     {% endfor %} 
 

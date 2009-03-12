@@ -1,5 +1,4 @@
 
-
 #pqdiv
 {
         background:     white;
@@ -37,10 +36,10 @@
 background-color: #333;
 height: 100%;
 left: 0;
-opacity: .8 !important;
-filter: alpha(opacity=80) !important;
--moz-opacity: 0.8 !important;
--khtml-opacity: 0.8 !important;
+opacity: .9 !important;
+filter: alpha(opacity=90) !important;
+-moz-opacity: 0.9 !important;
+-khtml-opacity: 0.9 !important;
 position:absolute;
 top: 0;
 width: 100%;
@@ -74,44 +73,60 @@ line-height:1.4em;
 /* Quiz Content Styles */
 
 .quiz_wrap .intro_content{
-height:430px;
+height:510px;
 width:700px;
 }
 
 .quiz_wrap .instructions_content{
-height: 370px;
+height: 440px;
+width:355px;
 }
 
 .quiz_wrap .instructions2_content{
-height: 394px;
+height: 460px;
 width:369px;
 }
 
 .quiz_wrap .begin_quiz_content{
-height:365px;
+height:385px;
+width:350px;
 }
 
 .quiz_wrap .quiz_item_content{
-height: 335px;
+height: 390px;
 width:515px;
 }
 
 .quiz_wrap .quiz_complete_content{
 width: 395px;
+height:380px;
 }
 
 
+.quiz_wrap #quiz_answers{
+position:absolute;
+}
+
 .quiz_wrap .instructions_answers{
-margin:0 0 0 25px;
+    margin:-54px 0 0 25px;
+}
+
+.quiz_wrap .instructions2_answers{
+    margin:-55px 0 0;  
 }
 
 .quiz_wrap .intro_answers{
-height:0;
-margin:20px -10px 50px;
+    height:30px;
+    margin:-35px 10px 0;
+    width:680px;
 }
 
 .quiz_wrap .begin_quiz_answers{
 margin: -10px 0 0 -10px;
+}
+
+.quiz_wrap .quiz_item_answers{
+margin: -52px 0 0 0;
 }
 
 .quiz_wrap .quiz_complete_answers{
@@ -267,12 +282,11 @@ width:80px;
 /* display:none; */
 }
 
-
 .quiz_wrap .timer_wrapper{
         background:#EEEAF8 none repeat scroll 0 0 !important;
         display:        none;
         height:10px;
-        margin:-10px 0 10px;
+        float:left;
         padding: 4px;
         -moz-border-bottom-colors:  #777 #888 #999 #aaa #bbb #ccc;
         -moz-border-top-colors:     #777 #888 #999 #aaa #bbb #ccc;
@@ -280,6 +294,17 @@ width:80px;
         -moz-border-right-colors:   #777 #888 #999 #aaa #bbb #ccc;
         -moz-border-radius: 15px;
         -webkit-border-radius: 15px;
+}
+
+
+.quiz_wrap .timer_wrapper#instructions2{
+width: 360px;
+margin:-75px 0 10px;
+}
+
+.quiz_wrap .timer_wrapper#quiz_item{
+width: 500px;
+margin: -71px 0 10px;
 }
 
 .quiz_wrap .timer_inner
@@ -291,6 +316,7 @@ width:80px;
         -moz-border-radius: 15px;
         -webkit-border-radius: 15px;
 }
+
 
 .quiz_wrap div#quiz_content div#skiptext {
         font-size:12px;
@@ -1574,10 +1600,11 @@ color: #444 !important;
 }
 
 .quiz_wrap button.intro_quiz{
-bottom:2px !important;
-left:5px !important;
+bottom:-1px !important;
+left:2px !important;
 position:absolute !important;
-width: 470px !important;
+width: 450px !important;
+height: 70px !important;
 }
 
 .quiz_wrap button.take_test{
@@ -1587,21 +1614,36 @@ position:absolute !important;
 }
 
 .quiz_wrap button.begin_quiz{
-float:left;
-margin:-50px 44px !important;
-height: 64px;
+position:absolute !important;
+margin:-66px 59px !important;
+height: 70px;
+width: 250px;
 }
 
 .quiz_wrap button.quiz_complete{
-margin:-140px 0 0 56px !important;
+margin:-143px 0 0 78px !important;
 position:absolute !important;
+padding:0 0 0 20px !important;
+height:70px;
 }
 
 .quiz_wrap .continue_button{
 float:right; font-weight:bold; 
 }
 
-.quiz_wrap button#confirm img{ float: left; }
+.quiz_wrap button#confirm img{
+left:4px;
+position:absolute;
+top:7px;
+}
+
+
+.quiz_wrap button#confirm.intro_quiz img{
+left:0;
+position:absolute;
+top:-6px;
+}
+
 
 /* DISABLED FOR TESTING NEW BUTTON
 .quiz_wrap span.intro_button{
@@ -1611,7 +1653,7 @@ margin:16px 2px 0 5px !important;
 .quiz_wrap button span.intro_button{
 display:block;
 font-size:1.8em;
-margin:11px 0 0 45px !important;
+margin:-13px 0 0 4px !important;
 position:absolute;
 text-align:center;
 width:420px;
@@ -1620,7 +1662,7 @@ width:420px;
 .quiz_wrap button span.begin_button{
 float:right;
 font-size:1.8em;
-margin:11px 0 0 5px !important;
+margin:1px 4px 0 0 !important;
 text-align:center;
 width:200px;
 }
@@ -1637,7 +1679,7 @@ position:absolute;
 
 .quiz_wrap div.take_test{
 bottom:0px;
-left:480px;
+left:460px;
 position:absolute;
 }
 
