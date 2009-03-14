@@ -15,7 +15,7 @@ jQuery.fn.extend({
 			if($(this).val() == replaceValue)
 				$(this).val(defaultValue);
 		});
-		return this;
+		return $(this).val(defaultValue);
 	}
 });
 

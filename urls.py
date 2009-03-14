@@ -86,6 +86,16 @@ def url_routes(map):
 	map.connect('debug', controller = 'dev.views:Debug')
 	
 	map.connect('headers', controller = 'dev.headers:RequestHandler')									
+							
+
+
+	# Quiz the Bill
+	map.connect('quiz_the_bill', controller = 'quiz_the_bill.views:FrontPage')
+	map.connect('quiz_the_bill/stats', controller = 'quiz_the_bill.views:UpdateStats')
+	map.connect('bill', controller = 'quiz_the_bill.views:RenderBill')
+	map.connect('redirect', controller = 'quiz_the_bill.views:Redirect')	
+								
+							
 																														 
 	#Utils
 	map.connect('image/*img', controller = 'profiles.views:Image')

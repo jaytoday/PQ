@@ -310,7 +310,7 @@ margin: -71px 0 10px;
 .quiz_wrap .timer_inner
 {
        /* background-color:	#8a41c6 !important; */
-       background: url(/static/stylesheets/img/quiztaker/timer.png);
+       background: transparent url(/static/stylesheets/img/quiztaker/timer.png) repeat-y scroll 0 0;
         height:	100%;
         position:	relative;
         width:	100%;
@@ -318,6 +318,8 @@ margin: -71px 0 10px;
         -webkit-border-radius: 15px;
 }
 
+
+.quiz_wrap .timer_wrapper#instructions2 .timer_inner { background-position: -140px 0; }
 
 .quiz_wrap div#quiz_content div#skiptext {
         font-size:12px;

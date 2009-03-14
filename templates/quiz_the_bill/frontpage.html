@@ -1,0 +1,129 @@
+{% extends "../base.html" %}
+{% block title %}
+#QuiztheBill
+{% endblock %}
+
+{% block head %}
+
+<style type="text/css"> 
+{% include "../../static/stylesheets/utils/form.css" %}
+{% include "../../static/stylesheets/quiz_the_bill/styles.css" %}
+</style> 
+
+
+ 
+ <script type="text/javascript"> 
+
+DEFAULT_EMAIL_VAL = "Enter your E-mail Address";
+ 
+ $(function(){
+ 	
+$('div#updates').find('input').preserveDefaultText(DEFAULT_EMAIL_VAL);
+
+$('div.bill').hover(function(){ 	
+	$(this).css({"background-color":"#CCCCCC","border-color":"#CCCCCC"});
+	$(this).find('div').css({"color":"#000080"});
+	},function(){
+	$(this).css({"background-color":"#DDDDDD","border-color":"#DDDDDD"});
+	$(this).find('div').css({"color":"#000040"});
+});
+
+
+
+ 	});
+ 	
+ 	
+  
+   </script>
+{% endblock %}
+
+
+{% block main %}
+
+<div id="header">
+<h2>#QuiztheBill</h2>
+</div>
+<div id="sub_header">Because Congress Needs Help With Their Homework</div>
+
+<div class="frame_box panel" id="intro">
+
+	<p>Do you want elected officials and citizens to have a chance to read and understand legislation before it's passed?</p>
+
+	<p>And you've already signed the <a href="http://www.readthebill.org">ReadtheBill.org</a> petition for a 72 hour online rule?</p>
+	{# <div style="height:18px;"></div> #}
+	<p>Help Congress (and the rest of us) by contributing quiz items about pending legislation.</p>
+	<p style="font-size:38px;">Click any of the bills below to start making quiz material.</p>
+	
+</div>
+
+
+
+<div class="info_note panel" id="updates">
+
+Get Updates
+
+<input type="text"/>
+
+	</div>
+
+
+<div class="panel" id="bills">
+{% for bill in bills %}
+
+<div class="bill">
+<div class="title">{{ bill.title }}</div>
+
+<div class="widget">
+<script type="text/javascript">
+oc_host_url = "http://www.opencongress.org/";
+oc_bill_id = "{{ bill.id }}";
+oc_frame_height = "119";
+oc_bgcolor = "CCCCCC";
+oc_textcolor = "333333";
+oc_bordercolor = "CCCCCC";
+</script>
+<script type="text/javascript" >
+
+var fHeight = parseInt(window.oc_frame_height); 
+if (window.navigator.userAgent.indexOf("MSIE")) {
+	fHeight = fHeight + 7;
+}
+
+
+
+return false;
+
+document.write('<iframe id="{{ bill.id }}" name="oc_bill_status_frame" width="250" height="' 
+               + fHeight + '" scrolling="NO" frameborder="0" style="border-style: solid; border-width: 1px; border-color: #' 
+               + window.bordercolor + '" allowtransparency="true" hspace="0" vspace="0" marginheight="0" marginwidth="0" src="' 
+               + window.oc_host_url + 'tools/bill_status_panel?bg_color=' + window.oc_bgcolor + '&textcolor=' 
+               + window.oc_textcolor + '&bill_id=' + window.oc_bill_id + '"></iframe>');
+
+
+$(function(){
+	$('iframe#{{ bill.id }}').load(function(){ console.log($(this).find('html')); $(this).find('div#title').remove(); });
+});
+</script>
+
+</div>
+
+
+</div>
+
+{% endfor %}
+</div>
+
+
+{% endblock %}
+
+
+{% comment %}
+
+
+
+{# Buttons and Bling #}
+<a href="http://www.opencongress.org"><img src="http://www.opencongress.org/images/logo_button_120px.gif" alt="OpenCongress.org" /></a> <a href="http://www.opencongress.org"><img src="http://www.opencongress.org/images/logo_button_80px.gif" alt="OpenCongress.org" /></a>
+
+
+
+{% endcomment %}

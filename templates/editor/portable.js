@@ -143,7 +143,7 @@ var runCode = function(){
     // TODO: This also gets called on DBLClick, so we lookup answers 
     // when turning the text into a textbox. Needs to be fixed
     select('statement').mouseup(function(){
-        var answer = get_selection();
+        var answer = CmdUtils.getSelection();
         if (answer.length < 1) 
             return false;
         select('correct_answer').text(answer);
@@ -263,6 +263,8 @@ var runCode = function(){
         }
         // tags
         var tags = select('tags').find('input').text();
+        // location of current page
+        var this_url = CmdUtils.getWindow().location.href;
         
         // send quiz item to server
         jQuery(this).text("Sending...").attr('disabled', true);

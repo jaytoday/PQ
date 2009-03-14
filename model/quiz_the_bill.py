@@ -1,0 +1,13 @@
+from google.appengine.ext import db
+
+class Bill(db.Model): 
+    id = db.StringProperty(required=True)
+    title = db.StringProperty(required=True)
+    rank = db.IntegerProperty(required=False)
+    introduction_date = db.StringProperty(required=False)
+    status = db.StringProperty(required=False)    
+    next_step = db.StringProperty(required=False)   
+    latest_action = db.StringProperty(required=False)   
+    sponsor = db.StringProperty(required=False)   
+    #API data? sponsors, etc. 
+

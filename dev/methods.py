@@ -184,7 +184,6 @@ class Build():
 				try: image_file = open(p_path + str(n) + ".png")
 				except: continue
 				image = image_file.read()
-				"""
 				small_image = images.resize(image, 120, 80)
 				large_image = images.resize(image, 360, 240)
 				new_image = SubjectImage(key_name = str(p.name + "_" + str(n)), #unique keyname
@@ -192,7 +191,6 @@ class Build():
 				                         large_image = large_image,
 				                         proficiency = p
 									     )
-				"""
 				save_images.append(p.new_image(image))
 				all_images.append(new_image)
 			db.put(save_images)
@@ -294,7 +292,8 @@ class DataMethods():
 				else: save_entity = Proficiency(key_name=entity['name'], name = entity['name'])
 				save_entity.name = entity['name']
 				save_entity.status = entity.get("status", "")
-				save_entity.links = entity.get("links", [])
+				these_links = entity.get("links", [])
+				if len(these_links) > 0: save_entity.links = these_links
 				save_entity.video_html = entity.get("video_html", "") 
 				save_entity.status = entity.get('status', None)
 				save_entity.blurb = entity.get('blurb', None)

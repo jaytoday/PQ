@@ -19,11 +19,20 @@ CmdUtils.CreateCommand({
     },
     
     execute: function(statement){
-        var statement = CmdUtils.getSelection() || statement.text;
+
+        /*
+         *
+         * Setup Variables - Abstract differences between ubiquity and portable editor
+         *
+         */       
+
+        var this_url = CmdUtils.getWindow().location.href;      
+        var get_selection = function(){ return CmdUtils.getSelection(); };
+        var statement = get_selection() || statement.text;
         var doc = CmdUtils.getDocument();
         var serverUrl = "http://localhost:8080";
         
-        var id = "ubiquity-injected-data";
+        var id = "pq-injected-data";
         
         jQuery.ajax({
             type: "GET",
@@ -46,3 +55,4 @@ CmdUtils.CreateCommand({
         });
     }
 });
+
