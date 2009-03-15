@@ -177,3 +177,6 @@ height: 22px !important; margin: -33px 5px !important; font-size:.8em !important
 -moz-border-radius:5px !important;	background-color:#EBCFEB !important;	
 border:2px solid #FF7F81 !important;padding:5px !important; 
 }
+
+
+.hide { display: none; }

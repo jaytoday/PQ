@@ -495,7 +495,8 @@ class EditorPost(webapp.RequestHandler):
 		from utils.appengine_utilities.sessions import Session
 		session = Session()
 		if len( self.request.get('item_key') ) < 1:
-			this_item = QuizItem(pending_proficiency = this_subject, author=session['user'])
+			this_item = QuizItem(pending_proficiency = this_subject)
+			if session['user']: this_item.author= session['user']
 		else: 
 			this_item = QuizItem.get(self.request.get('item_key'))         	
 		if self.request.get('item_status') == "approved":
@@ -510,8 +511,11 @@ class EditorPost(webapp.RequestHandler):
 		this_item.index = self.request.get('correct_answer')
 		this_item.answers = self.request.get('answers').split(",") 
 		this_item.content = self.request.get('item_text')
-		db.put( [ this_subject, this_item, session['user'] ] )
+		save = [ this_subject, this_item]
+		if session['user']: save.append(session['user'])
+		db.put( save )
 		logging.info('saving new quiz item %s with subject %s and index %s' % (this_item.__dict__, self.request.get('subject_name'), self.request.get('correct_answer') ))
+		if self.request.get('ubiquity'): return "OK"
 		from utils.webapp import template
 		from utils.utils import tpl_path        
 		from editor.methods import get_membership, get_user_items		

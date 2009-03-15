@@ -114,22 +114,36 @@ var runCode = function(){
         initText();
     });
     
+    // TODO: This should be local answer service 
     var lookupAlternativeAnswers = function(answer, callback){
-        var lookupUrl = "http://www.freebase.com/api/service/search?limit=6&query=" + encodeURI(answer);
-        jQuery.getJSON(lookupUrl, function(data){
-            var alternatives = new Array();
-            if(!data.result) {
-            	alert(data.messages.message);
-            	return;
-            }
-            for (var result in data.result) {
-                var suggestion = data.result[result].name;
-                if (suggestion.toLowerCase() == answer.toLowerCase()) 
-                    continue;
-                alternatives.push(suggestion);
-            }
-            callback.call(this, alternatives);
-        });
+        var lookupUrl = "http://www.freebase.com/api/service/search";
+        
+			   jQuery.ajax({
+			type: "GET",
+			url:  lookupUrl,
+			dataType: "json",
+			data:
+			{		
+				limit: 6,
+				query: encodeURI(answer)
+			},
+			success: function(response)
+			{
+				var alternatives = new Array();
+				if(!response.result) {
+					alert(response.messages.message);
+					return;
+				}
+				for (var result in response.result) {
+					var suggestion = response.result[result].name;
+					if (suggestion.toLowerCase() == answer.toLowerCase()) 
+						continue;
+					alternatives.push(suggestion);
+				}
+				callback.call(this, alternatives);
+			}
+			});
+    
     }
     
     // Close button event handler
@@ -207,6 +221,8 @@ var runCode = function(){
         jQuery(this).data('ready', true);
     });
     
+    select('choose_subject').data('ready', false); // will be triggered when subject should be chosen.
+    
     
     // show that topic is ready on change(). Check for 'create new' choice.
     select('topic').change(function(){
@@ -257,37 +273,37 @@ var runCode = function(){
         
         // subject
         var subject = select('subject').find('select').attr('value');
-        if (select('subject').data('ready') != true) {
+        if (select('choose_subject').data('ready') == false  ) {
             submit_error.show().text('Choose a Subject');
             return false;
         }
-        // tags
-        var tags = select('tags').find('input').text();
+        // topic -- this is the key, so ajax call is needed when a new one is entered. 
+        var topic_key = select('topic').find('select').attr('value');
         
         // send quiz item to server
+        // TODO: Use existing method 
         jQuery(this).text("Sending...").attr('disabled', true);
+    
         jQuery.ajax({
-            type: "GET",
-            url: serverUrl + "/quizbuilder/rpc",
-            data: 'action=NewQuizItem&arg0="' +
-            quiz_item_text +
-            '"&arg1="' +
-            correct_answer +
-            '"&arg2="(' +
-            wrong_answers +
-            ')"&arg3="' +
-            subject +
-            '"&arg4="' +
-            tags +
-            '"&arg5="' +
-            this_url +
-            '"',
-            error: function(data){
-            	alert(data);
-            },
-            success: function(data){
-            }
-        });
+	type: "POST",
+	url:  serverUrl + "/editor/rpc/post",
+	data:
+	{
+			action: "SubmitItem",
+			subject_name: subject,
+			correct_answer: correct_answer,
+			this_url: this_url,
+			answers: String(wrong_answers),
+			item_text: quiz_item_text,
+			topic_key: topic_key,
+			item_status: "not_approved",
+			ubiquity: "true"
+	},
+	success: function(response)
+	{ 	 jQuery('#' + id, doc.body).remove(); jQuery(doc).trigger('item_submit'); //$('div#editor_container').html(response).trigger("refresh");	
+	}
+});
+
     });
 };
 

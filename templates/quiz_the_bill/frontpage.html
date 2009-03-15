@@ -59,8 +59,8 @@ $('div.bill').hover(function(){
 
 
 <div class="info_note panel" id="updates">
+<div id="first_response">Join the <strong>First Response</strong> Mailing List </div>
 
-Get Updates
 
 <input type="text"/>
 
@@ -69,46 +69,24 @@ Get Updates
 
 <div class="panel" id="bills">
 {% for bill in bills %}
-
+<a href="/bill/{{ bill.title }}">
 <div class="bill">
 <div class="title">{{ bill.title }}</div>
+<div style="clear:both"></div>
+<div class="stats_container"><div class="stats">
+<li><strong>Sponsor:</strong>{{ bill.sponsor }}</li>
+<li><strong>Introduced:</strong>{{ bill.introduction_date }}</li>
+<li><strong>Status:</strong>{{ bill.status }}</li>
+<li><strong>Latest Action:</strong>{{ bill.latest_action }}</li>
+<li><strong>Next Step:</strong>{{ bill.next_step }}</li>
 
-<div class="widget">
-<script type="text/javascript">
-oc_host_url = "http://www.opencongress.org/";
-oc_bill_id = "{{ bill.id }}";
-oc_frame_height = "119";
-oc_bgcolor = "CCCCCC";
-oc_textcolor = "333333";
-oc_bordercolor = "CCCCCC";
-</script>
-<script type="text/javascript" >
-
-var fHeight = parseInt(window.oc_frame_height); 
-if (window.navigator.userAgent.indexOf("MSIE")) {
-	fHeight = fHeight + 7;
-}
-
-
-
-return false;
-
-document.write('<iframe id="{{ bill.id }}" name="oc_bill_status_frame" width="250" height="' 
-               + fHeight + '" scrolling="NO" frameborder="0" style="border-style: solid; border-width: 1px; border-color: #' 
-               + window.bordercolor + '" allowtransparency="true" hspace="0" vspace="0" marginheight="0" marginwidth="0" src="' 
-               + window.oc_host_url + 'tools/bill_status_panel?bg_color=' + window.oc_bgcolor + '&textcolor=' 
-               + window.oc_textcolor + '&bill_id=' + window.oc_bill_id + '"></iframe>');
-
-
-$(function(){
-	$('iframe#{{ bill.id }}').load(function(){ console.log($(this).find('html')); $(this).find('div#title').remove(); });
-});
-</script>
-
-</div>
+</div></div>
 
 
 </div>
+
+
+</a>
 
 {% endfor %}
 </div>

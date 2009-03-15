@@ -41,7 +41,6 @@ class Proficiency(db.Model):
   status = db.StringProperty(required=False)
   blurb = db.TextProperty(required=False)
   # study guide material
-  link_html = db.TextProperty()
   #links = db.ListProperty(db.Link)
   video_html = db.TextProperty()
   # statistics

@@ -13,15 +13,21 @@ DEV_PATH = 'dev/'
 
 class QuizEditor(webapp.RequestHandler):
 
-  def get(self):
+  def post(self):
       if self.request.get('get') == "html": return self.get_html()
       if self.request.get('get') == 'js': return self.get_js()
       
-  @memoize('ubiquity_html') # TODO: The markup can be cached, except for the places where the text template tag is used. (and short cache on subjects)
+
   def get_html(self):
+    
+    import urllib
+    template_values = {'text': urllib.unquote( self.request.get('text') ) }
     from model.proficiency import Proficiency 
-    subjects = Proficiency.gql("WHERE status = 'public'").fetch(1000) 
-    template_values = {'text': self.request.get('text'), 'subjects': subjects}
+    if self.request.get('subject_key'): template_values['subject_key'] = self.request.get('subject_key')
+    else: 
+      subjects = Proficiency.gql("WHERE status = 'public'").fetch(1000) 
+      template_values['subjects'] = subjects
+    if self.request.get('topic_key'): template_values['topic_key'] = self.request.get('topic_key')
     path = tpl_path(DEV_PATH +'ubiquity_builder.html')
     self.response.out.write(template.render(path, template_values))
     

@@ -4,6 +4,7 @@ class Bill(db.Model):
     id = db.StringProperty(required=True)
     title = db.StringProperty(required=True)
     rank = db.IntegerProperty(required=False)
+    govtrack_id = db.StringProperty(required=False)
     introduction_date = db.StringProperty(required=False)
     status = db.StringProperty(required=False)    
     next_step = db.StringProperty(required=False)   

@@ -4,43 +4,54 @@
 <title>Quiz the Bill</title> 
 {# <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" /> #}
 <script type="text/javascript">
+
+
+
 {% include "../../static/scripts/jquery/jquery-1.3.2.js" %}
 jQuery(function(){
+
 $('#frame').load(function()
 {
-	$(window).mouseup(function(){
-		console.log('up!');
-		console.log(window.getSelection());
+	
+	// Cross-Frame Scripting Doesn't Allow Access to Document...
+	/* $(window).mouseup(function(){
 		var selection = window.getSelection();
 		if (selection.length > 2) return OpenEditor(selection);
-		 });
+		 }); */
+		 
 });
 				
 
-	
+
+$('input#selection').bind('paste', function() { 
+	 return setTimeout(function(){ OpenEditor( $('input#selection').val() );   }, 50);  
+	});
+
+
 });
 
 
 function OpenEditor(statement){
-	
-        /*
-         *
-         * Setup Variables - Abstract differences between ubiquity and portable editor
-         *
-         */       
+	   
 
         var this_url = window.location.href;      
         var get_selection = function(){ return document.getSelection(); };
-        var statement = get_selection() || statement;
+      //  var statement = get_selection() || statement;
         var doc = document;
         var serverUrl = "http://localhost:8080";
         
         var id = "pq-injected-data";
         
         jQuery.ajax({
-            type: "GET",
+            type: "POST",
             url: serverUrl + "/ubiquity/",
-            data: "get=html&text=" + escape(statement),
+            data:
+	{
+			get: "html",
+			text: escape(statement),
+			topic_key: "{{ topic_key }}",
+			subject_key: "{{ subject_key }}"
+	},
             error: function(data){
                 jQuery(doc.body).append("<div id='error'>" + data + "</div>");
             },
@@ -48,9 +59,8 @@ function OpenEditor(statement){
                 // Remove existing injected data
                 jQuery('#' + id, doc.body).remove();
                 jQuery('head', doc).append('<link rel="stylesheet" type="text/css"  href="' + serverUrl + '/static/html/quizbuilder/ubiquity.css" />');
-                jQuery.get(serverUrl + '/ubiquity/?get=js', function(script){
-                    eval(script); // jQuery.getScript() doesn't work in Ubiquity sandbox.
-                    // Inject remote data
+                jQuery.post(serverUrl + '/ubiquity/?get=js', function(script){
+                    eval(script); 
                     jQuery(doc.body).append("<div id='" + id + "'>" + data + "</div>");
                     runCode();
                 });
@@ -64,16 +74,18 @@ function OpenEditor(statement){
 </head>
 
 <body>
-<div>hello</div>
+<div id="header">
+<div>paste your selection</div> <input type="text" id="selection">
+</div>
+
+
 <iframe id="frame" style="width:100%;" src="{{ url }}" ></iframe>
 <script type="text/javascript">
 function resizeIframe() {
     var height = document.documentElement.clientHeight;
-    height -= document.getElementById('frame').offsetTop;
-    
+    height -= document.getElementById('frame').offsetTop;    
     // not sure how to get this dynamically
-    height -= 20; /* whatever you set your body bottom margin/padding to be */
-    
+    height -= 20; /* whatever you set your body bottom margin/padding to be */   
     document.getElementById('frame').style.height = height +"px";
     
 };

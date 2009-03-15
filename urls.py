@@ -92,7 +92,7 @@ def url_routes(map):
 	# Quiz the Bill
 	map.connect('quiz_the_bill', controller = 'quiz_the_bill.views:FrontPage')
 	map.connect('quiz_the_bill/stats', controller = 'quiz_the_bill.views:UpdateStats')
-	map.connect('bill', controller = 'quiz_the_bill.views:RenderBill')
+	map.connect('bill/:bill_title', controller = 'quiz_the_bill.views:RenderBillFrame')
 	map.connect('redirect', controller = 'quiz_the_bill.views:Redirect')	
 								
 							
