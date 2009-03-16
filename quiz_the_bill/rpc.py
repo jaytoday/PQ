@@ -1,6 +1,4 @@
 import logging
-# Log a message each time this module get loaded.
-logging.info('Loading %s', __name__)
 from utils import webapp, simplejson
 from google.appengine.ext import db
 from .model.quiz import QuizItem, ItemScore

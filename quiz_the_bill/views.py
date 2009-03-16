@@ -12,7 +12,7 @@ TEMPLATE_PATH = 'quiz_the_bill/'
 OPENCONGRESS_INFO_URL = "http://www.opencongress.org/tools/bill_status_panel?" #bill_id=111-h45
 GOVTRACK_URL = "http://www.govtrack.us/congress/billtext.xpd?"
 OPENCONGRESS_BR_URL = "http://www.opencongress.org/battle_royale.xml?" 
-APP_NAME = "#QuizTheBill"
+APP_NAME = "QuizTheBill"
 
 class FrontPage(webapp.RequestHandler):
   def get(self):    

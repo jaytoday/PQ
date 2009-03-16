@@ -9,19 +9,27 @@ var runCode = function(){
     var default_correct_answer_text = "none selected";
     var default_answer_text = "Click to Edit";
     
-    //container is draggable
-    var makeDraggable = function(element){
+ 
+
     
-        element.css({
-            'left': 200,
-            'top': 100,
+    var setupContainer = function(element){
+ 
+        // position div in center - margins are negative half of height and width
+		var margin_left = ( parseInt(element.css('width')) / 2 ); 
+		var margin_top = ( parseInt(element.css('height')) / 2 );  
+		var top_offset = ( parseInt(document.height) / 2 );
+		var left_offset = ( parseInt(document.width) / 2 );
+		element.css({
+        	'margin-left': -margin_left, 
+        	'margin-top': -margin_top, 
+        	'top': top_offset,
+        	'left': left_offset,
             'position': 'fixed'
         });
-        
+               
         // Move the element by the amount of change in the mouse position
         var move = function(event){
             if (element.data('mouseMove')) {
-            
                 if (element.data('cancel') == true) 
                     return false;
                 
@@ -62,7 +70,7 @@ var runCode = function(){
         });
     }
     
-    makeDraggable(select('ubiquity_quizbuilder'));
+    setupContainer(select('ubiquity_quizbuilder'));
     
     //if selection length < 1, use text placeholder.
     var initText = function(){
@@ -116,33 +124,22 @@ var runCode = function(){
     
     // TODO: This should be local answer service 
     var lookupAlternativeAnswers = function(answer, callback){
-        var lookupUrl = "http://www.freebase.com/api/service/search";
-        
-			   jQuery.ajax({
-			type: "GET",
-			url:  lookupUrl,
-			dataType: "json",
-			data:
-			{		
-				limit: 6,
-				query: encodeURI(answer)
-			},
-			success: function(response)
-			{
-				var alternatives = new Array();
-				if(!response.result) {
-					alert(response.messages.message);
-					return;
-				}
-				for (var result in response.result) {
-					var suggestion = response.result[result].name;
-					if (suggestion.toLowerCase() == answer.toLowerCase()) 
-						continue;
-					alternatives.push(suggestion);
-				}
-				callback.call(this, alternatives);
-			}
-			});
+
+        jQuery.ajax({
+	type: "POST",
+	url:  serverUrl + "/editor/rpc/post",
+	dataType: "json",
+	data: {
+			action: "LoadUbiquityAnswers",
+			correct_answer: answer,
+			item_text: $(doc).data('context')
+	},
+	success: function(response) { 
+		callback.call(this, response);
+	}, 
+	complete: function(data){ 
+		}
+});
     
     }
     
@@ -160,19 +157,20 @@ var runCode = function(){
         var answer = get_selection();
         if (answer.length < 1) 
             return false;
+                if (answer.length > 20) 
+            return alert("The correct answer must be shorter than twenty characters");    
+            
         select('correct_answer').text(answer);
         select('suggestions').css('display', 'block');
         lookupAlternativeAnswers(answer, function(alternatives){
             select('loading').hide();
             var markup = new Array();
             for (var alt in alternatives) {
-                markup.push("<div style='height: 13px; margin: 10px 0; cursor:pointer; clear: left;'><button " +
-                "style='float:left; cursor:pointer; margin: -4px 4px 0px 0;'><img src='" +
-                serverUrl +
-                "/static/stylesheets/img/utils/purple_next_tiny.png" +
-                "'/></button>" +
-                alternatives[alt] +
-                "</div>");
+                markup.push("<div class='item'><button ><img src='"
+                 + serverUrl +
+                "/static/stylesheets/img/utils/purple_next_tiny.png'/>"
+                +  alternatives[alt] +
+                "</button></div>");
             }
             select('suggestions').find('div.items').html(markup.join("\n"));
             answerChoices(); // reset answer choice click event
@@ -279,6 +277,9 @@ var runCode = function(){
         }
         // topic -- this is the key, so ajax call is needed when a new one is entered. 
         var topic_key = select('topic').find('select').attr('value');
+        
+        // replace correct answer in text with blank span
+        quiz_item_text = quiz_item_text.replace(correct_answer, '<span id="blank"></span>');
         
         // send quiz item to server
         // TODO: Use existing method 

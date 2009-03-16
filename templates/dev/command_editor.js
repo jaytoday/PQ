@@ -39,7 +39,7 @@ CmdUtils.CreateCommand({
             url: serverUrl + "/ubiquity/",
             data:    {
             get: "html",
-            text: escape(statement) },
+            text: statement },
     
     
             error: function(data){
@@ -55,7 +55,8 @@ CmdUtils.CreateCommand({
                     jQuery(doc.body).append("<div id='" + id + "'>" + data + "</div>");
                     runCode();
                 });
-            }
+            },
+          complete: function(data){  $(doc).data('context', "this should be text or title of the document"); }
         });
     }
 });

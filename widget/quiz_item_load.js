@@ -38,6 +38,7 @@ function quizItemLoad(quizItem, html, s)
 	}
 	else {
 		// Add a hidden element with the new style so we can get the new dimensions
+		// Not sure why this is needed...
 		newStyle = quizItem.item_type + '_content';
 		tempElem = jQuery("<div style='display:none' class='" + newStyle + "'/>");
 		$.plopquiz.quiz_content.append(tempElem);

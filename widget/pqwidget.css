@@ -63,11 +63,6 @@ z-index:100;
         background:#EDF2F8 none repeat scroll 0 0;
 }
 
-.quiz_wrap div.content {
-font-size:1.3em;
-letter-spacing:0.01em;
-line-height:1.4em;
-}
 
 
 /* Quiz Content Styles */
@@ -988,15 +983,17 @@ z-index:1;
 
 }
 
-.quiz_wrap div.quiz_frame_text  /* scrollable */
+.quiz_wrap div.quiz_frame_text, .quiz_wrap div.quiz_frame_text div  /* scrollable */
 {
-        font-family: "Georgia", "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", Verdana, Helvetica, sans-serif;
-        margin-top:20px;
-        text-align:center;
-        line-height:1.5em;
-        overflow: visible; 
-        height: auto; 
-        width:375px;
+font-family:"Georgia","Lucida Grande","Lucida Sans Unicode","Trebuchet MS",Verdana,Helvetica,sans-serif;
+font-size:23px;
+height:auto;
+letter-spacing:0.1px;
+line-height:33px;
+margin-top:20px;
+overflow:visible;
+text-align:center;
+width:375px;
 }
 
 #instructions_frame{

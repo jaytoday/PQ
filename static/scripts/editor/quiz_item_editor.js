@@ -305,7 +305,9 @@ if (ready_to_send == false) return false;
 	
 	var item_text = item.content.text();
 	if (item_text == DEFAULT_QUIZ_ITEM_TEXT || item.content.data('submit_this') == false) { alert("Please specify an item text"); return false; }
-	
+   // replace correct answer in text with blank span
+   item_text = item_text.replace(item.correct_answer.text(), '<span id="blank"></span>');
+        	
 	var item_status = "false";
 	var status_select = item.find('div.details').find('select');
 	if (status_select.attr('disabled') == false) var item_status = status_select.find("option:selected").val();

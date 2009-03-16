@@ -28,7 +28,7 @@ class LoadQuiz():
 	self.proficiencies = {}
 	# Create random list of three quiz items.
 	quiz_items = []
-	proficiencies = self.temp_filter(proficiencies)
+	#proficiencies = self.temp_filter(proficiencies)
 	for p in proficiencies:  # TODO make these keys for easy lookup   -- these are proficiencies, not topics.
 		quiz_items.extend(p.quizitems.fetch(1000)) # We need them all, since they're being shuffled. 
 	if Debug(): # just for god_mode
@@ -40,12 +40,14 @@ class LoadQuiz():
 	self.load_array()
 	return self.quiz_array 
 
+  """
   def temp_filter(self, proficiencies): # TEMPORARY
 	if proficiencies[0].name not in ["Smart Grid", "Energy Efficiency", "Biofuels", "Cars 2.0", "Recovery.Gov"]:
 		logging.info('temporarily loading a different quiz instead of %s', proficiencies[0].name)        
 		proficiencies[0] = Proficiency.get_by_key_name("Recovery.Gov")
 	return proficiencies 
 
+  """
   def load_item(self, item):
         random.shuffle(item.answers)
         item_answers = []

@@ -287,6 +287,7 @@ class EditorPost(webapp.RequestHandler):
 		# editing quiz items
 		if self.request.get('action') == "NewTopic": return self.response.out.write( self.NewTopic() )
 		if self.request.get('action') == "LoadAnswers": return self.response.out.write( self.LoadAnswers() )
+		if self.request.get('action') == "LoadUbiquityAnswers": return self.response.out.write( self.LoadUbiquityAnswers() )
 		if self.request.get('action') == "SubmitItem": return self.response.out.write( self.SubmitItem() )	
 
 
@@ -448,7 +449,11 @@ class EditorPost(webapp.RequestHandler):
 		from model.proficiency import Proficiency	
 		this_subject = Proficiency.gql("WHERE name = :1", self.request.get('subject_name') ).get()
 		from model.user import SubjectMember
-		this_membership = SubjectMember(keyname = self.session['user'].unique_identifier + "_" + this_subject.name, user = self.session['user'], subject = this_subject, is_admin = False)
+		admin_status = False
+		from google.appengine.api import users
+		user = users.get_current_user()
+		if user: admin_status = True
+		this_membership = SubjectMember(keyname = self.session['user'].unique_identifier + "_" + this_subject.name, user = self.session['user'], subject = this_subject, is_admin = admin_status)
 		logging.info('user %s joined subject %s'% (self.session['user'], this_subject.name) )
 		db.put([this_membership])		
 		from utils.webapp import template
@@ -484,7 +489,12 @@ class EditorPost(webapp.RequestHandler):
 		path = tpl_path(EDITOR_PATH + 'answer_template.html')
 		return template.render(path, template_values)
 
-
+	def LoadUbiquityAnswers(self):     
+		correct_answer = self.request.get('correct_answer')
+		item_text = self.request.get('item_text')
+		from editor.answers import Answers
+		answers = Answers()
+		return simplejson.dumps(answers.load(correct_answer, item_text));
 
 				
 	# see if it can access self.user['user'] and if its a new item, save author
@@ -509,7 +519,7 @@ class EditorPost(webapp.RequestHandler):
 			this_item.proficiency = None        		
 		this_item.topic = ProficiencyTopic.get( self.request.get('topic_key') )
 		this_item.index = self.request.get('correct_answer')
-		this_item.answers = self.request.get('answers').split(",") 
+		this_item.answers = [a.strip("'") for a in self.request.get('answers').split(",")] 
 		this_item.content = self.request.get('item_text')
 		save = [ this_subject, this_item]
 		if session['user']: save.append(session['user'])

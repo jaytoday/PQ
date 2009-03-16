@@ -240,21 +240,6 @@
                         "blurb": "Petroleum makes up 40% of energy consumption, and has a worldwide impact on politics, economics, and the environment. "
                     }, 
                     {
-                        "status": "public", 
-                        "name": "#QuizTheBill", 
-                        "link_html": null, 
-                        "popularity": null, 
-                        "modified": {
-                            "ctime": "Sun Mar 15 08:57:05 2009"
-                        }, 
-                        "video_html": null, 
-                        "date": {
-                            "ctime": "Sun Mar 15 08:57:05 2009"
-                        }, 
-                        "difficulty": null, 
-                        "blurb": "describe!"
-                    }, 
-                    {
                         "status": "private", 
                         "name": "Rails", 
                         "link_html": null, 
@@ -332,6 +317,21 @@
                     {
                         "status": "private", 
                         "name": "Solar Energy", 
+                        "link_html": null, 
+                        "popularity": 85, 
+                        "modified": {
+                            "ctime": "Sat Mar 14 21:38:13 2009"
+                        }, 
+                        "video_html": "D1CE83D8CC2DE66E", 
+                        "date": {
+                            "ctime": "Sat Mar 14 21:36:13 2009"
+                        }, 
+                        "difficulty": 68, 
+                        "blurb": "The oldest and most pervasive form of renewable energy draws from the same ambient source that sustains life on Earth. "
+                    }, 
+                    {
+                        "status": "private", 
+                        "name": "QuiztheBill", 
                         "link_html": null, 
                         "popularity": 85, 
                         "modified": {

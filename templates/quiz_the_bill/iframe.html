@@ -48,7 +48,7 @@ function OpenEditor(statement){
             data:
 	{
 			get: "html",
-			text: escape(statement),
+			text: statement,
 			topic_key: "{{ topic_key }}",
 			subject_key: "{{ subject_key }}"
 	},
@@ -62,9 +62,10 @@ function OpenEditor(statement){
                 jQuery.post(serverUrl + '/ubiquity/?get=js', function(script){
                     eval(script); 
                     jQuery(doc.body).append("<div id='" + id + "'>" + data + "</div>");
-                    runCode();
+                    runCode(); 
                 });
-            }
+            },
+          complete: function(data){  $(doc).data('context', "Congress Legislation"); }
         });
         
         

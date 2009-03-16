@@ -13,6 +13,7 @@ class Answers():
 		args = [correct_answer]
 		# Rank words in item by size - we can improve this part later.
 		text_list = list( set( item_text.split() ) )
+		lower_text_list = [s.lower() for s in text_list]
 		length_list = map(len,text_list)
 		allzip = zip(length_list,text_list)
 		allzip.sort()
@@ -30,7 +31,7 @@ class Answers():
 		sets = self.get_sets()
 		# Extract List of Strings From Response
 		answers = [a.contents[0] for a in sets.findAll('table')[1].contents[1].findAll('table')[0].findAll('a')]
-		return answers
+		return [a for a in answers if a.lower() not in lower_text_list]
 
 		
 	def get_sets(self):	
