@@ -110,8 +110,13 @@ font-size: 1.6em !important; margin: 10px 0 !important; font-weight: bold;
 }
 
 div.ubiquity_quizbuilder div.quiz_text_container div.statement{
-height: 120px !important; width: 580px !important; padding:10px !important; position:absolute !important;
-font-size:1.3em !important; /* if it runs off this is the one to adjust */
+font-size:1.3em !important;
+height:100px !important;
+margin:-5px 0 !important;
+overflow:auto;
+padding:10px !important;
+position:absolute !important;
+width:580px !important;
 
 }
 div.ubiquity_quizbuilder div.quiz_text_container textarea {
@@ -234,7 +239,7 @@ div.ubiquity_quizbuilder div.submit_item button#submit_item{
 border:3px none !important;
 height:55px !important;
 margin:5px 0 2px -15px !important;
-width:240px !important;
+width:250px !important;
 }
 div.ubiquity_quizbuilder div.submit_item button#submit_item img{
 float:left !important; margin: -1px !important;  

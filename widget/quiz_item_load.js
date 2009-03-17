@@ -3,8 +3,9 @@ function quizItemLoad(quizItem, html, s)
 	// Remove the existing content
 	$.plopquiz.quiz_content.html('');
 	
-	// hide the answers for now
+	// hide the answers  and timer for now
 	$('.answer', $.plopquiz.answer_container).hide();
+	$.plopquiz.timer_wrapper.hide();
 
 	// this occasionally results in things fading in twice...the solution is to fade in the element after a pause.
 	$.plopquiz.quiz_loader.attr('class', quizItem.item_type + '_load').animate({opacity: 0}, {  duration: 0, complete: function()
@@ -77,8 +78,7 @@ function quizItemLoad(quizItem, html, s)
 		// not all items are timed (instructions)
 		if(quizItem.timed)
 		$.plopquiz.timer_wrapper.show();
-		else
-		$.plopquiz.timer_wrapper.hide();
+		
 
 		// not all items need skipping
 		if(!quizItem.noSkip)

@@ -10,5 +10,6 @@ class Bill(db.Model):
     next_step = db.StringProperty(required=False)   
     latest_action = db.StringProperty(required=False)   
     sponsor = db.StringProperty(required=False)   
+    sponsor_name = db.StringProperty(required=False)   
     #API data? sponsors, etc. 
 

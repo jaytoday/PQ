@@ -198,7 +198,7 @@ if ($(answer).attr("id") == "skip")
 
 if ($(answer).data('disabled') == false) { 
 	
-										var blank_width = 15 + (12 * $(".answertext", answer).text().length); //todo: multiplier may need adjustment
+										var blank_width = 20 + (12 * $(".answertext", answer).text().length); //todo: multiplier may need adjustment
 										$("#blank", $.plopquiz.quiz_content)
 											.html($(".answertext", answer)
 											.text().replace(/\ /g, "&nbsp;"))

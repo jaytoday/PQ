@@ -2,12 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Quiz the Bill</title> 
+<style type="text/css"> {% include "../../static/stylesheets/editor/iframe.css" %} </style>
 {# <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" /> #}
 <script type="text/javascript">
 
-
+DEFAULT_SELECTION_TEXT = "Copy Text And Paste It Here...";
+MIN_LIMIT = 20;
+MAX_LIMIT = 400;
 
 {% include "../../static/scripts/jquery/jquery-1.3.2.js" %}
+{% include "../../static/scripts/utils/preserve_default_text.js" %}
 jQuery(function(){
 
 $('#frame').load(function()
@@ -24,8 +28,26 @@ $('#frame').load(function()
 
 
 $('input#selection').bind('paste', function() { 
-	 return setTimeout(function(){ OpenEditor( $('input#selection').val() );   }, 50);  
-	});
+	
+	 return setTimeout(function(){
+	 	
+var selection = $('input#selection').val();
+console.log(selection);
+console.log(selection.length);
+$('input#selection').preserveDefaultText(DEFAULT_SELECTION_TEXT);
+if (selection.length < MIN_LIMIT) return alert('Selection must be at least ' + MIN_LIMIT + ' characters');
+if (selection.length > MAX_LIMIT) return alert('Selection must be no more than ' + MAX_LIMIT + ' characters');
+
+OpenEditor( selection );  }, 50);  
+	}).preserveDefaultText(DEFAULT_SELECTION_TEXT);
+
+
+$(document).bind('item_submit', function() { $('#header').hide();  $('#header_success').show('slow'); 
+
+return setTimeout(function(){ $('#header_success').hide();  $('#header').show('slow'); }, 3000);  
+
+});
+	
 
 
 });
@@ -75,12 +97,42 @@ function OpenEditor(statement){
 </head>
 
 <body>
+
+<div id="header_container">
 <div id="header">
-<div>paste your selection</div> <input type="text" id="selection">
+
+
+<div class="note" id="video" ><div id="title"><b>Screencast</b><div style="height: 4px;"></div><span>How To Make a Quiz Item</span></div>
+
+<object width="240" height="155"><param name="allowFullScreen" value="true"></param>
+<param name="movie" value="http://www.youtube.com/v/KN1ezJmY0V4&rel=0&hl=en&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6&border=0"></param>
+<embed class="no_drag" src="http://www.youtube.com/v/KN1ezJmY0V4&hl=en&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6&border=03" allowfullscreen="true" type="application/x-shockwave-flash" width="240" height="155"></embed>
+</object>
+
+
+</div>
+<div id="paste" >
+ <input type="textarea" id="selection" />
 </div>
 
 
-<iframe id="frame" style="width:100%;" src="{{ url }}" ></iframe>
+<div id="subjects">
+<a href="/quiz_the_bill">
+<button><img src="/static/stylesheets/img/utils/purple_next_tiny.png"/> View Another Bill</button>
+</a>
+</div>
+
+</div>
+<div id="header_success" style="display:none;">
+
+<div id="success">Your Quiz Item Was Successfully Submitted.</div>
+<div id="approval">After An Administrator Approves Your Item, It Will Appear In Quizzes</div>
+ </div>
+
+</div>
+
+
+<iframe id="frame"  src="{{ url }}" ></iframe>
 <script type="text/javascript">
 function resizeIframe() {
     var height = document.documentElement.clientHeight;
@@ -93,7 +145,6 @@ function resizeIframe() {
 document.getElementById('frame').onload = resizeIframe;
 window.onresize = resizeIframe;
 </script>
-
 
 </body>
 

@@ -9,6 +9,11 @@ from model.quiz_the_bill import Bill
 
 BILL_LIMIT = 10
 TEMPLATE_PATH = 'quiz_the_bill/'
+SUNLIGHT_BASE_URL = "http://services.sunlightlabs.com/api/"
+API_KEY = "" 
+# Enter Your Own API Key Here 
+# register at http://services.sunlightlabs.com/api/register/
+
 OPENCONGRESS_INFO_URL = "http://www.opencongress.org/tools/bill_status_panel?" #bill_id=111-h45
 GOVTRACK_URL = "http://www.govtrack.us/congress/billtext.xpd?"
 OPENCONGRESS_BR_URL = "http://www.opencongress.org/battle_royale.xml?" 
@@ -119,6 +124,7 @@ class UpdateStats(webapp.RequestHandler):
 	this_bill.latest_action = str(document.findAll('li')[property_count + 3]).split('</strong> ')[1].split('</li>')[0]
 	if len( this_bill.latest_action ) > 68: this_bill.latest_action = " ".join(this_bill.latest_action.split(' ')[:9]) + "..."
 	this_bill.sponsor = str(document.findAll('li')[property_count + 4]).split('</strong> ')[1].split('</li>')[0].decode('utf-8')
+	this_bill.sponsor_name = this_bill.sponsor.split("[")[0] # Rep.
 	self.save.append(this_bill)
 	return
 
@@ -139,61 +145,3 @@ class UpdateStats(webapp.RequestHandler):
     logging.info('saved new bill wih title %s,id %s, and rank %s' % (bill['title'], bill['id'], str(bill['rank'])))
     return new_bill              
                     
-
-
-
-
-	
-
-  """
-  def get_bill(self):	
-	# Send Request to Service and Open Response for Parsing
-	import urllib
-	self.formatted_args = urllib.urlencode(self.request_args)
-	from google.appengine.api import urlfetch
-	fetch_page = urlfetch.fetch( #url = GOVTRACK_URL + + "/text",
-	                            url = GOVTRACK_URL + self.formatted_args,
-								method = urlfetch.GET) 
-	return fetch_page.content
-	
-	from utils.BeautifulSoup import BeautifulSoup	
-	document = fetch_page.content #self.fix_urls( fetch_page.content ,"http://www.govtrack.us/")
-	document = document.replace('</head>', '<base href="http://www.govtrack.us/" /></head>') 
-	document = document.replace('src="/', 'src="http://www.govtrack.us/')
-	document = document.replace('="billtext/', '="http://www.govtrack.us/congress/billtext/')
-	document = document.replace('href="/', 'href="http://www.govtrack.us/')
-	document = document.replace('background="/', 'background="http://www.govtrack.us/')	
-	return document
-	for i in list(document): print i
-	logging.info(document)
-	document = BeautifulSoup(fetch_page.content)
-	return
-	for i in list(document.contents): print str(i).replace
-	return
-	return document 	 
-
-
-
-  
-  def fix_urls(self, document, base_url): # Fix relative paths in document
-    import re, urlparse
-    regexes = [ re.compile(r'\bhref\s*=\s*("[^"]*"|\'[^\']*\'|[^"\'<>=\s]+)'),
-                re.compile(r'\bsrc\s*=\s*("[^"]*"|\'[^\']*\'|[^"\'<>=\s]+)'),
-                re.compile(r'\bbackground\s*=\s*("[^"]*"|\'[^\']*\'|[^"\'<>=\s]+)'), ]
-    ret = []
-    last_end = 0
-    for find_re in regexes:
-		for match in find_re.finditer(document):
-			url = match.group(1)
-			if url[0] in "\"'":
-				url = url.strip(url[0])
-			parsed = urlparse.urlparse(url)
-			if parsed.scheme == parsed.netloc == '': #relative to domain
-				url = urlparse.urljoin(base_url, url)
-				ret.append(document[last_end:match.start(1)])
-				ret.append('"%s"' % (url,))
-				last_end = match.end(1)
-		ret.append(document[last_end:])
-		document = ''.join(ret)
-    return ''.join(ret)
-  """

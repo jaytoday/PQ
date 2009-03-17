@@ -71,7 +71,10 @@ $('div.bill').hover(function(){
 {% for bill in bills %}
 <a href="/bill/{{ bill.title }}">
 <div class="bill">
+<div class="image"><img src="http://govpix.appspot.com/{{ bill.sponsor_name }}" width="70" /></div>
+<div class="title_container">
 <div class="title">{{ bill.title }}</div>
+</div>
 <div style="clear:both"></div>
 <div class="stats_container"><div class="stats">
 <li><strong>Sponsor:</strong>{{ bill.sponsor }}</li>

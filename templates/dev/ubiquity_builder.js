@@ -17,8 +17,8 @@ var runCode = function(){
         // position div in center - margins are negative half of height and width
 		var margin_left = ( parseInt(element.css('width')) / 2 ); 
 		var margin_top = ( parseInt(element.css('height')) / 2 );  
-		var top_offset = ( parseInt(document.height) / 2 );
-		var left_offset = ( parseInt(document.width) / 2 );
+		var top_offset = 300;//( parseInt(document.height) / 2 );
+		var left_offset = 800;//( parseInt(document.width) / 2 );
 		element.css({
         	'margin-left': -margin_left, 
         	'margin-top': -margin_top, 
