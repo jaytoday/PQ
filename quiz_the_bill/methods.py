@@ -1,85 +1,126 @@
-from model.quiz import QuizItem, ItemScore
-from model.user import QuizTaker
-from .model.proficiency import Proficiency, ProficiencyTopic
-from .model.employer import Employer 
-from .utils.utils import tpl_path, ROOT_PATH, raise_error
-from utils import simplejson
-from google.appengine.ext import db
-from utils.gql_encoder import GqlEncoder, encode
 import logging
+from google.appengine.api import mail
+
+# Todo: still need update e-mail, hooked in through create_bill. 
+
+def confirm_email(email_address):
+	if not mail.is_email_valid(email_address):
+		logging.warning("%s is not a valid email", email_address)
+		return False
+	message = mail.EmailMessage()
+	message.sender = get_sender()
+	message.subject = "Congressional Legislation Updates" 
+	message.to = email_address
+	message.body = """
 
 
-     
-     
-class DataMethods():
+	You've signed up to receive #QuizTheBill updates about new bills as they are made available. 
+	
+	As soon as a new bill is arrives, we'll e-mail you with details and a link to the text of the bill, where you can contribute quiz items.
+	
+	At any time, you can always unsubscribe just by sending an e-mail to this address with the subject "Unsubscribe".
+	
+	
+	
+	By volunteering, you're helping provide Congress and the rest of us with a resource to understand important legislation before it is too late.
+		
+	We appreciate your assistance. This project is young, and we hope to quickly improve our service. 
+	
+	Please let us know if you have any particular suggestions or problems while using the site. 	
+
+	
+	
+	Warm Regards,
+
+	James 
+	Team PlopQuiz	
+	
+	
+	
+	
+	%s
 	
 
-  def create_business_account(self, uid, email, proficiencies=False, batch=False):
-    from accounts.methods import register_account, register_user
-    import string
-    try:
-        int(uid[0]) #check to see if it starts with an integer
-        uid = "pq" + uid
-    except ValueError: pass #doesnt start with integer	
-    fullname = string.capwords(uid.replace("_", " "))
-    business_employer = self.register_employer(uid, fullname, email, proficiencies, save=False)
-    if not business_employer: return () # already registered
-    business_account = register_account(uid, fullname, save=False)
-    business_profile = register_user(uid, fullname, fullname, email, is_sponsor=True, save=False)
-    if business_profile.is_sponsor is False: return "ERROR"
-    if not batch: #only one account being made
-        db.put([business_account, business_profile, business_employer])
-        self.refresh_employer_images([business_employer])
-    return business_account, business_profile, business_employer 
+	
+
+	
+	""" % (mail_footer())
 
 
-  def register_employer(self, business_name, fullname, email, proficiencies=False, save=True):
-	  if Employer.get_by_key_name(business_name): return False
-	  print "registering employer: ", business_name
-	  new_employer = Employer.get_or_insert(key_name=business_name, unique_identifier = business_name, name = fullname, email=email)
-	  if not new_employer.quiz_subjects: 
-	  	if proficiencies: new_employer.quiz_subjects = proficiencies
-	  if save: db.put(new_employer)
-	  return new_employer
+	
+	message.send()
 
-  def delete_employer_images(self):
-		delete_list = []
-		from model.user import Profile, ProfilePicture
-		for e in Employer.all().fetch(1000):
-			try:  
-				this_profile = Profile.get_by_key_name(e.unique_identifier)
-				if this_profile.photo.type != "pq": delete_list.append(this_profile.photo)
-			except: pass 	
-		db.delete(delete_list)	
-		
-  def refresh_employer_images(self, employer_list=False):
-        #TODO: Reduce multiple writes
-		from google.appengine.api import images
-		save_profiles = []
-		from model.user import Profile, ProfilePicture
-		if not employer_list: employers = Employer.all().fetch(1000)
-		else: employers = employer_list
-		logging.info('saving employer images for %s', employers)
-		for e in employers:
-			p_path = ROOT_PATH + "/data/img/business/"
-			try: image_file = open(p_path + str(e.unique_identifier) + ".png")
-			except: continue
-			image = image_file.read()
-			small_image = images.resize(image, 45, 45)
-			large_image = images.resize(image, 95, 95)
-			new_image = ProfilePicture(small_image = small_image,
-									 large_image = large_image,
-									 type = "employer"
-									 )
-			new_image.put()
-			logging.info('saved employer image for %s', e.unique_identifier)
-			this_profile = Profile.get_by_key_name(e.unique_identifier)
-			try:this_profile.photo = new_image
-			except:
-				logging.info('unable to refresh employer image for %s', e.unique_identifier)
-				continue
-			save_profiles.append(this_profile)
-		logging.info('refreshed %d employer images', len(save_profiles))
-		if save_profiles: print "refreshed employer images for", [p.unique_identifier for p in save_profiles]
-		db.put(save_profiles)
-			
+
+
+def update_email(new_bill, email_address):
+	if not mail.is_email_valid(email_address):
+		logging.warning("%s is not a valid email", email_address)
+		return False
+	message = mail.EmailMessage()
+	message.sender = get_sender()
+	message.subject = "A New Bill Is Available: " + new_bill.title 
+	message.to = email_address
+	message.body = """
+
+
+	A new bill is now available on the #QuizTheBill Site!
+	
+	Here's the details:
+	
+	Bill Title: %s
+	
+	Bill Sponsor: %s
+	
+	Introduction Date: %s
+
+	
+	
+	
+	By volunteering, you're helping provide Congress and the rest of us with a resource to understand important legislation before it is too late.
+	
+	Please let us know if you have any particular suggestions or problems while using the site. 	
+
+	
+	
+	Warm Regards,
+
+	James 
+	Team PlopQuiz	
+	
+	
+	
+	
+	%s
+	
+
+	
+
+	
+	""" % (new_bill.title, new_bill.sponsor, new_bill.introduction_date, mail_footer())
+
+
+	
+	message.send()
+
+
+
+def mail_footer():
+	footer = """
+	-----------------------------------------------------------------------------
+	
+	Visit PlopQuiz at http://www.plopquiz.com
+	
+    e-mail PlopQuiz: contact@plopquiz.com
+	call PlopQuiz: (650) 353-2694
+	
+	
+	"""
+	
+	return footer 
+
+
+
+
+
+def get_sender():
+	return "plopquiz@plopquiz.com"

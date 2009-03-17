@@ -28,7 +28,31 @@ $('div.bill').hover(function(){
 	$(this).find('div').css({"color":"#000040"});
 });
 
-
+$('div#updates').find('button').click(function(){
+	var email = $('div#updates').find('input').val();
+	console.log(email); 
+	if (email.indexOf('@') == -1) return alert("Make sure you have entered a valid e-mail address");
+	if (email.indexOf('@') > -1) {
+		
+       $('div#updates').find('button').attr('disabled', true);
+       
+        jQuery.ajax({
+	type: "POST",
+	url:  "/editor/rpc/post",
+	data:
+	{
+			action: "GetBillUpdates",
+			email: email
+	},
+	success: function(response)
+	{ 	 alert("You are now signed up! Check your inbox for a confirmation e-mail.")
+	}
+});
+		}
+		
+		
+	 	});
+	 	
 
  	});
  	
@@ -47,24 +71,22 @@ $('div.bill').hover(function(){
 
 <div class="frame_box panel" id="intro">
 
-	<p>Do you want elected officials and citizens to have a chance to read and understand legislation before it's passed?</p>
+	<p>Would you like elected officials to have more accountability for understanding legislation before it's passed?</p>
 
-	<p>And you've already signed the <a href="http://www.readthebill.org">ReadtheBill.org</a> petition for a 72 hour online rule?</p>
-	{# <div style="height:18px;"></div> #}
-	<p>Help Congress (and the rest of us) by contributing quiz items about pending legislation.</p>
-	<p style="font-size:38px;">Click any of the bills below to start making quiz material.</p>
+	<p>And you've already signed the <a href="http://www.readthebill.org">ReadtheBill.org</a> petition for a mandatory 72 hour online rule?</p>
+	 <div style="height:4px;"></div> 
+	<p>We want to build a resource of quizzes about pending legislation available for both Congress and all other citizens.</p>
+	<p style="padding-top: 10px; font-weight: bold;" class="note">Want to help? &nbsp; Just click one of the bills below.</p>
 	
 </div>
 
 
 
 <div class="info_note panel" id="updates">
-<div id="first_response">Join the <strong>First Response</strong> Mailing List </div>
+<div id="first_response"><button><img src="/static/stylesheets/img/utils/purple_next_tiny.png"/>Send Me Updates About New Bills</button></div>
 
 
-<input type="text"/>
-
-	</div>
+<input type="text"/></div>
 
 
 <div class="panel" id="bills">

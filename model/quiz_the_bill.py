@@ -13,3 +13,6 @@ class Bill(db.Model):
     sponsor_name = db.StringProperty(required=False)   
     #API data? sponsors, etc. 
 
+
+class EmailUpdate(db.Model): 
+  email_address = db.EmailProperty(required=True)

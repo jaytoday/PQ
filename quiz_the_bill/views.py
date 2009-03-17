@@ -93,7 +93,7 @@ class UpdateStats(webapp.RequestHandler):
 	titles = [t.contents[0] for t in document.findAll('title-full-common')]
 	current_rank = 1
 	for i,t in zip(ids, titles)[:BILL_LIMIT]:
-	    this_title = " ".join(str(t).decode('utf-8').split(' ')[1:]).split('Act')[0] + " Act"
+	    this_title = " ".join(str(t).decode('utf-8').split(' ')[1:]).split('Act')[0] + "Act"
 	    if len(this_title) > 35 : this_title = " ".join( this_title.split(' ')[:3] ) + "..."
 	    bills.append({'id': str(i), 
 	                  'title': this_title,
@@ -124,7 +124,7 @@ class UpdateStats(webapp.RequestHandler):
 	this_bill.latest_action = str(document.findAll('li')[property_count + 3]).split('</strong> ')[1].split('</li>')[0]
 	if len( this_bill.latest_action ) > 68: this_bill.latest_action = " ".join(this_bill.latest_action.split(' ')[:9]) + "..."
 	this_bill.sponsor = str(document.findAll('li')[property_count + 4]).split('</strong> ')[1].split('</li>')[0].decode('utf-8')
-	this_bill.sponsor_name = this_bill.sponsor.split("[")[0] # Rep.
+	this_bill.sponsor_name = this_bill.sponsor.split("[")[0] 
 	self.save.append(this_bill)
 	return
 
@@ -143,5 +143,13 @@ class UpdateStats(webapp.RequestHandler):
     self.save.append(new_topic)
     print "created new bill"
     logging.info('saved new bill wih title %s,id %s, and rank %s' % (bill['title'], bill['id'], str(bill['rank'])))
+    self.send_email_updates(new_bill)
     return new_bill              
                     
+
+  def send_email_updates(self, bill):
+      from quiz_the_bill.methods import update_email
+      from model.quiz_the_bill import EmailUpdate
+      subscribers = EmailUpdate.all().fetch(1000)
+      logging.info('sending update email for bill %s to %i users' %( bill.title, len(subscribers) ) )
+      for user in subscribers: update_email(bill, user.email_address)

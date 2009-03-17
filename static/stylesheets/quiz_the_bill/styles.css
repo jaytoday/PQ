@@ -55,20 +55,26 @@ padding:80px 0 39px 20px;
 
 div#updates input{
 font-size:1.3em;
-margin-left:18px;
-margin-top:-7px;
+margin-left:65px;
+margin-top:-70px;
 position:absolute;
 width:620px;
+text-align:center;
 }
 
 div#first_response{
 font-size:35px;
-margin-top:-70px;
+margin:-5px -38px;
 position:absolute;
 text-align:center;
 width:100%;
 }
 
+div#first_response button{font-size:0.8em;
+margin:0;
+padding:10px 20px;}
+
+div#first_response button img{ margin:10px 10px 0 -13px; }
 div#bills {
 margin-top:750px;
 }
@@ -135,4 +141,9 @@ width:420px;
 
 div.bill .stats li{
 margin: 10px 0;
+}
+
+
+div.bill .stats li strong{
+margin-right:7px;
 }

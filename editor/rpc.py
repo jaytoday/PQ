@@ -290,7 +290,7 @@ class EditorPost(webapp.RequestHandler):
 		if self.request.get('action') == "LoadUbiquityAnswers": return self.response.out.write( self.LoadUbiquityAnswers() )
 		if self.request.get('action') == "SubmitItem": return self.response.out.write( self.SubmitItem() )	
 
-
+		if self.request.get('action') == "GetBillUpdates": return self.response.out.write( self.GetBillUpdates() )	
 
 
 	######################
@@ -544,3 +544,13 @@ class EditorPost(webapp.RequestHandler):
 
 
 
+	def GetBillUpdates(self):     
+		email_address = self.request.get('email')
+		from model.quiz_the_bill import EmailUpdate
+		new_signup = EmailUpdate( email_address = email_address)
+		db.put(new_signup)
+		from quiz_the_bill.methods import confirm_email
+		confirm_email(new_signup.email_address)
+		return "OK"
+		
+		

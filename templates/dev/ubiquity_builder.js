@@ -132,7 +132,7 @@ var runCode = function(){
 	data: {
 			action: "LoadUbiquityAnswers",
 			correct_answer: answer,
-			item_text: $(doc).data('context')
+			item_text: select('statement').text()
 	},
 	success: function(response) { 
 		callback.call(this, response);

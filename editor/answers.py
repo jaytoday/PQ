@@ -27,11 +27,12 @@ class Answers():
 			key_index += 1
 			self.formatted_args[key] = arg 
 
+		# Filter Out Answers That Are Too Verbose
 		# Send Request to Service and Open Response for Parsing
 		sets = self.get_sets()
 		# Extract List of Strings From Response
 		answers = [a.contents[0] for a in sets.findAll('table')[1].contents[1].findAll('table')[0].findAll('a')]
-		return [a for a in answers if a.lower() not in lower_text_list]
+		return [a for a in answers if a.lower() not in lower_text_list and len(a.split()) < 3]
 
 		
 	def get_sets(self):	
