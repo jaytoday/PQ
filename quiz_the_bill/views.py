@@ -71,7 +71,6 @@ class UpdateStats(webapp.RequestHandler):
     bills = self.get_top_bills()
     for bill in bills: self.update_bill(bill)
     db.put(self.save) # save new bills to datastore in one trip
-
     return
     
     
@@ -93,8 +92,12 @@ class UpdateStats(webapp.RequestHandler):
 	titles = [t.contents[0] for t in document.findAll('title-full-common')]
 	current_rank = 1
 	for i,t in zip(ids, titles)[:BILL_LIMIT]:
+
 	    this_title = " ".join(str(t).decode('utf-8').split(' ')[1:]).split('Act')[0] + "Act"
 	    if len(this_title) > 35 : this_title = " ".join( this_title.split(' ')[:3] ) + "..."
+	    if this_title in [bill['title'] for bill in bills]: 	        	       
+	        logging.warning('duplicate bill found with title %s and id %s' %(t, i))
+	        continue # this bill has already been processed once
 	    bills.append({'id': str(i), 
 	                  'title': this_title,
 	                  'rank' : current_rank })
@@ -106,7 +109,11 @@ class UpdateStats(webapp.RequestHandler):
   def update_bill(self, bill):
 	# Check if a bill exists in datastore, and update its stats.
 	this_bill = Bill.get_by_key_name(bill['title']) 
-	if this_bill is None: this_bill = self.create_bill(bill)
+	logging.info(bill['title']) 
+	if this_bill is None: 
+	    this_bill = self.create_bill(bill)
+	    is_new_bill = True
+	else: is_new_bill = False
 	this_bill.rank = bill['rank']
 	import urllib
 	self.request_args = {'bill_id':  bill['id']}
@@ -126,6 +133,7 @@ class UpdateStats(webapp.RequestHandler):
 	this_bill.sponsor = str(document.findAll('li')[property_count + 4]).split('</strong> ')[1].split('</li>')[0].decode('utf-8')
 	this_bill.sponsor_name = this_bill.sponsor.split("[")[0] 
 	self.save.append(this_bill)
+	if is_new_bill: self.send_email_updates(this_bill)
 	return
 
 
@@ -143,7 +151,6 @@ class UpdateStats(webapp.RequestHandler):
     self.save.append(new_topic)
     print "created new bill"
     logging.info('saved new bill wih title %s,id %s, and rank %s' % (bill['title'], bill['id'], str(bill['rank'])))
-    self.send_email_updates(new_bill)
     return new_bill              
                     
 

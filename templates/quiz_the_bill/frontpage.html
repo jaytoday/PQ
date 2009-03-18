@@ -100,10 +100,11 @@ $('div#updates').find('button').click(function(){
 <div style="clear:both"></div>
 <div class="stats_container"><div class="stats">
 <li><strong>Sponsor:</strong>{{ bill.sponsor }}</li>
-<li><strong>Introduced:</strong>{{ bill.introduction_date }}</li>
+<li><strong>Introduction Date:</strong>{{ bill.introduction_date }}</li>
 <li><strong>Status:</strong>{{ bill.status }}</li>
 <li><strong>Latest Action:</strong>{{ bill.latest_action }}</li>
-<li><strong>Next Step:</strong>{{ bill.next_step }}</li>
+
+{% if bill.next_step %} <li><strong>Next Step:</strong>{{ bill.next_step }}</li> {% endif  %}
 
 </div></div>
 
