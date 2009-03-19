@@ -1,4 +1,4 @@
-
+import logging
 
 SETS_URL = "http://labs.google.com/sets?"
 
@@ -25,7 +25,12 @@ class Answers():
 		for arg in args:
 			key = "q" + str(key_index)
 			key_index += 1
-			self.formatted_args[key] = arg 
+			self.formatted_args[key] = "" 
+			for char in arg:
+				try: self.formatted_args[key] += char.decode('utf-8')
+				except:
+					logging.warning('unable to decode answer argument %s' % char)
+					pass
 
 		# Filter Out Answers That Are Too Verbose
 		# Send Request to Service and Open Response for Parsing

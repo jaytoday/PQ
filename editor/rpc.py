@@ -104,6 +104,13 @@ remote callers access to private/protected "_*" methods.
       return encode(this_item)
 
 
+
+
+  def Jeditable(self, *args):   # set moderation status for raw item
+      return args[0]
+
+
+  """
   def SubmitQuizItem(self, *args):
 		new_quiz_item = QuizItem()
 		new_quiz_item.index = string.lower(args[0])
@@ -164,14 +171,7 @@ remote callers access to private/protected "_*" methods.
       		db.put(save)
       		return str(new_quiz_item.key())
       		      
-
-
-
-
-  def Jeditable(self, *args):   # set moderation status for raw item
-      return args[0]
-
-
+  """
 
 
 ######## OPENCALAIS HELPER METHOD ##########
@@ -522,7 +522,7 @@ class EditorPost(webapp.RequestHandler):
 		this_item.answers = [a.strip("'") for a in self.request.get('answers').split(",")] 
 		this_item.content = self.request.get('item_text')
 		save = [ this_subject, this_item]
-		if session['user']: save.append(session['user'])
+		#if session['user']: save.append(session['user'])
 		db.put( save )
 		logging.info('saving new quiz item %s with subject %s and index %s' % (this_item.__dict__, self.request.get('subject_name'), self.request.get('correct_answer') ))
 		if self.request.get('ubiquity'): return "OK"

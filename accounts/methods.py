@@ -278,8 +278,8 @@ class Sponsorships():
 		self.save_sponsorships.append(new_sponsorship)
 		logging.info('saving new sponsorship for user %s from sponsor %s for subject %s' % (award.winner.unique_identifier , pledge.employer.unique_identifier, award.proficiency.name  ))
 		self.new_sponsorships += 1
-		self.notify_sponsor(new_sponsorship.sponsor, award)
-		self.notify_sponsee(award, new_sponsorship.sponsor)
+		#self.notify_sponsor(new_sponsorship.sponsor, award)
+		#self.notify_sponsee(award, new_sponsorship.sponsor)
 		return
 		
 

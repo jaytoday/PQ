@@ -4,9 +4,10 @@
 
 SLIDER_TIMEOUT = 5000;
 DEFAULT_NEW_SUBJECT_TEXT = "Subject Name";
-DEFAULT_LINK_TITLE = "Link Description"
-DEFAULT_LINK_URL = "http://"
-DEFAULT_VIDEO_URL = "http://youtube.com/"		
+DEFAULT_LINK_TITLE = "Link Description";
+DEFAULT_LINK_URL = "http://";
+DEFAULT_VIDEO_URL = "http://youtube.com/";	
+DEFAULT_INVITE_TEXT = "Enter an E-mail Address";	
 		
 		$(function () {
 

@@ -2,85 +2,56 @@
 {% block title %}
 #QuiztheBill
 {% endblock %}
-
+		{% block login %}{% endblock login %}
+		
 {% block head %}
 
 <style type="text/css"> 
 {% include "../../static/stylesheets/utils/form.css" %}
-{% include "../../static/stylesheets/quiz_the_bill/styles.css" %}
+{% include "../../static/stylesheets/quiz_the_bill/frontpage.css" %}
 </style> 
 
 
  
- <script type="text/javascript"> 
-
-DEFAULT_EMAIL_VAL = "Enter your E-mail Address";
- 
- $(function(){
- 	
-$('div#updates').find('input').preserveDefaultText(DEFAULT_EMAIL_VAL);
-
-$('div.bill').hover(function(){ 	
-	$(this).css({"background-color":"#CCCCCC","border-color":"#CCCCCC"});
-	$(this).find('div').css({"color":"#000080"});
-	},function(){
-	$(this).css({"background-color":"#DDDDDD","border-color":"#DDDDDD"});
-	$(this).find('div').css({"color":"#000040"});
-});
-
-$('div#updates').find('button').click(function(){
-	var email = $('div#updates').find('input').val();
-	console.log(email); 
-	if (email.indexOf('@') == -1) return alert("Make sure you have entered a valid e-mail address");
-	if (email.indexOf('@') > -1) {
-		
-       $('div#updates').find('button').attr('disabled', true);
-       
-        jQuery.ajax({
-	type: "POST",
-	url:  "/editor/rpc/post",
-	data:
-	{
-			action: "GetBillUpdates",
-			email: email
-	},
-	success: function(response)
-	{ 	 alert("You are now signed up! Check your inbox for a confirmation e-mail.")
-	}
-});
-		}
-		
-		
-	 	});
-	 	
-
- 	});
- 	
- 	
-  
-   </script>
+ <script type="text/javascript"> {% include "frontpage.js" %}</script>
 {% endblock %}
 
 
 {% block main %}
 
 <div id="header">
-<h2>#QuiztheBill</h2>
+<h2>
+<span style="font-size: 0.8em;">#</span><span style="font-size: 1.3em;">Q</span>uiz<span style="font-size: 0.6em;">the</span><span style="font-size: 1.3em;">B</span>ill
+</h2>
 </div>
 <div id="sub_header">Because Congress Needs Help With Their Homework</div>
 
-<div class="frame_box panel" id="intro">
+<div><script src="{{ http_host}}/js/quiz/{{ featured_subject }}" type="text/javascript"></script></div>
 
-	<p>Would you like elected officials to have more accountability for understanding legislation before it's passed?</p>
+<div id="intro" class="frame_box panel">
 
-	<p>And you've already signed the <a href="http://www.readthebill.org">ReadtheBill.org</a> petition for a mandatory 72 hour online rule?</p>
-	 <div style="height:4px;"></div> 
-	<p>We want to build a resource of quizzes about pending legislation available for both Congress and all other citizens.</p>
-	<p style="padding-top: 10px; font-weight: bold;" class="note">Want to help? &nbsp; Just click one of the bills below.</p>
+	<p>Elected officials should be more accountable for understanding legislation before voting for it.</p>
+
+	<p><a style="font-size: 1.1em;"href="http://www.readthebill.org">ReadtheBill.org</a> is petitioning for a law  to give legislators and the rest of us 72 hours of access to a bill before its vote.</p>
+
+	 
+	  
+	 
+	<a target="_blank" href="http://www.readthebill.org"> <button class="" style="margin: 14px 130px; padding: 11px; background: rgb(224, 224, 224) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; height: 325px; width: 550px;">
+	 
+	 <img style="margin: 60px 0pt 110px; float: left;" src="http://media.sunlightprojects.org/readthebill/images/v2/72_button_b.png"/>
+	  <img style="margin-right: 0pt; position: absolute; margin-left: -110px; margin-top: 150px;" src="http://media.sunlightprojects.org/readthebill/images/v2/72_button.png"/>
+
+<object width="400" height="302"><param value="true" name="allowfullscreen"/><param value="always" name="allowscriptaccess"/><param value="http://vimeo.com/moogaloop.swf?clip_id=3366620&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1" name="movie"/><embed width="400" height="302" allowscriptaccess="always" allowfullscreen="true" type="application/x-shockwave-flash" src="http://vimeo.com/moogaloop.swf?clip_id=3366620&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1"/></object>
+</button>
+
+</a>
+	 
+	<p>The ReadtheBill movement has inspired us to build a public resource of quizzes for federal bills.</p>
+<p>But we need your help.</p>
+	<p class="note" style="margin: -10px 0pt; font-weight: bold; font-size: 50px ! important;">Contribute a quiz item. <br/> Click one of the bills below.</p>
 	
 </div>
-
-
 
 <div class="info_note panel" id="updates">
 <div id="first_response"><button><img src="/static/stylesheets/img/utils/purple_next_tiny.png"/>Send Me Updates About New Bills</button></div>

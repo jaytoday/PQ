@@ -309,7 +309,7 @@ margin-top:100px;
 }
 
 div#subject_frame_container div.subject_stats{
-margin: 4px 0px;
+margin: 44px 0px;
 }
 
 div#subject_frame_container div.subject_stat h3{
@@ -390,6 +390,14 @@ margin:2px;
 width:480px;
 }
 
+div.lower_level div.invite_contributors .header{
+width: 200px; margin: 10px 130px;
+}
+
+div.lower_level div.invite_contributors input{
+font-size: 1.3em;
+}
+
 
 
 div.lower_level  select{
@@ -454,5 +462,6 @@ margin: 80px 80px 20px; width: 600px; font-size: 2.2em; height: 160px;
 }
 
 div.join_subject div.note{
-height: 60px;
+height:40px;
+padding:20px 0 0;
 }

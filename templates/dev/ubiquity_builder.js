@@ -154,6 +154,7 @@ var runCode = function(){
     // TODO: This also gets called on DBLClick, so we lookup answers 
     // when turning the text into a textbox. Needs to be fixed
     select('statement').mouseup(function(){
+        if ($(this).data('ready') == false) return false;
         var answer = get_selection();
         if (answer.length < 1) 
             return false;
@@ -175,7 +176,8 @@ var runCode = function(){
             select('suggestions').find('div.items').html(markup.join("\n"));
             answerChoices(); // reset answer choice click event
         });
-    });
+    }).mousedown(function(){ select('statement').data('ready', false); 
+   return setTimeout(function(){ select('statement').data('ready', true);  }, 250);  });
     
     // edit wrong answer text
     select('wrong_answer').find('span').text(default_answer_text).click(function(){

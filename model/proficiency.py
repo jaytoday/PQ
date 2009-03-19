@@ -84,7 +84,7 @@ class Proficiency(db.Model):
   	
       
 class ProficiencyTopic(db.Model):  # sub-topics within proficiencies - These map to content URLs.
-  name = db.StringProperty(required=True)  # max_length is 15
+  name = db.StringProperty(required=True)  # max_length is 25
   proficiency = db.ReferenceProperty(Proficiency, collection_name='topics') # Proficiency Tag (startup_financing)
   date = db.DateTimeProperty(auto_now=True)    
   #freebase_guid ?

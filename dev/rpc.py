@@ -126,19 +126,17 @@ remote callers access to private/protected "_*" methods.
 
   def working(self, *args):
 
-  	from model.proficiency import Proficiency
-  	ps = Proficiency.all().fetch(1000)
-  	public_list = ["Recovery.Gov", "Biofuels", "Smart Grid", "Energy Efficiency", "Cars 2.0"]
-  	for p in ps:
-  		if p.name in public_list: p.status = "public"
-  		else: p.status = "private"
-  		p.put()
-  	return
-  	from model.quiz import QuizItem
-  	qs = QuizItem.gql("WHERE proficiency = :1", p).fetch(1000)
-  	for q in qs:
-  	 q.content_url = "http://recovery.gov"
-  	 q.put()
+  	from model.proficiency import Proficiency, ProficiencyTopic
+  	q = Proficiency.get_by_key_name("QuiztheBill")
+  	save = []
+  	pts = ProficiencyTopic.all().fetch(1000)
+  	for p in pts:
+  		if p.subject is None: 
+  		    p.subject = q
+  		    print p.name
+  		    save.append(p)
+     
+  	db.put(save)
 
   	
   	    

@@ -44,7 +44,7 @@ class QuizEditor(webapp.RequestHandler):
 		try: self.get_subject()
 		except: print "SUBJECT NOT FOUND" #self.redirect('/error/subject_not_found')
 		from editor.methods import get_membership, get_user_items
-		try:self.subject_membership = get_membership(self.session['user'], self.this_subject)
+		try: self.subject_membership = get_membership(self.session['user'], self.this_subject)
 		except: print "NOT A MEMBER"
 		template_values = {'subject': self.this_subject, 
 		                   'user_items': get_user_items(self.session['user'], self.this_subject), 

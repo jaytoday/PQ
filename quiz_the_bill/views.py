@@ -7,32 +7,59 @@ from utils import webapp
 from .utils.utils import tpl_path
 from model.quiz_the_bill import Bill
 
+# Settings
 BILL_LIMIT = 10
 TEMPLATE_PATH = 'quiz_the_bill/'
 SUNLIGHT_BASE_URL = "http://services.sunlightlabs.com/api/"
-API_KEY = "" 
-# Enter Your Own API Key Here 
-# register at http://services.sunlightlabs.com/api/register/
-
-OPENCONGRESS_INFO_URL = "http://www.opencongress.org/tools/bill_status_panel?" #bill_id=111-h45
+OPENCONGRESS_INFO_URL = "http://www.opencongress.org/tools/bill_status_panel?" 
 GOVTRACK_URL = "http://www.govtrack.us/congress/billtext.xpd?"
 OPENCONGRESS_BR_URL = "http://www.opencongress.org/battle_royale.xml?" 
-APP_NAME = "QuizTheBill"
+APP_NAME = "QuiztheBill"
+API_KEY = "" 
+
+"""
+
+Note: To hit the Sunlight Labs APIs, you will need to provide your account key.
+
+You can register at http://services.sunlightlabs.com/api/register/
+
+"""
+
+
 
 class FrontPage(webapp.RequestHandler):
+
   def get(self):    
-    template_values = {'bills': self.get_bills()}
-    path = tpl_path(TEMPLATE_PATH + 'frontpage.html')
-    self.response.out.write(template.render(path, template_values))
-    return
+	"""
+
+	The splashpage for QuiztheBill, containing an introduction
+	and a list of bills.
+
+	"""  
+	template_values = { 'bills': self.get_bills(),
+						# subject for quiz widget
+						'featured_subject': "QuiztheBill" }
+					   
+	path = tpl_path(TEMPLATE_PATH + 'frontpage.html')
+	self.response.out.write(template.render(path, template_values))
+	return
     
   def get_bills(self):
       top_ten_bills = Bill.all().order('rank').fetch(10)
       return top_ten_bills 
       
     
+    
+    
 class RenderBillFrame(webapp.RequestHandler):
+
   def get(self):    
+	"""
+	
+	Renders an frame with a webpage used to create quizzes. For this app,
+	the frame contains the text of pending Congressional legislation.
+	
+	"""
 	import urllib 
 	bill_name = urllib.unquote( self.request.path.split('/bill/')[1] )
 	self.this_bill = Bill.get_by_key_name(bill_name)
@@ -47,9 +74,7 @@ class RenderBillFrame(webapp.RequestHandler):
 	self.response.out.write(template.render(path, template_values))
 	return
 
-           	
-  
-
+           
   def get_bill_url(self):	
 	# Send Request to Service and Open Response for Parsing
 	import urllib
@@ -59,23 +84,27 @@ class RenderBillFrame(webapp.RequestHandler):
 	
 
 
-    
-
-
 
 class UpdateStats(webapp.RequestHandler):
+
   def get(self):    
-    from model.proficiency import Proficiency
-    self.this_app = Proficiency.get_by_key_name(APP_NAME)
-    self.save = []
-    bills = self.get_top_bills()
-    for bill in bills: self.update_bill(bill)
-    db.put(self.save) # save new bills to datastore in one trip
-    return
+	"""
+
+	This method retrieves Congressional data. It is not necessary for 
+	an unrelated client app for authoring quizzes.
+
+	"""
+	from model.proficiency import Proficiency
+	self.this_app = Proficiency.get_by_key_name(APP_NAME)
+	self.save = []
+	bills = self.get_top_bills()
+	for bill in bills: self.update_bill(bill)
+	db.put(self.save) # save new bills to datastore in one trip
+	return
     
     
   def get_top_bills(self):	
-	# Send Top Bills From OpenCongress Service
+	# Parse updated XML list of ranked bills From OpenCongress Service
 	import urllib
 	self.request_args = {'order':  'desc',
 	                     'page' :    1,
@@ -105,14 +134,13 @@ class UpdateStats(webapp.RequestHandler):
 	return bills
 
 
-
   def update_bill(self, bill):
 	# Check if a bill exists in datastore, and update its stats.
 	this_bill = Bill.get_by_key_name(bill['title']) 
 	logging.info(bill['title']) 
 	if this_bill is None: 
-	    this_bill = self.create_bill(bill)
-	    is_new_bill = True
+		this_bill = self.create_bill(bill)
+		is_new_bill = True
 	else: is_new_bill = False
 	this_bill.rank = bill['rank']
 	import urllib
