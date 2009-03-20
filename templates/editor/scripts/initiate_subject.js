@@ -155,8 +155,7 @@ $('button', this_subject.invite).click(function(){
 	
 	var invite_value = $('input', this_subject.invite).val();
 	if (invite_value == DEFAULT_INVITE_TEXT || invite_value == "" || invite_value.indexOf('@') < 0) return alert("Please enter a valid e-mail address"); 
-	return alert("Sending invite");
-	
+	return SendInvite(this_subject, invite_value); 
 	 });
 	 
 	 

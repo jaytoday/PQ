@@ -22,7 +22,14 @@ class QuizTaker(db.Model):
     def get_level_for_proficiency(self, proficiency):   # Get proficiency_levels for user 
         return ProficiencyLevel.gql("WHERE quiz_taker = :1 AND proficiency = :2", self.key(), proficiency).get()
     
-
+    @property
+    def subjects(self):   # Get proficiency_levels for user 
+        pls = ProficiencyLevel.gql("WHERE quiz_taker = :1", self.key()).fetch(100)
+        if pls is None: return []
+        subjects = []
+        for pl in pls:
+        	subjects.append(pl.proficiency)
+        return subjects
     
 
 class ProfilePicture(db.Model):

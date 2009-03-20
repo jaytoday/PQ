@@ -2,11 +2,12 @@
 
 function RefreshSubjects(subjects_container) {
 	
-	
 if (subjects_container.data('refreshing') == true) return false;
 subjects_container.data('refreshing', true);
 
 // subjects_container.find('.mini_loading').show();
+
+var offset = parseInt(subjects_container.find('div.quiz_subjects').attr('id'));
 
 	$.ajax({
 		type: "POST", 
@@ -14,11 +15,14 @@ subjects_container.data('refreshing', true);
 		datatype: "json",
 		data:
 			{
-					action: "refresh_subjects"
+					action: "refresh_subjects",
+					offset: offset
 			},
 		error: function() { subjects_container.html("Error Refreshing Subjects"); },
 		success: function(response) { subjects_container.html(response);  },
-		complete: function(data) { subjects_container.data('refreshing', false); subjects_container.trigger('initiate');  }
+		complete: function(data) { subjects_container.data('refreshing', false); subjects_container.trigger('initiate'); 
+		//subjects_container.find('div.quiz_subjects').attr('id', offset + OFFSET_JUMP); 
+		}
 	});  
 	
 }
@@ -301,5 +305,31 @@ function JoinSubject(this_subject)
 			},
 		error: function() { AjaxError(); },
 		success: function(response) { this_subject.find('div.member_section').html(response); }
+	});  
+}
+
+
+
+function SendInvite(this_subject, email_address)
+{
+
+if (this_subject.invite.data('busy') == true) return false;
+this_subject.invite.data('busy', true);
+
+	$.ajax({
+		type: "POST", 
+		url: '/editor/rpc/post',
+		datatype: "json",
+		data:
+			{
+					action: "send_invite",
+					subject_name: this_subject.name, 
+					email_address: email_address
+			},
+		error: function() { },
+		success: function(response) {  $('input', this_subject.invite).val(DEFAULT_INVITE_TEXT); if (response != "OK") return false;
+		var successful = this_subject.invite.find('div.success'); successful.text("Your invite was successfully sent to " + email_address).show('slow');
+		return setTimeout(function(){ successful.hide('slow');  }, 5000);    },
+		complete: function(data) { this_subject.invite.data('busy', false); }
 	});  
 }

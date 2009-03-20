@@ -769,7 +769,6 @@ line-height:2.2em;
 position:absolute;
 right:0;
 text-shadow:1px 1px 1px #FFFFFF;
-width:250px;
 z-index:100;
 }
 
@@ -781,9 +780,8 @@ border-right:1px solid #b5b5b5 !important;
 
 .quiz_wrap div#quiz_category {
 font-size:0.9em;
-margin:3px 0 0 -20px;
+margin:3px 0 0 0px;
 text-align:center;
-width:270px;
 }
 
 
@@ -941,10 +939,10 @@ border:1px solid #E2C922 !important;
 display:block;
 font-size:1em !important;
 font-weight:bold;
-height:28px;
+height:32px;
 width: 105px;
 margin:auto !important;
-/* 3px 8px 2px !important; */ padding: 4px 8px 1px !important;
+ padding: 4px 8px 1px !important;
 text-align:center;
 opacity:0.8 !important;
 	filter: alpha(opacity=80) !important;

@@ -8,7 +8,7 @@ from .utils.utils import tpl_path
 from model.quiz_the_bill import Bill
 
 # Settings
-BILL_LIMIT = 10
+BILL_LIMIT = 9
 TEMPLATE_PATH = 'quiz_the_bill/'
 SUNLIGHT_BASE_URL = "http://services.sunlightlabs.com/api/"
 OPENCONGRESS_INFO_URL = "http://www.opencongress.org/tools/bill_status_panel?" 
@@ -45,7 +45,7 @@ class FrontPage(webapp.RequestHandler):
 	return
     
   def get_bills(self):
-      top_ten_bills = Bill.all().order('rank').fetch(10)
+      top_ten_bills = Bill.all().order('rank').fetch(BILL_LIMIT)
       return top_ten_bills 
       
     
@@ -120,7 +120,7 @@ class UpdateStats(webapp.RequestHandler):
 	ids = [i.contents[0] for i in document.findAll('ident')]
 	titles = [t.contents[0] for t in document.findAll('title-full-common')]
 	current_rank = 1
-	for i,t in zip(ids, titles)[:BILL_LIMIT]:
+	for i,t in zip(ids, titles)[:BILL_LIMIT + 1]:
 
 	    this_title = " ".join(str(t).decode('utf-8').split(' ')[1:]).split('Act')[0] + "Act"
 	    if len(this_title) > 35 : this_title = " ".join( this_title.split(' ')[:3] ) + "..."

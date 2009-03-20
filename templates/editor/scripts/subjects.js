@@ -87,7 +87,7 @@ subjects_container.trigger("initiate");
 //create_new_subject
 $('button#create_new_subject').click(function(){  CreateNewSubject(subjects_container); });
 
-	$('button#find_more_subjects').click(function(){ RefreshSubjects(subjects_container); });	
+	$('button.find_more_subjects').click(function(){ RefreshSubjects(subjects_container); });	
 
 		}); //end onReady
 

@@ -84,7 +84,7 @@ class EditSubjects(webapp.RequestHandler):
       @login_required
       def get(self):
         from editor.methods import get_subjects_for_user         
-        template_values = { 'subjects' : get_subjects_for_user(self.session['user'])}
+        template_values = { 'subjects' : get_subjects_for_user(self.session['user']), 'offset': 5}
         template_values['subjects_js'] = subjects_js(template_values)
         path = tpl_path(EDITOR_PATH +'edit_subjects.html')
         self.response.out.write(template.render(path, template_values))

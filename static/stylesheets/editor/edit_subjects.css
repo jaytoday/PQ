@@ -8,7 +8,7 @@
 height:940px;
 }
 
-div#quiz_subjects{
+div.quiz_subjects{
 background: #EDF2F8; width:800px; border: 3px solid #E0E0E0; height:80px; float:left; padding: 0 10px; margin:8px -15px;
 }
 
@@ -45,6 +45,15 @@ width:640px;
 position:relative;
 }
 
+button.find_more_subjects{
+width:160px;
+padding-left:0px;
+}
+
+button.find_more_subjects img{
+position:absolute;
+margin:0 8px;
+}
 /*
 *
 * Quiz Subjects 
@@ -398,7 +407,10 @@ div.lower_level div.invite_contributors input{
 font-size: 1.3em;
 }
 
-
+div.lower_level div.invite_contributors .success{
+margin: 10px;
+padding: 5px;
+}
 
 div.lower_level  select{
 width: 150px;

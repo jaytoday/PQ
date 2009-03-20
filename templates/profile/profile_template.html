@@ -54,6 +54,8 @@
 <div id="awards">
 
 
+<div id="no_award_note" class="info_note profile_info_note" style="display:none;">{% if profile_owner %}You have{% else %}{{ user.fullname }} has{% endif %}  no awards. </div>
+
  
 {% for award in user.awards %}
 
@@ -81,7 +83,6 @@
 
 {% endfor %}
 
-<div id="no_award_note" class="info_note profile_info_note" style="display:none;">{% if profile_owner %}You have{% else %}{{ user.fullname }} has{% endif %}  no awards. </div>
  
  </div> {# awards #}
  </div> {# award_scroll #}
@@ -98,7 +99,7 @@
 
  </div> {# award_content #}
 
-
+<!--
 <span class="gray_box_header">Academic Sponsors</span>
 <div class="panel_content " id="sponsor_content" > 
 <div class="gray_box sponsors_box" id="sponsor_container">
@@ -144,8 +145,51 @@
 </div> {# sponsor_container #}
 
 </div> {# sponsor_content #}
+-->
+
+<span class="gray_box_header">Quizzes I've Taken</span>
+<div class="panel_content " id="sponsor_content" > 
+<div class="gray_box sponsors_box" id="sponsor_container">
+<div id="sponsor_scroll">
 
 
+{% if profile_owner %}	
+{#  <div class="info_note sponsor_user" id="sponsor_owner"> <a>Get Sponsors Now!</a> </div> #}
+{% else %}
+
+{# <div class="info_note sponsor_user" id="sponsor_not_owner"> <a href="{{ http_host }}/sponsor/{{ user.profile_path }}">Sponsor {{ user.fullname }} Now!</a> </div> #}
+
+{% endif %}
+
+
+<div id="sponsors">
+{% if not subjects %}
+<div id="no_award_note" class="info_note profile_info_note" >{% if profile_owner %}You haven't{% else %}{{ user.fullname }} hasn't{% endif %}  taken a quiz yet. </div>
+{% endif %}
+
+{% for subject in subjects %}
+<div class="proficiency_pic selection_box award_img">
+
+		<li class="sliderImage">
+			<img src="/image/subject/?img_id={{ subject.images.0.key }}&size=small"/>
+			<span class="img_{% cycle top,bottom %}"><strong>  {{ subject.name}}</strong></span>
+		</li>
+		
+</div>
+{% endfor %}
+
+
+</div> {# sponsors #}
+</div> {# sponsor_scroll #}
+
+<div class="box_nav" id="sponsor_scroll_nav" style="display:none">
+<button id="sponsor_next" class="small_nav"><img src="/static/stylesheets/img/utils/purple_next_tiny.png"></button>
+<button id="sponsor_prev" class="small_nav"><img src="/static/stylesheets/img/utils/purple_prev_tiny.png"></button>
+</div>
+
+</div> {# sponsor_container #}
+
+</div> {# sponsor_content #}
 
 
 </div><!-- end summary -->

@@ -196,6 +196,11 @@ function quizItemLoad(quizItem, html, s)
 		$.plopquiz.answer_text.animate({opacity: 0}, 0);
 		$.plopquiz.answer_load_icons.animate({opacity: 1}, 300);
 		$.plopquiz.answers.data('disabled', true);
+		
+		// adjust tab width
+	  var tab_width = 20 + (10 * $.plopquiz.quiz_content.find('div#quiz_category').text().length);
+	  $.plopquiz.quiz_content.find('div.tab').css('width', tab_width);
+	  $.plopquiz.quiz_content.find('div#quiz_category').css('width', tab_width - 10);
 		}
 
 

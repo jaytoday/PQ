@@ -110,89 +110,6 @@ remote callers access to private/protected "_*" methods.
       return args[0]
 
 
-  """
-  def SubmitQuizItem(self, *args):
-		new_quiz_item = QuizItem()
-		new_quiz_item.index = string.lower(args[0])
-		lc_answers = [string.lower(answer) for answer in args[1]]
-		new_quiz_item.answers = lc_answers
-		this_subject = Proficiency.gql("WHERE name = :1", args[5])
-		this_topic = ProficiencyTopic.get_or_insert(key_name=args[2], name=args[2], proficiency=this_subject.get())
-		this_topic.put()
-		new_quiz_item.topic = this_topic.key()
-		new_quiz_item.proficiency = this_topic.proficiency.key()
-		# And args[2] 
-		# new_quiz_item.proficiency = str(args[5])  # Should be Proficiency   - needs to be calculated. should be proficiency key. 
-		new_quiz_item.content =  args[3].replace('title="Click to edit..."', '')
-		new_quiz_item.content =  new_quiz_item.content.replace('^f"', '<div class=\"focus\">')    # add focus div. 
-		new_quiz_item.content =  new_quiz_item.content.replace('f$"', '</div>')
-		new_quiz_item.content =  new_quiz_item.content.replace(' style="opacity: 1;"', '')
-		blank_span = re.compile('<span id="blank">.*</span>')  #delete whatever is in span.blank!
-		new_quiz_item.content =  blank_span.sub('<span style=\"opacity: 1;\" id=\"blank\"></span>', new_quiz_item.content)
-		new_quiz_item.content =  new_quiz_item.content.replace('</div><div class="content">', '')
-		new_quiz_item.content =  new_quiz_item.content.replace('</div><div class="post_content">', '')
-		new_quiz_item.content =  new_quiz_item.content.replace('<div class="pre_content">', '')
-		new_quiz_item.content =  new_quiz_item.content.replace('<div class="content">', '')
-		new_quiz_item.content =  new_quiz_item.content.replace('\n', ' ')
-		new_quiz_item.content =  new_quiz_item.content.rstrip('</div>')
-
-		new_quiz_item.difficulty = 0 # Default?
-		new_quiz_item.content_url = args[4]
-		new_quiz_item.theme = new_quiz_item.get_theme(args[4])
-		new_quiz_item.put()
-		return str(new_quiz_item.key())
-      
-  def NewQuizItem(self, *args): # Just for ubiquity, for now. TODO: Combine with POST method below!!!
-      		save = []
-      		new_quiz_item = QuizItem()
-      		new_quiz_item.content =  args[0]
-      		# lowering everything right now....TODO: Case convention! 
-      		new_quiz_item.index = string.lower(args[1])
-      		all_answers = [string.lower(answer) for answer in eval(args[2])]
-      		all_answers.append(new_quiz_item.index)
-      		new_quiz_item.answers = all_answers
-      		# TODO: Can a new quiz subject be made here? Yay or nay?
-      		this_subject = Proficiency.get_by_key_name(args[3])
-      		# topic key_names usually are proficiency_topic -- are these going to be tags instead?
-      		this_topic = ProficiencyTopic.get_by_key_name(args[3] + "_" + args[4])
-      		if this_topic is None: 
-      		    logging.info('creating new topic %s in quiz subject %s' % (args[4], args[3]) )
-      		    this_topic = ProficiencyTopic(key_name = args[3] + "_" + args[4], name=args[4], proficiency=this_subject)
-      		    save.append(this_topic)
-      		new_quiz_item.topic = this_topic
-      		new_quiz_item.proficiency = this_subject
-      		new_quiz_item.content_url = args[5]
-      		new_quiz_item.theme = new_quiz_item.get_theme(args[5])
-      		save.append(new_quiz_item)
-      		logging.info('making new quiz item with content: %s, answers: %s, quiz subject: %s, topic: %s, and url: %s' %
-      		            (new_quiz_item.content, new_quiz_item.answers, new_quiz_item.proficiency.name, new_quiz_item.topic.name,
-      		             new_quiz_item.content_url))
-      		return save
-      		db.put(save)
-      		return str(new_quiz_item.key())
-      		      
-  """
-
-
-######## OPENCALAIS HELPER METHOD ##########
-
-  def hund(self, *args):  # Workaround for 100,000 character limit for SemanticProxy.
-		#page = 'http://' + str(args[0].replace('http%3A//',''))
-		webpage = urlfetch.fetch(args[0])
-		soup = BeautifulSoup(webpage.content)
-		the_text = soup.findAll(text=True)[0:1000]
-		all_text = []
-		print ""
-		for t in the_text:
-			all_text.append(t.encode('utf-8'))
-		print(string.join(all_text)[0:99999])
-		#print soup.contents[1].findAll(text=True)
-		#print str(page.contents)	
-
-        
-       
-
-
 
 
 
@@ -282,6 +199,7 @@ class EditorPost(webapp.RequestHandler):
 		if self.request.get('action') == 'delete_subject_image': return self.response.out.write(self.delete_subject_image() ) 						   
 		if self.request.get('action') == 'create_new_subject': return self.response.out.write(self.create_new_subject() ) 	
 		if self.request.get('action') == 'join_subject': return self.response.out.write(self.join_subject() ) 	
+		if self.request.get('action') == 'send_invite': return self.response.out.write(self.send_invite() ) 
 		
 				
 		# editing quiz items
@@ -306,7 +224,11 @@ class EditorPost(webapp.RequestHandler):
 		from utils.webapp import template
 		path = tpl_path(EDITOR_PATH +'subject_container.html')
 		from editor.methods import get_subjects_for_user     
-		template_values = { 'subjects' : get_subjects_for_user(self.session['user'])}
+		offset = int(self.request.get('offset'))
+		new_subjects = get_subjects_for_user(self.session['user'], offset=offset)
+		if len(new_subjects) < 5: new_offset = 0
+		else: new_offset = offset + 5
+		template_values = { 'subjects' : new_subjects, 'offset': new_offset}
 		return template.render(path, template_values)	
 		
 	def update_subject_blurb(self):
@@ -460,7 +382,15 @@ class EditorPost(webapp.RequestHandler):
 		path = tpl_path(EDITOR_PATH +'load_member_section.html')
 		template_values = {'s': {"subject": this_subject, "is_member": "contributor" }} # Only admins can edit links, for now. 
 		return template.render(path, template_values)	
-														
+
+	def send_invite(self):
+		from utils.appengine_utilities.sessions import Session
+		self.session = Session()		
+		from editor.methods import send_invite
+		send_invite(self.session['user'], self.request.get('subject_name'), self.request.get('email_address'))	
+		return "OK"		
+		
+																
 
 	######################
 

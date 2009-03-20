@@ -17,7 +17,7 @@ PROFILE_PATH = 'profile/'
 REPORT_CARD_LIMIT = 5
 CLOUD_LIMIT = 9
 TOPIC_LEVEL_MIN = 10
-PROFILE_LOAD_DURATION = 5000
+PROFILE_LOAD_DURATION = 1000
 
 class ViewProfile(webapp.RequestHandler):
   #View a profile
@@ -64,8 +64,7 @@ class ViewProfile(webapp.RequestHandler):
 			    s.delete()
 		"""
 		return { 'user': user, 'profile_owner': is_profile_owner,  'top_levels': topic_levels[0:REPORT_CARD_LIMIT],
-		        'level_cloud': level_cloud, 'flash_msg': get_flash(),  
-		        #'plopquiz' : self.get_plopquiz_profile(),
+		        'level_cloud': level_cloud, 'flash_msg': get_flash(),  'subjects': qt.subjects,
 		        'range': range, 'depth': depth, 'level_msg': self.level_msg, 'scroll': self.set_scroll(user) }
 
   @memoize('plopquiz_profile')

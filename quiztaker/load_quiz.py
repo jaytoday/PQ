@@ -193,10 +193,16 @@ class QuizSession():
 		save_items = []
 		these_items = ItemScore.gql("WHERE type = :1", token).fetch(1000)
 		logging.info('Transferring %d Scores From Quiz Session %s to User %s' % ( len(these_items), token, unique_identifier ))  
+		# this assumes that only one subjet is taken at a time, so its not applied to all items
+		#this_subject = i[0].quiz_item.proficiency.key()
+		#if this_subject not in this_user.subjects:
+			#this_user.subjects += this_subject
 		for i in these_items:
 			i.quiz_taker = this_user
 			i.type = unique_identifier
 			save_items.append(i)
+			
+
 		from google.appengine.ext import db
 		db.put(save_items)
 		return True
