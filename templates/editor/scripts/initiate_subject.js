@@ -147,18 +147,21 @@ $('button.join', this_subject).click(function(){
 	 });
 	 
 	 
-
+this_subject.bind("member_section", function() {
+	var member_section = $(this_subject).find('div.member_section');
 // Invite others to join subject by e-mail address
-this_subject.invite = $(this_subject).find('div.invite_contributors');
+this_subject.invite = $(member_section).find('div.invite_contributors');
 $('input', this_subject.invite).preserveDefaultText(DEFAULT_INVITE_TEXT);
 $('button', this_subject.invite).click(function(){
-	
 	var invite_value = $('input', this_subject.invite).val();
 	if (invite_value == DEFAULT_INVITE_TEXT || invite_value == "" || invite_value.indexOf('@') < 0) return alert("Please enter a valid e-mail address"); 
 	return SendInvite(this_subject, invite_value); 
 	 });
 	 
-	 
+});	this_subject.trigger('member_section');   // end member section 
+
+
+
 	 
 $('ul.subject_nav', this_subject).tabs();
 

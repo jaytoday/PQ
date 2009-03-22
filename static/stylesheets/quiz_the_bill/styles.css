@@ -107,9 +107,14 @@ position:absolute;
 margin:10px 140px;
 }
 
-div.bill, div.bill .title_container{height:100%; }
+div.bill {height:100%; }
 div.bill, div.bill .title{
 height:180px;
+}
+
+div.bill .title{
+height:150px;
+margin-top:30px;
 }
 
 div.bill .title{
@@ -120,7 +125,7 @@ position:static;
 text-align:center;
 vertical-align:middle;
 width:300px;
-padding:103px 25px 25px;
+padding:0px 25px;
 }
 
 div.bill .stats_container{

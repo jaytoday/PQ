@@ -208,7 +208,7 @@ class Redirect(webapp.RequestHandler):
         
   @login_required
   @quiztaker_required
-  def from_quiz_redirect(self):      # These occasionally time out. Try/Except solution for re-trying update. 
+  def from_quiz_redirect(self):      
 	# redirect after quiz
 	logging.info('Redirecting From Quiz')
 	token = self.request.path.split('/from_quiz/')[1]

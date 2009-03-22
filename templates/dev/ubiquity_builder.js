@@ -146,6 +146,7 @@ var runCode = function(){
     // Close button event handler
     select('close').click(function(){
         jQuery('#' + id, doc.body).remove();
+        $('object').show();
     });
     
     select('correct_answer').text(default_correct_answer_text);
@@ -303,10 +304,14 @@ var runCode = function(){
 			ubiquity: "true"
 	},
 	success: function(response)
-	{ 	 jQuery('#' + id, doc.body).remove(); jQuery(doc).trigger('item_submit'); //$('div#editor_container').html(response).trigger("refresh");	
+	{ 	 select('close').click(); jQuery(doc).trigger('item_submit'); //$('div#editor_container').html(response).trigger("refresh");	
 	}
 });
 
     });
+    
+    
+ // remove flash objects while open
+ $('object').hide();   
 };
 

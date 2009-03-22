@@ -104,6 +104,7 @@ $("div#about_dialog_content").dialog({
 		background: "black" 
 		},
 buttons: { 
+	/*
 "Intro": function() { 
 		$(this).find('div').hide();
 		$(this).find('div.about_introduction').show();
@@ -117,7 +118,8 @@ buttons: {
 			
 			$(this).parent().find('button').removeClass('clicked');
 			$(this).addClass('clicked');
-			$(this).parent().find('span.section').hide('fast').end()
+			console.log($(this).parents('.about_profiles:first'));
+			$(this).parents('.about_profiles:first').find('span.section').hide().end()
 			                .find('span#' + $(this).attr('id')).css('display', 'block');
 
 		}).end()
@@ -129,24 +131,26 @@ buttons: {
 		$(this).find('div.about_sponsors').show();
 },
 
-/* TODO Volunteers 
+
 "Volunteers": function() { 
 		$(this).find('div').hide();
 		$(this).find('div.about_how_we_grade').show();
 },
 
-*/
+
 
 "How We Grade": function() { 
 		$(this).find('div').hide();
 		$(this).find('div.about_how_we_grade').show();
 }
 
+ */
+
 } 
 
 
 
-}).show();
+}).dialog("open").show();
 
 $('div.ui-dialog-buttonpane').find('button:first').addClass('clicked'); // initialize on first button
 $('div.ui-dialog-buttonpane > button').click(function(){
@@ -201,7 +205,7 @@ $('a#uservoice-feedback-tab').click();
         
 } 
 
-}).show();
+}).dialog("open").show();
 
 $('div.ui-dialog-buttonpane').find('button:first').addClass('clicked'); // initialize on first button
 $('div.ui-dialog-buttonpane > button').click(function(){
@@ -215,19 +219,8 @@ $(this).addClass('clicked');
 
 
 // Take a Quiz link
-$('a#take_a_quiz').click(function(){ 
-	
-	$.getScript("/js/quiz/?autostart=True"); 
-			// resize overlay to document not window
-		function drawOverlay(){
-		$('div#pq_quiz_overlay').css("height", $(document).height());
-		}
-		$(window).resize(drawOverlay); // whenever window is resized, overlay will be drawn. 
+$('#take_a_quiz').click(function(){  StartQuiz("/js/quiz/?autostart=True"); });
 
-
-	$('div#pq_quiz_overlay').show().bind("displayQuiz", function()
-                                      { $(this).hide();         }) ;
-});
 
 // Hide Flash Objects When Dialog/Widget Is Open
 
@@ -266,3 +259,17 @@ $loader.animate({opacity:1}, { duration:0 }).animate({opacity: 1 }, {duration:lo
 
 
 
+function StartQuiz(script){
+	
+		$.getScript(script); 
+			// resize overlay to document not window
+		function drawOverlay(){
+		$('div#pq_quiz_overlay').css("height", $(document).height());
+		}
+		$(window).resize(drawOverlay); // whenever window is resized, overlay will be drawn. 
+
+
+	$('div#pq_quiz_overlay').show().bind("displayQuiz", function()
+                                      { $(this).hide();         }) ;
+                                      
+}

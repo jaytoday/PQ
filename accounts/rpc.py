@@ -172,10 +172,20 @@ class Post(webapp.RequestHandler):
       
       
   def update_user_sponsorships(self):          
+      """
+      
+      Since sponsorships are now turned off, this has been disabled.
+      
+      
+      """
+      
+      print "OK"
+      return "OK"
+      
       from accounts.methods import Sponsorships
       sponsorships = Sponsorships()
       # check for new sponsorships, both personal and business
-      logging.info('Updating Sponsorships for User %s', self.session['user'].unique_identifier)
+      logging.info('Updating Sponsorships for User %s', self.session['user'].unique_identifier) 
       new_sponsorships = sponsorships.check_user(self.session['user'])
       if new_sponsorships > 0: self.session['flash_msg'] = 'new_sponsorship'
       print "OK"

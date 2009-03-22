@@ -304,7 +304,8 @@ function JoinSubject(this_subject)
 					subject_name: this_subject.name
 			},
 		error: function() { AjaxError(); },
-		success: function(response) { this_subject.find('div.member_section').html(response); }
+		success: function(response) { this_subject.find('div.member_section').html(response);  },
+		complete: function(){ this_subject.trigger('member_section');  }
 	});  
 }
 

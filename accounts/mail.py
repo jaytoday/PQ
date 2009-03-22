@@ -27,10 +27,14 @@ def mail_intro_message(profile):
 	
 	Your academic profile on PlopQuiz.com will help you demonstrate your knowledge about emerging subjects of public interest.
 	
-	Each quiz you take is a new chance for you to add awards to your academic profile and compete for sponsorships from our community organizations.
+	
+	PlopQuiz is being built with the goal of helping to open education, one free quiz at a time.
 	
 	
-		
+	You can take a quiz to study for a class, build an academic profile for your resume, or just for fun.
+	
+	You can make a quiz about any subject and invite others to contribute. Share any quiz on your website or give them to your class for extra credit.
+	
 	
 	
 	Warm Regards,

@@ -345,7 +345,7 @@ class EditorPost(webapp.RequestHandler):
 		from model.proficiency import Proficiency		
 		existing_subject = Proficiency.gql("WHERE name = :1", self.request.get('subject_name') ).get()
 		if existing_subject is not None: 
-		    logging.warning("user %s attempted to create duplicate subject with name %s" %(self.session['user'], self.request.get('subject_name')) )
+		    logging.warning("user %s attempted to create duplicate subject with name %s" %(self.session['user'].unique_identifier, self.request.get('subject_name')) )
 		    return "exists"
 		this_subject = Proficiency(key_name = self.request.get('subject_name'), name = self.request.get('subject_name'))
 		from model.user import SubjectMember
@@ -355,7 +355,7 @@ class EditorPost(webapp.RequestHandler):
 		                                status = "public",
 		                                is_admin = True)
 		                                
-		logging.info('user %s created subject %s'% (self.session['user'], this_subject.name) )
+		logging.info('user %s created subject %s'% (self.session['user'].unique_identifier, this_subject.name) )
 		db.put([this_subject, this_membership])		
 		from utils.webapp import template
 		path = tpl_path(EDITOR_PATH +'subject_container.html')
@@ -376,7 +376,7 @@ class EditorPost(webapp.RequestHandler):
 		user = users.get_current_user()
 		if user: admin_status = True
 		this_membership = SubjectMember(keyname = self.session['user'].unique_identifier + "_" + this_subject.name, user = self.session['user'], subject = this_subject, is_admin = admin_status)
-		logging.info('user %s joined subject %s'% (self.session['user'], this_subject.name) )
+		logging.info('user %s joined subject %s'% (self.session['user'].unique_identifier, this_subject.name) )
 		db.put([this_membership])		
 		from utils.webapp import template
 		path = tpl_path(EDITOR_PATH +'load_member_section.html')
@@ -473,14 +473,3 @@ class EditorPost(webapp.RequestHandler):
 
 
 
-
-	def GetBillUpdates(self):     
-		email_address = self.request.get('email')
-		from model.quiz_the_bill import EmailUpdate
-		new_signup = EmailUpdate( email_address = email_address)
-		db.put(new_signup)
-		from quiz_the_bill.methods import confirm_email
-		confirm_email(new_signup.email_address)
-		return "OK"
-		
-		

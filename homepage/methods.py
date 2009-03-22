@@ -1,13 +1,14 @@
+from utils.utils import memoize
 
+ACTION_THRESHOLD = 15
 
-ACTION_THRESHOLD = 20
-
+@memoize('homepage_feed', 50000)
 def load_action_feed():
 	action_feed = []
 	from model.account import Sponsorship, Award
-	recent_sponsorships = Sponsorship.all().order('-date').fetch(ACTION_THRESHOLD)
+	#recent_sponsorships = Sponsorship.all().order('-date').fetch(ACTION_THRESHOLD)
+	#action_feed.extend(recent_sponsorships)
 	recent_awards = Award.all().order('-date').fetch(ACTION_THRESHOLD)
-	action_feed.extend(recent_sponsorships)
 	action_feed.extend(recent_awards)
 	from operator import attrgetter
 	action_feed.sort(key = attrgetter('date'), reverse = True)

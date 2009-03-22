@@ -42,7 +42,7 @@ background:#DDDDDD none repeat scroll 0 0;
 
 #header_container{
 height:180px;
-width:1240px;
+width:1000px;
 }
 
 #header #video{
@@ -63,18 +63,24 @@ margin: -5px 95px; position: absolute;
 }
 
 #header #subjects{
-margin:70px 0 0 1090px;
+margin:70px 0 0 980px;
 position:absolute;
+}
+
+#header #subjects button{
+width: 180px;
 }
 
 #header #subjects button img{
 margin:0 7px 0 -4px; float:left;
 }
 
-#header_success #success{ font-size:3em;
-padding:40px;
+#header_success #success{ 
+font-size:40px;
+padding:40px 0;
 text-align:center;
-width:100%;}
+width:100%;
+}
 
 #header_success #approval{text-align:center; }
 
@@ -97,13 +103,14 @@ border:5px solid #D0E3F8;
 }
 
 input#selection{
-font-size:2.4em;
-padding:30px;
-width:565px;
+background-color:#FFFFFF;
+border:5px solid #DDDDDD;
+font-size:2em;
+padding:30px 10px;
+width:475px;
 -webkit-border-radius: 5px;
 -moz-border-radius:5px;
-background-color:#fff;
-border:5px solid #DDD;
+
 }
 
 .note

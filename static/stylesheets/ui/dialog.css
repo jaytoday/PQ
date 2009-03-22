@@ -129,7 +129,6 @@ width:500px;
 
 
 
-
 .ui-dialog-content a{
 font-weight: bold;
 }
@@ -275,7 +274,14 @@ margin:70px 0 0 200px;
 div.ui-dialog.about_dialog div.about_introduction { margin-top: -20px; }
 
 
-div.ui-dialog.about_dialog div.about_introduction span.content#how { margin-top: -10px; }
+div.ui-dialog.about_dialog div.about_introduction span.content{ margin-top: -10px; 
+display:block;
+font-size:1em;
+line-height:1.5em;
+margin:20px 0;
+position:relative;
+width:560px;
+}
 
 
 div.ui-dialog.about_dialog div.about_sponsors p#message {
