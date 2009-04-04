@@ -19,7 +19,6 @@ class RequestHandler(webapp.RequestHandler):
         if self.request.get('js') == "base": output = self.base_js()
         if self.request.get('css') == "base": output = self.base_css()
         if self.request.get('css') == "blog": output = self.blog_css()
-        if self.request.get('css') == "bug": output = self.bug()
         self.response.out.write( output )
         
         

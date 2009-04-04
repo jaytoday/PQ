@@ -166,12 +166,15 @@ display:inline;
 }
 
 button.widget_button span{
-font-size:1.5em !important;
+font-size:1.7em !important;
 letter-spacing:0.06em;
 margin:15px 5px !important;
 }
 
-
+button.widget_button img{
+margin:21px 0 0 -9px;
+position:absolute;
+}
 
 img#quiz_img {
         position: absolute;
@@ -304,8 +307,7 @@ margin: -71px 0 10px;
 
 .quiz_wrap .timer_inner
 {
-       /* background-color:	#8a41c6 !important; */
-       background: transparent url(/static/stylesheets/img/quiztaker/timer.png) repeat-y scroll 0 0;
+       background: transparent url({{ http_host }}/static/stylesheets/img/quiztaker/timer.png) repeat-y scroll 0 0;
         height:	100%;
         position:	relative;
         width:	100%;

@@ -16,7 +16,7 @@ from dev.methods import dump_data
 
 EDITOR_PATH = "editor/"
 
-class RPCMethods(webapp.RequestHandler):
+class XMLRPCMethods(webapp.RequestHandler): # deprecated
   """ Defines AJAX methods.
   NOTE: Do not allow reload(sys); sys.setdefaultencoding('utf-8')
 remote callers access to private/protected "_*" methods.
@@ -118,7 +118,7 @@ class RPCHandler(webapp.RequestHandler):
   # AJAX Handler
   def __init__(self):
     webapp.RequestHandler.__init__(self)
-    self.methods = RPCMethods()
+    self.methods = XMLRPCMethods()
 
   def get(self):
     func = None
@@ -151,39 +151,14 @@ class RPCHandler(webapp.RequestHandler):
     
 
 
-class RPCPostHandler(webapp.RequestHandler):
-  """ Allows the functions defined in the RPCMethods class to be RPCed."""
-  def __init__(self):
-    webapp.RequestHandler.__init__(self)
-    self.methods = RPCMethods()
- 
-  def post(self):
-    args = simplejson.loads(self.request.body)
-    func, args = args[0], args[1:]
-   
-    if func[0] == '_':
-      self.error(403) # access denied
-      return
-     
-    func = getattr(self.methods, func, None)
-    if not func:
-      self.error(404) # file not found
-      return
-
-    result = func(*args)
-    self.response.out.write(simplejson.dumps(result))
-        
 
 
-
-
-class EditorPost(webapp.RequestHandler): 
+class RPCMethods(webapp.RequestHandler): 
 
 	def get(self):    
-		if self.request.get('action') == "LoadAnswers": return self.response.out.write( self.LoadAnswers() )
-		
-		#TEMP
-
+		from utils.random import jsonp
+		if self.request.get('action') == "LoadUbiquityAnswers": return self.response.out.write( jsonp(self.request.get("callback"),self.LoadUbiquityAnswers()) )
+		if self.request.get('action') == "SubmitItem": return self.response.out.write( jsonp(self.request.get("callback"), self.SubmitItem() ) )	
 					
 	def post(self): 
 	
@@ -205,7 +180,7 @@ class EditorPost(webapp.RequestHandler):
 		# editing quiz items
 		if self.request.get('action') == "NewTopic": return self.response.out.write( self.NewTopic() )
 		if self.request.get('action') == "LoadAnswers": return self.response.out.write( self.LoadAnswers() )
-		if self.request.get('action') == "LoadUbiquityAnswers": return self.response.out.write( self.LoadUbiquityAnswers() )
+
 		if self.request.get('action') == "SubmitItem": return self.response.out.write( self.SubmitItem() )	
 
 		if self.request.get('action') == "GetBillUpdates": return self.response.out.write( self.GetBillUpdates() )	
@@ -402,6 +377,7 @@ class EditorPost(webapp.RequestHandler):
 		this_subject = Proficiency.gql("WHERE name = :1", self.request.get('subject_name')).get()
 		new_topic = ProficiencyTopic(name = self.request.get('topic_name'), proficiency = this_subject)
 		db.put([this_subject, new_topic])
+		if self.request.get('no_template'): return "OK"
 		from utils.webapp import template
 		from utils.utils import tpl_path
 		template_values = {"subject": this_subject, "new_topic":new_topic}

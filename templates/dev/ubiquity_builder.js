@@ -122,20 +122,20 @@ var runCode = function(){
         initText();
     });
     
-    // TODO: This should be local answer service 
+
     var lookupAlternativeAnswers = function(answer, callback){
 
         jQuery.ajax({
-	type: "POST",
-	url:  serverUrl + "/editor/rpc/post",
-	dataType: "json",
+	type: "GET",
+	url:  serverUrl + "/editor/rpc/get",
+	dataType: "jsonp",
 	data: {
 			action: "LoadUbiquityAnswers",
 			correct_answer: answer,
 			item_text: select('statement').text()
 	},
 	success: function(response) { 
-		callback.call(this, response);
+		callback.call(this, eval(response));
 	}, 
 	complete: function(data){ 
 		}
@@ -289,8 +289,9 @@ var runCode = function(){
         jQuery(this).text("Sending...").attr('disabled', true);
     
         jQuery.ajax({
-	type: "POST",
-	url:  serverUrl + "/editor/rpc/post",
+	type: "GET",
+	url:  serverUrl + "/editor/rpc/get",
+	dataType: "jsonp",
 	data:
 	{
 			action: "SubmitItem",
@@ -303,8 +304,8 @@ var runCode = function(){
 			item_status: "not_approved",
 			ubiquity: "true"
 	},
-	success: function(response)
-	{ 	 select('close').click(); jQuery(doc).trigger('item_submit'); //$('div#editor_container').html(response).trigger("refresh");	
+	success: function()
+	{ 	 select('close').click(); jQuery(doc).trigger('item_submit'); 
 	}
 });
 

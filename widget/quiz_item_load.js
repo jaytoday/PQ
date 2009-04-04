@@ -33,8 +33,8 @@ function quizItemLoad(quizItem, html, s)
 		setNewStyles();
 
 		// set new quiz frame position
-		var margin_left = ( parseInt($.plopquiz.quiz_content.css('width')) / 2 ) + 15; 
-		var margin_top = ( parseInt($.plopquiz.quiz_content.css('height')) / 2 ) + 15;
+		var margin_left = ( parseInt($.plopquiz.quiz_content.css('width')) / 2 ); 
+		var margin_top = ( parseInt($.plopquiz.quiz_content.css('height')) / 2 );
 		$.plopquiz.quiz_outer.css({'margin-left': -margin_left, 'margin-top': -margin_top }); 
 	}
 	else {

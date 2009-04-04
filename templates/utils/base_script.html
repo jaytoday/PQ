@@ -13,3 +13,10 @@ pageTracker._trackPageview();
 <script defer src="http://plopquiz.uservoice.com/pages/general/widgets/tab.js?alignment=right&amp;color=69075A" type="text/javascript"></script>
 {% endif %}
 
+{% if not dev_server %}
+<script type="text/javascript">
+var cbjspath = "static.chartbeat.com/js/chartbeat.js?uid=657&domain=plopquiz.com";
+var cbjsprotocol = (("https:" == document.location.protocol) ? "https://s3.amazonaws.com/" : "http://");
+document.write(unescape("%3Cscript src='"+cbjsprotocol+cbjspath+"' type='text/javascript'%3E%3C/script%3E"))
+</script>
+{% endif %}
