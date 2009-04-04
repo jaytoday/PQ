@@ -49,14 +49,15 @@ width:35em;
       text-decoration: none;
     }
     
-    h2 {
-font-size:2.4em;
-margin:93px 0 0 16px;
+    h2#logo {
+font-size:2.8em;
+margin:110px 0 0 16px;
 position:absolute;
-width:326px;
+width:386px;
+
     }
     
-    h3 {
+    h3, .post h2{
 font-size:1.8em;
 letter-spacing:0.02em;
 line-height:1.1em;
@@ -123,7 +124,6 @@ text-align:right; }
     /* Individual Posts */
     .post {
 font-size:1.2em;
-letter-spacing:0.01em;
 line-height:1.1em;
 padding:2em 4em 1em 0;
 border: none;
@@ -261,7 +261,11 @@ position:relative;
 }
 
 div#launch_note{
-position:absolute; margin:-5px 10px 0px; width:300px; font-size: .8em;
+font-size:0.9em;
+margin:155px 10px 0;
+position:absolute;
+text-align:center;
+width:350px;
 }
 
 /* Twitter */

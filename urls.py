@@ -63,11 +63,11 @@ def url_routes(map):
 	map.connect('editor/item', controller = 'editor.views:RawItemTemplate')
 
 	# RPC Handlers
-	map.connect('editor/rpc/post', controller = 'editor.rpc:EditorPost')	
-	map.connect('editor/rpc/post*data', controller = 'editor.rpc:EditorPost')	
 	map.connect('quiztaker/rpc', controller = 'quiztaker.rpc:RPCHandler')
-	map.connect('editor/rpc/post', controller = 'editor.rpc:RPCPostHandler')	
-	map.connect('editor/rpc', controller = 'editor.rpc:RPCHandler')		
+	map.connect('editor/rpc/get', controller = 'editor.rpc:RPCMethods')		
+	map.connect('editor/rpc/post', controller = 'editor.rpc:RPCMethods')	
+	map.connect('editor/rpc/post*data', controller = 'editor.rpc:RPCMethods')	
+	map.connect('editor/rpc', controller = 'editor.rpc:RPCHandler')	#deprecated
 	map.connect('employer/rpc', controller = 'employer.rpc:RPCHandler')	
 	map.connect('employer/rpc/post', controller = 'employer.rpc:SponsorPost')		
 	map.connect('accounts/rpc', controller = 'accounts.rpc:RPCHandler')	

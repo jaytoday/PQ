@@ -35,8 +35,9 @@ CmdUtils.CreateCommand({
         var id = "pq-injected-data";
         
         jQuery.ajax({
-            type: "POST",
+            type: "GET",
             url: serverUrl + "/ubiquity/",
+            dataType: "json",
             data:    {
             get: "html",
             text: statement },
@@ -49,12 +50,19 @@ CmdUtils.CreateCommand({
                 // Remove existing injected data
                 jQuery('#' + id, doc.body).remove();
                 jQuery('head', doc).append('<link rel="stylesheet" type="text/css"  href="' + serverUrl + '/static/html/quizbuilder/ubiquity.css" />');
-                jQuery.post(serverUrl + '/ubiquity/?get=js', function(script){
-                    eval(script); // jQuery.getScript() doesn't work in Ubiquity sandbox.
-                    // Inject remote data
-                    jQuery(doc.body).append("<div id='" + id + "'>" + data + "</div>");
-                    runCode();
-                });
+              
+                //get accompanying javascript
+					jQuery.ajax({
+					type: "GET",
+					url: serverUrl + '/ubiquity/?get=js', 
+					dataType: "json",
+					success:  function(script){
+					eval(script); // jQuery.getScript() doesn't work in Ubiquity sandbox.
+					// Inject remote data
+					jQuery(doc.body).append("<div id='" + id + "'>" + data + "</div>");
+					runCode();
+					 } 
+					});   
             },
           complete: function(data){  $(doc).data('context', "this should be text or title of the document"); }
         });
