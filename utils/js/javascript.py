@@ -39,9 +39,6 @@ def jsmin(js):
 
 
 
-
-
-
 jsm = JavascriptMinify()
 
 

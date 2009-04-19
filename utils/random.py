@@ -12,7 +12,16 @@ def jsonp(callback, html):
     html = html.replace('\r\n','').replace("\n", "").replace("'", "&rsquo;");
     return callback + "('" + html + "');"
 
-    
+def compress(data):
+    import gzip 
+    import cStringIO
+    zbuf = cStringIO.StringIO()
+    zfile = gzip.GzipFile(mode='wb', compresslevel=2, fileobj=zbuf)
+    zfile.write(data)
+    zfile.close()
+    return zbuf.getvalue()
+
+
 
 def minify(js):
 		from StringIO import StringIO
@@ -23,7 +32,7 @@ def minify(js):
 		str = outs.getvalue()
 		if len(str) > 0 and str[0] == '\n':
 			str = str[1:]
-		return str
+		return str #compress(str)
 
 
 
