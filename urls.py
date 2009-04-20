@@ -2,9 +2,9 @@ def url_routes(map):
 
 	
 	#Hompeage
-	#map.connect('', controller = 'homepage.views:TeaserHomepage')
+
 	map.connect('', controller = 'homepage.views:ViewHomepage')
-	map.connect('preview/homepage', controller = 'homepage.views:ViewHomepage')
+	map.connect('autobot', controller = 'autobot.views:Autobot')
 
     #Login
 	map.connect('login', controller = 'accounts.views:Login')
