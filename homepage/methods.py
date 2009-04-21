@@ -24,3 +24,15 @@ def update_action_feed():
 	all_next_items = memcache.get('next_items')
 	if len(all_next_items) < 6: next_items = all_next_items
 	return all_next_items
+
+
+@memoize('featured_quiz', 50000)
+def get_featured_quiz():
+	try: 
+	    from model.dev import Setting
+	    featured_subject = Setting.get_by_key_name('fixture_subject').status
+	except:
+		from model.proficiency import Proficiency
+		featured_subject = Proficiency.gql("WHERE status = 'public' ORDER BY status, modified DESC" ).get()
+	return featured_subject
+

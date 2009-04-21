@@ -97,26 +97,38 @@ function quizItemLoad(quizItem, html, s)
 		* 
 		* 
 		*/
+switch(quizItem.item_type){
+case "begin_quiz":
+
+$('#quiz_init').hide();   $('#quiz_inner').show(); 
+		$('#confirm', $.plopquiz.answer_container)
+		  .removeClass('intro_quiz').addClass('begin_quiz').find('span.continue_button').removeClass('intro_button').addClass('begin_button').text('Start the Quiz').end()
+		  .animate({ opacity:0},{duration: 0, 
+				                complete: function(){  var $button = $('#confirm', $.plopquiz.answer_container); $button.data('disabled', true);  $("div#begin_quiz_quiz_selection", $.plopquiz.quiz_content).animate({height:170},{ duration: 1000, 
+				                complete: function(){  $("#click_below", $.plopquiz.quiz_content).animate({opacity:1},{ duration: 1000,     
+				                complete: function(){  $button.animate({opacity:1},{duration: 1000 });  $button.data('disabled', false);  
+				                 }});   
+				                 }}); 
+								 }});        
+
+		
+		$.plopquiz.settings.instructions.completed = false; break;
+		
+
+		
+		
+		case "intro": 
+
+		{% include "quiz_intro.js" %} 
+		
+		break;
 
 
 
-		if(quizItem.item_type == "intro")
-		{
 
 
-		{% include "quiz_intro.js" %}
+case "instructions":
 
-
-		}
-
-
-
-
-
-
-		if(quizItem.item_type == "instructions")
-		{
-	
 		//special handler for instructions 1 hovering
 		var i1mouseOverCount = 0;
 		var i1mouseOver = function()
@@ -141,15 +153,10 @@ function quizItemLoad(quizItem, html, s)
 
 
 		$(".answer", $.plopquiz.answer_container).mouseover(i1mouseOver);
-		}
+		break;
 
 
-
-
-
-
-		if(quizItem.item_type == "instructions2")
-		{
+case "instructions2":
 	
 		$('#skip', $.plopquiz.answer_container).hide();
 
@@ -158,37 +165,14 @@ function quizItemLoad(quizItem, html, s)
 		$.plopquiz.currentItem = 3;
 		$.plopquiz.loadItem();
 		});
-		}
+		break;
 
 
 
 
 
-		if(quizItem.item_type == "begin_quiz")
-		{
+case "quiz_item":
 
-		$('#confirm', $.plopquiz.answer_container)
-		  .removeClass('intro_quiz').addClass('begin_quiz').find('span.continue_button').removeClass('intro_button').addClass('begin_button').text('Start the Quiz').end()
-		  .animate({ opacity:0},{duration: 0, 
-				                complete: function(){  var $button = $('#confirm', $.plopquiz.answer_container); $button.data('disabled', true);  $("div#begin_quiz_quiz_selection", $.plopquiz.quiz_content).animate({height:170},{ duration: 1000, 
-				                complete: function(){  $("#click_below", $.plopquiz.quiz_content).animate({opacity:1},{ duration: 1000,     
-				                complete: function(){  $button.animate({opacity:1},{duration: 1000 });  $button.data('disabled', false);  
-				                 }});   
-				                 }}); 
-								 }});        
-
-				        
-		$.plopquiz.settings.instructions.completed = true;
-
-		}
-
-
-
-
-
-
-		if(quizItem.item_type == "quiz_item")
-		{
 		// reset the blank space
 		$('#blank', $.plopquiz.quiz_content).empty();
 		// hide the question until everything is loaded
@@ -201,16 +185,16 @@ function quizItemLoad(quizItem, html, s)
 	  var tab_width = 20 + (10 * $.plopquiz.quiz_content.find('div#quiz_category').text().length);
 	  $.plopquiz.quiz_content.find('div.tab').css('width', tab_width);
 	  $.plopquiz.quiz_content.find('div#quiz_category').css('width', tab_width - 10);
-		}
+	  break;
 
 
 
-		if(quizItem.item_type == "quiz_complete")
-		{
+case "quiz_complete":
+		
 		//update text for Button
 		$('#quiz_answers #confirm').removeClass('begin_quiz').addClass('quiz_complete').find('span.continue_button').text('See Results').show();
-
-		 }                
+		break;    
+	} 
 
 
 		// short delay to ensure everything is loaded

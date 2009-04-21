@@ -18,7 +18,7 @@
         var timeOut     = (vars.timeOut != undefined) ? vars.timeOut : 5000;
         var current     = null;
         var timeOutFn   = null;
-        var faderStat   = true;
+        var faderStat   = false;
         var mOver       = false;
         var items       = $("#" + element[0].id + "Content ." + element[0].id + "Image");
         var itemsSpan   = $("#" + element[0].id + "Content ." + element[0].id + "Image span");
@@ -54,8 +54,8 @@
             if(faderStat == true) {
                 if(!mOver) {
                     $(items[currNo]).fadeIn((timeOut/6), function() {
-                        if($(itemsSpan[currNo]).css('bottom') == 0) {
-                            $(itemsSpan[currNo]).slideUp((timeOut/6), function() {
+                        if($(itemsSpan[currNo]).css('bottom') == -1) {
+                            $(itemsSpan[currNo]).show((timeOut/6), function() {
                                 faderStat = false;
                                 current = items[currNo];
                                 if(!mOver) {
@@ -63,7 +63,7 @@
                                 }
                             });
                         } else {
-                            $(itemsSpan[currNo]).slideDown((timeOut/6), function() {
+                            $(itemsSpan[currNo]).show((timeOut/6), function() {
                                 faderStat = false;
                                 current = items[currNo];
                                 if(!mOver) {
@@ -75,8 +75,8 @@
                 }
             } else {
                 if(!mOver) {
-                    if($(itemsSpan[currNo]).css('bottom') == 0) {
-                        $(itemsSpan[currNo]).slideDown((timeOut/6), function() {
+                    if($(itemsSpan[currNo]).css('bottom') == -1) {
+                        $(itemsSpan[currNo]).show((timeOut/6), function() {
                             $(items[currNo]).fadeOut((timeOut/6), function() {
                                 faderStat = true;
                                 current = items[(currNo+1)];
@@ -86,7 +86,7 @@
                             });
                         });
                     } else {
-                        $(itemsSpan[currNo]).slideUp((timeOut/6), function() {
+                        $(itemsSpan[currNo]).show((timeOut/6), function() {
                         $(items[currNo]).fadeOut((timeOut/6), function() {
                                 faderStat = true;
                                 current = items[(currNo+1)];

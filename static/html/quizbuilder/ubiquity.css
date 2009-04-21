@@ -57,7 +57,7 @@ outline: 0 !important;
 
 div.ubiquity_quizbuilder{
 width: 700px !important; 
-height: 510px !important;
+height: 570px !important;
 color: white !important; background-color: #555 !important;
 padding: 5px !important;
 border: 5px solid #444 !important;
@@ -149,7 +149,7 @@ font-weight:bold !important;
 
 
 div.ubiquity_quizbuilder div.suggestions div.items{
-height: 180px !important; width: 290px !important; overflow-y:auto !important;
+height: 220px !important; width: 290px !important; overflow-y:auto !important;
 }
 
 div.ubiquity_quizbuilder div.suggestions div.items div.item{

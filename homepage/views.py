@@ -24,8 +24,8 @@ class ViewHomepage(webapp.RequestHandler):
 
     
     def get(self):
-        from homepage.methods import load_action_feed
-        template_values = {'page_title': 'Plopquiz', 'recent_actions': load_action_feed(), 'featured_quiz': 'Recovery.Gov'}
+        from homepage.methods import load_action_feed, get_featured_quiz
+        template_values = {'page_title': 'Plopquiz', 'recent_actions': load_action_feed(), 'featured_quiz': get_featured_quiz() }
         template_values['homepage_js'] = homepage_js(template_values)
         path = tpl_path(HOMEPAGE_PATH + 'homepage.html')
         self.response.out.write(template.render(path, template_values))

@@ -17,8 +17,8 @@ var runCode = function(){
         // position div in center - margins are negative half of height and width
 		var margin_left = ( parseInt(element.css('width')) / 2 ); 
 		var margin_top = ( parseInt(element.css('height')) / 2 );  
-		var top_offset = 300;//( parseInt(document.height) / 2 );
-		var left_offset = 800;//( parseInt(document.width) / 2 );
+		var top_offset = 150;//( parseInt(document.height) / 2 );
+		var left_offset = 400;//( parseInt(document.width) / 2 );
 		element.css({
         	'margin-left': -margin_left, 
         	'margin-top': -margin_top, 
@@ -146,7 +146,7 @@ var runCode = function(){
     // Close button event handler
     select('close').click(function(){
         jQuery('#' + id, doc.body).remove();
-        $('object').show();
+        jQuery('object').show();
     });
     
     select('correct_answer').text(default_correct_answer_text);
@@ -155,7 +155,7 @@ var runCode = function(){
     // TODO: This also gets called on DBLClick, so we lookup answers 
     // when turning the text into a textbox. Needs to be fixed
     select('statement').mouseup(function(){
-        if ($(this).data('ready') == false) return false;
+        if (jQuery(this).data('ready') == false) return false;
         var answer = get_selection();
         if (answer.length < 1) 
             return false;
@@ -313,6 +313,6 @@ var runCode = function(){
     
     
  // remove flash objects while open
- $('object').hide();   
+ jQuery('object').hide();   
 };
 

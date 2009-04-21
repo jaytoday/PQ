@@ -24,14 +24,19 @@ $(window).resize(drawOverlay); // whenever window is resized, overlay will be dr
 $("#pq_wrapper")
 .bind("quizstarting", function()
 {
-	
+	if ($.plopquiz.settings.started == true) return false;
+	$.plopquiz.settings.started = true;
+// hide flash elements and dialogs	
 $('object').hide().addClass('hidden'); 
 $("div.ui-dialog-content").bind("dialogclose", function(){ $('.main').find('object').show(); });
 
 	// if quiz is loaded from widget, show loading icon on widget. otherwise, immediately show overlay
+	 $.event.trigger("displayQuiz"); $('#quiz_inner').hide();  $('#quiz_init').show();
+	 /*
 	if(!$.plopquiz.settings.autoStart) $.plopquiz.widget_wrapper.find('button').hide().end().find('.widget_load').show();
 	else { $.event.trigger("displayQuiz");  $('#quiz_inner').hide();  $('#quiz_init').show();  }
-	
+	*/
+
 	// load first item
 	$.plopquiz.loadItem();
 	
@@ -41,7 +46,7 @@ $("div.ui-dialog-content").bind("dialogclose", function(){ $('.main').find('obje
 .bind("displayQuiz", function()
 {
 
-	$('#widget_wrapper').fadeOut(); $(this).show();
+	$('#widget_wrapper').fadeOut(); $(this).show();  
 	
 })
 .bind("answerhover", function()
@@ -56,7 +61,7 @@ if ( $('#quiz_answers .hover_answer', $.pq_wrapper).length > 0 ){ onAnswerHover(
 	$('#widget_wrapper').fadeIn().find('button').css('display', 'inline').end().find('.widget_load').hide();
 	// wipe quiz session. TODO: this should handle skipping instructions; 
 	$.plopquiz.currentItem = 0;
-	$.plopquiz.settings.instructions.completed = false;
+	$.plopquiz.settings.paused = false;
     // if we want to redirect to the PQ site
     // if($.plopquiz.settings.autoStart) window.location = "{{ http_host }}/login";
 });
@@ -128,8 +133,33 @@ $.event.trigger("answerhover");
 // these probably do the same thing
 .bind('loadingQuizItem', function()
 {
-	$.plopquiz.answers.removeClass('disabled').data("disabled", true);
-	$.plopquiz.timer.stop();
+
+	
+		$.plopquiz.answers.removeClass('disabled').data("disabled", true);
+		$.plopquiz.timer.stop();
+		$.plopquiz.quiz_inner_content.addClass('disabled').animate({opacity:0},100); 
+
+	$.plopquiz.quiz_loader.show().animate({opacity: .5 }, { duration:100, complete:function(){ 
+
+
+	// hardcoded versus server provided
+	$.plopquiz.quizItem.url = $.plopquiz.quizItem.url ? $.plopquiz.quizItem.url : "/quiz_item/?token=" + $.plopquiz.settings.sessionToken;
+
+
+	// load next item from the server
+			$.ajax({
+			url: $.plopquiz.settings.serverUrl + $.plopquiz.quizItem.url,
+			dataType: "jsonp",
+			cache: false,
+			success: function(html,s){ quizItemLoad($.plopquiz.quizItem, html, s)}, // code in quiz_item_load.js
+			error: function(xhr,s)
+			{
+					//console.log("Ajax error: ", xhr,s);
+			}
+			});
+
+			}});
+
 })
 .bind('submitingAnswer', function()
 {
@@ -143,7 +173,7 @@ $('#quiz_answers .answer', $.pq_wrapper).hover(
 {
 	// data("disabled") prevents double submissions
 	if($(this).data("disabled") == false){ 	$.plopquiz.submitAnswer($(this).find('div.answertext').text().replace(/\n/g,"")); }
-})
+});
 
 
 $("#quiz_content", $.pq_wrapper)
@@ -177,11 +207,53 @@ $('body').data('pq','True');
 
 
 
+/*
+ * This is called when an answer is submitted,
+ * even if not during the actual quiz session
+ */ 
+ 
+$.plopquiz.fetchNextItem = function()
+{
+
+switch($.plopquiz.settings.next_item)
+{
+
+
+case "begin_quiz":
+
+	return { url: '/intro/?page=begin_quiz', item_type:'begin_quiz', answers: [ 'Begin Quiz' ], noSkip: true }; break;
+	
+
+case "intro":
+
+return  { url: '/intro/?page=intro&subject={{ proficiencies }}', item_type:'intro', answers: ['Take This Quiz'], noSkip: true, vendor: "PlopQuiz"}; break;
+	
+
+case "instructions":
+
+return  {url: '/intro/?page=instructions', item_type:'instructions', answers: [ 'dog ate', 'web made' ], noSkip: true}; break;
+
+
+case "instructions2":
+
+return  {url: '/intro/?page=instructions2', item_type:'instructions2', answers: [ 'oil', 'battery' ], timed: "instructions2", timeout: 'reset'}; break;
+
+case "quiz":
+
+	return {
+			"url": "/quiz_item/?token=" + $.plopquiz.settings.sessionToken,
+			"item_type": "quiz_item",
+			"answers": $.plopquiz.proficiencies.answers,
+			"timed": true
+	}; break;
+	
+}
+
+};
 
 
 
-
-} // end of startQuiz
+} // end of Quiz Methods
 
 
 function onAnswerHover(answer) // when answer is hovered

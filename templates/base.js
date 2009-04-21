@@ -24,6 +24,14 @@ http_host = "{{http_host}}";
 
  
 $(function(){
+// recalculate margins of container
+
+var container_height = parseInt($('.main').css('height'));
+var margin_top = container_height / 2 ; 
+if (container_height > window.innerHeight)  { margin_top = window.innerHeight / 2 ; } 
+$('div#sitelet-home').animate({marginTop: -margin_top  + "px"}, 0);
+
+	$('div#sitelet-home').removeClass('hide'); //.show('slow');
 	
 	$('div.main').removeClass('hide');
 	
@@ -41,23 +49,20 @@ $(function(){
         $('.layer.far',  jqViewport).css({ width: (viewWidth * 1.04), height: (viewHeight*1.01) });
 
         
-  /*      jqViewport.jparallax({ 
+       /* jqViewport.jparallax({}
+                             { 
         	                   frameDuration: 40, //save CPU
                                takeoverFactor: 0.88, //time to decay (0-1)
                                takeoverThresh: 0.8 //time to begin (0-1)       
-                             }, 
-                              {} 
-                         TODO - get animations to be slower    
+                             } , 
+                              
+                
                              { xtravel: 0.8, ytravel: 0.5 }, // Layer   
                             { xtravel: '50%', ytravel: '50%' }, // Layer
                            {},
 
                              { xtravel: '50%', ytravel: '50%' },// Layer
                            { xtravel: '50%', ytravel: '50%' } 
-                              { xtravel: 1, ytravel: 1 }, // Layer  
-                               { xtravel: 1, ytravel: 1 }, // Layer   
-                                { xtravel: 1, ytravel: 1 }, // Layer   
-                                 { xtravel: 1, ytravel: 1 }, // Layer    
                              ).css({overflow: "hidden"}); */
     }
 
@@ -66,13 +71,7 @@ resizeViewport();
 // Call resizeViewport() each time when window was resized
 $(window).resize(resizeViewport);
     
-// recalculate margins of container
-/*
-var container_height = parseInt($('.main').css('height'));
-var margin_top = container_height / 2 ; 
-if (container_height > window.innerHeight)  { margin_top = window.innerHeight / 2 ; } 
-$('div#sitelet-home').animate({marginTop: -margin_top  + "px"}, 1400);
-*/
+
 
 $('input[type=button], button').focus(function()
 {

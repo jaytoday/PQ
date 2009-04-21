@@ -1,10 +1,10 @@
 CmdUtils.CreateCommand({
     name: "quiz",
     icon: "http://www.plopquiz.com/favicon.ico",
-    homepage: "http://www.plopquiz.com/preview/homepage",
+    homepage: "http://www.plopquiz.com",
     author: {
-        name: "Ben Dowling",
-        email: "ben.m.dowling@gmail.com"
+        name: "James Alexander Levy",
+        email: "jamesalexanderlevy@gmail.com"
     },
     license: "GPL",
     description: "Generate a PlopQuiz Quiz Item",
@@ -32,41 +32,54 @@ CmdUtils.CreateCommand({
         var doc = CmdUtils.getDocument();
         var serverUrl = "http://localhost:8080";
         
-        var id = "pq-injected-data";
-        
-        jQuery.ajax({
-            type: "GET",
-            url: serverUrl + "/ubiquity/",
-            dataType: "json",
-            data:    {
-            get: "html",
-            text: statement },
-    
-    
-            error: function(data){
-                jQuery(doc.body).append("<div id='error'>" + data + "</div>");
-            },
-            success: function(data){
-                // Remove existing injected data
-                jQuery('#' + id, doc.body).remove();
-                jQuery('head', doc).append('<link rel="stylesheet" type="text/css"  href="' + serverUrl + '/static/html/quizbuilder/ubiquity.css" />');
-              
-                //get accompanying javascript
+        function setTimeout(func, time){ return Utils.setTimeout(func, time); };
+
+    var id = "pq-injected-data";
+
+	jQuery.ajax({
+	type: "GET",
+	url:  serverUrl +"/ubiquity/", 
+	dataType: "jsonp",
+	data:
+	{
+	get: "html",
+	text: statement
+	},
+	error: function(data){
+		jQuery(doc.body).append("<div id='error'>" + data + "</div>");
+	},
+	success: function(data){
+		// Remove existing injected data
+		jQuery('#' + id, doc.body).remove();
+		jQuery('head', doc).append('<link rel="stylesheet" type="text/css"  href="' + serverUrl + '/static/html/quizbuilder/ubiquity.css" />');
+
+					//get accompanying javascript
 					jQuery.ajax({
 					type: "GET",
 					url: serverUrl + '/ubiquity/?get=js', 
-					dataType: "json",
+					dataType: "jsonp",
 					success:  function(script){
-					eval(script); // jQuery.getScript() doesn't work in Ubiquity sandbox.
-					// Inject remote data
+					eval(script); 
 					jQuery(doc.body).append("<div id='" + id + "'>" + data + "</div>");
-					runCode();
+					runCode(); 
 					 } 
-					});   
-            },
-          complete: function(data){  $(doc).data('context', "this should be text or title of the document"); }
-        });
+						  }); 
+							
+	},
+	complete: function(data){  }
+	});
+
+
     }
+    
+    
+    
 });
 
+
+
+        
+        
+        
+ 
 

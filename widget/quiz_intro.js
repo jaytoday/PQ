@@ -67,10 +67,12 @@ $('div#points', $.plopquiz.quiz_inner_content).show();
 $('div.go_to_site', $.plopquiz.answer_container).show();
 
 
+/*
 // we haven't display quiz yet if this is a widget, so do it now
 if(!$.plopquiz.settings.autoStart) $.event.trigger("displayQuiz");
 else { $('#quiz_init').hide();   $('#quiz_inner').show();  }
-
+*/
+$('#quiz_init').hide();   $('#quiz_inner').show(); 
 
 
 
@@ -107,6 +109,6 @@ share_popup.data('last_clicked', $(this).attr('id'));
 	}); // end click
 
 	
-//	$('div#points').show();
+$('div#points').show();
 
 	

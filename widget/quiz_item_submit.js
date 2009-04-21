@@ -28,9 +28,10 @@ $.plopquiz.settings.instructions.i2timedOut = false;
 
 //if ($.plopquiz.settings.instructions.completed) $.plopquiz.currentItem = 3; // skips tutorial already completed
 	 
+$.plopquiz.settings.next_item = "begin_quiz"; 
 $.plopquiz.loadItem();
 
-
+break;
 
 case "instructions":
 	
@@ -63,6 +64,9 @@ if ($.plopquiz.settings.instructions.skip_segment == false)
 break;
 
 case "begin_quiz":
+
+// if start quiz button is clicked
+//$.plopquiz.settings.next_item = "quiz";
 
 	if ($.plopquiz.answers.data('disabled') != false) return false; // problems with double submits
 	$.plopquiz.answers.data('disabled',true);

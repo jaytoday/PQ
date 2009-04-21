@@ -30,10 +30,10 @@ var session_setup = function($)
                 // intro and instruction hard coded items
                 introItems:
                 [
-                        {url: '/intro/?page=intro&subject={{ proficiencies }}', item_type:'intro', answers: ['Take This Quiz'], noSkip: true, vendor: "Plopquiz"},
+                        {url: '/intro/?page=intro&subject={{ proficiencies }}', item_type:'intro', answers: ['Take This Quiz'], noSkip: true, vendor: "PlopQuiz"},
                         {url: '/intro/?page=instructions', item_type:'instructions', answers: [ 'dog ate', 'web made' ], noSkip: true},
                         {url: '/intro/?page=instructions2', item_type:'instructions2', answers: [ 'oil', 'battery' ], timed: "instructions2", timeout: 'reset'},
-                        {url: '/intro/?page=begin_quiz', item_type:'begin_quiz', answers: [ 'Begin Quiz' ], noSkip: true}
+                        { url: '/intro/?page=begin_quiz', item_type:'begin_quiz', answers: [ 'Begin Quiz' ], noSkip: true }
                 ],
                 quizitemList: Array(),
                 currentItem: 0, // use to skip intros
@@ -41,11 +41,13 @@ var session_setup = function($)
                 {
                         serverUrl: "{{ http_host }}",
                         autoStart: {{ auto_start }},
+                        started: false,
                         initDone: false,
                         startTime: (new Date()),
                         sliderDuration: 5300, // used for subject preview image sliders
-                        timeoutDuration: 24000, // time to answer question
+                        timeoutDuration: 240000, // time to answer question
                         sessionToken: "", // provided by server to load and answer questions
+                        next_item: 'intro', 
                         instructions: // track progress through instruction
                         {
                                 completed: false, // all done?
@@ -131,11 +133,9 @@ $.plopquiz.widget_html = "{% spaceless %}{{ widget_html }}{% endspaceless %}";
 // add widget HTML
 $.plopquiz.widget_wrapper = $("#pqwidget");
 
-$.plopquiz.widget_wrapper.html(
- $($.plopquiz.widget_html).hide().fadeIn().click($.plopquiz.start)
-);
+$.plopquiz.widget_wrapper.html($.plopquiz.widget_html).hide().fadeIn().click(function(){ $.plopquiz.load_custom_selectors();  $.plopquiz.start(); });
 
-$('button',$.plopquiz.widget_wrapper).focus(function(){$(this).blur();})
+$('button',$.plopquiz.widget_wrapper).focus(function(){$(this).blur();});
 
 // remove default image if there are custom images (if we will never have subjects without pictures, this isn't necessary)
 	if ($.plopquiz.widget_wrapper.find('li').length > 1) $.plopquiz.widget_wrapper.find('li:first').remove();   
@@ -147,28 +147,29 @@ $('#pqwidget #subject_1').s3Slider({ timeOut: 8300  });
 };
 
 
-
+$.plopquiz.load_custom_selectors = function(){
+					// shortcuts for important elements
+					$.pq_wrapper = $("#pq_wrapper");  // the entire interface, including bg and overlay.
+					$.plopquiz.quiz_outer = $('div#quiz_outer', $.pq_wrapper);
+					$.plopquiz.quiz_inner_content = $('#quiz_inner > div'); // both content and answers
+					$.plopquiz.quiz_content = $('#quiz_inner  #quiz_content'); // content loaded from server
+					$.plopquiz.quiz_loader = $('#quiz_inner #quiz_loading');
+					$.plopquiz.timer_wrapper = $('#quiz_inner #quiz_timer');
+					$.plopquiz.timer = $('#timer_bar', $.plopquiz.timer_wrapper);
+					$.plopquiz.answer_container = $("#quiz_inner #quiz_answers"); // just answers and buttons
+					$.plopquiz.answers = $.plopquiz.answer_container.find('div');
+					$.plopquiz.answer_text = $.plopquiz.answers.find('div.answertext:not(#skiptext)');
+					$.plopquiz.answer_load_icons = $.plopquiz.answer_container.find("div.mini_loader");
+					$.plopquiz.textHolder = '     ';
+	};
 
  $.plopquiz.start = function(){
- 	                                       
-                       
-				 // Setup commonly used selectors
-				$.pq_wrapper = $("#pq_wrapper");  // the entire interface, including bg and overlay.
-				$.plopquiz.quiz_outer = $('div#quiz_outer', $.pq_wrapper);
-				$.plopquiz.quiz_inner_content = $('#quiz_inner > div'); // both content and answers
-				$.plopquiz.quiz_content = $('#quiz_inner  #quiz_content'); // content loaded from server
-				$.plopquiz.quiz_loader = $('#quiz_inner #quiz_loading');
-				$.plopquiz.timer_wrapper = $('#quiz_inner #quiz_timer');
-				$.plopquiz.timer = $('#timer_bar', $.plopquiz.timer_wrapper);
-				$.plopquiz.answer_container = $("#quiz_inner #quiz_answers"); // just answers and buttons
-				$.plopquiz.answers = $.plopquiz.answer_container.find('div');
-				$.plopquiz.answer_text = $.plopquiz.answers.find('div.answertext:not(#skiptext)');
-				$.plopquiz.answer_load_icons = $.plopquiz.answer_container.find("div.mini_loader");
-				$.plopquiz.textHolder = '     ';
+ 	                                        
                 // if the click handler is setup before the frame loads, wait for it
-                if($.pq_wrapper.length > 0)
-                        // start the quiz now -- This seems to be working, but isn't it in the wrong place? 
+					if($.pq_wrapper.length > 0) 
+					// start the quiz now 
 					$.event.trigger('quizstarting');
+
                 else
                         return setTimeout($.plopquiz.start, 100);
                         
@@ -176,7 +177,7 @@ $('#pqwidget #subject_1').s3Slider({ timeOut: 8300  });
                 
 
                         
-				//widget is draggable
+				//lightbox is draggable
 				$('#quiz_outer').draggable({ 
 				zIndex: 	1000, 
 				//opacity: 0.8,
@@ -208,63 +209,23 @@ $('head').append(style);
  * 
 */
 
-$.plopquiz.loadItem = function(quizItem)
+$.plopquiz.loadItem = function(quizItem) 
 {
-	
-var quizItem = $.plopquiz.quizItem = ((quizItem && quizItem.answers) ? quizItem : $.plopquiz.fetchNextItem());
 
-if(!quizItem)
-		return; 
-	
+$.plopquiz.quizItem = ((quizItem && quizItem.answers) ? quizItem : $.plopquiz.fetchNextItem());
 
-$.plopquiz.quiz_inner_content.addClass('disabled').animate({opacity:0},100); 
-	
-	$.plopquiz.quiz_loader.show().animate({opacity: .5 }, {duration:100, complete:function(){ 
-
-
-		// hardcoded versus server provided
-quizItem["url"] = quizItem.url ? quizItem.url : "/quiz_item/?token=" + $.plopquiz.settings.sessionToken;
+console.log($.plopquiz.quizItem);
+if(!$.plopquiz.quizItem)return; 
 
 // heeaayy, we're loading a quiz item
 $.event.trigger('loadingQuizItem');
 
-
-// load next item from the server
-$.ajax({
-		url: $.plopquiz.settings.serverUrl + quizItem.url,
-		dataType: "jsonp",
-		cache: false,
-		success: function(html,s){ quizItemLoad(quizItem, html, s)}, // code in quiz_item_load.js
-		error: function(xhr,s)
-		{
-				//console.log("Ajax error: ", xhr,s);
-		}
-});
-
-}});
-
 };
 
 
 
 
-/*
- * This is called when an answer is submitted,
- * even if not during the actual quiz session
- */ 
- 
-$.plopquiz.fetchNextItem = function()
-{
-if($.plopquiz.settings.instructions.completed == false) // still in instructions
-		return $.plopquiz.introItems[$.plopquiz.currentItem++]; 
 
-return {
-		"url": "/quiz_item/?token=" + $.plopquiz.settings.sessionToken,
-		"item_type": "quiz_item",
-		"answers": $.plopquiz.proficiencies.answers,
-		"timed": true
-};
-}
 
 
 $.plopquiz.fatalError = function(msg) { 
@@ -278,9 +239,11 @@ $(function()
 {
 $.plopquiz.init(); //the init fn is started when the document is ready.
 });
-};
 
 
+
+
+}; // end of session setup
 
 function pqLoad()
 {

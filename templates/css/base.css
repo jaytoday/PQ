@@ -247,7 +247,7 @@ left:50%;
 margin-left:-475px;
 margin-top:-250px; /* should be a little more than half of the window.innerHeight */
 position:absolute;
-top:45%;
+top:50%;
 width:950px;
 z-index:90;
 }
