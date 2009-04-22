@@ -320,6 +320,7 @@ $.pq_wrapper.qia.css({'margin-top': $.pq_wrapper.qia.css('margin-top') + adjustm
 
 $.pq_wrapper.qc.height( $.pq_wrapper.qc.height() + adjustment); // check to make sure it's smaller than window.height ?
 
+$.plopquiz.quiz_outer.css({'margin-top': $.plopquiz.quiz_outer.css('margin-top') - adjustment }); 
 
 };
 

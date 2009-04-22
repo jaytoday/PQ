@@ -245,9 +245,9 @@ color:#434343;
 font-size:14px;
 left:50%;
 margin-left:-475px;
-margin-top:-250px; /* should be a little more than half of the window.innerHeight */
+margin-top: 0px; /* should be a little more than half of the window.innerHeight */
 position:absolute;
-top:50%;
+top:2%;
 width:950px;
 z-index:90;
 }

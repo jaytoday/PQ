@@ -195,7 +195,7 @@ case "quiz_item":
     $.plopquiz.resetItemSize();
     // adjust item size
 	var text_height = $.plopquiz.quiz_content.find('div.quiz_frame_text').height(); 
-	if (text_height < DEFAULT_HEIGHT + 10) text_height = text_height + 20;
+	if (text_height < DEFAULT_HEIGHT + 30) text_height = text_height + 20;
 	var adjust_height = text_height - DEFAULT_HEIGHT;
 	//if ( adjust_height > -50 )
 	 $.plopquiz.adjustItemSize(adjust_height); 
