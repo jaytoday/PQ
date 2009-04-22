@@ -45,7 +45,7 @@ var session_setup = function($)
                         initDone: false,
                         startTime: (new Date()),
                         sliderDuration: 5300, // used for subject preview image sliders
-                        timeoutDuration: 240000, // time to answer question
+                        timeoutDuration: 20000, // time to answer question
                         sessionToken: "", // provided by server to load and answer questions
                         next_item: 'intro', 
                         instructions: // track progress through instruction
@@ -161,6 +161,8 @@ $.plopquiz.load_custom_selectors = function(){
 					$.plopquiz.answer_text = $.plopquiz.answers.find('div.answertext:not(#skiptext)');
 					$.plopquiz.answer_load_icons = $.plopquiz.answer_container.find("div.mini_loader");
 					$.plopquiz.textHolder = '     ';
+					
+					
 	};
 
  $.plopquiz.start = function(){
@@ -214,7 +216,6 @@ $.plopquiz.loadItem = function(quizItem)
 
 $.plopquiz.quizItem = ((quizItem && quizItem.answers) ? quizItem : $.plopquiz.fetchNextItem());
 
-console.log($.plopquiz.quizItem);
 if(!$.plopquiz.quizItem)return; 
 
 // heeaayy, we're loading a quiz item

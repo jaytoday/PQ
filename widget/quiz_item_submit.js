@@ -102,6 +102,8 @@ case "begin_quiz":
 
 					// instructions are done, we can skip them if the test is reset
 					$.plopquiz.settings.instructions.completed = true;
+
+					
 					// load the first question (we already have  it from the rpc call)
 					$.plopquiz.loadItem($.extend({timed:true,"item_type":"quiz_item"}, q));
 			}
@@ -111,8 +113,9 @@ break;
 
 case "quiz_item":
 	if ($.plopquiz.answers.data('disabled') != false) return false; 
-
 	
+	$.plopquiz.quiz_inner_content.addClass('disabled').animate({opacity:0}, 0); 
+
 	// ajax call to submit -- (answer, key, vendor)
 	$.plopquiz.timer.stop();
 	var timer_status = $.plopquiz.timer.width()/$.plopquiz.settings.timer_width;

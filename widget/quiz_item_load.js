@@ -1,3 +1,7 @@
+/* Settings */
+	  var DEFAULT_HEIGHT = 200; // should/can this be looked up? 
+
+	  
 function quizItemLoad(quizItem, html, s)
 {
 	// Remove the existing content
@@ -32,7 +36,6 @@ function quizItemLoad(quizItem, html, s)
 	if(currentHeight == 'auto' || currentWidth == 'auto') {
 		setNewStyles();
 
-		// set new quiz frame position
 		var margin_left = ( parseInt($.plopquiz.quiz_content.css('width')) / 2 ); 
 		var margin_top = ( parseInt($.plopquiz.quiz_content.css('height')) / 2 );
 		$.plopquiz.quiz_outer.css({'margin-left': -margin_left, 'margin-top': -margin_top }); 
@@ -54,7 +57,7 @@ function quizItemLoad(quizItem, html, s)
 		var margin_top = ( parseInt(newHeight) / 2 ) + 15;
 		$.plopquiz.quiz_outer.animate({'marginLeft': -margin_left, 'marginTop': -margin_top }, {duration: animDuration, queue:false});  
 		$.plopquiz.quiz_content.animate({width: newWidth, height: newHeight}, {duration: animDuration, queue:false, complete: setNewStyles});
-		
+				// set new quiz frame position -- this should come after quiz item redraw
 	}
 	
 
@@ -181,10 +184,22 @@ case "quiz_item":
 		$.plopquiz.answer_load_icons.animate({opacity: 1}, 300);
 		$.plopquiz.answers.data('disabled', true);
 		
+		
 		// adjust tab width
 	  var tab_width = 20 + (10 * $.plopquiz.quiz_content.find('div#quiz_category').text().length);
 	  $.plopquiz.quiz_content.find('div.tab').css('width', tab_width);
 	  $.plopquiz.quiz_content.find('div#quiz_category').css('width', tab_width - 10);
+	  
+	  
+		// reset item size
+    $.plopquiz.resetItemSize();
+    // adjust item size
+	var text_height = $.plopquiz.quiz_content.find('div.quiz_frame_text').height(); 
+	if (text_height < DEFAULT_HEIGHT + 10) text_height = text_height + 20;
+	var adjust_height = text_height - DEFAULT_HEIGHT;
+	//if ( adjust_height > -50 )
+	 $.plopquiz.adjustItemSize(adjust_height); 
+ 
 	  break;
 
 

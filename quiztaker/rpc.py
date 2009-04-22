@@ -69,6 +69,8 @@ class RPCMethods(webapp.RequestHandler):
   def continue_quiz(self, *args):
 		quiz_session = QuizSession()
 		picked_answer = str(args[0])
+		try: float(args[1])
+		except: return logging.warning('Unable to convert timer status %s to float' % str(args[1]))
 		timer_status = args[1]
 		token = args[2]
 		vendor = args[3]

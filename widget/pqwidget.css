@@ -973,11 +973,11 @@ span#quiz_category
 }
 
 .quiz_wrap div.quiz_scroll_container{
-    height:190px;
+    height:200px;
 left:40px;
 overflow-y:auto;
 position:absolute;
-top:100px;
+top:90px;
 width:440px;
 z-index:1;
 

@@ -40,6 +40,9 @@ $("div.ui-dialog-content").bind("dialogclose", function(){ $('.main').find('obje
 	// load first item
 	$.plopquiz.loadItem();
 	
+
+
+	
 	
 	
 })
@@ -85,13 +88,16 @@ $("#quiz_timer")
 	// reset and start timer.
 	var reset = function()
 	{
-			
-$.plopquiz.settings.timer_width = $('.timer_bar').width(); // to calculate score
-			 
 
 
+	 
+
+$.plopquiz.timer_wrapper.show();	
 $.plopquiz.timer.animate({opacity: 1.0}, 2000, function() //temporarily pause the timer 
 {
+				
+$.plopquiz.settings.timer_width = $('#timer_bar', $.plopquiz.timer_wrapper).width(); // to calculate score
+
 $.plopquiz.answers.removeClass('disabled').data("disabled", false);
 
 $.plopquiz.answer_load_icons.animate({opacity: 0}, 300);
@@ -137,7 +143,7 @@ $.event.trigger("answerhover");
 	
 		$.plopquiz.answers.removeClass('disabled').data("disabled", true);
 		$.plopquiz.timer.stop();
-		$.plopquiz.quiz_inner_content.addClass('disabled').animate({opacity:0},100); 
+		$.plopquiz.quiz_inner_content.addClass('disabled').animate({opacity:0},0); 
 
 	$.plopquiz.quiz_loader.show().animate({opacity: .5 }, { duration:100, complete:function(){ 
 
@@ -253,7 +259,11 @@ case "quiz":
 
 
 
-} // end of Quiz Methods
+
+
+
+
+
 
 
 function onAnswerHover(answer) // when answer is hovered
@@ -270,7 +280,7 @@ if ($(answer).attr("id") == "skip")
 
 if ($(answer).data('disabled') == false) { 
 	
-										var blank_width = 20 + (12 * $(".answertext", answer).text().length); //todo: multiplier may need adjustment
+										var blank_width = 22 + (13 * $(".answertext", answer).text().length); //todo: multiplier may need adjustment
 										$("#blank", $.plopquiz.quiz_content)
 											.html($(".answertext", answer)
 											.text().replace(/\ /g, "&nbsp;"))
@@ -288,3 +298,45 @@ $("#blank").text($.plopquiz.textHolder)
 	 $(answer).removeClass('hover_answer');
 	 $(".answertext", answer).removeClass('hover');
 }
+
+
+
+
+$.plopquiz.adjustItemSize = function(adjustment) {
+$.pq_wrapper.sc = $.pq_wrapper.find('div.quiz_scroll_container');
+$.pq_wrapper.qfc = $.pq_wrapper.find('div.quiz_frame_content');
+$.pq_wrapper.tw = $.pq_wrapper.find('div.timer_wrapper');
+$.pq_wrapper.qia = $.pq_wrapper.find('div.quiz_item_answers');
+$.pq_wrapper.qc = $.pq_wrapper.find('div#quiz_content');
+
+
+$.pq_wrapper.sc.height( $.pq_wrapper.sc.height() + adjustment);
+
+$.pq_wrapper.qfc.height( $.pq_wrapper.qfc.height() + adjustment);
+
+$.pq_wrapper.tw.css({'margin-top': $.pq_wrapper.tw.css('margin-top') + adjustment }); 
+
+$.pq_wrapper.qia.css({'margin-top': $.pq_wrapper.qia.css('margin-top') + adjustment }); 
+
+$.pq_wrapper.qc.height( $.pq_wrapper.qc.height() + adjustment); // check to make sure it's smaller than window.height ?
+
+
+};
+
+
+$.plopquiz.resetItemSize = function() {
+	
+$.pq_wrapper.quiz_el = [$.pq_wrapper.sc, $.pq_wrapper.qfc, $.pq_wrapper.tw, $.pq_wrapper.qia, $.pq_wrapper.qc];
+$.each($.pq_wrapper.quiz_el, function(i, obj){ 
+$(obj).attr('style', '');
+});
+
+};
+
+
+
+
+
+} // end of Quiz Methods
+
+
