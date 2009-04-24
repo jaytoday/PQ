@@ -10,7 +10,7 @@ def RequestHandler():
     url_routes(map)
     app = WSGIApplication(map, debug = True)
     #app = redirect_from_appspot(app)
-    app = browser_check(app) 
+    #app = browser_check(app) 
     run_wsgi_app(app)
                                 
 
