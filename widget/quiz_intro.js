@@ -1,7 +1,20 @@
 // Quiz Intro
 
+
 var intro_button_text = $('button span#intro_button', $.plopquiz.answer_container);   
-$('#confirm', $.plopquiz.answer_container).attr('class', 'answer intro_quiz');
+
+$('#confirm', $.plopquiz.answer_container).attr('class', 'intro_quiz').click(function(){
+	$.plopquiz.this_button = $(this);
+	if ($.plopquiz.this_button.data('busy') == true) return false;
+	$.plopquiz.this_button.data('busy', true);
+
+	console.log('click to start quiz');
+	$.plopquiz.settings.next_item = "quiz"; 
+	$.plopquiz.submitAnswer();
+
+	return setTimeout(function() {$.plopquiz.this_button.data('busy', false);}, 3000);
+	
+	}).show();
 
 $('.intro_frame_content #subject_container_1').show().addClass('selected'); // show first subject
 
@@ -63,7 +76,7 @@ $('.study_header',$.plopquiz.quiz_content).click(function(){
 
 //show buttons - important in case quiz is closed and reopened
 $('button.take_test', $.plopquiz.answer_container).show();
-$('div#points', $.plopquiz.quiz_inner_content).show();
+$('div#options', $.plopquiz.quiz_inner_content).show();
 $('div.go_to_site', $.plopquiz.answer_container).show();
 
 
@@ -109,6 +122,30 @@ share_popup.data('last_clicked', $(this).attr('id'));
 	}); // end click
 
 	
-$('div#points').show();
+	$('button',  'div#options').click(function(){
+		$.plopquiz.this_button = $(this);
+		if ($.plopquiz.this_button.data('busy') == true) return false;
+		$.plopquiz.this_button.data('busy', true);
+switch($(this).attr('id')) {
+	case 'instructions': 
+	    $.plopquiz.settings.next_item = "instructions"; 
+	    $.plopquiz.submitAnswer();
+	    break;
+	case 'quiz_ingredients': 
+	    alert('ROBOTS'); 
+	    break;
+ };
+
+return setTimeout(function() {$.plopquiz.this_button.data('busy', false);}, 1000);		
+	}); 
+	
+	
+// repeat the tutorial if re-opened
+$.plopquiz.settings.instructions.i1complete = false; 
+$.plopquiz.settings.instructions.skip_segment = false;
+$.plopquiz.settings.instructions.i2timedOut = false;
+
+	
+$('div#options').show();
 
 	

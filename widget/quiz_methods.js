@@ -24,7 +24,7 @@ $(window).resize(drawOverlay); // whenever window is resized, overlay will be dr
 $("#pq_wrapper")
 .bind("quizstarting", function()
 {
-	if ($.plopquiz.settings.started == true) return false;
+	if ($.plopquiz.settings.started == true) return $.event.trigger("displayQuiz");
 	$.plopquiz.settings.started = true;
 // hide flash elements and dialogs	
 $('object').hide().addClass('hidden'); 
@@ -60,11 +60,16 @@ if ( $('#quiz_answers .hover_answer', $.pq_wrapper).length > 0 ){ onAnswerHover(
 .bind("quizclosing", function()
 {
 	$(this).hide();
+	// Pause Quiz Session
+	$.plopquiz.settings.next_item = "intro";
+	$.plopquiz.loadItem();
+	
 	$('object.hidden').removeClass('hidden').show(); 
 	$('#widget_wrapper').fadeIn().find('button').css('display', 'inline').end().find('.widget_load').hide();
 	// wipe quiz session. TODO: this should handle skipping instructions; 
-	$.plopquiz.currentItem = 0;
-	$.plopquiz.settings.paused = false;
+	// maybe ask for confirmation if in middle of quiz session
+
+	
     // if we want to redirect to the PQ site
     // if($.plopquiz.settings.autoStart) window.location = "{{ http_host }}/login";
 });
@@ -98,7 +103,7 @@ $.plopquiz.timer.animate({opacity: 1.0}, 2000, function() //temporarily pause th
 				
 $.plopquiz.settings.timer_width = $('#timer_bar', $.plopquiz.timer_wrapper).width(); // to calculate score
 
-$.plopquiz.answers.removeClass('disabled').data("disabled", false);
+$.plopquiz.answers.data("disabled", false);
 
 $.plopquiz.answer_load_icons.animate({opacity: 0}, 300);
 
@@ -136,17 +141,19 @@ $.event.trigger("answerhover");
 
 	reset();
 })
-// these probably do the same thing
+.bind('showLoader', function()
+{
+	$.plopquiz.answers.data("disabled", true);
+	$.plopquiz.timer.stop();
+	$.plopquiz.quiz_inner_content.addClass('disabled').animate({opacity:0},0); 
+
+	$.plopquiz.quiz_loader.show().animate({opacity: .5 }, { duration:100 });
+
+})
 .bind('loadingQuizItem', function()
 {
 
-	
-		$.plopquiz.answers.removeClass('disabled').data("disabled", true);
-		$.plopquiz.timer.stop();
-		$.plopquiz.quiz_inner_content.addClass('disabled').animate({opacity:0},0); 
-
-	$.plopquiz.quiz_loader.show().animate({opacity: .5 }, { duration:100, complete:function(){ 
-
+	$.event.trigger('showLoader');
 
 	// hardcoded versus server provided
 	$.plopquiz.quizItem.url = $.plopquiz.quizItem.url ? $.plopquiz.quizItem.url : "/quiz_item/?token=" + $.plopquiz.settings.sessionToken;
@@ -164,7 +171,7 @@ $.event.trigger("answerhover");
 			}
 			});
 
-			}});
+
 
 })
 .bind('submitingAnswer', function()
@@ -177,8 +184,12 @@ $('#quiz_answers .answer', $.pq_wrapper).hover(
 		function() { offAnswerHover(this); }  )
 .click(function(e) // submit answer
 {
+	if($(this).data('disabled') == true) return false;
+	if($(this).data('busy') == true) return false;
+	$(this).data('busy', true);
 	// data("disabled") prevents double submissions
-	if($(this).data("disabled") == false){ 	$.plopquiz.submitAnswer($(this).find('div.answertext').text().replace(/\n/g,"")); }
+	$.plopquiz.submitAnswer($(this).find('div.answertext').text().replace(/\n/g,"")); 
+	return setTimeout(function() {$(this).data('busy', false);}, 1000);	
 });
 
 

@@ -13,70 +13,32 @@ switch($.plopquiz.quizItem.item_type)
 
 case "intro":
 
-// selected quiz subject is saved
-var quiz_subject_choice = $('.intro_frame_content > .selected', $.plopquiz.quiz_content).find('.subject_guide').attr('id');
-$.plopquiz.settings.proficiencies = Array(); // clear out proficiencies in case its a restart
-$.plopquiz.settings.proficiencies.push(quiz_subject_choice);
+$('button#confirm').hide();
+$('div#options', $.plopquiz.quiz_inner_content).hide();
 
-$('button.take_test').hide();
-$('div#points', $.plopquiz.quiz_inner_content).hide();
-
-// repeat the tutorial if re-opened
-$.plopquiz.settings.instructions.i1complete = false; 
-$.plopquiz.settings.instructions.skip_segment = false;
-$.plopquiz.settings.instructions.i2timedOut = false;
-
-//if ($.plopquiz.settings.instructions.completed) $.plopquiz.currentItem = 3; // skips tutorial already completed
-	 
-$.plopquiz.settings.next_item = "begin_quiz"; 
-$.plopquiz.loadItem();
-
-break;
-
-case "instructions":
-	
-	if(!$.plopquiz.settings.instructions.i1complete)
-			return;
-	else{
-			$('div#instructions_quiz_selection', $.plopquiz.quiz_content).hide(); //fixes safari bug
-			$.plopquiz.loadItem();
-		}
-break;
-
-case "instructions2":
-if ($.plopquiz.settings.instructions.skip_segment == false)
-	{
-			$.plopquiz.settings.instructions.i2timedOut = true;
-			$.plopquiz.timer.stop();
-			$.plopquiz.timer.css('width', '100%'); 
-			$('.hover_example', $.plopquiz.quiz_content).hide();
-			$('#example_1,#example_3', $.plopquiz.quiz_content).hide('slow');
-			$('#example_2', $.plopquiz.quiz_content).show('slow');
-			$.plopquiz.settings.instructions.skip_segment = true;
-			$('#skip', $.plopquiz.answer_container).data('disabled', false).show('slow');
-			return;
-	}
-	else{
-		  if (answer != "Skip") return false; // must press Skip to continue
-		  $.plopquiz.loadItem();
-		  $.plopquiz.settings.instructions.skip_segment = false; 
-		}
-break;
-
-case "begin_quiz":
-
-// if start quiz button is clicked
-//$.plopquiz.settings.next_item = "quiz";
-
+/*
 	if ($.plopquiz.answers.data('disabled') != false) return false; // problems with double submits
 	$.plopquiz.answers.data('disabled',true);
 	$.plopquiz.quiz_inner_content.addClass('disabled').animate({opacity:0},100); 
 	$.plopquiz.quiz_loader.show().animate({opacity: .5 }, {duration:100});
 	$.plopquiz.timer.css('width', '100%'); 
+*/	console.log($.plopquiz.settings.next_item);
+	if ($.plopquiz.settings.next_item != "quiz") { $.plopquiz.loadItem(); break; }
+	
+	//
+	// ** Proceed to Quiz Session **
+	//
+
+$.event.trigger('showLoader');
+// selected quiz subject is saved
+var quiz_subject_choice = $('.intro_frame_content > .selected', $.plopquiz.quiz_content).find('.subject_guide').attr('id');
+$.plopquiz.settings.proficiencies = Array(); // clear out proficiencies in case its a restart
+$.plopquiz.settings.proficiencies.push(quiz_subject_choice);
 
 	// this start the server session and retrieves the first questions
 	// this can be refined
 	// all RPC calls should be moved to one location
+	
 	$.ajax(
 	{
 			url: $.plopquiz.settings.serverUrl + "/quiztaker/rpc",
@@ -109,6 +71,52 @@ case "begin_quiz":
 			}
 		       // TODO: error  -- this is only for when the call itself doesn't work
 	});
+	
+	
+
+break;
+
+
+case "instructions":
+	
+	if(!$.plopquiz.settings.instructions.i1complete)
+			return;
+	else{
+			$('div#instructions_quiz_selection', $.plopquiz.quiz_content).hide(); //fixes safari bug
+			 $.plopquiz.settings.next_item = "instructions2"; 
+			 $.plopquiz.loadItem();			
+		}
+break;
+
+case "instructions2":
+if ($.plopquiz.settings.instructions.skip_segment == false)
+	{
+			$.plopquiz.settings.instructions.i2timedOut = true;
+			$.plopquiz.timer.stop();
+			$.plopquiz.timer.css('width', '100%'); 
+			$('.hover_example', $.plopquiz.quiz_content).hide();
+			$('#example_1,#example_3', $.plopquiz.quiz_content).hide('slow');
+			$('#example_2', $.plopquiz.quiz_content).show('slow');
+			$.plopquiz.settings.instructions.skip_segment = true;
+			$('#skip', $.plopquiz.answer_container).data('disabled', false).show('slow');
+			return;
+	}
+	else{
+		  if (answer != "Skip") return false; // must press Skip to continue
+		  $.plopquiz.settings.next_item = "intro"; 
+		  $.plopquiz.loadItem();
+		  $.plopquiz.settings.instructions.skip_segment = false; 
+		}
+break;
+
+case "begin_quiz":
+
+// if start quiz button is clicked
+//$.plopquiz.settings.next_item = "quiz";
+
+
+
+
 break;
 
 case "quiz_item":

@@ -115,14 +115,15 @@ $('#quiz_init').hide();   $('#quiz_inner').show();
 								 }});        
 
 		
-		$.plopquiz.settings.instructions.completed = false; break;
+		 break;
 		
 
 		
 		
 		case "intro": 
 
-		{% include "quiz_intro.js" %} 
+		function introInit(){ {% include "quiz_intro.js" %} };
+		introInit();
 		
 		break;
 
@@ -150,7 +151,7 @@ case "instructions":
 
 		$("#skip_tutorial", $.plopquiz.quiz_content).click(function()
 		{
-		$.plopquiz.currentItem = 3;
+		$.plopquiz.settings.next_item = "intro"; 
 		$.plopquiz.loadItem();
 		});
 
@@ -165,7 +166,7 @@ case "instructions2":
 
 		$("#skip_tutorial", $.plopquiz.quiz_content).click(function()
 		{
-		$.plopquiz.currentItem = 3;
+		$.plopquiz.settings.next_item = "intro";
 		$.plopquiz.loadItem();
 		});
 		break;
@@ -207,9 +208,11 @@ case "quiz_item":
 case "quiz_complete":
 		
 		//update text for Button
-		$('#quiz_answers #confirm').removeClass('begin_quiz').addClass('quiz_complete').find('span.continue_button').text('See Results').show();
+		$('#quiz_answers button#confirm').attr('class', 'quiz_complete').find('span.continue_button').attr('class', 'continue_button complete_button').text('See Results').show()
+
 		break;    
-	} 
+	
+} // endSwitch
 
 
 		// short delay to ensure everything is loaded
@@ -217,6 +220,9 @@ case "quiz_complete":
 		{
 		$.event.trigger('quizItemLoaded', [ quizItem ]);
 		},100);
-	}
+		
+		
+		
+} // afterRezie
                                 
 } //end of quizitemLoad

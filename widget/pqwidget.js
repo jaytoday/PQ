@@ -36,7 +36,6 @@ var session_setup = function($)
                         { url: '/intro/?page=begin_quiz', item_type:'begin_quiz', answers: [ 'Begin Quiz' ], noSkip: true }
                 ],
                 quizitemList: Array(),
-                currentItem: 0, // use to skip intros
                 settings:
                 {
                         serverUrl: "{{ http_host }}",
@@ -166,6 +165,7 @@ $.plopquiz.load_custom_selectors = function(){
 	};
 
  $.plopquiz.start = function(){
+
  	                                        
                 // if the click handler is setup before the frame loads, wait for it
 					if($.pq_wrapper.length > 0) 

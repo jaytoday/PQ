@@ -1599,7 +1599,7 @@ background:#DDD;
 color: #444 !important;
 }
 
-.quiz_wrap button.intro_quiz{
+.quiz_wrap button#confirm.intro_quiz{
 bottom:-1px !important;
 left:2px !important;
 position:absolute !important;
@@ -1613,18 +1613,21 @@ left:515px !important;
 position:absolute !important;
 }
 
-.quiz_wrap button.begin_quiz{
+.quiz_wrap button#confirm.begin_quiz{
 position:absolute !important;
 margin:-66px 59px !important;
 height: 70px;
 width: 250px;
 }
 
-.quiz_wrap button.quiz_complete{
-margin:-143px 0 0 78px !important;
-position:absolute !important;
-padding:0 0 0 20px !important;
+.quiz_wrap button#confirm.quiz_complete{
+bottom:73px !important;
 height:70px;
+margin:0 0 0 57px !important;
+padding:0 0 0 20px !important;
+position:absolute !important;
+text-align:center;
+width:270px !important;
 }
 
 .quiz_wrap .continue_button{
@@ -1637,11 +1640,33 @@ position:absolute;
 top:7px;
 }
 
+.quiz_wrap button#confirm.quiz_complete img{
+top:-5px;
+}
 
 .quiz_wrap button#confirm.intro_quiz img{
 left:0;
 position:absolute;
 top:-6px;
+}
+
+
+div#options{ height: 80px; }
+
+div#options button#instructions {
+font-weight:bold;
+height:40px;
+width:220px;
+margin:26px 0;
+}
+div#options button#instructions span{
+display:block;
+margin: 1px 0 0 1px;
+}
+
+div#options button#instructions img{
+display:block;
+margin: 4px 0 0 18px;
 }
 
 
@@ -1667,6 +1692,17 @@ text-align:center;
 width:200px;
 }
 
+.quiz_wrap button span.complete_button{
+display:block;
+font-size:1.8em;
+margin:-14px 0 0 0 !important;
+position:absolute;
+text-align:center;
+width:240px;
+}
+
+
+
 .quiz_wrap .form_proceed,.quiz_wrap  .form_cancel{
 cursor:pointer;
 }
@@ -1680,6 +1716,7 @@ position:absolute;
 .quiz_wrap div.take_test{
 bottom:0px;
 left:460px;
+height: 80px;
 position:absolute;
 }
 

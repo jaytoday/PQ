@@ -108,9 +108,13 @@
                                 <div class="go_to_site take_practice_quiz"><ul><li>No Timer.</li><li>Study for the Test</li></ul></div>
                                 -->
                                 
-                                                             <button  class="answer intro_quiz" id="confirm"><span id="intro_button" class="intro_button continue_button">Take This Quiz</span> <img width="15" height="16" src="{{ http_host }}/static/stylesheets/img/utils/purple_next_tiny.png"/></button>
+                                
+                                                             <button  class="intro_quiz" id="confirm"><span id="intro_button" class="intro_button continue_button">Take This Quiz</span> <img width="15" height="16" src="{{ http_host }}/static/stylesheets/img/utils/purple_next_tiny.png"/></button>
                               
-                                 <div id="points" class="hidden go_to_site take_test"><ul><li>Build an Academic Profile</li><li>Earn Awards For Your High Scores</li><li>Upgrade Your Resume in Minutes</li></ul></div>
+                                 <div id="options" class="hidden go_to_site take_test">
+                                 <button id="instructions"><span>How To Take A Quiz</span>{# <img width="15" height="16" src="{{ http_host }}/static/stylesheets/img/utils/purple_next_tiny.png"/> #}</button>
+                              {# <button id="quiz_ingredients"><span>Quiz Ingredients</span> <img width="15" height="16" src="{{ http_host }}/static/stylesheets/img/utils/purple_next_tiny.png"/></button> #}
+                                 </div>
                                 {# Just for now, we'll leave this out.  #}
                                 <!--
                                   <button  class="answer take_test" id="test" onClick="$('button#confirm').click(); return; "><span  class="intro_button continue_button">Take the Test</span> <img src="{{ http_host }}/static/stylesheets/img/utils/purple_next.png"/></button>
