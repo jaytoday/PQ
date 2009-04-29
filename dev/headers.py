@@ -15,15 +15,15 @@ class RequestHandler(webapp.RequestHandler):
 
     def get(self):
         if not Debug(): set_expire_header(self)
-        if self.request.get('js'): 
-            self.response.headers['Content-Type'] = 'text/javascript'
-            #self.response.headers['Content-Encoding'] = 'gzip'
+        #self.response.headers['Content-Encoding'] = 'gzip' -- NOT SUPPORTED!
+        self.response.headers["x-amz-acl"] = "public-read" # what is this
+        if self.request.get('js'): self.response.headers['Content-Type'] = "application/javascript"           
         if self.request.get('css') : self.response.headers['Content-Type'] = 'text/css'
-        output = False
-        if self.request.get('js') == "base": output = self.base_js()
-        if self.request.get('css') == "base": output = self.base_css()
-        if self.request.get('css') == "blog": output = self.blog_css()
-        #headers["content-md5"] = b64encode(checksum)
+        output, checksum = False, False
+        if self.request.get('js') == "base": output, checksum = self.base_js()
+        if self.request.get('css') == "base": output, checksum = self.base_css()
+        if self.request.get('css') == "blog": output, checksum = self.blog_css()
+        self.response.headers["content-md5"] = checksum # cache this!
         self.response.out.write( output )
         
         
@@ -32,16 +32,16 @@ class RequestHandler(webapp.RequestHandler):
         template_values = {}
         path = tpl_path('base.js')
         from utils.random import minify 
-        return minify(template.render(path, template_values)) 
-        	
+        output = minify(template.render(path, template_values)) 
+        return self.create_checksum(output)         	
 	
     @memoize('base_css')
     def base_css(self):
         template_values = {}
         path = tpl_path('css/base.css')
         from utils.cssmin import cssmin
-        return cssmin(template.render(path, template_values)) 
-
+        output = cssmin(template.render(path, template_values)) 
+        return self.create_checksum(output) 
 
 
     @memoize('blog_css')
@@ -49,9 +49,15 @@ class RequestHandler(webapp.RequestHandler):
         template_values = {}
         path = tpl_path('css/blog.css')
         from utils.cssmin import cssmin
-        return cssmin(template.render(path, template_values)) 
+        output = cssmin(template.render(path, template_values))
+        return self.create_checksum(output) 
             
 
+    def create_checksum(self, output):	        
+        import hashlib
+        from base64 import b64encode
+        checksum = b64encode( hashlib.md5(output).digest() )
+        return output, checksum
 
 
 
@@ -67,3 +73,11 @@ def set_expire_header(request):
 
 
 
+def compress(data):
+    import cStringIO
+    import gzip
+    zbuf = cStringIO.StringIO()
+    zfile = gzip.GzipFile(mode='wb', compresslevel=6, fileobj=zbuf)
+    zfile.write(data)
+    zfile.close()
+    return zbuf.getvalue()

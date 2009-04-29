@@ -22,7 +22,7 @@ $('div#options', $.plopquiz.quiz_inner_content).hide();
 	$.plopquiz.quiz_inner_content.addClass('disabled').animate({opacity:0},100); 
 	$.plopquiz.quiz_loader.show().animate({opacity: .5 }, {duration:100});
 	$.plopquiz.timer.css('width', '100%'); 
-*/	console.log($.plopquiz.settings.next_item);
+*/	
 	if ($.plopquiz.settings.next_item != "quiz") { $.plopquiz.loadItem(); break; }
 	
 	//

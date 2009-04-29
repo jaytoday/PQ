@@ -8,7 +8,6 @@ $('#confirm', $.plopquiz.answer_container).attr('class', 'intro_quiz').click(fun
 	if ($.plopquiz.this_button.data('busy') == true) return false;
 	$.plopquiz.this_button.data('busy', true);
 
-	console.log('click to start quiz');
 	$.plopquiz.settings.next_item = "quiz"; 
 	$.plopquiz.submitAnswer();
 
