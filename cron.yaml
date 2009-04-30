@@ -1,0 +1,10 @@
+cron:
+
+- description: load fixture
+  url: /dev/rpc?action=load_fixture
+  schedule: every 24 hours
+  
+- description: update stats
+  url: /dev/rpc?action=update_stats
+  schedule: every 24 hours
+
