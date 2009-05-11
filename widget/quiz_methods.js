@@ -103,7 +103,7 @@ $.plopquiz.timer.animate({opacity: 1.0}, 2000, function() //temporarily pause th
 				
 $.plopquiz.settings.timer_width = $('#timer_bar', $.plopquiz.timer_wrapper).width(); // to calculate score
 
-$.plopquiz.answers.data("disabled", false);
+$.plopquiz.answers.data("disabled", false).data('busy', false);;
 
 $.plopquiz.answer_load_icons.animate({opacity: 0}, 300);
 
@@ -184,12 +184,13 @@ $('#quiz_answers .answer', $.pq_wrapper).hover(
 		function() { offAnswerHover(this); }  )
 .click(function(e) // submit answer
 {
-	if($(this).data('disabled') == true) return false;
-	if($(this).data('busy') == true) return false;
-	$(this).data('busy', true);
+	var $this_answer = $(this);
+	if($this_answer.data('disabled') == true) return false;
+	if($this_answer.data('busy') == true) return false;
+	$this_answer.data('busy', true);
 	// data("disabled") prevents double submissions
-	$.plopquiz.submitAnswer($(this).find('div.answertext').text().replace(/\n/g,"")); 
-	return setTimeout(function() {$(this).data('busy', false);}, 1000);	
+	$.plopquiz.submitAnswer($this_answer.find('div.answertext').text().replace(/\n/g,"")); 
+	return setTimeout(function() {$this_answer.data('busy', false);}, 1000);	
 });
 
 
