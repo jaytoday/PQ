@@ -48,7 +48,7 @@ class QuizJS(webapp.RequestHandler):
     }
      
     path = widget_path('pqwidget.js')
-    from utils.utils import minify
+    from utils.random import minify
     self.response.out.write(  minify(template.render(path, template_values))  )
 
         
@@ -74,7 +74,7 @@ class QuizJS(webapp.RequestHandler):
   def get_widget_css(self):
     template_values = {} 
     path = widget_path('pqwidget.css')
-    from utils.utils import css_minify
+    from utils.random import css_minify
     return css_minify( template.render(path, template_values) )
     
   def get_auto_start(self):
@@ -101,6 +101,6 @@ class QuizJS(webapp.RequestHandler):
     }
      
     path = widget_path('error.js')
-    from utils.utils import minify
+    from utils.random import minify
     self.response.out.write(  minify(template.render(path, template_values))  )
     

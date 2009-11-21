@@ -24,6 +24,7 @@ DEFAULT_LANDING_PAGE = '/'
 
 class Login(webapp.RequestHandler):
   def get(self):
+    return self.redirect('/')
     logging.info('continue: %s', self.request.get('continue')) 
     login_response = str('http://' + self.request._environ['HTTP_HOST'] + '/login/response')
     template_values = {'token_url': login_response, 'no_quizlink': True}

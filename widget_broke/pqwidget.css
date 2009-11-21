@@ -49,13 +49,13 @@ z-index: 90;
 
 
 .quiz_wrap div#quiz_close {
-background:transparent url({{ http_host }}/static/img/quiz_closebox_small.png) no-repeat scroll 0 0;
+background:transparent url({{ http_host }}/static/stylesheets/img/quiz_closebox.png) repeat scroll 0 0;
 cursor:pointer;
-height:15px;
+height:27px;
 position:absolute;
-right:-9px;
-top:-9px;
-width:15px;
+right:-12px;
+top:-12px;
+width:28px;
 z-index:100;
 }
 
@@ -172,8 +172,8 @@ margin:15px 5px !important;
 }
 
 button.widget_button img{
-margin:21px 0 0 0;
-position:relative;
+margin:21px 0 0 -9px;
+position:absolute;
 }
 
 img#quiz_img {
@@ -307,7 +307,7 @@ margin: -71px 0 10px;
 
 .quiz_wrap .timer_inner
 {
-       background: transparent url({{ http_host }}/static/img/quiztaker/timer.png) repeat-y scroll 0 0;
+       background: transparent url({{ http_host }}/static/stylesheets/img/quiztaker/timer.png) repeat-y scroll 0 0;
         height:	100%;
         position:	relative;
         width:	100%;
@@ -333,13 +333,13 @@ margin: -71px 0 10px;
 td#quiz_purple_left {
         height: 50px;
         width: 12px;
-        background: transparent url({{ http_host }}/static/img/quiz_purple_left.png) repeat-x !important;
+        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_purple_left.png) repeat-x !important;
 }
 
 td#quiz_purple_main {
         width:80px;
         height: 52px;
-        background: transparent url({{ http_host }}/static/img/quiz_purple_main.png) repeat-x !important;
+        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_purple_main.png) repeat-x !important;
         padding-left:20px !important;
         padding-right:20px !important;
         background-position: 0px 2px !important;
@@ -352,7 +352,7 @@ margin:0px 0 0 30px !important;
 width:16px !important;
 position:absolute;
 bottom: 20px;
-background: transparent url({{ http_host }}/static/img/utils/mini_loader.gif) no-repeat scroll 0px 0px !important;
+background: transparent url({{ http_host }}/static/stylesheets/img/utils/mini_loader.gif) no-repeat scroll 0px 0px !important;
 opacity: 0 ;
 filter: alpha(opacity=0);
 -moz-opacity: 0;
@@ -365,7 +365,7 @@ filter: alpha(opacity=0);
 td#quiz_purple_right {
         height: 50px;
         width: 13px;
-        background: transparent url({{ http_host }}/static/img/quiz_purple_right.png) no-repeat scroll -2px 0px !important;
+        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_purple_right.png) no-repeat scroll -2px 0px !important;
 }
 
 
@@ -373,13 +373,13 @@ td#quiz_purple_right {
 td#quiz_blue_left {
         height: 50px;
         width: 12px;
-        background: transparent url({{ http_host }}/static/img/quiz_blue_left.png) repeat-x !important;
+        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_blue_left.png) repeat-x !important;
 }
 
 td#quiz_blue_main {
         min-width:80px !important;
         height: 52px;
-        background: transparent url({{ http_host }}/static/img/quiz_blue_main.png) repeat-x !important;
+        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_blue_main.png) repeat-x !important;
         padding-left:20px !important;
         padding-right:20px !important;
         background-position: 0px 2px !important;
@@ -389,19 +389,19 @@ td#quiz_blue_main {
 td#quiz_blue_right {
         height: 50px;
         width: 13px;
-        background: transparent url({{ http_host }}/static/img/quiz_blue_right.png) no-repeat scroll -2px 0px !important;
+        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_blue_right.png) no-repeat scroll -2px 0px !important;
 }
 
 td#quiz_pink_left {
         height: 50px;
         width: 12px;
-        background: transparent url({{ http_host }}/static/img/quiz_pink_left.png) repeat-x !important;
+        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_pink_left.png) repeat-x !important;
 }
 
 td#quiz_pink_main {
         min-width:20px;
         height: 50px;
-        background: transparent url({{ http_host }}/static/img/quiz_pink_main.png) repeat-x !important;
+        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_pink_main.png) repeat-x !important;
         padding-left:7px !important; 
         padding-right:5px !important;
         background-position: 0px 2px !important;
@@ -410,7 +410,7 @@ td#quiz_pink_main {
 td#quiz_pink_right {
         height: 50px;
         width: 13px;
-        background: transparent url({{ http_host }}/static/img/quiz_pink_right.png) no-repeat scroll -2px 0px !important;
+        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_pink_right.png) no-repeat scroll -2px 0px !important;
 }
 
 .quiz_wrap .arrow{
@@ -423,7 +423,8 @@ left:50%; top:50%; /* these are 50 and margins are negative half of height/width
 overflow:visible;
 padding:18px 18px 58px;
 position:fixed;/* position:absolute; */
-
+margin-left: -200px;
+margin-top: -200px;
 z-index:90;
 }
 
@@ -494,7 +495,7 @@ padding: 4px;
         height: 100%; 
         width: 35%; 
         cursor: pointer;
-        background-image: url({{ http_host }}/static/img/data:image/gif;base64,AAAA) !important;
+        background-image: url({{ http_host }}/static/stylesheets/img/data:image/gif;base64,AAAA) !important;
         z-index: 100; 
 }
 
@@ -507,11 +508,11 @@ padding: 4px;
 }
 
 .quiz_wrap #quiz_left:hover {
-        background: transparent url({{ http_host }}/static/img/quiz_left.gif) no-repeat 0% 100% !important; 
+        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_left.gif) no-repeat 0% 100% !important; 
 }
 
 .quiz_wrap #quiz_right:hover {
-        background: transparent url({{ http_host }}/static/img/quiz_right.gif) no-repeat 100% 100% !important;
+        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_right.gif) no-repeat 100% 100% !important;
 }
 
 .quiz_wrap #quiz_bigIframe, .quiz_wrap #quiz_freeIframe {
@@ -536,7 +537,7 @@ padding: 4px;
         top: -18px;
         width: 100%;
         height: 18px;
-        background: transparent url({{ http_host }}/static/img/quiz_shadow_n.png) repeat-x !important;
+        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_shadow_n.png) repeat-x !important;
 }
 
 .quiz_wrap div.quiz_bg_ne {
@@ -544,14 +545,14 @@ padding: 4px;
         right: -13px;
         width: 13px;
         height: 18px;
-        background: transparent url({{ http_host }}/static/img/quiz_shadow_ne.png) no-repeat !important;
+        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_shadow_ne.png) no-repeat !important;
 }
 
 .quiz_wrap div.quiz_bg_e {
         right: -13px;
         height: 100%;
         width: 13px;
-        background: transparent url({{ http_host }}/static/img/quiz_shadow_e.png) repeat-y !important;
+        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_shadow_e.png) repeat-y !important;
 }
 
 .quiz_wrap div.quiz_bg_se {
@@ -559,14 +560,14 @@ padding: 4px;
         right: -13px;
         width: 13px;
         height: 18px;
-        background: transparent url({{ http_host }}/static/img/quiz_shadow_se.png) no-repeat !important;
+        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_shadow_se.png) no-repeat !important;
 }
 
 .quiz_wrap div.quiz_bg_s {
         bottom: -18px;
         width: 100%;
         height: 18px;
-        background: transparent url({{ http_host }}/static/img/quiz_shadow_s.png) repeat-x !important;
+        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_shadow_s.png) repeat-x !important;
 }
 
 .quiz_wrap div.quiz_bg_sw {
@@ -574,14 +575,14 @@ padding: 4px;
         left: -13px;
         width: 13px;
         height: 18px;
-        background: transparent url({{ http_host }}/static/img/quiz_shadow_sw.png) no-repeat !important;
+        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_shadow_sw.png) no-repeat !important;
 }
 
 .quiz_wrap div.quiz_bg_w {
         left: -13px;
         height: 100%;
         width: 13px;
-        background: transparent url({{ http_host }}/static/img/quiz_shadow_w.png) repeat-y !important;
+        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_shadow_w.png) repeat-y !important;
 }
 
 .quiz_wrap div.quiz_bg_nw {
@@ -589,7 +590,7 @@ padding: 4px;
         left: -13px;
         width: 13px;
         height: 18px;
-        background: transparent url({{ http_host }}/static/img/quiz_shadow_nw.png) no-repeat !important;
+        background: transparent url({{ http_host }}/static/stylesheets/img/quiz_shadow_nw.png) no-repeat !important;
 }
 
 .quiz_wrap .answer{
@@ -732,7 +733,7 @@ padding:2px 10px;
 }
 
 .quiz_wrap div.form_proceed{
-background:#FFFFFF url({{ http_host }}/static/img/utils/purple_next.png) no-repeat scroll 0 0 !important;
+background:#FFFFFF url({{ http_host }}/static/stylesheets/img/utils/purple_next.png) no-repeat scroll 0 0 !important;
 cursor:pointer;
 float:right;
 margin:-25px 20px;
@@ -1114,7 +1115,7 @@ width:355px;
 .quiz_wrap div.quiz_description
 {
         background:#523871 none repeat scroll 0 0; 
-        /* background: url({{ http_host }}/static/img/quiztaker/background.png) repeat-x scroll center top; */
+        /* background: url({{ http_host }}/static/stylesheets/img/quiztaker/background.png) repeat-x scroll center top; */
         border:2px solid #CDCDCD;
         color:#EAF2F8;
         overflow:hidden;
@@ -1289,7 +1290,7 @@ margin:2px 0 15px;
         -webkit-border-radius:12px;
         -moz-border-right-colors:#DDDDDD;
         -moz-border-top-colors:#EDF2F8 #FFFFFF;
-        background: url({{ http_host }}/static/img/quiztaker/background_250.png) repeat-x scroll center top;
+        background: url({{ http_host }}/static/stylesheets/img/quiztaker/background_250.png) repeat-x scroll center top;
         border-color:#DDDDDD;
         border-style:solid;
         border-width:12px 8px;
@@ -1567,7 +1568,7 @@ padding:10px;
 -webkit-border-radius: 5px;
 -moz-border-right-colors:#777777 #888888 #999999 #AAAAAA #BBBBBB #CCCCCC;
 -moz-border-top-colors:#777777 #888888 #999999 #AAAAAA #BBBBBB #CCCCCC;
-background:transparent url({{ http_host }}/static/img/quiztaker/background_250.png) repeat scroll center top;
+background:transparent url({{ http_host }}/static/stylesheets/img/quiztaker/background_250.png) repeat scroll center top;
 border:10px solid #DDDDDD;
 color:#EAF2F8;
 }
@@ -1576,7 +1577,7 @@ color:#EAF2F8;
 /* forms */
 
 .quiz_wrap input.button,.quiz_wrap button {
-	background:#E0E0E0 url({{ http_host }}/static/img/ui/gray_texture.png) repeat-x scroll 0 50%;
+	background:#E0E0E0 url({{ http_host }}/static/stylesheets/img/ui/gray_texture.png) repeat-x scroll 0 50%;
 	border-color:#CCC #999 #999 #CCC;
 	border-style: solid;
 	border-width: 1px;
@@ -1722,7 +1723,7 @@ position:absolute;
 
 .quiz_wrap div.go_to_site ul li{
 background-color:transparent;
-background-image:url({{ http_host }}/static/img/utils/purple_next_tiny.png); 
+background-image:url({{ http_host }}/static/stylesheets/img/utils/purple_next_tiny.png); 
 background-position:0 2px !important;
 background-repeat:no-repeat;
 font-size:0.7em !important;

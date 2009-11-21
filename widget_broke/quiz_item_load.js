@@ -16,31 +16,48 @@ function quizItemLoad(quizItem, html, s)
 		{ $.plopquiz.quiz_inner_content.animate({opacity:1},{duration:200}).removeClass('disabled'); } 
 	}).hide();
 
-	// apply new class for quiz content for item_type - specified in pqwidget.css. Called after the resize
-	function setNewStyles() {
-		// Display the new content
-		$.plopquiz.quiz_content.html(html);
-		
-		$.plopquiz.quiz_content.attr('class', quizItem.item_type + '_content'); 
-		$.plopquiz.answer_container.attr('class', quizItem.item_type + '_answers');
-		$('#quiz_inner', $.pq_wrapper ).attr('class', quizItem.item_type + '_quiz_inner');
-		$('.quiz_selection', $.plopquiz.quiz_content).attr('id', quizItem.item_type + '_quiz_selection');
-		$.plopquiz.timer_wrapper.attr('id', quizItem.item_type);
-		
-		afterResize();
-	}
 
+
+     // add new html, set new styles, custom rules, and perform resize
+	$.plopquiz.quiz_inner_content.animate({opacity:0},{duration:0,
+	complete: function(){ 
+			$.plopquiz.quiz_content.html(html);
+			setNewStyles(); 
+			beforeResize();
+			performResize();
+     } });
+
+	
+
+
+
+// apply new class for quiz content for item_type - specified in pqwidget.css. Called after the resize
+function setNewStyles() {
+
+	$.plopquiz.quiz_content.attr('class', quizItem.item_type + '_content'); 
+	$.plopquiz.answer_container.attr('class', quizItem.item_type + '_answers');
+	$('#quiz_inner', $.pq_wrapper ).attr('class', quizItem.item_type + '_quiz_inner');
+	$('.quiz_selection', $.plopquiz.quiz_content).attr('id', quizItem.item_type + '_quiz_selection');
+	$.plopquiz.timer_wrapper.attr('id', quizItem.item_type);
+
+}
+
+
+
+function performResize() {
+	
 	currentWidth = $.plopquiz.quiz_content.css('width');
 	currentHeight = $.plopquiz.quiz_content.css('height');
-
+	
 	if(currentHeight == 'auto' || currentWidth == 'auto') {
-		setNewStyles();
-
 		var margin_left = ( parseInt($.plopquiz.quiz_content.css('width')) / 2 ); 
-		var margin_top = ( parseInt($.plopquiz.quiz_content.css('height')) / 2 );
-		$.plopquiz.quiz_outer.css({'margin-left': -margin_left, 'margin-top': -margin_top }); 
+		var margin_top = ( parseInt($.plopquiz.quiz_content.css('height')) / 2 ) + 15;
+		$.plopquiz.quiz_outer.css({'margin-left': -margin_left, 'margin-top': -margin_top });
+		afterResize(); 
+		
 	}
 	else {
+
 		// Add a hidden element with the new style so we can get the new dimensions
 		// Not sure why this is needed...
 		newStyle = quizItem.item_type + '_content';
@@ -53,16 +70,21 @@ function quizItemLoad(quizItem, html, s)
 		var animDuration = 'normal';
 		
 		// Resize animation
-		var margin_left = ( parseInt(newWidth) / 2 ) + 15; 
+		var margin_left = ( parseInt(newWidth) / 2 ); 
 		var margin_top = ( parseInt(newHeight) / 2 ) + 15;
 		$.plopquiz.quiz_outer.animate({'marginLeft': -margin_left, 'marginTop': -margin_top }, {duration: animDuration, queue:false});  
-		$.plopquiz.quiz_content.animate({width: newWidth, height: newHeight}, {duration: animDuration, queue:false, complete: setNewStyles});
+		$.plopquiz.quiz_content.animate({width: newWidth, height: newHeight}, {duration: animDuration, queue:false, complete: afterResize});
 				// set new quiz frame position -- this should come after quiz item redraw
 	}
 	
+	} // performResize
+	
 
 	// Do everything else once we've completed the resize
-	function afterResize() {
+	function beforeResize() {
+		
+		
+		
 		for ( var i in quizItem.answers )
 		{
 				if (quizItem.item_type == 'intro' || quizItem.item_type == 'begin_quiz' || quizItem.item_type == 'quiz_complete'){  
@@ -192,7 +214,6 @@ case "quiz_item":
 	  $.plopquiz.quiz_content.find('div#quiz_category').css('width', tab_width - 10);
 	  
 	  
-
 		// reset item size
     $.plopquiz.resetItemSize();
     // adjust item size
@@ -214,16 +235,23 @@ case "quiz_complete":
 		break;    
 	
 } // endSwitch
+		
+		
+} // beforeResize
+    
+    
+ function afterResize() {  
+    	console.log(quizItem.resized);
+	if (quizItem.resized == true) return false;
+	quizItem.resized = true;
+	
+	// short delay to ensure everything is loaded
+	return setTimeout(function()
+	{
+	$.event.trigger('quizItemLoaded', [ quizItem ]);
+	},100);
 
+} //afterResize
 
-		// short delay to ensure everything is loaded
-		setTimeout(function()
-		{
-		$.event.trigger('quizItemLoaded', [ quizItem ]);
-		},100);
-		
-		
-		
-} // afterRezie
-                                
+	                            
 } //end of quizitemLoad

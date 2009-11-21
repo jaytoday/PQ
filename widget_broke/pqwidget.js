@@ -126,14 +126,13 @@ $.plopquiz.widget_html = "{% spaceless %}{{ widget_html }}{% endspaceless %}";
                 // TODO: visible error if no <body> in document
                 $("script", $("body")).each(function() {
                 if(this.src.indexOf('{{ http_host }}/js/quiz') > -1) 
-                $(this).after('<div id="pqwidget"><a href="{{ http_host }}/quiz/" class="widget_footer">Take This Quiz at PlopQuiz.Com</a></div>'); 
-                 } );
+                 $(this).after('<div id="pqwidget"><a href="{{ http_host }}/quiz/" class="widget_footer">Take This Quiz at PlopQuiz.Com</a></div>'); } );
                       
                         
 // add widget HTML
 $.plopquiz.widget_wrapper = $("#pqwidget");
 
-$.plopquiz.widget_wrapper.html($.plopquiz.widget_html).hide().fadeIn().click(function(){  $.plopquiz.start(); });
+$.plopquiz.widget_wrapper.html($.plopquiz.widget_html).hide().fadeIn().click(function(){ $.plopquiz.setup();  $.plopquiz.start(); });
 
 $('button',$.plopquiz.widget_wrapper).focus(function(){$(this).blur();});
 
@@ -147,7 +146,7 @@ $('#pqwidget #subject_1').s3Slider({ timeOut: 8300  });
 };
 
 
-$.plopquiz.load_custom_selectors = function(){
+$.plopquiz.setup = function(){
 					// shortcuts for important elements
 					$.pq_wrapper = $("#pq_wrapper");  // the entire interface, including bg and overlay.
 					$.plopquiz.quiz_outer = $('div#quiz_outer', $.pq_wrapper);
@@ -168,30 +167,15 @@ $.plopquiz.load_custom_selectors = function(){
  $.plopquiz.start = function(){
 
  	                                        
-                $.plopquiz.load_custom_selectors(); 
                 // if the click handler is setup before the frame loads, wait for it
 					if($.pq_wrapper.length > 0) 
 					// start the quiz now 
 					$.event.trigger('quizstarting');
 
                 else
-                        return setTimeout($.plopquiz.start, 100);
-                        
-                        				
-                
+                        return setTimeout($.plopquiz.start, 100);   
 
-                        
-				//lightbox is draggable
-				$('#quiz_outer').draggable({ 
-				zIndex: 	1000, 
-				//opacity: 0.8,
-				addClasses: false,
-				ghosting: false,
-				containment: 'document', 
-				cancel: '.no_drag', // Youtube still doesn't work on Safari. quiz_scroll_container also.
-			 distance: 90, // this solves scrollbar problem, but it requires 90 pixel drag before draggable() activates.
-				cursor: 'pointer'
-				 }); 
+                       
 
         }; 
 
@@ -208,7 +192,34 @@ $('head').append(style);
 
 
 
+/*
+ * Transition between items
+ * 
+*/
 
+$.plopquiz.loadItem = function(quizItem) 
+{
+
+$.plopquiz.quizItem = ((quizItem && quizItem.answers) ? quizItem : $.plopquiz.fetchNextItem());
+
+if(!$.plopquiz.quizItem)return; 
+
+// heeaayy, we're loading a quiz item
+$.event.trigger('loadingQuizItem');
+
+};
+
+
+
+
+
+
+
+$.plopquiz.fatalError = function(msg) { 
+	//TODO: collect error stats
+	window.location = '{{ http_host }}/error/quiz'
+	console.log('fatal error: ', msg) 
+} 
  
 
 $(function()
@@ -277,12 +288,7 @@ pqLoad();
 
 {% include "quiz_item_submit.js" %}     //plopquiz.submitAnswer    -- submitting each item type  
 
-
-
-
-function loadQuizMethods(html){
-{% include "quiz_methods.js" %}  
-} 
+{% include "quiz_methods.js" %}  //startQuiz.    
 
 
 

@@ -335,3 +335,8 @@ remote callers access to private/protected "_*" methods.
 
 
 
+  def test_session(self, *args):
+  	from utils.appengine_utilities.sessions import Session
+  	session = Session()
+  	if session['user']: return session['user'].unique_identifier
+

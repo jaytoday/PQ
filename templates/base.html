@@ -10,7 +10,21 @@
 
 {# include cached/minimized base for shared scripts/styles #}
 <script type="text/javascript" src="/headers?js=base"></script> 
+<style type="text/css"> 
+{% block extend_css %}
+.sitelet .middle .main_wrapper,
+.sitelet .middle .main_wrapper .main {
+height:480px; 
+}
+body #sitelet-home {
+margin-top:-262px !important; {# half of sitelet-home height #}
+top:50% !important;
+}
+{% endblock %}
+</style>
 <link rel="stylesheet" type="text/css" charset="utf-8" href="/headers?css=base" />
+
+
 <script type="text/javascript">{% include "../utils/template_scripts.js" %}</script> 
 
   
@@ -55,12 +69,13 @@
 
 
 <div class="main_wrapper">
-
+{% block nav_bar %}
 {% include "../utils/nav_bar.html" %}
+{% endblock %}
 
-
-<div id="right_corner">{# DEPRECATED <span class="page_title">{{ page_title }}</span>#}<img src="/static/stylesheets/img/base/pq_logo_thumb.png"/ > </div>
-
+{% block right_corner %}
+<div id="right_corner"><img src="/static/img/base/pq_logo_thumb.png"/ > </div>
+{% endblock %}
 <div class="loading" style="display:none;"><img width='32' height='22' src="/static/stylesheets/img/ajax-loader.gif"/><span class="loading">Loading...</span><img width='32' height='22' src="/static/stylesheets/img/ajax-loader.gif"/></div>
 
 <div class="main {# hide #}">		
@@ -69,11 +84,11 @@
 {% endblock %}
 
 </div>
-
+{% block quick_links %}
 <div id="quick_links" class="quick_links">
 <a  id="about_dialog" title="About PlopQuiz" class="about_dialog">About</a> | <a id="contact_dialog" title="Contact PlopQuiz" class="contact_dialog">Contact Us</a> | <a target="_blank" title="The PlopQuiz Blog" href="http://blog.plopquiz.com">Blog</a> 
 </div>
-
+{% endblock %}
 </div>
 
 </div>

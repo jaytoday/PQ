@@ -1,0 +1,54 @@
+{% extends "../base.html" %}
+{% block head %}
+
+<style type="text/css"> {% include "../../static/stylesheets/homepage/homepage.css" %}
+
+div.update {
+margin:40px;
+-moz-border-radius-bottomleft:2px;
+-moz-border-radius-bottomright:92px;
+-moz-border-radius-topleft:92px;
+-moz-border-radius-topright:2px;
+-webkit-border-bottom-left-radius:2px;
+-webkit-border-bottom-right-radius:92px;
+-webkit-border-top-left-radius:92px;
+-webkit-border-top-right-radius-:2px;
+background:#DDDDDD none repeat scroll 0 0;
+border:8px solid #DDDDDD;
+color:#000040;
+cursor:pointer;
+font-size:38px;
+line-height:1.8em;
+margin:30px;
+overflow:hidden;
+padding:3px;
+text-align:center;
+text-transform:none;
+width:90%;
+}
+
+.sitelet .middle .main_wrapper .main {
+height:5100px !important;
+}
+
+ </style>
+{# <script type="text/javascript">{{ homepage_js }}</script> #}
+
+
+{% endblock %}
+
+
+{% block main %}
+
+<div class="info_note panel" style="margin:100px 100px 0 100px; text-align:center;"> <h1> Recent Updates </h1></div>
+
+{% for update in updates %}
+<a href="http://en.wikipedia.org/wiki/{{ update.topic_path }}" target="_blank">
+<div class="update">
+{{ update.topic_name }}
+</div>
+</a>
+{% endfor %}
+
+
+{% endblock %}

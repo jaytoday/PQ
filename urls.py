@@ -4,6 +4,7 @@ def url_routes(map):
 	#Hompeage
 
 	map.connect('', controller = 'homepage.views:ViewHomepage')
+	map.connect('recent', controller = 'homepage.views:RecentUpdates')
 	map.connect('autobot', controller = 'autobot.views:Autobot')
 
     #Login

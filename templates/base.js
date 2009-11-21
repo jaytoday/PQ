@@ -26,13 +26,13 @@ http_host = "{{http_host}}";
 $(function(){
 // recalculate margins of container
 
-var container_height = parseInt($('.main').css('height'));
-var margin_top = container_height / 2 ; 
-if (container_height < window.innerHeight -50) $('div#sitelet-home').animate({marginTop: -margin_top  + "px", 'top': '50%'}, 1000);
+//var container_height = parseInt($('.main').css('height'));
+//var margin_top = container_height / 2 ; 
+//if (container_height < window.innerHeight -50) $('div#sitelet-home').animate({marginTop: -margin_top  + "px", 'top': '50%'}, 1000);
 
-	$('div#sitelet-home').removeClass('hide'); 
+//	$('div#sitelet-home').removeClass('hide'); 
 	
-	$('div.main').removeClass('hide');
+//	$('div.main').removeClass('hide');
 	
 	
 	jqViewport = $('#viewport');

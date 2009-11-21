@@ -1,3 +1,7 @@
+
+{% block extend_base_script %}
+{% endblock %}
+
 {% if not dev_server %}
 <script type="text/javascript">
 <!-- analytics -->
@@ -12,4 +16,6 @@ pageTracker._trackPageview();
 </script> 
 <script defer src="http://plopquiz.uservoice.com/pages/general/widgets/tab.js?alignment=right&amp;color=69075A" type="text/javascript"></script>
 {% endif %}
+
+
 
